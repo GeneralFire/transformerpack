@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "SERVWORK_5065X_CooperLake"
+    Value = "0"
+    Help  = "Intel(R) CooperLake"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SERVWORK_MBF5065B"
+    Value  = "1"
+    Help  = "Intel(R) Cooper Lake A-1 Stepping(5065B)"
+    TokenType = Boolean    
+End
+
+ELINK
+    Name  = "$(MICROCODE_SERVWORK_DIR)/MBF5065B_0700001B.pdb"
+    Parent  = "MICROCODE_FILES"
+    Help  = "Intel(R) Cooper Lake A-1 Stepping(5065B)"
+    Token = "SERVWORK_MBF5065B" "=" "1"
+    InvokeOrder = AfterParent
+End

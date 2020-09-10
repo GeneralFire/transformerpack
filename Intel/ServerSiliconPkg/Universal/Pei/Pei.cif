@@ -1,0 +1,13 @@
+<component>
+	name = "Pei"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Universal\Pei\"
+	RefName = "ServerSiliconPkg.Universal.Pei"
+[INF]
+"UncoreInit\UncoreInit.inf"
+"CrystalRidge\CrystalRidgePeim.inf"
+"CsrPseudoOffsetInit\CsrPseudoOffsetInitPei.inf"
+"SiliconDataInit\SiliconDataInitPei.inf"
+[files]
+"SocketPkgPei.sdl"
+<endComponent>

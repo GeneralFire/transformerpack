@@ -1,0 +1,10 @@
+<component>
+	name = "Cpu"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Cpu\"
+	RefName = "ServerPlatformPkg.Features.Cpu"
+	
+[parts]
+"ServerPlatformPkg.Features.Cpu.Dxe"
+"ServerPlatformPkg.Features.Cpu.Pei"
+<endComponent>

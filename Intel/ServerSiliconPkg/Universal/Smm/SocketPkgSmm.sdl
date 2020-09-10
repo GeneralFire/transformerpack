@@ -1,0 +1,72 @@
+TOKEN
+	Name  = "SocketPkgSmm_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling SocketPkgSmmsupport in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SmmAccess_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmmAccess support in Project"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SmmAccessPei_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmmAccessPei support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "SmmAccess"
+	File  = "Access\SmmAccess.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "SmmAccess_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "SmmAccessPei"
+	File  = "SmmAccessPei\SmmAccessPei.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+	Token = "SmmAccessPei_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "SiliconDataInitSmm"
+    File  = "SiliconDataInit/SiliconDataInitSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "CsrPseudoOffsetInitSmm"
+    File  = "CsrPseudoOffsetInit/CsrPseudoOffsetInitSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "SpdPlatformInfoSmm"
+    File  = "SpdPlatformInfoSmm\SpdPlatformInfoSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+FFS_FILE
+    Name  = "SiliconDataInitSmm"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "ServerSiliconPkg.SiliconDataInitSmm"
+    Apriori_Index  = "1"
+End
+
+FFS_FILE
+    Name  = "CsrPseudoOffsetInitSmm"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "ServerSiliconPkg.CsrPseudoOffsetInitSmm"
+    Apriori_Index  = "1"
+End

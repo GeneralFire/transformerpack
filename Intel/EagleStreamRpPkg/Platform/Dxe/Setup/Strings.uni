@@ -1,0 +1,93 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2006 - 2008 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+#langdef   fr-FR "Français"
+#langdef   es-ES "Español"
+
+
+#string STR_ENABLE                       #language en-US  "Enable"
+#string STR_ENABLE                       #language fr-FR  "Activé"
+#string STR_ENABLE                       #language es-ES  "Activada"
+
+#string STR_DISABLE                      #language en-US  "Disable"
+#string STR_DISABLE                      #language fr-FR  "Désactivé"
+#string STR_DISABLE                      #language es-ES  "Desactivada"
+
+#string STR_AUTO                         #language en-US  "Auto"
+#string STR_AUTO                         #language fr-FR  "Auto"
+#string STR_AUTO                         #language es-ES  "Auto"
+
+
+#string STR_ERROR_POPUP                  #language en-US  "Try Again"
+#string STR_ERROR_POPUP                  #language fr-FR  "Réessayer"
+#string STR_ERROR_POPUP                  #language es-ES  "Inténtelo de nuevo"
+
+#string STR_ERROR_POPUP                  #language en-US  "Try Again"
+#string STR_ERROR_POPUP                  #language fr-FR  "Try Again"
+#string STR_ERROR_POPUP                  #language es-ES  "Try Again"
+
+
+
+#string STR_NULL_STRING  	               #language en-US  ""
+#string STR_NULL_STRING  	       	       #language fr-FR  ""
+#string STR_NULL_STRING  	      	       #language es-ES  ""
+
+// TPM
+#string STR_TPM_TITLE              #language en-US  "TPM"
+#string STR_TPM_HELP               #language en-US  "Press <Enter> to select the TPM Setup options."
+#string STR_TPM_DEVICE_PROMPT      #language en-US "TPM Device"
+#string STR_TPM_DEVICE_HELP        #language en-US "Enable/Disable the TPM device, setting takes effect on the next boot."
+#string STR_TPM_STATE_PROMPT       #language en-US "TPM State"
+#string STR_TPM_STATE_HELP         #language en-US "Activate/Deactivate the TPM device, setting takes effect on the next boot."
+#string STR_ACTIVATE               #language en-US "Activate"
+#string STR_DEACTIVATE             #language en-US "Deactivate"
+#string STR_TPM_FORCE_CLEAR_PROMPT #language en-US "TPM Force Clear"
+#string STR_TPM_FORCE_CLEAR_HELP   #language en-US "Force Clear TPM data."
+
+// Passwords
+#string STR_SECURITY_TITLE                #language en-US  "Security"
+#string STR_SECURITY_HELP                 #language en-US  "Press <Enter> to select the Security Setup options."
+#string STR_USER_PASSWORD_PROMPT          #language en-US  "User Password"
+#string STR_USER_PASSWORD_HELP            #language en-US  "Sets personal password"
+#string STR_ADMIN_PASSWORD_PROMPT         #language en-US  "Admin Password"
+#string STR_ADMIN_PASSWORD_HELP           #language en-US  "Sets administrative password"
+#string STR_ENTER_PASSWORD_TEXT           #language en-US  "Unlock Setup"
+#string STR_ENTER_PASSWORD_HELP           #language en-US  "This allows user to enter passwords."
+
+
+#string STR_USER_PASSWORD_STATUS           #language en-US  "Current Status of User Password"
+#string STR_ADMIN_PASSWORD_STATUS          #language en-US  "Current Status of Admin Password"
+
+
+#string STR_ACCESS_LEVEL                  #language en-US "Access Level"
+#string STR_ACCESS_USER                   #language en-US "User"
+#string STR_ACCESS_ADMIN                  #language en-US "Administrator"
+#string STR_USER_HELP                     #language en-US "Entered in User mode - Restricted Access"
+#string STR_ADMIN_HELP                    #language en-US "Entered in Administrator mode "

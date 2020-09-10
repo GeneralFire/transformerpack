@@ -1,0 +1,11 @@
+<component>
+    name = "Dxe"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\HwAsset\Dxe\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.HwAsset.Dxe"
+[INF]
+"HwAssetDxe.inf"
+[files]
+"Inventory.h"	
+"Dxe.sdl"	
+<endComponent>

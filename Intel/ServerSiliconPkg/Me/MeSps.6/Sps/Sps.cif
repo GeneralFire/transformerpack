@@ -1,0 +1,20 @@
+<component>
+	name = "Sps"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\Sps\"
+	RefName = "ServerSiliconPkg.Me.MeSps6.Sps"
+[files]
+"Smm\MeWatchdogControlSmm.h"
+"Sps.sdl"
+"Pei\IA32\fn.nasm"
+"Pei\SpsPei.h"
+"Dxe\SpsDxe.h"
+"Dxe\DualBiosWatchdog.h"
+[INF]
+"Dxe\SpsDxe.inf"
+"Pei\SpsPeiPreMem.inf"
+"Pei\SpsPeiPostMem.inf"
+"Smm\SpsSmm.inf"	
+[parts]
+"ServerSiliconPkg.Me.MeSps6.Sps.Library"
+<endComponent>

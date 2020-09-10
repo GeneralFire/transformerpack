@@ -1,0 +1,11 @@
+<component>
+    name = "BmcAcpi"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\BmcAcpi\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.BmcAcpi"
+[INF]
+"BmcAcpi.inf"
+[files]
+"BmcAcpi.sdl"
+"BmcAcpi.asl"
+<endComponent>

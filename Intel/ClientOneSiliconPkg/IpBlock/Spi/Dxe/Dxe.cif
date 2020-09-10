@@ -1,0 +1,11 @@
+<component>
+    name = "Dxe"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Spi\Dxe\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Spi.Dxe"
+[INF]
+"SpiSmmDxe.inf"
+[files]
+"SpiSmmCommunication.h"	
+"Dxe.sdl"	
+<endComponent>

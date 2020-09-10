@@ -1,0 +1,13 @@
+<component>
+	name = "CpRcPkg"
+	category = eModule
+	LocalRoot = "Intel\CpRcPkg\"
+	RefName = "CpRcPkg"
+[files]
+"CpRcPkg.dec"	
+"CpRcPkg.sdl"	
+[parts]
+"CpRcPkg.Include"
+"CpRcPkg.Library"
+"CpRcPkg.Universal"
+<endComponent>

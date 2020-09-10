@@ -1,0 +1,12 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\Include\Library\"
+    RefName = "ClientOneSiliconPkg.Cpu.Include.Library"
+[files]
+"BootGuardLib.h"	
+"CpuMailboxLib.h"	
+"CpuPlatformLib.h"	
+"CpuPolicyLib.h"	
+"TxtLib.h"	
+<endComponent>

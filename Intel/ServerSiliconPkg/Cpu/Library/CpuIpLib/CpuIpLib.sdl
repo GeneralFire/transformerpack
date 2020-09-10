@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "CpuIpLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling CpuIpLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "CpuIpLib"
+    Instance  = "ServerSiliconPkg.CpuIpLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+INFComponent
+    Name  = "CpuIpLib"
+    File  = "CpuIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+

@@ -1,0 +1,10 @@
+<component>
+    name = "Sol"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Amt\Sol\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Amt.Sol"
+[files]
+"Sol.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Amt.Sol.Dxe"
+<endComponent>

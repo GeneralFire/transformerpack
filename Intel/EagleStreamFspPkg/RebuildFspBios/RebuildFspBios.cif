@@ -1,0 +1,11 @@
+<component>
+    name = "RebuildFspBios"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamFspPkg\RebuildFspBios\"
+    RefName = "RebuildFspBios"
+[files]
+"RebuildFspBios.sdl"	
+"RebuildFspBios.xdl"	
+"RebuildFspBios.mak"	
+"RebuildFspBios.bat"	
+<endComponent>

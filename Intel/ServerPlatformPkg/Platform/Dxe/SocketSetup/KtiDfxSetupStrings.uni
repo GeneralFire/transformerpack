@@ -1,0 +1,289 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+#string STR_KTI_DFX_PERSOCKET_FORM_TITLE                #language en-US "Uncore Dfx Per Socket Configuration"
+#string STR_KTI_DFX_PERSOCKET_FORM_HELP                 #language en-US "Uncore Dfx Per Socket Configuration"
+
+#string STR_KTI_DFX_CONFIG_FORM_TITLE                   #language en-US "Uncore Dfx Configuration"
+#string STR_KTI_DFX_CONFIG_FORM_HELP                    #language en-US "Displays and provides option to change the Uncore Dfx Settings"
+
+#string STR_DFX_HALT_LINK_FAIL_RESET                    #language en-US "Halt at UPI Link Train Failure"
+#string STR_DFX_HALT_LINK_FAIL_RESET_HELP               #language en-US "Halt when link failed to train. Topology changed across reset. See the serial output"
+
+#string STR_DFX_KTI_MAX_INIT_ABORT                      #language en-US "UPI MaxInitAbort"
+#string STR_DFX_KTI_MAX_INIT_ABORT_HELP                 #language en-US "UPI MaxInitAbort"
+
+#string STR_DFX_LLC_SHARE_DRD_CRD                       #language en-US "LlcShareDrdCrd"
+#string STR_DFX_LLC_SHARE_DRD_CRD_HELP                  #language en-US "Enable migration from SF to LLC and to leave shared lines in the LLC for Drd and Crd: Enable (1), Disable (0), Auto"
+
+#string STR_DFX_BIAS_FWD_MODE                           #language en-US "CBo Bias Fwd Mode"
+#string STR_DFX_BIAS_FWD_MODE_HELP                      #language en-US "0 - Mode 0 (Fwd only when Hom != Req, Default); 1 - Mode 1 (Fwd when Hom != Req & Hom != Local); 2 - Mode 2 (Disable Bias Fwd)"
+#string STR_DFX_MODE0                                   #language en-US "Mode0"
+#string STR_DFX_MODE1                                   #language en-US "Mode1"
+#string STR_DFX_MODE2                                   #language en-US "Mode2"
+#string STR_DFX_MODE3                                   #language en-US "Mode3"
+#string STR_DFX_MODE4                                   #language en-US "Mode4"
+
+#string STR_DFX_SNOOP_FANOUT                            #language en-US "Snoop Fanout"
+#string STR_DFX_SNOOP_FANOUT_HELP                       #language en-US "Snoop Fanout"
+
+#string STR_DFX_HITME                                   #language en-US "Hit Me"
+#string STR_DFX_HITME_HELP                              #language en-US "CHA HitME Cache Enable"
+
+#string STR_DFX_FORCE_FWD_INV                           #language en-US "Enable Force FwdInvItoE"
+#string STR_DFX_FORCE_FWD_INV_HELP                      #language en-US "Enable Force FwdInvItoE"
+
+#string STR_DFX_DBP_ENABLE                              #language en-US "DBP Enabled"
+#string STR_DFX_DBP_ENABLE_HELP                         #language en-US "DBP Enabled"
+
+#string STR_DFX_CLEAN_EVICT_ALWAYS_LIVE_ENABLE          #language en-US "Clean Evict Always Live"
+#string STR_DFX_CLEAN_EVICT_ALWAYS_LIVE_ENABLE_HELP     #language en-US "Enable - Clean Evict Always Live"
+
+#string STR_DFX_MODIFIED_EVICT_ALWAYS_LIVE_ENABLE       #language en-US "Modified Evict Always Live"
+#string STR_DFX_MODIFIED_EVICT_ALWAYS_LIVE_ENABLE_HELP  #language en-US "Enable - Modified Evict Always Live"
+
+#string STR_DFX_OSB_ENABLE                              #language en-US "OSB Enabled"
+#string STR_DFX_OSB_ENABLE_HELP                         #language en-US "OSB Enabled"
+
+#string STR_DFX_HITME_RFO_DIRS_ENABLE                   #language en-US "HitME RFO DirS Enabled"
+#string STR_DFX_HITME_RFO_DIRS_ENABLE_HELP              #language en-US "Enable HitME DIR=S RFO optimization"
+
+#string STR_DFX_GATE_OSB_IODC_ALLOC_ENABLE              #language en-US "Gate OSB IODC Allocation Enabled"
+#string STR_DFX_GATE_OSB_IODC_ALLOC_ENABLE_HELP         #language en-US "When OSB indicates that there aren't enough snoop credits don't allocate IODC entry."
+
+#string STR_KTI_DFX_CPU0_LINK0                          #language en-US "CPU 0 UPI Port 0 DFX"
+#string STR_KTI_DFX_CPU0_LINK1                          #language en-US "CPU 0 UPI Port 1 DFX"
+#string STR_KTI_DFX_CPU0_LINK2                          #language en-US "CPU 0 UPI Port 2 DFX"
+#string STR_KTI_DFX_CPU0_LINK3                          #language en-US "CPU 0 UPI Port 3 DFX"
+#string STR_KTI_DFX_CPU0_LINK4                          #language en-US "CPU 0 UPI Port 4 DFX"
+#string STR_KTI_DFX_CPU0_LINK5                          #language en-US "CPU 0 UPI Port 5 DFX"
+#string STR_KTI_DFX_CPU1_LINK0                          #language en-US "CPU 1 UPI Port 0 DFX"
+#string STR_KTI_DFX_CPU1_LINK1                          #language en-US "CPU 1 UPI Port 1 DFX"
+#string STR_KTI_DFX_CPU1_LINK2                          #language en-US "CPU 1 UPI Port 2 DFX"
+#string STR_KTI_DFX_CPU1_LINK3                          #language en-US "CPU 1 UPI Port 3 DFX"
+#string STR_KTI_DFX_CPU1_LINK4                          #language en-US "CPU 1 UPI Port 4 DFX"
+#string STR_KTI_DFX_CPU1_LINK5                          #language en-US "CPU 1 UPI Port 5 DFX"
+#string STR_KTI_DFX_CPU2_LINK0                          #language en-US "CPU 2 UPI Port 0 DFX"
+#string STR_KTI_DFX_CPU2_LINK1                          #language en-US "CPU 2 UPI Port 1 DFX"
+#string STR_KTI_DFX_CPU2_LINK2                          #language en-US "CPU 2 UPI Port 2 DFX"
+#string STR_KTI_DFX_CPU2_LINK3                          #language en-US "CPU 2 UPI Port 3 DFX"
+#string STR_KTI_DFX_CPU2_LINK4                          #language en-US "CPU 2 UPI Port 4 DFX"
+#string STR_KTI_DFX_CPU2_LINK5                          #language en-US "CPU 2 UPI Port 5 DFX"
+#string STR_KTI_DFX_CPU3_LINK0                          #language en-US "CPU 3 UPI Port 0 DFX"
+#string STR_KTI_DFX_CPU3_LINK1                          #language en-US "CPU 3 UPI Port 1 DFX"
+#string STR_KTI_DFX_CPU3_LINK2                          #language en-US "CPU 3 UPI Port 2 DFX"
+#string STR_KTI_DFX_CPU3_LINK3                          #language en-US "CPU 3 UPI Port 3 DFX"
+#string STR_KTI_DFX_CPU3_LINK4                          #language en-US "CPU 3 UPI Port 4 DFX"
+#string STR_KTI_DFX_CPU3_LINK5                          #language en-US "CPU 3 UPI Port 5 DFX"
+#string STR_KTI_DFX_CPU4_LINK0                          #language en-US "CPU 4 UPI Port 0 DFX"
+#string STR_KTI_DFX_CPU4_LINK1                          #language en-US "CPU 4 UPI Port 1 DFX"
+#string STR_KTI_DFX_CPU4_LINK2                          #language en-US "CPU 4 UPI Port 2 DFX"
+#string STR_KTI_DFX_CPU4_LINK3                          #language en-US "CPU 4 UPI Port 3 DFX"
+#string STR_KTI_DFX_CPU4_LINK4                          #language en-US "CPU 4 UPI Port 4 DFX"
+#string STR_KTI_DFX_CPU4_LINK5                          #language en-US "CPU 4 UPI Port 5 DFX"
+#string STR_KTI_DFX_CPU5_LINK0                          #language en-US "CPU 5 UPI Port 0 DFX"
+#string STR_KTI_DFX_CPU5_LINK1                          #language en-US "CPU 5 UPI Port 1 DFX"
+#string STR_KTI_DFX_CPU5_LINK2                          #language en-US "CPU 5 UPI Port 2 DFX"
+#string STR_KTI_DFX_CPU5_LINK3                          #language en-US "CPU 5 UPI Port 3 DFX"
+#string STR_KTI_DFX_CPU5_LINK4                          #language en-US "CPU 5 UPI Port 4 DFX"
+#string STR_KTI_DFX_CPU5_LINK5                          #language en-US "CPU 5 UPI Port 5 DFX"
+#string STR_KTI_DFX_CPU6_LINK0                          #language en-US "CPU 6 UPI Port 0 DFX"
+#string STR_KTI_DFX_CPU6_LINK1                          #language en-US "CPU 6 UPI Port 1 DFX"
+#string STR_KTI_DFX_CPU6_LINK2                          #language en-US "CPU 6 UPI Port 2 DFX"
+#string STR_KTI_DFX_CPU6_LINK3                          #language en-US "CPU 6 UPI Port 3 DFX"
+#string STR_KTI_DFX_CPU6_LINK4                          #language en-US "CPU 6 UPI Port 4 DFX"
+#string STR_KTI_DFX_CPU6_LINK5                          #language en-US "CPU 6 UPI Port 5 DFX"
+#string STR_KTI_DFX_CPU7_LINK0                          #language en-US "CPU 7 UPI Port 0 DFX"
+#string STR_KTI_DFX_CPU7_LINK1                          #language en-US "CPU 7 UPI Port 1 DFX"
+#string STR_KTI_DFX_CPU7_LINK2                          #language en-US "CPU 7 UPI Port 2 DFX"
+#string STR_KTI_DFX_CPU7_LINK3                          #language en-US "CPU 7 UPI Port 3 DFX"
+#string STR_KTI_DFX_CPU7_LINK4                          #language en-US "CPU 7 UPI Port 4 DFX"
+#string STR_KTI_DFX_CPU7_LINK5                          #language en-US "CPU 7 UPI Port 5 DFX"
+
+#string STR_KTI_DFX_CPU0_LINK0_HELP                     #language en-US "CPU 0 UPI Port 0 DFX Configuration"
+#string STR_KTI_DFX_CPU0_LINK1_HELP                     #language en-US "CPU 0 UPI Port 1 DFX Configuration"
+#string STR_KTI_DFX_CPU0_LINK2_HELP                     #language en-US "CPU 0 UPI Port 2 DFX Configuration"
+#string STR_KTI_DFX_CPU0_LINK3_HELP                     #language en-US "CPU 0 UPI Port 3 DFX Configuration"
+#string STR_KTI_DFX_CPU0_LINK4_HELP                     #language en-US "CPU 0 UPI Port 4 DFX Configuration"
+#string STR_KTI_DFX_CPU0_LINK5_HELP                     #language en-US "CPU 0 UPI Port 5 DFX Configuration"
+#string STR_KTI_DFX_CPU1_LINK0_HELP                     #language en-US "CPU 1 UPI Port 0 DFX Configuration"
+#string STR_KTI_DFX_CPU1_LINK1_HELP                     #language en-US "CPU 1 UPI Port 1 DFX Configuration"
+#string STR_KTI_DFX_CPU1_LINK2_HELP                     #language en-US "CPU 1 UPI Port 2 DFX Configuration"
+#string STR_KTI_DFX_CPU1_LINK3_HELP                     #language en-US "CPU 1 UPI Port 3 DFX Configuration"
+#string STR_KTI_DFX_CPU1_LINK4_HELP                     #language en-US "CPU 1 UPI Port 4 DFX Configuration"
+#string STR_KTI_DFX_CPU1_LINK5_HELP                     #language en-US "CPU 1 UPI Port 5 DFX Configuration"
+#string STR_KTI_DFX_CPU2_LINK0_HELP                     #language en-US "CPU 2 UPI Port 0 DFX Configuration"
+#string STR_KTI_DFX_CPU2_LINK1_HELP                     #language en-US "CPU 2 UPI Port 1 DFX Configuration"
+#string STR_KTI_DFX_CPU2_LINK2_HELP                     #language en-US "CPU 2 UPI Port 2 DFX Configuration"
+#string STR_KTI_DFX_CPU2_LINK3_HELP                     #language en-US "CPU 2 UPI Port 3 DFX Configuration"
+#string STR_KTI_DFX_CPU2_LINK4_HELP                     #language en-US "CPU 2 UPI Port 4 DFX Configuration"
+#string STR_KTI_DFX_CPU2_LINK5_HELP                     #language en-US "CPU 2 UPI Port 5 DFX Configuration"
+#string STR_KTI_DFX_CPU3_LINK0_HELP                     #language en-US "CPU 3 UPI Port 0 DFX Configuration"
+#string STR_KTI_DFX_CPU3_LINK1_HELP                     #language en-US "CPU 3 UPI Port 1 DFX Configuration"
+#string STR_KTI_DFX_CPU3_LINK2_HELP                     #language en-US "CPU 3 UPI Port 2 DFX Configuration"
+#string STR_KTI_DFX_CPU3_LINK3_HELP                     #language en-US "CPU 3 UPI Port 3 DFX Configuration"
+#string STR_KTI_DFX_CPU3_LINK4_HELP                     #language en-US "CPU 3 UPI Port 4 DFX Configuration"
+#string STR_KTI_DFX_CPU3_LINK5_HELP                     #language en-US "CPU 3 UPI Port 5 DFX Configuration"
+#string STR_KTI_DFX_CPU4_LINK0_HELP                     #language en-US "CPU 4 UPI Port 0 DFX Configuration"
+#string STR_KTI_DFX_CPU4_LINK1_HELP                     #language en-US "CPU 4 UPI Port 1 DFX Configuration"
+#string STR_KTI_DFX_CPU4_LINK2_HELP                     #language en-US "CPU 4 UPI Port 2 DFX Configuration"
+#string STR_KTI_DFX_CPU4_LINK3_HELP                     #language en-US "CPU 4 UPI Port 3 DFX Configuration"
+#string STR_KTI_DFX_CPU4_LINK4_HELP                     #language en-US "CPU 4 UPI Port 4 DFX Configuration"
+#string STR_KTI_DFX_CPU4_LINK5_HELP                     #language en-US "CPU 4 UPI Port 5 DFX Configuration"
+#string STR_KTI_DFX_CPU5_LINK0_HELP                     #language en-US "CPU 5 UPI Port 0 DFX Configuration"
+#string STR_KTI_DFX_CPU5_LINK1_HELP                     #language en-US "CPU 5 UPI Port 1 DFX Configuration"
+#string STR_KTI_DFX_CPU5_LINK2_HELP                     #language en-US "CPU 5 UPI Port 2 DFX Configuration"
+#string STR_KTI_DFX_CPU5_LINK3_HELP                     #language en-US "CPU 5 UPI Port 3 DFX Configuration"
+#string STR_KTI_DFX_CPU5_LINK4_HELP                     #language en-US "CPU 5 UPI Port 4 DFX Configuration"
+#string STR_KTI_DFX_CPU5_LINK5_HELP                     #language en-US "CPU 5 UPI Port 5 DFX Configuration"
+#string STR_KTI_DFX_CPU6_LINK0_HELP                     #language en-US "CPU 6 UPI Port 0 DFX Configuration"
+#string STR_KTI_DFX_CPU6_LINK1_HELP                     #language en-US "CPU 6 UPI Port 1 DFX Configuration"
+#string STR_KTI_DFX_CPU6_LINK2_HELP                     #language en-US "CPU 6 UPI Port 2 DFX Configuration"
+#string STR_KTI_DFX_CPU6_LINK3_HELP                     #language en-US "CPU 6 UPI Port 3 DFX Configuration"
+#string STR_KTI_DFX_CPU6_LINK4_HELP                     #language en-US "CPU 6 UPI Port 4 DFX Configuration"
+#string STR_KTI_DFX_CPU6_LINK5_HELP                     #language en-US "CPU 6 UPI Port 5 DFX Configuration"
+#string STR_KTI_DFX_CPU7_LINK0_HELP                     #language en-US "CPU 7 UPI Port 0 DFX Configuration"
+#string STR_KTI_DFX_CPU7_LINK1_HELP                     #language en-US "CPU 7 UPI Port 1 DFX Configuration"
+#string STR_KTI_DFX_CPU7_LINK2_HELP                     #language en-US "CPU 7 UPI Port 2 DFX Configuration"
+#string STR_KTI_DFX_CPU7_LINK3_HELP                     #language en-US "CPU 7 UPI Port 3 DFX Configuration"
+#string STR_KTI_DFX_CPU7_LINK4_HELP                     #language en-US "CPU 7 UPI Port 4 DFX Configuration"
+#string STR_KTI_DFX_CPU7_LINK5_HELP                     #language en-US "CPU 7 UPI Port 5 DFX Configuration"
+
+#string STR_DFX_KTI_CRC_MODE_HELP                       #language en-US "Select UPI CRC Mode"
+#string STR_DFX_KTI_CRC_MODE                            #language en-US "CRC Mode"
+#string STR_DFX_KTI_16BIT_CRC                           #language en-US "16 Bit CRC"
+#string STR_DFX_KTI_32BIT_ROLLING                       #language en-US "32 Bit Rolling CRC"
+
+#string STR_DFX_KTI_L0P_HELP                            #language en-US "Enable/Disable per port L0p mode at transmitter which will be ANDed together with the exchanged value of the connected port to determine if the link may enter L0p."
+#string STR_DFX_KTI_L0P                                 #language en-US "L0p enabled"
+
+#string STR_DFX_KTI_L1_HELP                             #language en-US "Enable/Disable per port L1 which will be ANDed together with the exchanged value of the connected port to determine if the link may enter L1."
+#string STR_DFX_KTI_L1                                  #language en-US "L1 enabled"
+
+#string STR_DFX_KTI_FAILOVER_ENABLE_HELP                #language en-US "UPI Data Failover"
+#string STR_DFX_KTI_FAILOVER_ENABLE                     #language en-US "UPI Failover Support"
+
+#string STR_DFX_DUAL_LINK_INTLV_MODE                    #language en-US "Dual Link Interleave Mode"
+#string STR_DFX_DUAL_LINK_INTLV_MODE_HELP               #language en-US "Only valid in 2 Socket 2 Link Topology"
+#string STR_DFX_CHA_INTLV                               #language en-US "Enable CHA interleaving (disable SNC, XOR-based Intlv)"
+#string STR_DFX_DISABLE_D2C                             #language en-US "Disable D2C"
+
+#string STR_KTI_DFX_SYSTEM_DEGRADE_MODE                 #language en-US "DfxSystemDegradeMode"
+#string STR_KTI_DFX_SYSTEM_DEGRADE_MODE_HELP            #language en-US "System topology degrade mode options."
+#string STR_DEGRADE_TO_1S                               #language en-US "Degrade_to_1S"
+#string STR_DEGARDE_TO_SUPPORTED                        #language en-US "Degarde_to_Supported"
+#string STR_NO_DEGRADE                                  #language en-US "No_Degrade"
+
+#string STR_DFX_VN1                                     #language en-US "VN1"
+#string STR_DFX_VN1_HELP                                #language en-US "VN1"
+
+#string STR_DFX_D2C                                     #language en-US "Direct To Core (D2C)"
+#string STR_DFX_D2C_HELP                                #language en-US "Direct To Core (D2C)"
+
+#string STR_DFX_D2C_THLD                                #language en-US "Direct To Core (D2C) Threshold"
+#string STR_DFX_D2C_THLD_HELP                           #language en-US "Direct To Core (D2C) Threshold: 2 - 8; default is 2."
+
+#string STR_DFX_D2K                                     #language en-US "Direct To UPI (D2K)"
+#string STR_DFX_D2K_HELP                                #language en-US "Direct To UPI (D2K)"
+#string STR_DFX_LOCK_MASTER                             #language en-US "Lock Master"
+#string STR_DFX_LOCK_MASTER_HELP                        #language en-US "Set NodeId of the lock master. 0 - Socket0, 1 - Socket1.... Default value 4 is for 4-sockets system and 8 is for 8-sockets system. Default set the SBSP to lock master"
+
+#string STR_DFX_OSB_LOC_RD_ENABLE                       #language en-US "OSB Local Rd Enabled"
+#string STR_DFX_OSB_LOC_RD_ENABLE_HELP                  #language en-US "OSB Local Rd Enabled"
+
+#string STR_DFX_OSB_LOC_RDCUR_ENABLE                    #language en-US "OSB Local RdCur Enabled"
+#string STR_DFX_OSB_LOC_RDCUR_ENABLE_HELP               #language en-US "OSB Local RdCur Enabled"
+
+#string STR_DFX_OSB_RMT_RD_ENABLE                       #language en-US "OSB Remote Rd Enabled"
+#string STR_DFX_OSB_RMT_RD_ENABLE_HELP                  #language en-US "OSB Remote Rd Enabled"
+
+#string STR_DFX_M3KTI_COUNT_MISMATCH_ENABLE             #language en-US "M3UPI Count Mismatch"
+#string STR_DFX_M3KTI_COUNT_MISMATCH_ENABLE_HELP        #language en-US "Allow M3UPI Count Mismatch: Enable, Disable"
+
+#string STR_DFX_SNP_FANOUT_CHA_INTERLEAVE_EN            #language en-US "SnoopFanout CHA Interleave"
+#string STR_DFX_SNP_FANOUT_CHA_INTERLEAVE_EN_HELP       #language en-US "Balancing Snoop Fanout via CHA interleaving.\nThis feature is only applicable to 8-socket double pinwheel topology.\nIt does not have any effect on other topologies."
+
+#string STR_DFX_XPT_FIFO_ENABLED_CREDIT                 #language en-US "XPT FIFO Enabled Credit"
+#string STR_DFX_XPT_FIFO_ENABLED_CREDIT_HELP            #language en-US "Set the enabled credit value for XPT FIFO."
+
+#string STR_1                                           #language en-US "1"
+#string STR_2                                           #language en-US "2"
+#string STR_3                                           #language en-US "3"
+#string STR_4                                           #language en-US "4"
+
+#string STR_DFX_CLOCK_MODULATION_EN                     #language en-US "Clock Modulation Enabled"
+#string STR_DFX_CLOCK_MODULATION_EN_HELP                #language en-US "Clock Modulation Enabled"
+
+#string STR_DFX_MDFIS_ADVANCED_TRAINING_EN              #language en-US "Mdfis Advanced Training Enabled"
+#string STR_DFX_MDFIS_ADVANCED_TRAINING_EN_HELP         #language en-US "For further optimizations, BIOS along with PCODE\n can elect to enable opportunistic phases to maximize performance."
+
+#string STR_DFX_CXL_SECURITY_LEVEL              #language en-US "CXL Security Level"
+#string STR_DFX_CXL_SECURITY_LEVEL_HELP         #language en-US "Fully Trusted: CXL Device can get access on CXL.$ for host-attached and device attached memory ranges in the WB address space;\nPartially Trusted: CXL Device can get access on CXL.$ for device attached memory ranges only;\nUntrusted: All requests on CXL.$ will be aborted by the Host."
+#string STR_FULLY_TRUSTED                       #language en-US "Fully Trusted"
+#string STR_PARTIALLY_TRUSTED                   #language en-US "Partially Trusted"
+#string STR_UNTRUSTED                           #language en-US "Untrusted"
+
+#string STR_DFX_CXL_STCGE                       #language en-US "CXL STCGE"
+#string STR_DFX_CXL_STCGE_HELP                  #language en-US "CXL Arb-Mux Side Clock Trunk Clock Gating Enable"
+#string STR_DFX_CXL_SDCGE                       #language en-US "CXL SDCGE"
+#string STR_DFX_CXL_SDCGE_HELP                  #language en-US "CXL Arb-Mux Side Clock Dynamic Clock Gating Enable"
+#string STR_DFX_CXL_DLCGE                       #language en-US "CXL DLCGE"
+#string STR_DFX_CXL_DLCGE_HELP                  #language en-US "CXL Arb-Mux Dynamic Link Clock Gating Enable"
+#string STR_DFX_CXL_LTCGE                       #language en-US "CXL LTCGE"
+#string STR_DFX_CXL_LTCGE_HELP                  #language en-US "CXL Arb-Mux Link Clock Trunk Clock Gating Enable"
+#string STR_DFX_CXL_VID                         #language en-US "Set CXL VID"
+#string STR_DFX_CXL_VID_HELP                    #language en-US "CXL VID on SPR B0. Auto(Default) and Enable is 0x1E98. Disable is 0x8086"
+
+#string STR_PMON_CONFIG                        #language en-US "PMON discovery configuration setting"
+#string STR_PMON_CONFIG_HELP                   #language en-US "Auto - Configures PMON dicovery table based on CPU.\nReduced - Configures Uncore,MC,PCIe only.\nFull - Configures Uncore,MC,PCIe & M2IOSF.\nDisabled - PMON discovery table is not configured."
+
+#string STR_PMON_CONFIG_REDUCED_DISABLE        #language en-US "Disable"
+#string STR_PMON_CONFIG_REDUCED_STRING         #language en-US "Reduced"
+#string STR_PMON_CONFIG_REDUCED_AUTO           #language en-US "Auto"
+#string STR_PMON_CONFIG_FULL_STRING            #language en-US "Full"
+
+#string STR_PMON_ACC_CTRL                       #language en-US "Mesh2IIO PMON access control"
+#string STR_PMON_ACC_CTRL_HELP                  #language en-US "Auto - Configures PMON access based on CPU.\nDisable - Prevents PMON access and silently drops.\nEnable - Configures PMON to get full access."
+
+#string STR_PMON_ACC_CTRL_DISABLE_STRING        #language en-US "Disable"
+#string STR_PMON_ACC_CTRL_DISABLE_AUTO          #language en-US "Auto"
+#string STR_PMON_ACC_CTRL_ENABLE_STRING         #language en-US "Enable"
+
+#string STR_DFX_IIO_STACK_ENABLE               #language en-US "IIO STACK ENABLE"
+#string STR_DFX_IIO_STACK_ENABLE_HELP          #language en-US "Enables/Disables given MS2IOSF. Default is AUTO which means the strap is not modified.\n 1 - a given MS2IOSF behaves as defined by internal fuse.\n 0 - A given MS2ISOF is disabled overriding the fuse enable.\n Order of these disable bits in a SoC should map to the order of corresponding M2IOSF CAPID bits.\n Please note that the rlink/dmi stack should NEVER be disabled through strap.\n"
+
+#string STR_DFX_HQM_ENABLE                    #language en-US "HQM ENABLE"
+#string STR_DFX_HQM_ENABLE_HELP               #language en-US "HQM strap override. AUTO(Default) do not modify - Soft strap value.\n 1 - HQM is enabled.\n 0 - HQM is disabled.\n"
+//
+//
+// End of file
+//
+

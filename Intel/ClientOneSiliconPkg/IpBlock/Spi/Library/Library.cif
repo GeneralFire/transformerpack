@@ -1,0 +1,11 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Spi\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Spi.Library"
+[INF]
+"PeiDxeSmmSpiAccessLib\PeiDxeSmmSpiAccessLib.inf"
+"PeiSpiLib\PeiSpiLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

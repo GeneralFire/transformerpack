@@ -1,0 +1,12 @@
+<component>
+	name = "FspInit"
+	category = ModulePart
+	LocalRoot = "Intel\EagleStreamFspPkg\FspInit\"
+	RefName = "EagleStreamFspPkg.FspInit"
+[INF]
+"Pei\FspInit.inf"
+"Pei\FspInitPreMem.inf"
+"Pei\FspS3Notify.inf"
+[files]
+"FspInit.sdl"	
+<endComponent>

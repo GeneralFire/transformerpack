@@ -1,0 +1,12 @@
+<component>
+	name = "EnhancedMcaErrorLog"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\EnhancedMcaErrorLog\"
+	RefName = "ServerRasPkg.EnhancedMcaErrorLog"
+[INF]
+"EnhancedMcaErrorLog.inf"
+[files]
+"EnhancedMcaErrorLog.h"	
+"EnhancedMcaLogPrivateLib.h"	
+"EnhancedMcaErrorLog.sdl"	
+<endComponent>

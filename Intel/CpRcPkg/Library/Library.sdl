@@ -1,0 +1,1176 @@
+TOKEN
+	Name  = "Library_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Library support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+#INFComponent
+#    Name  = "USRATraceLib"
+#    File  = "USRATraceLibNull\USRATraceLibNull.inf"
+#    Package  = "CpRcPkg"
+#    ModuleTypes  = "BASE"
+#End
+
+INFComponent
+    Name  = "UsraRegisterFilterLibNull"
+    File  = "UsraRegisterFilterLibNull\UsraRegisterFilterLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterFilterLib"
+    Instance  = "CpRcPkg.UsraRegisterFilterLibNull"
+End
+
+INFComponent
+    Name  = "PeiUsraLib"
+    File  = "PeiUsraLib\PeiUsraLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.PeiUsraLib"
+    Arch = "IA32"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterFilterLib"
+    Instance  = "CpRcPkg.UsraRegisterFilterLibNull"
+    Arch = "X64"
+End
+
+#INFComponent
+#	Name  = "BaseCsrAddressTranslationLibNull"
+#	File  = "BaseCsrAddressTranslationLibNull\BaseCsrAddressTranslationLibNull.inf"
+#	Package  = "CpRcPkg"
+#	ModuleTypes  = "BASE"
+#End
+
+INFComponent
+    Name  = "BaseMspCoreLib"
+    File  = "BaseMspCoreLib/BaseMspCoreLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "BaseMemoryServicesLib"
+    File  = "BaseMemoryServicesLib/BaseMemoryServicesLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "BaseRcDebugLibNull"
+    File  = "BaseRcDebugLibNull/BaseRcDebugLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "BaseRcDebugLib"
+    File  = "BaseRcDebugLib/BaseRcDebugLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PerformanceTrackerLib"
+    File  = "PerformanceTrackerLib\PerformanceTrackerLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PerformanceTrackerLib"
+    Instance  = "CpRcPkg.PerformanceTrackerLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "CompressedVariableLibPei"
+    File  = "CompressedVariableLib\CompressedVariableLibPei.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "CompressedVariableLib"
+    Instance  = "CpRcPkg.CompressedVariableLibPei"
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "CompressedVariableLibDxe"
+    File  = "CompressedVariableLib\CompressedVariableLibDxe.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+    Class  = "CompressedVariableLib"
+    Instance  = "CpRcPkg.CompressedVariableLibDxe"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "MspCoreLib"
+    Instance  = "CpRcPkg.BaseMspCoreLib"
+End
+
+LibraryMapping
+    Class  = "BaseMemoryServicesLib"
+    Instance  = "CpRcPkg.BaseMemoryServicesLib"
+End
+
+LibraryMapping
+    Class  = "RcDebugLib"
+    Instance  = "CpRcPkg.BaseRcDebugLibNull"
+    Token = "DEBUG_FLAGS_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "RcDebugLib"
+    Instance  = "CpRcPkg.BaseRcDebugLib"
+    Token = "DEBUG_FLAGS_ENABLE" "=" "1"
+End
+
+#LibraryMapping
+#	Class  = "CsrAddressTranslationLib"
+#	Instance  = "CpRcPkg.BaseCsrAddressTranslationLibNull"
+#End
+
+#INFComponent
+#    Name  = "PeiSysHostPointerLibIdt"
+#    File  = "PeiSysHostPointerLibIdt/PeiSysHostPointerLibIdt.inf"
+#    Package  = "CpRcPkg"
+#    ModuleTypes  = "BASE"
+#End
+#
+#LibraryMapping
+#    Class  = "SysHostPointerLib"
+#    Instance  = "CpRcPkg.PeiSysHostPointerLibIdt"
+#End
+
+INFComponent
+    Name  = "SiliconAccessLib"
+    File  = "SiliconAccessLib/SiliconAccessLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "SiliconAccessLib"
+    Instance  = "CpRcPkg.SiliconAccessLib"
+End
+
+INFComponent
+    Name  = "BaseUsraLib"
+    File  = "BaseUsraLib/BaseUsraLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.BaseUsraLib"
+End
+
+INFComponent
+    Name  = "BaseCrcLib"
+    File  = "BaseCrcLib/BaseCrcLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "CrcLib"
+    Instance  = "CpRcPkg.BaseCrcLib"
+End
+
+INFComponent
+    Name  = "BaseMemoryCoreLib"
+    File  = "BaseMemoryCoreLib/BaseMemoryCoreLib10nm.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "BaseDdrtCoreLib"
+    File  = "BaseDdrtCoreLib/BaseDdrtCoreLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "BaseDdr5CoreLib"
+    File  = "BaseDdr5CoreLib/BaseDdr5CoreLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "DDR5_ENABLE" "=" "1"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "Ddr5CoreLib"
+    Instance  = "CpRcPkg.BaseDdr5CoreLib"  
+    Token = "DDR5_ENABLE" "=" "1"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+
+#INFComponent
+#    Name  = "BaseDdrtCoreLib"
+#    File  = "BaseDdrtCoreLibNull\BaseDdrtCoreLibNull.inf"
+#    Package  = "CpRcPkg"
+#    ModuleTypes  = "BASE"
+#End
+
+LibraryMapping
+    Class  = "BaseDdrtCoreLib"
+    Instance  = "CpRcPkg.BaseDdrtCoreLib"
+End
+
+LibraryMapping
+    Class  = "BaseMemoryCoreLib"
+    Instance  = "CpRcPkg.BaseMemoryCoreLib"    
+End
+
+INFComponent
+    Name  = "BaseCpuAccessLib"
+    File  = "BaseCpuAccessLib/BaseCpuAccessLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "CpuAccessLib"
+    Instance  = "CpRcPkg.BaseCpuAccessLib"
+End
+
+INFComponent
+    Name  = "DxeCheckpointLib"
+    File  = "DxeCheckpointLib\DxeCheckpointLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+    Class  = "CheckpointLib"
+    Instance  = "CpRcPkg.DxeCheckpointLib"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "PeiMmPciLib"
+    File  = "PeiMmPciLib/PeiMmPciLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+	Class  = "MmPciLib"
+	Instance  = "CpRcPkg.PeiMmPciLib"
+	Arch  = "IA32"
+End
+
+#Necessary for UefiCpuPkg\SecCore
+INFComponent
+    Name  = "MmPciNullLib"
+    File  = "MmPciNullLib/MmPciNullLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "SEC" 
+End
+
+LibraryMapping
+    Class  = "MmPciLib"
+    Instance  = "CpRcPkg.MmPciNullLib"
+    ModuleTypes  = "SEC" 
+    Arch  = "IA32"
+End
+
+INFComponent
+    Name  = "DxeUsraLib"
+    File  = "DxeUsraLib/DxeUsraLib.inf"
+    Package  = "CpRcPkg"
+    Arch = "X64"
+    ModuleTypes  = "UEFI_APPLICATION"
+End
+
+INFComponent
+    Name  = "SmmUsraLib"
+    File  = "DxeUsraLib/SmmUsraLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.DxeUsraLib"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.DxeUsraLib"
+    ModuleTypes  = "UEFI_APPLICATION"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.SmmUsraLib"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "BaseIoAccessLib"
+    File  = "BaseIoAccessLib\BaseIoAccessLib10nm.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"    
+End
+
+LibraryMapping
+    Class  = "IoAccessLib"
+    Instance  = "CpRcPkg.BaseIoAccessLib"
+End
+
+INFComponent
+    Name  = "BaseCteNetLibNull"
+    File  = "BaseCteNetLibNull\BaseCteNetLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "CteNetLib"
+    Instance  = "CpRcPkg.BaseCteNetLibNull"
+End
+
+INFComponent
+    Name  = "BaseMemorySsaLib"
+    File  = "BaseMemorySsaLib\BaseMemorySsaLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "BaseMemorySsaLib"
+    Instance  = "CpRcPkg.BaseMemorySsaLib"
+End
+
+INFComponent
+    Name  = "BaseRcCompressLib"
+    File  = "BaseRcCompressLib\BaseRcCompressLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"    
+End
+
+LibraryMapping
+    Class  = "RcCompressLib"
+    Instance  = "CpRcPkg.BaseRcCompressLib"
+End
+
+INFComponent
+    Name  = "PeiRcMemAllocLibPeiServices"
+    File  = "PeiRcMemAllocLibPeiServices\PeiRcMemAllocLibPeiServices.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = PEIM	
+End
+
+LibraryMapping
+	Class  = "RcMemAllocLib"
+	Instance  = "CpRcPkg.PeiRcMemAllocLibPeiServices"
+	Token = "PREMEM_PAGE_ALLOC_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "EmulationConfigurationSimLib"
+    File  = "EmulationConfigurationLibNull\EmulationConfigurationLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = BASE
+End
+
+#LibraryMapping
+#	Class  = "EmulationConfigurationLib"
+#	Instance  = "CpRcPkg.EmulationConfigurationSimLib"	
+#End
+
+#INFComponent
+#    Name  = "SysHostPointerLibSim"
+#    File  = "BaseSysHostPointerLibSim\SysHostPointerLibSim.inf"
+#    Package  = "CpRcPkg"
+#    ModuleTypes  = BASE
+#End
+
+#LibraryMapping
+#	Class  = "SysHostPointerLib"
+#	Instance  = "CpRcPkg.SysHostPointerLibSim"
+#	Token = "SOFTSIM_BIOS_ENABLE" "=" "1"
+#End
+
+INFComponent
+    Name  = "BaseRcMemAllocLib"
+    File  = "BaseRcMemAllocLib\BaseRcMemAllocLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = BASE
+End
+
+LibraryMapping
+	Class  = "RcMemAllocLib"
+	Instance  = "CpRcPkg.BaseRcMemAllocLib"
+	Token = "PREMEM_PAGE_ALLOC_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "BaseRcHeapAddrLib"
+    File  = "BaseRcHeapAddrLib\BaseRcHeapAddrLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = BASE
+End
+
+LibraryMapping
+	Class  = "RcHeapAddrLib"
+	Instance  = "CpRcPkg.BaseRcHeapAddrLib"
+	Token = "PREMEM_PAGE_ALLOC_SUPPORT" "=" "0"
+End
+
+#INFComponent
+#    Name  = "BaseOemProcMemInitLibNull"
+#    File  = "BaseOemProcMemInitLibNull\BaseOemProcMemInitLibNull.inf"
+#    Package  = "CpRcPkg"
+#    ModuleTypes  = BASE
+#End
+
+#LibraryMapping
+#	Class  = "OemProcMemInitLib"
+#	Instance  = "CpRcPkg.BaseOemProcMemInitLibNull"
+#	ModuleTypes  = "PEIM DXE_DRIVER DXE_SMM_DRIVER"
+#End
+
+#INFComponent
+#    Name  = "BaseOemIioInitLibNull"
+#    File  = "BaseOemIioInitLibNull\BaseOemIioInitLibNull.inf"
+#    Package  = "CpRcPkg"
+#    ModuleTypes  = BASE
+#End
+
+#LibraryMapping
+#	Class  = "OemIioInitLib"
+#	Instance  = "CpRcPkg.BaseOemIioInitLibNull"
+#	ModuleTypes  = "PEIM DXE_DRIVER DXE_SMM_DRIVER"
+#End
+
+#INFComponent
+#    Name  = "BaseKtiSimOemProcMemInitLib"
+#    File  = "BaseKtiSimOemProcMemInitLib\BaseKtiSimOemProcMemInitLib.inf"
+#    Package  = "CpRcPkg"
+#    ModuleTypes  = BASE
+#End
+
+#LibraryMapping
+#	Class  = "OemProcMemInitLib"
+#	Instance  = "CpRcPkg.BaseKtiSimOemProcMemInitLib"
+#	ModuleTypes  = "PEIM DXE_DRIVER DXE_SMM_DRIVER"
+#End
+
+INFComponent
+    Name  = "BaseCpuAccessLibNull"
+    File  = "BaseCpuAccessLibNull\BaseCpuAccessLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = BASE
+End
+
+#LibraryMapping
+#	Class  = "CpuAccessLib"
+#	Instance  = "CpRcPkg.BaseCpuAccessLibNull"
+#End
+
+INFComponent
+    Name  = "SysHostPointerLibMm7"
+    File  = "SysHostPointerLib\PeiSysHostPointerLibMm7.inf"
+    Package  = "CpRcPkg"
+    Arch = "IA32"
+    ModuleTypes  = "BASE"    
+End
+
+LibraryMapping
+    Class  = "SysHostPointerLib"
+    Instance  = "CpRcPkg.SysHostPointerLibMm7"
+    Arch  = "IA32"
+End
+
+INFComponent
+    Name  = "SysHostPointerLibGlobalVariable"
+    File  = "SysHostPointerLib\SysHostPointerLibGlobalVariable.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SAL_DRIVER UEFI_DRIVER UEFI_APPLICATION"
+End
+
+LibraryMapping
+    Class  = "SysHostPointerLib"
+    Instance  = "CpRcPkg.SysHostPointerLibGlobalVariable"
+    Arch  = "X64"
+End
+
+INFComponent
+    Name  = "BaseMemoryCoreTargetLib"
+    File  = "BaseMemoryCoreLib\BaseMemoryCoreTargetLib\BaseMemoryCoreTargetLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MemoryCoreTargetLib"
+    Instance  = "CpRcPkg.BaseMemoryCoreTargetLib"    
+End
+
+INFComponent
+    Name  = "LegacyRmtLibNull"
+    File  = "LegacyRmtLibNull\LegacyRmtLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "SV_BIOS_ENABLE" "=" "0" 
+End
+
+LibraryMapping
+    Class  = "LegacyRmtLib"
+    Instance  = "CpRcPkg.LegacyRmtLibNull"
+    Token = "SV_BIOS_ENABLE" "=" "0" 
+End
+
+INFComponent
+    Name  = "SpdAccessLibDxe"
+    File  = "SpdAccessLib\SpdAccessLibDxe.inf"
+    Package  = "CpRcPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"    
+    Token = "ON_BOARD_SPD" "=" "0"
+End
+
+LibraryMapping
+    Class  = "SpdAccessLib"
+    Instance  = "CpRcPkg.SpdAccessLibDxe"  
+    Arch = "X64"
+    Token = "ON_BOARD_SPD" "=" "0"
+End
+
+INFComponent
+    Name  = "SpdAccessLibPei"
+    File  = "SpdAccessLib\SpdAccessLibPei.inf"
+    Package  = "CpRcPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"       
+    Token = "ON_BOARD_SPD" "=" "0"
+End
+
+INFComponent
+    Name  = "SpdAccessLibOnBoardDxe"
+    File  = "SpdAccessLibOnBoard\SpdAccessLibOnBoardDxe.inf"
+    Package  = "CpRcPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"     
+    Token = "ON_BOARD_SPD" "=" "1"    
+End
+
+INFComponent
+    Name  = "SpdAccessLibOnBoardSmm"
+    File  = "SpdAccessLibOnBoard\SpdAccessLibOnBoardSmm.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+    Token = "ON_BOARD_SPD" "=" "1"    
+End
+
+INFComponent
+    Name  = "SpdAccessLibOnBoardPei"
+    File  = "SpdAccessLibOnBoard\SpdAccessLibOnBoardPei.inf"
+    Package  = "CpRcPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "ON_BOARD_SPD" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SpdAccessLib"
+    Instance  = "CpRcPkg.SpdAccessLibOnBoardDxe"  
+    Arch = "X64"
+    Token = "ON_BOARD_SPD" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "SpdAccessLib"
+    Instance  = "CpRcPkg.SpdAccessLibOnBoardSmm"  
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64
+    Token = "ON_BOARD_SPD" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SpdAccessLib"
+    Instance  = "CpRcPkg.SpdAccessLibOnBoardPei"  
+    Arch = "IA32"
+    Token = "ON_BOARD_SPD" "=" "1" 
+End
+
+LibraryMapping
+    Class  = "SpdAccessLib"
+    Instance  = "CpRcPkg.SpdAccessLibPei"  
+    Arch = "IA32"  
+    Token = "ON_BOARD_SPD" "=" "0"    
+End
+
+INFComponent
+    Name  = "SpdAccessLibSmm"
+    File  = "SpdAccessLib\SpdAccessLibSmm.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+    Token = "ON_BOARD_SPD" "=" "0"
+End
+
+LibraryMapping
+    Class  = "SpdAccessLib"
+    Instance  = "CpRcPkg.SpdAccessLibSmm"  
+    ModuleTypes  = "DXE_SMM_DRIVER"  
+    Arch = "X64"
+    Token = "ON_BOARD_SPD" "=" "0"
+End
+
+INFComponent
+    Name  = "HwSpdAccessTargetLib"
+    File  = "SpdAccessLib\HwSpdAccessTargetLib\HwSpdAccessTargetLib.inf"
+    Package  = "CpRcPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "ON_BOARD_SPD" "=" "0"
+End
+
+LibraryMapping
+    Class  = "SpdAccessTargetLib"
+    Instance  = "CpRcPkg.HwSpdAccessTargetLib"  
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "AdvMemTestLib"
+    File  = "AdvMemTestLib\AdvMemTestLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "AdvMemTestLib"
+    Instance  = "CpRcPkg.AdvMemTestLib"  
+End
+
+INFComponent
+    Name  = "BaseEnhancedWarningLogLib"
+    File  = "BaseEnhancedWarningLogLib\BaseEnhancedWarningLogLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "EnhancedWarningLogLib"
+    Instance  = "CpRcPkg.BaseEnhancedWarningLogLib"  
+End
+
+
+
+INFComponent
+    Name  = "BaseHbmCoreLib"
+    File  = "BaseHbmCoreLib/BaseHbmCoreLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "HBM_ENABLE" "=" "1"       
+End
+
+LibraryMapping
+    Class  = "HbmCoreLib"
+    Instance  = "CpRcPkg.BaseHbmCoreLib"  
+    Token = "HBM_ENABLE" "=" "1"         
+End
+
+INFComponent
+    Name  = "BaseHbmCoreLibNull"
+    File  = "BaseHbmCoreLibNull/BaseHbmCoreLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "HBM_ENABLE" "=" "0"       
+End
+
+LibraryMapping
+    Class  = "HbmCoreLib"
+    Instance  = "CpRcPkg.BaseHbmCoreLibNull" 
+    Token = "HBM_ENABLE" "=" "0"       
+End
+
+
+INFComponent
+    Name  = "PeiCheckpointLib"
+    File  = "PeiCheckpointLib\PeiCheckpointLib.inf"
+    Package  = "CpRcPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+End
+
+LibraryMapping
+    Class  = "CheckpointLib"
+    Instance  = "CpRcPkg.PeiCheckpointLib"  
+    Arch = "IA32"  
+End
+
+INFComponent
+    Name  = "SmmCheckpointLib"
+    File  = "SmmCheckpointLib\SmmCheckpointLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER" 
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "CheckpointLib"
+    Instance  = "CpRcPkg.SmmCheckpointLib"  
+    ModuleTypes  = "DXE_SMM_DRIVER" 
+    Arch = "X64" 
+End
+
+INFComponent
+    Name  = "BaseDdr5CoreLibNull"
+    File  = "BaseDdr5CoreLibNull\BaseDdr5CoreLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "DDR5_ENABLE" "=" "0"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "Ddr5CoreLib"
+    Instance  = "CpRcPkg.BaseDdr5CoreLibNull"  
+    Token = "DDR5_ENABLE" "=" "0"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "DxeMemTypeLib"
+    File  = "MemTypeLib\DxeMemTypeLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MemTypeLib"
+    Instance  = "CpRcPkg.DxeMemTypeLib"  
+End
+
+INFComponent
+    Name  = "PeiMemTypeLib"
+    File  = "MemTypeLib\PeiMemTypeLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "PEIM"  
+    Arch = "IA32"
+End
+
+LibraryMapping
+    Class  = "MemTypeLib"
+    Instance  = "CpRcPkg.PeiMemTypeLib"  
+    ModuleTypes  = "PEIM"  
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "UsraCsrLib"
+    File  = "UsraCsrLib/UsraCsrLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "UsraCsrLib"
+    Instance  = "CpRcPkg.UsraCsrLib"
+End
+
+INFComponent
+    Name  = "BaseLegacyRmtLib"
+    File  = "LegacyRmtLib\LegacyRmtLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "SV_BIOS_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "LegacyRmtLib"
+    Instance  = "CpRcPkg.BaseLegacyRmtLib"
+    Token = "SV_BIOS_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "SsaLoaderLib"
+    File  = "SsaLoaderLib\SsaLoaderGen2Lib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "PCD_PcdSsaLoaderMethodFeatureSupported" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SsaLoaderLib"
+    Instance  = "CpRcPkg.SsaLoaderLib"
+    Token = "PCD_PcdSsaLoaderMethodFeatureSupported" "=" "1"
+End
+
+
+INFComponent
+    Name  = "SsaLoaderLibNull"
+    File  = "SsaLoaderLibNull\SsaLoaderLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "PCD_PcdSsaLoaderMethodFeatureSupported" "=" "0"
+End
+
+LibraryMapping
+    Class  = "SsaLoaderLib"
+    Instance  = "CpRcPkg.SsaLoaderLibNull"
+    Token = "PCD_PcdSsaLoaderMethodFeatureSupported" "=" "0"
+End
+
+INFComponent
+    Name  = "SsaBuiltInRmtLib"
+    File  = "SsaBuiltInRmtLib\SsaBuiltInRmtLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "PCD_PcdSsaBuiltInRmtFeatureSupported" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SsaBuiltInRmtLib"
+    Instance  = "CpRcPkg.SsaBuiltInRmtLib"
+    Token = "PCD_PcdSsaBuiltInRmtFeatureSupported" "=" "1"
+End
+
+INFComponent
+    Name  = "SsaBuiltInRmtLibNull"
+    File  = "SsaBuiltInRmtLibNull\SsaBuiltInRmtLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "PCD_PcdSsaBuiltInRmtFeatureSupported" "=" "0"
+End
+
+LibraryMapping
+    Class  = "SsaBuiltInRmtLib"
+    Instance  = "CpRcPkg.SsaBuiltInRmtLibNull"
+    Token = "PCD_PcdSsaBuiltInRmtFeatureSupported" "=" "0"
+End
+
+INFComponent
+    Name  = "SsaInitializeLib"
+    File  = "SsaInitializeLib\SsaInitializeLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "PCD_PcdSsaFeatureSupported" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SsaInitializeLib"
+    Instance  = "CpRcPkg.SsaInitializeLib"
+    Token = "PCD_PcdSsaFeatureSupported" "=" "1"
+End
+
+INFComponent
+    Name  = "SsaInitializeLibNull"
+    File  = "SsaInitializeLibNull/SsaInitializeLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+    Token = "PCD_PcdSsaFeatureSupported" "=" "0"
+End
+
+LibraryMapping
+    Class  = "SsaInitializeLib"
+    Instance  = "CpRcPkg.SsaInitializeLibNull"
+    Token = "PCD_PcdSsaFeatureSupported" "=" "0"
+End
+
+INFComponent
+    Name  = "BitMaskLib"
+    File  = "BitMaskLib\BitMaskLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "BitMaskLib"
+    Instance  = "CpRcPkg.BitMaskLib"
+End
+
+INFComponent
+    Name  = "MemSweepLib"
+    File  = "MemSweepLib\MemSweepLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MemSweepLib"
+    Instance  = "CpRcPkg.MemSweepLib"
+End
+
+INFComponent
+    Name  = "MemVrSvidMapLib"
+    File  = "MemVrSvidMapLib\MemVrSvidMapLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MemVrSvidMapLib"
+    Instance  = "CpRcPkg.MemVrSvidMapLib"
+End
+
+INFComponent
+    Name  = "MicrocodeLib"
+    File  = "MicrocodeLib\MicrocodeLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MicrocodeLib"
+    Instance  = "CpRcPkg.MicrocodeLib"
+End
+
+INFComponent
+    Name  = "SsaUtilLib"
+    File  = "SsaUtilLib\SsaUtilLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "SsaUtilLib"
+    Instance  = "CpRcPkg.SsaUtilLib"
+End
+
+INFComponent
+    Name  = "PmicAccessLibDxe"
+    File  = "PmicAccessLib\PmicAccessLibDxe.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "DXE_DRIVER"    
+    Token = "DDR5_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PmicAccessLib"
+    Instance  = "CpRcPkg.PmicAccessLibDxe"
+    Arch = "X64"
+    Token = "DDR5_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "PmicAccessLibPei"
+    File  = "PmicAccessLib\PmicAccessLibPei.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "PEIM"    
+    Token = "DDR5_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PmicAccessLib"
+    Instance  = "CpRcPkg.PmicAccessLibPei"
+    Arch = "IA32"
+    Token = "DDR5_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "PmicAccessLibSmm"
+    File  = "PmicAccessLib\PmicAccessLibSmm.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "DXE_DRIVER"    
+    Token = "DDR5_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PmicAccessLib"
+    Instance  = "CpRcPkg.PmicAccessLibSmm"
+    Arch = "X64"
+    ModuleTypes = "DXE_SMM_DRIVER"
+    Token = "DDR5_ENABLE" "=" "1"
+End
+
+
+INFComponent
+    Name  = "PmicAccessLibNull"
+    File  = "PmicAccessLibNull/PmicAccessLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"    
+    Token = "DDR5_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PmicAccessLib"
+    Instance  = "CpRcPkg.PmicAccessLibNull"
+    Arch = "IA32"
+    Token = "DDR5_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PmicAccessLib"
+    Instance  = "CpRcPkg.PmicAccessLibNull"
+    Arch = "X64"
+    Token = "DDR5_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PmicAccessLib"
+    Instance  = "CpRcPkg.PmicAccessLibNull"
+    Arch = "X64"
+    ModuleTypes = "DXE_SMM_DRIVER"
+    Token = "DDR5_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "PprCmosLib"
+    File  = "PprCmosLib\PprCmosLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PprCmosLib"
+    Instance  = "CpRcPkg.PprCmosLib"
+End
+
+INFComponent
+    Name  = "SpdDecodeLibDdr5"
+    File  = "SpdDecodeLib\SpdDecodeLibDdr5.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"    
+    Token = "DDR5_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "SpdDecodeLibDdr4"
+    File  = "SpdDecodeLib\SpdDecodeLibDdr4.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"      
+    Token = "DDR5_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "SpdDecodeLib"
+    Instance  = "CpRcPkg.SpdDecodeLibDdr5"
+    Token = "DDR5_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SpdDecodeLib"
+    Instance  = "CpRcPkg.SpdDecodeLibDdr4"
+    Token = "DDR5_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "SiliconAccessLibRuntime"
+    File  = "SiliconAccessLib\SiliconAccessLibRuntime.inf"
+    Package  = "CpRcPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+LibraryMapping
+    Class  = "SiliconAccessLib"
+    Instance  = "CpRcPkg.SiliconAccessLibRuntime"
+    Arch = "X64"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"    
+End
+
+INFComponent
+    Name  = "BaseUsraLib"
+    File  = "BaseUsraLib/BaseUsraLib.inf"
+    Package  = "CpRcPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.BaseUsraLib"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+    Name  = "BasePcieMmcfgLib"
+    File  = "BasePcieMmcfgLib\PcieMmcfgLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PcieMmcfgLib"
+    Instance  = "CpRcPkg.BasePcieMmcfgLib"
+End
+
+INFComponent
+    Name  = "OemPlatformCheckpointLib"
+    File  = "OemPlatformCheckpointLibNull/OemPlatformCheckpointLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "OemPlatformCheckpointLib"
+    Instance  = "CpRcPkg.OemPlatformCheckpointLib"
+End
+
+INFComponent
+    Name  = "SmmSysHostPointerLibProtocol"
+    File  = "SysHostPointerLib/SmmSysHostPointerLibProtocol.inf"
+    Package  = "CpRcPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER SMM_CORE"
+End
+
+LibraryMapping
+    Class  = "SysHostPointerLib"
+    Instance  = "CpRcPkg.SmmSysHostPointerLibProtocol"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "UsraRegisterLogLibNull"
+    File  = "UsraRegisterLogLibNull\UsraRegisterLogLibNull.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterLogLib"
+    Instance  = "CpRcPkg.UsraRegisterLogLibNull"
+End
+
+INFComponent
+    Name  = "PerformanceTrackerLib"
+    File  = "PerformanceTrackerLib\PerformanceTrackerLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PerformanceTrackerLib"
+    Instance  = "CpRcPkg.PerformanceTrackerLib"
+End
+
+
+INFComponent
+    Name  = "PciSegmentLib"
+    File  = "PciSegmentLib/PciSegmentLib.inf"
+    Package  = "CpRcPkg"
+    ModuleTypes  = "BASE"      
+End

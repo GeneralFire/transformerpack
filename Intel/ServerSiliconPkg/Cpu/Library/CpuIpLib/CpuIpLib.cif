@@ -1,0 +1,12 @@
+<component>
+    name = "CpuIpLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Cpu\Library\CpuIpLib\"
+    RefName = "ServerSiliconPkg.Cpu.Library.CpuIpLib"
+[INF]
+"CpuIpLibSpr.inf"
+[files]
+"10nmCommon\CpuIpLib.c"	
+"CpuInternal.h"	
+"CpuIpLib.sdl"	
+<endComponent>

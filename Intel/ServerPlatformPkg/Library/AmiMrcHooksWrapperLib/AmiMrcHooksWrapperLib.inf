@@ -1,0 +1,67 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2016, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+## @file AmiMrcHooksWrapperLib.inf
+# Contains wrapper methods for MRC Hooks.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmiMrcHooksWrapperLib
+  FILE_GUID                      = A002EC7D-52A9-4F9B-8543-79AD1E70D3CB
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmiMrcHooksWrapperLib
+  
+[Sources]
+  AmiMrcHooksWrapperLib.c
+  AmiMrcHooksWrapperLib.h
+
+[Packages]
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  MdePkg/MdePkg.dec
+  CpRcPkg/CpRcPkg.dec
+  # APTIOV_SERVER_OVERRIDE_START : Bus OOR Implementation
+  AmiCrbPkg/AmiCrbPkg.dec
+  # APTIOV_SERVER_OVERRIDE_END : Bus OOR Implementation
+  $(AMI_MRC_HOOK_PKG)
+
+[LibraryClasses]
+  $(AMI_MRC_HOOK_LIB)
+
+[Protocols]
+  $(AMI_MRC_HOOK_PROTOCOL)
+
+# APTIOV_SERVER_OVERRIDE_START : Bus OOR Implementation
+[Guids]
+  gAmiBusResourceMapGuid
+# APTIOV_SERVER_OVERRIDE_END : Bus OOR Implementation
+  $(AMI_MRC_HOOK_GUID)
+
+[Depex]
+  TRUE
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2016, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

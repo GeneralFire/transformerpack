@@ -1,0 +1,11 @@
+<component>
+    name = "8S"
+    category = ModulePart
+    LocalRoot = "AmiCrbPkg\Board\NB\"
+    RefName = "8S"
+[files]
+"Socket4.sdl"
+"Socket5.sdl"
+"Socket6.sdl"
+"Socket7.sdl"
+<endComponent>

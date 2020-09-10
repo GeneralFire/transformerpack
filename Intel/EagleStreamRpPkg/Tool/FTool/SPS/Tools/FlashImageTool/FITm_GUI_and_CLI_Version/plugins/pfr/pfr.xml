@@ -1,0 +1,33 @@
+<!--
+INTEL CONFIDENTIAL
+Copyright 2017-2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+
+<container>
+  <configuration version="0.5">
+    <group name="PFR" ui_params="{'visible':'false'}">
+        <file name="SignedPfm" label="Signed PFM binary file" calculate="/required_containers/signed_pfm.value" ui_params="{'region_option': 'pfr', 'binary_input': 'true'}"/>
+        <file name="SignedCapsule" label="Signed update capsule binary file" calculate="/required_containers/signed_capsule.value" ui_params="{'region_option': 'pfr', 'binary_input': 'true'}"/>
+    </group>
+  </configuration>
+  <layout>
+    <staging_area>
+      <byte_array name="reserved" size="1" value="0xFF"/> 
+    </staging_area>
+    <recovery_area align="0x1400000">
+      <byte_array name="signed_capsule" calculate="/configuration/SignedCapsule.data" />
+      <padding value="" align="0x13FFC00" size="0"/>
+    </recovery_area>
+    <pfm padding="0x10000">
+        <byte_array name="signed_pfm" map_name="PFM" calculate="/configuration/SignedPfm.data" />
+    </pfm>
+  </layout>
+</container>

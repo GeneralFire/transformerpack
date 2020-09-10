@@ -1,0 +1,8 @@
+<component>
+    name = "Fivr"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Fivr\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Fivr"
+[files]
+"FivrConfig.h"	
+<endComponent>

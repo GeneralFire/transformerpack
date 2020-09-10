@@ -1,0 +1,16 @@
+<component>
+    name = "EagleStreamFspPkg"
+    category = eBoard
+    Rank = 8388607
+    LocalRoot = "Intel\EagleStreamFspPkg\"
+    RefName = "EagleStreamFspPkg"
+[files]
+"EagleStreamFspPkg.sdl"	
+"EagleStreamFspPkg.dec"	
+"FspPcdMapping.txt"	
+[parts]
+"EagleStreamFspSource"
+"IntelFsp2Pkg"
+"EagleStreamFspBinPkg"
+"RebuildFspBios"
+<endComponent>

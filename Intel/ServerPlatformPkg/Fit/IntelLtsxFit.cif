@@ -1,0 +1,16 @@
+<component>
+	name = "FIT : LT-SX"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Fit\"
+	RefName = "ServerPlatformPkg.IntelLtsxFit"
+[INF]
+"IntelLtsxFit.inf"
+"FitHook\FitHook.inf"
+[files]
+"IntelLtsxFit.sdl"	
+"FitUtility.exe"	
+"IntelLtsxFit.dec"	
+"IntelLtsxFit.mak"
+"FitUtility"	
+"FitTableFdFileStatement.txt"
+<endComponent>

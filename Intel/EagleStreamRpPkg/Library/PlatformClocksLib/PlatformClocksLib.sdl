@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "PlatformClocksLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PlatformClocksLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PlatformClocksLib"
+    Instance  = "EagleStreamRpPkg.PlatformClocksLib"
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "PlatformClocksLib"
+    File  = "Pei/PlatformClocksLib.inf"
+    Package  = "EagleStreamRpPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"     
+End
+

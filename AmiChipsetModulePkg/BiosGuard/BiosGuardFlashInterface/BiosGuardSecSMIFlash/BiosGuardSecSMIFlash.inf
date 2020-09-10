@@ -1,0 +1,47 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BiosGuardSecSMIFlash
+  FILE_GUID                      = 619C2B94-FE5A-45C3-B445-C6AF9BDD7CE0
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = BiosGuardSecSMIFlashDriverEntryPoint
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+
+[Sources]
+  BiosGuardSecSMIFlash.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  CpRcPkg/CpRcPkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+  AmiChipsetModulePkg/AmiChipsetModulePkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+  AmiCryptoPkg/AmiCryptoPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  BaseMemoryLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  SmmServicesTableLib
+  AmiBufferValidationLib
+  AmiCspLib
+  AmiBiosGuardMiscLib
+  TimerLib
+
+[Protocols]
+  gEfiSmmSxDispatch2ProtocolGuid
+  gEfiSmmVariableProtocolGuid
+
+[Guids]
+  gEfiCapsuleVendorGuid
+
+[Depex]
+  gEfiSmmVariableProtocolGuid AND
+  gEfiSmmSxDispatch2ProtocolGuid

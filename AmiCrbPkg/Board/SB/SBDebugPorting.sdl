@@ -1,0 +1,20 @@
+INFComponent
+    Name  = "DebugPortingLib"
+    File  = "DebugPortingLib.inf"
+    Package  = "AmiCrbPkg"
+    Arch  = "common Ia32 X64"
+End
+
+LibraryMapping
+    Class  = "DebugPortingLib"
+    Instance  = "AmiCrbPkg.DebugPortingLib"
+End
+
+ELINK 
+    Name = "SBPEIDBG_Initialize,"
+    Parent = "PeiDebugInitialize"
+    Priority = 120
+    Token = "PeiDebugger_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End   
+

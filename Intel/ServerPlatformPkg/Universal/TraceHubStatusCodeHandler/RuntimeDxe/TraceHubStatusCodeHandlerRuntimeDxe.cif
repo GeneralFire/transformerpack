@@ -1,0 +1,12 @@
+<component>
+	name = "RuntimeDxe"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\RuntimeDxe\"
+	RefName = "ServerPlatformPkg.Universal.TraceHubStatusCodeHandler.TraceHubStatusCodeHandlerRuntimeDxe"
+[INF]
+"TraceHubStatusCodeHandlerRuntimeDxe.inf"
+[files]
+"TraceHubStatusCodeHandlerRuntimeDxe.h"	
+"TraceHubStatusCodeHandlerRuntimeDxe.sdl"
+"TraceHubStatusCodeWorkerRuntimeDxe.h"
+<endComponent>

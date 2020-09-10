@@ -1,0 +1,16 @@
+TOKEN
+    Name = "FspGlobalDataInit_SUPPORT"
+    Value = "1"
+    Help  = "Main switch to enable FspDebugInit support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+INFComponent
+    Name  = "FspGlobalDataInitPei"
+    File  = "Pei\FspGlobalDataInitPei.inf"
+    Package  = "EagleStreamFspPkg"
+    ModuleTypes  = "PEIM"
+End

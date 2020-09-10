@@ -1,0 +1,156 @@
+/** @file
+  ASL implementation for PCIe handshake between OS and firmware.
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+  //
+  // External declarations
+  // HECI-1/HECI-2 are in 10nmServerPlatformPkg\Me\Sps\Acpi\SpsNm.asl
+  //
+  External(\_SB.EDNM, MethodObj)
+
+    //
+    // eDPC Handshake
+    // Disable ERR_COR of DPC Control Register per each root port.
+    // Arg0:  root port MMIO address
+    //
+    Method(DPCH, 1, Serialized) {
+      Store (Arg0, Local0)
+      //
+      // Find the DPC Extended Capability.
+      //
+      Add (Local0, 0x100, Local1)
+      While (One) {
+        Store (PERD(Local1), Local2)    //cap Header
+        ShiftRight (Local2, 20, Local3) //Next Cap Offset
+        If (LOr(LEqual(Local3, 0), LEqual(Local3, 0xfff)))
+        {
+          Break
+        }
+        And (Local2, 0xffff, Local4)  // Cap ID
+        If (LEqual (Local4, 0x1D)) {
+          Store (PERW(Add (Local1, 6)), Local4)
+          And (Local4, Not(0x10), Local5)  //Clear ERR_COR Enable
+          PEWW(Add (Local1, 6), Local5)
+          Break
+        } else {
+          //next cycle
+          Add (Local0, Local3, Local1)
+        }
+      }
+    }
+
+    //
+    // eDPC Disable
+    // Disable eDPC Trigger of DPC Control Register per each root port.
+    // Arg0:  root port MMIO address
+    //
+    Method(DPCD, 1, Serialized) {
+      Store (Arg0, Local0)
+      //
+      // Find the DPC Extended Capability.
+      //
+      Add (Local0, 0x100, Local1)
+      While (One) {
+        Store (PERD(Local1), Local2)    //cap Header
+        ShiftRight (Local2, 20, Local3) //Next Cap Offset
+        If (LOr(LEqual(Local3, 0), LEqual(Local3, 0xfff)))
+        {
+          Break
+        }
+        And (Local2, 0xffff, Local4)  // Cap ID
+        If (LEqual (Local4, 0x1D)) {
+          Store (PERW(Add (Local1, 6)), Local4)
+          And (Local4, Not(0x13), Local5)  //Clear DPC Trigger Enable bits
+          PEWW(Add (Local1, 6), Local5)
+          Break
+        } else {
+          //next cycle
+          Add (Local0, Local3, Local1)
+        }
+      }
+    }
+
+    //
+    // eDPC trigger match, check if the specific Pcie Device is the DPC event trigger
+    // Arg0: PCIe segment number
+    // Arg1: PCIe Bus number
+    // Arg2: PCIe Device number
+    // Arg3: PCIe Function number
+    // return: 1 -- The; 0 -- BIOS take AER control.
+    //
+    Method(EDTM, 4) {
+      //
+      // check the input device location with the edpc device location which is passed from edpc smi handler
+      //
+      if (LAnd(LAnd(LEqual(Arg0, EDRS), LEqual(Arg1, EDRB)), LAnd(LEqual(Arg2, EDRD), LEqual(Arg3, EDRF))))
+      {
+        return (1)
+      } else {
+        return (0)
+      }
+    }
+
+    //
+    // GPE Handler of PCIE
+    //
+    Method (EDGH, 0) {
+      //
+      // check if the EPDC infomation is valid
+      //
+      if (LEqual(EDVD, 1))
+      {
+        EDNM ()
+      }
+    }
+
+    //
+    // eDPC _OST subfunction
+    //Arg0 – An Integer containing the source event 0xf indicate error inject
+    //Arg1 – An Integer containing the status code  0 - success 0x81 - clean up failed 0x82 - recovery failed
+    //Arg2 – A Buffer containing status information
+    //
+    Method(EDOS, 3) {
+      Switch(And(Arg0,0xFF)) {      // Mask to retain low byte
+        Case(0x0f) {                // Error Ejection
+          Switch(ToInteger(Arg1)) {
+            Case(Package() {0x81, 0x82}) {
+              //
+              // Error Ejection Failure for some reason
+              //
+              //
+              // Do something platform specific, like create log or light some indicator
+              //
+            }
+            Case(0) {
+              //
+              // Recovery successfully,  capture AER Status Register from edpc trigger and clear them.
+              //
+            }
+          }
+        }
+      }
+    }

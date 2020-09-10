@@ -1,0 +1,17 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\PcieRp\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.PcieRp.LibraryPrivate"
+[INF]
+"DxePchPcieRpPolicyLib\DxePchPcieRpPolicyLib.inf"
+"PcieEnterpriseRpLib\PcieEnterpriseRpLib.inf"
+"PeiEnterprisePcieRpInitLib\PeiEnterprisePcieRpInitLib.inf"
+"PeiPchPcieClocksLib\PeiPchPcieClocksLibVer2.inf"
+"PeiPcieRpPolicyLib\PeiPcieRpPolicyLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+"PeiEnterprisePcieRpInitLib\PeiEnterprisePcieRpInitInternal.h"
+[parts]
+"ClientOneSiliconPkg.IpBlock.PcieRp.LibraryPrivate.PciExpressHelpersLibrary"
+<endComponent>

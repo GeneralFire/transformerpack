@@ -1,0 +1,10 @@
+<component>
+    name = "Tcss"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Tcss\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Tcss"
+[files]
+"DpInPreMemConfig.h"
+"TcssPeiConfig.h"	
+"TcssPeiPreMemConfig.h"	
+<endComponent>

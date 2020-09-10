@@ -1,0 +1,11 @@
+<component>
+	name = "RtErrorLog BMC"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\RuntimeErrorlog\Board\Bmc\"
+	RefName = "ServerRasPkg.RuntimeErrorlog.RtErrorLogBmc"
+[INF]
+"RtErrorLogBmc.inf"
+"RtErrorLogBmcNullLib.inf"
+[files]
+"RtErrorLogBmc.sdl"	
+<endComponent>

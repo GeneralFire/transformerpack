@@ -1,0 +1,10 @@
+<component>
+    name = "Ras"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Ras\"
+    RefName = "ServerPlatformPkg.Features.Ras"
+[files]
+"Ras.sdl"	
+[parts]
+"ServerPlatformPkg.Features.Ras.RasSmm"
+<endComponent>

@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "PeiDxeTxtLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiDxeTxtLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "TxtLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeTxtLib"
+    Arch  = "IA32"
+End
+
+INFComponent
+    Name  = "PeiDxeTxtLib"
+    File  = "PeiDxeTxtLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "BASE"
+End
+

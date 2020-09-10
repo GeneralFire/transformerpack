@@ -1,0 +1,10 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\PchRlink\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.PchRlink.LibraryPrivate"
+[INF]
+"PeiPchRlinkLib\PeiPchRlinkLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

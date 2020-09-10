@@ -1,0 +1,34 @@
+TOKEN
+	Name  = "EmulationConfigurationLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling EmulationConfigurationLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "EmulationConfigurationLib"
+	File  = "EmulationConfigurationLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+INFComponent
+	Name  = "EmulationConfigurationSmmLib"
+	File  = "EmulationConfigurationSmmLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+	Class  = "EmulationConfigurationLib"
+	Instance  = "ServerSiliconPkg.EmulationConfigurationLib"
+End
+
+LibraryMapping
+	Class  = "EmulationConfigurationLib"
+	Instance  = "ServerSiliconPkg.EmulationConfigurationSmmLib"
+	Arch = "X64"
+	ModuleTypes = "DXE_SMM_DRIVER"
+End
+

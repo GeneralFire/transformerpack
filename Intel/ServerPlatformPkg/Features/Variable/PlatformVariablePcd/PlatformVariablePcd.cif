@@ -1,0 +1,8 @@
+<component>
+    name = "PlatformVariablePcd"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Variable\PlatformVariablePcd\"
+    RefName = "ServerPlatformPkg.Features.Variable.PlatformVariablePcd"
+[parts]
+"ServerPlatformPkg.Features.Variable.PlatformVariablePcd.Pei"
+<endComponent>

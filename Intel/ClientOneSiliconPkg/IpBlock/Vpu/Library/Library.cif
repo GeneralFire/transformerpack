@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Vpu\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Vpu.Library"
+[INF]
+"PeiDxeSmmVpuInfoLib\VpuInfoLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

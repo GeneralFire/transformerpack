@@ -1,0 +1,8 @@
+<component>
+    name = "Thermal"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Thermal\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Thermal"
+[files]
+"ThermalConfig.h"	
+<endComponent>

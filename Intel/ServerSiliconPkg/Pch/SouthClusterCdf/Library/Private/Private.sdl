@@ -1,0 +1,533 @@
+TOKEN
+    Name  = "Private_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Private support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+#LibraryMapping
+#    Class  = "GpioHelpersLib"
+#    Instance  = "ServerSiliconPkg.BaseGpioHelpersLib"
+#    Token = "PLATFORM_SI_PACKAGE" "=" "0" 
+#End
+
+#INFComponent
+#    Name  = "BaseGpioHelpersLib"
+#    File  = "BaseGpioHelpersLibNull/BaseGpioHelpersLibNull.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "BASE"
+#    Token = "PLATFORM_SI_PACKAGE" "=" "0"     
+#End
+
+LibraryMapping
+    Class  = "SiScheduleResetLib"
+    Instance  = "ServerSiliconPkg.BaseSiScheduleResetLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+INFComponent
+    Name  = "BaseSiScheduleResetLib"
+    File  = "BaseSiScheduleResetLib\BaseSiScheduleResetLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "PchSpiCommonLib"
+    Instance  = "ServerSiliconPkg.BasePchSpiCommonLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"         
+End
+
+INFComponent
+    Name  = "BasePchSpiCommonLib"
+    File  = "BasePchSpiCommonLib/BasePchSpiCommonLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"         
+End
+
+LibraryMapping
+    Class  = "GpioNameBufferLib"
+    Instance  = "ServerSiliconPkg.DxeGpioNameBufferLib"
+    Arch = "X64"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"     
+End
+
+INFComponent
+    Name  = "DxeGpioNameBufferLib"
+    File  = "DxeGpioNameBufferLib/DxeGpioNameBufferLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"     
+End
+
+LibraryMapping
+    Class  = "PchPciExpressHelpersLib"
+    Instance  = "ServerSiliconPkg.PeiDxeSmmPchPciExpressHelpersLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchPciExpressHelpersLib"
+    File  = "PeiDxeSmmPchPciExpressHelpersLib\PeiDxeSmmPchPciExpressHelpersLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "PchFiaLib"
+    Instance  = "ServerSiliconPkg.PeiDxeSmmPchFiaLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"         
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchFiaLib"
+    File  = "PeiDxeSmmPchFiaLib\PeiDxeSmmPchFiaLibCdf.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"         
+End
+
+INFComponent
+    Name  = "PeiDxeSmmDciPrivateLib"
+    File  = "PeiDxeSmmDciPrivateLib\PeiDxeSmmDciPrivateLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+LibraryMapping
+    Class  = "DciPrivateLib"
+    Instance  = "ServerSiliconPkg.PeiDxeSmmDciPrivateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+INFComponent
+    Name  = "PeiDciLib"
+    File  = "PeiDxeSmmDciPrivateLib\PeiDciLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+LibraryMapping
+    Class  = "PeiDciLib"
+    Instance  = "ServerSiliconPkg.PeiDciLib"
+    ARCH = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+LibraryMapping
+    Class  = "GpioPrivateLib"
+    Instance  = "ServerSiliconPkg.PeiDxeSmmGpioPrivateLibCdf"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+INFComponent
+    Name  = "PeiDxeSmmGpioPrivateLibCdf"
+    File  = "PeiDxeSmmGpioPrivateLib/PeiDxeSmmGpioPrivateLibCdf.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PchSbiAccessLib"
+    Instance  = "ServerSiliconPkg.PeiDxeSmmPchSbiAccessLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchSbiAccessLib"
+    File  = "PeiDxeSmmPchSbiAccessLib/PeiDxeSmmPchSbiAccessLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+LibraryMapping
+    Class  = "SmbusCommonLib"
+    Instance  = "ServerSiliconPkg.PeiDxeSmmPchSmbusCommonLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchSmbusCommonLib"
+    File  = "PeiDxeSmmPchSmbusCommonLib/PeiDxeSmmPchSmbusCommonLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "PchXhciLib"
+    Instance  = "ServerSiliconPkg.PeiDxeSmmPchXhciLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchXhciLib"
+    File  = "PeiDxeSmmPchXhciLib/PeiDxeSmmPchXhciLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+LibraryMapping
+    Class  = "PeiEspiInitLib"
+    Instance  = "ServerSiliconPkg.PeiEspiInitLib"
+    Arch = "IA32"     
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+INFComponent
+    Name  = "PeiEspiInitLib"
+    File  = "PeiEspiInitLib/PeiEspiInitLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+#LibraryMapping
+#    Class  = "PeiGbeInitLib"
+#    Instance  = "ServerSiliconPkg.PeiGbeInitLib"
+#    Token = "PLATFORM_SI_PACKAGE" "=" "0"   
+#End
+
+#INFComponent
+#    Name  = "PeiGbeInitLib"
+#    File  = "PeiGbeInitLib/PeiGbeInitLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#    Token = "PLATFORM_SI_PACKAGE" "=" "0"   
+#End
+
+LibraryMapping
+    Class  = "GpioHelpersLib"
+    Instance  = "ServerSiliconPkg.PeiGpioHelpersLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+INFComponent
+    Name  = "PeiGpioHelpersLib"
+    File  = "PeiGpioHelpersLib/PeiGpioHelpersLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+LibraryMapping
+    Class  = "GpioNameBufferLib"
+    Instance  = "ServerSiliconPkg.PeiGpioNameBufferLib"
+    Arch = "IA32"     
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"     
+End
+
+INFComponent
+    Name  = "PeiGpioNameBufferLib"
+    File  = "PeiGpioNameBufferLib/PeiGpioNameBufferLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"     
+End
+
+LibraryMapping
+    Class  = "PeiHsioLib"
+    Instance  = "ServerSiliconPkg.PeiHsioLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+#INFComponent
+#    Name  = "PeiHsioLib"
+#    File  = "PeiHsioLib\PeiHsioLibCdf.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+#End
+
+#LibraryMapping
+#    Class  = "PeiI2cMasterLib"
+#    Instance  = "ServerSiliconPkg.PeiI2cMasterLib"
+#End
+
+#INFComponent
+#    Name  = "PeiI2cMasterLib"
+#    File  = "PeiI2cMasterLib/PeiI2cMasterLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#End
+
+#LibraryMapping
+#    Class  = "PeiIshInitLib"
+#    Instance  = "ServerSiliconPkg.PeiIshInitLib"
+#End
+
+#INFComponent
+#    Name  = "PeiIshInitLib"
+#    File  = "PeiIshInitLib/PeiIshInitLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#End
+
+LibraryMapping
+    Class  = "PeiP2sbPrivateLib"
+    Instance  = "ServerSiliconPkg.PeiP2sbPrivateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+INFComponent
+    Name  = "PeiP2sbPrivateLib"
+    File  = "PeiP2sbPrivateLib\PeiP2sbPrivateLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+LibraryMapping
+    Class  = "PeiLpcLib"
+    Instance  = "ServerSiliconPkg.PeiLpcLib"
+    Arch = "IA32"     
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+INFComponent
+    Name  = "PeiLpcLib"
+    File  = "PeiLpcLib/PeiLpcLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+#LibraryMapping
+#    Class  = "PeiPchHdaLib"
+#    Instance  = "ServerSiliconPkg.PeiPchHdaLib"
+#End
+
+#INFComponent
+#    Name  = "PeiPchHdaLib"
+#    File  = "PeiPchHdaLib/PeiPchHdaLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#End
+
+#LibraryMapping
+#    Class  = "PeiPchHsuartLib"
+#    Instance  = "ServerSiliconPkg.PeiPchHsuartLib"
+#End
+
+#INFComponent
+#    Name  = "PeiPchHsuartLib"
+#    File  = "PeiPchHsuartLib/PeiPchHsuartLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#End
+
+#LibraryMapping
+#    Class  = "PeiPchIshLib"
+#    Instance  = "ServerSiliconPkg.PeiPchIshLib"
+#End
+
+#INFComponent
+#    Name  = "PeiPchIshLib"
+#    File  = "PeiPchIshLib/PeiPchIshLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#End
+
+LibraryMapping
+    Class  = "PeiPchPcieClocksLib"
+    Instance  = "ServerSiliconPkg.PeiPchPcieClocksLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+INFComponent
+    Name  = "PeiPchPcieClocksLib"
+    File  = "PeiPchPcieClocksLib/PeiPchPcieClocksLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+LibraryMapping
+    Class  = "PeiPchTraceHubLib"
+    Instance  = "ServerSiliconPkg.PeiPchTraceHubLib"
+    Arch = "IA32"      
+End
+
+LibraryMapping
+    Class  = "PchTraceHubLib"
+    Instance  = "ServerSiliconPkg.PeiPchTraceHubLib"    
+    Token = "TRACE_HUB_ENABLE" "=" "1"       
+End
+
+LibraryMapping
+    Class  = "PeiPchTraceHubLib"
+    Instance  = "ServerSiliconPkg.PeiPchTraceHubLib"
+    Arch = "IA32"          
+End
+
+INFComponent
+    Name  = "PeiPchTraceHubLib"
+    File  = "PeiPchTraceHubLib/PeiPchTraceHubLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+#    Token = "TRACE_HUB_ENABLE" "=" "1"     
+End
+
+LibraryMapping
+    Class  = "PchTraceHubLib"
+    Instance  = "ServerSiliconPkg.PeiTraceHubPchLibNull"
+    Token = "TRACE_HUB_ENABLE" "=" "0"      
+End
+
+INFComponent
+    Name  = "PeiTraceHubPchLibNull"
+    File  = "PeiPchTraceHubLibNull/PeiPchTraceHubLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "TRACE_HUB_ENABLE" "=" "0"         
+End
+
+LibraryMapping
+    Class  = "PeiRstPrivateLib"
+    Instance  = "ServerSiliconPkg.PeiRstPrivateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+LibraryMapping
+    Class  = "RstPrivateLib"
+    Instance  = "ServerSiliconPkg.PeiRstPrivateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+LibraryMapping
+    Class  = "PeiRstPrivateLib"
+    Instance  = "ServerSiliconPkg.PeiRstPrivateLib"
+    Arch  = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+INFComponent
+    Name  = "PeiRstPrivateLib"
+    File  = "PeiRstPrivateLib/PeiRstPrivateLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+LibraryMapping
+    Class  = "PeiRtcLib"
+    Instance  = "ServerSiliconPkg.PeiRtcLib"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+INFComponent
+    Name  = "PeiRtcLib"
+    File  = "PeiRtcLib/PeiRtcLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+#LibraryMapping
+#    Class  = "PeiSataPrivateLib"
+#    Instance  = "ServerSiliconPkg.PeiSataPrivateLib"
+#End
+
+#INFComponent
+#    Name  = "PeiSataPrivateLib"
+#    File  = "PeiSataPrivateLib/PeiSataPrivateLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#End
+
+LibraryMapping
+    Class  = "PeiScsLib"
+    Instance  = "ServerSiliconPkg.PeiScsLibIcl"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+INFComponent
+    Name  = "PeiScsLibIcl"
+    File  = "PeiScsLib\PeiScsLibCdf.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+LibraryMapping
+    Class  = "PeiSmbusLib"
+    Instance  = "ServerSiliconPkg.PeiSmbusLib"
+    Arch = "IA32"     
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"     
+End
+
+INFComponent
+    Name  = "PeiSmbusLib"
+    File  = "PeiSmbusLib\PeiSmbusLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"     
+End
+
+LibraryMapping
+    Class  = "PeiWdtLib"
+    Instance  = "ServerSiliconPkg.PeiWdtLib"
+    Arch = "IA32"        
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"         
+End
+
+INFComponent
+    Name  = "PeiWdtLib"
+    File  = "PeiWdtLib/PeiWdtLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"         
+End
+
+LibraryMapping
+    Class  = "PeiThermalLib"
+    Instance  = "ServerSiliconPkg.PeiThermalLibCdf"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+#INFComponent
+#    Name  = "PeiThermalLibCdf"
+#    File  = "PeiThermalLib\PeiThermalLibCdf.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "BASE"
+#    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+#End
+
+#LibraryMapping
+#    Class  = "PeiThermalLib"
+#    Instance  = "ServerSiliconPkg.PeiThermalLibCdf"
+#    Arch = "IA32"  
+#End
+
+#INFComponent
+#    Name  = "PeiThermalLibCdf"
+#    File  = "PeiThermalLib\PeiThermalLibCdf.inf"
+#    Package  = "ServerSiliconPkg"
+#    Arch = "IA32"    
+#End
+
+LibraryMapping
+    Class  = "SmmPchPrivateLib"
+    Instance  = "ServerSiliconPkg.SmmPchPrivateLib"
+    Arch = "X64"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+INFComponent
+    Name  = "SmmPchPrivateLib"
+    File  = "SmmPchPrivateLib/SmmPchPrivateLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+

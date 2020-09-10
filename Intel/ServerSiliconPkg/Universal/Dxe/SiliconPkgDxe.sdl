@@ -1,0 +1,226 @@
+TOKEN
+	Name  = "SiliconPkgDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Dxe support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "IioInit_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable IioInit support in Project"
+	TokenType = Boolean
+End
+
+
+#TOKEN
+#	Name  = "MemRas_SUPPORT"
+#	Value  = "1"
+#	Help  = "Main switch to enable MemRas support in Project"
+#	TokenType = Boolean
+#   Token = "RAS_SUPPORT" "=" "1"
+#End
+
+#INFComponent
+#	Name  = "MemRas"
+#	File  = "MemRas\MemRas.inf"
+#	Package  = "ServerSiliconPkg"
+#	ModuleTypes  = "DXE_SMM_DRIVER"
+#	Token = "MemRas_SUPPORT" "=" "1"
+#End
+
+#LibraryMapping
+#	Class  = "CompressDxeLib"
+#	Instance  = "CpPlatPkg.CompressDxeLib"
+#	Override  = "ServerSiliconPkg.MemRas"
+#	Token = "MemRas_SUPPORT" "=" "1"	
+#End
+
+INFComponent
+    Name  = "BzmDxe"
+    File  = "BzmDxe/BzmDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "CpuCsrAccess"
+    File  = "CpuCsrAccess\CpuCsrAccess.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+    #PreProcess = Yes
+End
+
+LibraryMapping
+    Class  = "SiliconAccessLib"
+    Instance  = "CpRcPkg.SiliconAccessLib"
+    Override  = "ServerSiliconPkg.CpuCsrAccess"
+End
+
+LibraryMapping
+    Class  = "RcDebugLib"
+    Instance  = "CpRcPkg.BaseRcDebugLibNull"
+    Override  = "ServerSiliconPkg.CpuCsrAccess"
+End
+
+INFComponent
+    Name  = "CpuCsrAccessSMM"
+    File  = "CpuCsrAccess\CpuCsrAccessSMM.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+ #   PreProcess = Yes
+End
+
+LibraryMapping
+    Class  = "SiliconAccessLib"
+    Instance  = "CpRcPkg.SiliconAccessLib"
+    Override  = "ServerSiliconPkg.CpuCsrAccessSMM"
+End
+
+LibraryMapping
+    Class  = "RcDebugLib"
+    Instance  = "CpRcPkg.BaseRcDebugLibNull"
+    Override  = "ServerSiliconPkg.CpuCsrAccessSMM"
+End
+
+TOKEN
+	Name  = "CpuCsrAccessCpRcPkg_Ref"
+	Value  = "../CpRcPkg"
+	TokenType = Expression	
+End
+
+TOKEN
+    Name  = "CrystalRidge_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling CrystalRidge support in the project"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "CrystalRidgeSMM_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable CrystalRidgeSMM support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "CrystalRidge"
+    File  = "CrystalRidge\CrystalRidge.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+    Token = "CrystalRidge_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "CrystalRidge"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "ServerSiliconPkg.CrystalRidge"
+    Rule_Override  = "DRIVER_ACPITABLE"
+End
+
+INFComponent
+    Name  = "CrystalRidgeMeasurement"
+    File  = "CrystalRidge\CrystalRidgeMeasurement.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "CrystalRidge_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "CrystalRidgeSMM"
+    File  = "CrystalRidge\CrystalRidgeSMM.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "CrystalRidgeSMM_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "SiliconDataInitDxe"
+    File  = "SiliconDataInit/SiliconDataInitDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+    Name  = "CsrPseudoOffsetInitDxe"
+    File  = "CsrPseudoOffsetInit/CsrPseudoOffsetInitDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+FFS_FILE
+    Name  = "SiliconDataInitDxe"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "ServerSiliconPkg.SiliconDataInitDxe"
+    Apriori_Index  = "1"
+End
+
+FFS_FILE
+    Name  = "CsrPseudoOffsetInitDxe"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "ServerSiliconPkg.CsrPseudoOffsetInitDxe"
+    Apriori_Index  = "1"
+End
+
+INFComponent
+    Name  = "NvdimmCommon"
+    File  = "NvdimmCommon\NvdimmCommon.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+    Name  = "JedecNvdimm"
+    File  = "JedecNvdimm\JedecNvdimm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "DDR5_ENABLE" "=" "0" 
+End
+
+LibraryMapping
+    Class  = "RankSpareAddressTranslationLib"
+    Instance  = "ServerSiliconPkg.RankSpareAddressTranslationLib"
+    Override  = "ServerPlatformPkg.JedecNvdimm"
+    Token = "DDR5_ENABLE" "=" "0" 
+End
+
+INFComponent
+    Name  = "JedecNvdimmSMM"
+    File  = "JedecNvdimm\JedecNvdimmSMM.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "DDR5_ENABLE" "=" "0" 
+End
+
+LibraryMapping
+    Class  = "RankSpareAddressTranslationLib"
+    Instance  = "ServerSiliconPkg.RankSpareAddressTranslationLib"
+    Override  = "ServerPlatformPkg.JedecNvdimmSMM"
+    Token = "DDR5_ENABLE" "=" "0" 
+End
+
+INFComponent
+    Name  = "CxlDxe"
+    File  = "CxlInit\MemMap\CxlDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "CPU_SKX_ONLY_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PciSegmentLib"
+    Instance  = "CpRcPkg.PciSegmentLib"
+    Override = "ServerSiliconPkg.CxlDxe"
+    Token = "CPU_SKX_ONLY_SUPPORT" "=" "0"
+End
+
+
+INFComponent
+    Name  = "CxlDpInit"
+    File  = "CxlInit\CxlDpInit\CxlDpInit.inf"
+    Package  = "ServerSiliconPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "CPU_SKX_ONLY_SUPPORT" "=" "0"
+End

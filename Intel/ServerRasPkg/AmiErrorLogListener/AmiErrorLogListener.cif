@@ -1,0 +1,10 @@
+<component>
+	name = "AmiErrorLogListener"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\AmiErrorLogListener\"
+	RefName = "ServerRasPkg.AmiErrorLogListener"
+[INF]
+"AmiErrorLogListener.inf"
+[files]
+"AmiErrorLogListener.sdl"	
+<endComponent>

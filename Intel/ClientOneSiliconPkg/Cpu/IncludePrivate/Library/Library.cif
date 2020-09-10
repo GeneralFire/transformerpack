@@ -1,0 +1,17 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.Cpu.IncludePrivate.Library"
+[files]
+"BaseOcFruLib.h"
+"MsrFruLib.h"
+"CpuCommonLib.h"
+"CpuFeatures.h"
+"CpuInfoFruLib.h"	
+"CpuInitLib.h"	
+"CpuPowerOnConfigLib.h"	
+"SmbiosCpuLib.h"	
+"SoftwareGuardLib.h"	
+"TxtPeiLib.h"	
+<endComponent>

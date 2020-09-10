@@ -1,0 +1,991 @@
+TOKEN
+    Name  = "EagleStreamFspPkg_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable EagleStreamFspPkg in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+# FSP Layout info tokens to be shared between fsp and bios build
+TOKEN
+    Name  = "AMI_FSP_FLASH_SIZE"
+    Value  = "$(FV_FSP_S_SIZE)+$(FV_FSP_T_SIZE)+$(FV_FSP_M_SIZE)"
+    Help  = "Size of the FSP Flash"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_FSP_S_SIZE"
+    Value  = "0x60000"
+    Help  = "Size of FSP S area"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_FSP_M_SIZE"
+    Value  = "0x24F000"
+    Help  = "Size of FSP M area"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_FSP_T_SIZE"
+    Value  = "0x8000"
+    Help  = "Size of FSP T area."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_FSP_S_OFFSET"
+    Value  = "0"
+    Help  = "Offset of FSP S area"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_FSP_M_OFFSET"
+    Value  = "$(FV_FSP_S_SIZE)"
+    Help  = "Offset of FSP M area"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_FSP_T_OFFSET"
+    Value  = "$(FV_FSP_S_SIZE)+$(FV_FSP_M_SIZE)"
+    Help  = "Offset of FSP T area"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+#Dynamic PCD mapping used between BIOS and FSP, add it in both build
+Elink
+    Name = Intel\EagleStreamFspPkg\FspPcdMapping.txt
+    Type = "BuildOptions"
+    Arch  = "COMMON"
+    InvokeOrder = ReplaceParent
+    OutDSC = Yes
+    IncludeFile = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"    
+End
+
+Elink
+    Name = Intel\EagleStreamFspPkg\FspPcdMapping.txt
+    Type = "BuildOptions"
+    Arch  = "COMMON"
+    InvokeOrder = ReplaceParent
+    OutDSC = Yes
+    IncludeFile = Yes
+    Token = "BUILD_FSP_BINARY" "=" "1"
+End
+
+TOKEN
+    Name  = "PublishMrcNormalFv_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PublishMrcNormalFv for FSP support in Project"
+    TokenType = Boolean
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "USE_FSP_PEI_CORE"
+    Value  = "1"
+    Help  = "Main switch to choose PeiCore to be launched from FSP_M or from BIOS"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "UMENTDOC_BUILD"
+    Value  = "FALSE"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SVHOOKS_ENABLE"
+    Value  = "FALSE"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+# PCD to publish FSP Pei Core
+PcdMapping
+    Name  = "PcdPeiCoreFv"
+    GuidSpace  = "gSiPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Help = "FSP PEI core FV startaddress"
+    Value  = "$(FV_FSP_M_BASE)"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+    Token = "USE_FSP_PEI_CORE" "=" "1"
+End
+
+INFComponent
+    Name  = "FspFixedPcd"
+    File  = "FspFixedPcdNull/FspFixedPcdNull.inf"
+    Package  = "EagleStreamFspPkg"
+    ModuleTypes = "BASE"
+    Token = "UMENTDOC_BUILD" "=" "TRUE"
+End
+
+LibraryMapping
+    Class  = "FspFixedPcdLib"
+    Instance  = "EagleStreamFspPkg.FspFixedPcd"
+    Token = "UMENTDOC_BUILD" "=" "1"
+End
+
+#Disable Drivers in BIOS that are part of FSP
+INFComponent
+    Name  = "DxeIpl"
+    File  = "DxeIplPeim/DxeIpl.inf"
+    Package  = "MdeModulePkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiMain"
+    File  = "Pei/PeiMain.inf"
+    Package  = "MdeModulePkg"
+    ModuleTypes  = "PEI_CORE"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "CsrPseudoOffsetInitPeim"
+    File  = "CsrPseudoOffsetInit/CsrPseudoOffsetInitPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+#INFComponent
+#    Name  = "PcatSingleSegmentPciCfg2Pei"
+#    File  = "PcatSingleSegmentPciCfg2Pei.inf"
+#    Package  = "MdeModulePkg"
+#    ModuleTypes  = "PEIM"
+#    Disable = Yes
+#    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+#End
+
+INFComponent
+    Name  = "CpuIoPei"
+    File  = "CpuIoPei/CpuIoPei.inf"
+    Package  = "UefiCpuPkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "SiInitPreMem"
+    File  = "SiInitPreMem.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "FspGlobalDataInitPei"
+    File  = "Pei\FspGlobalDataInitPei.inf"
+    Package  = "EagleStreamFspPkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "SpsPeiPreMem"
+    File  = "Pei\SpsPeiPreMem.inf"
+    Package  = "ServerSiliconPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"
+    Token = "ME_SPS_ENABLE" "=" "1"
+    Token = "ME_ENABLE" "=" "1"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "SpsPeiPostMem"
+    File  = "Pei\SpsPeiPostMem.inf"
+    Package  = "ServerSiliconPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"
+    Token = "ME_SPS_ENABLE" "=" "1"
+    Token = "ME_ENABLE" "=" "1"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+#INFComponent
+#    Name  = "SpsIgnitionPreMem"
+#    File  = "MeSps\SpsIgnition\SpsIgnitionPreMem.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#    Token = "ME_ENABLE" "=" "1"
+#    Token = "ME_SPS_ENABLE" "=" "1"
+#    Disable = Yes
+#    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"    
+#End
+
+TOKEN
+    Name  = "CrystalRidgePeim_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable SpsPei support in Project"
+    TokenType = Boolean
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "MktmeCoreInit"
+    File  = "MktmeCoreInit\MktmeCoreInit.inf"
+    Package  = "ServerSecurityPkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+    Token = "Mktme_SUPPORT" "=" "1" 
+End
+
+INFComponent
+    Name  = "SipCore3v0"
+    File  = "Security\Ppi\SipCore3v0\SipCore3v0.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Arch = "IA32"
+    Disable = Yes  
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"      
+End
+
+INFComponent
+    Name  = "FruCpuFeatureSgx3v0"
+    File  = "Security\Ppi\FruCpuFeatureSgx3v0\FruCpuFeatureSgx3v0.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Arch = "IA32"
+    Disable = Yes    
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"    
+End
+
+INFComponent
+    Name  = "AppAdapterSgx3v0"
+    File  = "Ppi\AppAdapterSgx3v0\AppAdapterSgx3v0.inf"
+    Package  = "ServerSecurityPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Disable = Yes  
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"       
+End
+
+INFComponent
+    Name  = "SgxEarlyInitPeimSPR"
+    File  = "SgxEarlyInit\SPR\SgxEarlyInit.inf"
+    Package  = "ServerSecurityPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"
+    Disable = Yes
+    Token = "CPU_SPR_SUPPORT" "=" "1"  
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+    Token = "Sgx_SUPPORT" "=" "1"       
+End
+
+INFComponent
+    Name  = "TdxPostMem"
+    File  = "Tdx\TdxPostMem\TdxPostMem.inf"
+    Package  = "ServerSecurityPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"  
+    Disable = Yes  
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "PpmInitializePei"
+    File  = "Cpu\PowerManagement\PpmInitializePei\PpmInitializePei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes  
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "IoExpander"
+    File  = "Product\EagleStream\SiInit\Pei\IoExpanderPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes  
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "SpsIgnitionPostMem"
+    File  = "MeSps\SpsIgnition\SpsIgnitionPostMem.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_SPS_ENABLE" "=" "1"
+    Disable = Yes  
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"    
+End
+
+#INFComponent
+#    Name  = "HeciAccessPei"
+#    File  = "Heci\HeciAccess\Pei\HeciAccessPei.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#    Arch = "IA32"
+#    Token = "ME_ENABLE" "=" "1"
+#    Disable = Yes
+#    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+#End
+
+#INFComponent
+#    Name  = "HeciTransportPei"
+#    File  = "Pei\HeciTransportPei.inf"
+#    Package  = "ClientOneSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#    Token = "ME_ENABLE" "=" "1"
+#    Disable = Yes
+#    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+#End
+
+INFComponent
+    Name  = "HeciControlPei"
+    File  = "Heci\HeciControl\Pei\HeciControlPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "MeUmaPreMemEntry"
+    File  = "MeUma\MeUmaPreMem.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes
+    Token = "ME_ENABLE" "=" "1" 
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "MeUmaPostMemEntry"
+    File  = "MeUma\MeUmaPostMem.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes
+    Token = "ME_ENABLE" "=" "1" 
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "SiliconInitData_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable CrystalRidgePeim support in Project"
+    TokenType = Boolean
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "SmmAccessPei_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable SmmAccessPei support in Project"
+    TokenType = Boolean
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "SiInit_SUPPORT"
+    Value  = "0"
+    Help  = "Switch for Enabling SiInit support in the project"
+    TokenType = Boolean
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+INFComponent
+    Name  = "SiInit"
+    File  = "SiInit.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"       
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "SingleSegmentPciCfg2_SUPPORT"
+    Value  = "0"
+    Help  = "Switch for Enabling SiInit support in the project"
+    TokenType = Boolean
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "SiCpuInitPei_SUPPORT"
+    Value  = "0"
+    Help  = "Switch for Enabling SiCpuInitPei support in the project"
+    TokenType = Boolean
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name  = "CsrPseudoOffsetInitPeim"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "CsrPseudoOffsetInitPeim"
+    Apriori_Index  = "1"
+    Disable = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name  = "PublishMrcNormalFv"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "ServerPlatformPkg.PublishMrcNormalFv"
+    Apriori_Index  = "3"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+#FFS override for FV_BB_AFTER_MEMORY
+FFS_FILE
+    Name = "SmbiosPeim"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "AmiCompatibilityPkg.SmbiosPeim"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "AhciRecovery"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "AmiModulePkg.AhciRecovery"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+    Token = "AhciRecovery_SUPPORT" "=" "1"  
+End
+
+FFS_FILE
+    Name  = "FsRecovery"
+    FD_AREA  = "FV_BB_AFTER_MEMORY"
+    INFComponent  = "AmiModulePkg.FsRecovery"
+    Rule_Override  = "Compressed"
+    Token = "FsRecovery_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name  = "IdeRecovery"
+    FD_AREA  = "FV_BB_AFTER_MEMORY"
+    INFComponent  = "AmiModulePkg.IdeRecovery"
+    Rule_Override  = "Compressed"
+    Token = "IdeRecovery_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name  = "Recovery"
+    FD_AREA  = "FV_BB_AFTER_MEMORY"
+    INFComponent  = "AmiModulePkg.Recovery"
+    Rule_Override  = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name  = "SerialRecovery"
+    FD_AREA  = "FV_BB_AFTER_MEMORY"
+    INFComponent  = "AmiModulePkg.SerialRecovery"
+    Rule_Override  = "Compressed"
+    Token = "SerialRecovery_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "AmiTcgPlatformPeiAfterMem"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "AmiModulePkg.AmiTcgPlatformPeiAfterMem"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+    Token = "TCG2Support" "=" "1"   
+End
+
+FFS_FILE
+    Name = "TrEEPei"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "AmiModulePkg.TrEEPei"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+    Token = "TCG2Support" "=" "1"    
+End
+
+FFS_FILE
+    Name  = "UsbPei"
+    FD_AREA  = "FV_BB_AFTER_MEMORY"
+    INFComponent  = "AmiModulePkg.UsbPei"
+    Rule_Override  = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "BoardInitPostMemPeim"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "EagleStreamRpPkg.BoardInitPostMemPeim"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "PlatformCpuPolicyPei"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "ServerPlatformPkg.PlatformCpuPolicyPei"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+ 
+FFS_FILE
+    Name = "UuidPeiInit"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "ServerPlatformPkg.UuidPeiInit"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "PlatformInit"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "ServerPlatformPkg.PlatformInit"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "MemCacheInit"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "ServerPlatformPkg.MemCacheInit"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "RequiredUefiVarPeim"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "ServerPlatformPkg.RequiredUefiVarPeim"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "PlatformDeepS5"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "EagleStreamRpPkg.PlatformDeepS5"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "PiSmmCommunciationPei"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "UefiCpuPkg.PiSmmCommunciationPei"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name = "S3Resume2Pei"
+    FD_AREA = "FV_BB_AFTER_MEMORY"
+    INFComponent = "UefiCpuPkg.S3Resume2Pei"
+    Rule_Override = "Compressed"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "UncoreInitPeim_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable UncoreInitPeim support in Project"
+    TokenType = Boolean
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+#Portings for FSP support
+
+TOKEN
+    Name  = "FV_BB_SIZE"
+    Value  = "0x400000 - $(FV_FSP_SIZE)"
+    Help  = "Size of the FV_BB area. Limited by Code Cache Size and Intel recommends a total combined size for the Code and Data regions to be up to 4MB"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "From: 0 To: 0x800000"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_BB_SIZE - $(FV_FSP_SIZE)"
+    Value  = "0x580000"
+    Help  = "Size of the FV_BB area. Limited by Code Cache Size and Intel recommends a total combined size for the Code and Data regions to be up to 4MB"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "From: 0 To: 0x800000"
+    Token = "OPTIMIZATION" "=" "0"
+    Token = "DEBUG_MODE" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_FSP_OFFSET"
+    Value  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(FV_FSP_SIZE)"
+    Help  = "Offset of the FV_FSP"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_FSP_SIZE"
+    Value  = "$(AMI_FSP_FLASH_SIZE)"
+    Help  = "Size of the FV_FSP"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"           
+End
+
+TOKEN
+    Name  = "FV_FSP_BASE"
+    Value  = "0xffffffff - $(FV_BB_SIZE) - $(FV_FSP_SIZE) + 1"
+    Help  = "Code Cache Base Address."
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_FSP_S_BASE"
+    Value  = "$(FV_FSP_BASE) + 0"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_FSP_M_BASE"
+    Value  = "$(FV_FSP_BASE) + $(FV_FSP_S_SIZE)"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_FSP_T_BASE"
+    Value  = "$(FV_FSP_BASE) + $(FV_FSP_S_SIZE) + $(FV_FSP_M_SIZE)"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_BB_AFTER_MEMORY_SIZE"
+    Value  = "0xa0000"
+    Help  = "Size of the FV_BB_AFTER_MEMORY area"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_BB_AFTER_MEMORY_BASE"
+    Value  = "(0xFFFFFFFF - $(FV_BB_SIZE) - $(FV_FSP_SIZE) - $(BIOSACM_SIZE)- $(FV_BB_AFTER_MEMORY_SIZE) + 1)"
+    Help  = "Base Address of the FV_BB_AFTER_MEMORY"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "IntelLtsxFit_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_BB_AFTER_MEMORY_BASE"
+    Value  = "(0xFFFFFFFF - $(FV_BB_SIZE) - $(FV_FSP_SIZE) - $(FV_BB_AFTER_MEMORY_SIZE) + 1)"
+    Help  = "Base Address of the FV_BB_AFTER_MEMORY"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "IntelLtsxFit_SUPPORT" "=" "0"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FD_AREA_FV_BB_AFTER_MEMORY_OFFSET"
+    Value  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(FV_FSP_SIZE) - $(BIOSACM_SIZE) - $(FV_BB_AFTER_MEMORY_SIZE) "
+    Help  = "Size of the FV_DATA"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "IntelLtsxFit_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FD_AREA_FV_BB_AFTER_MEMORY_OFFSET"
+    Value  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(FV_FSP_SIZE) - $(FV_BB_AFTER_MEMORY_SIZE) "
+    Help  = "Size of the FV_DATA"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "IntelLtsxFit_SUPPORT" "=" "0"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FD_AREA
+    Name  = "FV_FSP"
+    TYPE  = "File"
+    FD_INFO  = "AMIROM"
+    Offset  = "$(FV_FSP_OFFSET)"
+    Size  = "$(FV_FSP_SIZE)"
+    Layout_Attribute  = "0x100"  #//Add ROM_AREA_SIGNED attribute
+    Alignment  = "16"
+    Attributes  = "0xffff"
+    File  = "Intel\EagleStreamFspBinPkg\Debug\Fsp.fd"
+    Token = "DEBUG_MODE" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FD_AREA
+    Name  = "FV_FSP"
+    TYPE  = "File"
+    FD_INFO  = "AMIROM"
+    Offset  = "$(FV_FSP_OFFSET)"
+    Size  = "$(FV_FSP_SIZE)"
+    Layout_Attribute  = "0x100"  #//Add ROM_AREA_SIGNED attribute
+    Alignment  = "16"
+    Attributes  = "0xffff"
+    File  = "Intel\EagleStreamFspBinPkg\Release\Fsp.fd"
+    Token = "DEBUG_MODE" "=" "0"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FD_AREA
+    Name  = "FV_BB_AFTER_MEMORY"
+    TYPE  = "FV"
+    FD_INFO  = "AMIROM"
+    Offset  = "$(FD_AREA_FV_BB_AFTER_MEMORY_OFFSET)"
+    Size  = "$(FV_BB_AFTER_MEMORY_SIZE)"
+    Layout_Attribute  = "0xd8a"
+    Attributes  = "0xffff"
+    Alignment  = "16"
+    Guid  = "14E428FA-1A12-4875-B637-8B3CC87FDF07"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_MAIN_SIZE"
+    Value  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(FV_FSP_SIZE) - $(BIOSACM_SIZE) - $(FV_BB_AFTER_MEMORY_SIZE) - $(OEM_ACTIVATION_TABLE_SIZE) - $(FV_MAIN_OFFSET)"
+    Help  = "Size of the FV_MAIN area"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "From: 0 To: FLASH_SIZE - FV_BB - FV_MAIN_OFFSET"
+    Token = "IntelLtsxFit_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_MAIN_SIZE"
+    Value  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(FV_FSP_SIZE) - $(FV_BB_AFTER_MEMORY_SIZE) - $(OEM_ACTIVATION_TABLE_SIZE) - $(FV_MAIN_OFFSET)"
+    Help  = "Size of the FV_MAIN area"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "From: 0 To: FLASH_SIZE - FV_BB - FV_MAIN_OFFSET"
+    Token = "IntelLtsxFit_SUPPORT" "=" "0"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "OEM_ACTIVATION_TABLE_ADDRESS"
+    Value  = "$(FV_BB_BASE)- $(FV_FSP_SIZE) - $(BIOSACM_SIZE) - $(FV_BB_AFTER_MEMORY_SIZE) - $(OEM_ACTIVATION_TABLE_SIZE)"
+    Help  = "OEM Activation Table address in the NCB. Port this token!"
+    TokenType = Integer
+    TargetH = Yes
+    Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+    Token = "IntelLtsxFit_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "BIOSACM_BASE"
+    Value  = "$(FV_FSP_BASE)  - $(BIOSACM_SIZE)"
+    Help  = "Offset of FIT Area from the end of the rom image"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "From: 0 To: FLASH_SIZE - FV_BB_SIZE - FV_SINIT_SIZE - FV_BIOSACM_SIZE"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FD_AREA
+    Name  = "OA_TABLE"
+    TYPE  = "RAW"
+    FD_INFO  = "AMIROM"
+    Offset  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(BIOSACM_SIZE) - $(OEM_ACTIVATION_TABLE_SIZE) - $(FV_FSP_SIZE) - $(FV_BB_AFTER_MEMORY_SIZE)"
+    Size  = "$(OEM_ACTIVATION_TABLE_SIZE)"
+    Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+    Token = "IntelLtsxFit_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FD_AREA
+    Name  = "OA_TABLE"
+    TYPE  = "RAW"
+    FD_INFO  = "AMIROM"
+    Offset  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(OEM_ACTIVATION_TABLE_SIZE) - $(FV_FSP_SIZE) - $(FV_BB_AFTER_MEMORY_SIZE)"
+    Size  = "$(OEM_ACTIVATION_TABLE_SIZE)"
+    Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+    Token = "IntelLtsxFit_SUPPORT" "=" "0"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FD_AREA
+    Name  = "FV_ACM"
+    TYPE  = "RAW"
+    FD_INFO  = "AMIROM"
+    Offset  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(FV_FSP_SIZE) - $(BIOSACM_SIZE)"
+    Size  = " $(BIOSACM_SIZE)"
+    Layout_Attribute  = "0x300"
+    Attributes  = "0xffff"
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+    Token = "AmiTrustedFv_Support" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FD_AREA
+    Name  = "FV_ACM"
+    TYPE  = "RAW"
+    FD_INFO  = "AMIROM"
+    Offset  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(FV_FSP_SIZE) - $(BIOSACM_SIZE)"
+    Size  = " $(BIOSACM_SIZE)"
+    Layout_Attribute  = "0x100"
+    Attributes  = "0xffff"
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+    Token = "AmiTrustedFv_Support" "=" "0"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+FFS_FILE
+    Name  = "UsbPei"
+    FD_AREA  = "FV_BB_AFTER_MEMORY"
+    INFComponent  = "AmiModulePkg.UsbPei"
+    Rule_Override  = "Compressed"
+    Token = "USBPEI_SUPPORT" "=" "1"
+    Token = "FSP_SUPPORT_IN_BIOS" "=" "1"
+End
+
+# Microcode update in FSP - Start
+TOKEN
+    Name  = "FV_MICROCODE_BASE"
+    Value  = "$(FV_MAIN_BASE)"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "MICROCODE_SPLIT_BB_UPDATE" "=" "0"
+End
+
+TOKEN
+    Name  = "FV_MICROCODE_BASE"
+    Value  = "$(FV_BB_BASE)"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "MICROCODE_SPLIT_BB_UPDATE" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_MICROCODE_UPDATE_BASE"
+    Value  = "$(FV_MAIN_BASE)"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "MICROCODE_SPLIT_BB_UPDATE" "=" "1"
+End
+
+TOKEN
+    Name  = "MICROCODE_SPLIT_BB_UPDATE"
+    Value  = "1"
+    Help  = "If enabled, \ a) Microcode added at build time is stored in boot block.\ b) Microcode updates by INT15h are stored in the main firmware volume.\If disabled, all microcode is in the main firmware volume.\\If enabled, microcode is more fault tolerant, but requires more flash space.\"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "PACK_MICROCODE"
+    Value  = "1"
+    Help  = "This packs the microcode with no gaps.\If Split microcode is disabled, it is recommended for this to be disabled\for compatibility with earlier CPU modules.\The CPU module must support this. "
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+End
+
+TOKEN
+    Name  = "MICROCODE_BLOCK_SIZE"
+    Value  = "2048"
+    Help  = "Do not change. This matches the INT15h Microcode update."
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+End
+# Microcode update in FSP - END

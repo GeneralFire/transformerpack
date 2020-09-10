@@ -1,0 +1,53 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "GbeMdiLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmGbeMdiLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiDxeSmmGbeMdiLib"
+    File  = "PeiDxeSmmGbeMdiLib/PeiDxeSmmGbeMdiLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+LibraryMapping
+    Class  = "PeiGbeInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiGbeInitLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"   
+End
+
+INFComponent
+    Name  = "PeiGbeInitLib"
+    File  = "PeiGbeInitLib/PeiGbeInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"   
+End
+
+LibraryMapping
+    Class  = "PeiGbePolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiGbePolicyLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiGbePolicyLib"
+    File  = "PeiGbePolicyLib/PeiGbePolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+

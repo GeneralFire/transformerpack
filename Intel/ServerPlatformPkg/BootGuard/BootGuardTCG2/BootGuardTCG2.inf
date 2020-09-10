@@ -1,0 +1,39 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+
+[Defines]
+    INF_VERSION = 0x00010005
+    VERSION_STRING = 1.0
+    BASE_NAME = BootGuardTCG2
+    MODULE_TYPE = BASE
+    LIBRARY_CLASS = AmiTcgLibPei
+    FILE_GUID = BF634496-8E0C-42af-AF5D-2FC4A493E800
+
+[Sources]
+    BootGuardTCG2.c
+    BootGuardTCG2.h
+
+[Ppis]
+
+[LibraryClasses]
+    BaseMemoryLib
+    HobLib
+    AmiPeiLib
+
+[Packages]
+    AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+    MdePkg/MdePkg.dec
+    IntelFrameworkPkg/IntelFrameworkPkg.dec
+    AmiModulePkg/AmiModulePkg.dec
+    AmiTcgPkg/AmiTcgPkg.dec
+
+[Guids]
+    gEfiTcgTreeLogHobGuid
+    gEfiPeiTcgLogHobGuid
+    gTpm20HobGuid

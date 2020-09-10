@@ -1,0 +1,11 @@
+<component>
+	name = "IioRasLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Library\IioRasLib\"
+	RefName = "ServerRasPkg.IioRasLib"
+[INF]
+"IioRasLib.inf"
+[files]
+"IioRasLibInternal.h"	
+"IioRasLib.sdl"	
+<endComponent>

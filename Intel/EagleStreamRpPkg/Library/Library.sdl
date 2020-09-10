@@ -1,0 +1,37 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "UbaGpioInitLib"
+    File  = "UbaGpioInitLib/UbaGpioInitLib.inf"
+    Package  = "EagleStreamRpPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"      
+End
+
+LibraryMapping
+    Class  = "UbaGpioInitLib"
+    Instance  = "EagleStreamRpPkg.UbaGpioInitLib"
+    Arch  = "IA32"
+End
+
+INFComponent
+    Name  = "PlatformSpecificAcpiTableLib"
+    File  = "PlatformSpecificAcpiTableLib/PlatformSpecificAcpiTableLib.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PlatformSpecificAcpiTableLib"
+    Instance  = "EagleStreamRpPkg.PlatformSpecificAcpiTableLib"
+End
+
+
+
+

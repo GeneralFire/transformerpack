@@ -1,0 +1,12 @@
+<component>
+    name = "TxtOneTouchPpVendorLib"
+    category = MODULEPART
+    LocalRoot = "Intel\ServerPlatformPkg\Library\TxtOneTouchPpVendorLib\"
+    RefName = "ServerPlatformPkg.Library.TxtOneTouchPpVendorLib"
+[INF]
+"DxeTcgTxtOneTouchPpVendorLib.inf"
+"SmmTcgTxtOneTouchPpVendorLib.inf"
+[files]
+"TxtOneTouchPpVendorLib.sdl"	
+"DxeTxtOneTouchPpVendorLibStrings.uni"	
+<endComponent>

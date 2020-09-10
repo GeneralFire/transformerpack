@@ -1,0 +1,12 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Gbe\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Gbe.LibraryPrivate"
+[INF]
+"PeiDxeSmmGbeMdiLib\PeiDxeSmmGbeMdiLib.inf"
+"PeiGbeInitLib\PeiGbeInitLib.inf"
+"PeiGbePolicyLib\PeiGbePolicyLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

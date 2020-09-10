@@ -1,0 +1,83 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "DxeHdaPolicyLib"
+    Instance  = "ClientOneSiliconPkg.DxeHdaPolicyLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "DxeHdaPolicyLib"
+    File  = "DxeHdaPolicyLib/DxeHdaPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+LibraryMapping
+    Class  = "PeiHdaInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiHdaInitLib"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiHdaInitLib"
+    File  = "PeiHdaInitLib/PeiHdaInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"      
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+LibraryMapping
+    Class  = "PeiHdaLib"
+    Instance  = "ClientOneSiliconPkg.PeiHdaLib"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiHdaLib"
+    File  = "PeiHdaLib/PeiHdaLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"           
+End
+
+LibraryMapping
+    Class  = "PeiHdaPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiHdaPolicyLib"
+    Arch = "IA32"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiHdaPolicyLib"
+    File  = "PeiHdaPolicyLib/PeiHdaPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"   
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"             
+End
+
+LibraryMapping
+    Class  = "PeiCavsInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiCavsInitLib"
+    Arch = "IA32"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiCavsInitLib"
+    File  = "PeiCavsInitLib\PeiCavsInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"              
+End

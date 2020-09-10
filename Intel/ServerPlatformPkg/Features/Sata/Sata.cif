@@ -1,0 +1,10 @@
+<component>
+	name = "Sata"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Sata\"
+	RefName = "ServerPlatformPkg.Features.Sata"
+[INF]
+"SataController\SataController.inf"
+[files]
+"Sata.sdl"	
+<endComponent>

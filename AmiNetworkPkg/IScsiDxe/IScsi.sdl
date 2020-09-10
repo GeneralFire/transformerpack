@@ -1,0 +1,99 @@
+TOKEN
+    Name  = "IScsi_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable IScsi support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+    Token = "UefiNetworkStack_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "ISCSI_VERSION"
+    Value  = "33"
+    Help  = "ISCSI Version"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "TSE_SHOW_PROMPT_STRING_AS_TITLE"
+    Value  = "1"
+    Help  = "1 => To display control label string as Password Title. 0 => To display title string from AMITSEStr.uni file."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+ELINK
+    Name  = "$(ISCSI_DIR)/IScsiConfigVfr.vfr"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "AMI_ISCSI_SUPPORT" "=" "0"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(ISCSI_DIR)/IScsiConfigStrings.uni"
+    Parent  = "SetupStringFiles"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "ADDITIONAL_iSCSI_LIB"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "ADDITIONAL_iSCSI_PACKAGES"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "ADDITIONAL_iSCSI_PROTOCOLS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "ADDITIONAL_iSCSI_GUIDS"
+    InvokeOrder = ReplaceParent
+End
+
+INFComponent
+    Name  = "IScsiDxe"
+    File  = "IScsiDxe.inf"
+    Package  = "AmiNetworkPkg"
+    PreProcess = Yes
+    ModuleTypes  = "UEFI_DRIVER"
+End
+
+ELINK
+	Name  = "DefaultIscsiInitiatorNameHook,"
+	Parent  = "DefaultIscsiInitiatorNameManagementHook"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "DefaultIscsiInitiatorNameManagementHook"
+	InvokeOrder = ReplaceParent
+End
+
+Path 
+    Name = "ISCSI_DIR"
+End   
+ 
+ELINK
+    Name = "SkipIScsiDxeNetworkList"
+    InvokeOrder = ReplaceParent
+    Help =  "Elink to specify list of network device not to be handled by the IScsi driver.Input is in the Format of, { VendorID, Product ID },"
+End
+
+ELINK
+    Name = "{0x046B,0xFFB0},"
+    Parent  = "SkipIScsiDxeNetworkList"
+    InvokeOrder = AfterParent
+End

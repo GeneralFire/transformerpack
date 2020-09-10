@@ -1,0 +1,56 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiCpuTraceHubLib"
+    Instance  = "ClientOneSiliconPkg.PeiCpuTraceHubLibNull"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiCpuTraceHubLibNull"
+    File  = "PeiCpuTraceHubLibNull/PeiCpuTraceHubLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"     
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+LibraryMapping
+    Class  = "PeiCpuTraceHubPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiCpuTraceHubPolicyLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiCpuTraceHubPolicyLib"
+    File  = "PeiCpuTraceHubPolicyLib/PeiCpuTraceHubPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"   
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"            
+End
+
+LibraryMapping
+    Class  = "PeiPchTraceHubPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchTraceHubPolicyLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiPchTraceHubPolicyLib"
+    File  = "PeiPchTraceHubPolicyLib/PeiPchTraceHubPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"   
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"             
+End
+

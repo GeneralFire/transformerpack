@@ -1,0 +1,15 @@
+<component>
+	name = "Library"
+	category = ModulePart
+	LocalRoot = "AmiCrbPkg\Include\Library\"
+	RefName = "Library"
+[files]
+"AmiPlatformAcpiLib.h"	
+"AmiPciBusSetupOverrideLib.h"
+"AmiPlatformHooksLib.h"
+"AmiCmosLib.h"
+"AmiSmbiosLib.h"
+"AmiShadowLib.h"
+"CmosAccessLib.h"
+"PlatformCmosAccessLib.h"
+<endComponent>

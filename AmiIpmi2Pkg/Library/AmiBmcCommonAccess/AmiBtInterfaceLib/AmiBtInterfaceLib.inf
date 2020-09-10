@@ -1,0 +1,53 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file AmiBtInterfaceLib.inf
+#
+#  INF description file for AmiBtInterfaceLib common library.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = AmiBtInterfaceLib
+  FILE_GUID         = DAFB6AEE-0275-45E4-A33C-E3348149C5BF
+  MODULE_TYPE       = BASE
+  VERSION_STRING    = 1.1
+  LIBRARY_CLASS     = AmiBtInterfaceLib
+
+[Sources]
+  AmiBtInterfaceLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+  DebugLib
+  TimerLib
+  BaseMemoryLib
+  AmiBmcCommonInterfaceLib
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

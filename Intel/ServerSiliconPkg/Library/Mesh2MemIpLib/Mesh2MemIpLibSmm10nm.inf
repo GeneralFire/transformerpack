@@ -1,0 +1,64 @@
+## @file
+# Component INF file for the Mesh2MemIpLib library.
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2017 - 2019 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION   = 0x00010017
+  BASE_NAME     = Mesh2MemIpLib
+  FILE_GUID     = 38786173-8348-433F-230B-039708708224
+  MODULE_TYPE   = BASE
+  LIBRARY_CLASS = Mesh2MemIpLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CpRcPkg/CpRcPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+
+[Sources]
+  10nm/Mesh2Mem.c
+  10nm/Mesh2MemRas.c
+  10nm/Mesh2MemEmulationNull.c
+  #APTIOV_SERVER_OVERRIDE_RC_START: Non existent file is being referred
+  #10nm/Icx/Mesh2MemCmiCredits.c
+  #10nm/Snr/Mesh2MemCmiCredits.c
+  #APTIOV_SERVER_OVERRIDE_RC_END: Non existent file is being referred
+  Common/Mesh2Mem.c  
+  Perf/Null/Source/Mesh2MemPerf.c
+
+[LibraryClasses]
+  DebugLib
+  BaseMemoryLib
+  UsraCsrLib
+  EmulationConfigurationLib
+  SiliconWorkaroundLib
+  CpuAndRevisionLib
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuThreadCount
+

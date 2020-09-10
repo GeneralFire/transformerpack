@@ -1,0 +1,19 @@
+
+TOKEN
+    Name  = "BUILD_FSP_BINARY"
+    Value  = "0"
+    Help  = "Main switch to build FSP source."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FSP_SUPPORT_IN_BIOS"
+    Value  = "1"
+    Help  = "Main switch to enable FSP_SUPPORT in bios. Disable it for FSP source Build"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+

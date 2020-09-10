@@ -1,0 +1,20 @@
+<component>
+    name = "AcpiTable"
+    category = MODULEPART
+    LocalRoot = "Intel\ServerSiliconPkg\Cpu\AcpiTable\"
+    RefName = "ServerSiliconPkg.Cpu.AcpiTable"
+[INF]
+"CpuPmSsdt.inf"
+[files]
+"AcpiTable.sdl"	
+"Ssdt\CcxProc.asi"	
+"Ssdt\EistProc.asi"	
+"Ssdt\HwpProc.asi"	
+"Ssdt\PmxProc.asi"	
+"Ssdt\ProcCst.asi"	
+"Ssdt\ProcEist.asi"	
+"Ssdt\ProcHwp.asi"	
+"Ssdt\ProcPm.asi"	
+"Ssdt\ProcTst.asi"	
+"Ssdt\TstProc.asi"	
+<endComponent>

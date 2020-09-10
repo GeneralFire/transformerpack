@@ -1,0 +1,26 @@
+TOKEN
+    Name  = "Asf_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Asf support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Disable = Yes
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "Asf"
+    TokenType = Expression
+    TargetDSC = Yes
+End
+
+
+INFComponent
+    Name  = "AsfDxe"
+    File  = "Dxe/AsfDxe.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "AMT_ENABLE" "=" "1"
+    Token = "ME_WS_ENABLE" "=" "1"
+End
+

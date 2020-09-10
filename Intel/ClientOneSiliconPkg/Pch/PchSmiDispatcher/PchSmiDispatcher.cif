@@ -1,0 +1,10 @@
+<component>
+    name = "PchSmiDispatcher"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\PchSmiDispatcher\"
+    RefName = "ClientOneSiliconPkg.Pch.PchSmiDispatcher"
+[INF]
+"Smm\PchSmiDispatcherServer.inf"
+[files]
+"PchSmiDispatcher.sdl"	
+<endComponent>

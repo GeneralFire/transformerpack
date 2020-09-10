@@ -1,0 +1,515 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+    #if (STACK == 0)
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[0],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_0),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_0),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[0] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[0],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_0),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[1],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_1),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[2],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_2),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[3],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_3),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[0],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    #endif // STACK == 0
+    #if (STACK == 1)
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[1],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_1),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_1),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[1] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[4],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_4),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[5],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_5),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[6],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_6),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[7],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_7),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;    
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[1],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    #endif // STACK == 1
+
+    #if (STACK == 2)
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[2],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_2),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_2),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[2] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[8],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_8),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[9],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_9),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[10],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_10),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[11],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_11),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;    
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[2],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    #endif // STACK == 2
+    #if (STACK == 3)
+     oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[3],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_0),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_0),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[3] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[12],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_0),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[13],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_1),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[14],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_2),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[15],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_3),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[3],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif; 
+    #endif // STACK == 3
+    #if (STACK == 4)
+     oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[4],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_1),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_1),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[4] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[16],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_4),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[17],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_5),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[18],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_6),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[19],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_7),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;    
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[4],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif; 
+    #endif // STACK == 4
+    #if (STACK == 5)
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[5],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_2),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_2),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[5] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[20],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_8),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[21],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_9),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[22],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_10),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[23],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_11),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;    
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[5],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    #endif // STACK == 5
+    #if (STACK == 6)
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[6],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_0),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_0),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[6] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[24],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_0),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[25],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_1),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[26],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_2),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[27],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_3),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;    
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[6],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    #endif // STACK == 6
+    #if (STACK == 7)
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[7],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_1),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_1),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[7] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[28],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_4),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[29],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_5),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[30],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_6),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[31],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_7),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[7],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    #endif // STACK == 7
+    #if (STACK == 8)
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[8],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_2),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_2),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[8] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[32],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_8),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[33],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_9),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[34],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_10),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[35],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_11),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[8],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    #endif // STACK == 8
+    #if (STACK == 9)
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[9],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_0),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_0),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[9] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[36],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_0),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[37],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_1),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[38],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_2),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[39],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_3),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[9],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    #endif // STACK == 9
+    #if (STACK == 10)
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE); 
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[10],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_1),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_1),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[10] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[40],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_4),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[41],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_5),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[42],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_6),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[43],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_7),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[10],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif; 
+    #endif // STACK == 10
+    #if (STACK == 11)
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);   
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICEnabled[11],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_PROMPT_2),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_SUPPORT_HELP_2),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAICEnabled[11] == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[44],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_8),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[45],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_9),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[46],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_10),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICPortEnable[47],
+          prompt  = STRING_TOKEN(STR_PCIEAICPORTENABLE_PROMPT_11),
+          help    = STRING_TOKEN(STR_PCIEAICPORTENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAICHotPlugEnable[11],
+          prompt  = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_PCIEAIC_HOTPLUG_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    #endif // STACK == 11

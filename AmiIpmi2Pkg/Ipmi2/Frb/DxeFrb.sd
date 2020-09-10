@@ -1,0 +1,177 @@
+//***********************************************************************
+//*                                                                     *
+//*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+//*                                                                     *
+//*      All rights reserved. Subject to AMI licensing agreement.       *
+//*                                                                     *
+//***********************************************************************
+
+
+//
+// @file  DxeFrb.sd
+//
+// Contains the setup description for DxeFrb module.
+//
+
+#ifdef SERVER_MGMT_CONFIGURATION_DATA_DEFINITION
+//***********************************************************
+// Put NVRAM data definitions here.
+// For example:    UINT8 Data1;
+// These definitions will be converted by the build process
+// to a definitions of SERVER_MGMT_CONFIGURATION_DATA fields.
+//***********************************************************
+    UINT8   Frb2Enable;
+    UINT8   Frb2Timeout;
+    UINT8   Frb2TimeoutPolicy;
+    UINT8   OsBootWdtEnable;
+    UINT8   OsBootWdtTimeout;
+    UINT8   OsBootWdtTimeoutPolicy;
+#endif //#ifdef SERVER_MGMT_CONFIGURATION_DATA_DEFINITION
+
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+
+#ifdef CONTROL_DEFINITION
+
+#define DXEFRB_ONEOF_FRB2ENABLE\
+    oneof varid   = SERVER_MGMT_CONFIGURATION_DATA.Frb2Enable,\
+        prompt      = STRING_TOKEN(STR_SRVRMGMT_FRB_2ENABLE),\
+        help        = STRING_TOKEN(STR_SRVRMGMT_FRB_2ENABLE_HELP),\
+        option text = STRING_TOKEN(STR_ENABLED), value=1, flags= RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;\
+        default = 1,\
+        default = 1, defaultstore = AmiMfgDefault,\
+    endoneof;
+
+#define DXEFRB_ONEOF_FRB2TIMEOUT\
+    numeric varid = SERVER_MGMT_CONFIGURATION_DATA.Frb2Timeout,\
+        prompt      = STRING_TOKEN(STR_SRVRMGMT_FRB_TIMEOUT),\
+        help        = STRING_TOKEN(STR_SRVRMGMT_FRB_TIMEOUT_HELP),\
+        flags       = RESET_REQUIRED,\
+        minimum     = 1,\
+        maximum     = 30,\
+        step        = 1,\
+        default     = DEFAULT_FRB2_TIMEOUT,\
+        default     = DEFAULT_FRB2_TIMEOUT, defaultstore = AmiMfgDefault,\
+    endnumeric;
+
+#define DXEFRB_ONEOF_FRB2TIMEOUTPOLICY\
+    oneof varid = SERVER_MGMT_CONFIGURATION_DATA.Frb2TimeoutPolicy,\
+        prompt      = STRING_TOKEN(STR_SRVRMGMT_FRB_TIMEOUT_POLICY),\
+        help        = STRING_TOKEN(STR_SRVRMGMT_FRB_TIMEOUT_POLICY_HELP),\
+        option text = STRING_TOKEN(STR_DO_NOTHING), value = 0, flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_RESET),  value = 1, flags = 0 | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_POWERDOWN), value = 2, flags = 0 | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_POWERCYCLE), value = 3, flags = 0 | RESET_REQUIRED;\
+        default = 0,\
+        default = 0, defaultstore = AmiMfgDefault,\
+    endoneof;
+
+#define DXEFRB_ONEOF_OSBOOTWDTENABLE\
+    oneof varid   = SERVER_MGMT_CONFIGURATION_DATA.OsBootWdtEnable,\
+        prompt      = STRING_TOKEN(STR_OS_BOOT_WD_TIMER),\
+        help        = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_HELP),\
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = 0 | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;\
+        default = 0,\
+        default = 0, defaultstore = AmiMfgDefault,\
+    endoneof;
+
+#define DXEFRB_ONEOF_OSBOOTWDTTIMEOUT\
+    numeric varid = SERVER_MGMT_CONFIGURATION_DATA.OsBootWdtTimeout,\
+        prompt      = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_TIMEOUT),\
+        help        = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_TIMEOUT_HELP),\
+        flags       = RESET_REQUIRED,\
+        minimum     = 1,\
+        maximum     = 30,\
+        step        = 1,\
+        default     = DEFAULT_OSBOOTWDT_TIMEOUT,\
+        default     = DEFAULT_OSBOOTWDT_TIMEOUT, defaultstore = AmiMfgDefault,\
+    endnumeric;
+
+#define DXEFRB_ONEOF_OSBOOTWDTTIMEOUTPOLICY\
+    oneof varid = SERVER_MGMT_CONFIGURATION_DATA.OsBootWdtTimeoutPolicy,\
+        prompt      = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_TIMEOUT_POLICY),\
+        help        = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_TIMEOUT_POLICY_HELP),\
+        option text = STRING_TOKEN(STR_DO_NOTHING), value = 0, flags = 0 | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_RESET),  value = 1, flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_POWERDOWN), value = 2, flags = 0 | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_POWERCYCLE), value = 3, flags = 0 | RESET_REQUIRED;\
+        default = 1,\
+        default = 1, defaultstore = AmiMfgDefault,\
+    endoneof;
+
+#endif //#ifdef CONTROL_DEFINITION
+
+#ifdef CONTROLS_WITH_DEFAULTS
+    DXEFRB_ONEOF_FRB2ENABLE
+    DXEFRB_ONEOF_FRB2TIMEOUT
+    DXEFRB_ONEOF_FRB2TIMEOUTPOLICY
+    DXEFRB_ONEOF_OSBOOTWDTENABLE
+    DXEFRB_ONEOF_OSBOOTWDTTIMEOUT
+    DXEFRB_ONEOF_OSBOOTWDTTIMEOUTPOLICY
+#endif //#ifdef CONTROLS_WITH_DEFAULTS
+
+#ifdef SERVER_MGMT_FORM_SET
+
+    #ifdef FORM_SET_TYPEDEF
+    //
+    // If you need any additional type definitions add them here
+    //
+    #endif
+
+    #ifdef FORM_SET_VARSTORE
+    //
+    //If you need custom varstore's define them here
+    //
+    #endif
+
+    #ifdef FORM_SET_ITEM
+        suppressif  ideqval SERVER_MGMT_CONFIGURATION_DATA.BmcSupport == 0;
+        grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+            DXEFRB_ONEOF_FRB2ENABLE
+        SUPPRESS_GRAYOUT_ENDIF
+
+        suppressif  ideqval SERVER_MGMT_CONFIGURATION_DATA.BmcSupport == 0;
+        grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER OR ideqval SERVER_MGMT_CONFIGURATION_DATA.Frb2Enable == 0;
+            DXEFRB_ONEOF_FRB2TIMEOUT
+        SUPPRESS_GRAYOUT_ENDIF
+
+        suppressif  ideqval SERVER_MGMT_CONFIGURATION_DATA.BmcSupport == 0;
+        grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER OR ideqval SERVER_MGMT_CONFIGURATION_DATA.Frb2Enable == 0;
+            DXEFRB_ONEOF_FRB2TIMEOUTPOLICY
+        SUPPRESS_GRAYOUT_ENDIF
+
+        suppressif  ideqval SERVER_MGMT_CONFIGURATION_DATA.BmcSupport == 0;
+        grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+            DXEFRB_ONEOF_OSBOOTWDTENABLE
+        SUPPRESS_GRAYOUT_ENDIF
+
+        suppressif  ideqval SERVER_MGMT_CONFIGURATION_DATA.BmcSupport == 0;
+        grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER OR ideqval SERVER_MGMT_CONFIGURATION_DATA.OsBootWdtEnable == 0;
+            DXEFRB_ONEOF_OSBOOTWDTTIMEOUT
+        SUPPRESS_GRAYOUT_ENDIF
+
+        suppressif  ideqval SERVER_MGMT_CONFIGURATION_DATA.BmcSupport == 0;
+        grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER OR ideqval SERVER_MGMT_CONFIGURATION_DATA.OsBootWdtEnable == 0;
+            DXEFRB_ONEOF_OSBOOTWDTTIMEOUTPOLICY
+        SUPPRESS_GRAYOUT_ENDIF
+
+    #endif //#ifdef FORM_SET_ITEM
+
+    #ifdef FORM_SET_GOTO
+    //
+    // Define goto commands for the forms defined in this file
+    //
+    #endif
+
+    #ifdef FORM_SET_FORM
+    //
+    // Define forms using macros from the control definition section above
+    //
+    #endif
+
+#endif //#ifdef SERVER_MGMT_FORM_SET
+

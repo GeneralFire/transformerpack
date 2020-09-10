@@ -1,0 +1,8 @@
+<component>
+    name = "Gpio"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Gpio\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Gpio"
+[files]
+"GpioDevConfig.h"	
+<endComponent>

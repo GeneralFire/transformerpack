@@ -1,0 +1,243 @@
+/** @file
+  VMD form template of configuration related to stack
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2019 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+//
+// INPUT:
+//   - IIO_INDEX        - index of the IIO complex (usually socket number) - used for PCH ports num calc.
+//   - STACK_TOTAL_IDX  - index of this stack in global table of all stacks
+//   - STACK_IDX        - index of stack in current IIo (socket)
+//   - DMI_STACK        - if defined menu presents PCH ports, IIO ports otherwise
+
+grayoutif ideqval SOCKET_IIO_CONFIGURATION.IioStackPresent[STACK_TOTAL_IDX] == 0;
+
+
+  #if defined(DMI_STACK)
+    subtitle text = STRING_TOKEN(STR_IIO_VMD_PCH_PORTS);
+  #else //defined(PCH_PORTS_ON_STACK)
+    subtitle text = STRING_TOKEN(HFR_CONCAT2(STR_IIO_VMD_SUBTITLE_IOU_,HFR_DEC(STACK_IDX)));
+  #endif //defined(PCH_PORTS_ON_STACK)
+
+  oneof varid = SOCKET_IIO_CONFIGURATION.VMDEnabled[STACK_TOTAL_IDX],
+    prompt  = STRING_TOKEN(STR_IIO_VMD_ON_STACK),
+    help    = STRING_TOKEN(STR_IIO_VMD_ON_STACK_HELP),
+    option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+  endoneof;
+
+  //
+  // Hide everything below if VMD is disabled for this stack
+  //
+  suppressif ideqval SOCKET_IIO_CONFIGURATION.VMDEnabled[STACK_TOTAL_IDX] == 0;
+
+    #if defined(DMI_STACK)
+      //
+      // Calculate indexes of PCH ports
+      //
+      #define PCH_PORT_0_TOTAL_IDX    HFR_MUL_20(IIO_INDEX)
+      #define PCH_PORT_1_TOTAL_IDX    HFR_INC(PCH_PORT_0_TOTAL_IDX)
+      #define PCH_PORT_2_TOTAL_IDX    HFR_INC(PCH_PORT_1_TOTAL_IDX)
+      #define PCH_PORT_3_TOTAL_IDX    HFR_INC(PCH_PORT_2_TOTAL_IDX)
+      #define PCH_PORT_4_TOTAL_IDX    HFR_INC(PCH_PORT_3_TOTAL_IDX)
+      #define PCH_PORT_5_TOTAL_IDX    HFR_INC(PCH_PORT_4_TOTAL_IDX)
+      #define PCH_PORT_6_TOTAL_IDX    HFR_INC(PCH_PORT_5_TOTAL_IDX)
+      #define PCH_PORT_7_TOTAL_IDX    HFR_INC(PCH_PORT_6_TOTAL_IDX)
+      #define PCH_PORT_8_TOTAL_IDX    HFR_INC(PCH_PORT_7_TOTAL_IDX)
+      #define PCH_PORT_9_TOTAL_IDX    HFR_INC(PCH_PORT_8_TOTAL_IDX)
+      #define PCH_PORT_10_TOTAL_IDX   HFR_INC(PCH_PORT_9_TOTAL_IDX)
+      #define PCH_PORT_11_TOTAL_IDX   HFR_INC(PCH_PORT_10_TOTAL_IDX)
+      #define PCH_PORT_12_TOTAL_IDX   HFR_INC(PCH_PORT_11_TOTAL_IDX)
+      #define PCH_PORT_13_TOTAL_IDX   HFR_INC(PCH_PORT_12_TOTAL_IDX)
+      #define PCH_PORT_14_TOTAL_IDX   HFR_INC(PCH_PORT_13_TOTAL_IDX)
+      #define PCH_PORT_15_TOTAL_IDX   HFR_INC(PCH_PORT_14_TOTAL_IDX)
+      #define PCH_PORT_16_TOTAL_IDX   HFR_INC(PCH_PORT_15_TOTAL_IDX)
+      #define PCH_PORT_17_TOTAL_IDX   HFR_INC(PCH_PORT_16_TOTAL_IDX)
+      #define PCH_PORT_18_TOTAL_IDX   HFR_INC(PCH_PORT_17_TOTAL_IDX)
+      #define PCH_PORT_19_TOTAL_IDX   HFR_INC(PCH_PORT_18_TOTAL_IDX)
+
+      #define PCH_PORT_IDX        0
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_0_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 0
+
+      #define PCH_PORT_IDX        1
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_1_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 1
+
+      #define PCH_PORT_IDX        2
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_2_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 2
+
+      #define PCH_PORT_IDX        3
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_3_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 3
+
+      #define PCH_PORT_IDX        4
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_4_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 4
+
+      #define PCH_PORT_IDX        5
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_5_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 5
+
+      #define PCH_PORT_IDX        6
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_6_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 6
+
+      #define PCH_PORT_IDX        7
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_7_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 7
+
+      #define PCH_PORT_IDX        8
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_8_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 8
+
+      #define PCH_PORT_IDX        9
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_9_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 9
+
+      #define PCH_PORT_IDX        10
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_10_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 10
+
+      #define PCH_PORT_IDX        11
+      #define PCH_PORT_TOTAL_IDX  PCH_PORT_11_TOTAL_IDX
+      #include "IioVmdPchPortTpl.hfr"  // PCH port 11
+
+      #ifndef CDF_SC_FLAG
+        //
+        // CDF has only 12 rootports
+        //
+        #define PCH_PORT_IDX        12
+        #define PCH_PORT_TOTAL_IDX  PCH_PORT_12_TOTAL_IDX
+        #include "IioVmdPchPortTpl.hfr"  // PCH port 12
+
+        #define PCH_PORT_IDX        13
+        #define PCH_PORT_TOTAL_IDX  PCH_PORT_13_TOTAL_IDX
+        #include "IioVmdPchPortTpl.hfr"  // PCH port 13
+
+        #define PCH_PORT_IDX        14
+        #define PCH_PORT_TOTAL_IDX  PCH_PORT_14_TOTAL_IDX
+        #include "IioVmdPchPortTpl.hfr"  // PCH port 14
+
+        #define PCH_PORT_IDX        15
+        #define PCH_PORT_TOTAL_IDX  PCH_PORT_15_TOTAL_IDX
+        #include "IioVmdPchPortTpl.hfr"  // PCH port 15
+
+        #define PCH_PORT_IDX        16
+        #define PCH_PORT_TOTAL_IDX  PCH_PORT_16_TOTAL_IDX
+        #include "IioVmdPchPortTpl.hfr"  // PCH port 16
+
+        #define PCH_PORT_IDX        17
+        #define PCH_PORT_TOTAL_IDX  PCH_PORT_17_TOTAL_IDX
+        #include "IioVmdPchPortTpl.hfr"  // PCH port 17
+
+        #define PCH_PORT_IDX        18
+        #define PCH_PORT_TOTAL_IDX  PCH_PORT_18_TOTAL_IDX
+        #include "IioVmdPchPortTpl.hfr"  // PCH port 18
+
+        #define PCH_PORT_IDX        19
+        #define PCH_PORT_TOTAL_IDX  PCH_PORT_19_TOTAL_IDX
+        #include "IioVmdPchPortTpl.hfr"  // PCH port 19
+      #endif // CDF_SC_FLAG
+
+    #else // !defined(DMI_STACK)
+      #include "IioVmdIouPortsTpl.hfr"
+    #endif // !defined(DMI_STACK)
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.VMDHotPlugEnable[STACK_TOTAL_IDX],
+      prompt  = STRING_TOKEN(STR_VMD_HOTPLUG),
+      help    = STRING_TOKEN(STR_VMD_HOTPLUG_HELP),
+      option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.VMDCfgBarSz[STACK_TOTAL_IDX],
+      prompt  = STRING_TOKEN(STR_IIO_VMD_CFGBAR_SZ),
+      help    = STRING_TOKEN(STR_IIO_VMD_CFGBAR_SZ_HELP),
+      flags   = RESET_REQUIRED,
+      minimum = 20,
+      maximum = 27,
+      step    = 1,
+      default = 25, defaultstore = MyStandardDefault,
+      default = 25, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.VMDCfgBarAttr[STACK_TOTAL_IDX],
+        prompt  = STRING_TOKEN(STR_IIO_VMD_CFGBAR_ATTR),
+        help    = STRING_TOKEN(STR_IIO_VMD_CFGBAR_ATTR_HELP),
+        option text = STRING_TOKEN(STR_VMD_32BIT_NONPREFETCH), value = VMD_32BIT_NONPREFETCH, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_VMD_64BIT_NONPREFETCH), value = VMD_64BIT_NONPREFETCH, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_VMD_64BIT_PREFETCH),    value = VMD_64BIT_PREFETCH, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.VMDMemBarSz1[STACK_TOTAL_IDX],
+      prompt  = STRING_TOKEN(STR_IIO_VMD_MEMBAR1_SZ),
+      help    = STRING_TOKEN(STR_IIO_VMD_MEMBAR1_SZ_HELP),
+      flags   = RESET_REQUIRED,
+      minimum = 20,
+      maximum = 39,
+      step    = 1,
+      default = VMD_MEM_BAR_SIZE1_DEFAULT, defaultstore = MyStandardDefault,
+      default = VMD_MEM_BAR_SIZE1_DEFAULT, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.VMDMemBar1Attr[STACK_TOTAL_IDX],
+      prompt  = STRING_TOKEN(STR_IIO_VMD_MEMBAR1_ATTR),
+      help    = STRING_TOKEN(STR_IIO_VMD_MEMBAR1_ATTR_HELP),
+      option text = STRING_TOKEN(STR_VMD_32BIT_NONPREFETCH), value = VMD_32BIT_NONPREFETCH, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT ;
+      option text = STRING_TOKEN(STR_VMD_64BIT_NONPREFETCH), value = VMD_64BIT_NONPREFETCH, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_VMD_64BIT_PREFETCH),    value = VMD_64BIT_PREFETCH, flags = RESET_REQUIRED;
+    endoneof;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.VMDMemBarSz2[STACK_TOTAL_IDX],
+      prompt  = STRING_TOKEN(STR_IIO_VMD_MEMBAR2_SZ),
+      help    = STRING_TOKEN(STR_IIO_VMD_MEMBAR2_SZ_HELP),
+      flags   = RESET_REQUIRED,
+      minimum = 20,
+      maximum = 39,
+      step    = 1,
+      default = VMD_MEM_BAR_SIZE2_DEFAULT, defaultstore = MyStandardDefault,
+      default = VMD_MEM_BAR_SIZE2_DEFAULT, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.VMDMemBar2Attr[STACK_TOTAL_IDX],
+        prompt  = STRING_TOKEN(STR_IIO_VMD_MEMBAR2_ATTR),
+        help    = STRING_TOKEN(STR_IIO_VMD_MEMBAR2_ATTR_HELP),
+        option text = STRING_TOKEN(STR_VMD_32BIT_NONPREFETCH), value = VMD_32BIT_NONPREFETCH, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_VMD_64BIT_NONPREFETCH), value = VMD_64BIT_NONPREFETCH, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_VMD_64BIT_PREFETCH),    value = VMD_64BIT_PREFETCH, flags = RESET_REQUIRED;
+    endoneof;
+
+  endif; // suppressif ideqval SOCKET_IIO_CONFIGURATION.VMDEnabled[STACK_TOTAL_IDX] == 0x00;
+  subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+endif; // grayoutif ideqval SOCKET_IIO_CONFIGURATION.IioStackPresent[STACK_TOTAL_IDX] == 0;
+
+//
+// cleanup
+//
+#undef STACK_IDX
+#undef STACK_TOTAL_IDX

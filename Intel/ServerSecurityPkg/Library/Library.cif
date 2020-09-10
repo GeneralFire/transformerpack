@@ -1,0 +1,18 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSecurityPkg\Library\"
+    RefName = "ServerSecurityPkg.Library"
+[INF]
+"AppAdapterSgx3v0InternalLib\AppAdapterSgx3v0InternalLib.inf"
+"BiosGuardInitLib\BiosGuardInit.inf"
+"Saf\FusaSafPolicyLib\FusaSafPolicyLib.inf"
+"LtDxeLib\LtDxeLib.inf"
+"LtPeiLib\LtPeiLib.inf"
+#"PeiBootGuardLib\PeiBootGuardLib.inf"
+"PlatformLtDxeLibNull\PlatformLtDxeLibNull.inf"
+"Saf\Stl2BiosLib\Stl2BiosLib.inf"
+[files]
+"Library.sdl"
+"AppAdapterSgx3v0InternalLib\AppAdapterSgx3v0InternalLib.h"
+<endComponent>

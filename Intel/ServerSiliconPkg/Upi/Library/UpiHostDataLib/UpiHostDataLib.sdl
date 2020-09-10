@@ -1,0 +1,70 @@
+TOKEN
+	Name  = "UpiHostDataLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling UpiHostDataLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "UpiHostDataLibPei"
+	File  = "UpiHostDataLibPei.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+End
+
+#INFComponent
+#    Name  = "UpiHostDataLibPei"
+#    File  = "SimUpiHostDataLibPei.inf"
+ #   Package  = "ServerSiliconPkg"
+ #   ModuleTypes  = "PEIM"
+#    Token = "SOFTSIM_BIOS_ENABLE" "=" "1"
+#End
+
+INFComponent
+	Name  = "UpiHostDataLibDxe"
+	File  = "UpiHostDataLibDxe.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+	Name  = "UpiHostDataLibDxeRuntime"
+	File  = "UpiHostDataLibDxeRuntime.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+	Name  = "UpiHostDataLibSmm"
+	File  = "UpiHostDataLibSmm.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    	Class  = "UpiHostDataLib"
+    	Instance  = "ServerSiliconPkg.UpiHostDataLibPei"
+    	Arch = "IA32"
+End
+
+LibraryMapping
+	Class  = "UpiHostDataLib"
+	Instance  = "ServerSiliconPkg.UpiHostDataLibDxe"
+	Arch = "X64"
+End
+
+LibraryMapping
+	Class  = "UpiHostDataLib"
+	Instance  = "ServerSiliconPkg.UpiHostDataLibDxeRuntime"
+	Arch = "X64"
+	ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+LibraryMapping
+	Class  = "UpiHostDataLib"
+	Instance  = "ServerSiliconPkg.UpiHostDataLibSmm"
+	Arch = "X64"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+

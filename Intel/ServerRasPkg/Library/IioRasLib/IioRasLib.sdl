@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "IioRasLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling IioRasLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "IioRasLib"
+	File  = "IioRasLib.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+	Class  = "IioRasLib"
+	Instance  = "ServerRasPkg.IioRasLib"
+End
+

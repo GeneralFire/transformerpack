@@ -1,0 +1,12 @@
+<component>
+    name = "PeiPchInitLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\EbgPch\LibraryPrivate\PeiPchInitLib\"
+    RefName = "ClientOneSiliconPkg.Fru.EbgPch.LibraryPrivate.PeiPchInitLib"
+[INF]
+"PeiPchInitLibEbg.inf"
+[files]
+"PchInitPei.h"	
+"PchUsb.h"	
+"PeiPchInitLib.sdl"	
+<endComponent>

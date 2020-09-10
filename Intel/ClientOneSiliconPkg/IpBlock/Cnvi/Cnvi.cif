@@ -1,0 +1,11 @@
+<component>
+    name = "Cnvi"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Cnvi\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Cnvi"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Cnvi.LibraryPrivate"
+"ClientOneSiliconPkg.IpBlock.Cnvi.IncludePrivate"
+[files]
+"AcpiTables\CnviCommon.asl"
+<endComponent>

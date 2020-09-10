@@ -1,0 +1,14 @@
+<component>
+	name = "ConfigBlock"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\ConfigBlock\"
+	RefName = "ServerSiliconPkg.Include.ConfigBlock"
+[files]
+"FiaMuxConfig.h"
+"TraceHubConfig.h"
+"HsioPcieWM20Config.h"	
+"UsbConfig.h"
+"Usb2PhyConfig.h"
+"Usb3HsioConfig.h"
+"SiPreMemConfig.h"
+<endComponent>

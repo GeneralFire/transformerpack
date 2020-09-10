@@ -1,0 +1,8 @@
+<component>
+	name = "Policy"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Ie\v1\Policy\"
+	RefName = "ServerSiliconPkg.Ie.v1.Policy"
+[parts]
+"ServerSiliconPkg.Ie.v1.Policy.Include"
+<endComponent>

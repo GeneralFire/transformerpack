@@ -1,0 +1,35 @@
+TOKEN
+	Name  = "DxeSmmMmPciLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling DxeSmmMmPciLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "DxeMmPciLib"
+	File  = "DxeMmPciLib.inf"
+	Package  = "CpRcPkg"
+	ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+	Name  = "SmmMmPciLib"
+	File  = "SmmMmPciLib.inf"
+	Package  = "CpRcPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+	Class  = "MmPciLib"
+	Instance  = "CpRcPkg.DxeMmPciLib"
+        Arch  = "X64"
+End
+
+LibraryMapping
+	Class  = "MmPciLib"
+	Instance  = "CpRcPkg.SmmMmPciLib"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Arch  = "X64"
+End
+

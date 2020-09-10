@@ -1,0 +1,8 @@
+<component>
+	name = "Dxe"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Pci\Dxe\"
+	RefName = "ServerPlatformPkg.Features.Pci.Dxe"
+[parts]
+"ServerPlatformPkg.Features.Pci.Dxe.PciPlatform"
+<endComponent>

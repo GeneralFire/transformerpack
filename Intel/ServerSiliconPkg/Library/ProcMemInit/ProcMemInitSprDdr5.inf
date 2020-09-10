@@ -1,0 +1,166 @@
+## @file
+# ProcMemInit LIBRARY
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2009 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ProcMemInitSprDdr5
+  FILE_GUID                      = A500DCDD-1F1B-4B3E-A2E2-B74127BF612A
+  MODULE_TYPE                    = BASE
+  LIBRARY_CLASS                  = ProcMemInitChip | PEIM DXE_DRIVER DXE_SMM_DRIVER
+
+[Sources.Ia32]
+  Chip10nm/Common/ProcMemInitServices.c
+
+[Sources]
+#################################
+##  10nm SPR programs
+#################################
+
+## Chip10nm/Common
+  Chip10nm/Common/ProcMemInit.c
+
+## Chip10nm/Mem
+  Chip10nm/Mem/InitMemChip.c
+  Chip10nm/Mem/MemDisplayChip.c
+  Chip10nm/Mem/MemSPDChip.c
+  Chip10nm/Mem/MemStartChip.c
+  Chip10nm/Mem/MemTrainingChip.c
+  Chip10nm/Ddr5/Source/MemProjectSpecificDDR5.c
+
+[Packages]
+  CpRcPkg/CpRcPkg.dec
+  MdePkg/MdePkg.dec
+  ServerSecurityPkg/ServerSecurityPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  # APTIOV_SERVER_OVERRIDE_RC_START :  Wrapper for OEM to override TurnAroundTimings
+  ServerPlatformPkg/PlatformPkg.dec
+  # APTIOV_SERVER_OVERRIDE_RC_END :  Wrapper for OEM to override TurnAroundTimings
+
+[LibraryClasses.Ia32]
+  PeimEntryPoint
+  LastBootErrorPeiLib
+  MemTypeLib
+
+[LibraryClasses]
+  DebugLib
+  HobLib
+  IoLib
+  PciLib
+  TimerLib
+  UsraLib
+  SysHostPointerLib
+  CrcLib
+  MemDdrioIpLib
+  MemFmcIpLib
+  MemMcIpLib
+  ProcSmbIpLib
+  BaseDdrtCoreLib
+  BaseMemoryLib
+  MemCpgcIpLib
+  Mesh2MemIpLib
+  SystemInfoLib
+  EmulationConfigurationLib
+  KtiApiLib
+  SecurityEarlyPeiLib
+  SgxPreMemInitLib
+  UpiHostDataLib
+  MemThermManageLib
+  BaseMemorySsaLib
+  BaseMemoryServicesLib
+  IoAccessLib
+  CsrSbPortIdLib
+  CteNetLib
+  SiliconWorkaroundLib
+  Ddr5CoreLib
+  ProcMemInitTargetLib
+  ChaIpLib
+  KtiIpLib
+  LegacyRmtLib
+  ReferenceCodePolicyLib
+  CpuAndRevisionLib
+  MemPopulationPorLib
+  MemDecodeLib
+  MemBootHealthLib
+  SimulationServicesLib
+  CpuInitLib
+  SsaBuiltInRmtLib
+  BasicIpBlockServicesLib
+  S3mLib
+  PcdLib
+
+[LibraryClasses.X64]
+  UefiLib
+
+[Guids]
+  gEfiMemoryConfigDataGuid
+  gEfiMemoryConfigDataHobGuid
+  gEfiMemoryMapGuid
+  gEfiMemoryTypeInformationGuid
+  gEfiPlatformTxtDeviceMemoryGuid
+  gEfiHobListGuid
+  gReferenceCodePolicyHobGuid
+
+[Ppis]
+  gPeiBaseMemoryTestPpiGuid
+  gPeiPlatformMemorySizePpiGuid
+  gPeiTxtScleanPpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gSsaBiosServicesPpiGuid
+  gReferenceCodePolicyPpiGuid
+  gMrcPlatformHooksInterfaceGuid           ## CONSUMES
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiCpRcPkgTokenSpaceGuid.PcdCteBuild
+  gEfiCpRcPkgTokenSpaceGuid.PcdCosimBuild
+  gEfiCpRcPkgTokenSpaceGuid.PcdNvDimmEn
+
+[PcdEx]
+  gSiPkgTokenSpaceGuid.PcdWarmResetEliminationEn
+  gSiPkgTokenSpaceGuid.PcdEmuBiosSkipS3MAccess
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuThreadCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdRcVersion
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDisplayPerformanceValues
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcBeginEndDebugHooks
+  gReferenceCodePolicyTokenSpaceGuid.PcdNumaEn
+  gReferenceCodePolicyTokenSpaceGuid.PcdUmaBasedClustering
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcSsaOemHook
+  gEfiCpRcPkgTokenSpaceGuid.PcdRoundTripBufferDelayDclk
+
+[FeaturePcd]
+  gSiPkgTokenSpaceGuid.PcdEnableSamplePartCheck
+
+[BuildOptions.Ia32]
+  MSFT:*_*_*_CC_FLAGS     = /GF

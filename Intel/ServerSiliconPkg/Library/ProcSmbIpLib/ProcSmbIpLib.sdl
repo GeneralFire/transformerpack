@@ -1,0 +1,139 @@
+TOKEN
+    Name  = "ProcSmbIpLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling ProcSmbIpLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "HwProcSmbTargetLib"
+    File  = "10nm/HwProcSmbIpTargetLib/HwProcSmbIpTargetLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "PEIM"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "ProcSmbIpLibDxe10nm"
+    File  = "ProcSmbIpLibDxe10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "DXE_DRIVER"    
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "ProcSmbIpLibDxeSpr"
+    File  = "ProcSmbIpLibDxeSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "DXE_DRIVER"    
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "ProcSmbIpLibPei10nm"
+    File  = "ProcSmbIpLibPei10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "PEIM"    
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "ProcSmbIpLibPeiSpr"
+    File  = "ProcSmbIpLibPeiSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "PEIM"    
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "ProcSmbIpLibSmm10nm"
+    File  = "ProcSmbIpLibSmm10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "DXE_DRIVER"    
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "ProcSmbIpLibSmmSpr"
+    File  = "ProcSmbIpLibSmmSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "DXE_DRIVER"    
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "ProcSmbIpRasLibSmmSpr"
+    File  = "ProcSmbIpRasLibSmmSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "DXE_DRIVER"    
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+
+LibraryMapping
+    Class  = "ProcSmbIpRasLib"
+    Instance  = "ServerSiliconPkg.ProcSmbIpRasLibSmmSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+
+INFComponent
+    Name  = "HwProcSmbTargetLib"
+    File  = "Spr/HwProcSmbIpTargetLib/HwProcSmbIpTargetLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "PEIM"    
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "ProcSmbIpTargetLib"
+    Instance  = "ServerSiliconPkg.HwProcSmbTargetLib"
+    Arch = "IA32"
+End
+
+LibraryMapping
+    Class  = "ProcSmbIpLib"
+    Instance  = "ServerSiliconPkg.ProcSmbIpLibDxe10nm"
+    Arch = "X64"
+    ModuleTypes = "DXE_DRIVER"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "ProcSmbIpLib"
+    Instance  = "ServerSiliconPkg.ProcSmbIpLibDxeSpr"
+    Arch = "X64"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "ProcSmbIpLib"
+    Instance  = "ServerSiliconPkg.ProcSmbIpLibPei10nm"
+    Arch  = "IA32"
+    Token = "CPU_SPR_SUPPORT" "=" "0"    
+End
+
+LibraryMapping
+    Class  = "ProcSmbIpLib"
+    Instance  = "ServerSiliconPkg.ProcSmbIpLibPeiSpr"
+    Arch  = "IA32"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "ProcSmbIpLib"
+    Instance  = "ServerSiliconPkg.ProcSmbIpLibSmm10nm"
+    Arch = "common"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "ProcSmbIpLib"
+    Instance  = "ServerSiliconPkg.ProcSmbIpLibSmmSpr"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+

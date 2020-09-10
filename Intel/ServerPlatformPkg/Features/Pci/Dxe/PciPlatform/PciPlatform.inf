@@ -1,0 +1,113 @@
+## @file
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2006 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                   = 0x00010005
+  BASE_NAME                     = PciPlatform
+  FILE_GUID                     = E2441B64-7EF4-41fe-B3A3-8CAA7F8D3017
+  MODULE_TYPE                   = DXE_DRIVER
+  VERSION_STRING                = 1.0
+  ENTRY_POINT                   = PciPlatformDriverEntry
+
+[Sources]
+  PciPlatform.c
+  PciPlatform.h
+  PciPlatformHooks.c
+  PciPlatformHooks.h
+  PciIovPlatformPolicy.c
+  PciIovPlatformPolicy.h
+  PciSupportLib.c
+  PciSupportLib.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Iio/IioRcPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  ClientOneSiliconPkg/SiPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  CpRcPkg/CpRcPkg.dec
+#APTIOV_SERVER_OVERRIDE_START: Stack 0 -5 parsing changes.
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+#APTIOV_SERVER_OVERRIDE_END: Stack 0 -5 parsing changes.
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  IoLib
+  BaseMemoryLib
+  DebugLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  HobLib
+  PreSiliconEnvDetectLib
+  S3PciLib
+  SetupLib
+  PcdLib
+  PlatformOpromPolicyLib
+  MmPciLib
+  SataLib
+  PchInfoLib
+  UbaPlatLib
+  SystemInfoLib
+  IioApiLib
+
+[Protocols]
+  gEfiPciCallbackProtocolGuid
+  gEfiCpuIo2ProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+  gEfiPciIoProtocolGuid
+  gEfiPciPlatformProtocolGuid
+  gEfiIioUdsProtocolGuid
+  gEfiPciRootBridgeIoProtocolGuid
+  gEfiPciIovPlatformProtocolGuid
+  gEfiIioSystemProtocolGuid
+  gEfiPciHostBridgeResourceAllocationProtocolGuid
+
+[Guids]
+  gEfiPlatformInfoGuid
+  gEfiSetupVariableGuid
+  gEfiSocketIioVariableGuid
+  gPchSetupVariableGuid
+
+[Pcd]
+  gPlatformTokenSpaceGuid.PcdOemSkuPcieSlotOpromBitMap
+  gPlatformTokenSpaceGuid.PcdMaxOptionRomNumber
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSystemPageSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSupport
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAriSupport
+  gEfiMdeModulePkgTokenSpaceGuid.PcdMrIovSupport
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxNestedLevel
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+
+[Depex]
+  gSystemBoardInfoConfigDataGuid AND
+  gEfiPciHostBridgeResourceAllocationProtocolGuid

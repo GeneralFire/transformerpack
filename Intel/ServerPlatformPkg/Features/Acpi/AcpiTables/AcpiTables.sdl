@@ -1,0 +1,156 @@
+TOKEN
+	Name  = "AcpiTables_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling AcpiTables support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+PATH
+    Name  = "AcpiTables_DIR"
+End
+
+MODULE
+    Help  = "Includes AcpiTables.mak to Project"
+    File  = "AcpiTables.mak"
+End
+
+TOKEN
+    Name  = "PLATFORM_ASL_COMPILER"
+    Value  = "$(WORKSPACE)/Intel/ServerPlatformPkg/Features/Acpi/AcpiTables/Tools/Iasl/6.3/iasl.exe"
+    TokenType = Expression
+    TargetMAK = Yes
+    TargetDSC = Yes
+End
+
+TOKEN
+    Name  = "PLATFORM_ASL_GCC_COMPILER"
+    Value  = "$(WORKSPACE)/Intel/ServerPlatformPkg/Features/Acpi/AcpiTables/Tools/Iasl/6.3/iasl"
+    TokenType = Expression
+    TargetMAK = Yes
+    TargetDSC = Yes
+End
+
+#Override the iasl path defined in CommonDef.txt
+ELINK
+    Name  = "MSFT:*_*_*_ASL_PATH"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+    OutDSC = Yes
+End
+
+ELINK
+    Name  = "=$(PLATFORM_ASL_COMPILER)"
+    Parent  = "MSFT:*_*_*_ASL_PATH"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "GCC:*_*_*_ASL_PATH"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+    OutDSC = Yes
+End
+
+ELINK
+    Name  = "=$(PLATFORM_ASL_GCC_COMPILER)"
+    Parent  = "GCC:*_*_*_ASL_PATH"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "PlatformAcpiTable_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PlatformAcpiTable support in Project"
+	TokenType = Boolean
+End
+
+#INFComponent
+#	Name  = "PlatformAcpiTable"
+#	File  = "AcpiTables.inf"
+#	Package  = "ServerPlatformPkg"
+#	ModuleTypes  = "USER_DEFINED"
+#	Token = "PlatformAcpiTable_SUPPORT" "=" "1"
+#	Token = "CPU_SKX_ONLY_SUPPORT" "=" "1"
+#End
+
+#INFComponent
+#    Name  = "PlatformAcpiTable"
+#    File  = "AcpiTables10nm.inf"
+#    Package  = "ServerPlatformPkg"
+#    ModuleTypes  = "USER_DEFINED"
+#    Token = "PlatformAcpiTable_SUPPORT" "=" "1"
+#    Token = "CPU_SKX_ONLY_SUPPORT" "=" "0"
+#End
+
+
+INFComponent
+    Name  = "PlatformAcpiTable"
+    File  = "AcpiTablesSpr.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "USER_DEFINED"     
+    Token = "PlatformAcpiTable_SUPPORT" "=" "1"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "PlatformAcpiTable"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "ServerPlatformPkg.PlatformAcpiTable"
+    Rule_Override  = "ACPITABLE"
+    Token = "PlatformAcpiTable_SUPPORT" "=" "1"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+#ELINK
+#    Name  = "ClientOneSiliconPkg/Pch/AcpiTables/Dsdt/PchNvs.asl"
+#    Parent  = "DSDT_AFTER_PCI_TREE_ASL_INCLUDE_FILE"
+#    Help  = "Link the ASL file into DSDT.asl."
+#    InvokeOrder = AfterParent
+#End
+
+#ELINK
+#    Name  = "ServerSiliconPkg/Pch/AcpiTables/Dsdt/PchNvs.asl"
+#    Parent  = "DSDT_AFTER_PCI_TREE_ASL_INCLUDE_FILE"
+#    Help  = "Link the ASL file into DSDT.asl."
+#    InvokeOrder = AfterParent
+#End
+
+#ELINK
+#    Name  = "ServerSiliconPkg/Pch/SouthClusterCdf/AcpiTables/Dsdt/PchNvs.asl"
+#    Parent  = "DSDT_AFTER_PCI_TREE_ASL_INCLUDE_FILE"
+#    Help  = "Link the ASL file into DSDT.asl."
+#    InvokeOrder = AfterParent
+#End
+
+#ELINK
+#    Name  = "-D CRB_FLAG"
+#    Parent  = "*_*_*_ASLCC_FLAGS"
+#    Type  = "BuildOptions"
+#    InvokeOrder = ReplaceParent
+#    OutDSC = Yes    
+#    Override  = "ServerPlatformPkg.PlatformAcpiTable"
+#    Token = "PlatformAcpiTable_SUPPORT" "=" "1"
+#    Token = "CPU_SPR_SUPPORT" "=" "1"    
+#End
+
+#TOKEN
+#    Name  = "SPS_ASL_SUPPORT"
+#    Value  = "0"
+#    Help  = "Switch to enable SPS ASL support for P/T states change in DSDT and CPU PM SSDT's. Do not turn off this token if Node Manager ASL support tokens are enabled"
+#    TokenType = Boolean
+#    TargetH = Yes   
+#    Token = "ME_SPS_ENABLE" "=" "0"
+#End
+
+#TOKEN
+#    Name  = "SPS_ASL_SUPPORT"
+#    Value  = "1"
+#    Help  = "Switch to enable SPS ASL support for P/T states change in DSDT and CPU PM SSDT's. Do not turn off this token if Node Manager ASL support tokens are enabled"
+#    TokenType = Boolean
+#    TargetH = Yes   
+#    Token = "ME_SPS_ENABLE" "=" "1"
+#End

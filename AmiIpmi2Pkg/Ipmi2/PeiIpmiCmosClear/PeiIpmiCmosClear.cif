@@ -1,0 +1,10 @@
+<component>
+    name = "PeiIpmiCmosClear"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\PeiIpmiCmosClear\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.PeiIpmiCmosClear"
+[INF]
+"PeiIpmiCmosClear.inf"
+[files]
+"PeiIpmiCmosClear.sdl"
+<endComponent>

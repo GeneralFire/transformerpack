@@ -1,0 +1,132 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2016 - 2018 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+//
+// Name:	DebugSetup.uni
+//
+// Description:	Debug Form String Definitions.
+//
+//**********************************************************************
+/=#
+#include "VFR.uni"
+#string STR_DEBUG_FORM                                  #language en-US "Debug Settings"
+#string STR_DEBUG_FORM_HELP                             #language en-US "Debug interface Settings"
+
+#string STR_DEBUG_PORT_HELP                             #language en-US "Select Kernel Debug Port and report in ACPI DBG2 table"
+
+#string STR_PCH_DCI_HDCIEN                              #language en-US "DCI Enable"
+#string STR_PCH_DCI_HDCIEN_HELP                         #language en-US "If 'Enabled' is selected, it is taken as user has 'opt-in' for debug. Note: This policy does not reflect the current platform debug status."
+#string STR_PCH_DCI_DBC_MODE_PROMPT                     #language en-US "USB DbC Enable Mode"
+#string STR_PCH_DCI_DBC_MODE_HELP                       #language en-US "This BIOS option enables Debug Class (DbC) interface for platform debug only. Select 'No Change' will do nothing to DbC setting, or choose specifically USB2 or USB3. Select 'Disabled' to disable both USB2 and USB3 interface.\nNote: This BIOS option is auto-selected and intended for advanced configuration only"
+#string STR_PCH_DCI_DBC_MODE_USB2                       #language en-US "USB2"
+#string STR_PCH_DCI_DBC_MODE_USB3                       #language en-US "USB3"
+#string STR_PCH_DCI_DBC_MODE_BOTH                       #language en-US "Both"
+
+#string STR_PCH_DEBUG_NO_CHANGE                         #language en-US "No Change"
+
+#string STR_PCH_SLP_S0_OVERRIDE_PROMPT                  #language en-US "SLP_S0# Override"
+#string STR_PCH_SLP_S0_OVERRIDE_HELP                    #language en-US "Select 'Auto', it will be auto-configured according to probe type. Select 'Enabled' will disable SLP_S0# assertion whereas 'Disabled' will enable SLP_S0# assertion when debug is enabled. \nNote: This BIOS option should keep 'Auto', other options are intended for advanced configuration only."
+
+#string STR_PCH_SLP_S0_SETTING_PROMPT                   #language en-US "S0ix Override Settings"
+#string STR_PCH_SLP_S0_SETTING_HELP                     #language en-US "Select 'Auto', it will be auto-configured according to probe type. 'No Change' will keep PMC default settings. Or select the desired debug probe type for S0ix Override settings.\nReminder: USB3 DbC supports S0 only. DCI OOB (aka BSSB) uses CCA probe.\nNote: This BIOS option should keep 'Auto', other options are intended for advanced configuration only."
+#string STR_PCH_SLP_S0_SETTING_NO_PROBE                 #language en-US "No Probe"
+#string STR_PCH_SLP_S0_SETTING_DCI_OOB                  #language en-US "DCI OOB"
+#string STR_PCH_SLP_S0_SETTING_USB2_DBC                 #language en-US "USB2 DbC"
+#string STR_PCH_SLP_S0_SETTING_USB3_DBC                 #language en-US "USB3 DbC"
+#string STR_PCH_SLP_S0_SETTING_XDP3                     #language en-US "XDP3"
+
+#string STR_PCH_DEBUG_NO_CHANGE                         #language en-US "No Change"
+
+#string STR_PCH_USB3_TC_UFP_DBG_PROMPT                  #language en-US "USB3 Type-C UFP2DFP Kernel/Platform Debug Support"
+#string STR_PCH_USB3_TC_UFP_DBG_HELP                    #language en-US "This BIOS option enables kernel and platform debug for USB3 interface over a UFP Type-C receptacle, select 'No Change' will do nothing to UFP2DFP setting"
+
+#string STR_PCH_USB_OC_OVERRIDE_FOR_DBC                 #language en-US "USB Overcurrent Override for DbC"
+#string STR_PCH_USB_OC_OVERRIDE_FOR_DBC_HELP            #language en-US "This option overrides USB Over Current enablement state that USB OC will be disabled after enabling this option. Enable when DbC is used to avoid signaling conflicts."
+
+#string STR_PCH_TRACE_HUB_PROMPT                        #language en-US "PCH Trace Hub Enable Mode"
+#string STR_TRACE_HUB_MODE_HELP                         #language en-US "Select 'Host Debugger' if Trace Hub is used with host debugger tool or 'Target Debugger' if Trace Hub is used by target debugger software.\nNote: If 'Host Debugger' is selected, Platform Debug Consent has to be ENABLED because DCI is one of the primary trace data output paths."
+#string STR_TRACE_HUB_AET_TRACE_ENABLE                  #language en-US "AET Enable Mode"
+#string STR_TRACE_HUB_AET_TRACE_ENABLE_HELP             #language en-US "Enable the desired Trace Hub for AET event tracing"
+#string STR_TRACE_HUB_AET_TO_PCH                        #language en-US "PCH Trace Hub"
+#string STR_TRACE_HUB_AET_TO_CPU                        #language en-US "CPU Trace Hub"
+
+
+#string STR_PCH_TRACE_HUB_MEM_REGION_0_SIZE             #language en-US "PCH TH Mem Buffer Size 0"
+#string STR_PCH_TRACE_HUB_MEM_REGION_1_SIZE             #language en-US "PCH TH Mem Buffer Size 1"
+#string STR_TRACE_HUB_MEM_REGION_0_HELP                 #language en-US "Select size of memory region 0 buffer. Choose None/OS if OS-supported memory or trace forwarding is desired. Note : Limitation of total buffer size (PCH + CPU) is 512MB"
+#string STR_TRACE_HUB_MEM_REGION_1_HELP                 #language en-US "Select size of memory region 1 buffer. Choose None/OS if OS-supported memory or trace forwarding is desired. Note : Limitation of total buffer size (PCH + CPU) is 512MB"
+
+#string STR_TRACE_HUB_TARGET_DEBUGGER                   #language en-US "Target Debugger"
+#string STR_TRACE_HUB_HOST_DEBUGGER                     #language en-US "Host Debugger"
+#string STR_TRACE_HUB_WRAP                              #language en-US "Wrap"
+#string STR_TRACE_HUB_NOWRAP                            #language en-US "No-Wrap"
+#string STR_TRACE_HUB_MEM_REG_0                         #language en-US "Memory Region 0"
+#string STR_TRACE_HUB_PTI                               #language en-US "PTI"
+#string STR_TRACE_HUB_USB3                              #language en-US "USB 3"
+#string STR_TRACE_HUB_BSSB                              #language en-US "BSSB"
+
+#string STR_TRACE_HUB_NONE                              #language en-US "None/OS"
+#string STR_TRACE_HUB_1MB                               #language en-US "1MB"
+#string STR_TRACE_HUB_8MB                               #language en-US "8MB"
+#string STR_TRACE_HUB_64MB                              #language en-US "64MB"
+#string STR_TRACE_HUB_128MB                             #language en-US "128MB"
+#string STR_TRACE_HUB_256MB                             #language en-US "256MB"
+#string STR_TRACE_HUB_512MB                             #language en-US "512MB"
+#string STR_TRACE_HUB_1GB                               #language en-US "1GB"
+
+#string STR_PMC_DEBUG_MESSAGE_ENABLE_PROMPT             #language en-US "PMC Debug Message Enable"
+#string STR_PMC_DEBUG_MESSAGE_ENABLE_HELP               #language en-US "When Enabled, PMC HW will send debug messages to trace hub; When Disabled, PMC HW will never send debug meesages to trace hub. Noted: When Enabled, may not enter S0ix"
+
+//---------------------------------------------------------------------------
+// PCH Dirty Warm Reset Configuration Strings
+//---------------------------------------------------------------------------
+#string STR_PCH_DWR_FORM_TITLE                          #language en-US "PCH DWR Configuration"
+#string STR_PCH_DWR_FORM_HELP                           #language en-US "PCH Dirty Warm Reset Configuration"
+
+#string STR_DIRTY_WARM_RESET                            #language en-US "Dirty Warm Reset"
+#string STR_DIRTY_WARM_RESET_HELP                       #language en-US "Enables/disables Dirty Warm Reset. It promotes regular reset to DWR under internal error conditions."
+#string STR_DIRTY_WARM_REST_STALL                       #language en-US "Dirty Warm Reset Stall"
+#string STR_DIRTY_WARM_REST_STALL_HELP                  #language en-US "When enabled, system will enter spin loop during dirty warm reset allowing manual error collection"
+#string STR_DIRTY_WARM_REST_BMC_ROOTPORT                #language en-US "BMC RootPort"
+#string STR_DIRTY_WARM_REST_BMC_ROOTPORT_HELP           #language en-US "RootPort that BMC is connected to"
+#string STR_DIRTY_WARM_REST_BMC_ROOTPORT_5              #language en-US "6"
+#string STR_DIRTY_WARM_REST_BMC_ROOTPORT_11             #language en-US "12"
+
+#string STR_DWR_DO                                      #language en-US "Do"
+#string STR_DWR_SKIP                                    #language en-US "Skip"
+
+#string STR_PCH_PCIE_BIFURCATION_0                      #language en-US "Pcie 0 Bifurcation"
+#string STR_PCH_PCIE_BIFURCATION_1                      #language en-US "Pcie 1 Bifurcation"
+#string STR_PCH_PCIE_BIFURCATION_2                      #language en-US "Pcie 2 Bifurcation"
+#string STR_PCH_PCIE_BIFURCATION_3                      #language en-US "Pcie 3 Bifurcation"
+#string STR_PCH_PCIE_BIFURCATION_HELP                   #language en-US "Allows changing PCIE bifurcation"
+
+#string STR_BIFURCATION_1_8                             #language en-US "Bifurcation 1x8"
+#string STR_BIFURCATION_2_4                             #language en-US "Bifurcation 2x4"
+#string STR_BIFURCATION_1_4_2_2                         #language en-US "Bifurcation 1x4 2x2"
+#string STR_BIFURCATION_2_2_1_4                         #language en-US "Bifurcation 2x2 1x4"
+#string STR_BIFURCATION_4_2                             #language en-US "Bifurcation 4x2"

@@ -1,0 +1,81 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "AslUpdateLib"
+    Instance  = "ClientOneSiliconPkg.DxeAslUpdateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "DxeAslUpdateLib"
+    File  = "DxeAslUpdateLib/DxeAslUpdateLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "BaseSiConfigBlockLib"
+    File  = "BaseSiConfigBlockLib\BaseSiConfigBlockLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"       
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+
+LibraryMapping
+    Class  = "SiConfigBlockLib"
+    Instance  = "ClientOneSiliconPkg.BaseSiConfigBlockLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+INFComponent
+    Name  = "BaseTraceHubDebugLibSvenTx"
+    File  = "TraceHubDebugLibSvenTx\BaseTraceHubDebugLibSvenTx.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"       
+    Token = "TRACE_HUB_ENABLE" "=" "1"    
+End
+
+
+LibraryMapping
+    Class  = "TraceHubDebugLib"
+    Instance  = "ClientOneSiliconPkg.BaseTraceHubDebugLibSvenTx"
+    Token = "TRACE_HUB_ENABLE" "=" "1"        
+End
+
+INFComponent
+    Name  = "TraceHubHookLibNull"
+    File  = "TraceHubHookLibNull\TraceHubHookLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"       
+    Token = "TRACE_HUB_ENABLE" "=" "1"    
+End
+
+
+LibraryMapping
+    Class  = "TraceHubHookLib"
+    Instance  = "ClientOneSiliconPkg.TraceHubHookLibNull"
+    Token = "TRACE_HUB_ENABLE" "=" "1"        
+End
+
+INFComponent
+    Name  = "TraceHubDebugLibNull"
+    File  = "TraceHubDebugLibNull\TraceHubDebugLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"       
+    Token = "TRACE_HUB_ENABLE" "=" "0"    
+End
+
+
+LibraryMapping
+    Class  = "TraceHubDebugLib"
+    Instance  = "ClientOneSiliconPkg.TraceHubDebugLibNull"
+    Token = "TRACE_HUB_ENABLE" "=" "0"        
+End

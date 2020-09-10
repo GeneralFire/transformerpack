@@ -1,0 +1,9 @@
+<component>
+	name = "Guid"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Iio\Include\Guid\"
+	RefName = "ServerSiliconPkg.Iio.Include.Guid"
+[files]
+"IioPolicyHob.h"
+"VtdPmrInfoHob.h"	
+<endComponent>

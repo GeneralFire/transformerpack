@@ -1,0 +1,9 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Me\MeSps.6\Include\"
+    RefName = "ServerPlatformPkg.Features.Me.MeSps6.Include"
+[files]
+"Library\DxeSpsPolicyUpdateLib.h"
+"Library\MeServerPolicyHelperLib.h"
+<endComponent>

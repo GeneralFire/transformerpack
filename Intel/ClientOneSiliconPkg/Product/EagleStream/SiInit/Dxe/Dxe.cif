@@ -1,0 +1,10 @@
+<component>
+    name = "Dxe"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\Product\EagleStream\SiInit\Dxe\"
+    RefName = "ClientOneSiliconPkg.Product.EagleStream.SiInit.Dxe"
+[INF]
+"SiInitDxe.inf"
+[files]
+"Dxe.sdl"	
+<endComponent>

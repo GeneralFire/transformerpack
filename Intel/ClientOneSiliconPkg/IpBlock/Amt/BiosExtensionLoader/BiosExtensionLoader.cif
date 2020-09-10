@@ -1,0 +1,8 @@
+<component>
+    name = "BiosExtensionLoader"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Amt\BiosExtensionLoader\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Amt.BiosExtensionLoader"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Amt.BiosExtensionLoader.Dxe"
+<endComponent>

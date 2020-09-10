@@ -1,0 +1,25 @@
+TOKEN
+    Name  = "EmmcSoftwareTuning_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling EmmcSoftwareTuning support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "EmmcSoftwareTuning_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable EmmcSoftwareTuning support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "EmmcSoftwareTuning"
+    File  = "EmmcSoftwareTuningCdf.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "EmmcSoftwareTuning_INF_SUPPORT" "=" "1"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"    
+End
+
+

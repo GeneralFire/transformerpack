@@ -1,0 +1,112 @@
+TOKEN
+    Name  = "SelStatusCode_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiSelStatusCode support in the project"
+    TokenType = Boolean
+    TargetH = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "DxeSelStatusCode_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling DxeSelStatusCode support in the project"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+PATH
+    Name  = "SelStatusCode_DIR"
+    Path  = "AmiIpmi2Pkg/Ipmi2/SelStatusCode"
+    Help  = "Path to SelStatusCode sub module in project."
+End
+
+TOKEN
+    Name  = "PeiSelStatusCode_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiSelStatusCode support in the project"
+    TokenType = Boolean
+    Token = "DxeSelStatusCode_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiSelStatusCode"
+    File  = "PeiSelStatusCode.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "PEIM"
+    Help  = "Includes PeiSelStatusCode.inf to Project."
+    Token = "PeiSelStatusCode_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "PeiSelStatusCode"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "AmiIpmi2Pkg.PeiSelStatusCode"
+    Apriori_Index  = "4"
+    Help  = "Includes PeiSelStatusCode driver in FV_BB and dispatches based on a priori index."
+    Token = "PeiSelStatusCode_SUPPORT" "=" "1"
+End
+
+
+ELINK
+    Name  = "$(SelStatusCode_DIR)/SelSetup.sd"
+    Parent  = "SERVER_MGMT_SETUP_DEFINITIONS"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include SelSetup.sd file in ServerMgmtSetup definitions files list."
+    Token = "DxeSelStatusCode_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "$(SelStatusCode_DIR)/SelSetup.uni"
+    Parent  = "SERVER_MGMT_SETUP_STRING_FILES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include SelSetup.uni file in ServerMgmtSetup string files list."
+    Token = "DxeSelStatusCode_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "DxeSelStatusCode"
+    File  = "DxeSelStatusCode.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Path  = "SelStatusCode_DIR"
+    Help  = "Includes DxeSelStatusCode.inf to Project."
+    Token = "DxeSelStatusCode_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "DxeSelStatusCode"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "AmiIpmi2Pkg.DxeSelStatusCode"
+    Apriori_Index  = "6"
+    Help  = "Includes DxeSelStatusCode driver in FV_MAIN and dispatches based on a priori index."
+    Token = "DxeSelStatusCode_SUPPORT" "=" "1"
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.PeiSelStatusCode"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "PeiSelStatusCode_SUPPORT" "=" "1"
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.DxeSelStatusCode"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "DxeSelStatusCode_SUPPORT" "=" "1"
+End

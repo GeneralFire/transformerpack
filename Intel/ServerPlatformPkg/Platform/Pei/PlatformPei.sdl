@@ -1,0 +1,162 @@
+TOKEN
+	Name  = "PlatformPei_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Pei support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "UuidPeiInit_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable UuidPeiInit support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "UuidPeiInit"
+	File  = "UuidPeiInit/UuidPeiInit.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+	ModuleTypes  = "PEIM"
+	Token = "UuidPeiInit_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "DebugLib"
+    Instance  = "MdePkg.BaseDebugLibNull"
+    Override  = "ServerPlatformPkg.UuidPeiInit"
+    Token = "UuidPeiInit_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "MemCacheInit_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable MemCacheInit support in Project"
+	TokenType = Boolean
+End
+
+TOKEN
+    Name  = "PublishMrcNormalFv_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable PublishMrcNormalFv support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+	Name  = "MemCacheInit"
+	File  = "MemCacheInit/MemCacheInit.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+	ModuleTypes  = "PEIM"
+	Token = "MemCacheInit_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "EmulationPlatformInit"
+	File  = "EmulationPlatformInit\EmulationPlatformInit.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+	ModuleTypes  = "PEIM"
+End
+
+INFComponent
+	Name  = "PublishMrcNormalFv"
+	File  = "PublishMrcNormalFv\PublishMrcNormalFv.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+    ModuleTypes = "PEIM"
+    Token = "PublishMrcNormalFv_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "RequiredUefiVarPeim"
+	File  = "RequiredUefiVarPeim\RequiredUefiVarPeim.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+    ModuleTypes = "PEIM"	
+End
+
+LibraryMapping
+    Class  = "DebugPrintErrorLevelLib"
+    Instance  = "MdePkg.BaseDebugPrintErrorLevelLib"
+    Override  = "ServerPlatformPkg.MemCacheInit"
+End
+
+LibraryMapping
+    Class  = "BaseLib"
+    Instance  = "ServerSiliconPkg.BaseLib"
+    Override  = "ServerPlatformPkg.MemCacheInit"
+End
+
+TOKEN
+	Name  = "MrcPlatformHooksPeim_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable MrcPlatformHooksPeim support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "MrcPlatformHooksPeim"
+	File  = "MrcPlatformHooksPeim\MrcPlatformHooksPeim.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+	ModuleTypes  = "PEIM"
+	Token = "MrcPlatformHooksPeim_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "OemProcMemInitLib"
+    Instance  = "ServerPlatformPkg.OemProcMemInitLib"
+    Override  = "ServerPlatformPkg.MrcPlatformHooksPeim"
+    Token = "MrcPlatformHooksPeim_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "OemProcMemInitHookLib"
+    Instance  = "ServerPlatformPkg.OemProcMemInitHookLibNull"
+    Override  = "ServerPlatformPkg.MrcPlatformHooksPeim"
+    Token = "MrcPlatformHooksPeim_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterFilterLib"
+    Instance  = "CpRcPkg.UsraRegisterFilterLibNull"
+    Override  = "ServerPlatformPkg.MrcPlatformHooksPeim"
+    Token = "MrcPlatformHooksPeim_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterLogLib"
+    Instance  = "ServerSiliconPkg.UsraRegisterLogLibUBios"
+    Override  = "ServerPlatformPkg.MrcPlatformHooksPeim"
+    Token = "MrcPlatformHooksPeim_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "UpiPlatformHooksPeim"
+	File  = "UpiPlatformHooksPeim\UpiPlatformHooksPeim.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+	ModuleTypes  = "PEIM"
+End
+
+INFComponent
+	Name  = "IioPlatformHooksPeim"
+	File  = "IioPlatformHooksPeim\IioPlatformHooksPeim.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+	ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "OemIioInitLib"
+    Instance  = "ServerPlatformPkg.OemIioInitLib"
+    Override  = "ServerPlatformPkg.IioPlatformHooksPeim"
+End
+
+LibraryMapping
+    Class  = "OemIioInitHookLib"
+    Instance  = "ServerPlatformPkg.OemIioInitHookLibNull
+    Override  = "ServerPlatformPkg.IioPlatformHooksPeim"
+End

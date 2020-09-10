@@ -1,0 +1,21 @@
+TOKEN
+    Name  = "AddressDecodeLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling AddressDecodeLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Disable = Yes
+End
+
+LibraryMapping
+    Class  = "AddressDecodeLib"
+    Instance  = "ServerSiliconPkg.AddressDecodeLib"
+End
+
+INFComponent
+    Name  = "AddressDecodeLib"
+    File  = "AddressDecodeLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+

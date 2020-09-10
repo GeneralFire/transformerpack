@@ -1,0 +1,13 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.Pch.LibraryPrivate"
+[INF]
+"BaseSiScheduleResetLib\BaseSiScheduleResetLib.inf"
+"PeiDxeSmmPchRtcLib\PeiDxeSmmPchRtcLib.inf"
+"SmmPchPrivateLib\SmmPchPrivateLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+[parts]
+<endComponent>

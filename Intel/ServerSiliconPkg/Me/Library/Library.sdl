@@ -1,0 +1,282 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "HeciTraceLib"
+    File  = "HeciTraceLib/HeciTraceLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"          
+End
+
+LibraryMapping
+    Class  = "HeciTraceLib"
+    Instance  = "ServerSiliconPkg.HeciTraceLib"
+    Arch  = "IA32"
+    Token = "ME_ENABLE" "=" "1"   
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"          
+End
+
+LibraryMapping
+    Class  = "HeciTraceLib"
+    Instance  = "ServerSiliconPkg.HeciTraceLib"
+    Arch  = "X64"
+    Token = "ME_ENABLE" "=" "0"   
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"          
+End
+
+LibraryMapping
+    Class  = "HeciTraceLib"
+    Instance  = "ServerSiliconPkg.HeciTraceLib"
+    Arch  = "X64"
+    Token = "ME_ENABLE" "=" "1"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"         
+End
+
+INFComponent
+	Name  = "DxeMeStorageLib"
+	File  = "MeStorageLib\DxeMeStorageLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "PeiMeStorageLib"
+    File  = "MeStorageLib\PeiMeStorageLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "ME_ENABLE" "=" "1"    
+End
+
+LibraryMapping
+	Class  = "MeStorageLib"
+	Instance  = "ServerSiliconPkg.DxeMeStorageLib"
+	Arch = "X64"
+End
+
+LibraryMapping
+	Class  = "MeStorageLib"
+	Instance  = "ServerSiliconPkg.PeiMeStorageLib"
+	Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "MeSmmLib"
+    File  = "MeSmmLib\MeSmmLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"  
+End
+
+LibraryMapping
+	Class  = "MeSmmLib"
+	Instance  = "ServerSiliconPkg.MeSmmLib"
+	Arch = "X64"
+End
+
+INFComponent
+    	Name  = "MeUefiFwHealthStatusLib"
+        File  = "MeUefiFwHealthStatusLib\MeUefiFwHealthStatusLib.inf"
+    	Package  = "ServerSiliconPkg"
+    	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "MeUefiFwHealthStatusLib"
+	Instance  = "ServerSiliconPkg.MeUefiFwHealthStatusLib"
+End
+
+INFComponent
+    Name  = "PeiDxeMeShowBufferLib"
+    File  = "PeiDxeMeShowBufferLib\PeiDxeMeShowBufferLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "UEFI_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MeShowBufferLib"
+    Instance  = "ServerSiliconPkg.PeiDxeMeShowBufferLib"
+    Arch  = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MeShowBufferLib"
+    Instance  = "ServerSiliconPkg.PeiDxeMeShowBufferLib"
+    Arch  = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+	Name  = "MeDummyLib"
+	File  = "MeDummyLib/MeDummyLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+
+LibraryMapping
+    Class  = "MeConfigLib"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Token = "ME_ENABLE" "=" "0"
+End
+
+#LibraryMapping
+#    Class  = "ServerDxeMeLib"
+#    Instance  = "ServerSiliconPkg.MeDummyLib"
+#    Arch  = "X64"    
+#End
+
+#LibraryMapping
+#    Class  = "HeciConfigureLib"
+#    Instance  = "ServerSiliconPkg.MeDummyLib"
+#    Arch  = "X64"    
+#End
+
+LibraryMapping
+    Class  = "MeLibPei"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Arch  = "IA32"    
+End
+
+LibraryMapping
+    Class  = "AsfMsgLib"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Arch  = "IA32"    
+	Token = "AMT_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "AlertStandardFormatLib"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Token = "ME_ENABLE" "=" "0"    
+End
+
+LibraryMapping
+    Class  = "PeiSrvAmtPolicyLib"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Token = "ME_ENABLE" "=" "0"         
+End
+
+LibraryMapping
+    Class  = "PeiSrvMePolicyUpdateLib"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Token = "ME_ENABLE" "=" "0"          
+End
+
+
+LibraryMapping
+    Class  = "DxeAmtLib"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Arch  = "X64"    
+End
+
+LibraryMapping
+    Class  = "MeSpsPolicyAccessDxeLib"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Arch  = "X64"      
+End
+
+LibraryMapping
+    Class  = "DxeMbpDataLib"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Arch  = "X64"       
+End
+
+LibraryMapping
+    Class  = "MeShowBufferLib"
+    Instance  = "ServerSiliconPkg.MeDummyLib"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MeTypeLib"
+    Instance  = "ServerSiliconPkg.MeTypeLibPei"
+    Arch = "IA32"    
+End
+
+INFComponent
+#Name changed to map Pei instance to IA32
+    Name  = "MeTypeLibPei"
+#Name changed to map Pei instance to IA32    
+    File  = "MeTypeLib\MeTypePeiLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "MeTypeLib"
+    Instance  = "ServerSiliconPkg.MeTypeLib"
+    Arch = "X64"    
+End
+
+INFComponent
+    Name  = "MeTypeLib"
+    File  = "MeTypeLib\MeTypeDxeLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "MeUmaPeiLib"
+    File  = "MeUmaLib\MeUmaPeiLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MeUmaLib"
+    Instance  = "ServerSiliconPkg.MeUmaPeiLib"
+    Arch = "IA32"   
+    Token = "ME_ENABLE" "=" "1" 
+End
+
+INFComponent
+    Name  = "MeUmaLib"
+    File  = "MeUmaLib\MeUmaLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "ME_ENABLE" "=" "0" 
+End
+
+LibraryMapping
+    Class  = "MeUmaLib"
+    Instance  = "ServerSiliconPkg.MeUmaLib"
+    Arch = "IA32" 
+    Token = "ME_ENABLE" "=" "0"  
+End
+
+#INFComponent
+#    Name  = "MeUmaLib"
+#    File  = "MeUmaLib\MeUmaLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "PEIM"
+#End
+
+#LibraryMapping
+#    Class  = "MeUmaLib"
+#    Instance  = "ServerSiliconPkg.MeUmaLib"
+#    Arch = "X64"
+#End
+
+INFComponent
+    Name  = "MeMeasurementsLib"
+    File  = "MeMeasurementsLib\MeMeasurementsLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+    Class  = "MeMeasurementsLib"
+    Instance  = "ServerSiliconPkg.MeMeasurementsLib"
+    Arch = "X64"
+End

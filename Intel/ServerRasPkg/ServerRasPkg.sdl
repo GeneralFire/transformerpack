@@ -1,0 +1,146 @@
+TOKEN
+    Name  = "ServerRasPkg_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling ServerRasPkg support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "ImcErrorHandler_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable ImcErrorHandler support in Project"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "PolicySampleDriver_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PolicySampleDriver support in Project"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "ProcessorErrorHandler_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable ProcessorErrorHandler support in Project"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "AMI_RAS_ENHANCEMENTS_AND_HOOKS_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling AMI RAS Enhancements in CRB"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+INFComponent
+    Name  = "PolicySampleDriver"
+    File  = "PolicySample/PolicySample.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "PolicySampleDriver_INF_SUPPORT" "=" "1"
+End
+
+
+INFComponent
+    Name  = "ImcErrorHandler"
+    File  = "ImcErrorHandler/ImcErrorHandler.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "ImcErrorHandler_INF_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "CryptoPkg.BaseIntrinsicLib"
+    Override  = "ServerRasPkg.ImcErrorHandler"
+    Token = "ImcErrorHandler_INF_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "ProcessorErrorHandler"
+    File  = "ProcessorErrorHandler/ProcessorErrorHandler.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "ProcessorErrorHandler_INF_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PciSegmentLib"
+    Instance  = "CpRcPkg.PciSegmentLib"
+    Override  = "ServerRasPkg.ProcessorErrorHandler"
+    Token = "CPUTARGET" "!=" "ICXD"    
+    Token = "CPUTARGET" "!=" "SNR"   
+    Token = "CPUTARGET" "!=" "TNR"  
+    Token = "ProcessorErrorHandler_INF_SUPPORT" "=" "1"         
+End
+
+INFComponent
+    Name  = "CrashLogDxe"
+    File  = "CrashLogDxe/CrashLogDxe.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "CPUTARGET" "=" "SPR"
+End
+
+INFComponent
+    Name  = "CsrRegTableDxe"
+    File  = "CsrRegTableDxe/CsrRegTableDxe.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "ErrorControl"
+    File  = "ErrorControl/ErrorControl.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "CPU_SKX_ONLY_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "IioErrorHandler"
+    File  = "IioErrorHandler\IioErrorHandler.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "IioRasInit"
+    File  = "Dxe\IioRasInit\IioRasInit.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "CPUTARGET" "=" "SPR"
+End
+
+LibraryMapping
+    Class  = "PciSegmentLib"
+    Instance  = "CpRcPkg.PciSegmentLib"
+    Override  = "ServerRasPkg.IioErrorHandler"
+    Token = "CPUTARGET" "!=" "ICXD"    
+    Token = "CPUTARGET" "!=" "SNR"   
+    Token = "CPUTARGET" "!=" "TNR"       
+End
+
+INFComponent
+    Name  = "RasAcpi"
+    File  = "RasAcpi\RasAcpi.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "MemTopology"
+    File  = "MemTopology\MemTopology.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+FFS_FILE
+    Name  = "RasAcpiDriverTable"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "ServerRasPkg.RasAcpi"
+    Rule_Override  = "DRIVER_ACPITABLE"
+End

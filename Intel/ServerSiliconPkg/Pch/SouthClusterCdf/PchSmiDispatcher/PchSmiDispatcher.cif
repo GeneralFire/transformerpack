@@ -1,0 +1,8 @@
+<component>
+    name = "PchSmiDispatcher"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\PchSmiDispatcher\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.PchSmiDispatcher"
+[parts]
+"ServerSiliconPkg.Pch.SouthClusterCdf.PchSmiDispatcher.Smm"
+<endComponent>

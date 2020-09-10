@@ -1,0 +1,10 @@
+TOKEN
+    Name  = "Dsdt_SUPPORT"
+    Value  = "0"
+    Help  = "Switch for Enabling Dsdt support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+#PchAcpiTables: Pch.asl is already included into DSDT.asl using “Platform ASL Files” in ServerPlatformPkg.sdl 
+#ClientOneSiliconPkg instance is not used

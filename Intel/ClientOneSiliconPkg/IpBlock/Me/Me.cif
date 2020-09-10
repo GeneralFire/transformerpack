@@ -1,0 +1,17 @@
+<component>
+    name = "Me"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Me.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Me.MeFwDowngrade"
+"ClientOneSiliconPkg.IpBlock.Me.MeSmbiosDxe"
+"ClientOneSiliconPkg.IpBlock.Me.LibraryPrivate"
+"ClientOneSiliconPkg.IpBlock.Me.Library"
+"ClientOneSiliconPkg.IpBlock.Me.Asf"
+"ClientOneSiliconPkg.IpBlock.Me.HeciTransport"
+"ClientOneSiliconPkg.IpBlock.Me.HwAsset"
+[files]
+"MeSmbiosDxe\MeSmbiosInternal.h"
+<endComponent>

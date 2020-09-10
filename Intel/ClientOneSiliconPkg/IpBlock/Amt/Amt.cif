@@ -1,0 +1,15 @@
+<component>
+    name = "Amt"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Amt\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Amt"
+[files]
+"Amt.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Amt.AmtInit"
+"ClientOneSiliconPkg.IpBlock.Amt.BiosExtensionLoader"
+"ClientOneSiliconPkg.IpBlock.Amt.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Amt.Library"
+"ClientOneSiliconPkg.IpBlock.Amt.LibraryPrivate"
+"ClientOneSiliconPkg.IpBlock.Amt.Sol"
+<endComponent>

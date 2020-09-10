@@ -1,0 +1,77 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+
+## @file DxeIpmiInitialize.inf
+#
+#  INF description file for DxeIpmiInitialize driver.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = DxeIpmiInitialize
+  FILE_GUID         = 6372357A-06D7-43ef-B55C-1964F3DD6916
+  MODULE_TYPE       = DXE_RUNTIME_DRIVER
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = InitializeIpmiPhysicalLayer
+
+[Sources]
+  DxeIpmiInitialize.c
+  DxeIpmiInitialize.h
+  Spmi.c
+  Spmi.h
+  IpmiSmbiosTypes.c
+  IpmiCmosClear.c
+  IpmiSystemInfo.c
+  IpmiInfoProtocol.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  AmiDxeLib
+  UefiLib
+  TimerLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  ReportStatusCodeLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  AmiIpmiLib
+  AmiSelLib
+  AmiIpmiBootLib
+  AmiBmcCommonInterfaceLib
+  AmiAmlLib
+
+[Protocols]
+  gEfiDxeIpmiTransportProtocolGuid  #PRODUCES
+  gEfiBmcSelfTestLogProtocolGuid    #PRODUCES
+  gEfiSmbiosProtocolGuid            #CONSUMES
+  gEfiAcpiTableProtocolGuid         #CONSUMES
+  gEfiRealTimeClockArchProtocolGuid #CONSUMES
+  gEfiResetArchProtocolGuid         #CONSUMES
+  gAmiIpmiInfoProtocolGuid          #PRODUCES
+
+[Guids]
+  gEfiServerMgmtSetupVariableGuid
+  gEfiEventVirtualAddressChangeGuid
+  gEfiIpmiCmosClearVariableGuid
+  gEfiAcpiTableGuid
+  gEfiEndOfDxeEventGroupGuid
+
+[Pcd]
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemUuid
+
+[Depex]
+  gEfiVariableArchProtocolGuid AND 
+  gEfiVariableWriteArchProtocolGuid
+

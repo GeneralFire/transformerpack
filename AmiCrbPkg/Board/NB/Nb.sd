@@ -1,0 +1,165 @@
+//***********************************************************************
+//*                                                                     *
+//*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+//*                                                                     *
+//*      All rights reserved. Subject to AMI licensing agreement.       *
+//*                                                                     *
+//***********************************************************************
+
+/** @file Nb.sd
+    This file contains the setup description for NB Template
+
+**/
+
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example: UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+UINT8   OptimizedBoot;
+#endif
+
+//**********************************************************************
+//                Main - Main Form
+//**********************************************************************
+
+#ifdef MAIN_FORM_SET
+
+  #ifdef FORM_SET_ITEM
+    // Define controls to be added to the main page of the formset
+
+    SEPARATOR
+    SUBTITLE(STRING_TOKEN(STR_PLATFORM_INFORMATION))  
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PLATFORM_INFO_PROMPT),
+      text   = STRING_TOKEN(STR_PLATFORM_INFO_VALUE),
+      flags  = 0,
+      key    = 0;
+      
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_INFO_PROMPT),
+      text   = STRING_TOKEN(STR_PROCESSOR_INFO_VALUE),
+      flags  = 0,
+      key    = 0;
+      
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PCH_INFO_PROMPT),
+      text   = STRING_TOKEN(STR_PCH_INFO_VALUE),
+      flags  = 0,
+      key    = 0;
+      
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_REFCODE_REVISION_PROMPT),
+      text   = STRING_TOKEN(STR_REFCODE_REVISION_VALUE),
+      flags  = 0,
+      key    = 0;
+      
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_BIOS_ACM_PROMPT),
+      text   = STRING_TOKEN(STR_BIOS_ACM_VALUE),
+      flags  = 0,
+      key    = 0;
+      
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_SINIT_ACM_PROMPT),
+      text   = STRING_TOKEN(STR_SINIT_ACM_VALUE),
+      flags  = 0,
+      key    = 0;
+
+    SEPARATOR
+    SUBTITLE(STRING_TOKEN(STR_MEMORY_INFORMATION))
+
+    text
+      help   = STRING_TOKEN(STR_MEMORY_SIZE_HELP),
+      text   = STRING_TOKEN(STR_MEMORY_SIZE_NAME),
+      text   = STRING_TOKEN(STR_MEMORY_SIZE_VALUE),
+      flags  = 0,
+      key    = 0;
+
+  #endif
+
+#endif
+
+
+//**********************************************************************
+//                ADVANCED - Advanced Form
+//**********************************************************************
+
+#ifdef ADVANCED_FORM_SET
+
+  #ifdef FORM_SET_ITEM
+    //
+    // Define controls to be added to the main page of the formset
+    //
+  #endif
+
+  #ifdef FORM_SET_GOTO
+  #endif
+
+  #ifdef FORM_SET_FORM
+    //
+    // Define forms
+    //
+  #endif //  #ifdef FORM_SET_FORM
+
+#endif // ADVANCED_FORM_SET
+
+//**********************************************************************
+//                Boot - Boot Form
+//**********************************************************************
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+#ifdef CONTROL_DEFINITION
+
+///
+/// Put control definitions here.
+///
+
+#define FB_ONEOF_OPTIMIZEDBOOT\
+        oneof varid = SETUP_DATA.OptimizedBoot,\
+            prompt = STRING_TOKEN(STR_OPTIMIZED_BOOT),\
+            help = STRING_TOKEN(STR_OPTIMIZED_BOOT_HELP),\
+            default = DEFAULT_OPTIMIZED_BOOT,\
+            option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = MANUFACTURING | RESET_REQUIRED;\
+            option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;\
+        endoneof;
+               
+#endif //#ifdef CONTROL_DEFINITION
+
+///
+/// List macros of all the controls attached to the actual data.
+///
+
+#ifdef CONTROLS_WITH_DEFAULTS
+
+    FB_ONEOF_OPTIMIZEDBOOT
+
+#endif ///#ifdef CONTROLS_WITH_DEFAULTS
+
+///
+///Select Top level menu itmem (forset) for you pages
+///
+
+#ifdef BOOT_FORM_SET
+    #ifndef SUPPRESS_GRAYOUT_ENDIF //old Core
+    #define SUPPRESS_GRAYOUT_ENDIF endif;
+    #endif
+
+#ifdef FORM_SET_ITEM
+
+    FB_ONEOF_OPTIMIZEDBOOT
+
+#endif ///#ifdef FORM_SET_ITEM
+
+#endif ///#ifdef BOOT_FORM_SET
+

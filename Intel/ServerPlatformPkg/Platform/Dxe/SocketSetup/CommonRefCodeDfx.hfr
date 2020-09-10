@@ -1,0 +1,460 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+//
+// CommonRefCode Dfx Submenu
+//
+
+form formid = VFR_FORMID_DFX_COMMONRC,
+    title   = STRING_TOKEN(STR_RC_DFX_COMMON_FORM_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_RC_DFX_COMMON_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+    // Enable/disable programming of rst_cpl bits
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxRstCplBitsEn,
+        prompt    = STRING_TOKEN(STR_RST_CPL_BITS_EN),
+        help      = STRING_TOKEN(STR_RST_CPL_BITS_EN_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xF,
+        step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                         // otherwise it will auto-increment with a left/right arrow
+        default   = 0xF, defaultstore = MyStandardDefault,
+        default   = 0xF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    // Enable/disable BIOS-to-Pcode mailbox commands
+    goto COMMONRC_B2P_MAILBOX_CMD_FORMID,
+      prompt = STRING_TOKEN(STR_B2P_MAILBOX_CMD_FORM_TITLE),
+      help   = STRING_TOKEN(STR_B2P_MAILBOX_CMD_FORM_HELP);
+
+endform;
+
+form formid = COMMONRC_B2P_MAILBOX_CMD_FORMID,
+    title   = STRING_TOKEN(STR_B2P_MAILBOX_CMD_FORM_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_B2P_MAILBOX_CMD_FORM_SUBTITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[0],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_0),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_0_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[1],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_1),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_1_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[2],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_2),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_2_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[3],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_3),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_3_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[4],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_4),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_4_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[5],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_5),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_5_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[6],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_6),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_6_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[7],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_7),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_7_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[8],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_8),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_8_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[9],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_9),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_9_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[10],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_10),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_10_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[11],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_11),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_11_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[12],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_12),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_12_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[13],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_13),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_13_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[14],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_14),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_14_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[15],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_15),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_15_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[16],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_16),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_16_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[17],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_17),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_17_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[18],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_18),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_18_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[19],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_19),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_19_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[20],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_20),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_20_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[21],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_21),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_21_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[22],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_22),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_22_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[23],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_23),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_23_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[24],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_24),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_24_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[25],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_25),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_25_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[26],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_26),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_26_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[27],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_27),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_27_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[28],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_28),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_28_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[29],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_29),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_29_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[30],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_30),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_30_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PMailboxCmdEnMask[31],
+        prompt    = STRING_TOKEN(STR_B2P_MAILBOX_MASK_31),
+        help      = STRING_TOKEN(STR_B2P_MAILBOX_MASK_31_HELP),
+        flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum   = 0,
+        maximum   = 0xFF,
+        step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                          // otherwise it will auto-increment with a left/right arrow
+        default   = 0xFF, defaultstore = MyStandardDefault,
+        default   = 0xFF, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+    numeric varid = SOCKET_COMMONRC_CONFIGURATION.DfxB2PErrAssertAtCommand,
+      prompt    = STRING_TOKEN(STR_B2P_ERROR_ASSERT_ONCOMMAND_PROMPT),
+      help      = STRING_TOKEN(STR_B2P_ERROR_ASSERT_ONCOMMAND_HELP),
+      flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+      minimum   = 0,
+      maximum   = 0xFF,
+      step      = 0,    // Stepping of 0 equates to a manual entering of a value,
+                        // otherwise it will auto-increment with a left/right arrow
+      default   = 0x0, defaultstore = MyStandardDefault,
+      default   = 0x0, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+endform;

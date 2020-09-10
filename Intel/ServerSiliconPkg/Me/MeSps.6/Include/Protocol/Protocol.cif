@@ -1,0 +1,12 @@
+<component>
+    name = "Protocol"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\Include\Protocol\"
+    RefName = "ServerSiliconPkg.Me.MeSps6.Include.Protocol"
+[files]	
+"SpsPolicyProtocol.h"	
+"SpsRasNotifyProtocol.h"	
+"SpsSmmBiosUpdateProtocol.h"	
+"SpsSmmHmrfpoProtocol.h"	
+"SpsSmmMeStorageProtocol.h"	
+<endComponent>

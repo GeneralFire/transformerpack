@@ -1,0 +1,10 @@
+<component>
+    name = "SystemBoardInfoDxe"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\Common\Dxe\SystemBoardInfoDxe\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.Common.Dxe.SystemBoardInfoDxe"
+[INF]
+"SystemBoardInfoDxe.inf"
+[files]
+"SystemBoardInfoDxe.sdl"	
+<endComponent>

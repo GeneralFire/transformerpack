@@ -1,0 +1,12 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Wdt\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Wdt.LibraryPrivate"
+[INF]
+"PeiDxeSmmWdtCommonLib\PeiDxeSmmWdtCommonLib.inf"
+"PeiWdtLib\PeiWdtLib.inf"
+"PeiWdtPolicyLib\PeiWdtPolicyLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

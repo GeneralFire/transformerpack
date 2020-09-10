@@ -1,0 +1,8 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Thermal\IncludePrivate\Register\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Thermal.IncludePrivate.Register"
+[files]
+"ThermalRegs.h"	
+<endComponent>

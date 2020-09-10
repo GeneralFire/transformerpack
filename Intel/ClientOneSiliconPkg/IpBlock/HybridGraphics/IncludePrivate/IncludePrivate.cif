@@ -1,0 +1,8 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\HybridGraphics\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.HybridGraphics.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.IpBlock.HybridGraphics.IncludePrivate.Library"
+<endComponent>

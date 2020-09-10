@@ -1,0 +1,10 @@
+<component>
+    name = "Ish"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Ish\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Ish"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Ish.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Ish.Library"
+"ClientOneSiliconPkg.IpBlock.Ish.LibraryPrivate"
+<endComponent>

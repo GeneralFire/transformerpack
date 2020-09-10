@@ -1,0 +1,68 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "EspiAccessPrivateLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmEspiAccessPrivateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "PeiDxeSmmEspiAccessPrivateLib"
+    File  = "PeiDxeSmmEspiAccessPrivateLib/PeiDxeSmmEspiAccessPrivateLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "PeiEspiInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiEspiInitLib"
+    Arch = "IA32"        
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiEspiInitLib"
+    File  = "PeiEspiInitLib/PeiEspiInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+LibraryMapping
+    Class  = "PeiEspiPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiEspiPolicyLib"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiEspiPolicyLib"
+    File  = "PeiEspiPolicyLib/PeiEspiPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM" 
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+LibraryMapping
+    Class  = "PeiLpcLib"
+    Instance  = "ClientOneSiliconPkg.PeiLpcLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+INFComponent
+    Name  = "PeiLpcLib"
+    File  = "PeiLpcLib/PeiLpcLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End

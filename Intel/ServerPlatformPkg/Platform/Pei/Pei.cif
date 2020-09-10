@@ -1,0 +1,19 @@
+<component>
+    name = "PlatformPei"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Platform\Pei\"
+    RefName = "ServerPlatformPkg.Platform.Pei"
+[INF]
+"UuidPeiInit\UuidPeiInit.inf"
+"MemCacheInit\MemCacheInit.inf"
+"MrcPlatformHooksPeim\MrcPlatformHooksPeim.inf"
+"EmulationPlatformInit\EmulationPlatformInit.inf"
+"PublishMrcNormalFv\PublishMrcNormalFv.inf"
+"RequiredUefiVarPeim\RequiredUefiVarPeim.inf"
+"UpiPlatformHooksPeim\UpiPlatformHooksPeim.inf"
+"IioPlatformHooksPeim\IioPlatformHooksPeim.inf"
+[files]
+"PlatformPei.sdl"	
+[parts]
+"ServerPlatformPkg.Platform.Pei.PlatformInit"
+<endComponent>

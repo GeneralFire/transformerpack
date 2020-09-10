@@ -1,0 +1,9 @@
+<component>
+    name = "Tbt"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Tbt\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Tbt"
+[files]
+"DxeITbtConfig.h"	
+"PeiITbtConfig.h"	
+<endComponent>

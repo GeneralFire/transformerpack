@@ -1,0 +1,706 @@
+AmiCompatibilityPkg\AmiCompatibilityPkg.sdl\
+AmiCompatibilityPkg\Board\Board.sdl AmiCompatibilityPkg\AmiCompatibilityPkg.sdl\
+AmiPkg\Configuration\Core.sdl\
+AmiPkg\Configuration\Configuration.sdl AmiPkg\Configuration\Core.sdl\
+MdePkg\MdePkg.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\MdeModulePkg.sdl AmiPkg\Configuration\Core.sdl\
+IntelFrameworkPkg\IntelFrameworkPkg.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\Bds\Bds.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\Console\ConSplitter\ConSplitter.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\Fid\Fid.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\FlashDriver\FlashDriver.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\Console\GraphicsConsole\GraphicsConsole.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\NVRAM\NVRAM.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\RomLayout\RomLayout.sdl AmiPkg\Configuration\Core.sdl\
+IntelFrameworkModulePkg\Universal\DataHubDxe\DataHub.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Universal\Capsule.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Core\Foundation.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Universal\DevicePathDxe\DevicePath.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Universal\Disk\Disk.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Universal\EbcDxe\Ebc.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Universal\HiiDatabaseDxe\HiiDatabase.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Universal\PCD\Pcd.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Universal\SecurityStubDxe\SecurityStub.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Universal\TimestampDxe\Timestamp.sdl AmiPkg\Configuration\Core.sdl\
+UefiCpuPkg\CpuIo.sdl AmiPkg\Configuration\Core.sdl\
+MdeModulePkg\Universal\LockBox\SmmLockBox\SmmLockBox.sdl AmiPkg\Configuration\Core.sdl\
+IntelFrameworkModulePkg\IntelFrameworkModulePkg.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\AmiStatusCode\StatusCodeAmi.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\AmiModulePkg.sdl AmiPkg\Configuration\Core.sdl\
+AmiModulePkg\IO\Ast2600\Ast2600.sdl\
+AmiModulePkg\IO\Ast2600\Ast2600AmiSioCommonLib.sdl AmiModulePkg\IO\Ast2600\Ast2600.sdl\
+AmiModulePkg\Flash\Flash.sdl\
+AmiModulePkg\Flash\SPI\SpiFlash.sdl AmiModulePkg\Flash\Flash.sdl\
+AmiModulePkg\Flash\SPI\ICHx\ICHxSpi.sdl AmiModulePkg\Flash\SPI\SpiFlash.sdl\
+Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Cpu\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Cpu\Library\PeiDxeTxtLib\PeiDxeTxtLib.sdl Intel\ClientOneSiliconPkg\Cpu\Library\Library.sdl\
+Intel\ClientOneSiliconPkg\Cpu\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Fru\EbgPch\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Fru\EbgPch\LibraryPrivate\PeiPchInitLib\PeiPchInitLib.sdl Intel\ClientOneSiliconPkg\Fru\EbgPch\LibraryPrivate\LibraryPrivate.sdl\
+Intel\ClientOneSiliconPkg\Fru\EbgPch\AcpiTables\AcpiTables.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Fru\EbgPch\AcpiTables\Dsdt\Dsdt.sdl Intel\ClientOneSiliconPkg\Fru\EbgPch\AcpiTables\AcpiTables.sdl\
+Intel\ClientOneSiliconPkg\Fru\EbgPch\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Fru\SprCpu\EbgCpu.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Fru\SprCpu\Graphics\Library\Library.sdl Intel\ClientOneSiliconPkg\Fru\SprCpu\EbgCpu.sdl\
+Intel\ClientOneSiliconPkg\Fru\SprCpu\TraceHub\TraceHub.sdl Intel\ClientOneSiliconPkg\Fru\SprCpu\EbgCpu.sdl\
+Intel\ClientOneSiliconPkg\Fru\SprCpu\TraceHub\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\Fru\SprCpu\TraceHub\TraceHub.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Amt\Amt.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Amt\AmtInit\Dxe\Dxe.sdl Intel\ClientOneSiliconPkg\IpBlock\Amt\Amt.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Amt\BiosExtensionLoader\Dxe\Dxe.sdl Intel\ClientOneSiliconPkg\IpBlock\Amt\Amt.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Amt\Library\Library.sdl Intel\ClientOneSiliconPkg\IpBlock\Amt\Amt.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Amt\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\Amt\Amt.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Amt\Sol\Sol.sdl Intel\ClientOneSiliconPkg\IpBlock\Amt\Amt.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Amt\Sol\Dxe\Dxe.sdl Intel\ClientOneSiliconPkg\IpBlock\Amt\Sol\Sol.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\BiosGuard\BiosGuard.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\BiosGuard\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\BiosGuard\BiosGuard.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Cnvi\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Dci\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Espi\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Espi\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Fia\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Fia\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Gbe\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Gbe\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Gpio\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Gpio\Library\PeiDxeSmmGpioLib\PeiDxeSmmGpioLib.sdl Intel\ClientOneSiliconPkg\IpBlock\Gpio\Library\Library.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Gpio\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Graphics\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Hda\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Hda\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Ieh\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Ipu\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Ish\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Ish\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Ish\LibraryPrivate\PeiIshLib\PeiIshLib.sdl Intel\ClientOneSiliconPkg\IpBlock\Ish\LibraryPrivate\LibraryPrivate.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Itss\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\MeFwDowngrade\MeFwDowngrade.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\MeSmbiosDxe\MeSmbiosDxe.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\Library\PeiDxeSmmMeUtilsLib\PeiDxeSmmMeUtilsLib.sdl Intel\ClientOneSiliconPkg\IpBlock\Me\Library\Library.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\Asf\Asf.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\HeciTransport\HeciTransport.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\HeciTransport\HeciTransportCoreLib\HeciTransportCoreLib.sdl Intel\ClientOneSiliconPkg\IpBlock\Me\HeciTransport\HeciTransport.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\HwAsset\HwAsset.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Me\HwAsset\Dxe\Dxe.sdl Intel\ClientOneSiliconPkg\IpBlock\Me\HwAsset\HwAsset.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Overclocking\Overclocking.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\P2sb\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\P2sb\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\P2sb\LibraryPrivate\PeiP2sbPrivateLib\PeiP2sbPrivateLib.sdl Intel\ClientOneSiliconPkg\IpBlock\P2sb\LibraryPrivate\LibraryPrivate.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\PchDmi\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\PchDmi\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\PcieRp\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\PcieRp\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\PcieRp\LibraryPrivate\PciExpressHelpersLibrary\PciExpressHelpersLibrary.sdl Intel\ClientOneSiliconPkg\IpBlock\PcieRp\LibraryPrivate\LibraryPrivate.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Pmc\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Pmc\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Pmc\LibraryPrivate\PeiDxeSmmPmcPrivateLib\PeiDxeSmmPmcPrivateLib.sdl Intel\ClientOneSiliconPkg\IpBlock\Pmc\LibraryPrivate\LibraryPrivate.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Psf\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Psf\LibraryPrivate\PsfLib\PsfLib.sdl Intel\ClientOneSiliconPkg\IpBlock\Psf\LibraryPrivate\LibraryPrivate.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Rst\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Rst\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Rst\LibraryPrivate\PeiRstPolicyLib\PeiRstPolicyLib.sdl Intel\ClientOneSiliconPkg\IpBlock\Rst\LibraryPrivate\LibraryPrivate.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Rtc\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Sata\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Sata\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\SerialIo\Uart\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\SerialIo\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\SerialIo\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Smbus\Smbus.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Smbus\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\Smbus\Smbus.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Smbus\LibraryPrivate\PeiSmbusLib\PeiSmbusLib.sdl Intel\ClientOneSiliconPkg\IpBlock\Smbus\LibraryPrivate\LibraryPrivate.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Spi\Spi.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Spi\Library\Library.sdl Intel\ClientOneSiliconPkg\IpBlock\Spi\Spi.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Spi\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\Spi\Spi.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Spi\Dxe\Dxe.sdl Intel\ClientOneSiliconPkg\IpBlock\Spi\Spi.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Tbt\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Tbt\Library\PeiITbtPolicyLib\PeiITbtPolicyLib.sdl Intel\ClientOneSiliconPkg\IpBlock\Tbt\Library\Library.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Thermal\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\TraceHub\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\TraceHub\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Usb\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Usb\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Vtd\Vtd.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Vtd\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\Vtd\Vtd.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Wdt\Wdt.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Wdt\Library\Library.sdl Intel\ClientOneSiliconPkg\IpBlock\Wdt\Wdt.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Wdt\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\Wdt\Wdt.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\SmbusDma\SmbusDma.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Hsio\Hsio.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Hsio\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\Hsio\Hsio.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\McSmb\McSmb.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\McSmb\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\McSmb\McSmb.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\PchRlink\PchRlink.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\PchRlink\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\PchRlink\PchRlink.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Vpu\Vpu.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Vpu\Library\Library.sdl Intel\ClientOneSiliconPkg\IpBlock\Vpu\Vpu.sdl\
+Intel\ClientOneSiliconPkg\IpBlock\Vpu\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\IpBlock\Vpu\Vpu.sdl\
+Intel\ClientOneSiliconPkg\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Pch\AcpiTables\Dsdt\ClientOneDsdt.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Pch\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Pch\Library\PeiDxeSmmPchInfoLib\PeiDxeSmmPchInfoLib.sdl Intel\ClientOneSiliconPkg\Pch\Library\Library.sdl\
+Intel\ClientOneSiliconPkg\Pch\Library\SecPchLib\SecPchLib.sdl Intel\ClientOneSiliconPkg\Pch\Library\Library.sdl\
+Intel\ClientOneSiliconPkg\Pch\LibraryPrivate\LibraryPrivate.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Pch\PchInit\PchInit.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Pch\PchInit\Dxe\Dxe.sdl Intel\ClientOneSiliconPkg\Pch\PchInit\PchInit.sdl\
+Intel\ClientOneSiliconPkg\Pch\PchInit\Smm\Smm.sdl Intel\ClientOneSiliconPkg\Pch\PchInit\PchInit.sdl\
+Intel\ClientOneSiliconPkg\Pch\SmmControl\SmmControl.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Pch\PchSmiDispatcher\PchSmiDispatcher.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Product\EagleStream\Library\Library.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Product\EagleStream\SiInit\Pei\Pei.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+Intel\ClientOneSiliconPkg\Product\EagleStream\SiInit\Dxe\Dxe.sdl Intel\ClientOneSiliconPkg\ClientOneSiliconPkg.sdl\
+PcAtChipsetPkg\PcAtChipsetPkg.sdl\
+Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Cpu\AcpiTable\AcpiTable.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Cpu\Library\Library.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Cpu\Library\CpuInitLib\CpuInitLib.sdl Intel\ServerSiliconPkg\Cpu\Library\Library.sdl\
+Intel\ServerSiliconPkg\Cpu\Library\CpuPpmLib\CpuPpmLib.sdl Intel\ServerSiliconPkg\Cpu\Library\Library.sdl\
+Intel\ServerSiliconPkg\Cpu\Library\DxeCpuSmbiosLib\DxeCpuSmbiosLib.sdl Intel\ServerSiliconPkg\Cpu\Library\Library.sdl\
+Intel\ServerSiliconPkg\Cpu\Library\SmmCpuFeaturesLib\SmmCpuFeaturesLib.sdl Intel\ServerSiliconPkg\Cpu\Library\Library.sdl\
+Intel\ServerSiliconPkg\Cpu\Library\CpuIpLib\CpuIpLib.sdl Intel\ServerSiliconPkg\Cpu\Library\Library.sdl\
+Intel\ServerSiliconPkg\Cpu\PowerManagement\HwpLvtSmm\HwpLvtSmm.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Cpu\PowerManagement\PpmInitializeDxe\PpmInitializeDxe.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Cpu\SiCpuInit\Pei\SiCpuInitPei.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Cpu\SiCpuInit\Dxe\SiCpuInitDxe.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Iio\Dxe\Dxe.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Iio\Library\IioLibrary.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Iio\LibraryPrivate\LibraryPrivate.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Iio\LibraryPrivate\IioMiscWorkArounds\IioMiscWorkArounds.sdl Intel\ServerSiliconPkg\Iio\LibraryPrivate\LibraryPrivate.sdl\
+Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Library\BaseMspChipLib\Spr\Spr.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Library\CsrAddressTranslationLib\CsrAddressTranslationLib.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Library\EmulationConfigurationLib\EmulationConfigurationLib.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Library\MemThermManageLib\MemThermManageLib10nm.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Library\Mesh2MemIpLib\Mesh2MemIpLib.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Library\PcuMailBoxLib\PcuMailBoxLib.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Library\ProcessorStartup\ProcessorStartup.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Library\ProcMemInit\ProcMemInit.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Library\ProcSmbIpLib\ProcSmbIpLib.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Library\SystemInfoLib\SystemInfoLib.sdl Intel\ServerSiliconPkg\Library\SiliconPkgLibrary.sdl\
+Intel\ServerSiliconPkg\Me\MePkg.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Me\MeSps.6\MeSps6.sdl Intel\ServerSiliconPkg\Me\MePkg.sdl\
+Intel\ServerSiliconPkg\Me\MeSps.6\Heci\Heci.sdl Intel\ServerSiliconPkg\Me\MeSps.6\MeSps6.sdl\
+Intel\ServerSiliconPkg\Me\MeSps.6\Heci\Library\HeciLibrary.sdl Intel\ServerSiliconPkg\Me\MeSps.6\Heci\Heci.sdl\
+Intel\ServerSiliconPkg\Me\MeSps.6\Library\Library.sdl Intel\ServerSiliconPkg\Me\MeSps.6\MeSps6.sdl\
+Intel\ServerSiliconPkg\Me\MeSps.6\Sps\Sps.sdl Intel\ServerSiliconPkg\Me\MeSps.6\MeSps6.sdl\
+Intel\ServerSiliconPkg\Me\MeSps.6\Sps\Library\Library.sdl Intel\ServerSiliconPkg\Me\MeSps.6\Sps\Sps.sdl\
+Intel\ServerSiliconPkg\Me\MeSps.6\Ws\Ws.sdl Intel\ServerSiliconPkg\Me\MeSps.6\MeSps6.sdl\
+Intel\ServerSiliconPkg\Me\Library\Library.sdl Intel\ServerSiliconPkg\Me\MePkg.sdl\
+Intel\ServerSiliconPkg\Mem\Mem.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Mem\Library\Library.sdl Intel\ServerSiliconPkg\Mem\Mem.sdl\
+Intel\ServerSiliconPkg\Mem\Library\MemCpgcIpLib\MemCpgcIpLib.sdl Intel\ServerSiliconPkg\Mem\Library\Library.sdl\
+Intel\ServerSiliconPkg\Mem\Library\MemDdrioIpLib\MemDdrioIpLib.sdl Intel\ServerSiliconPkg\Mem\Library\Library.sdl\
+Intel\ServerSiliconPkg\Mem\Library\MemDdrioIpLib\10nm\10nm.sdl Intel\ServerSiliconPkg\Mem\Library\MemDdrioIpLib\MemDdrioIpLib.sdl\
+Intel\ServerSiliconPkg\Mem\Library\MemDdrioIpLib\Spr\Spr.sdl Intel\ServerSiliconPkg\Mem\Library\MemDdrioIpLib\MemDdrioIpLib.sdl\
+Intel\ServerSiliconPkg\Mem\Library\MemFmcIpLib\MemFmcIpLib.sdl Intel\ServerSiliconPkg\Mem\Library\Library.sdl\
+Intel\ServerSiliconPkg\Mem\Library\MemMcIpLib\MemMcIpLib.sdl Intel\ServerSiliconPkg\Mem\Library\Library.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SouthClusterCdf.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\SouthClusterCdfLibrary.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SouthClusterCdf.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\Private\Private.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\SouthClusterCdfLibrary.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\Private\PeiDxeSmmPchDmiLib\PeiDxeSmmPchDmiLib.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\Private\Private.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\Private\PeiDxeSmmPmcPrivateLib\PeiDxeSmmPmcPrivateLib.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\Private\Private.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\FiaMuxInitLib\FiaMuxInitLib.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\SouthClusterCdfLibrary.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\SecPchLib\SecPchLib.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\SouthClusterCdfLibrary.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\AcpiTables\PchAcpiTables.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SouthClusterCdf.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\PchInit\PchInit.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SouthClusterCdf.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\PchInit\Dxe\EmmcSoftwareTuning\EmmcSoftwareTuning.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\PchInit\PchInit.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\PchSmiDispatcher\Smm\Smm.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SouthClusterCdf.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Smbus\Smbus.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SouthClusterCdf.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SmbusDma\SmbusDma.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SouthClusterCdf.sdl\
+Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Spi\Spi.sdl Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SouthClusterCdf.sdl\
+Intel\ServerSiliconPkg\Ras\Library\Library.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Ras\LibrarySpr\LibrarySpr.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Ras\LibrarySpr\AddressDecodeLib\AddressDecodeLib.sdl Intel\ServerSiliconPkg\Ras\LibrarySpr\LibrarySpr.sdl\
+Intel\ServerSiliconPkg\SiInit\SiInit.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Universal\Pei\SocketPkgPei.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Universal\Dxe\SiliconPkgDxe.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Universal\Smm\SocketPkgSmm.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Universal\Smm\Ras\SktPkgRas.sdl Intel\ServerSiliconPkg\Universal\Smm\SocketPkgSmm.sdl\
+Intel\ServerSiliconPkg\Upi\Upi.sdl Intel\ServerSiliconPkg\ServerSiliconPkg.sdl\
+Intel\ServerSiliconPkg\Upi\Library\Library.sdl Intel\ServerSiliconPkg\Upi\Upi.sdl\
+Intel\ServerSiliconPkg\Upi\Library\UpiHostDataLib\UpiHostDataLib.sdl Intel\ServerSiliconPkg\Upi\Library\Library.sdl\
+AmiModulePkg\AHCI\Ahci.sdl\
+AmiModulePkg\AHCI\AhciSmm\AhciSmm.sdl AmiModulePkg\AHCI\Ahci.sdl\
+AmiModulePkg\AHCI\Aint13\Aint13.sdl AmiModulePkg\AHCI\Ahci.sdl\
+AmiModulePkg\AHCI\Aint13\AhciInt13Smm.sdl AmiModulePkg\AHCI\Aint13\Aint13.sdl\
+AmiModulePkg\AHCI\SB\AhciCsp.sdl AmiModulePkg\AHCI\Ahci.sdl\
+AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\Board\Em\AMITSEBoard\AMITSEBoard.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\EDK\MiniSetup\TseAdvanced\TseAdvancedBin.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\EDK\MiniSetup\BootOnly\MiniSetupBin.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\EDK\MiniSetup\TseLite\TseLiteBin.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\EDK\MiniSetup\TseOEM\TseOEM.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\EDK\MiniSetup\uefi2.1\uefi21Bin.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\EDK\MiniSetup\Ezport\EzportBin.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\EDK\MiniSetup\Legacy\LegacyBin.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\EDK\MiniSetup\EzportPlus\EzportPlusBin.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiTsePkg\EDK\MiniSetup\JsonCapsule\JsonCapsuleBin.sdl AmiTsePkg\Core\em\AMITSE\AMITSE.sdl\
+AmiModulePkg\AhciRecovery\AhciRecovery.sdl\
+AmiCompatibilityPkg\Setup\Setup.sdl\
+AmiCryptoPkg\AmiCryptoPkg.sdl\
+AmiCryptoPkg\CryptoProtocols\CryptoProtocols.sdl AmiCryptoPkg\AmiCryptoPkg.sdl\
+AmiCryptoPkg\CryptoLib\CryptoLib.sdl AmiCryptoPkg\AmiCryptoPkg.sdl\
+AmiCryptoPkg\Utils\CryptoUtils.sdl AmiCryptoPkg\AmiCryptoPkg.sdl\
+AmiHstiPkg\AmiHstiPkg.sdl\
+AmiHstiPkg\HstiAmi\HstiAmi.sdl AmiHstiPkg\AmiHstiPkg.sdl\
+AmiIntelCpuPkg\Microcode\Microcode.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl AmiIntelCpuPkg\Microcode\Microcode.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\KabyLakeHMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\KabyLakeMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\SkyLakeHMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\SkyLakeMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\BroadwellHMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\BroadwellMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\HaswellPerfHaloMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\HaswellUltMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\HaswellMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\IvyBridgeMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\SandyBridgeMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\CoffeeLakeHMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\CoffeeLakeMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\CannonLakeMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\IceLakeMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\CometLakeMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\TigerLakeMobileUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Mobile\ElkhartLakeSocUc.sdl AmiIntelCpuPkg\Microcode\Mobile\IntelMobileUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl AmiIntelCpuPkg\Microcode\Microcode.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\CoffeeLakeDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\KabyLakeDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\SkyLakeDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\BroadwellEDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\BroadwellDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\HaswellPerfHaloDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\HaswellDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\HaswellEDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\IvyBridgeEDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\IvyBridgeDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\SandyBridgeEDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\SandyBridgeDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\Desktop\CometLakeDesktopUc.sdl AmiIntelCpuPkg\Microcode\Desktop\IntelDesktopUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl AmiIntelCpuPkg\Microcode\Microcode.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\IceLakeServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\DenvertonServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\SkyLakeHServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\KnightsLanding.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\KnightsMill.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\SkyLakeServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\BroadwellDEUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\BroadwellHServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\BroadwellServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\HaswellServerExUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\HaswellServer2Uc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\HaswellServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\IvyBridgeServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\SandyBridgeServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\KabyLakeHServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\CoffeeLakeSServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\CooperLakeServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIntelCpuPkg\Microcode\MicrocodeUpdate\MicrocodeUpdate.sdl AmiIntelCpuPkg\Microcode\Microcode.sdl\
+AmiIpmi2Pkg\AmiIpmi2Pkg.sdl\
+AmiIpmi2Pkg\Library\AmiBmcCommonAccess\AmiBmcCommonAccess.sdl AmiIpmi2Pkg\AmiIpmi2Pkg.sdl\
+AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\IpmiInitialize\IpmiInitialize.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\Frb\Frb.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\SelStatusCode\SelStatusCode.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\BmcElog\BmcElog.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\IpmiBoot\IpmiBoot.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\IpmiSdrReader\IpmiSdrReader.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\IpmiRedirFru\IpmiRedirFru.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\FruSetupScreen\FruSetupScreen.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\BmcAcpi\BmcAcpi.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\BmcSelfTestLog\BmcSelfTestLog.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\SerialMuxControl\SerialMuxControl.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\BmcLanConfig\BmcLanConfig.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\ServerMgmtSetup\ServerMgmtSetup.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\ViewSelLog\ViewSelLog.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\BmcUserSettings\BmcUserSettings.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiIpmi2Pkg\Ipmi2\PeiIpmiCmosClear\PeiIpmiCmosClear.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiModulePkg\ACPI\ACPI.sdl\
+MdeModulePkg\Universal\Acpi\AcpiTableDxe.sdl AmiModulePkg\ACPI\ACPI.sdl\
+MdeModulePkg\Universal\Acpi\BootScript.sdl AmiModulePkg\ACPI\ACPI.sdl\
+IntelFrameworkModulePkg\Universal\Acpi\AcpiS3SaveDxe\S3SaveDxe.sdl AmiModulePkg\ACPI\ACPI.sdl\
+UefiCpuPkg\Universal\Acpi\S3Resume2Pei\S3Resume.sdl AmiModulePkg\ACPI\ACPI.sdl\
+MdeModulePkg\Universal\Acpi\FirmwarePerformanceDataTable.sdl AmiModulePkg\ACPI\ACPI.sdl\
+AmiModulePkg\EarlyConsoleOut\EarlyConsoleOut.sdl\
+AmiModulePkg\EarlyConsoleOut\Consplitter\ConsoleOutConsplitter.sdl AmiModulePkg\EarlyConsoleOut\EarlyConsoleOut.sdl\
+AmiModulePkg\EarlyConsoleOut\VideoConsole\VideoConsole.sdl AmiModulePkg\EarlyConsoleOut\EarlyConsoleOut.sdl\
+AmiModulePkg\EarlyConsoleOut\SerialConsole\SerialConsole.sdl AmiModulePkg\EarlyConsoleOut\EarlyConsoleOut.sdl\
+AmiModulePkg\EarlyConsoleOut\ReportInConOut\ReportStatusConOut.sdl AmiModulePkg\EarlyConsoleOut\EarlyConsoleOut.sdl\
+AmiModulePkg\EarlyConsoleOut\VideoInit\PeiVideoInit.sdl AmiModulePkg\EarlyConsoleOut\EarlyConsoleOut.sdl\
+AmiModulePkg\EarlyConsoleOut\VideoReset\VideoCtrlReset.sdl AmiModulePkg\EarlyConsoleOut\EarlyConsoleOut.sdl\
+AmiModulePkg\FastBoot\FastBoot.sdl\
+AmiModulePkg\FastBoot\FastBootSmi.sdl AmiModulePkg\FastBoot\FastBoot.sdl\
+AmiModulePkg\FastBoot\FastBootOption\FastBootOption.sdl AmiModulePkg\FastBoot\FastBoot.sdl\
+AmiModulePkg\GenericSio\GenericSio.sdl\
+AmiModulePkg\GenericSio\SioStaticSetup.sdl AmiModulePkg\GenericSio\GenericSio.sdl\
+AmiModulePkg\Library\SioLibraryInstances.sdl AmiModulePkg\GenericSio\GenericSio.sdl\
+AmiModulePkg\Library\AmiSioCommonLib\AmiSioCommonLib.sdl AmiModulePkg\Library\SioLibraryInstances.sdl\
+AmiModulePkg\HardwareSignature\HardwareSignatureManagement.sdl\
+AmiModulePkg\LegacySerialRedirection\LegacySredir.sdl\
+AmiModulePkg\OemActivation\OA1\OA1.sdl\
+AmiModulePkg\OemActivation\OA2\OA2.sdl\
+AmiModulePkg\OemActivation\OA3\OA3.sdl\
+AmiModulePkg\OemActivation\OA3\OA3_SMM.sdl AmiModulePkg\OemActivation\OA3\OA3.sdl\
+AmiModulePkg\OemActivation\OA3\OA3_SmiFlashHook.sdl AmiModulePkg\OemActivation\OA3\OA3.sdl\
+AmiModulePkg\OptionRomPolicy\OptionRomPolicy.sdl\
+AmiModulePkg\PCI\PciBus.sdl\
+AmiModulePkg\Library\PciBusLibraryInstances.sdl AmiModulePkg\PCI\PciBus.sdl\
+AmiModulePkg\PCI\PciStaticSetup.sdl AmiModulePkg\PCI\PciBus.sdl\
+AmiModulePkg\PCI\PciRes\PciOutOfResourceSetupPage.sdl AmiModulePkg\PCI\PciBus.sdl\
+AmiModulePkg\SmiVariable\SmiVariable.sdl\
+AmiModulePkg\Terminal\Terminal.sdl\
+AmiModulePkg\Usb\Usb.sdl\
+AmiModulePkg\Usb\UsbSrc.sdl AmiModulePkg\Usb\Usb.sdl\
+AmiModulePkg\Usb\Int13\UsbInt13.sdl AmiModulePkg\Usb\Usb.sdl\
+AmiModulePkg\Usb\Pei\UsbPei.sdl AmiModulePkg\Usb\Usb.sdl\
+AmiModulePkg\Usb\AmiUsbLib\AmiUsbLib.sdl AmiModulePkg\Usb\Usb.sdl\
+AmiNetworkPkg\AmiNetworkPkg.sdl\
+AmiNetworkPkg\UefiNetworkStack\UefiNetworkStack.sdl\
+AmiNetworkPkg\UefiNetworkStack\Common\AmiNetworkCommon.sdl AmiNetworkPkg\UefiNetworkStack\UefiNetworkStack.sdl\
+AmiNetworkPkg\UefiNetworkStack\Common\NetworkStackSetupScreen\NetworkStackSetupScreen.sdl AmiNetworkPkg\UefiNetworkStack\Common\AmiNetworkCommon.sdl\
+AmiNetworkPkg\UefiNetworkStack\Ipv4\Ipv4.sdl AmiNetworkPkg\UefiNetworkStack\UefiNetworkStack.sdl\
+AmiNetworkPkg\UefiNetworkStack\Ipv6\Ipv6.sdl AmiNetworkPkg\UefiNetworkStack\UefiNetworkStack.sdl\
+AmiModulePkg\RuntimeSmm\RuntimeSmm.sdl\
+AmiPkg\Configuration\IntelArchitecture.sdl\
+AmiModulePkg\BoardInfo\AmiBoardInfo.sdl\
+AmiModulePkg\Recovery\Recovery.sdl\
+AmiModulePkg\Recovery\ReFlash\ReFlash.sdl AmiModulePkg\Recovery\Recovery.sdl\
+AmiModulePkg\Recovery\FsRecovery\FsRecovery.sdl AmiModulePkg\Recovery\Recovery.sdl\
+AmiModulePkg\Recovery\FtRecovery\FtRecovery.sdl AmiModulePkg\Recovery\Recovery.sdl\
+AmiModulePkg\Recovery\SerialRecovery\SerialRecovery.sdl AmiModulePkg\Recovery\Recovery.sdl\
+AmiModulePkg\Recovery\IdeRecovery\IdeRecovery.sdl AmiModulePkg\Recovery\Recovery.sdl\
+MdeModulePkg\Universal\PcatSingleSegmentPciCfg2Pei\SingleSegmentPciCfg2.sdl\
+AmiSecureBootPkg\AmiSecureBootPkg.sdl\
+AmiSecureBootPkg\Library\AmiSecureBootLib.sdl AmiSecureBootPkg\AmiSecureBootPkg.sdl\
+AmiTrustedFvPkg\AmiTrustedFvPkg.sdl\
+AmiTrustedFvPkg\FvDxeValidate\FvDxeValidate.sdl AmiTrustedFvPkg\AmiTrustedFvPkg.sdl\
+AmiTrustedFvPkg\FvDxeSig\FvDxeSig.sdl AmiTrustedFvPkg\AmiTrustedFvPkg.sdl\
+AmiTrustedFvPkg\FvDxeKey\FvDxeKey.sdl AmiTrustedFvPkg\AmiTrustedFvPkg.sdl\
+AmiModulePkg\AtaPassThru\AtaPassThru.sdl\
+AmiModulePkg\CSM\Csm.sdl\
+AmiModulePkg\CSM\CsmPolicy\CsmSetup.sdl AmiModulePkg\CSM\Csm.sdl\
+AmiCompatibilityPkg\CmosManager\CmosManager.sdl\
+AmiCompatibilityPkg\CmosManager\CmosBoard.sdl AmiCompatibilityPkg\CmosManager\CmosManager.sdl\
+AmiCompatibilityPkg\CmosManager\CmosMessages.sdl AmiCompatibilityPkg\CmosManager\CmosBoard.sdl\
+Intel\CpRcPkg\CpRcPkg.sdl\
+Intel\CpRcPkg\Library\Library.sdl Intel\CpRcPkg\CpRcPkg.sdl\
+Intel\CpRcPkg\Library\PcieCommonInitLib\PcieCommonInitLib.sdl Intel\CpRcPkg\Library\Library.sdl\
+Intel\CpRcPkg\Library\DxeSmmMmPciLib\DxeSmmMmPciLib.sdl Intel\CpRcPkg\Library\Library.sdl\
+Intel\CpRcPkg\Universal\RegAccess\RegAccess.sdl Intel\CpRcPkg\CpRcPkg.sdl\
+Intel\EagleStreamRpPkg\EagleStreamRpPkg.sdl\
+Intel\EagleStreamRpPkg\Library\Library.sdl Intel\EagleStreamRpPkg\EagleStreamRpPkg.sdl\
+Intel\EagleStreamRpPkg\Library\OnBoardSpdLib\DDR4\DDR4.sdl Intel\EagleStreamRpPkg\Library\Library.sdl\
+Intel\EagleStreamRpPkg\Library\OnBoardSpdLib\DDR5\DDR5.sdl Intel\EagleStreamRpPkg\Library\Library.sdl\
+Intel\EagleStreamRpPkg\Library\PlatformClocksLib\PlatformClocksLib.sdl Intel\EagleStreamRpPkg\Library\Library.sdl\
+Intel\EagleStreamRpPkg\Library\SetupLib\SetupLib.sdl Intel\EagleStreamRpPkg\Library\Library.sdl\
+Intel\EagleStreamRpPkg\Pch\ChipsetInit\Binaries\Pch_ChipsetInit.sdl Intel\EagleStreamRpPkg\EagleStreamRpPkg.sdl\
+Intel\EagleStreamRpPkg\Platform\Dxe\Dxe.sdl Intel\EagleStreamRpPkg\EagleStreamRpPkg.sdl\
+Intel\EagleStreamRpPkg\Platform\Dxe\Setup\Setup.sdl Intel\EagleStreamRpPkg\Platform\Dxe\Dxe.sdl\
+Intel\EagleStreamRpPkg\Platform\Pei\Pei.sdl Intel\EagleStreamRpPkg\EagleStreamRpPkg.sdl\
+Intel\EagleStreamRpPkg\Tool\FTool\SPS\SpsTool.sdl Intel\EagleStreamRpPkg\EagleStreamRpPkg.sdl\
+Intel\EagleStreamRpPkg\Uba\Uba.sdl Intel\EagleStreamRpPkg\EagleStreamRpPkg.sdl\
+Intel\EagleStreamRpPkg\Uba\BoardInit\BoardInit.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\BoardInit\Pei\Pei.sdl Intel\EagleStreamRpPkg\Uba\BoardInit\BoardInit.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\Common\Dxe\SystemBoardInfoDxe\SystemBoardInfoDxe.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\Common\Dxe\SystemConfigUpdateDxe\SystemConfigUpdateDxe.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\Common\Pei\Pei.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\Dxe.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\IioCfgUpdateDxe\IioCfgUpdateDxe.sdl Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\Dxe.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\OpromUpdateDxe\OpromUpdateDxe.sdl Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\Dxe.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\SetupCfgUpdateDxe\SetupCfgUpdateDxe.sdl Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\Dxe.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\SlotDataUpdateDxe\SlotDataUpdateDxe.sdl Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\Dxe.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Pei\Pei.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityModular\TypeArcherCityModular.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityModular\Dxe\Dxe.sdl Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityModular\TypeArcherCityModular.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityEVB\TypeArcherCityEVB.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityEVB\Dxe\Dxe.sdl Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityEVB\TypeArcherCityEVB.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityXPV\TypeArcherCityXPV.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityXPV\Dxe\Dxe.sdl Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityXPV\TypeArcherCityXPV.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeBigPineKey\TypeBigPineKey.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaMain\TypeBigPineKey\Dxe\Dxe.sdl Intel\EagleStreamRpPkg\Uba\UbaMain\TypeBigPineKey\TypeBigPineKey.sdl\
+Intel\EagleStreamRpPkg\Uba\UbaUpdatePcds\Pei\Pei.sdl Intel\EagleStreamRpPkg\Uba\Uba.sdl\
+FatBinPkg\FatBinPkg.sdl\
+AmiModulePkg\GenericElog\GenericElog.sdl\
+AmiModulePkg\HddSecurity\HddSecurity.sdl\
+AmiModulePkg\HddSecurity\SmmHddSecurity.sdl AmiModulePkg\HddSecurity\HddSecurity.sdl\
+AmiModulePkg\HddSecurity\AmiTseHddSecurity\AmiTseHddSecurity.sdl AmiModulePkg\HddSecurity\HddSecurity.sdl\
+AmiModulePkg\HddSecurity\HddSecDynamicSetup\HddSecDynamicSetup.sdl AmiModulePkg\HddSecurity\HddSecurity.sdl\
+AmiModulePkg\HddSecurity\HddSecStaticSetup.sdl AmiModulePkg\HddSecurity\HddSecurity.sdl\
+AmiNetworkPkg\IScsiDxe\IScsi.sdl\
+AmiNetworkPkg\IScsiDxe\AmiIScsi\AmiIScsiSupport.sdl AmiNetworkPkg\IScsiDxe\IScsi.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\Library\BiosGuardLibrary.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardBinary\BiosGuardBinary.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardFlashLib\BiosGuardFlashLib.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardInitOverride\BiosGuardInitOverride.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardPeiApRecoveryCapsule\BiosGuardPeiApRecoveryCapsule.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardPubKeysAndBuildPSL\BiosGuardPubKeysAndBuildPSL.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardDxe\BiosGuardDxe.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardNvs\BiosGuardNvs.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardRecovery\BiosGuardRecovery.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardMeud\BiosGuardMeud.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardKeys\BiosGuardKey.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardFlashInterface\BiosGuardFlashInterface.sdl AmiChipsetModulePkg\BiosGuard\BiosGuard.sdl\
+AmiChipsetModulePkg\BiosGuard\BiosGuardFlashInterface\BiosGuardOfbdHook\BiosGuardOfbdHook.sdl AmiChipsetModulePkg\BiosGuard\BiosGuardFlashInterface\BiosGuardFlashInterface.sdl\
+AmiModulePkg\KbcEmulation\KbcEmul.sdl\
+AmiModulePkg\KbcEmulation\KbcUhci.sdl AmiModulePkg\KbcEmulation\KbcEmul.sdl\
+AmiModulePkg\KbcEmulation\KbcOhci.sdl AmiModulePkg\KbcEmulation\KbcEmul.sdl\
+AmiModulePkg\KbcEmulation\KbcSb.sdl AmiModulePkg\KbcEmulation\KbcEmul.sdl\
+AmiModulePkg\KbcEmulation\KbcEmulIrq.sdl AmiModulePkg\KbcEmulation\KbcEmul.sdl\
+AmiModulePkg\KbcEmulation\KbcIoTrap.sdl AmiModulePkg\KbcEmulation\KbcEmul.sdl\
+AmiModulePkg\KbcEmulation\KbcSbIoTrap.sdl AmiModulePkg\KbcEmulation\KbcIoTrap.sdl\
+AmiModulePkg\KbcEmulation\KbcEmulAcpi.sdl AmiModulePkg\KbcEmulation\KbcEmul.sdl\
+MdeModulePkg\Universal\EsrtDxe\Esrt.sdl\
+MdeModulePkg\Universal\Disk\RamDiskDxe\RamDisk.sdl\
+MdeModulePkg\Bus\Scsi\Scsi.sdl\
+AmiModulePkg\Nvme\Nvme.sdl\
+AmiModulePkg\Nvme\NvmeInt13\NvmeInt13.sdl AmiModulePkg\Nvme\Nvme.sdl\
+AmiModulePkg\Nvme\NvmeDynamicSetup\NvmeDynamicSetup.sdl AmiModulePkg\Nvme\Nvme.sdl\
+AmiModulePkg\Ofbd\SecureFlash\SecureFlash.sdl\
+AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\DefCfg\DefCfg.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\OemCmd\OemCmd.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\StdEc\StdEc.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\OemRomId\OemRomId.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\OemPwdCk\OemPwdCk.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\OemSetup\OemSetup.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\OemRomHole\OemRomHole.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\CleanErrorLog\CleanErrorLog.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\OemOaHandle\OemOaHandle.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\BatteryCheck\BatteryCheck.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\OemGetPattern\OemGetPattern.sdl AmiModulePkg\Ofbd\Ofbd.sdl\
+AmiModulePkg\Ofbd\Meud\Meud.sdl\
+AmiModulePkg\Ofbd\Meud\Platform\CspMeud.sdl AmiModulePkg\Ofbd\Meud\Meud.sdl\
+AmiModulePkg\Ofbd\Meud\AutoMeud\AutoMeud.sdl AmiModulePkg\Ofbd\Meud\Meud.sdl\
+AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\MEFwUpdLcl.sdl AmiModulePkg\Ofbd\Meud\Meud.sdl\
+AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\ME_09\FWUpdateLib.sdl AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\MEFwUpdLcl.sdl\
+AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\ME_11\FWUpdateLib.sdl AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\MEFwUpdLcl.sdl\
+AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\ME_12\FWUpdateLib.sdl AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\MEFwUpdLcl.sdl\
+AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\ME_13\FWUpdateLib.sdl AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\MEFwUpdLcl.sdl\
+AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\TXE_02\FWUpdateLib.sdl AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\MEFwUpdLcl.sdl\
+AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\Me_14\FWUpdateLib.sdl AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\MEFwUpdLcl.sdl\
+AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\Me_15\FWUpdateLib.sdl AmiModulePkg\Ofbd\Meud\MEFwUpdLcl\MEFwUpdLcl.sdl\
+AmiModulePkg\Ofbd\Meud\MeudFwCapsuleHdr\MeudFwCapsuleHdr.sdl AmiModulePkg\Ofbd\Meud\Meud.sdl\
+AmiModulePkg\Ofbd\Meud\MeEsrtUpdate\MeEsrtUpdate.sdl AmiModulePkg\Ofbd\Meud\Meud.sdl\
+AmiModulePkg\OpalSecurity\OpalSecurity.sdl\
+AmiModulePkg\SecureBoot\SecureBoot.sdl\
+AmiModulePkg\SecureBoot\AuthenticatedVariable\AuthVariable.sdl AmiModulePkg\SecureBoot\SecureBoot.sdl\
+AmiModulePkg\SecureBoot\ImageVerificationLib\ImageVerificationLib.sdl AmiModulePkg\SecureBoot\SecureBoot.sdl\
+AmiModulePkg\SecureBoot\RedFishApi\AmiRedFishApi.sdl AmiModulePkg\SecureBoot\SecureBoot.sdl\
+AmiModulePkg\SecureBoot\DeviceGuardApi\AmiDeviceGuardApi.sdl AmiModulePkg\SecureBoot\SecureBoot.sdl\
+Keys\Variables\Variables.sdl AmiModulePkg\SecureBoot\SecureBoot.sdl\
+Keys\Variables\Certificates\Certificates.sdl\
+Keys\Variables\Certificates\OEM\OemCert.sdl Keys\Variables\Certificates\Certificates.sdl\
+Keys\Variables\Certificates\VendorMcert\VendorMcert.sdl Keys\Variables\Certificates\Certificates.sdl\
+AmiModulePkg\SecureFlash\SecureFlash.sdl\
+AmiModulePkg\SecureFlash\SecFlashUpd\SecFlashUpd.sdl AmiModulePkg\SecureFlash\SecureFlash.sdl\
+AmiModulePkg\SecureFlash\SecSMIFlash\SecSMIFlash.sdl AmiModulePkg\SecureFlash\SecureFlash.sdl\
+Keys\FW\FWkey.sdl AmiModulePkg\SecureFlash\SecureFlash.sdl\
+Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\BootGuard\BootGuard.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\BootGuard\ExtendBtGSupportToDxe\Pei\BootGuardPei.sdl Intel\ServerPlatformPkg\BootGuard\BootGuard.sdl\
+Intel\ServerPlatformPkg\BootGuard\VerifyFwBootGuard\VerifyFwBootGuard.sdl Intel\ServerPlatformPkg\BootGuard\BootGuard.sdl\
+Intel\ServerPlatformPkg\BootGuard\ReserveBinary\ReserveBinary.sdl Intel\ServerPlatformPkg\BootGuard\BootGuard.sdl\
+Intel\ServerPlatformPkg\Features\Features.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Features\Ras\Ras.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Ras\Smm\RasSmm.sdl Intel\ServerPlatformPkg\Features\Ras\Ras.sdl\
+Intel\ServerPlatformPkg\Features\Ras\Smm\RasInit\RasInit.sdl Intel\ServerPlatformPkg\Features\Ras\Smm\RasSmm.sdl\
+Intel\ServerPlatformPkg\Features\Sata\Sata.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Variable\PlatformVariable\Pei\Pei.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Variable\PlatformVariable\Smm\Smm.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Variable\PlatformVariablePcd\Pei\Pei.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Acpi\Dxe\Dxe.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Acpi\DxeSmm\AcpiSmm\AcpiSmm.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Acpi\AcpiTables\AcpiTables.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Cpu\Dxe\CpuDxe.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Cpu\Pei\CpuPei.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Me\MePkg.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Features\Me\MeSps\Library\MeSpsLibrary.sdl Intel\ServerPlatformPkg\Features\Me\MePkg.sdl\
+Intel\ServerPlatformPkg\Features\Me\MeSps.6\MeSps6.sdl Intel\ServerPlatformPkg\Features\Me\MePkg.sdl\
+Intel\ServerPlatformPkg\Features\Me\MeSps.6\Library\Library.sdl Intel\ServerPlatformPkg\Features\Me\MeSps.6\MeSps6.sdl\
+Intel\ServerPlatformPkg\Features\Me\MeSps.6\Sps\Sps.sdl Intel\ServerPlatformPkg\Features\Me\MeSps.6\MeSps6.sdl\
+Intel\ServerPlatformPkg\Features\Me\Client\Amt\ServerPlatAmt.sdl Intel\ServerPlatformPkg\Features\Me\MePkg.sdl\
+Intel\ServerPlatformPkg\Features\Pci\Dxe\PciPlatform\PciPlatform.sdl Intel\ServerPlatformPkg\Features\Features.sdl\
+Intel\ServerPlatformPkg\Fit\IntelLtsxFit.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Legacy\Dxe\LegacyDxe.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Library\Library.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Library\PeiPolicyUpdateLib\PeiPolicyUpdateLib.sdl Intel\ServerPlatformPkg\Library\Library.sdl\
+Intel\ServerPlatformPkg\Library\SerialPortLib\SerialPortLib.sdl Intel\ServerPlatformPkg\Library\Library.sdl\
+Intel\ServerPlatformPkg\Library\AmiMrcHooksWrapperLib\AmiMrcHooksWrapperLib.sdl Intel\ServerPlatformPkg\Library\Library.sdl\
+Intel\ServerPlatformPkg\Library\SerialPortLibUsb\SerialPortLibUsb.sdl Intel\ServerPlatformPkg\Library\Library.sdl\
+Intel\ServerPlatformPkg\Library\TxtOneTouchPpVendorLib\TxtOneTouchPpVendorLib.sdl Intel\ServerPlatformPkg\Library\Library.sdl\
+Intel\ServerPlatformPkg\Platform\Dxe\PlatformDxe.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Platform\Dxe\MemorySubClass\MemorySubClass.sdl Intel\ServerPlatformPkg\Platform\Dxe\PlatformDxe.sdl\
+Intel\ServerPlatformPkg\Platform\Dxe\SocketSetup\SocketSetup.sdl Intel\ServerPlatformPkg\Platform\Dxe\PlatformDxe.sdl\
+Intel\ServerPlatformPkg\Platform\DxeSmm\DxeSmm.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Platform\DxeSmm\BiosGuard\BiosGuard.sdl Intel\ServerPlatformPkg\Platform\DxeSmm\DxeSmm.sdl\
+Intel\ServerPlatformPkg\Platform\Pei\PlatformPei.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Platform\Pei\PlatformInit\PlatformInit.sdl Intel\ServerPlatformPkg\Platform\Pei\PlatformPei.sdl\
+Intel\ServerPlatformPkg\PpiX\PpiX.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Uba\Uba.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Uba\CfgDb\CfgDb.sdl Intel\ServerPlatformPkg\Uba\Uba.sdl\
+Intel\ServerPlatformPkg\Universal\Universal.sdl Intel\ServerPlatformPkg\ServerPlatformPkg.sdl\
+Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\TraceHubStatusCodeHandler.sdl Intel\ServerPlatformPkg\Universal\Universal.sdl\
+Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\Pei\TraceHubStatusCodeHandlerPei.sdl Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\TraceHubStatusCodeHandler.sdl\
+Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\RuntimeDxe\TraceHubStatusCodeHandlerRuntimeDxe.sdl Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\TraceHubStatusCodeHandler.sdl\
+Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\Smm\TraceHubStatusCodeHandlerSmm.sdl Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\TraceHubStatusCodeHandler.sdl\
+Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\AddressTranslationDsm\AddressTranslationDsm.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\AddressTranslationDxe\AddressTranslationDxe.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\AmiErrorLogListener\AmiErrorLogListener.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\EnhancedMcaErrorLog\EnhancedMcaErrorLog.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\Library\Library.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\Library\CrystalRidgeLib\CrystalRidgeLib.sdl Intel\ServerRasPkg\Library\Library.sdl\
+Intel\ServerRasPkg\Library\ErrorReportLib\ErrorReportLib.sdl Intel\ServerRasPkg\Library\Library.sdl\
+Intel\ServerRasPkg\Library\IioRasLib\IioRasLib.sdl Intel\ServerRasPkg\Library\Library.sdl\
+Intel\ServerRasPkg\Library\SmmImcRoutingLib\SmmImcRoutingLib.sdl Intel\ServerRasPkg\Library\Library.sdl\
+Intel\ServerRasPkg\Library\SmmMirrorFailoverLib\SmmMirrorFailoverLib.sdl Intel\ServerRasPkg\Library\Library.sdl\
+Intel\ServerRasPkg\Library\SmmPlatSSRLib\SmmPlatSSRLib.sdl Intel\ServerRasPkg\Library\Library.sdl\
+Intel\ServerRasPkg\Library\AmiOemRasLib\AmiOemRasLib.sdl Intel\ServerRasPkg\Library\Library.sdl\
+Intel\ServerRasPkg\Library10nm\Library10nm.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\McBankErrorInjection\McBankErrorInjection.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\PartialMirrorHandler\PartialMirrorHandler.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\PprVlsErrorLogListener\PprVlsErrorLogListener.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\RasMisc\RasMisc.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\RuntimeErrorlog\RtErrorLog.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\RuntimeErrorlog\Board\Bmc\RtErrorLogBmc.sdl Intel\ServerRasPkg\RuntimeErrorlog\RtErrorLog.sdl\
+Intel\ServerRasPkg\RuntimeErrorlog\Board\Gpnv\RtErrorLogGpnv.sdl Intel\ServerRasPkg\RuntimeErrorlog\RtErrorLog.sdl\
+Intel\ServerRasPkg\WheaErrorInj\WheaErrorInj.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\WheaErrorLogListener\WheaErrorLogListener.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\WheaERST\WheaERST.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerRasPkg\WheaLastBootError\WheaLastBootError.sdl Intel\ServerRasPkg\ServerRasPkg.sdl\
+Intel\ServerSecurityPkg\ServerSecurityPkg.sdl\
+Intel\ServerSecurityPkg\Library\Library.sdl Intel\ServerSecurityPkg\ServerSecurityPkg.sdl\
+Intel\ServerSecurityPkg\Mktme\Mktme.sdl Intel\ServerSecurityPkg\ServerSecurityPkg.sdl\
+Intel\ServerSecurityPkg\Sgx\Sgx.sdl Intel\ServerSecurityPkg\ServerSecurityPkg.sdl\
+Intel\ServerSecurityPkg\Universal\Universal.sdl Intel\ServerSecurityPkg\ServerSecurityPkg.sdl\
+ShellBinPkg\ShellBinPkg.sdl\
+AmiCompatibilityPkg\Smbios\Smbios.sdl\
+AmiCompatibilityPkg\Smbios\SmbiosBoard\SmbiosBoard.sdl AmiCompatibilityPkg\Smbios\Smbios.sdl\
+AmiCompatibilityPkg\Smbios\SmbiosBoard\SmbiosStaticData\SmbiosStaticData.sdl AmiCompatibilityPkg\Smbios\SmbiosBoard\SmbiosBoard.sdl\
+AmiCompatibilityPkg\Smbios\SmbiosBoard\SmbiosStaticDataDt\SmbiosStaticDataDt.sdl AmiCompatibilityPkg\Smbios\SmbiosBoard\SmbiosBoard.sdl\
+AmiCompatibilityPkg\Smbios\SmbiosBoard\SmbiosDmiEditBoard\SmbiosDmiEditBoard.sdl AmiCompatibilityPkg\Smbios\SmbiosBoard\SmbiosBoard.sdl\
+AmiCompatibilityPkg\Smbios\SmbiosDmiEdit\SmbiosDmiEdit.sdl AmiCompatibilityPkg\Smbios\Smbios.sdl\
+AmiCompatibilityPkg\Smbios\SmbiosDmiEdit\SmbiosDmiEditAfri.sdl AmiCompatibilityPkg\Smbios\Smbios.sdl\
+AmiCompatibilityPkg\Smbios\SmbiosGetFlashData\SmbiosGetFlashData.sdl AmiCompatibilityPkg\Smbios\Smbios.sdl\
+AmiCompatibilityPkg\Smbios\SmbiosFlashData\SmbiosFlashData.sdl AmiCompatibilityPkg\Smbios\Smbios.sdl\
+AmiCompatibilityPkg\Smbios\SmbiosPeim\SmbiosPeim.sdl AmiCompatibilityPkg\Smbios\Smbios.sdl\
+AmiModulePkg\SmiFlash\SmiFlash.sdl\
+MdeModulePkg\SmmConfidentialMemModule.sdl\
+AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\TisLib.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\CRB_lib\Tpm20CRBLib.sdl AmiModulePkg\TCG2\TisLib.sdl\
+AmiModulePkg\TCG2\ShaLib\ShaLib.sdl AmiModulePkg\TCG2\TisLib.sdl\
+AmiModulePkg\TCG2\CommonLibraries\TcgAslLib\TcgAslLib.sdl AmiModulePkg\TCG2\TisLib.sdl\
+AmiModulePkg\TCG2\TpmReportStatusCodeWrapperLib\TpmReportStatusCodeWrapperLib.sdl AmiModulePkg\TCG2\TisLib.sdl\
+AmiModulePkg\TCG2\Tcg2Platform\Tcg2Platform.sdl AmiModulePkg\TCG2\TisLib.sdl\
+AmiModulePkg\TCG2\Common\TcgPei\TcgPei.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\TcgPlatformSetupPeiPolicy\TcgPlatformSetupPeiPolicy.sdl AmiModulePkg\TCG2\Common\TcgPei\TcgPei.sdl\
+AmiModulePkg\TCG2\Common\TcgDxe\TcgDxe.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\TcgPlatformSetupPolicy\TcgPlatformSetupPolicy.sdl AmiModulePkg\TCG2\Common\TcgDxe\TcgDxe.sdl\
+AmiModulePkg\TCG2\Common\AmiTcmlib\AmiTcmlib.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\AmiTcgBinaries\TcgBins.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\Sample\AmiTcgNvflagSample.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\AmiTcgPlatform\AmiTcgPlatform.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\AmiTcgPlatformPei\AmiTcgPlatformPei.sdl AmiModulePkg\TCG2\Common\AmiTcgPlatform\AmiTcgPlatform.sdl\
+AmiModulePkg\TCG2\Common\AmiTcgPlatformDxe\AmiTcgPlatformDxe.sdl AmiModulePkg\TCG2\Common\AmiTcgPlatform\AmiTcgPlatform.sdl\
+AmiModulePkg\TCG2\Common\TcgDxeplatform\TcgDxeplatform.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\TcgLegacy\TcgLegacy.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\TcgPeiplatform\TcgPeiplatform.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\Setup\TcgSetup.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\TCGSmm\TCGSmm.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\TpmClearOnRollback\TpmClearOnRollback.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\Tpm20PlatformDxe\Tpm20PlatformDxe.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\Tpm20Acpi\Tpm20Acpi.sdl AmiModulePkg\TCG2\Common\Tpm20PlatformDxe\Tpm20PlatformDxe.sdl\
+AmiModulePkg\TCG2\Common\TcgCoreHook\TcgCoreHook.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\TpmSmbios\TpmSmbios.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Common\TpmNvmeSupport\TpmNvmeSupport.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\Tcmdxe\TcmDxe.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TCG2\TcmPei\TcmPei.sdl AmiModulePkg\TCG2\Tcg.sdl\
+AmiModulePkg\TcgStorageSecurity\TcgStorageSecurity.sdl\
+AmiModulePkg\TcgStorageSecurity\TcgStorageDynamicSetup\TcgStorageDynamicSetup.sdl AmiModulePkg\TcgStorageSecurity\TcgStorageSecurity.sdl\
+AmiModulePkg\TcgStorageSecurity\AmiTseTcgStorageSecurity\AmiTseTcgStorageSecurity.sdl AmiModulePkg\TcgStorageSecurity\TcgStorageSecurity.sdl\
+AmiModulePkg\TcgStorageSecurity\SmmTcgStorageSec.sdl AmiModulePkg\TcgStorageSecurity\TcgStorageSecurity.sdl\
+UefiCpuPkg\UefiCpuPkg.sdl\
+Usb3Statuscode\Usb3Statuscode.sdl\
+Usb3Statuscode\StatusCodeLib\StatusCodeLib.sdl Usb3Statuscode\Usb3Statuscode.sdl\
+Usb3Statuscode\XhciHandler\XhciHandler.sdl Usb3Statuscode\Usb3Statuscode.sdl\
+Intel\ServerPlatformPkg\BootGuard\BootGuardTCG2\BootGuardTCG2.sdl Intel\ServerPlatformPkg\BootGuard\BootGuard.sdl\
+AmiIntelCpuPkg\Microcode\ServWork\SnowridgeServerUc.sdl AmiIntelCpuPkg\Microcode\ServWork\IntelServWorkUc.sdl\
+AmiIpmi2Pkg\Ipmi2\PowerControlPolicy\PowerControlPolicy.sdl AmiIpmi2Pkg\Ipmi2\Ipmi2.sdl\
+AmiTsePkg\AmiTsePkg.sdl\
+AMIDebuggerPkg\AMIDebuggerPkg.sdl\
+AMIDebuggerPkg\Library\DbgLibraryInstances.sdl AMIDebuggerPkg\AMIDebuggerPkg.sdl\
+AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgDbgrLib\DbgDbgrLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\ConsoleRedirectionLib\ConsoleRedirectionLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgPerformanceLib\DbgPerformanceLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgAgentLib\DbgAgentLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgAgentLib\SerialAMIDebugAgent\SerialAMIDebugAgent.sdl AMIDebuggerPkg\Debugger\DbgAgentLib\DbgAgentLib.sdl\
+AMIDebuggerPkg\Debugger\DbgAgentLib\UsbAMIDebugAgent\UsbAMIDebugAgent.sdl AMIDebuggerPkg\Debugger\DbgAgentLib\DbgAgentLib.sdl\
+AMIDebuggerPkg\Debugger\GenericUSBDebugger\GenericUSBDebugger.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgModuleLocator\DbgModuleLocator.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\PeCoffExtraActionLibDebug\PeCoffExtraActionLibDebug.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgRxPortLib\DbgRxPortLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgRxXportLib\DbgRxXportLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgXhciXportLib\DbgXhciXportLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\XhciDebugger\XhciDebugger.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgXportLib\DbgXportLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgPortLib\DbgPortLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\DbgSerInitLib\DbgSerInitLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+AMIDebuggerPkg\Debugger\UefiTimerLib\UefiTimerLib.sdl AMIDebuggerPkg\Debugger\Debugger.sdl\
+CryptoPkg\CryptoPkg.sdl\
+CryptoPkg\Library\BaseCryptLib\BaseCryptLib.sdl CryptoPkg\CryptoPkg.sdl\
+CryptoPkg\Library\TlsLib\TlsLib.sdl CryptoPkg\CryptoPkg.sdl\
+CryptoPkg\Library\OpensslLib\OpensslLib.sdl CryptoPkg\CryptoPkg.sdl\
+AmiCrbPkg\AmiCrbPkg.sdl\
+AmiCrbPkg\Library\Library.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiCrbPkg\Library\AmiPcieSegBusLib\AmiPcieSegBusLib.sdl AmiCrbPkg\Library\Library.sdl\
+AmiCrbPkg\CrowPass\CrowPass.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiCrbPkg\Board\SB\SB.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiCrbPkg\Board\SB\SBDebugPorting.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiCrbPkg\Board\NB\NB.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiCrbPkg\Board\NB\Socket0.sdl AmiCrbPkg\Board\NB\NB.sdl\
+AmiCrbPkg\Board\NB\Socket1.sdl AmiCrbPkg\Board\NB\NB.sdl\
+AmiCrbPkg\Board\NB\Socket2.sdl AmiCrbPkg\Board\NB\NB.sdl\
+AmiCrbPkg\Board\NB\Socket3.sdl AmiCrbPkg\Board\NB\NB.sdl\
+AmiCrbPkg\Board\NB\Socket4.sdl AmiCrbPkg\Board\NB\NB.sdl\
+AmiCrbPkg\Board\NB\Socket5.sdl AmiCrbPkg\Board\NB\NB.sdl\
+AmiCrbPkg\Board\NB\Socket6.sdl AmiCrbPkg\Board\NB\NB.sdl\
+AmiCrbPkg\Board\NB\Socket7.sdl AmiCrbPkg\Board\NB\NB.sdl\
+AmiCrbPkg\Board\EM\DsmAsl\DsmAsl.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+MdeModulePkg\Metronome.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+MdeModulePkg\ResetSystemPei.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+MdeModulePkg\ResetSystemRuntimeDxe.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+MdeModulePkg\WatchdogTimer.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiChipsetModulePkg\AmiChipsetModulePkg.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiChipsetModulePkg\AmiCspLib.sdl AmiChipsetModulePkg\AmiChipsetModulePkg.sdl\
+AmiCrbPkg\CRB\AmiPlatformEarlyConsole\AmiPlatformEarlyConsole.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiCrbPkg\Board\EM\CspMeud\CspMeud.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiCrbPkg\WinCapsuleUpdate\WinCapsuleUpdate.sdl AmiCrbPkg\AmiCrbPkg.sdl\
+AmiCrbPkg\CRB\CSP.sdl\
+AmiCrbPkg\CRB\CRB.sdl\
+AmiModulePkg\PCI\PciBoardInit.sdl\
+ArcherCity\ArcherCity.sdl\
+Intel\EagleStreamFspPkg\EagleStreamFspPkg.sdl\
+Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl Intel\EagleStreamFspPkg\EagleStreamFspPkg.sdl\
+Intel\EagleStreamFspPkg\FspDebugInit\FspDebugInit.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\FspDefaultPolicyPpi\FspDefaultPolicyPpi.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\FspDescription\FspDescription.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\FspEndOfPei2\FspEndOfPei2Peim.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\FspGlobalDataInit\FspGlobalDataInit.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\FspHeader\FspHeader.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\FspInit\FspInit.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\FspPcdInit\FspPcdInit.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\FspVariable\FspVariable.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\Library\Library.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+Intel\EagleStreamFspPkg\Universal\Universal.sdl Intel\EagleStreamFspPkg\EagleStreamFspSource.sdl\
+IntelFsp2Pkg\IntelFsp2Pkg.sdl Intel\EagleStreamFspPkg\EagleStreamFspPkg.sdl\
+IntelFsp2Pkg\FspSecCore\FspSecCore.sdl IntelFsp2Pkg\IntelFsp2Pkg.sdl\
+IntelFsp2Pkg\Library\Library.sdl IntelFsp2Pkg\IntelFsp2Pkg.sdl\
+IntelFsp2Pkg\Tools\Tools.sdl IntelFsp2Pkg\IntelFsp2Pkg.sdl\
+Intel\EagleStreamFspBinPkg\EagleStreamFspBinPkg.sdl Intel\EagleStreamFspPkg\EagleStreamFspPkg.sdl\
+Intel\EagleStreamFspPkg\RebuildFspBios\RebuildFspBios.sdl Intel\EagleStreamFspPkg\EagleStreamFspPkg.sdl\
+EagleStreamCrb.sdl\

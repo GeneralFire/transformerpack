@@ -1,0 +1,11 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Usb\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Usb.IncludePrivate.Library"
+[files]
+"Usb2PhyLib.h"
+"PeiUsbPolicyLib.h"
+"UsbHostControllerInitLib.h"
+"UsbDeviceControllerInitLib.h"
+<endComponent>

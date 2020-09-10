@@ -1,0 +1,10 @@
+<component>
+    name = "AcpiTables"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Tbt\AcpiTables\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Tbt.AcpiTables"
+[files]
+"ITbt.asl"	
+"ITbtMailBox.asl"	
+"ITbtNvs.asl"	
+<endComponent>

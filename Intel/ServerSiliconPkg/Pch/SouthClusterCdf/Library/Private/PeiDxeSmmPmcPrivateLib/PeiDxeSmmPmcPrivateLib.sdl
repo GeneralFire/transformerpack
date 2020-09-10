@@ -1,0 +1,49 @@
+TOKEN
+    Name  = "PeiDxeSmmPmcPrivateLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiDxeSmmPmcPrivateLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+#LibraryMapping
+#    Class  = "PmcPrivateLib"
+#    Instance  = "ServerSiliconPkg.PeiDxeSmmPmcPrivateLibCdf"
+#End
+
+#INFComponent
+#    Name  = "PeiDxeSmmPmcPrivateLibCdf"
+#    File  = "PeiDxeSmmPmcPrivateLibCdf.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "BASE"
+#End
+
+LibraryMapping
+    Class  = "PmcPrivateLibWithS3"
+    Instance  = "ServerSiliconPkg.PeiDxeSmmPmcPrivateLibWithS3"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"       
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPmcPrivateLibWithS3"
+    File  = "PeiDxeSmmPmcPrivateLibWithS3.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "PeiPmcPrivateLib"
+    Instance  = "ServerSiliconPkg.PeiPmcPrivateLibCdf"
+    Arch = "IA32"      
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"
+End
+
+INFComponent
+    Name  = "PeiPmcPrivateLibCdf"
+    File  = "PeiPmcPrivateLibCdf.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"
+End
+

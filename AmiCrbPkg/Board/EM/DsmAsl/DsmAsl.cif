@@ -1,0 +1,11 @@
+<component>
+    name = "DsmAsl"
+    category = eModule
+    LocalRoot = "AmiCrbPkg/Board/em/DsmAsl/"
+    RefName = "DsmAsl"
+[files]
+"DsmAsl.sdl"	
+"DsmAsl.mak"	
+"DsmAsl.bat"	
+"DsmAsl.sh"	
+<endComponent>

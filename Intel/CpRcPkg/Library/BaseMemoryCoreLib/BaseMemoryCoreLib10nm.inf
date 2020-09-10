@@ -1,0 +1,199 @@
+## @file
+# ProcMemInit LIBRARY
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2009 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BaseMemoryCoreLib
+  FILE_GUID                      = 2991BCE0-F5FA-4104-BFE8-35773C05AC4E
+  MODULE_TYPE                    = BASE
+  LIBRARY_CLASS                  = BaseMemoryCoreLib | PEIM DXE_DRIVER DXE_SMM_DRIVER
+
+[Sources.Ia32]
+## //ICX_TODO: Move for 64 bit build
+  Core/Common/ProcMemInitRouter.c
+  Core/Common/LoadNvramData.c
+  Core/Mem/MemoryInit.c
+
+[Sources]
+  Core/Common/DefaultWarnings.c
+
+## Core/Include
+  Core/Include/DataTypes.h
+  Core/Include/MemHost.h
+  Core/Include/MemRegs.h
+  Core/Include/MrcCommonTypes.h
+  Core/Include/NGNDimmPlatformCfgData.h
+  Core/Include/SsaCallbackPeim.h
+  Core/Include/SysHost.h
+  Core/Include/SysRegs.h
+## Core/Mem
+  Core/Mem/InitMem.c
+  Core/Mem/MemCmdClk.c
+  Core/Mem/MemDdr4Lrdimm.c
+  Core/Mem/MemDdrClocks.c
+  Core/Mem/MemDisplay.c
+  Core/Mem/MemJedec.c
+  Core/Mem/MemMain.c
+  Core/Mem/MemMargins.c
+  Core/Mem/MemODT.c
+  Core/Mem/MemoryInit.c
+  Core/Mem/MemPowerTraining.c
+  Core/Mem/MemTxEchoTraining.c
+  Core/Mem/MemLegacyRxDfeTraining.c
+  Core/Mem/MemPPR.c
+  Core/Mem/MemRdDqDqs.c
+  Core/Mem/MemRecEnable.c
+  Core/Mem/MemRecvEnableNormalize.c
+  Core/Mem/MemSPD.c
+  Core/Mem/MemSPDDDR4.c
+  Core/Mem/MemStart.c
+  Core/Mem/MemTiming.c
+  Core/Mem/MemTraining.c
+  Core/Mem/MemWrDqDqs.c
+  Core/Mem/MemWrLeveling.c
+  Core/Mem/MemXMP.c
+  Core/Mem/NVDIMM.c
+  Core/Include/SysHostChipCommon.h
+  Core/Include/MemHostChipCommon.h
+  Include/BaseMemoryCoreInternal.h
+
+[Packages]
+  CpRcPkg/CpRcPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  IntelFsp2Pkg/IntelFsp2Pkg.dec
+
+[LibraryClasses.Ia32]
+  PeimEntryPoint
+  PcdLib
+  SystemInfoLib
+  ReferenceCodePolicyLib
+  PeiServicesLib
+
+[LibraryClasses]
+  DebugLib
+  HobLib
+  IoLib
+  PciLib
+  RcMemAllocLib
+  SiliconAccessLib
+  TimerLib
+  BaseLib
+  CrcLib
+  SysHostPointerLib
+  BaseMemoryLib
+  SystemInfoLib
+  EmulationConfigurationLib
+  SiliconWorkaroundLib
+  BaseMemorySsaLib
+  BaseMemoryServicesLib
+  IoAccessLib
+  ReportStatusCodeLib
+  PrintLib
+  CteNetLib
+  BaseDdrtCoreLib
+  RcDebugLib
+  OdtTableLib
+  LegacyRmtLib
+  MemCallTableLib
+  MemRoutingLib
+  MemoryCoreTargetLib
+  SpdAccessLib
+  ProcSmbIpLib
+  MemPorLib
+  CheckpointLib
+  EnhancedWarningLogLib
+  HardwareSemaphoreTargetLib
+  CallTablePolicyLib
+  PsmiInitLib
+  PchAdrLib
+  SsaInitializeLib
+  Ddr5CoreLib
+  MemBootHealthLib
+  SpdDecodeLib
+  PipeSyncLib
+  BasicIpBlockServicesLib
+  RcCompressLib
+  MemRcLib
+  PcuIpLib
+  PprCmosLib
+  HbmCoreLib
+  MemSweepLib
+  UefiDecompressLib
+  PerformanceTrackerLib
+  CompressedVariableLib
+
+[LibraryClasses.X64]
+  UefiLib
+
+[Pcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdCteBuild
+  gEfiCpRcPkgTokenSpaceGuid.PcdCosimBuild
+  gEfiCpRcPkgTokenSpaceGuid.PcdNvDimmEn
+  gEfiCpRcPkgTokenSpaceGuid.PcdDisableSimSlaveThread
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDebugTurnarounds
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDebugPowerTraining
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDebugLrdimmExtraMessages
+  gEfiCpRcPkgTokenSpaceGuid.PcdSeparateCwlAdj
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDebugSwizzleInspection
+
+[Guids]
+  gStatusCodeDataTypeExDebugGuid
+  gEfiStatusCodeDataTypeStringGuid
+  gEfiMemoryConfigDataGuid
+  gMemRasS3DataVariableGuid
+  gEfiSysInfoVarNvramDataGuid
+
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid    ## CONSUMES
+  gEfiPeiRscHandlerPpiGuid           ## CONSUMES
+  gMrcPlatformHooksInterfaceGuid           ## CONSUMES
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuThreadCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcQrDimmSupport
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcSoDimmSupport
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcXmpSupport
+  gEfiCpRcPkgTokenSpaceGuid.PcdRcDebugAllowedLevelsMask
+  gEfiCpRcPkgTokenSpaceGuid.PcdRcDebugBuildTimeDefault
+  gEfiCpRcPkgTokenSpaceGuid.SaveBuiltInRmtResultToBdat
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDebugPerformanceStats
+  gSiPkgTokenSpaceGuid.PcdFspBinaryEnable
+  gEfiCpRcPkgTokenSpaceGuid.PcdMcrSupport
+
+[BuildOptions.Ia32]
+  MSFT:*_*_*_CC_FLAGS     = /GF
+
+

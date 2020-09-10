@@ -1,0 +1,10 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.LibraryPrivate"
+[INF]
+"PeiSiSsidLib\PeiSiSsidLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

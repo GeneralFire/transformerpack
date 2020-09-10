@@ -1,0 +1,12 @@
+<component>
+	name = "Smm"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\Smm\"
+	RefName = "ServerPlatformPkg.Universal.TraceHubStatusCodeHandler.TraceHubStatusCodeHandlerSmm"
+[INF]
+"TraceHubStatusCodeHandlerSmm.inf"
+[files]
+"TraceHubStatusCodeHandlerSmm.h"	
+"TraceHubStatusCodeHandlerSmm.sdl"
+"TraceHubStatusCodeWorkerSmm.h"
+<endComponent>

@@ -1,0 +1,13 @@
+<component>
+    name = "Dxe"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Amt\BiosExtensionLoader\Dxe\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Amt.BiosExtensionLoader.Dxe"
+[INF]
+"BiosExtensionLoader.inf"
+[files]
+"BiosExtensionLoader.h"	
+"ProvisionFile.h"	
+"UsbProvision.h"	
+"Dxe.sdl"	
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "SmmMirrorFailoverLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Library\SmmMirrorFailoverLib\"
+	RefName = "ServerRasPkg.SmmMirrorFailoverLib"
+[INF]
+"MirrorFailoverLib.inf"
+[files]
+"MirrorFailoverPrivate.h"	
+"SmmMirrorFailoverLib.sdl"	
+<endComponent>

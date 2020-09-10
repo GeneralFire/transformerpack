@@ -1,0 +1,83 @@
+/** @file
+  Misc Bios Onboard devices strings.
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2015 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+
+#string STR_ONBOARD_CONN1               #language en-US  "J4A2 - Serial Port A"
+#string STR_ONBOARD_CONN2               #language en-US  "J126 - Serial Port B"
+#string STR_ONBOARD_CONN3               #language en-US  "J1D1 - USB3 front panel port"
+#string STR_ONBOARD_CONN4               #language en-US  "J92  - USB2 front panel port"
+#string STR_ONBOARD_CONN5               #language en-US  "J4A1 - USB3 back panel connector"
+#string STR_ONBOARD_CONN6              #language en-US  "J70  - BMC VIDEO REAR PANEL VGA"
+#string STR_ONBOARD_CONN7              #language en-US  "J9K2 - BMC VIDEO FRONT PANEL VGA"
+#string STR_ONBOARD_CONN10             #language en-US  "NIC 1  (10GBE port / J64) 20pin"
+#string STR_ONBOARD_CONN11             #language en-US  "NIC 2  (10GBE port / J65) 20pin"
+#string STR_ONBOARD_CONN12             #language en-US  "RMM NIC (JA2) 14pin"
+#string STR_ONBOARD_CONN13              #language en-US  "Internal USB (USB3 port /J4A3)  internal Type-A 1 9pin"
+#string STR_ONBOARD_CONN14              #language en-US  "Internal USB (USB2 port /J82)   internal Type A 2 4 pin"
+#string STR_ONBOARD_CONN17              #language en-US  "TPM ( SPI type / J101) 12pin"
+#string STR_ONBOARD_CONN21              #language en-US  "J76  - SATA6G S4"
+#string STR_ONBOARD_CONN22              #language en-US  "J4B6 - SATA6G S5"
+#string STR_ONBOARD_CONN23              #language en-US  "J77  - SATA6G P0-3"
+#string STR_ONBOARD_CONN24              #language en-US  "J83  - SATA6G P4-7"
+#string STR_ONBOARD_CONN25              #language en-US  "J84  - SATA 4,5,6,7"
+#string STR_ONBOARD_CONN26              #language en-US  "J85  - SATA 8,9"
+#string STR_ONBOARD_CONN27               #language en-US  "J77 - SATA 0-3 (min-SAS)"
+#string STR_ONBOARD_CONN28               #language en-US  "J10 - SAS"
+
+#string STR_SYSTEM_SLOT1                #language en-US  "J3B2 - Riser 1, slot 1"
+#string STR_SYSTEM_SLOT1_1              #language en-US  "J3B2 - Riser 1, slot 2"
+#string STR_SYSTEM_SLOT1_2              #language en-US  "J3B2 - Riser 1, slot 3"
+#string STR_SYSTEM_SLOT2                #language en-US  "J6B1 - Riser 2, slot 4"
+#string STR_SYSTEM_SLOT2_1              #language en-US  "J6B1 - Riser 2, slot 5"
+#string STR_SYSTEM_SLOT2_2              #language en-US  "J6B1 - Riser 2, slot 6"
+#string STR_SYSTEM_SLOT3                #language en-US  "J6B2 - Riser 3, slot 7"
+#string STR_SYSTEM_SLOT4                #language en-US  "J6B2 - Riser 3, slot 8"
+//#string STR_SYSTEM_SLOT4                #language en-US  "J2 - Slot B, SAS"
+//#string STR_SYSTEM_SLOT5                #language en-US  "J3 - IO Module"
+//#string STR_SYSTEM_SLOT6                #language en-US  "JA7A1 - Rear USB 3"
+
+#string STR_ONBOARD_DEVICE1             #language en-US  "ServerEngines Pilot III"
+#string STR_ONBOARD_DEVICE2             #language en-US  "Intel X540"
+#string STR_ONBOARD_DEVICE3             #language en-US  "SAS"
+#string STR_ONBOARD_DEVICE4             #language en-US  "PCH Integrated SATA Controller"
+#string STR_ONBOARD_DEVICE5             #language en-US  "IO Module"
+
+#string STR_SYS_CONFIG_OPTION1          #language en-US  "J2B3 2-3: Close to clear Password"
+#string STR_SYS_CONFIG_OPTION2          #language en-US  "J2B1 2-3: Close to clear CMOS"
+#string STR_SYS_CONFIG_OPTION3          #language en-US  "J3B4 2-3: Close for BIOS Recovery"
+#string STR_SYS_CONFIG_OPTION4          #language en-US  "J3B3 2-3: Close to Force ME Update Mode"
+#string STR_SYS_CONFIG_OPTION5          #language en-US  "J1C2 2-3: Close to Force BMC Update Mode"
+#string STR_SYS_CONFIG_OPTION6          #language en-US  "J9H2: OPEN To inform users that chassis has been opened"
+#string STR_SYS_CONFIG_OPTION7          #language en-US  "J5A1: RAID key"
+#string STR_SYS_CONFIG_OPTION8          #language en-US  "J1K2: CLOSE To boot with MFG mode"
+
+#string STR_TEST_STRING                 #language en-US  "TEST STRING::::::J2J2 2-3: Close to clear CMOS"

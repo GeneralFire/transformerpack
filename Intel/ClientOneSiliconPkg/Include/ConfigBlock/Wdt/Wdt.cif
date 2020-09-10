@@ -1,0 +1,8 @@
+<component>
+    name = "Wdt"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Wdt\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Wdt"
+[files]
+"WatchDogConfig.h"	
+<endComponent>

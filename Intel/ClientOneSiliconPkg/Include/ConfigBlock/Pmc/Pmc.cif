@@ -1,0 +1,8 @@
+<component>
+    name = "Pmc"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Pmc\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Pmc"
+[files]
+"PmConfig.h"	
+<endComponent>

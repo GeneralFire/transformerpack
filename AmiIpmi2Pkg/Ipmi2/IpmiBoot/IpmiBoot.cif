@@ -1,0 +1,11 @@
+<component>
+    name = "IpmiBoot"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\IpmiBoot\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.IpmiBoot"
+[INF]
+"IpmiBoot.inf"
+[files]
+"IpmiBoot.sdl"
+"ByPassUserPassWord.c"
+<endComponent>

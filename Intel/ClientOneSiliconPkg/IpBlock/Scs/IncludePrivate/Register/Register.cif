@@ -1,0 +1,10 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Scs\IncludePrivate\Register\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Scs.IncludePrivate.Register"
+[files]
+"ScsIosf2OcpBridgeRegs.h"	
+"ScsSdRegs.h"	
+"ScsUfsRegs.h"	
+<endComponent>

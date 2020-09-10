@@ -1,0 +1,12 @@
+<component>
+    name = "BmcSelfTestLog"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\BmcSelfTestLog\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.BmcSelfTestLog"
+[files]
+"BmcSelfTestLog.sdl"
+"BmcSelfTestLog.sd"
+"BmcSelfTestLog.uni"
+"BmcSelfTestLog.c"
+"BmcSelfTestLog.h"
+<endComponent>

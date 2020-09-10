@@ -1,0 +1,23 @@
+TOKEN
+    Name  = "10nm_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling 10nm support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "HwMemDdrioIpTargetLib"
+    File  = "HwMemDdrioIpTargetLib.inf"
+    Package  = "MemDdrioIpLib"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MemDdrioIpTargetLib"
+    Instance  = "MemDdrioIpLib.HwMemDdrioIpTargetLib"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+

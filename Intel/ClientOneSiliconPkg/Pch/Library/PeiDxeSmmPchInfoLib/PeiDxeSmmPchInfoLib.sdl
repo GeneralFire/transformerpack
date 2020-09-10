@@ -1,0 +1,19 @@
+TOKEN
+    Name  = "PeiDxeSmmPchInfoLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiDxeSmmPchInfoLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PchInfoLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPchInfoLibEbg"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchInfoLibEbg"
+    File  = "PeiDxeSmmPchInfoLibEbg.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End

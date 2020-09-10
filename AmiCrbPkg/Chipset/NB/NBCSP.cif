@@ -1,0 +1,8 @@
+<component>
+	name = "NB Chipset"
+	category = ModulePart
+	LocalRoot = "AmiCrbPkg\Chipset\NB\"
+	RefName = "NB Chipset"
+[files]
+"NBCspLib.h"	
+<endComponent>

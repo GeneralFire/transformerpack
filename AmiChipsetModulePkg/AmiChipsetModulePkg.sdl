@@ -1,0 +1,128 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+TOKEN
+	Name  = "AmiChipsetModulePkg_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AmiChipsetModulePkg support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AmiChipsetModulePkg_DIR"
+End
+
+# Added Purley related Overrides
+INFComponent
+	Name  = "SbSmmCorePlatformHookLib"
+	File  = "Library/SbSmmCorePlatformHookLib/SbSmmCorePlatformHookLib.inf"
+	Package  = "AmiChipsetModulePkg"
+	Token = "SMM_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+	Class  = "SbSmmCorePlatformHookLib"
+	Instance  = "AmiChipsetModulePkg.SbSmmCorePlatformHookLib"
+	ModuleTypes  = "SMM_CORE"
+End
+
+LibraryMapping
+	Class  = "NULL"
+	Instance  = "AmiChipsetModulePkg.SbSmmCorePlatformHookLib"
+	Override  = "MdeModulePkg.PiSmmCore"
+End
+
+LibraryMapping
+	Class  = "S3BootScriptLib"
+	Instance  = "MdePkg.BaseS3BootScriptLibNull"
+	Override  = "MdeModulePkg.PiSmmCore"
+End
+
+ELINK
+	Name  = "SbPlatformHookBeforeAfterSmmDispatch,"
+	Parent  = "PLATFORMHOOK_BEFORE_AFTER_SMMDISPATCH"
+	InvokeOrder = AfterParent
+End
+
+INFComponent
+	Name  = "SbCspIoDecodeLib"
+	File  = "Library/SbCspIoDecodeLib/SbCspIoDecodeLib.inf"
+	Package  = "AmiChipsetModulePkg"
+End
+
+LibraryMapping
+	Class  = "AmiIoDecodeLib"
+	Instance  = "AmiChipsetModulePkg.SbCspIoDecodeLib"
+End
+
+INFComponent
+	Name  = "SbBeepLibPcAt"
+	File  = "Library/SbBeepLibPcAt/SbBeepLibPcAt.inf"
+	Package  = "AmiChipsetModulePkg"
+End
+
+LibraryMapping
+	Class  = "AmiBeepLib"
+	Instance  = "AmiChipsetModulePkg.SbBeepLibPcAt"
+End
+
+INFComponent
+    Name  = "SbSmmLib"
+    File  = "Library/SbSmmLib/SbSmmLib.inf"
+    Package  = "AmiChipsetModulePkg"
+End
+
+LibraryMapping
+    Class  = "SmmLib"
+    Instance  = "AmiChipsetModulePkg.SbSmmLib"
+End
+
+# APTIOV_SERVER_OVERRIDE_START: Added AmiChipsetInitDoneLib to add depex to let AhciRecovery, NvmeRecovery and UsbPei run after we initiate chipset
+INFComponent
+    Name  = "AmiChipsetInitDoneLib"
+    File  = "Library/AmiChipsetInitDoneLib/AmiChipsetInitDoneLib.inf"
+    Package  = "AmiChipsetModulePkg"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiChipsetModulePkg.AmiChipsetInitDoneLib"
+    Override  = "AmiModulePkg.UsbPei"
+    Token = "USBPEI_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiChipsetModulePkg.AmiChipsetInitDoneLib"
+    Override  = "AmiModulePkg.AhciRecovery"
+    Token = "AhciRecovery_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiChipsetModulePkg.AmiChipsetInitDoneLib"
+    Override  = "AmiModulePkg.SerialRecovery"
+    Token = "SerialRecovery_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiChipsetModulePkg.AmiChipsetInitDoneLib"
+    Override  = "AmiModulePkg.NvmeRecovery"
+    Token = "NvmeRecovery_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiChipsetModulePkg.AmiChipsetInitDoneLib"
+    Override  = "AmiModulePkg.SdioRecovery"
+    Token = "SDIO_RECOVERY_SUPPORT" "=" "1"
+End
+# APTIOV_SERVER_OVERRIDE_END: Added AmiChipsetInitDoneLib to add depex to let AhciRecovery, NvmeRecovery and UsbPei run after we initiate chipset

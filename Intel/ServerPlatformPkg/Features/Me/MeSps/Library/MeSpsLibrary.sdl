@@ -1,0 +1,21 @@
+TOKEN
+    Name  = "MeSpsLibrary_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling MeSpsLibrary support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "NmLib"
+    File  = "NmLib\NmLib.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"   
+End
+
+LibraryMapping
+    Class  = "NmLib"
+    Instance  = "ServerPlatformPkg.NmLib"
+    Arch  = "IA32"           
+End

@@ -1,0 +1,12 @@
+<component>
+	name = "Protocol"
+	category = ModulePart
+	LocalRoot = "Intel\CpRcPkg\Include\Protocol\"
+	RefName = "CpRcPkg.Include.Protocol"
+[files]
+"CpuCsrAccess.h"	
+"ReferenceCodePolicyProtocol.h"	
+"SiliconRegAccess.h"	
+"SmmSpdPlatformInfoProtocol.h"
+"SystemInfoVarProtocol.h"	
+<endComponent>

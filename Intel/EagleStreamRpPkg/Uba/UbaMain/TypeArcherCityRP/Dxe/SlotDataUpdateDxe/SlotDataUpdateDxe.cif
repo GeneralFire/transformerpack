@@ -1,0 +1,11 @@
+<component>
+    name = "SlotDataUpdateDxe"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\SlotDataUpdateDxe\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Dxe.SlotDataUpdateDxe"
+[INF]
+"SlotDataUpdateDxe.inf"
+[files]
+"SlotDataUpdateDxe.h"	
+"SlotDataUpdateDxe.sdl"	
+<endComponent>

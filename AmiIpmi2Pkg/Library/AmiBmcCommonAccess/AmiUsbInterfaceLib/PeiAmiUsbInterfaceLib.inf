@@ -1,0 +1,66 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file PeiAmiUsbInterfaceLib.inf
+#
+#  INF description file for AmiUsbInterfaceLib Library for PEIMs.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = PeiAmiUsbInterfaceLib
+  FILE_GUID         = B73FFFA6-B027-40E0-B2A6-1CEC5DEEA633
+  MODULE_TYPE       = PEIM
+  VERSION_STRING    = 1.1
+  LIBRARY_CLASS     = AmiUsbInterfaceLib | PEIM
+
+[Sources]
+  PeiAmiUsbInterfaceLib.c
+  AmiUsbInterfaceLibCommon.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+
+[LibraryClasses]
+  PcdLib
+  DebugLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  PeiServicesTablePointerLib
+  AmiBmcCommonInterfaceLib
+
+[Ppis]
+  gPeiUsbIoPpiGuid                     #CONSUMES
+  gEfiPeiVirtualBlockIoPpiGuid         #CONSUMES
+
+[Pcd]
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBulkDataTransferTimeout
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

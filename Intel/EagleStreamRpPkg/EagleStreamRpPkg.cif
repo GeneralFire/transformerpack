@@ -1,0 +1,17 @@
+<component>
+    name = "EagleStreamRpPkg"
+    category = eModule
+    LocalRoot = "Intel\EagleStreamRpPkg\"
+    RefName = "EagleStreamRpPkg"
+[files]
+"PlatformPkg.dec"	
+"EagleStreamFdfRules.txt"	
+"EagleStreamRpPkg.sdl"	
+[parts]
+"EagleStreamRpPkg.Include"
+"EagleStreamRpPkg.Library"
+"EagleStreamRpPkg.Pch"
+"EagleStreamRpPkg.Platform"
+"EagleStreamRpPkg.Tool"
+"EagleStreamRpPkg.Uba"
+<endComponent>

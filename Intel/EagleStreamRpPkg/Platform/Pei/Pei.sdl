@@ -1,0 +1,37 @@
+TOKEN
+    Name  = "Pei_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Pei support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PlatformInfo_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PlatformInfo support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "PlatformInfo"
+    File  = "PlatformInfo/PlatformInfo.inf"
+    Package  = "EagleStreamRpPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"     
+    Token = "PlatformInfo_SUPPORT" "=" "1"
+End
+
+#LibraryMapping
+#    Class  = "NULL"
+#    Instance  = "EagleStreamRpPkg.FpgaBoardInit"
+#    Override  = "EagleStreamRpPkg.PlatformInfo"
+#End
+
+INFComponent
+    Name  = "PlatformDeepS5"
+    File  = "PlatformDeepS5\PlatformDeepS5.inf"
+    Package  = "EagleStreamRpPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"     
+End

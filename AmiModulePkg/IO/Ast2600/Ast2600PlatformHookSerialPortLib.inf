@@ -1,0 +1,29 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+## @file
+#  Ast2600PlatformHookSerialPortLib.inf
+[Defines]
+  INF_VERSION = 0x00010005
+  VERSION_STRING = 1.0
+  BASE_NAME = Ast2600PlatformHookSerialPortLib
+  FILE_GUID = EBC3AEAD-CC13-49b0-A678-5BED93956956
+  MODULE_TYPE = BASE
+  LIBRARY_CLASS = PlatformHookLib
+
+[Sources]
+  Ast2600PlatformHookSerialPortLib.c
+
+[LibraryClasses]
+  AmiSioPeiLib
+  Ast2600InitDataLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec

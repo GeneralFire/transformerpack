@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Tbt\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Tbt.IncludePrivate.Library"
+[files]
+"PeiITbtInitLib.h"	
+"PeiTbtCommonInitLib.h"	
+<endComponent>

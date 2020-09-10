@@ -1,0 +1,14 @@
+<component>
+	name = "Register"
+	category = ModulePart
+	LocalRoot = "UefiCpuPkg\Include\Register\"
+	RefName = "UefiCpuPkg.Register"
+[files]
+"ArchitecturalMsr.h"	
+"Cpuid.h"	
+"LocalApic.h"
+"Microcode.h"	
+"Msr.h"	
+"SmramSaveStateMap.h"
+"StmApi.h"
+<endComponent>

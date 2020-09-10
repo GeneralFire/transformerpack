@@ -1,0 +1,12 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Usb\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Usb.LibraryPrivate"
+[INF]
+"PeiUsb2PhyLib\PeiUsb2PhyLib.inf"
+"PeiUsbHostControllerInitLib\PeiUsbHostControllerInitLib.inf"
+"PeiUsbPolicyLib\PeiUsbPolicyLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

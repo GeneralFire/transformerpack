@@ -1,0 +1,13 @@
+<component>
+    name = "Iio"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Iio\"
+    RefName = "ServerSiliconPkg.Iio"
+[files]
+"IioRcPkg.dec"	
+[parts]
+"ServerSiliconPkg.Iio.Dxe"
+"ServerSiliconPkg.Iio.Include"
+"ServerSiliconPkg.Iio.Library"
+"ServerSiliconPkg.Iio.LibraryPrivate"
+<endComponent>

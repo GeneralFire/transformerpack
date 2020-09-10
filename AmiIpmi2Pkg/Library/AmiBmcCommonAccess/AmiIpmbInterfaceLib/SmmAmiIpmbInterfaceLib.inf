@@ -1,0 +1,57 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file SmmAmiIpmbInterfaceLib.inf
+#
+#  INF description file for SmmAmiIpmbInterfaceLib Library for DXE SMM drivers.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = SmmAmiIpmbInterfaceLib
+  FILE_GUID         = C39F9DC3-37C7-41C1-BE05-8C1524493947
+  MODULE_TYPE       = DXE_SMM_DRIVER
+  VERSION_STRING    = 1.1
+  LIBRARY_CLASS     = AmiIpmbInterfaceLib | DXE_SMM_DRIVER
+
+[Sources]
+  SmmAmiIpmbInterfaceLib.c
+  AmiIpmbInterfaceLibCommon.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+  DebugLib
+  BaseMemoryLib
+  SmmServicesTableLib
+  AmiBmcCommonInterfaceLib
+
+[Protocols]
+  gEfiI2cMasterProtocolGuid
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

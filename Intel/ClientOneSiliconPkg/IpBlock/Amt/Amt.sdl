@@ -1,0 +1,23 @@
+TOKEN
+    Name  = "Amt_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Amt support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "Build_Amt"
+    Value  = "0"
+    Help  = "Switch for building Amt Package"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "Amt"
+    TokenType = Expression
+    TargetDSC = Yes
+    Token = "Build_Amt" "=" "1"
+End
+

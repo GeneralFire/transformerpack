@@ -1,0 +1,10 @@
+<component>
+    name = "Smm"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\PchInit\Smm\"
+    RefName = "ClientOneSiliconPkg.Pch.PchInit.Smm"
+[INF]
+"PchInitSmm.inf"
+[files]
+"Smm.sdl"	
+<endComponent>

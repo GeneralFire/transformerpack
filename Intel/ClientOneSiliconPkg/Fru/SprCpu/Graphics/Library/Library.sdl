@@ -1,0 +1,21 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Disable = Yes
+End
+
+LibraryMapping
+    Class  = "GraphicsInfoFruLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmGraphicsInfoFruLib"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmGraphicsInfoFruLib"
+    File  = "PeiDxeSmmGraphicsInfoFruLib/GraphicsInfoFruLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+

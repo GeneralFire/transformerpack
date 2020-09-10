@@ -1,0 +1,488 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#define  MAK_STR(x)   #x
+#define  PROCESSOR_BITMASK_SIZE  64
+
+#define  CPU_THREAD_DEV(socket, thread)                         \
+  Device (C##thread) {                                          \
+    Name (_HID, "ACPI0007")                                     \
+    Name (_UID, 0x##thread)                                     \
+    Method (_STA) {                                             \
+      if (LEqual (\_SB.CSTA (0x0##socket, 0x##thread), 0x00)) { \
+        Return (0x00)                                           \
+      } else {                                                  \
+        if (LGreaterEqual (\_SB.OSYS, 12)) {                    \
+          Return (0x0F)                                         \
+        } else {                                                \
+          Return (0x0B)                                         \
+        }                                                       \
+      }                                                         \
+    }                                                           \
+  }
+
+#define  CPU_SOCKET_DEV(socket)                     \
+  Device (\_SB.SCK##socket) {                       \
+    Name (_HID, "ACPI0004")                         \
+    Name (_UID, MAK_STR (CPUSCK##socket))           \
+    Method (_STA) {                                 \
+      Store (MAK_STR (CPUSCK##socket), CUU##socket) \
+      Store (\_SB.PSTA (0x0##socket), Local0)       \
+      return (Local0)                               \
+    }                                               \
+                                                    \
+    CPU_THREAD_DEV (socket, 000)   \
+    CPU_THREAD_DEV (socket, 001)   \
+    CPU_THREAD_DEV (socket, 002)   \
+    CPU_THREAD_DEV (socket, 003)   \
+    CPU_THREAD_DEV (socket, 004)   \
+    CPU_THREAD_DEV (socket, 005)   \
+    CPU_THREAD_DEV (socket, 006)   \
+    CPU_THREAD_DEV (socket, 007)   \
+    CPU_THREAD_DEV (socket, 008)   \
+    CPU_THREAD_DEV (socket, 009)   \
+    CPU_THREAD_DEV (socket, 00A)   \
+    CPU_THREAD_DEV (socket, 00B)   \
+    CPU_THREAD_DEV (socket, 00C)   \
+    CPU_THREAD_DEV (socket, 00D)   \
+    CPU_THREAD_DEV (socket, 00E)   \
+    CPU_THREAD_DEV (socket, 00F)   \
+    CPU_THREAD_DEV (socket, 010)   \
+    CPU_THREAD_DEV (socket, 011)   \
+    CPU_THREAD_DEV (socket, 012)   \
+    CPU_THREAD_DEV (socket, 013)   \
+    CPU_THREAD_DEV (socket, 014)   \
+    CPU_THREAD_DEV (socket, 015)   \
+    CPU_THREAD_DEV (socket, 016)   \
+    CPU_THREAD_DEV (socket, 017)   \
+    CPU_THREAD_DEV (socket, 018)   \
+    CPU_THREAD_DEV (socket, 019)   \
+    CPU_THREAD_DEV (socket, 01A)   \
+    CPU_THREAD_DEV (socket, 01B)   \
+    CPU_THREAD_DEV (socket, 01C)   \
+    CPU_THREAD_DEV (socket, 01D)   \
+    CPU_THREAD_DEV (socket, 01E)   \
+    CPU_THREAD_DEV (socket, 01F)   \
+    CPU_THREAD_DEV (socket, 020)   \
+    CPU_THREAD_DEV (socket, 021)   \
+    CPU_THREAD_DEV (socket, 022)   \
+    CPU_THREAD_DEV (socket, 023)   \
+    CPU_THREAD_DEV (socket, 024)   \
+    CPU_THREAD_DEV (socket, 025)   \
+    CPU_THREAD_DEV (socket, 026)   \
+    CPU_THREAD_DEV (socket, 027)   \
+    CPU_THREAD_DEV (socket, 028)   \
+    CPU_THREAD_DEV (socket, 029)   \
+    CPU_THREAD_DEV (socket, 02A)   \
+    CPU_THREAD_DEV (socket, 02B)   \
+    CPU_THREAD_DEV (socket, 02C)   \
+    CPU_THREAD_DEV (socket, 02D)   \
+    CPU_THREAD_DEV (socket, 02E)   \
+    CPU_THREAD_DEV (socket, 02F)   \
+    CPU_THREAD_DEV (socket, 030)   \
+    CPU_THREAD_DEV (socket, 031)   \
+    CPU_THREAD_DEV (socket, 032)   \
+    CPU_THREAD_DEV (socket, 033)   \
+    CPU_THREAD_DEV (socket, 034)   \
+    CPU_THREAD_DEV (socket, 035)   \
+    CPU_THREAD_DEV (socket, 036)   \
+    CPU_THREAD_DEV (socket, 037)   \
+    CPU_THREAD_DEV (socket, 038)   \
+    CPU_THREAD_DEV (socket, 039)   \
+    CPU_THREAD_DEV (socket, 03A)   \
+    CPU_THREAD_DEV (socket, 03B)   \
+    CPU_THREAD_DEV (socket, 03C)   \
+    CPU_THREAD_DEV (socket, 03D)   \
+    CPU_THREAD_DEV (socket, 03E)   \
+    CPU_THREAD_DEV (socket, 03F)   \
+    CPU_THREAD_DEV (socket, 040)   \
+    CPU_THREAD_DEV (socket, 041)   \
+    CPU_THREAD_DEV (socket, 042)   \
+    CPU_THREAD_DEV (socket, 043)   \
+    CPU_THREAD_DEV (socket, 044)   \
+    CPU_THREAD_DEV (socket, 045)   \
+    CPU_THREAD_DEV (socket, 046)   \
+    CPU_THREAD_DEV (socket, 047)   \
+    CPU_THREAD_DEV (socket, 048)   \
+    CPU_THREAD_DEV (socket, 049)   \
+    CPU_THREAD_DEV (socket, 04A)   \
+    CPU_THREAD_DEV (socket, 04B)   \
+    CPU_THREAD_DEV (socket, 04C)   \
+    CPU_THREAD_DEV (socket, 04D)   \
+    CPU_THREAD_DEV (socket, 04E)   \
+    CPU_THREAD_DEV (socket, 04F)   \
+    CPU_THREAD_DEV (socket, 050)   \
+    CPU_THREAD_DEV (socket, 051)   \
+    CPU_THREAD_DEV (socket, 052)   \
+    CPU_THREAD_DEV (socket, 053)   \
+    CPU_THREAD_DEV (socket, 054)   \
+    CPU_THREAD_DEV (socket, 055)   \
+    CPU_THREAD_DEV (socket, 056)   \
+    CPU_THREAD_DEV (socket, 057)   \
+    CPU_THREAD_DEV (socket, 058)   \
+    CPU_THREAD_DEV (socket, 059)   \
+    CPU_THREAD_DEV (socket, 05A)   \
+    CPU_THREAD_DEV (socket, 05B)   \
+    CPU_THREAD_DEV (socket, 05C)   \
+    CPU_THREAD_DEV (socket, 05D)   \
+    CPU_THREAD_DEV (socket, 05E)   \
+    CPU_THREAD_DEV (socket, 05F)   \
+    CPU_THREAD_DEV (socket, 060)   \
+    CPU_THREAD_DEV (socket, 061)   \
+    CPU_THREAD_DEV (socket, 062)   \
+    CPU_THREAD_DEV (socket, 063)   \
+    CPU_THREAD_DEV (socket, 064)   \
+    CPU_THREAD_DEV (socket, 065)   \
+    CPU_THREAD_DEV (socket, 066)   \
+    CPU_THREAD_DEV (socket, 067)   \
+    CPU_THREAD_DEV (socket, 068)   \
+    CPU_THREAD_DEV (socket, 069)   \
+    CPU_THREAD_DEV (socket, 06A)   \
+    CPU_THREAD_DEV (socket, 06B)   \
+    CPU_THREAD_DEV (socket, 06C)   \
+    CPU_THREAD_DEV (socket, 06D)   \
+    CPU_THREAD_DEV (socket, 06E)   \
+    CPU_THREAD_DEV (socket, 06F)   \
+    CPU_THREAD_DEV (socket, 070)   \
+    CPU_THREAD_DEV (socket, 071)   \
+    CPU_THREAD_DEV (socket, 072)   \
+    CPU_THREAD_DEV (socket, 073)   \
+    CPU_THREAD_DEV (socket, 074)   \
+    CPU_THREAD_DEV (socket, 075)   \
+    CPU_THREAD_DEV (socket, 076)   \
+    CPU_THREAD_DEV (socket, 077)   \
+    CPU_THREAD_DEV (socket, 078)   \
+    CPU_THREAD_DEV (socket, 079)   \
+    CPU_THREAD_DEV (socket, 07A)   \
+    CPU_THREAD_DEV (socket, 07B)   \
+    CPU_THREAD_DEV (socket, 07C)   \
+    CPU_THREAD_DEV (socket, 07D)   \
+    CPU_THREAD_DEV (socket, 07E)   \
+    CPU_THREAD_DEV (socket, 07F)   \
+    CPU_THREAD_DEV (socket, 080)   \
+    CPU_THREAD_DEV (socket, 081)   \
+    CPU_THREAD_DEV (socket, 082)   \
+    CPU_THREAD_DEV (socket, 083)   \
+    CPU_THREAD_DEV (socket, 084)   \
+    CPU_THREAD_DEV (socket, 085)   \
+    CPU_THREAD_DEV (socket, 086)   \
+    CPU_THREAD_DEV (socket, 087)   \
+    CPU_THREAD_DEV (socket, 088)   \
+    CPU_THREAD_DEV (socket, 089)   \
+    CPU_THREAD_DEV (socket, 08A)   \
+    CPU_THREAD_DEV (socket, 08B)   \
+    CPU_THREAD_DEV (socket, 08C)   \
+    CPU_THREAD_DEV (socket, 08D)   \
+    CPU_THREAD_DEV (socket, 08E)   \
+    CPU_THREAD_DEV (socket, 08F)   \
+    CPU_THREAD_DEV (socket, 090)   \
+    CPU_THREAD_DEV (socket, 091)   \
+    CPU_THREAD_DEV (socket, 092)   \
+    CPU_THREAD_DEV (socket, 093)   \
+    CPU_THREAD_DEV (socket, 094)   \
+    CPU_THREAD_DEV (socket, 095)   \
+    CPU_THREAD_DEV (socket, 096)   \
+    CPU_THREAD_DEV (socket, 097)   \
+    CPU_THREAD_DEV (socket, 098)   \
+    CPU_THREAD_DEV (socket, 099)   \
+    CPU_THREAD_DEV (socket, 09A)   \
+    CPU_THREAD_DEV (socket, 09B)   \
+    CPU_THREAD_DEV (socket, 09C)   \
+    CPU_THREAD_DEV (socket, 09D)   \
+    CPU_THREAD_DEV (socket, 09E)   \
+    CPU_THREAD_DEV (socket, 09F)   \
+    CPU_THREAD_DEV (socket, 0A0)   \
+    CPU_THREAD_DEV (socket, 0A1)   \
+    CPU_THREAD_DEV (socket, 0A2)   \
+    CPU_THREAD_DEV (socket, 0A3)   \
+    CPU_THREAD_DEV (socket, 0A4)   \
+    CPU_THREAD_DEV (socket, 0A5)   \
+    CPU_THREAD_DEV (socket, 0A6)   \
+    CPU_THREAD_DEV (socket, 0A7)   \
+    CPU_THREAD_DEV (socket, 0A8)   \
+    CPU_THREAD_DEV (socket, 0A9)   \
+    CPU_THREAD_DEV (socket, 0AA)   \
+    CPU_THREAD_DEV (socket, 0AB)   \
+    CPU_THREAD_DEV (socket, 0AC)   \
+    CPU_THREAD_DEV (socket, 0AD)   \
+    CPU_THREAD_DEV (socket, 0AE)   \
+    CPU_THREAD_DEV (socket, 0AF)   \
+    CPU_THREAD_DEV (socket, 0B0)   \
+    CPU_THREAD_DEV (socket, 0B1)   \
+    CPU_THREAD_DEV (socket, 0B2)   \
+    CPU_THREAD_DEV (socket, 0B3)   \
+    CPU_THREAD_DEV (socket, 0B4)   \
+    CPU_THREAD_DEV (socket, 0B5)   \
+    CPU_THREAD_DEV (socket, 0B6)   \
+    CPU_THREAD_DEV (socket, 0B7)   \
+    CPU_THREAD_DEV (socket, 0B8)   \
+    CPU_THREAD_DEV (socket, 0B9)   \
+    CPU_THREAD_DEV (socket, 0BA)   \
+    CPU_THREAD_DEV (socket, 0BB)   \
+    CPU_THREAD_DEV (socket, 0BC)   \
+    CPU_THREAD_DEV (socket, 0BD)   \
+    CPU_THREAD_DEV (socket, 0BE)   \
+    CPU_THREAD_DEV (socket, 0BF)   \
+    CPU_THREAD_DEV (socket, 0C0)   \
+    CPU_THREAD_DEV (socket, 0C1)   \
+    CPU_THREAD_DEV (socket, 0C2)   \
+    CPU_THREAD_DEV (socket, 0C3)   \
+    CPU_THREAD_DEV (socket, 0C4)   \
+    CPU_THREAD_DEV (socket, 0C5)   \
+    CPU_THREAD_DEV (socket, 0C6)   \
+    CPU_THREAD_DEV (socket, 0C7)   \
+    CPU_THREAD_DEV (socket, 0C8)   \
+    CPU_THREAD_DEV (socket, 0C9)   \
+    CPU_THREAD_DEV (socket, 0CA)   \
+    CPU_THREAD_DEV (socket, 0CB)   \
+    CPU_THREAD_DEV (socket, 0CC)   \
+    CPU_THREAD_DEV (socket, 0CD)   \
+    CPU_THREAD_DEV (socket, 0CE)   \
+    CPU_THREAD_DEV (socket, 0CF)   \
+    CPU_THREAD_DEV (socket, 0D0)   \
+    CPU_THREAD_DEV (socket, 0D1)   \
+    CPU_THREAD_DEV (socket, 0D2)   \
+    CPU_THREAD_DEV (socket, 0D3)   \
+    CPU_THREAD_DEV (socket, 0D4)   \
+    CPU_THREAD_DEV (socket, 0D5)   \
+    CPU_THREAD_DEV (socket, 0D6)   \
+    CPU_THREAD_DEV (socket, 0D7)   \
+    CPU_THREAD_DEV (socket, 0D8)   \
+    CPU_THREAD_DEV (socket, 0D9)   \
+    CPU_THREAD_DEV (socket, 0DA)   \
+    CPU_THREAD_DEV (socket, 0DB)   \
+    CPU_THREAD_DEV (socket, 0DC)   \
+    CPU_THREAD_DEV (socket, 0DD)   \
+    CPU_THREAD_DEV (socket, 0DE)   \
+    CPU_THREAD_DEV (socket, 0DF)   \
+    CPU_THREAD_DEV (socket, 0E0)   \
+    CPU_THREAD_DEV (socket, 0E1)   \
+    CPU_THREAD_DEV (socket, 0E2)   \
+    CPU_THREAD_DEV (socket, 0E3)   \
+    CPU_THREAD_DEV (socket, 0E4)   \
+    CPU_THREAD_DEV (socket, 0E5)   \
+    CPU_THREAD_DEV (socket, 0E6)   \
+    CPU_THREAD_DEV (socket, 0E7)   \
+    CPU_THREAD_DEV (socket, 0E8)   \
+    CPU_THREAD_DEV (socket, 0E9)   \
+    CPU_THREAD_DEV (socket, 0EA)   \
+    CPU_THREAD_DEV (socket, 0EB)   \
+    CPU_THREAD_DEV (socket, 0EC)   \
+    CPU_THREAD_DEV (socket, 0ED)   \
+    CPU_THREAD_DEV (socket, 0EE)   \
+    CPU_THREAD_DEV (socket, 0EF)   \
+    CPU_THREAD_DEV (socket, 0F0)   \
+    CPU_THREAD_DEV (socket, 0F1)   \
+    CPU_THREAD_DEV (socket, 0F2)   \
+    CPU_THREAD_DEV (socket, 0F3)   \
+    CPU_THREAD_DEV (socket, 0F4)   \
+    CPU_THREAD_DEV (socket, 0F5)   \
+    CPU_THREAD_DEV (socket, 0F6)   \
+    CPU_THREAD_DEV (socket, 0F7)   \
+    CPU_THREAD_DEV (socket, 0F8)   \
+    CPU_THREAD_DEV (socket, 0F9)   \
+    CPU_THREAD_DEV (socket, 0FA)   \
+    CPU_THREAD_DEV (socket, 0FB)   \
+    CPU_THREAD_DEV (socket, 0FC)   \
+    CPU_THREAD_DEV (socket, 0FD)   \
+    CPU_THREAD_DEV (socket, 0FE)   \
+    CPU_THREAD_DEV (socket, 0FF)   \
+    CPU_THREAD_DEV (socket, 100)   \
+    CPU_THREAD_DEV (socket, 101)   \
+    CPU_THREAD_DEV (socket, 102)   \
+    CPU_THREAD_DEV (socket, 103)   \
+    CPU_THREAD_DEV (socket, 104)   \
+    CPU_THREAD_DEV (socket, 105)   \
+    CPU_THREAD_DEV (socket, 106)   \
+    CPU_THREAD_DEV (socket, 107)   \
+    CPU_THREAD_DEV (socket, 108)   \
+    CPU_THREAD_DEV (socket, 109)   \
+    CPU_THREAD_DEV (socket, 10A)   \
+    CPU_THREAD_DEV (socket, 10B)   \
+    CPU_THREAD_DEV (socket, 10C)   \
+    CPU_THREAD_DEV (socket, 10D)   \
+    CPU_THREAD_DEV (socket, 10E)   \
+    CPU_THREAD_DEV (socket, 10F)   \
+    CPU_THREAD_DEV (socket, 110)   \
+    CPU_THREAD_DEV (socket, 111)   \
+    CPU_THREAD_DEV (socket, 112)   \
+    CPU_THREAD_DEV (socket, 113)   \
+    CPU_THREAD_DEV (socket, 114)   \
+    CPU_THREAD_DEV (socket, 115)   \
+    CPU_THREAD_DEV (socket, 116)   \
+    CPU_THREAD_DEV (socket, 117)   \
+    CPU_THREAD_DEV (socket, 118)   \
+    CPU_THREAD_DEV (socket, 119)   \
+    CPU_THREAD_DEV (socket, 11A)   \
+    CPU_THREAD_DEV (socket, 11B)   \
+    CPU_THREAD_DEV (socket, 11C)   \
+    CPU_THREAD_DEV (socket, 11D)   \
+    CPU_THREAD_DEV (socket, 11E)   \
+    CPU_THREAD_DEV (socket, 11F)   \
+    CPU_THREAD_DEV (socket, 120)   \
+    CPU_THREAD_DEV (socket, 121)   \
+    CPU_THREAD_DEV (socket, 122)   \
+    CPU_THREAD_DEV (socket, 123)   \
+    CPU_THREAD_DEV (socket, 124)   \
+    CPU_THREAD_DEV (socket, 125)   \
+    CPU_THREAD_DEV (socket, 126)   \
+    CPU_THREAD_DEV (socket, 127)   \
+    CPU_THREAD_DEV (socket, 128)   \
+    CPU_THREAD_DEV (socket, 129)   \
+    CPU_THREAD_DEV (socket, 12A)   \
+    CPU_THREAD_DEV (socket, 12B)   \
+    CPU_THREAD_DEV (socket, 12C)   \
+    CPU_THREAD_DEV (socket, 12D)   \
+    CPU_THREAD_DEV (socket, 12E)   \
+    CPU_THREAD_DEV (socket, 12F)   \
+    CPU_THREAD_DEV (socket, 130)   \
+    CPU_THREAD_DEV (socket, 131)   \
+    CPU_THREAD_DEV (socket, 132)   \
+    CPU_THREAD_DEV (socket, 133)   \
+    CPU_THREAD_DEV (socket, 134)   \
+    CPU_THREAD_DEV (socket, 135)   \
+    CPU_THREAD_DEV (socket, 136)   \
+    CPU_THREAD_DEV (socket, 137)   \
+    CPU_THREAD_DEV (socket, 138)   \
+    CPU_THREAD_DEV (socket, 139)   \
+    CPU_THREAD_DEV (socket, 13A)   \
+    CPU_THREAD_DEV (socket, 13B)   \
+    CPU_THREAD_DEV (socket, 13C)   \
+    CPU_THREAD_DEV (socket, 13D)   \
+    CPU_THREAD_DEV (socket, 13E)   \
+    CPU_THREAD_DEV (socket, 13F)   \
+    CPU_THREAD_DEV (socket, 140)   \
+    CPU_THREAD_DEV (socket, 141)   \
+    CPU_THREAD_DEV (socket, 142)   \
+    CPU_THREAD_DEV (socket, 143)   \
+    CPU_THREAD_DEV (socket, 144)   \
+    CPU_THREAD_DEV (socket, 145)   \
+    CPU_THREAD_DEV (socket, 146)   \
+    CPU_THREAD_DEV (socket, 147)   \
+    CPU_THREAD_DEV (socket, 148)   \
+    CPU_THREAD_DEV (socket, 149)   \
+    CPU_THREAD_DEV (socket, 14A)   \
+    CPU_THREAD_DEV (socket, 14B)   \
+    CPU_THREAD_DEV (socket, 14C)   \
+    CPU_THREAD_DEV (socket, 14D)   \
+    CPU_THREAD_DEV (socket, 14E)   \
+    CPU_THREAD_DEV (socket, 14F)   \
+    CPU_THREAD_DEV (socket, 150)   \
+    CPU_THREAD_DEV (socket, 151)   \
+    CPU_THREAD_DEV (socket, 152)   \
+    CPU_THREAD_DEV (socket, 153)   \
+    CPU_THREAD_DEV (socket, 154)   \
+    CPU_THREAD_DEV (socket, 155)   \
+    CPU_THREAD_DEV (socket, 156)   \
+    CPU_THREAD_DEV (socket, 157)   \
+    CPU_THREAD_DEV (socket, 158)   \
+    CPU_THREAD_DEV (socket, 159)   \
+    CPU_THREAD_DEV (socket, 15A)   \
+    CPU_THREAD_DEV (socket, 15B)   \
+    CPU_THREAD_DEV (socket, 15C)   \
+    CPU_THREAD_DEV (socket, 15D)   \
+    CPU_THREAD_DEV (socket, 15E)   \
+    CPU_THREAD_DEV (socket, 15F)   \
+    CPU_THREAD_DEV (socket, 160)   \
+    CPU_THREAD_DEV (socket, 161)   \
+    CPU_THREAD_DEV (socket, 162)   \
+    CPU_THREAD_DEV (socket, 163)   \
+    CPU_THREAD_DEV (socket, 164)   \
+    CPU_THREAD_DEV (socket, 165)   \
+    CPU_THREAD_DEV (socket, 166)   \
+    CPU_THREAD_DEV (socket, 167)   \
+  }
+
+  Scope (\_SB) {
+
+    //----------------------------------------------------------------
+    //  Method PSTA() - Socket status
+    //      Return package state
+    //
+    //  Inputs: Arg0 = socket number for which to return the _STA code.
+    //----------------------------------------------------------------
+    Method (PSTA, 1) {
+      ShiftRight (PRBM, Arg0, Local6)
+      And (Local6, 0x1, Local6)
+      if (LEqual (Local6, 0x0)) {
+        Return (0x00)
+      } else {
+        Return (0x0F)
+      }
+    } // End Method PSTA
+
+    //----------------------------------------------------------------
+    //  Method CSTA() - Core Status
+    //      Get current processor state
+    //  Inputs: Arg0 = Socket Number where core belongs
+    //          Arg1 = APIC ID number for which to return the _STA code 
+    //----------------------------------------------------------------
+    Method (CSTA, 2) {
+      Store (0, Local0)
+      Store (0, Local2)
+
+      //
+      // Set Local2 equal to ApicId passed in
+      //
+      Store (Arg1, Local2)
+
+      //
+      // Processor Bit mask indicates Core presence, convert APIC ID to Core number
+      //
+      ShiftRight (Local2, 2, Local2)
+
+      //
+      // Handle Socket 0
+      //
+      if (LEqual (Arg0, 0x0)) {
+
+        //
+        // Check if Core # should be in the low processor bitmask (PxBM) otherwise check the high
+        // processor bitmask (PxBH).  Shift the bitmask right by the core number in Local2, bit 0 
+        // of Local0 will indicate if the core is enabled.
+        //
+        if (LLess (Arg1, PROCESSOR_BITMASK_SIZE)) {
+          ShiftRight (P0BM, Local2, Local0)
+        } else {
+          ShiftRight (P0BH, Local2, Local0)
+        }
+      }
+
+      //
+      // Check bit 0 of Local 0 and return 0 if core is disabled, otherwise 1.
+      //
+      And (Local0, 0x1, Local0)
+      if (LEqual (Local0, 0x0)) {
+        Return (0x00)
+      } else {
+        Return (0x01)
+      }
+    } // End Method CSTA
+   
+    CPU_SOCKET_DEV (0)
+  }
+

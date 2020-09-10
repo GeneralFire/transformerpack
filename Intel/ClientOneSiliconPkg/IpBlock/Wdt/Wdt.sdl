@@ -1,0 +1,17 @@
+TOKEN
+    Name  = "Wdt_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Wdt support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "WdtDxe"
+    File  = "Dxe/WdtDxe.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"   
+End
+

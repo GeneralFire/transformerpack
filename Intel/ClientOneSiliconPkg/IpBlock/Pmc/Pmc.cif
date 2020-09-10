@@ -1,0 +1,10 @@
+<component>
+    name = "Pmc"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Pmc\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Pmc"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Pmc.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Pmc.Library"
+"ClientOneSiliconPkg.IpBlock.Pmc.LibraryPrivate"
+<endComponent>

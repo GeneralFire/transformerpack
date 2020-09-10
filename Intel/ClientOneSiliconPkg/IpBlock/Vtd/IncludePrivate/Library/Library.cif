@@ -1,0 +1,11 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Vtd\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Vtd.IncludePrivate.Library"
+[files]
+"DxeVtdPolicyLib.h"
+"DxeVtdInitLib.h"	
+"PeiVtdInitLib.h"	
+"PeiVtdPolicyLib.h"	
+<endComponent>

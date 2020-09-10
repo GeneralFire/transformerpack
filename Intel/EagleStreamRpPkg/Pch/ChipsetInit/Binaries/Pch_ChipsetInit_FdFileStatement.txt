@@ -1,0 +1,3 @@
+FILE RAW = 95380D38-174E-45C0-887F-B91F7E7FC12E {
+   EagleStreamRpPkg/Pch/ChipsetInit/Binaries/EbgPchChipsetInitA0V108.bin
+  }

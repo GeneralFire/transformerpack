@@ -1,0 +1,61 @@
+TOKEN
+	Name  = "AmiCrbPkg_SUPPORT"
+	Value  = 1
+	Help  = "Main switch to enable CRB Chipset wrapper code support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+MODULE
+    Help  = "Includes AmiBuildOption.mak to Project"
+    File  = "AmiBuildOption.mak"
+End
+
+ELINK
+    Name  = "PACKAGES_PATH"
+    Help  = "Support multiple work spaces"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "$(WORKSPACE)$(PATH_SLASH)Intel;"
+    Parent  = "PACKAGES_PATH"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PcdLib"
+	Parent  = "AMI_CSP_LIBRARIES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PciLib"
+	Parent  = "AMI_CSP_LIBRARIES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "PchPcrLib"
+    Parent  = "AMI_CSP_LIBRARIES"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "PciSegmentLib"
+    Parent  = "AMI_CSP_LIBRARIES"
+    InvokeOrder = AfterParent
+End
+
+FFS_FILE
+	Name  = "VmdVrocDriverEfi"
+	FD_AREA  = "FV_MAIN"
+	FILE_Stmt  = "AmiCrbPkg/VmdVrocDriverFdfFileStatement.txt"
+End
+
+FFS_FILE
+	Name  = "Hfi1SocketConfiguration"
+	FD_AREA  = "FV_MAIN"
+	FILE_Stmt  = "AmiCrbPkg/Hfi1_Socket_Configuration.txt"
+End

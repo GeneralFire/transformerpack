@@ -1,0 +1,10 @@
+<component>
+    name = "Universal"
+    category = MODULEPART
+    LocalRoot = "Intel\EagleStreamFspPkg\Universal\"
+    RefName = "EagleStreamFspPkg.Universal"
+[INF]
+"PeiExStatusCodeHandler\ExStatusCodeHandlerPei.inf"
+[files]
+"Universal.sdl"	
+<endComponent>

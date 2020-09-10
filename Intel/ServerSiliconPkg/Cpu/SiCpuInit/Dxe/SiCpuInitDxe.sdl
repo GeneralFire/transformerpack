@@ -1,0 +1,23 @@
+TOKEN
+	Name  = "SiCpuInitDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling SiCpuInitPei support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "SiCpuInitDxe"
+	File  = "SiCpuInitDxe.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "SiCpuInitDxe_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "BaseLib"
+    Instance  = "ServerSiliconPkg.BaseLib"
+    Override  = "ServerSiliconPkg.SiCpuInitDxe"
+    Token = "SiCpuInitDxe_SUPPORT" "=" "1"
+End
+

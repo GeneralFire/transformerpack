@@ -1,0 +1,1218 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+//------------------ IIO # 0 -----------------//
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P0,
+    //
+    // PCI Express Port 0 Configuration, RLink in SNR and ICX-D, DMI for others
+    //
+#if defined (SNR_HOST) || defined (ICXDE_HOST)
+    title = STRING_TOKEN(STR_PCIE_RLINK_PROMPT);
+    subtitle text = STRING_TOKEN(STR_PCIE_RLINK_PROMPT);
+#else
+    title = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+#endif
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   0
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 1 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P1,
+    title = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   1
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 2 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P2,
+    title = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   2
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 3 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P3,
+    title = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   3
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 4 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P4,
+    title = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   4
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 5 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P5,
+    title = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   5
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 6 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P6,
+    title = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   6
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 7 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P7,
+    title = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   7
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 8 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P8,
+    title = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   8
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 9 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P9,
+    title = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   9
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 10 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P10,
+    title = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   10
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 11 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P11,
+    title = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   11
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 12 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P12,
+    title = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   12
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 13 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P13,
+    title = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   13
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 14 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P14,
+    title = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   14
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 15 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P15,
+    title = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   15
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 16 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P16,
+    title = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   16
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 17 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P17,
+    title = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   17
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 18 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P18,
+    title = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   18
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 19 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P19,
+    title = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   19
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 20 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO0P20,
+    title = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   20
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+
+#if MAX_SOCKET > 1
+//------------------ IIO # 1 -----------------//
+  //
+  // PCI Express Port 0 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P0,
+    title = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   21
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 1 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P1,
+    title = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   22
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 2 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P2,
+    title = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   23
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 3 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P3,
+    title = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   24
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 4 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P4,
+    title = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   25
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 5 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P5,
+    title = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   26
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 6 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P6,
+    title = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   27
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 7 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P7,
+    title = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   28
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 8 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P8,
+    title = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   29
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 9 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P9,
+    title = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   30
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 10 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P10,
+    title = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   31
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 11 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P11,
+    title = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   32
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 12 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P12,
+    title = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   33
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 13 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P13,
+    title = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   34
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 14 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P14,
+    title = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   35
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 15 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P15,
+    title = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   36
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 16 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P16,
+    title = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   37
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 17 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P17,
+    title = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   38
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 18 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P18,
+    title = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   39
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 19 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P19,
+    title = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   40
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 20 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO1P20,
+    title = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   41
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+#endif
+#if MAX_SOCKET > 2
+//------------------ IIO # 2 -----------------//
+  //
+  // PCI Express Port 0 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P0,
+    title = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   42
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 1 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P1,
+    title = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   43
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 2 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P2,
+    title = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   44
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 3 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P3,
+    title = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   45
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 4 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P4,
+    title = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   46
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 5 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P5,
+    title = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   47
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 6 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P6,
+    title = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   48
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 7 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P7,
+    title = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   49
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 8 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P8,
+    title = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   50
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 9 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P9,
+    title = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   51
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 10 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P10,
+    title = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   52
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 11 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P11,
+    title = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   53
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 12 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P12,
+    title = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   54
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 13 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P13,
+    title = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   55
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 14 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P14,
+    title = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   56
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 15 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P15,
+    title = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   57
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 16 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P16,
+    title = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   58
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 17 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P17,
+    title = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   59
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 18 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P18,
+    title = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   60
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 19 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P19,
+    title = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   61
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 20 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO2P20,
+    title = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   62
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+#endif
+#if MAX_SOCKET > 3
+//------------------ IIO # 3 -----------------//
+  //
+  // PCI Express Port 0 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P0,
+    title = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   63
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 1 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P1,
+    title = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   64
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 2 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P2,
+    title = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   65
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 3 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P3,
+    title = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   66
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 4 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P4,
+    title = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   67
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 5 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P5,
+    title = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   68
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 6 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P6,
+    title = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   69
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 7 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P7,
+    title = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   70
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 8 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P8,
+    title = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   71
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 9 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P9,
+    title = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   72
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 10 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P10,
+    title = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   73
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 11 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P11,
+    title = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   74
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 12 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P12,
+    title = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   75
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 13 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P13,
+    title = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   76
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 14 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P14,
+    title = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   77
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 15 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P15,
+    title = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   78
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 16 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P16,
+    title = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   79
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 17 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P17,
+    title = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   80
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 18 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P18,
+    title = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   81
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 19 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P19,
+    title = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   82
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 20 Configuration
+  //
+  form formid = VFR_FORMID_DFX_PCIE_IIO3P20,
+    title = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   83
+    #include "IioDfxPciePortSetup.hfr"
+  endform;
+#endif

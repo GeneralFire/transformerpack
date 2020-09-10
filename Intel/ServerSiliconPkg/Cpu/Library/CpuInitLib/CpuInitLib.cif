@@ -1,0 +1,14 @@
+<component>
+	name = "CpuInitLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\Library\CpuInitLib\"
+	RefName = "ServerSiliconPkg.Cpu.Library.CpuInitLib"
+[INF]
+"CpuInitPeiLib10nm.inf"
+"CpuInitDxeLib10nm.inf"
+"CpuInitDxeLibSpr.inf"
+"CpuInitPeiLibSpr.inf"
+[files]
+"CpuInitLib.sdl"
+"CpuInit.h"	
+<endComponent>

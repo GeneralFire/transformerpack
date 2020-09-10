@@ -1,0 +1,11 @@
+<component>
+	name = "SmmPlatSSRLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Library\SmmPlatSSRLib\"
+	RefName = "ServerRasPkg.SmmPlatSSRLib"
+[INF]
+"SmmPlatSSRLib.inf"
+[files]
+"PlatSSRLibPrivate.h"	
+"SmmPlatSSRLib.sdl"	
+<endComponent>

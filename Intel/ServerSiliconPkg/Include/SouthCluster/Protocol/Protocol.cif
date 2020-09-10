@@ -1,0 +1,27 @@
+<component>
+	name = "Protocol"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\SouthCluster\Protocol\"
+	RefName = "ServerSiliconPkg.Include.SouthCluster.Protocol"
+[files]
+"ScsEmmcSoftwareTuning.h"
+"PchPolicy.h"
+#"ActiveBios.h"	
+"IoTrapExDispatch.h"	
+"PchAcpiSmiDispatch.h"	
+"PchEmmcTuning.h"	
+"PchEspiSmiDispatch.h"	
+"PchGpioUnlockSmiDispatch.h"	
+"PchPcieSmiDispatch.h"	
+"PchReset.h"	
+"PchSmiDispatch.h"	
+"PchSmmIoTrapControl.h"	
+"PchSmmPeriodicTimerControl.h"	
+"PchTcoSmiDispatch.h"	
+"PchThermalLevels.h"
+"SerialGpio.h"	
+"SmmSmbus.h"	
+"Spi.h"	
+"UsbHcPortPrecondition.h"	
+"Wdt.h"	
+<endComponent>

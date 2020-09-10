@@ -1,0 +1,20 @@
+<component>
+    name = "BoardInfo"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Tool\BoardInfo\"
+    RefName = "EagleStreamRpPkg.Tool.BoardInfo"
+[files]	
+"IioCxlRbIou.asi"
+"IioRbDinoMethod.asi"
+"IioRbDinoResource.asi"
+"IioGpe.asi"
+"IioPrt.asi"
+"IioRbDino.asi"
+"IioRbDmi.asi"
+"IioRbDmiAsPcie.asi"
+"IioRbIou.asi"
+"IioRbPorts.asi"
+"IioStacks.asi"
+"PlatformPciTree_EPRP.asi"
+"PlatformUncore.asi"
+<endComponent>

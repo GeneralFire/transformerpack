@@ -1,0 +1,8 @@
+TOKEN
+    Name  = "HwAsset_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling HwAsset support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+

@@ -1,0 +1,8 @@
+<component>
+	name = "DxeSmm"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Acpi\DxeSmm\"
+	RefName = "ServerPlatformPkg.Features.Acpi.DxeSmm"
+[parts]
+"ServerPlatformPkg.Features.Acpi.DxeSmm.AcpiSmm"
+<endComponent>

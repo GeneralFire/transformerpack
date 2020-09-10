@@ -1,0 +1,70 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file SmmIpmiInitialize.inf
+#
+#  INF description file for SmmIpmiInitialize driver.
+##
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = SmmIpmiInitialize
+  FILE_GUID                 = E8C729FE-FB0A-4344-AD7E-48784116C9EF
+  MODULE_TYPE               = DXE_SMM_DRIVER
+  VERSION_STRING            = 1.0
+  PI_SPECIFICATION_VERSION  = 0x0001000A
+  ENTRY_POINT               = InitializeIpmiSmmPhysicalLayer
+
+[Sources]
+  SmmIpmiInitialize.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  SmmServicesTableLib
+  UefiRuntimeServicesTableLib
+  AmiIpmiLib
+  AmiBmcCommonInterfaceLib
+
+[Protocols]
+  gEfiSmmIpmiTransportProtocolGuid    #PRODUCES
+  gEfiDxeIpmiTransportProtocolGuid    #CONSUMES
+
+[Guids]
+  gEfiServerMgmtSetupVariableGuid
+
+[Depex]
+  TRUE
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

@@ -1,0 +1,11 @@
+<component>
+	name = "WheaErrorInj"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\WheaErrorInj\"
+	RefName = "ServerRasPkg.WheaErrorInj"
+[INF]
+"WheaErrorInj.inf"
+[files]
+"WheaErrorInj.h"	
+"WheaErrorInj.sdl"	
+<endComponent>

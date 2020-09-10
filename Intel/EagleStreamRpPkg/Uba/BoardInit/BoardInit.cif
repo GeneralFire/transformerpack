@@ -1,0 +1,12 @@
+<component>
+    name = "BoardInit"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\BoardInit\"
+    RefName = "EagleStreamRpPkg.Uba.BoardInit"
+[INF]
+"Dxe\BoardInitDxe.inf"
+[files]
+"BoardInit.sdl"	
+[parts]
+"EagleStreamRpPkg.Uba.BoardInit.Pei"
+<endComponent>

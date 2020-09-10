@@ -1,0 +1,10 @@
+<component>
+	name = "Physical Presence Interface – Extensions"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\PpiX\"
+	RefName = "ServerPlatformPkg.PpiX"
+[INF]
+"PpiX.inf"
+[files]
+"PpiX.sdl"	
+<endComponent>

@@ -1,0 +1,12 @@
+<component>
+    name = "McSmb"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\McSmb\"
+    RefName = "ClientOneSiliconPkg.IpBlock.McSmb"
+[files]
+"McSmb.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.McSmb.Include"
+"ClientOneSiliconPkg.IpBlock.McSmb.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.McSmb.LibraryPrivate"
+<endComponent>

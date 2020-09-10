@@ -1,0 +1,23 @@
+<component>
+    name = "Dsdt"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\AcpiTables\Dsdt\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.AcpiTables.Dsdt"
+[INF]
+"PchAcpiTables.inf"
+"PchAcpiTablesSelfTest.inf"
+[files]
+"HsioDefine.asl"	
+"HsioLib.asl"	
+"PchCdf.asl"		
+"PchGpio.asl"		
+"PchNvs.asl"	
+"PchPciAcpiDefinesCdf.asi"	
+"PchPcie.asl"	
+"PchSata.asl"
+"PchScs.asl"	
+"PchSelfTestDsdt.asl"	
+"PchTraceHub.asl"	
+"PchXhci.asl"	
+"TraceHubDebug.asl"		
+<endComponent>

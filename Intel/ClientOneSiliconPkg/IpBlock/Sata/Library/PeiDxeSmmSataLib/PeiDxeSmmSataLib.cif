@@ -1,0 +1,8 @@
+<component>
+    name = "PeiDxeSmmSataLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Sata\Library\PeiDxeSmmSataLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Sata.Library.PeiDxeSmmSataLib"
+[INF]
+"PeiDxeSmmSataLib.inf"
+<endComponent>

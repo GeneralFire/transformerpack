@@ -1,0 +1,20 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\Include\Register\"
+    RefName = "ClientOneSiliconPkg.Pch.Include.Register"
+[files]
+"PchRegsLpcAdl.h"
+"PchRegs.h"	
+"PchRegsClk.h"	
+"PchRegsHsioVer3.h"
+"PchRegsHsio.h"		
+"PchRegsLpcCnl.h"		
+"PchRegsLpcIcl.h"	
+"PchRegsLpcJsl.h"	
+"PchRegsLpcTgl.h"	
+"PchRegsPsf.h"	
+"PchRegsPsth.h"	
+"PchRegsSmbus.h"
+"PchRegsLpcEbg.h"	
+<endComponent>

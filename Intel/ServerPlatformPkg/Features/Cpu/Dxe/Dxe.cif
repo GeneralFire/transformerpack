@@ -1,0 +1,12 @@
+<component>
+	name = "Dxe"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Cpu\Dxe\"
+	RefName = "ServerPlatformPkg.Features.Cpu.Dxe"	
+[files]
+"CpuDxe.sdl"
+
+[INF]
+"GetCpuInfo\GetCpuInfo.inf"
+"PlatformCpuPolicyDxe\PlatformCpuPolicyDxe.inf"
+<endComponent>

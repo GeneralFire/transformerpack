@@ -1,0 +1,15 @@
+<component>
+	name = "SiInit"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\SiInit\"
+	RefName = "ServerSiliconPkg.SiInit"
+[INF]
+"Dxe\SiInitDxe.inf"
+"Pei\SiInit.inf"
+"Pei\SiInitPreMem.inf"
+[files]
+"SiInit.sdl"
+"Dxe\SiInitDxe.h"
+"Pei\SiInit.h"
+"Pei\SiInitPreMem.h"	
+<endComponent>

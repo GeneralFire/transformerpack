@@ -1,0 +1,16 @@
+<component>
+	name = "LibraryPrivate"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Iio\Include\LibraryPrivate\"
+	RefName = "ServerSiliconPkg.Iio.Include.LibraryPrivate"
+[files]
+"IioPciePwrConf.h"
+"IioPchLinkPwrConf.h"
+"IioDfxInitPrivate.h"
+"IioDebug.h"
+"IioVmdConf.h"
+"IioPcieLib.h"
+"IioSpkConfigure.h"
+"IioMiscWorkArounds.h"
+"IioPwrConf.h"
+<endComponent>

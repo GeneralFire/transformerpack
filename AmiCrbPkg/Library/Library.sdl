@@ -1,0 +1,262 @@
+TOKEN
+    Name  = "CRB_Library_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable CRB library code support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PeiBmcBoardLib_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PeiBmcBoardLib support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "PeiBmcBoardLib"
+    File  = "PeiBmcBoardLib/PeiBmcBoardLib.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PeiBmcBoardLib_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiCrbPkg.PeiBmcBoardLib"
+    Override  = "AmiIpmi2Pkg.PeiIpmiInitialize"
+    Token = "PeiBmcBoardLib_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "DecodeBmcBaseAddress,"
+    Parent  = "InitLpcBmc,"
+    InvokeOrder = ReplaceParent
+    Token = "PeiBmcBoardLib_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "CheckPowerFailureStatus,"
+    Parent  = "BmcInitDelay,"
+    InvokeOrder = ReplaceParent
+    Token = "BMC_INIT_DELAY" "=" "1"
+    Token = "PeiBmcBoardLib_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "AmiPlatformAcpiLib"
+    File  = "AmiPlatformAcpiLib.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "DXE_DRIVER DXE_RUNTIME_DRIVER"
+End
+
+LibraryMapping
+    Class  = "AmiPlatformAcpiLib"
+    Instance  = "AmiCrbPkg.AmiPlatformAcpiLib"
+    ModuleTypes  = "DXE_DRIVER DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+    Name  = "AmiPlatformAcpiLibNull"
+    File  = "AmiPlatformAcpiLibNull/AmiPlatformAcpiLibNull.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "AmiPlatformAcpiLib"
+    Instance  = "AmiCrbPkg.AmiPlatformAcpiLibNull"
+End
+
+TOKEN
+    Name  = "SimicsSupportLib_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SimicsSupportLib support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "SimicsSupportLib"
+    File  = "SimicsSupportLib/SimicsSupportLib.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "DXE_CORE DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER UEFI_APPLICATION UEFI_DRIVER SMM_CORE"
+    Token = "SimicsSupportLib_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiCrbPkg.SimicsSupportLib"
+    Override  = "AmiIpmi2Pkg.DxeIpmiInitialize"
+    Token = "SimicsSupportLib_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "AmiPlatformHooksLibNull"
+    File  = "AmiPlatformHooksLibNull/AmiPlatformHooksLibNull.inf"
+    Package  = "AmiCrbPkg"
+End
+
+LibraryMapping
+    Class  = "AmiPlatformHooksLib"
+    Instance  = "AmiCrbPkg.AmiPlatformHooksLibNull"
+End
+
+INFComponent
+    Name  = "AmiPciBusSetupOverrideLib"
+    File  = "AmiPciBusSetupOverrideLib.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "DXE_DRIVER DXE_RUNTIME_DRIVER UEFI_DRIVER"
+End
+
+LibraryMapping
+    Class  = "AmiPciBusSetupOverrideLib"
+    Instance  = "AmiCrbPkg.AmiPciBusSetupOverrideLib"
+    ModuleTypes  = "DXE_DRIVER DXE_RUNTIME_DRIVER UEFI_DRIVER"
+End
+
+INFComponent
+    Name  = "AmiPciBusSetupOverrideLibNull"
+    File  = "AmiPciBusSetupOverrideLibNull/AmiPciBusSetupOverrideLibNull.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "AmiPciBusSetupOverrideLib"
+    Instance  = "AmiCrbPkg.AmiPciBusSetupOverrideLibNull"
+End
+
+INFComponent
+    Name  = "AmiPciAccessCspBaseLibOverride"
+    File  = "AmiPciAccessCspBaseLibOverride/AmiPciAccessCspBaseLibOverride.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PciAccessCspLib"
+    Instance  = "AmiCrbPkg.AmiPciAccessCspBaseLibOverride"
+    ModuleTypes  = "DXE_DRIVER UEFI_DRIVER DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "AmiSetupVariableSyncLib"
+    File  = "AmiSetupVariableSyncLib/AmiSetupVariableSyncLib.inf"
+    Package  = "AmiCrbPkg"
+End
+
+ELINK
+    Name  = "SetNvramVariableSyncHook,"
+    Parent  = "SetVariableHook"
+    Help  = "Called before SetVariable"
+    InvokeOrder = AfterParent
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiCrbPkg.AmiSetupVariableSyncLib"
+    Override  = "AmiModulePkg.NvramDxe"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiCrbPkg.AmiSetupVariableSyncLib"
+    Override  = "AmiModulePkg.NvramSmm"
+    Token = "SMM_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "AmiSmmCorePlatformHooksLib"
+    File  = "AmiSmmCorePlatformHooksLib/AmiSmmCorePlatformHooksLib.inf"
+    Package  = "AmiCrbPkg"
+    Token = "SMM_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "AmiSmmCorePlatformHooksLib"
+    Instance  = "AmiCrbPkg.AmiSmmCorePlatformHooksLib"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiCrbPkg.AmiSmmCorePlatformHooksLib"
+    Override  = "MdeModulePkg.PiSmmCore"
+End
+
+# EIP547597
+#ELINK
+#    Name  = "RasProcessInViralBeforeSmm,"
+#    Parent  = "PLATFORMHOOK_BEFORE_AFTER_SMMDISPATCH"
+#    InvokeOrder = AfterParent
+#End
+
+INFComponent
+    Name  = "AmiCmosLib"
+    File  = "AmiCmosLib/AmiCmosLib.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "BASE"
+    Token = "CMOS_MANAGER_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "AmiCmosLib"
+    Parent  = "AMI_CSP_LIBRARIES"
+    InvokeOrder = AfterParent
+   Token = "CMOS_MANAGER_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "AmiCmosLib"
+    Instance  = "AmiCrbPkg.AmiCmosLib"
+   Token = "CMOS_MANAGER_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "AmiSmbiosLib"
+    Parent  = "AMI_CSP_LIBRARIES"
+    InvokeOrder = AfterParent
+End
+
+INFComponent
+    Name  = "AmiSmbiosLib"
+    File  = "AmiSmbiosLib/AmiSmbiosLib.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "AmiSmbiosLib"
+    Instance  = "AmiCrbPkg.AmiSmbiosLib"
+End
+
+ELINK
+    Name  = "AmiShadowLib"
+    Parent  = "AMI_CSP_LIBRARIES"
+    InvokeOrder = AfterParent
+End
+
+INFComponent
+    Name  = "AmiShadowLib"
+    File  = "AmiShadowLib/AmiShadowLib.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "AmiShadowLib"
+    Instance  = "AmiCrbPkg.AmiShadowLib"
+End
+
+
+#INFComponent
+#    Name  = "CmosAccessLib"
+#    File  = "CmosAccessLib/CmosAccessLib.inf"
+#    Package  = "AmiCrbPkg"
+#    ModuleTypes  = "BASE"
+#End
+
+#LibraryMapping
+#    Class  = "CmosAccessLib"
+#    Instance  = "AmiCrbPkg.CmosAccessLib"
+#End

@@ -1,0 +1,47 @@
+TOKEN
+    Name  = "Heci_Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Heci support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+	Class  = "MeShowBufferLib"
+	Instance  = "ServerSiliconPkg.PeiDxeMeShowBufferLib"
+    Arch  = "IA32"
+    Token = "ME_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MeShowBufferLib"
+    Instance  = "ServerSiliconPkg.PeiDxeMeShowBufferLib"
+    Arch  = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "MeTypeGetLib"
+    File  = "MeTypeGetLib\MeTypeGetHeciPeiLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "MeTypeGetLib"
+    Instance  = "ServerSiliconPkg.MeTypeGetLib"
+    Arch = "IA32"    
+End
+
+INFComponent
+    Name  = "ServerDxeMeLib"
+    File  = "DxeMeLib/ServerDxeMeLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "ServerDxeMeLib"
+    Instance  = "ServerSiliconPkg.ServerDxeMeLib"
+    Arch = "X64"     
+End

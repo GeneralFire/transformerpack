@@ -1,0 +1,7 @@
+TOKEN
+    Name  = "Vtd_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Vtd support in the project"
+    TokenType = Boolean
+    Master = Yes
+End

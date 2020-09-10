@@ -1,0 +1,56 @@
+TOKEN
+    Name  = "Dxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Dxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SmbiosDataUpdateDxeArcherCityRP_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SmbiosDataUpdateDxeArcherCityRP support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "SmbiosDataUpdateDxeArcherCityRP"
+    File  = "SmbiosDataUpdateDxe/SmbiosDataUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "PPO_FLAG" "=" "0"
+    Token = "SmbiosDataUpdateDxeArcherCityRP_INF_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "StaticSkuDataDxeArcherCityRP_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable StaticSkuDataDxeArcherCityRP support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "StaticSkuDataDxeArcherCityRP"
+    File  = "StaticSkuDataDxe/StaticSkuDataDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "StaticSkuDataDxeArcherCityRP_INF_SUPPORT" "=" "1"
+    Token = "PPO_FLAG" "=" "0"
+End
+
+TOKEN
+    Name  = "UsbOcUpdateDxeArcherCityRP_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable UsbOcUpdateDxeArcherCityRP support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "UsbOcUpdateDxeArcherCityRP"
+    File  = "UsbOcUpdateDxe/UsbOcUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "PPO_FLAG" "=" "0"
+    Token = "UsbOcUpdateDxeArcherCityRP_INF_SUPPORT" "=" "1"
+End
+

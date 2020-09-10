@@ -1,0 +1,63 @@
+TOKEN
+    Name  = "MemMcIpLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling MemMcIpLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "HwMemMcIpTargetLib"
+    File  = "HwMemMcIpTargetLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "MemMcIpLibSpr"
+    File  = "MemMcIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"    
+    Token = "HBM_ENABLE" "=" "0"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+INFComponent
+    Name  = "MemMcIpRasLibIcx"
+    File  = "MemMcIpRasLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"    
+End
+
+INFComponent
+    Name  = "MemMcIpLibSprHbm"
+    File  = "MemMcIpLibSprHbm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"    
+    Token = "HBM_ENABLE" "=" "1"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "MemMcIpLib"
+    Instance  = "ServerSiliconPkg.MemMcIpLibSprHbm"
+    Token = "HBM_ENABLE" "=" "1"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "MemMcIpTargetLib"
+    Instance  = "ServerSiliconPkg.HwMemMcIpTargetLib"
+End
+
+LibraryMapping
+    Class  = "MemMcIpLib"
+    Instance  = "ServerSiliconPkg.MemMcIpLibSpr"
+    Token = "HBM_ENABLE" "=" "0"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "MemMcIpRasLib"
+    Instance  = "ServerSiliconPkg.MemMcIpRasLibIcx"
+End

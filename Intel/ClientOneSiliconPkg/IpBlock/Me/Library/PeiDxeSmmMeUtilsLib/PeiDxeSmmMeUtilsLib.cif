@@ -1,0 +1,10 @@
+<component>
+    name = "PeiDxeSmmMeUtilsLib"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\Library\PeiDxeSmmMeUtilsLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.Library.PeiDxeSmmMeUtilsLib"
+[INF]
+"MeUtilsLib.inf"
+[files]
+"PeiDxeSmmMeUtilsLib.sdl"	
+<endComponent>

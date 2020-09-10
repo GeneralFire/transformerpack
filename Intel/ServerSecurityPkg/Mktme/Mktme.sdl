@@ -1,0 +1,55 @@
+TOKEN
+	Name  = "Mktme_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Mktme support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+    Name  = "MktmeLateInit_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable MktmeLateInit support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "MktmeCoreInit"
+    File  = "MktmeCoreInit\MktmeCoreInit.inf"
+    Package  = "ServerSecurityPkg"
+    ModuleTypes  = "PEIM"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "MktmeLateInit"
+    File  = "MktmeLateInit\MktmeLateInit.inf"
+    Package  = "ServerSecurityPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"      
+    Token = "MktmeLateInit_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.BaseUsraLib"
+    Override  = "ServerSecurityPkg.MktmeCoreInit"
+End
+
+LibraryMapping
+    Class  = "BaseLib"
+    Instance  = "ServerSiliconPkg.BaseLib"
+    Override  = "ServerSecurityPkg.MktmeCoreInit"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterLogLib"
+    Instance  = "ServerSiliconPkg.UsraRegisterLogLibUBios"
+    Override  = "ServerSecurityPkg.MktmeCoreInit"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterFilterLib"
+    Instance  = "CpRcPkg.UsraRegisterFilterLibNull"
+    Override  = "ServerSecurityPkg.MktmeCoreInit"
+End

@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "PeiPchInitLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiPchInitLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PchInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchInitLibEbg"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "PeiPchInitLibEbg"
+    File  = "PeiPchInitLibEbg.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+

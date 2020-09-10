@@ -1,0 +1,94 @@
+TOKEN
+    Name  = "ServerSiliconPkg_Cpu_Lib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling ServerSiliconPkg CPU Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+	Name  = "CpuConfigLib"
+	File  = "CpuConfigLib/CpuConfigLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+    Class  = "CpuConfigLib"
+    Instance  = "ServerSiliconPkg.CpuConfigLib"
+End
+
+INFComponent
+    Name  = "CpuPlatformLib"
+    File  = "CpuPlatformLib/CpuPlatformLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "CpuPlatformLib"
+    Instance  = "ServerSiliconPkg.CpuPlatformLib"
+End
+
+INFComponent
+	Name  = "CpuEarlyDataLib"
+	File  = "CpuEarlyDataLib/CpuEarlyDataLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "CpuEarlyDataLib"
+    Instance  = "ServerSiliconPkg.CpuEarlyDataLib"
+End
+
+INFComponent
+	Name  = "CpuPreMemPolicyLib"
+	File  = "CpuPreMemPolicyLib/CpuPreMemPolicyLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "CpuPreMemPolicyLib"
+	Instance  = "ServerSiliconPkg.CpuPreMemPolicyLib"
+End
+
+INFComponent
+    Name  = "CpuSpecificFeaturesLibDxe"
+    File  = "CpuSpecificFeaturesLib/CpuSpecificFeaturesLibDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SKX_ONLY_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "CpuSpecificFeaturesLibPei"
+    File  = "CpuSpecificFeaturesLib/CpuSpecificFeaturesLibPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PeiPpmPolicyLib"
+    File  = "PeiPpmPolicyLib/PeiPpmPolicyLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PeiPpmPolicyLib"
+    Instance  = "ServerSiliconPkg.PeiPpmPolicyLib"
+End
+
+INFComponent
+    Name  = "PeiCpuLatePolicyLib"
+    File  = "PeiCpuLatePolicyLib/PeiCpuLatePolicyLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PeiCpuLatePolicyLib"
+    Instance  = "ServerSiliconPkg.PeiCpuLatePolicyLib"
+End

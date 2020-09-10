@@ -1,0 +1,13 @@
+<component>
+    name = "Sata"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Sata\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Sata"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Sata.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Sata.Library"
+"ClientOneSiliconPkg.IpBlock.Sata.LibraryPrivate"
+[files]
+"Include\SataCtrl.h"
+"AcpiTables\Sata.asl"
+<endComponent>

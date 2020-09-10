@@ -1,0 +1,11 @@
+<component>
+	name = "Chip10nm"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Library\ProcMemInit\Chip10nm\"
+	RefName = "ServerSiliconPkg.Library.ProcMemInit.Chip10nm"
+[files]	
+"Ddr5\Include\MemProjectSpecificDdr5.h" 
+"Include\MemHostChip10nm.h"		
+"Include\RcRegs10nm.h"	
+"Include\PerformanceValueTables.h"
+<endComponent>

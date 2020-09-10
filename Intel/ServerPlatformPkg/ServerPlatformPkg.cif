@@ -1,0 +1,23 @@
+<component>
+    name = "ServerPlatformPkg"
+    category = eModule
+    LocalRoot = "Intel\ServerPlatformPkg\"
+    RefName = "ServerPlatformPkg"
+[files]
+"PlatformPkg.dec"	
+"PlatformPkg.mak"	
+"postbuildFitGen.bat"	
+"SprBuildImage.bat"	
+"ServerPlatformPkg.sdl"	
+[parts]
+"ServerPlatformPkg.BootGuard"
+"ServerPlatformPkg.Features"
+"ServerPlatformPkg.IntelLtsxFit"
+"ServerPlatformPkg.Include"
+"ServerPlatformPkg.Legacy"
+"ServerPlatformPkg.Library"
+"ServerPlatformPkg.Platform"
+"ServerPlatformPkg.PpiX"
+"ServerPlatformPkg.Uba"
+"ServerPlatformPkg.Universal"
+<endComponent>

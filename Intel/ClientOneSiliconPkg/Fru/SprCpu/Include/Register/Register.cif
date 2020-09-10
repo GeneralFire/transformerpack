@@ -1,0 +1,8 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\SprCpu\Include\Register\"
+    RefName = "ClientOneSiliconPkg.Fru.SprCpu.Include.Register"
+[files]
+"SaRegsHostBridge.h"	
+<endComponent>

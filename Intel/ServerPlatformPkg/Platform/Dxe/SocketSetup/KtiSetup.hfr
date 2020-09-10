@@ -1,0 +1,518 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include <KtiSetupDefinitions.h>
+
+  //
+  // Kti Submenu
+  //
+form formid = VFR_FORMID_KTI,
+    title   = STRING_TOKEN(STR_KTI_CONFIG_FORM_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_KTI_CONFIG_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+    //
+    // Jump to KTI Status Form
+    //
+    goto VFR_FORMID_KTI_GENERAL,
+        prompt  = STRING_TOKEN(STR_KTI_GENERAL_FORM_TITLE),
+        help    = STRING_TOKEN(STR_KTI_GENERAL_FORM_HELP);
+
+    //
+    // Jump to KTI Per Socket Configuration Form
+    //
+    goto VFR_FORMID_KTIPERSOCKET,
+        prompt = STRING_TOKEN(STR_KTI_PERSOCKET_FORM_TITLE),
+        help   = STRING_TOKEN(STR_KTI_PERSOCKET_FORM_HELP);
+
+#if FixedPcdGetBool (PcdBiosDfxKnobEnabled) == 1
+    //
+    // Jump to KTI Dfx Configuration Form
+    //
+    goto VFR_FORMID_KTI_DFX,
+        prompt = STRING_TOKEN(STR_KTI_DFX_CONFIG_FORM_TITLE),
+        help   = STRING_TOKEN(STR_KTI_DFX_CONFIG_FORM_HELP);
+
+    //
+    // Jump to KTI Dfx Per Socket Configuration Form
+    //
+    goto VFR_FORMID_KTI_DFX_PER_SOCKET,
+        prompt = STRING_TOKEN(STR_KTI_DFX_PERSOCKET_FORM_TITLE),
+        help   = STRING_TOKEN(STR_KTI_DFX_PERSOCKET_FORM_HELP);
+
+
+#endif
+endform;
+
+
+form formid = VFR_FORMID_KTI_GENERAL,
+    title   = STRING_TOKEN(STR_KTI_GENERAL_FORM_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_KTI_GENERAL_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+    //
+    // Jump to KTI Status Form
+    //
+    goto VFR_FID_KTI_STATUS,
+        prompt  = STRING_TOKEN(STR_KTI_STATUS_TITLE),
+        help    = STRING_TOKEN(STR_KTI_STATUS_HELP);
+
+    //
+    // Upi General Setup Options
+    //
+#if MAX_SOCKET > 1
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.DegradePrecedence,
+        prompt  = STRING_TOKEN(STR_KTI_DEGRADE_PRECEDENCE),
+        help    = STRING_TOKEN(STR_KTI_DEGRADE_PRECEDENCE_HELP),
+        option text = STRING_TOKEN(STR_KTI_TOPOLOGY_PRECEDENCE_STRING),         value = TOPOLOGY_PRECEDENCE, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_KTI_FEATURE_PRECEDENCE_STRING),          value = FEATURE_PRECEDENCE,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.Degrade4SPreference,
+        prompt  = STRING_TOKEN(STR_KTI_DEGRADE_4S_PREFERENCE),
+        help    = STRING_TOKEN(STR_KTI_DEGRADE_4S_PREFERENCE_HELP),
+        option text = STRING_TOKEN(STR_KTI_4S_FULLY_CONNECT_STRING),        value = TOPOLOGY_4S_FULLY_CONNECT, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_KTI_4S_DUALLINK_RING_STRING),        value = TOPOLOGY_4S_DUALLINK_RING, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.QpiLinkSpeedMode,
+        prompt  = STRING_TOKEN(STR_KTI_LINK_SPEED_MODE),
+        help    = STRING_TOKEN(STR_KTI_LINK_SPEED_MODE_HELP),
+        option text = STRING_TOKEN(STR_KTI_MODE_SLOW),          value = KTI_LINK_SLOW_SPEED_MODE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_MODE_FAST),          value = KTI_LINK_FULL_SPEED_MODE, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.QpiLinkSpeed,
+          prompt  = STRING_TOKEN(STR_KTI_FREQ_SELECT),
+          help    = STRING_TOKEN(STR_KTI_FREQ_SELECT_HELP),
+          option text = STRING_TOKEN(STR_LINKSPEED_96G_STRING),   value = SPEED_REC_96GT,     flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_LINKSPEED_104G_STRING),  value = SPEED_REC_104GT,    flags = RESET_REQUIRED;
+        suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR
+                   ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX OR
+                   ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX;
+          option text = STRING_TOKEN(STR_LINKSPEED_112G_STRING),  value = SPEED_REC_112GT,    flags = RESET_REQUIRED;
+        endif;
+          option text = STRING_TOKEN(STR_LINKSPEED_AUTO_STRING),  value = MAX_KTI_LINK_SPEED, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_KTI_PERLINK_SETTING),    value = FREQ_PER_LINK,      flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.QpiLinkSpeed,
+          prompt  = STRING_TOKEN(STR_KTI_FREQ_SELECT),
+          help    = STRING_TOKEN(STR_KTI_FREQ_SELECT_HELP),
+//Transformers_JK019***>>
+          option text = STRING_TOKEN(STR_LINKSPEED_128G_STRING),  value = SPEED_REC_128GT,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_LINKSPEED_144G_STRING),  value = SPEED_REC_144GT,    flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_LINKSPEED_160G_STRING),  value = SPEED_REC_160GT,    flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_LINKSPEED_AUTO_STRING),  value = MAX_KTI_LINK_SPEED, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_KTI_PERLINK_SETTING),    value = FREQ_PER_LINK,      flags = RESET_REQUIRED;
+//Transformers_JK019***<<
+      endoneof;
+    endif;
+
+    oneof varid    = SOCKET_MP_LINK_CONFIGURATION.KtiLinkL0pEn,
+        prompt   = STRING_TOKEN(STR_LINKL0P_PROMPT),
+        help     = STRING_TOKEN(STR_LINKL0P_HELP),
+//Transformers_JK019***>>
+        option text = STRING_TOKEN(STR_KTI_DISABLE),         value = KTI_DISABLE, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_KTI_ENABLE),          value = KTI_ENABLE,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_AUTO),            value = KTI_AUTO,    flags = RESET_REQUIRED;
+//Transformers_JK019***<<    
+    endoneof;
+
+    oneof varid    = SOCKET_MP_LINK_CONFIGURATION.KtiLinkL1En,
+        prompt   = STRING_TOKEN(STR_LINKL1_PROMPT),
+        help     = STRING_TOKEN(STR_LINKL1_HELP),
+//Transformers_JK019***>>
+        option text = STRING_TOKEN(STR_KTI_DISABLE),         value = KTI_DISABLE, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_KTI_ENABLE),          value = KTI_ENABLE,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_AUTO),            value = KTI_AUTO,    flags = RESET_REQUIRED;
+//Transformers_JK019***<<    
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.KtiFailoverEn,
+        prompt  = STRING_TOKEN(STR_KTI_FAILOVER_ENABLE),
+        help    = STRING_TOKEN(STR_KTI_FAILOVER_ENABLE_HELP),
+        option text = STRING_TOKEN(STR_KTI_DISABLE),         value = KTI_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_ENABLE),          value = KTI_ENABLE,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_AUTO),            value = KTI_AUTO,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.DirectoryModeEn,
+        prompt  = STRING_TOKEN(STR_DIRECTORY_PROMPT),
+        help    = STRING_TOKEN(STR_DIRECTORY_HELP),
+        option text = STRING_TOKEN(STR_KTI_DISABLE),  value = KTI_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_ENABLE),   value = KTI_ENABLE,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_AUTO),     value = KTI_AUTO,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.XptRemotePrefetchEn,
+       prompt  = STRING_TOKEN(STR_XPT_REMOTE_PREFETCH),
+       help    = STRING_TOKEN(STR_XPT_REMOTE_PREFETCH_HELP),
+       option text = STRING_TOKEN(STR_DISABLE),  value = KTI_DISABLE,  flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_ENABLE),   value = KTI_ENABLE ,  flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_KTI_AUTO), value = KTI_AUTO,     flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    grayoutif ideqval SOCKET_COMMONRC_CONFIGURATION.HbmSku == 1;
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.KtiPrefetchEn,
+       prompt  = STRING_TOKEN(STR_KTI_PREFETCH),
+       help    = STRING_TOKEN(STR_KTI_PREFETCH_HELP),
+       option text = STRING_TOKEN(STR_DISABLE),                 value = KTI_DISABLE, flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_ENABLE),                  value = KTI_ENABLE,  flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_KTI_AUTO),                value = KTI_AUTO,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+    endif;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.RdCurForXptPrefetchEn,
+        prompt  = STRING_TOKEN(STR_RDCUR_PROMPT),
+        help    = STRING_TOKEN(STR_RDCUR_HELP),
+        option text = STRING_TOKEN(STR_KTI_DISABLE),  value = KTI_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_ENABLE),   value = KTI_ENABLE,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_AUTO),     value = KTI_AUTO,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.KtiLinkVnaOverride,
+        prompt  = STRING_TOKEN(STR_KTI_VNA_OVERRIDE),
+        help    = STRING_TOKEN(STR_KTI_VNA_OVERRIDE_HELP),
+        option text = STRING_TOKEN(STR_VNA_MAX),                value = KTI_LL_VNA_SETUP_MAX,      flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_VNA_MIN),                value = KTI_LL_VNA_SETUP_MIN,      flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_VNA_PER_LINK),           value = KTI_LL_VNA_SETUP_PER_LINK, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX);
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.KtiCrcMode,
+          prompt  = STRING_TOKEN(STR_KTI_CRC_MODE),
+          help    = STRING_TOKEN(STR_KTI_CRC_MODE_HELP),
+          option text = STRING_TOKEN(STR_KTI_16BIT_CRC),          value = CRC_MODE_16BIT,         flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_KTI_32BIT_ROLLING),      value = CRC_MODE_ROLLING_32BIT, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_KTI_AUTO),               value = CRC_MODE_AUTO,          flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      endoneof;
+    endif;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.KtiLbEn,
+        prompt  = STRING_TOKEN(STR_KTI_LB_EN),
+        help    = STRING_TOKEN(STR_KTI_LB_EN_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),                value = KTI_DISABLE, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),                 value = KTI_ENABLE,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.KtiSkuMismatchCheck,
+        prompt  = STRING_TOKEN(STR_KTI_SKU_MISMATCH_CHECK),
+        help    = STRING_TOKEN(STR_KTI_SKU_MISMATCH_CHECK_HELP),
+        option text = STRING_TOKEN(STR_NO),     value = KTI_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_YES),    value = KTI_ENABLE,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.IrqThreshold,
+        prompt  = STRING_TOKEN(STR_KTI_IRQ_THRESHOLD),
+        help    = STRING_TOKEN(STR_KTI_IRQ_THRESHOLD_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),          value = THRESHOLDS_DISABLE,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_AUTO),             value = THRESHOLDS_AUTO,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_LOW_THRESHOLD),    value = THRESHOLDS_LOW,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEDIUM_THRESHOLD), value = THRESHOLDS_MEDIUM,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_HIGH_THRESHOLD),   value = THRESHOLDS_HIGH,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.TorThresLoctoremNorm,
+        prompt  = STRING_TOKEN(STR_KTI_TOR_THRESHOLD_LOCTOREM_NORMAL),
+        help    = STRING_TOKEN(STR_KTI_TOR_THRESHOLD_LOCTOREM_NORMAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),          value = THRESHOLDS_DISABLE,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_AUTO),             value = THRESHOLDS_AUTO,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_LOW_THRESHOLD),    value = THRESHOLDS_LOW,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEDIUM_THRESHOLD), value = THRESHOLDS_MEDIUM,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_HIGH_THRESHOLD),   value = THRESHOLDS_HIGH,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.TorThresLoctoremEmpty,
+        prompt  = STRING_TOKEN(STR_KTI_TOR_THRESHOLD_LOCTOREM_EMPTY),
+        help    = STRING_TOKEN(STR_KTI_TOR_THRESHOLD_LOCTOREM_EMPTY_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),          value = THRESHOLDS_DISABLE,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_AUTO),             value = THRESHOLDS_AUTO,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_LOW_THRESHOLD),    value = THRESHOLDS_LOW,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEDIUM_THRESHOLD), value = THRESHOLDS_MEDIUM,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_HIGH_THRESHOLD),   value = THRESHOLDS_HIGH,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.TscSyncEn,
+      prompt  = STRING_TOKEN(STR_TSCSYNCEN),
+      help    = STRING_TOKEN(STR_TSCSYNCEN_HELP),
+      option text = STRING_TOKEN(STR_DISABLE),      value = KTI_DISABLE,  flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLE),       value = KTI_ENABLE,  flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_AUTO_STRING),  value = KTI_AUTO,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX OR
+               ideqvallist SOCKET_COMMONRC_CONFIGURATION.SystemRasType == HEDT_RAS STANDARD_RAS CORE_RAS FPGA_RAS;
+        oneof varid = SOCKET_MP_LINK_CONFIGURATION.QpiCpuSktHotPlugEn,
+            prompt  = STRING_TOKEN(STR_KTI_CPU_HOT_PLUG),
+            help    = STRING_TOKEN(STR_KTI_CPU_HOT_PLUG_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),                value = KTI_DISABLE, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_ENABLE),                 value = KTI_ENABLE,  flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid = SOCKET_MP_LINK_CONFIGURATION.KtiCpuSktHotPlugTopology,
+            prompt  = STRING_TOKEN(STR_KTI_CPU_HOT_PLUG_TOPOLOGY),
+            help    = STRING_TOKEN(STR_KTI_CPU_HOT_PLUG_TOPOLOGY_HELP),
+            option text = STRING_TOKEN(STR_KTI_CPU_HOT_PLUG_TOPOLOGY_4S),   value = HOT_PLUG_TOPOLOGY_4S, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_KTI_CPU_HOT_PLUG_TOPOLOGY_8S),   value = HOT_PLUG_TOPOLOGY_8S, flags = RESET_REQUIRED;
+        endoneof;
+    endif;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.IoDcMode,
+       prompt  = STRING_TOKEN(STR_IODC),
+       help    = STRING_TOKEN(STR_IODC_HELP),
+       option text = STRING_TOKEN(STR_KTI_DISABLE),                        value = IODC_DISABLE, flags = RESET_REQUIRED;
+     suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX AND
+                ideqval SOCKET_MEMORY_CONFIGURATION.DisableDirForAppDirect == DIRECTORY_FOR_APP_DIRECT_ENABLE;
+       option text = STRING_TOKEN(STR_KTI_AUTO),                           value = IODC_AUTO, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+       option text = STRING_TOKEN(STR_IODC_EN_REM_INVITOM_PUSH),           value = IODC_EN_REM_INVITOM_PUSH, flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_IODC_EN_REM_INVITOM_ALLOCFLOW),      value = IODC_EN_REM_INVITOM_ALLOCFLOW, flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_IODC_EN_REM_INVITOM_ALLOC_NONALLOC), value = IODC_EN_REM_INVITOM_ALLOC_NONALLOC, flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_IODC_EN_REM_INVITOM_AND_WCILF),      value = IODC_EN_REM_INVITOM_AND_WCILF, flags = RESET_REQUIRED;
+     endif;
+    endoneof;
+
+    numeric varid = SOCKET_MP_LINK_CONFIGURATION.LegacyVgaSoc,
+        prompt  = STRING_TOKEN (STR_KTI_LEGACY_VGA_SOC),
+        help    = STRING_TOKEN (STR_KTI_LEGACY_VGA_SOC_HELP),
+        flags   = 0 | RESET_REQUIRED,
+        minimum = LEGACY_VGA_SOCKET_MIN,
+        maximum = LEGACY_VGA_SOCKET_MAX,
+        step    = 1,  // Stepping of 0 equates to a manual entering of a value,
+                      // otherwise it will auto-increment with a left/right arrow
+        default = LEGACY_VGA_SOCKET_DFLT, defaultstore = MyStandardDefault,
+        default = LEGACY_VGA_SOCKET_DFLT, defaultstore = MyManufactureDefault,
+    endnumeric;
+#endif//if MAX_SOCKET > 1
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.SplitLock,
+       prompt  = STRING_TOKEN(STR_SPLITLOCK),
+       help    = STRING_TOKEN(STR_SPLITLOCK_HELP),
+       option text = STRING_TOKEN(STR_DISABLE),                 value = KTI_DISABLE, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+       option text = STRING_TOKEN(STR_ENABLE),                  value = KTI_ENABLE,  flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_KTI_AUTO),                value = KTI_AUTO,    flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+              (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD AND
+               ideqval SOCKET_COMMONRC_CONFIGURATION.CpuChop == CPU_CHOP_TYPE_LCC);
+        oneof varid = SOCKET_MP_LINK_CONFIGURATION.SncEn,
+            questionid = KEY_SNC_EN,
+            prompt  = STRING_TOKEN(STR_SNC_PROMPT),
+            help    = STRING_TOKEN(STR_SNC_HELP),
+#if defined (SKX_HOST) || defined (ICXDE_HOST) || defined (SNR_HOST)
+            option text = STRING_TOKEN(STR_KTI_DISABLE),  value = KTI_DISABLE, flags = INTERACTIVE | RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_KTI_ENABLE),   value = KTI_ENABLE,  flags = INTERACTIVE | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_KTI_AUTO),     value = KTI_AUTO,    flags = RESET_REQUIRED;
+#else
+            option text = STRING_TOKEN(STR_KTI_DISABLE),  value = KTI_DISABLE,  flags = INTERACTIVE | RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.HbmSku == 1;
+            option text = STRING_TOKEN(STR_KTI_SNC2),     value = KTI_SNC2,     flags = INTERACTIVE | RESET_REQUIRED;
+            endif;
+            suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuChop == CPU_CHOP_TYPE_UCC;
+            option text = STRING_TOKEN(STR_KTI_SNC4),     value = KTI_SNC4,     flags = INTERACTIVE | RESET_REQUIRED;
+            endif;
+#endif
+        endoneof;
+
+    endif; //ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR;
+#if defined (DDR5_SUPPORT) && !defined (SPR_HOST)
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.XptPrefetchEn,
+        questionid = KEY_XPT_PREFETCH_EN,
+        prompt  = STRING_TOKEN(STR_XPT_PREFETCH),
+        help    = STRING_TOKEN(STR_XPT_PREFETCH_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),                 value = KTI_DISABLE, flags = INTERACTIVE | RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),                  value = KTI_ENABLE,  flags = INTERACTIVE | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_AUTO),                value = KTI_AUTO,    flags = RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+#else
+    grayoutif ideqval SOCKET_COMMONRC_CONFIGURATION.HbmSku == 1;
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.XptPrefetchEn,
+        questionid = KEY_XPT_PREFETCH_EN,
+        prompt  = STRING_TOKEN(STR_XPT_PREFETCH),
+        help    = STRING_TOKEN(STR_XPT_PREFETCH_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),                 value = KTI_DISABLE, flags = INTERACTIVE | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),                  value = KTI_ENABLE,  flags = INTERACTIVE | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_KTI_AUTO),                value = KTI_AUTO,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+    endif;
+#endif
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX);
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.D2KCreditConfig,
+          prompt  = STRING_TOKEN(STR_D2K_CONFIG),
+          help    = STRING_TOKEN(STR_D2K_CONFIG_HELP),
+          option text = STRING_TOKEN(STR_D2K_LOW),                  value = KTI_D2K_LOW, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_D2K_MEDIUM),               value = KTI_D2K_MED, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_D2K_HIGH),                 value = KTI_D2K_MAX, flags = RESET_REQUIRED;
+      endoneof;
+    endif;// NOT CPX
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP);
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.SnoopThrottleConfig,
+          prompt  = STRING_TOKEN(STR_STC_CONFIG),
+          help    = STRING_TOKEN(STR_STC_CONFIG_HELP),
+          option text = STRING_TOKEN(STR_STC_DIS),                  value = KTI_STC_DIS,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_STC_LOW),                  value = KTI_STC_LOW,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_STC_MEDIUM),               value = KTI_STC_MED,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_STC_HIGH),                 value = KTI_STC_MAX,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_KTI_AUTO),                 value = KTI_STC_AUTO, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      endoneof;
+    endif;// NOT CPX
+
+    numeric varid = SOCKET_MP_LINK_CONFIGURATION.LegacyVgaStack,
+        prompt  = STRING_TOKEN (STR_KTI_LEGACY_VGA_STACK),
+        help    = STRING_TOKEN (STR_KTI_LEGACY_VGA_STACK_HELP),
+        flags   = 0 | RESET_REQUIRED,
+        minimum = LEGACY_VGA_STACK_MIN,
+        maximum = LEGACY_VGA_STACK_MAX,
+        step    = 1,  // Stepping of 0 equates to a manual entering of a value,
+                     // otherwise it will auto-increment with a left/right arrow
+        default = LEGACY_VGA_STACK_DFLT, defaultstore = MyStandardDefault,
+        default = LEGACY_VGA_STACK_DFLT, defaultstore = MyManufactureDefault,
+    endnumeric;
+
+#if !defined (SKX_HOST)
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.P2pRelaxedOrdering,
+        prompt  = STRING_TOKEN(STR_KTI_PCIE_P2P_RELAXED_ORDERING),
+        help    = STRING_TOKEN(STR_KTI_PCIE_P2P_RELAXED_ORDERING_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),                value = KTI_DISABLE, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),                 value = KTI_ENABLE,  flags = RESET_REQUIRED;
+    endoneof;
+#endif
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.DebugPrintLevel,
+        prompt  = STRING_TOKEN(STR_DEBUG_PRTLVL_PROMPT),
+        help    = STRING_TOKEN(STR_DEBUG_PRTLVL_HELP),
+        option text = STRING_TOKEN(STR_DEBUG_PRTLVL_FATAL_STRING),     value = KTI_DEBUG_PRINT_FATAL_ONLY, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DEBUG_PRTLVL_WARNING_STRING),   value = KTI_DEBUG_PRINT_WARNING_ONLY, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DEBUG_PRTLVL_SUMMARY_STRING),   value = KTI_DEBUG_PRINT_INFO_SUMMARY_ONLY, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DEBUG_PRTLVL_DETAIL_STRING),    value = KTI_DEBUG_PRINT_INFO_DETAILED_ONLY, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DEBUG_PRTLVL_ALL_STRING),       value = KTI_DEBUG_PRINT_ALL, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.StaleAtoSOptEn,
+       prompt  = STRING_TOKEN(STR_A_TO_S_OPT_EN),
+       help    = STRING_TOKEN(STR_A_TO_S_OPT_EN_HELP),
+       option text = STRING_TOKEN(STR_DISABLE),                 value = KTI_DISABLE, flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_ENABLE),                  value = KTI_ENABLE,  flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_KTI_AUTO),                value = KTI_AUTO,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.LLCDeadLineAlloc,
+       prompt  = STRING_TOKEN(STR_LLC_DEAD_LINE_ALLOC),
+       help    = STRING_TOKEN(STR_LLC_DEAD_LINE_ALLOC_HELP),
+       option text = STRING_TOKEN(STR_DISABLE),                 value = KTI_DISABLE, flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_ENABLE),                  value = KTI_ENABLE,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+       option text = STRING_TOKEN(STR_KTI_AUTO),                value = KTI_AUTO,    flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.KtiAdaptationEn,
+          prompt  = STRING_TOKEN(STR_KTI_ADAPTATION_REQUEST),
+          help    = STRING_TOKEN(STR_KTI_ADAPTATION_REQUEST_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),     value = KTI_DISABLE, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),      value = KTI_ENABLE,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_KTI_AUTO),    value = KTI_AUTO,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      endoneof;
+
+      suppressif NOT ideqval SOCKET_MP_LINK_CONFIGURATION.KtiAdaptationEn == KTI_ENABLE;
+        oneof varid = SOCKET_MP_LINK_CONFIGURATION.KtiAdaptationSpeed,
+          prompt  = STRING_TOKEN(STR_KTI_ADAPTATION_SPEED),
+          help    = STRING_TOKEN(STR_KTI_ADAPTATION_SPEED_HELP),
+//Transformers_JK019***>>
+          option text = STRING_TOKEN(STR_LINKSPEED_128G_STRING),   value = SPEED_REC_128GT,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_LINKSPEED_144G_STRING),   value = SPEED_REC_144GT,    flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_LINKSPEED_160G_STRING),   value = SPEED_REC_160GT,    flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_LINKSPEED_AUTO_STRING),   value = MAX_KTI_LINK_SPEED, flags = RESET_REQUIRED;
+//Transformers_JK019***<<
+        endoneof;
+      endif;
+    endif;
+
+endform;
+
+form formid = VFR_FID_KTI_STATUS,
+    title   = STRING_TOKEN(STR_KTI_STATUS_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_KTI_STATUS_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_KTI_NUMBER_OF_CPU),
+        text   = STRING_TOKEN(STR_KTI_NUMBER_OF_CPU_VAL),
+        flags  = 0, key = 0;
+
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_KTI_NUMBER_OF_IIO),
+        text   = STRING_TOKEN(STR_KTI_NUMBER_OF_IIO_VAL),
+        flags  = 0, key = 0;
+
+#if MAX_SOCKET > 1
+     text
+          help   = STRING_TOKEN(STR_NULL_STRING),
+          text   = STRING_TOKEN(STR_KTI_LINK_SPEED),
+          text   = STRING_TOKEN(STR_KTI_LINK_SPEED_STATUS),
+          flags  = 0, key = 0;
+
+      text
+          help   = STRING_TOKEN(STR_NULL_STRING),
+          text   = STRING_TOKEN(STR_KTI_LINK_FREQ),
+          text   = STRING_TOKEN(STR_KTI_LINK_FREQ_STATUS),
+          flags  = 0, key = 0;
+#endif//if MAX_SOCKET > 1
+
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_KTI_GMMIOL_BASE_LIMIT),
+        text   = STRING_TOKEN(STR_KTI_GMMIOL_BASE_LIMIT_VAL),
+        flags  = 0, key = 0;
+
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_KTI_GMMIOH_BASE_LIMIT),
+        text   = STRING_TOKEN(STR_KTI_GMMIOH_BASE_LIMIT_VAL),
+        flags  = 0, key = 0;
+
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_KTI_PCI_E_CFG_BASE),
+        text   = STRING_TOKEN(STR_KTI_PCI_E_CFG_BASE_VAL),
+        flags  = 0, key = 0;
+
+endform;
+
+

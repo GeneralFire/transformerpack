@@ -1,0 +1,11 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Pmc\IncludePrivate\Register\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Pmc.IncludePrivate.Register"
+[files]
+"PmcRegsVer1.h"	
+"PmcRegsVer2.h"	
+"PmcRegsVer3.h"	
+"PmcRegsVer4.h"
+<endComponent>

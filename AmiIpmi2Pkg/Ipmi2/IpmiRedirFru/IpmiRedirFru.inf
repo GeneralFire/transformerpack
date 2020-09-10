@@ -1,0 +1,79 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+## @file  IpmiRedirFru.inf
+#
+#  INF description file for IpmiRedirFru driver.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = IpmiRedirFru
+  FILE_GUID         = 8F2C127E-117D-484B-8A44-FBD911BE125E
+  MODULE_TYPE       = DXE_RUNTIME_DRIVER
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = InitializeSmRedirFruLayer
+
+[Sources]
+  IpmiRedirFru.c
+  IpmiRedirFru.h
+  FruSmbios.c
+  FruSmbiosTable.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  MemoryAllocationLib
+  UefiLib
+  TimerLib
+  AmiIpmiLib
+
+
+[Protocols]
+  gEfiDxeIpmiTransportProtocolGuid      #CONSUMES
+  gEfiSmbiosProtocolGuid                #CONSUMES
+  gEfiRedirFruProtocolGuid              #PRODUCES
+
+[Guids]
+  gEfiEventVirtualAddressChangeGuid
+  gEfiIpmiFormatFruGuid
+  gEfiSystemTypeFruGuid
+
+[Pcd]
+#Smbios Type 1 Strings
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemManufacturer
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemProductName
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemVersion
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemSerialNumber
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemUuid
+
+#Smbios Type 2 Strings
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardManufacturer
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardProductName
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardVersion
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardSerialNumber
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardAssetTag
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardPartNumber
+
+#Smbios Type 3 Strings
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisManufacturer
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisVersion
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisSerialNumber
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisAssetTag
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisType
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdStrDefault
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisPartNumber
+
+[Depex]
+  gEfiDxeIpmiTransportProtocolGuid
+

@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "AcpiTable_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling AcpiTable support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "PmSsdtAcpiTable"
+    File  = "CpuPmSsdt.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "USER_DEFINED"
+End
+
+FFS_FILE
+    Name  = "PmSsdtAcpiTable"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "ServerSiliconPkg.PmSsdtAcpiTable"
+    Rule_Override  = "ACPITABLE"
+End
+

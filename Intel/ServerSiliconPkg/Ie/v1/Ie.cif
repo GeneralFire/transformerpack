@@ -1,0 +1,15 @@
+<component>
+    name = "Ie"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Ie\v1\"
+    RefName = "ServerSiliconPkg.Ie"
+[files]
+"Include\Library\IeConfigurationLib.h"	
+"Include\Library\IeHeciCoreLib.h"	
+"Include\Ppi\IeHeci.h"	
+"Include\IeHeciMsgs.h"	
+"Include\IeHeciRegs.h"	
+"Include\Library\IeEwlLib.h"	
+[parts]
+"ServerSiliconPkg.Ie.v1.Policy"
+<endComponent>

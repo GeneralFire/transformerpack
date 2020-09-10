@@ -1,0 +1,11 @@
+<component>
+	name = "EmulationConfigurationLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Library\EmulationConfigurationLib\"
+	RefName = "ServerSiliconPkg.Library.EmulationConfigurationLib"
+[INF]
+"EmulationConfigurationLib.inf"
+"EmulationConfigurationSmmLib.inf"
+[files]
+"EmulationConfigurationLib.sdl"	
+<endComponent>

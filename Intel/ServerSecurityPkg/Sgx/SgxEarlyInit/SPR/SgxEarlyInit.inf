@@ -1,0 +1,136 @@
+## @file
+# SGX Early Init PEIM
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2017 - 2019 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SgxEarlyInitPeimSPR
+  FILE_GUID                      = 73656701-D13A-47AB-B0EE-4849537CDFAC
+  MODULE_TYPE                    = PEIM
+  ENTRY_POINT                    = SgxEarlyInitEntryPoint
+
+#
+# Disable Optimization
+#
+#[BuildOptions]
+#  INTEL:*_*_*_CC_FLAGS     = /Qdiag-disable:181,186
+#   MSFT:*_*_*_CC_FLAGS     = /Od
+#    GCC:*_*_*_CC_FLAGS     = -O0 -Wno-unused-variable
+
+[Sources]
+  SgxEarlyInit.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  CpRcPkg/CpRcPkg.dec
+# APTIOV_SERVER_OVERRIDE_RC_START : Removed unused declaration files
+#  SecurityPkg/SecurityPkg.dec
+# APTIOV_SERVER_OVERRIDE_RC_END : Removed unused declaration files
+  ServerPlatformPkg/PlatformPkg.dec
+  ServerSecurityPkg/ServerSecurityPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  CryptoPkg/CryptoPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+
+[LibraryClasses]
+  PeiServicesLib
+  PeimEntryPoint
+  DebugLib
+  HobLib
+  KtiApiLib
+  UpiHostDataLib
+  BaseLib
+  PcdLib
+  PreSiliconEnvDetectLib
+  BaseMemoryLib
+  CpuPreMemPolicyLib
+  SynchronizationLib
+  EmulationConfigurationLib
+  ReferenceCodePolicyLib
+  SysHostPointerLib
+  Ms2IdiLib
+  ChaIpLib
+  UboxIpInterface
+  # APTIOV_SERVER_OVERRIDE_RC_START: File Not used in source
+  #Tpm2CommandLib
+  # APTIOV_SERVER_OVERRIDE_RC_END: File Not used in source
+  BiosGuardInitLib
+  ResetSystemLib
+  CteNetLib
+  BaseMemoryServicesLib
+  CsrSbPortIdLib
+  ProcMemInitLib
+  IoAccessLib
+  MeStorageLib
+  MemRcLib
+  SgxDebugLib
+  BaseCryptLib
+  SecurityPolicyLib
+  IntrinsicLib
+
+[Pcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdSyshostMemoryAddress
+  gSecurityPkgPcdSpaceGuid.PcdSgxAddPackageSupport
+
+[Guids]
+  gSgxInitDataHobGuid
+  gSgxUefiFwKeyBlobsVariableGuid
+  gSgxUefiFwKeyBlobsWithIntegrityVariableGuid
+  gSgxUefiFwRegistrationStateVariableGuid
+  gSgxUefiFwPlatformManifestVariableGuid
+  gSgxUefiRegistrationConfigVariableGuid
+  gSgxUefiRegistrationStatusVariableGuid
+  gSgxUefiRegistrationServerResponseVariableGuid
+  gSgxRegistrationConfigVariableGuid
+  gSgxRegistrationStatusVariableGuid
+  gSgxRegistrationPackageInfoVariableGuid
+  gSgxRegistrationPackageInfoWithIntegrityVariableGuid
+  gSgxRegistrationServerResponseVariableGuid
+  gEfiSeamLoaderSvnVariableGuid
+  gTdxDataHobGuid
+
+[Ppis]
+  gEfiPeiMpServicesPpiGuid
+  gMrcHooksChipServicesPpiGuid  ## CONSUMES
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gSecurityAppSgx3v0PpiGuid     ## CONSUMES
+
+
+#  gMrcHooksServicesPpiGuid  ## CONSUMES
+#  gMrcHooksChipServicesPpiGuid  ## CONSUMES
+
+#[FixedPcd]
+#  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+#  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+
+[Depex]
+  gEfiPeiMemoryDiscoveredPpiGuid AND
+  gEfiPeiMpServicesPpiGuid AND
+  gEfiPeiReadOnlyVariable2PpiGuid
+  AND gSecurityAppSgx3v0PpiGuid

@@ -1,0 +1,10 @@
+<component>
+	name = "HwpLvtSmm"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\PowerManagement\HwpLvtSmm\"
+	RefName = "ServerSiliconPkg.Cpu.PowerManagement.HwpLvtSmm"
+[INF]
+"HwpLvtSmm.inf"
+[files]
+"HwpLvtSmm.sdl"	
+<endComponent>

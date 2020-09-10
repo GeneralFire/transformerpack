@@ -1,0 +1,11 @@
+<component>
+	name = "PartialMirrorHandler"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\PartialMirrorHandler\"
+	RefName = "ServerRasPkg.PartialMirrorHandler"
+[INF]
+"PartialMirrorHandler.inf"
+[files]
+"PartialMirrorHandler.h"	
+"PartialMirrorHandler.sdl"	
+<endComponent>

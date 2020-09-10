@@ -1,0 +1,12 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Pmc\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Pmc.IncludePrivate.Library"
+[files]
+"PchAdrLib.h"
+"PeiPmcPolicyLib.h"	
+"PeiPmcPrivateLib.h"	
+"PeiPmcPrivateLib2.h"
+"PmcPrivateLib.h"	
+<endComponent>

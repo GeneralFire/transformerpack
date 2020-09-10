@@ -1,0 +1,11 @@
+<component>
+    name = "PciExpressHelpersLibrary"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\PcieRp\LibraryPrivate\PciExpressHelpersLibrary\"
+    RefName = "ClientOneSiliconPkg.IpBlock.PcieRp.LibraryPrivate.PciExpressHelpersLibrary"
+[INF]
+"PeiDxeSmmPciExpressHelpersLib.inf"
+[files]
+"PciExpressHelpersLibrary.h"	
+"PciExpressHelpersLibrary.sdl"	
+<endComponent>

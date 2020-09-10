@@ -1,0 +1,11 @@
+<component>
+    name = "Smbus"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Smbus\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.Smbus"
+[INF]
+"Dxe\PchSmbusDxe.inf"
+"Smm\PchSmbusSmm.inf"
+[files]
+"Smbus.sdl"	
+<endComponent>

@@ -1,0 +1,8 @@
+<component>
+    name = "Vmd"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Vmd\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Vmd"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Vmd.IncludePrivate"
+<endComponent>

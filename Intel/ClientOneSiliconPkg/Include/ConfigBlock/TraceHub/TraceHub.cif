@@ -1,0 +1,8 @@
+<component>
+    name = "TraceHub"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\TraceHub\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.TraceHub"
+[files]
+"TraceHubConfig.h"	
+<endComponent>

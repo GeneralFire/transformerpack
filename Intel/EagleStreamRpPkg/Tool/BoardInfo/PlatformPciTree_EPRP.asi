@@ -1,0 +1,112 @@
+/** @file
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2005 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+
+  Module Name:
+    EagleStreamRpPkg/Tool/BoardInfo/PlatformPciTree_EPRP.asi
+
+**/
+#include <MaxSocket.h>
+
+#ifndef CONCATENATE2
+#define CONCATENATE2_(a, b) a ## b
+#define CONCATENATE2(a, b)  CONCATENATE2_(a, b)
+#endif
+#ifndef CONCATENATE3
+#define CONCATENATE3_(a, b, c) a ## b ## c
+#define CONCATENATE3(a, b, c) CONCATENATE3_(a, b, c)
+#endif
+
+#define maxiiostack E
+
+#define _IIO_DEVICE_NAME(str, skt, stk)     str##skt##stk
+#define IIO_DEVICE_NAME(str, skt, stk)      _IIO_DEVICE_NAME(str, skt, stk)
+
+#define STR(s)  #s
+#define _IIO_DEVICE_UID(str, skt, stk)      STR(str##skt##stk)
+#define IIO_DEVICE_UID(str, skt, stk)       _IIO_DEVICE_UID(str, skt, stk)
+
+#define _S_NUMBER(n)                        0x##n
+#define S_NUMBER(n)                         _S_NUMBER(n)
+
+Scope (\_SB) {
+    #include "IioPrt.asi"
+#define SOCKET 0
+    #include "IioStacks.asi"
+    #include "PlatformUncore.asi"
+#undef SOCKET
+
+#if MAX_SOCKET > 1
+#define SOCKET 1
+    #include "IioStacks.asi"
+    #include "PlatformUncore.asi"
+#undef SOCKET
+#endif
+
+#if MAX_SOCKET > 2
+#define SOCKET 2
+    #include "IioStacks.asi"
+    #include "PlatformUncore.asi"
+#undef SOCKET
+#endif
+
+#if MAX_SOCKET > 3
+#define SOCKET 3
+    #include "IioStacks.asi"
+    #include "PlatformUncore.asi"
+#undef SOCKET
+#endif
+
+#if MAX_SOCKET > 4
+#define SOCKET 4
+    #include "IioStacks.asi"
+    #include "PlatformUncore.asi"
+#undef SOCKET
+#endif
+
+#if MAX_SOCKET > 5
+#define SOCKET 5
+    #include "IioStacks.asi"
+    #include "PlatformUncore.asi"
+#undef SOCKET
+#endif
+
+#if MAX_SOCKET > 6
+#define SOCKET 6
+    #include "IioStacks.asi"
+    #include "PlatformUncore.asi"
+#undef SOCKET
+#endif
+
+#if MAX_SOCKET > 7
+#define SOCKET 7
+    #include "IioStacks.asi"
+    #include "PlatformUncore.asi"
+#undef SOCKET
+#endif
+}
+
+#include "IioGpe.asi"
+
+#undef maxiiostack

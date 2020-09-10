@@ -1,0 +1,3573 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+    //
+    // PCI-E Port Enable
+    //
+    #if (INDEX!=0)
+
+      oneof varid = SOCKET_IIO_CONFIGURATION.PciePortEnable[INDEX],
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_ENABLE_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_ENABLE_HELP),
+          option text = STRING_TOKEN(STR_AUTO), value = 2, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_NO),   value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_YES),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+    #endif
+
+    //
+    // PCI-E Port Link
+    //
+    #if (INDEX != 0)
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PciePortEnable[INDEX] == 0x00;
+
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieHotPlugEnable == IIO_OPTION_DISABLE;
+          oneof varid = SOCKET_IIO_CONFIGURATION.PcieHotPlugOnPort[INDEX],
+              prompt  = STRING_TOKEN(STR_PCIE_PORT_HPCAP_PROMPT),
+              help    = STRING_TOKEN(STR_PCIE_PORT_HPCAP_HELP),
+              option text = STRING_TOKEN(STR_AUTO), value = IIO_OPTION_AUTO, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+              option text = STRING_TOKEN(STR_DISABLE), value = IIO_OPTION_DISABLE, flags = RESET_REQUIRED;
+              option text = STRING_TOKEN(STR_ENABLE), value = IIO_OPTION_ENABLE, flags = RESET_REQUIRED;
+          endoneof;
+
+          oneof varid = SOCKET_IIO_CONFIGURATION.SLOTHPSUP[INDEX],
+              prompt  = STRING_TOKEN(STR_PCIE_PORT_HPSUPCAP_PROMPT),
+              help    = STRING_TOKEN(STR_PCIE_PORT_HPSUPCAP_HELP),
+              option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+              option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;  // supressif PcieHotPlugEnable
+
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieLinkDis[INDEX],
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_LINK_DISABLE_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_LINK_DISABLE_HELP),
+            option text = STRING_TOKEN(STR_NO),    value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_YES),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        endif;  // supressif PciePortEnable
+    #endif // if INDEX != 0
+
+      #if ( INDEX != 0)
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.PciePortEnable[INDEX] == 0x00;
+      #endif // INDEX != 0
+
+        //
+        // PCI-E Port Gen3 Support
+        //
+        oneof varid     = SOCKET_IIO_CONFIGURATION.PciePortLinkSpeed[INDEX],
+            prompt          = STRING_TOKEN(STR_PCIE_PORT_LINK_SPEED_PROMPT),
+            help            = STRING_TOKEN(STR_PCIE_PORT_LINK_SPEED_HELP),
+          #if (INDEX == 0)
+            option text     = STRING_TOKEN(STR_AUTO),        value = PCIE_LINK_SPEED_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text     = STRING_TOKEN(STR_PCIE_GEN1),   value = PCIE_LINK_SPEED_GEN1, flags = RESET_REQUIRED;
+            option text     = STRING_TOKEN(STR_PCIE_GEN2),   value = PCIE_LINK_SPEED_GEN2, flags = RESET_REQUIRED;
+            option text     = STRING_TOKEN(STR_PCIE_GEN3),   value = PCIE_LINK_SPEED_GEN3, flags = RESET_REQUIRED;
+            #ifdef SPR_HOST
+            option text     = STRING_TOKEN(STR_PCIE_GEN4),   value = PCIE_LINK_SPEED_GEN4, flags = RESET_REQUIRED;
+            #endif // ICX_HOST
+          #else
+            option text     = STRING_TOKEN(STR_AUTO),        value = PCIE_LINK_SPEED_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text     = STRING_TOKEN(STR_PCIE_GEN1),   value = PCIE_LINK_SPEED_GEN1, flags = RESET_REQUIRED;
+            option text     = STRING_TOKEN(STR_PCIE_GEN2),   value = PCIE_LINK_SPEED_GEN2, flags = RESET_REQUIRED;
+            option text     = STRING_TOKEN(STR_PCIE_GEN3),   value = PCIE_LINK_SPEED_GEN3, flags = RESET_REQUIRED;
+            #ifdef ICX_HOST
+            option text     = STRING_TOKEN(STR_PCIE_GEN4),   value = PCIE_LINK_SPEED_GEN4, flags = RESET_REQUIRED;
+            #endif // ICX_HOST
+            #ifdef SPR_HOST
+            option text     = STRING_TOKEN(STR_PCIE_GEN4),   value = PCIE_LINK_SPEED_GEN4, flags = RESET_REQUIRED;
+            option text     = STRING_TOKEN(STR_PCIE_GEN5),   value = PCIE_LINK_SPEED_GEN5, flags = RESET_REQUIRED;
+            #endif // ICX_HOST
+          #endif
+      endoneof;
+
+#if (LINKMAXWIDTH != 0 )
+      //
+      // Force PCI-E Port Link Max Width
+      //
+
+      #if (INDEX == 0)
+        suppressif TRUE;
+      //
+      // Hidden for DMI
+      //
+      #endif // INDEX != 0
+
+        oneof varid = SOCKET_IIO_CONFIGURATION.PciePortLinkMaxWidth[INDEX],
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_LINK_MAXWIDTH_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_LINK_MAXWIDTH_HELP),
+            option text = STRING_TOKEN(STR_PCIE_PORT_LINK_MAXWIDTH_AUTO), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          #if (LINKMAXWIDTH == 4 || LINKMAXWIDTH == 8 || LINKMAXWIDTH == 16)
+            option text = STRING_TOKEN(STR_PCIE_PORT_LINK_MAXWIDTH_X1),   value = 1, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_PCIE_PORT_LINK_MAXWIDTH_X2),   value = 2, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_PCIE_PORT_LINK_MAXWIDTH_X4),   value = 3, flags = RESET_REQUIRED;
+          #endif
+          #if (LINKMAXWIDTH == 8 || LINKMAXWIDTH == 16)
+            option text = STRING_TOKEN(STR_PCIE_PORT_LINK_MAXWIDTH_X8),   value = 4, flags = RESET_REQUIRED;
+          #endif
+          #if (LINKMAXWIDTH == 16 )
+            option text = STRING_TOKEN(STR_PCIE_PORT_LINK_MAXWIDTH_X16),  value = 5, flags = RESET_REQUIRED;
+          #endif
+        endoneof;
+      #if (INDEX == 0)
+        endif;  //suppressif PciePortLinkMaxWidth
+      #endif
+#endif
+
+        //
+        // PCI-E Port De-Emphasis control
+        //
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.PciePortLinkSpeed[INDEX] == 1;
+        oneof varid = SOCKET_IIO_CONFIGURATION.DeEmphasis[INDEX],
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_DEEMPHASIS_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_DEEMPHASIS_HELP),
+         #if (INDEX == 0)
+            option text = STRING_TOKEN(STR_60DB), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_35DB),  value = 1, flags = RESET_REQUIRED;
+         #else
+            option text = STRING_TOKEN(STR_60DB), value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_35DB),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+         #endif
+        endoneof;
+      endif;
+
+      #if ( INDEX != 0)
+        endif;  //supressif PciePortEnable
+      #endif // INDEX != 0
+
+      //
+      // PCI-E Port Link Status
+      //
+      text
+          help   = STRING_TOKEN(STR_NULL_STRING),
+          text   = STRING_TOKEN(STR_LINK_STATUS),
+          #if (INDEX == 0)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT0),
+          #endif
+          #if (INDEX == 1)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT1),
+          #endif
+          #if (INDEX == 2)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT2),
+          #endif
+          #if (INDEX == 3)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT3),
+          #endif
+          #if (INDEX == 4)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT4),
+          #endif
+          #if (INDEX == 5)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT5),
+          #endif
+          #if (INDEX == 6)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT6),
+          #endif
+          #if (INDEX == 7)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT7),
+          #endif
+          #if (INDEX == 8)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT8),
+          #endif
+          #if (INDEX == 9)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT9),
+          #endif
+          #if (INDEX == 10)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT10),
+          #endif
+          #if (INDEX == 11)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT11),
+          #endif
+          #if (INDEX == 12)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT12),
+          #endif
+          #if (INDEX == 13)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT13),
+          #endif
+          #if (INDEX == 14)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT14),
+          #endif
+          #if (INDEX == 15)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT15),
+          #endif
+          #if (INDEX == 16)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT16),
+          #endif
+          #if (INDEX == 17)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT17),
+          #endif
+          #if (INDEX == 18)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT18),
+          #endif
+          #if (INDEX == 19)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT19),
+          #endif
+          #if (INDEX == 20)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT20),
+          #endif
+          #if (INDEX == 21)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT21),
+          #endif
+          #if (INDEX == 22)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT22),
+          #endif
+          #if (INDEX == 23)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT23),
+          #endif
+          #if (INDEX == 24)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT24),
+          #endif
+          #if (INDEX == 25)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT25),
+          #endif
+          #if (INDEX == 26)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT26),
+          #endif
+          #if (INDEX == 27)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT27),
+          #endif
+          #if (INDEX == 28)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT28),
+          #endif
+          #if (INDEX == 29)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT29),
+          #endif
+          #if (INDEX == 30)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT30),
+          #endif
+          #if (INDEX == 31)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT31),
+          #endif
+          #if (INDEX == 32)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT32),
+          #endif
+          #if (INDEX == 33)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT33),
+          #endif
+          #if (INDEX == 34)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT34),
+          #endif
+          #if (INDEX == 35)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT35),
+          #endif
+          #if (INDEX == 36)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT36),
+          #endif
+          #if (INDEX == 37)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT37),
+          #endif
+          #if (INDEX == 38)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT38),
+          #endif
+          #if (INDEX == 39)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT39),
+          #endif
+          #if (INDEX == 40)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO0PORT40),
+          #endif
+          #if (INDEX == 41)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT0),
+          #endif
+          #if (INDEX == 42)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT1),
+          #endif
+          #if (INDEX == 43)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT2),
+          #endif
+          #if (INDEX == 44)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT3),
+          #endif
+          #if (INDEX == 45)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT4),
+          #endif
+          #if (INDEX == 46)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT5),
+          #endif
+          #if (INDEX == 47)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT6),
+          #endif
+          #if (INDEX == 48)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT7),
+          #endif
+          #if (INDEX == 49)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT8),
+          #endif
+          #if (INDEX == 50)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT9),
+          #endif
+          #if (INDEX == 51)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT10),
+          #endif
+          #if (INDEX == 52)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT11),
+          #endif
+          #if (INDEX == 53)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT12),
+          #endif
+          #if (INDEX == 54)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT13),
+          #endif
+          #if (INDEX == 55)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT14),
+          #endif
+          #if (INDEX == 56)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT15),
+          #endif
+          #if (INDEX == 57)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT16),
+          #endif
+          #if (INDEX == 58)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT17),
+          #endif
+          #if (INDEX == 59)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT18),
+          #endif
+          #if (INDEX == 60)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT19),
+          #endif
+          #if (INDEX == 61)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT20),
+          #endif
+          #if (INDEX == 62)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT21),
+          #endif
+          #if (INDEX == 63)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT22),
+          #endif
+          #if (INDEX == 64)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT23),
+          #endif
+          #if (INDEX == 65)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT24),
+          #endif
+          #if (INDEX == 66)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT25),
+          #endif
+          #if (INDEX == 67)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT26),
+          #endif
+          #if (INDEX == 68)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT27),
+          #endif
+          #if (INDEX == 69)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT28),
+          #endif
+          #if (INDEX == 70)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT29),
+          #endif
+          #if (INDEX == 71)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT30),
+          #endif
+          #if (INDEX == 72)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT31),
+          #endif
+          #if (INDEX == 73)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT32),
+          #endif
+          #if (INDEX == 74)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT33),
+          #endif
+          #if (INDEX == 75)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT34),
+          #endif
+          #if (INDEX == 76)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT35),
+          #endif
+          #if (INDEX == 77)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT36),
+          #endif
+          #if (INDEX == 78)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT37),
+          #endif
+          #if (INDEX == 79)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT38),
+          #endif
+          #if (INDEX == 80)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT39),
+          #endif
+          #if (INDEX == 81)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO1PORT40),
+          #endif
+          #if (INDEX == 82)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT0),
+          #endif
+          #if (INDEX == 83)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT1),
+          #endif
+          #if (INDEX == 84)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT2),
+          #endif
+          #if (INDEX == 85)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT3),
+          #endif
+          #if (INDEX == 86)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT4),
+          #endif
+          #if (INDEX == 87)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT5),
+          #endif
+          #if (INDEX == 88)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT6),
+          #endif
+          #if (INDEX == 89)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT7),
+          #endif
+          #if (INDEX == 90)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT8),
+          #endif
+          #if (INDEX == 91)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT9),
+          #endif
+          #if (INDEX == 92)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT10),
+          #endif
+          #if (INDEX == 93)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT11),
+          #endif
+          #if (INDEX == 94)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT12),
+          #endif
+          #if (INDEX == 95)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT13),
+          #endif
+          #if (INDEX == 96)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT14),
+          #endif
+          #if (INDEX == 97)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT15),
+          #endif
+          #if (INDEX == 98)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT16),
+          #endif
+          #if (INDEX == 99)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT17),
+          #endif
+          #if (INDEX == 100)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT18),
+          #endif
+          #if (INDEX == 101)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT19),
+          #endif
+          #if (INDEX == 102)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT20),
+          #endif
+          #if (INDEX == 103)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT21),
+          #endif
+          #if (INDEX == 104)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT22),
+          #endif
+          #if (INDEX == 105)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT23),
+          #endif
+          #if (INDEX == 106)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT24),
+          #endif
+          #if (INDEX == 107)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT25),
+          #endif
+          #if (INDEX == 108)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT26),
+          #endif
+          #if (INDEX == 109)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT27),
+          #endif
+          #if (INDEX == 110)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT28),
+          #endif
+          #if (INDEX == 111)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT29),
+          #endif
+          #if (INDEX == 112)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT30),
+          #endif
+          #if (INDEX == 113)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT31),
+          #endif
+          #if (INDEX == 114)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT32),
+          #endif
+          #if (INDEX == 115)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT33),
+          #endif
+          #if (INDEX == 116)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT34),
+          #endif
+          #if (INDEX == 117)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT35),
+          #endif
+          #if (INDEX == 118)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT36),
+          #endif
+          #if (INDEX == 119)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT37),
+          #endif
+          #if (INDEX == 120)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT38),
+          #endif
+          #if (INDEX == 121)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT39),
+          #endif
+          #if (INDEX == 122)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO2PORT40),
+          #endif
+          #if (INDEX == 123)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT0),
+          #endif
+          #if (INDEX == 124)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT1),
+          #endif
+          #if (INDEX == 125)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT2),
+          #endif
+          #if (INDEX == 126)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT3),
+          #endif
+          #if (INDEX == 127)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT4),
+          #endif
+          #if (INDEX == 128)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT5),
+          #endif
+          #if (INDEX == 129)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT6),
+          #endif
+          #if (INDEX == 130)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT7),
+          #endif
+          #if (INDEX == 131)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT8),
+          #endif
+          #if (INDEX == 132)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT9),
+          #endif
+          #if (INDEX == 133)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT10),
+          #endif
+          #if (INDEX == 134)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT11),
+          #endif
+          #if (INDEX == 135)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT12),
+          #endif
+          #if (INDEX == 136)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT13),
+          #endif
+          #if (INDEX == 137)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT14),
+          #endif
+          #if (INDEX == 138)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT15),
+          #endif
+          #if (INDEX == 139)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT16),
+          #endif
+          #if (INDEX == 140)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT17),
+          #endif
+          #if (INDEX == 141)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT18),
+          #endif
+          #if (INDEX == 142)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT19),
+          #endif
+          #if (INDEX == 143)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT20),
+          #endif
+          #if (INDEX == 144)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT21),
+          #endif
+          #if (INDEX == 145)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT22),
+          #endif
+          #if (INDEX == 146)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT23),
+          #endif
+          #if (INDEX == 147)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT24),
+          #endif
+          #if (INDEX == 148)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT25),
+          #endif
+          #if (INDEX == 149)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT26),
+          #endif
+          #if (INDEX == 150)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT27),
+          #endif
+          #if (INDEX == 151)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT28),
+          #endif
+          #if (INDEX == 152)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT29),
+          #endif
+          #if (INDEX == 153)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT30),
+          #endif
+          #if (INDEX == 154)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT31),
+          #endif
+          #if (INDEX == 155)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT32),
+          #endif
+          #if (INDEX == 156)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT33),
+          #endif
+          #if (INDEX == 157)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT34),
+          #endif
+          #if (INDEX == 158)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT35),
+          #endif
+          #if (INDEX == 159)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT36),
+          #endif
+          #if (INDEX == 160)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT37),
+          #endif
+          #if (INDEX == 161)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT38),
+          #endif
+          #if (INDEX == 162)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT39),
+          #endif
+          #if (INDEX == 163)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO3PORT40),
+          #endif
+          #if (INDEX == 164)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT0),
+          #endif
+          #if (INDEX == 165)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT1),
+          #endif
+          #if (INDEX == 166)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT2),
+          #endif
+          #if (INDEX == 167)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT3),
+          #endif
+          #if (INDEX == 168)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT4),
+          #endif
+          #if (INDEX == 169)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT5),
+          #endif
+          #if (INDEX == 170)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT6),
+          #endif
+          #if (INDEX == 171)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT7),
+          #endif
+          #if (INDEX == 172)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT8),
+          #endif
+          #if (INDEX == 173)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT9),
+          #endif
+          #if (INDEX == 174)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT10),
+          #endif
+          #if (INDEX == 175)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT11),
+          #endif
+          #if (INDEX == 176)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT12),
+          #endif
+          #if (INDEX == 177)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT13),
+          #endif
+          #if (INDEX == 178)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT14),
+          #endif
+          #if (INDEX == 179)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT15),
+          #endif
+          #if (INDEX == 180)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT16),
+          #endif
+          #if (INDEX == 181)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT17),
+          #endif
+          #if (INDEX == 182)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT18),
+          #endif
+          #if (INDEX == 183)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT19),
+          #endif
+          #if (INDEX == 184)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT20),
+          #endif
+          #if (INDEX == 185)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT21),
+          #endif
+          #if (INDEX == 186)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT22),
+          #endif
+          #if (INDEX == 187)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT23),
+          #endif
+          #if (INDEX == 188)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT24),
+          #endif
+          #if (INDEX == 189)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT25),
+          #endif
+          #if (INDEX == 190)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT26),
+          #endif
+          #if (INDEX == 191)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT27),
+          #endif
+          #if (INDEX == 192)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT28),
+          #endif
+          #if (INDEX == 193)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT29),
+          #endif
+          #if (INDEX == 194)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT30),
+          #endif
+          #if (INDEX == 195)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT31),
+          #endif
+          #if (INDEX == 196)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT32),
+          #endif
+          #if (INDEX == 197)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT33),
+          #endif
+          #if (INDEX == 198)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT34),
+          #endif
+          #if (INDEX == 199)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT35),
+          #endif
+          #if (INDEX == 200)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT36),
+          #endif
+          #if (INDEX == 201)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT37),
+          #endif
+          #if (INDEX == 202)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT38),
+          #endif
+          #if (INDEX == 203)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT39),
+          #endif
+          #if (INDEX == 204)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO4PORT40),
+          #endif
+          #if (INDEX == 205)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT0),
+          #endif
+          #if (INDEX == 206)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT1),
+          #endif
+          #if (INDEX == 207)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT2),
+          #endif
+          #if (INDEX == 208)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT3),
+          #endif
+          #if (INDEX == 209)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT4),
+          #endif
+          #if (INDEX == 210)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT5),
+          #endif
+          #if (INDEX == 211)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT6),
+          #endif
+          #if (INDEX == 212)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT7),
+          #endif
+          #if (INDEX == 213)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT8),
+          #endif
+          #if (INDEX == 214)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT9),
+          #endif
+          #if (INDEX == 215)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT10),
+          #endif
+          #if (INDEX == 216)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT11),
+          #endif
+          #if (INDEX == 217)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT12),
+          #endif
+          #if (INDEX == 218)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT13),
+          #endif
+          #if (INDEX == 219)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT14),
+          #endif
+          #if (INDEX == 220)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT15),
+          #endif
+          #if (INDEX == 221)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT16),
+          #endif
+          #if (INDEX == 222)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT17),
+          #endif
+          #if (INDEX == 223)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT18),
+          #endif
+          #if (INDEX == 224)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT19),
+          #endif
+          #if (INDEX == 225)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT20),
+          #endif
+          #if (INDEX == 226)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT21),
+          #endif
+          #if (INDEX == 227)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT22),
+          #endif
+          #if (INDEX == 228)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT23),
+          #endif
+          #if (INDEX == 229)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT24),
+          #endif
+          #if (INDEX == 230)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT25),
+          #endif
+          #if (INDEX == 231)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT26),
+          #endif
+          #if (INDEX == 232)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT27),
+          #endif
+          #if (INDEX == 233)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT28),
+          #endif
+          #if (INDEX == 234)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT29),
+          #endif
+          #if (INDEX == 235)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT30),
+          #endif
+          #if (INDEX == 236)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT31),
+          #endif
+          #if (INDEX == 237)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT32),
+          #endif
+          #if (INDEX == 238)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT33),
+          #endif
+          #if (INDEX == 239)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT34),
+          #endif
+          #if (INDEX == 240)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT35),
+          #endif
+          #if (INDEX == 241)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT36),
+          #endif
+          #if (INDEX == 242)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT37),
+          #endif
+          #if (INDEX == 243)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT38),
+          #endif
+          #if (INDEX == 244)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT39),
+          #endif
+          #if (INDEX == 245)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO5PORT40),
+          #endif
+          #if (INDEX == 246)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT0),
+          #endif
+          #if (INDEX == 247)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT1),
+          #endif
+          #if (INDEX == 248)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT2),
+          #endif
+          #if (INDEX == 249)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT3),
+          #endif
+          #if (INDEX == 250)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT4),
+          #endif
+          #if (INDEX == 251)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT5),
+          #endif
+          #if (INDEX == 252)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT6),
+          #endif
+          #if (INDEX == 253)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT7),
+          #endif
+          #if (INDEX == 254)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT8),
+          #endif
+          #if (INDEX == 255)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT9),
+          #endif
+          #if (INDEX == 256)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT10),
+          #endif
+          #if (INDEX == 257)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT11),
+          #endif
+          #if (INDEX == 258)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT12),
+          #endif
+          #if (INDEX == 259)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT13),
+          #endif
+          #if (INDEX == 260)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT14),
+          #endif
+          #if (INDEX == 261)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT15),
+          #endif
+          #if (INDEX == 262)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT16),
+          #endif
+          #if (INDEX == 263)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT17),
+          #endif
+          #if (INDEX == 264)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT18),
+          #endif
+          #if (INDEX == 265)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT19),
+          #endif
+          #if (INDEX == 266)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT20),
+          #endif
+          #if (INDEX == 267)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT21),
+          #endif
+          #if (INDEX == 268)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT22),
+          #endif
+          #if (INDEX == 269)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT23),
+          #endif
+          #if (INDEX == 270)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT24),
+          #endif
+          #if (INDEX == 271)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT25),
+          #endif
+          #if (INDEX == 272)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT26),
+          #endif
+          #if (INDEX == 273)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT27),
+          #endif
+          #if (INDEX == 274)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT28),
+          #endif
+          #if (INDEX == 275)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT29),
+          #endif
+          #if (INDEX == 276)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT30),
+          #endif
+          #if (INDEX == 277)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT31),
+          #endif
+          #if (INDEX == 278)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT32),
+          #endif
+          #if (INDEX == 279)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT33),
+          #endif
+          #if (INDEX == 280)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT34),
+          #endif
+          #if (INDEX == 281)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT35),
+          #endif
+          #if (INDEX == 282)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT36),
+          #endif
+          #if (INDEX == 283)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT37),
+          #endif
+          #if (INDEX == 284)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT38),
+          #endif
+          #if (INDEX == 285)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT39),
+          #endif
+          #if (INDEX == 286)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO6PORT40),
+          #endif
+          #if (INDEX == 287)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT0),
+          #endif
+          #if (INDEX == 288)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT1),
+          #endif
+          #if (INDEX == 289)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT2),
+          #endif
+          #if (INDEX == 290)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT3),
+          #endif
+          #if (INDEX == 291)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT4),
+          #endif
+          #if (INDEX == 292)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT5),
+          #endif
+          #if (INDEX == 293)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT6),
+          #endif
+          #if (INDEX == 294)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT7),
+          #endif
+          #if (INDEX == 295)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT8),
+          #endif
+          #if (INDEX == 296)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT9),
+          #endif
+          #if (INDEX == 297)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT10),
+          #endif
+          #if (INDEX == 298)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT11),
+          #endif
+          #if (INDEX == 299)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT12),
+          #endif
+          #if (INDEX == 300)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT13),
+          #endif
+          #if (INDEX == 301)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT14),
+          #endif
+          #if (INDEX == 302)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT15),
+          #endif
+          #if (INDEX == 303)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT16),
+          #endif
+          #if (INDEX == 304)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT17),
+          #endif
+          #if (INDEX == 305)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT18),
+          #endif
+          #if (INDEX == 306)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT19),
+          #endif
+          #if (INDEX == 307)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT20),
+          #endif
+          #if (INDEX == 308)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT21),
+          #endif
+          #if (INDEX == 309)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT22),
+          #endif
+          #if (INDEX == 310)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT23),
+          #endif
+          #if (INDEX == 311)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT24),
+          #endif
+          #if (INDEX == 312)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT25),
+          #endif
+          #if (INDEX == 313)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT26),
+          #endif
+          #if (INDEX == 314)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT27),
+          #endif
+          #if (INDEX == 315)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT28),
+          #endif
+          #if (INDEX == 316)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT29),
+          #endif
+          #if (INDEX == 317)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT30),
+          #endif
+          #if (INDEX == 318)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT31),
+          #endif
+          #if (INDEX == 319)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT32),
+          #endif
+          #if (INDEX == 320)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT33),
+          #endif
+          #if (INDEX == 321)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT34),
+          #endif
+          #if (INDEX == 322)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT35),
+          #endif
+          #if (INDEX == 323)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT36),
+          #endif
+          #if (INDEX == 324)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT37),
+          #endif
+          #if (INDEX == 325)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT38),
+          #endif
+          #if (INDEX == 326)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT39),
+          #endif
+          #if (INDEX == 327)
+            text   = STRING_TOKEN(STR_LINK_STATUS_IIO7PORT40),
+          #endif
+      flags  = 0, key = 0;
+
+
+      //
+      // PCI-E Port Max Link Width Status
+      //
+      text
+          help   = STRING_TOKEN(STR_NULL_STRING),
+          text   = STRING_TOKEN(STR_MAXLINK_STATUS),
+          #if (INDEX == 0)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT0),
+          #endif
+          #if (INDEX == 1)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT1),
+          #endif
+          #if (INDEX == 2)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT2),
+          #endif
+          #if (INDEX == 3)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT3),
+          #endif
+          #if (INDEX == 4)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT4),
+          #endif
+          #if (INDEX == 5)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT5),
+          #endif
+          #if (INDEX == 6)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT6),
+          #endif
+          #if (INDEX == 7)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT7),
+          #endif
+          #if (INDEX == 8)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT8),
+          #endif
+          #if (INDEX == 9)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT9),
+          #endif
+          #if (INDEX == 10)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT10),
+          #endif
+          #if (INDEX == 11)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT11),
+          #endif
+          #if (INDEX == 12)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT12),
+          #endif
+          #if (INDEX == 13)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT13),
+          #endif
+          #if (INDEX == 14)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT14),
+          #endif
+          #if (INDEX == 15)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT15),
+          #endif
+          #if (INDEX == 16)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT16),
+          #endif
+          #if (INDEX == 17)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT17),
+          #endif
+          #if (INDEX == 18)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT18),
+          #endif
+          #if (INDEX == 19)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT19),
+          #endif
+          #if (INDEX == 20)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT20),
+          #endif
+          #if (INDEX == 21)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT21),
+          #endif
+          #if (INDEX == 22)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT22),
+          #endif
+          #if (INDEX == 23)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT23),
+          #endif
+          #if (INDEX == 24)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT24),
+          #endif
+          #if (INDEX == 25)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT25),
+          #endif
+          #if (INDEX == 26)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT26),
+          #endif
+          #if (INDEX == 27)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT27),
+          #endif
+          #if (INDEX == 28)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT28),
+          #endif
+          #if (INDEX == 29)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT29),
+          #endif
+          #if (INDEX == 30)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT30),
+          #endif
+          #if (INDEX == 31)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT31),
+          #endif
+          #if (INDEX == 32)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT32),
+          #endif
+          #if (INDEX == 33)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT33),
+          #endif
+          #if (INDEX == 34)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT34),
+          #endif
+          #if (INDEX == 35)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT35),
+          #endif
+          #if (INDEX == 36)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT36),
+          #endif
+          #if (INDEX == 37)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT37),
+          #endif
+          #if (INDEX == 38)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT38),
+          #endif
+          #if (INDEX == 39)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT39),
+          #endif
+          #if (INDEX == 40)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO0PORT40),
+          #endif
+          #if (INDEX == 41)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT0),
+          #endif
+          #if (INDEX == 42)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT1),
+          #endif
+          #if (INDEX == 43)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT2),
+          #endif
+          #if (INDEX == 44)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT3),
+          #endif
+          #if (INDEX == 45)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT4),
+          #endif
+          #if (INDEX == 46)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT5),
+          #endif
+          #if (INDEX == 47)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT6),
+          #endif
+          #if (INDEX == 48)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT7),
+          #endif
+          #if (INDEX == 49)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT8),
+          #endif
+          #if (INDEX == 50)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT9),
+          #endif
+          #if (INDEX == 51)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT10),
+          #endif
+          #if (INDEX == 52)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT11),
+          #endif
+          #if (INDEX == 53)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT12),
+          #endif
+          #if (INDEX == 54)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT13),
+          #endif
+          #if (INDEX == 55)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT14),
+          #endif
+          #if (INDEX == 56)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT15),
+          #endif
+          #if (INDEX == 57)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT16),
+          #endif
+          #if (INDEX == 58)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT17),
+          #endif
+          #if (INDEX == 59)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT18),
+          #endif
+          #if (INDEX == 60)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT19),
+          #endif
+          #if (INDEX == 61)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT20),
+          #endif
+          #if (INDEX == 62)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT21),
+          #endif
+          #if (INDEX == 63)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT22),
+          #endif
+          #if (INDEX == 64)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT23),
+          #endif
+          #if (INDEX == 65)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT24),
+          #endif
+          #if (INDEX == 66)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT25),
+          #endif
+          #if (INDEX == 67)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT26),
+          #endif
+          #if (INDEX == 68)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT27),
+          #endif
+          #if (INDEX == 69)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT28),
+          #endif
+          #if (INDEX == 70)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT29),
+          #endif
+          #if (INDEX == 71)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT30),
+          #endif
+          #if (INDEX == 72)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT31),
+          #endif
+          #if (INDEX == 73)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT32),
+          #endif
+          #if (INDEX == 74)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT33),
+          #endif
+          #if (INDEX == 75)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT34),
+          #endif
+          #if (INDEX == 76)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT35),
+          #endif
+          #if (INDEX == 77)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT36),
+          #endif
+          #if (INDEX == 78)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT37),
+          #endif
+          #if (INDEX == 79)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT38),
+          #endif
+          #if (INDEX == 80)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT39),
+          #endif
+          #if (INDEX == 81)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO1PORT40),
+          #endif
+          #if (INDEX == 82)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT0),
+          #endif
+          #if (INDEX == 83)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT1),
+          #endif
+          #if (INDEX == 84)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT2),
+          #endif
+          #if (INDEX == 85)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT3),
+          #endif
+          #if (INDEX == 86)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT4),
+          #endif
+          #if (INDEX == 87)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT5),
+          #endif
+          #if (INDEX == 88)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT6),
+          #endif
+          #if (INDEX == 89)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT7),
+          #endif
+          #if (INDEX == 90)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT8),
+          #endif
+          #if (INDEX == 91)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT9),
+          #endif
+          #if (INDEX == 92)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT10),
+          #endif
+          #if (INDEX == 93)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT11),
+          #endif
+          #if (INDEX == 94)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT12),
+          #endif
+          #if (INDEX == 95)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT13),
+          #endif
+          #if (INDEX == 96)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT14),
+          #endif
+          #if (INDEX == 97)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT15),
+          #endif
+          #if (INDEX == 98)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT16),
+          #endif
+          #if (INDEX == 99)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT17),
+          #endif
+          #if (INDEX == 100)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT18),
+          #endif
+          #if (INDEX == 101)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT19),
+          #endif
+          #if (INDEX == 102)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT20),
+          #endif
+          #if (INDEX == 103)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT21),
+          #endif
+          #if (INDEX == 104)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT22),
+          #endif
+          #if (INDEX == 105)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT23),
+          #endif
+          #if (INDEX == 106)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT24),
+          #endif
+          #if (INDEX == 107)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT25),
+          #endif
+          #if (INDEX == 108)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT26),
+          #endif
+          #if (INDEX == 109)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT27),
+          #endif
+          #if (INDEX == 110)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT28),
+          #endif
+          #if (INDEX == 111)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT29),
+          #endif
+          #if (INDEX == 112)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT30),
+          #endif
+          #if (INDEX == 113)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT31),
+          #endif
+          #if (INDEX == 114)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT32),
+          #endif
+          #if (INDEX == 115)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT33),
+          #endif
+          #if (INDEX == 116)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT34),
+          #endif
+          #if (INDEX == 117)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT35),
+          #endif
+          #if (INDEX == 118)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT36),
+          #endif
+          #if (INDEX == 119)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT37),
+          #endif
+          #if (INDEX == 120)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT38),
+          #endif
+          #if (INDEX == 121)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT39),
+          #endif
+          #if (INDEX == 122)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO2PORT40),
+          #endif
+          #if (INDEX == 123)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT0),
+          #endif
+          #if (INDEX == 124)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT1),
+          #endif
+          #if (INDEX == 125)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT2),
+          #endif
+          #if (INDEX == 126)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT3),
+          #endif
+          #if (INDEX == 127)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT4),
+          #endif
+          #if (INDEX == 128)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT5),
+          #endif
+          #if (INDEX == 129)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT6),
+          #endif
+          #if (INDEX == 130)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT7),
+          #endif
+          #if (INDEX == 131)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT8),
+          #endif
+          #if (INDEX == 132)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT9),
+          #endif
+          #if (INDEX == 133)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT10),
+          #endif
+          #if (INDEX == 134)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT11),
+          #endif
+          #if (INDEX == 135)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT12),
+          #endif
+          #if (INDEX == 136)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT13),
+          #endif
+          #if (INDEX == 137)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT14),
+          #endif
+          #if (INDEX == 138)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT15),
+          #endif
+          #if (INDEX == 139)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT16),
+          #endif
+          #if (INDEX == 140)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT17),
+          #endif
+          #if (INDEX == 141)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT18),
+          #endif
+          #if (INDEX == 142)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT19),
+          #endif
+          #if (INDEX == 143)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT20),
+          #endif
+          #if (INDEX == 144)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT21),
+          #endif
+          #if (INDEX == 145)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT22),
+          #endif
+          #if (INDEX == 146)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT23),
+          #endif
+          #if (INDEX == 147)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT24),
+          #endif
+          #if (INDEX == 148)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT25),
+          #endif
+          #if (INDEX == 149)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT26),
+          #endif
+          #if (INDEX == 150)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT27),
+          #endif
+          #if (INDEX == 151)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT28),
+          #endif
+          #if (INDEX == 152)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT29),
+          #endif
+          #if (INDEX == 153)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT30),
+          #endif
+          #if (INDEX == 154)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT31),
+          #endif
+          #if (INDEX == 155)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT32),
+          #endif
+          #if (INDEX == 156)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT33),
+          #endif
+          #if (INDEX == 157)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT34),
+          #endif
+          #if (INDEX == 158)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT35),
+          #endif
+          #if (INDEX == 159)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT36),
+          #endif
+          #if (INDEX == 160)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT37),
+          #endif
+          #if (INDEX == 161)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT38),
+          #endif
+          #if (INDEX == 162)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT39),
+          #endif
+          #if (INDEX == 163)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO3PORT40),
+          #endif
+          #if (INDEX == 164)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT0),
+          #endif
+          #if (INDEX == 165)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT1),
+          #endif
+          #if (INDEX == 166)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT2),
+          #endif
+          #if (INDEX == 167)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT3),
+          #endif
+          #if (INDEX == 168)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT4),
+          #endif
+          #if (INDEX == 169)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT5),
+          #endif
+          #if (INDEX == 170)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT6),
+          #endif
+          #if (INDEX == 171)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT7),
+          #endif
+          #if (INDEX == 172)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT8),
+          #endif
+          #if (INDEX == 173)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT9),
+          #endif
+          #if (INDEX == 174)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT10),
+          #endif
+          #if (INDEX == 175)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT11),
+          #endif
+          #if (INDEX == 176)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT12),
+          #endif
+          #if (INDEX == 177)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT13),
+          #endif
+          #if (INDEX == 178)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT14),
+          #endif
+          #if (INDEX == 179)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT15),
+          #endif
+          #if (INDEX == 180)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT16),
+          #endif
+          #if (INDEX == 181)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT17),
+          #endif
+          #if (INDEX == 182)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT18),
+          #endif
+          #if (INDEX == 183)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT19),
+          #endif
+          #if (INDEX == 184)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT20),
+          #endif
+          #if (INDEX == 185)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT21),
+          #endif
+          #if (INDEX == 186)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT22),
+          #endif
+          #if (INDEX == 187)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT23),
+          #endif
+          #if (INDEX == 188)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT24),
+          #endif
+          #if (INDEX == 189)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT25),
+          #endif
+          #if (INDEX == 190)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT26),
+          #endif
+          #if (INDEX == 191)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT27),
+          #endif
+          #if (INDEX == 192)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT28),
+          #endif
+          #if (INDEX == 193)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT29),
+          #endif
+          #if (INDEX == 194)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT30),
+          #endif
+          #if (INDEX == 195)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT31),
+          #endif
+          #if (INDEX == 196)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT32),
+          #endif
+          #if (INDEX == 197)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT33),
+          #endif
+          #if (INDEX == 198)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT34),
+          #endif
+          #if (INDEX == 199)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT35),
+          #endif
+          #if (INDEX == 200)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT36),
+          #endif
+          #if (INDEX == 201)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT37),
+          #endif
+          #if (INDEX == 202)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT38),
+          #endif
+          #if (INDEX == 203)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT39),
+          #endif
+          #if (INDEX == 204)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO4PORT40),
+          #endif
+          #if (INDEX == 205)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT0),
+          #endif
+          #if (INDEX == 206)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT1),
+          #endif
+          #if (INDEX == 207)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT2),
+          #endif
+          #if (INDEX == 208)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT3),
+          #endif
+          #if (INDEX == 209)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT4),
+          #endif
+          #if (INDEX == 210)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT5),
+          #endif
+          #if (INDEX == 211)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT6),
+          #endif
+          #if (INDEX == 212)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT7),
+          #endif
+          #if (INDEX == 213)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT8),
+          #endif
+          #if (INDEX == 214)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT9),
+          #endif
+          #if (INDEX == 215)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT10),
+          #endif
+          #if (INDEX == 216)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT11),
+          #endif
+          #if (INDEX == 217)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT12),
+          #endif
+          #if (INDEX == 218)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT13),
+          #endif
+          #if (INDEX == 219)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT14),
+          #endif
+          #if (INDEX == 220)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT15),
+          #endif
+          #if (INDEX == 221)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT16),
+          #endif
+          #if (INDEX == 222)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT17),
+          #endif
+          #if (INDEX == 223)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT18),
+          #endif
+          #if (INDEX == 224)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT19),
+          #endif
+          #if (INDEX == 225)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT20),
+          #endif
+          #if (INDEX == 226)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT21),
+          #endif
+          #if (INDEX == 227)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT22),
+          #endif
+          #if (INDEX == 228)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT23),
+          #endif
+          #if (INDEX == 229)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT24),
+          #endif
+          #if (INDEX == 230)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT25),
+          #endif
+          #if (INDEX == 231)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT26),
+          #endif
+          #if (INDEX == 232)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT27),
+          #endif
+          #if (INDEX == 233)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT28),
+          #endif
+          #if (INDEX == 234)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT29),
+          #endif
+          #if (INDEX == 235)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT30),
+          #endif
+          #if (INDEX == 236)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT31),
+          #endif
+          #if (INDEX == 237)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT32),
+          #endif
+          #if (INDEX == 238)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT33),
+          #endif
+          #if (INDEX == 239)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT34),
+          #endif
+          #if (INDEX == 240)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT35),
+          #endif
+          #if (INDEX == 241)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT36),
+          #endif
+          #if (INDEX == 242)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT37),
+          #endif
+          #if (INDEX == 243)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT38),
+          #endif
+          #if (INDEX == 244)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT39),
+          #endif
+          #if (INDEX == 245)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO5PORT40),
+          #endif
+          #if (INDEX == 246)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT0),
+          #endif
+          #if (INDEX == 247)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT1),
+          #endif
+          #if (INDEX == 248)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT2),
+          #endif
+          #if (INDEX == 249)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT3),
+          #endif
+          #if (INDEX == 250)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT4),
+          #endif
+          #if (INDEX == 251)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT5),
+          #endif
+          #if (INDEX == 252)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT6),
+          #endif
+          #if (INDEX == 253)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT7),
+          #endif
+          #if (INDEX == 254)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT8),
+          #endif
+          #if (INDEX == 255)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT9),
+          #endif
+          #if (INDEX == 256)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT10),
+          #endif
+          #if (INDEX == 257)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT11),
+          #endif
+          #if (INDEX == 258)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT12),
+          #endif
+          #if (INDEX == 259)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT13),
+          #endif
+          #if (INDEX == 260)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT14),
+          #endif
+          #if (INDEX == 261)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT15),
+          #endif
+          #if (INDEX == 262)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT16),
+          #endif
+          #if (INDEX == 263)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT17),
+          #endif
+          #if (INDEX == 264)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT18),
+          #endif
+          #if (INDEX == 265)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT19),
+          #endif
+          #if (INDEX == 266)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT20),
+          #endif
+          #if (INDEX == 267)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT21),
+          #endif
+          #if (INDEX == 268)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT22),
+          #endif
+          #if (INDEX == 269)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT23),
+          #endif
+          #if (INDEX == 270)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT24),
+          #endif
+          #if (INDEX == 271)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT25),
+          #endif
+          #if (INDEX == 272)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT26),
+          #endif
+          #if (INDEX == 273)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT27),
+          #endif
+          #if (INDEX == 274)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT28),
+          #endif
+          #if (INDEX == 275)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT29),
+          #endif
+          #if (INDEX == 276)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT30),
+          #endif
+          #if (INDEX == 277)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT31),
+          #endif
+          #if (INDEX == 278)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT32),
+          #endif
+          #if (INDEX == 279)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT33),
+          #endif
+          #if (INDEX == 280)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT34),
+          #endif
+          #if (INDEX == 281)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT35),
+          #endif
+          #if (INDEX == 282)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT36),
+          #endif
+          #if (INDEX == 283)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT37),
+          #endif
+          #if (INDEX == 284)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT38),
+          #endif
+          #if (INDEX == 285)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT39),
+          #endif
+          #if (INDEX == 286)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO6PORT40),
+          #endif
+          #if (INDEX == 287)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT0),
+          #endif
+          #if (INDEX == 288)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT1),
+          #endif
+          #if (INDEX == 289)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT2),
+          #endif
+          #if (INDEX == 290)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT3),
+          #endif
+          #if (INDEX == 291)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT4),
+          #endif
+          #if (INDEX == 292)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT5),
+          #endif
+          #if (INDEX == 293)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT6),
+          #endif
+          #if (INDEX == 294)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT7),
+          #endif
+          #if (INDEX == 295)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT8),
+          #endif
+          #if (INDEX == 296)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT9),
+          #endif
+          #if (INDEX == 297)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT10),
+          #endif
+          #if (INDEX == 298)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT11),
+          #endif
+          #if (INDEX == 299)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT12),
+          #endif
+          #if (INDEX == 300)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT13),
+          #endif
+          #if (INDEX == 301)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT14),
+          #endif
+          #if (INDEX == 302)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT15),
+          #endif
+          #if (INDEX == 303)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT16),
+          #endif
+          #if (INDEX == 304)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT17),
+          #endif
+          #if (INDEX == 305)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT18),
+          #endif
+          #if (INDEX == 306)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT19),
+          #endif
+          #if (INDEX == 307)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT20),
+          #endif
+          #if (INDEX == 308)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT21),
+          #endif
+          #if (INDEX == 309)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT22),
+          #endif
+          #if (INDEX == 310)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT23),
+          #endif
+          #if (INDEX == 311)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT24),
+          #endif
+          #if (INDEX == 312)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT25),
+          #endif
+          #if (INDEX == 313)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT26),
+          #endif
+          #if (INDEX == 314)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT27),
+          #endif
+          #if (INDEX == 315)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT28),
+          #endif
+          #if (INDEX == 316)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT29),
+          #endif
+          #if (INDEX == 317)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT30),
+          #endif
+          #if (INDEX == 318)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT31),
+          #endif
+          #if (INDEX == 319)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT32),
+          #endif
+          #if (INDEX == 320)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT33),
+          #endif
+          #if (INDEX == 321)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT34),
+          #endif
+          #if (INDEX == 322)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT35),
+          #endif
+          #if (INDEX == 323)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT36),
+          #endif
+          #if (INDEX == 324)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT37),
+          #endif
+          #if (INDEX == 325)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT38),
+          #endif
+          #if (INDEX == 326)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT39),
+          #endif
+          #if (INDEX == 327)
+            text   = STRING_TOKEN(STR_MAXLINK_STATUS_IIO7PORT40),
+          #endif
+          flags  = 0, key = 0;
+
+      //
+      // PCI-E Port Link Speed Status
+      //
+  #if ( INDEX != 0)
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.PciePortEnable[INDEX] == 0x00;
+  #endif // INDEX != 0
+      text
+          help   = STRING_TOKEN(STR_NULL_STRING),
+          text   = STRING_TOKEN(STR_PCIESPEED_STATUS),
+          #if (INDEX == 0)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT0),
+          #endif
+          #if (INDEX == 1)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT1),
+          #endif
+          #if (INDEX == 2)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT2),
+          #endif
+          #if (INDEX == 3)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT3),
+          #endif
+          #if (INDEX == 4)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT4),
+          #endif
+          #if (INDEX == 5)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT5),
+          #endif
+          #if (INDEX == 6)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT6),
+          #endif
+          #if (INDEX == 7)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT7),
+          #endif
+          #if (INDEX == 8)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT8),
+          #endif
+          #if (INDEX == 9)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT9),
+          #endif
+          #if (INDEX == 10)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT10),
+          #endif
+          #if (INDEX == 11)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT11),
+          #endif
+          #if (INDEX == 12)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT12),
+          #endif
+          #if (INDEX == 13)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT13),
+          #endif
+          #if (INDEX == 14)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT14),
+          #endif
+          #if (INDEX == 15)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT15),
+          #endif
+          #if (INDEX == 16)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT16),
+          #endif
+          #if (INDEX == 17)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT17),
+          #endif
+          #if (INDEX == 18)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT18),
+          #endif
+          #if (INDEX == 19)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT19),
+          #endif
+          #if (INDEX == 20)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT20),
+          #endif
+          #if (INDEX == 21)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT21),
+          #endif
+          #if (INDEX == 22)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT22),
+          #endif
+          #if (INDEX == 23)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT23),
+          #endif
+          #if (INDEX == 24)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT24),
+          #endif
+          #if (INDEX == 25)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT25),
+          #endif
+          #if (INDEX == 26)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT26),
+          #endif
+          #if (INDEX == 27)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT27),
+          #endif
+          #if (INDEX == 28)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT28),
+          #endif
+          #if (INDEX == 29)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT29),
+          #endif
+          #if (INDEX == 30)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT30),
+          #endif
+          #if (INDEX == 31)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT31),
+          #endif
+          #if (INDEX == 32)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT32),
+          #endif
+          #if (INDEX == 33)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT33),
+          #endif
+          #if (INDEX == 34)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT34),
+          #endif
+          #if (INDEX == 35)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT35),
+          #endif
+          #if (INDEX == 36)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT36),
+          #endif
+          #if (INDEX == 37)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT37),
+          #endif
+          #if (INDEX == 38)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT38),
+          #endif
+          #if (INDEX == 39)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT39),
+          #endif
+          #if (INDEX == 40)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO0PORT40),
+          #endif
+          #if (INDEX == 41)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT0),
+          #endif
+          #if (INDEX == 42)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT1),
+          #endif
+          #if (INDEX == 43)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT2),
+          #endif
+          #if (INDEX == 44)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT3),
+          #endif
+          #if (INDEX == 45)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT4),
+          #endif
+          #if (INDEX == 46)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT5),
+          #endif
+          #if (INDEX == 47)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT6),
+          #endif
+          #if (INDEX == 48)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT7),
+          #endif
+          #if (INDEX == 49)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT8),
+          #endif
+          #if (INDEX == 50)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT9),
+          #endif
+          #if (INDEX == 51)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT10),
+          #endif
+          #if (INDEX == 52)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT11),
+          #endif
+          #if (INDEX == 53)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT12),
+          #endif
+          #if (INDEX == 54)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT13),
+          #endif
+          #if (INDEX == 55)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT14),
+          #endif
+          #if (INDEX == 56)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT15),
+          #endif
+          #if (INDEX == 57)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT16),
+          #endif
+          #if (INDEX == 58)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT17),
+          #endif
+          #if (INDEX == 59)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT18),
+          #endif
+          #if (INDEX == 60)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT19),
+          #endif
+          #if (INDEX == 61)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT20),
+          #endif
+          #if (INDEX == 62)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT21),
+          #endif
+          #if (INDEX == 63)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT22),
+          #endif
+          #if (INDEX == 64)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT23),
+          #endif
+          #if (INDEX == 65)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT24),
+          #endif
+          #if (INDEX == 66)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT25),
+          #endif
+          #if (INDEX == 67)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT26),
+          #endif
+          #if (INDEX == 68)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT27),
+          #endif
+          #if (INDEX == 69)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT28),
+          #endif
+          #if (INDEX == 70)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT29),
+          #endif
+          #if (INDEX == 71)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT30),
+          #endif
+          #if (INDEX == 72)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT31),
+          #endif
+          #if (INDEX == 73)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT32),
+          #endif
+          #if (INDEX == 74)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT33),
+          #endif
+          #if (INDEX == 75)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT34),
+          #endif
+          #if (INDEX == 76)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT35),
+          #endif
+          #if (INDEX == 77)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT36),
+          #endif
+          #if (INDEX == 78)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT37),
+          #endif
+          #if (INDEX == 79)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT38),
+          #endif
+          #if (INDEX == 80)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT39),
+          #endif
+          #if (INDEX == 81)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO1PORT40),
+          #endif
+          #if (INDEX == 82)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT0),
+          #endif
+          #if (INDEX == 83)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT1),
+          #endif
+          #if (INDEX == 84)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT2),
+          #endif
+          #if (INDEX == 85)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT3),
+          #endif
+          #if (INDEX == 86)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT4),
+          #endif
+          #if (INDEX == 87)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT5),
+          #endif
+          #if (INDEX == 88)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT6),
+          #endif
+          #if (INDEX == 89)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT7),
+          #endif
+          #if (INDEX == 90)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT8),
+          #endif
+          #if (INDEX == 91)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT9),
+          #endif
+          #if (INDEX == 92)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT10),
+          #endif
+          #if (INDEX == 93)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT11),
+          #endif
+          #if (INDEX == 94)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT12),
+          #endif
+          #if (INDEX == 95)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT13),
+          #endif
+          #if (INDEX == 96)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT14),
+          #endif
+          #if (INDEX == 97)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT15),
+          #endif
+          #if (INDEX == 98)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT16),
+          #endif
+          #if (INDEX == 99)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT17),
+          #endif
+          #if (INDEX == 100)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT18),
+          #endif
+          #if (INDEX == 101)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT19),
+          #endif
+          #if (INDEX == 102)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT20),
+          #endif
+          #if (INDEX == 103)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT21),
+          #endif
+          #if (INDEX == 104)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT22),
+          #endif
+          #if (INDEX == 105)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT23),
+          #endif
+          #if (INDEX == 106)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT24),
+          #endif
+          #if (INDEX == 107)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT25),
+          #endif
+          #if (INDEX == 108)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT26),
+          #endif
+          #if (INDEX == 109)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT27),
+          #endif
+          #if (INDEX == 110)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT28),
+          #endif
+          #if (INDEX == 111)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT29),
+          #endif
+          #if (INDEX == 112)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT30),
+          #endif
+          #if (INDEX == 113)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT31),
+          #endif
+          #if (INDEX == 114)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT32),
+          #endif
+          #if (INDEX == 115)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT33),
+          #endif
+          #if (INDEX == 116)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT34),
+          #endif
+          #if (INDEX == 117)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT35),
+          #endif
+          #if (INDEX == 118)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT36),
+          #endif
+          #if (INDEX == 119)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT37),
+          #endif
+          #if (INDEX == 120)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT38),
+          #endif
+          #if (INDEX == 121)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT39),
+          #endif
+          #if (INDEX == 122)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO2PORT40),
+          #endif
+          #if (INDEX == 123)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT0),
+          #endif
+          #if (INDEX == 124)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT1),
+          #endif
+          #if (INDEX == 125)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT2),
+          #endif
+          #if (INDEX == 126)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT3),
+          #endif
+          #if (INDEX == 127)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT4),
+          #endif
+          #if (INDEX == 128)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT5),
+          #endif
+          #if (INDEX == 129)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT6),
+          #endif
+          #if (INDEX == 130)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT7),
+          #endif
+          #if (INDEX == 131)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT8),
+          #endif
+          #if (INDEX == 132)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT9),
+          #endif
+          #if (INDEX == 133)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT10),
+          #endif
+          #if (INDEX == 134)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT11),
+          #endif
+          #if (INDEX == 135)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT12),
+          #endif
+          #if (INDEX == 136)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT13),
+          #endif
+          #if (INDEX == 137)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT14),
+          #endif
+          #if (INDEX == 138)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT15),
+          #endif
+          #if (INDEX == 139)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT16),
+          #endif
+          #if (INDEX == 140)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT17),
+          #endif
+          #if (INDEX == 141)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT18),
+          #endif
+          #if (INDEX == 142)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT19),
+          #endif
+          #if (INDEX == 143)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT20),
+          #endif
+          #if (INDEX == 144)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT21),
+          #endif
+          #if (INDEX == 145)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT22),
+          #endif
+          #if (INDEX == 146)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT23),
+          #endif
+          #if (INDEX == 147)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT24),
+          #endif
+          #if (INDEX == 148)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT25),
+          #endif
+          #if (INDEX == 149)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT26),
+          #endif
+          #if (INDEX == 150)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT27),
+          #endif
+          #if (INDEX == 151)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT28),
+          #endif
+          #if (INDEX == 152)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT29),
+          #endif
+          #if (INDEX == 153)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT30),
+          #endif
+          #if (INDEX == 154)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT31),
+          #endif
+          #if (INDEX == 155)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT32),
+          #endif
+          #if (INDEX == 156)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT33),
+          #endif
+          #if (INDEX == 157)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT34),
+          #endif
+          #if (INDEX == 158)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT35),
+          #endif
+          #if (INDEX == 159)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT36),
+          #endif
+          #if (INDEX == 160)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT37),
+          #endif
+          #if (INDEX == 161)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT38),
+          #endif
+          #if (INDEX == 162)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT39),
+          #endif
+          #if (INDEX == 163)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO3PORT40),
+          #endif
+          #if (INDEX == 164)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT0),
+          #endif
+          #if (INDEX == 165)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT1),
+          #endif
+          #if (INDEX == 166)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT2),
+          #endif
+          #if (INDEX == 167)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT3),
+          #endif
+          #if (INDEX == 168)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT4),
+          #endif
+          #if (INDEX == 169)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT5),
+          #endif
+          #if (INDEX == 170)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT6),
+          #endif
+          #if (INDEX == 171)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT7),
+          #endif
+          #if (INDEX == 172)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT8),
+          #endif
+          #if (INDEX == 173)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT9),
+          #endif
+          #if (INDEX == 174)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT10),
+          #endif
+          #if (INDEX == 175)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT11),
+          #endif
+          #if (INDEX == 176)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT12),
+          #endif
+          #if (INDEX == 177)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT13),
+          #endif
+          #if (INDEX == 178)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT14),
+          #endif
+          #if (INDEX == 179)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT15),
+          #endif
+          #if (INDEX == 180)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT16),
+          #endif
+          #if (INDEX == 181)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT17),
+          #endif
+          #if (INDEX == 182)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT18),
+          #endif
+          #if (INDEX == 183)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT19),
+          #endif
+          #if (INDEX == 184)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT20),
+          #endif
+          #if (INDEX == 185)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT21),
+          #endif
+          #if (INDEX == 186)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT22),
+          #endif
+          #if (INDEX == 187)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT23),
+          #endif
+          #if (INDEX == 188)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT24),
+          #endif
+          #if (INDEX == 189)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT25),
+          #endif
+          #if (INDEX == 190)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT26),
+          #endif
+          #if (INDEX == 191)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT27),
+          #endif
+          #if (INDEX == 192)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT28),
+          #endif
+          #if (INDEX == 193)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT29),
+          #endif
+          #if (INDEX == 194)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT30),
+          #endif
+          #if (INDEX == 195)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT31),
+          #endif
+          #if (INDEX == 196)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT32),
+          #endif
+          #if (INDEX == 197)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT33),
+          #endif
+          #if (INDEX == 198)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT34),
+          #endif
+          #if (INDEX == 199)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT35),
+          #endif
+          #if (INDEX == 200)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT36),
+          #endif
+          #if (INDEX == 201)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT37),
+          #endif
+          #if (INDEX == 202)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT38),
+          #endif
+          #if (INDEX == 203)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT39),
+          #endif
+          #if (INDEX == 204)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO4PORT40),
+          #endif
+          #if (INDEX == 205)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT0),
+          #endif
+          #if (INDEX == 206)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT1),
+          #endif
+          #if (INDEX == 207)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT2),
+          #endif
+          #if (INDEX == 208)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT3),
+          #endif
+          #if (INDEX == 209)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT4),
+          #endif
+          #if (INDEX == 210)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT5),
+          #endif
+          #if (INDEX == 211)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT6),
+          #endif
+          #if (INDEX == 212)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT7),
+          #endif
+          #if (INDEX == 213)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT8),
+          #endif
+          #if (INDEX == 214)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT9),
+          #endif
+          #if (INDEX == 215)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT10),
+          #endif
+          #if (INDEX == 216)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT11),
+          #endif
+          #if (INDEX == 217)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT12),
+          #endif
+          #if (INDEX == 218)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT13),
+          #endif
+          #if (INDEX == 219)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT14),
+          #endif
+          #if (INDEX == 220)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT15),
+          #endif
+          #if (INDEX == 221)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT16),
+          #endif
+          #if (INDEX == 222)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT17),
+          #endif
+          #if (INDEX == 223)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT18),
+          #endif
+          #if (INDEX == 224)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT19),
+          #endif
+          #if (INDEX == 225)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT20),
+          #endif
+          #if (INDEX == 226)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT21),
+          #endif
+          #if (INDEX == 227)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT22),
+          #endif
+          #if (INDEX == 228)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT23),
+          #endif
+          #if (INDEX == 229)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT24),
+          #endif
+          #if (INDEX == 230)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT25),
+          #endif
+          #if (INDEX == 231)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT26),
+          #endif
+          #if (INDEX == 232)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT27),
+          #endif
+          #if (INDEX == 233)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT28),
+          #endif
+          #if (INDEX == 234)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT29),
+          #endif
+          #if (INDEX == 235)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT30),
+          #endif
+          #if (INDEX == 236)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT31),
+          #endif
+          #if (INDEX == 237)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT32),
+          #endif
+          #if (INDEX == 238)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT33),
+          #endif
+          #if (INDEX == 239)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT34),
+          #endif
+          #if (INDEX == 240)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT35),
+          #endif
+          #if (INDEX == 241)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT36),
+          #endif
+          #if (INDEX == 242)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT37),
+          #endif
+          #if (INDEX == 243)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT38),
+          #endif
+          #if (INDEX == 244)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT39),
+          #endif
+          #if (INDEX == 245)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO5PORT40),
+          #endif
+          #if (INDEX == 246)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT0),
+          #endif
+          #if (INDEX == 247)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT1),
+          #endif
+          #if (INDEX == 248)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT2),
+          #endif
+          #if (INDEX == 249)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT3),
+          #endif
+          #if (INDEX == 250)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT4),
+          #endif
+          #if (INDEX == 251)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT5),
+          #endif
+          #if (INDEX == 252)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT6),
+          #endif
+          #if (INDEX == 253)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT7),
+          #endif
+          #if (INDEX == 254)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT8),
+          #endif
+          #if (INDEX == 255)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT9),
+          #endif
+          #if (INDEX == 256)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT10),
+          #endif
+          #if (INDEX == 257)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT11),
+          #endif
+          #if (INDEX == 258)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT12),
+          #endif
+          #if (INDEX == 259)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT13),
+          #endif
+          #if (INDEX == 260)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT14),
+          #endif
+          #if (INDEX == 261)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT15),
+          #endif
+          #if (INDEX == 262)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT16),
+          #endif
+          #if (INDEX == 263)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT17),
+          #endif
+          #if (INDEX == 264)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT18),
+          #endif
+          #if (INDEX == 265)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT19),
+          #endif
+          #if (INDEX == 266)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT20),
+          #endif
+          #if (INDEX == 267)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT21),
+          #endif
+          #if (INDEX == 268)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT22),
+          #endif
+          #if (INDEX == 269)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT23),
+          #endif
+          #if (INDEX == 270)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT24),
+          #endif
+          #if (INDEX == 271)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT25),
+          #endif
+          #if (INDEX == 272)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT26),
+          #endif
+          #if (INDEX == 273)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT27),
+          #endif
+          #if (INDEX == 274)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT28),
+          #endif
+          #if (INDEX == 275)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT29),
+          #endif
+          #if (INDEX == 276)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT30),
+          #endif
+          #if (INDEX == 277)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT31),
+          #endif
+          #if (INDEX == 278)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT32),
+          #endif
+          #if (INDEX == 279)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT33),
+          #endif
+          #if (INDEX == 280)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT34),
+          #endif
+          #if (INDEX == 281)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT35),
+          #endif
+          #if (INDEX == 282)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT36),
+          #endif
+          #if (INDEX == 283)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT37),
+          #endif
+          #if (INDEX == 284)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT38),
+          #endif
+          #if (INDEX == 285)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT39),
+          #endif
+          #if (INDEX == 286)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO6PORT40),
+          #endif
+          #if (INDEX == 287)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT0),
+          #endif
+          #if (INDEX == 288)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT1),
+          #endif
+          #if (INDEX == 289)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT2),
+          #endif
+          #if (INDEX == 290)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT3),
+          #endif
+          #if (INDEX == 291)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT4),
+          #endif
+          #if (INDEX == 292)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT5),
+          #endif
+          #if (INDEX == 293)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT6),
+          #endif
+          #if (INDEX == 294)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT7),
+          #endif
+          #if (INDEX == 295)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT8),
+          #endif
+          #if (INDEX == 296)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT9),
+          #endif
+          #if (INDEX == 297)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT10),
+          #endif
+          #if (INDEX == 298)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT11),
+          #endif
+          #if (INDEX == 299)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT12),
+          #endif
+          #if (INDEX == 300)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT13),
+          #endif
+          #if (INDEX == 301)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT14),
+          #endif
+          #if (INDEX == 302)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT15),
+          #endif
+          #if (INDEX == 303)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT16),
+          #endif
+          #if (INDEX == 304)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT17),
+          #endif
+          #if (INDEX == 305)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT18),
+          #endif
+          #if (INDEX == 306)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT19),
+          #endif
+          #if (INDEX == 307)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT20),
+          #endif
+          #if (INDEX == 308)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT21),
+          #endif
+          #if (INDEX == 309)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT22),
+          #endif
+          #if (INDEX == 310)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT23),
+          #endif
+          #if (INDEX == 311)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT24),
+          #endif
+          #if (INDEX == 312)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT25),
+          #endif
+          #if (INDEX == 313)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT26),
+          #endif
+          #if (INDEX == 314)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT27),
+          #endif
+          #if (INDEX == 315)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT28),
+          #endif
+          #if (INDEX == 316)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT29),
+          #endif
+          #if (INDEX == 317)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT30),
+          #endif
+          #if (INDEX == 318)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT31),
+          #endif
+          #if (INDEX == 319)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT32),
+          #endif
+          #if (INDEX == 320)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT33),
+          #endif
+          #if (INDEX == 321)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT34),
+          #endif
+          #if (INDEX == 322)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT35),
+          #endif
+          #if (INDEX == 323)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT36),
+          #endif
+          #if (INDEX == 324)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT37),
+          #endif
+          #if (INDEX == 325)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT38),
+          #endif
+          #if (INDEX == 326)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT39),
+          #endif
+          #if (INDEX == 327)
+            text   = STRING_TOKEN(STR_PCIESPEED_STATUS_IIO7PORT40),
+          #endif
+          flags  = 0, key = 0;
+
+    #if ( INDEX != 0)
+      endif;  //supressif PCI-E Port Link Speed Status
+    #endif // INDEX != 0
+
+      //
+      // PCI-E Port Clocking
+      //
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieCommonClock[INDEX],
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_CLOCKING_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_CLOCKING_HELP),
+          option text = STRING_TOKEN(STR_DISTINCT), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_COMMON),   value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      endoneof;
+
+      //
+      // PCI-E Port Clock Gating
+      //
+      suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+        oneof varid = SOCKET_IIO_CONFIGURATION.PciePortClkGateEnable[INDEX],
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_CLOCK_GATING_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_CLOCK_GATING_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        endoneof;
+      endif;
+
+      //
+      // PCI-E Data Link Feature Exchange Enable
+      //
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieDataLinkFeatureExchangeEnable[INDEX],
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_DATA_LINK_FEATURES_EXCHANGE_ENABLE_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_DATA_LINK_FEATURES_EXCHANGE_ENABLE_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      endoneof;
+
+      //
+      // PCI-E Port Max Payload Request
+      //
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieMaxPayload[INDEX],
+#if INDEX == 0
+          prompt  = STRING_TOKEN(STR_DMI_PORT_MPSS_PROMPT),
+          help    = STRING_TOKEN(STR_DMI_PORT_MPSS_HELP),
+#else
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_MPSS_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_MPSS_HELP),
+#endif
+          option text = STRING_TOKEN(STR_128B),   value = PCIE_MAX_PAYLOAD_128B, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_256B),   value = PCIE_MAX_PAYLOAD_256B, flags = RESET_REQUIRED;
+#if !defined(SKX_HOST) && INDEX != 0
+          option text = STRING_TOKEN(STR_512B),   value = PCIE_MAX_PAYLOAD_512B, flags = RESET_REQUIRED;
+#endif
+          option text = STRING_TOKEN(STR_AUTO),   value = PCIE_MAX_PAYLOAD_AUTO, flags = RESET_REQUIRED| MANUFACTURING | DEFAULT;
+      endoneof;
+
+      //
+      // PCI-E Port DState
+      //
+      oneof varid = SOCKET_IIO_CONFIGURATION.PcieDState[INDEX],
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_D_STATE_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_D_STATE_HELP),
+          option text = STRING_TOKEN(STR_D0),   value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_D3HOT),   value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+// HSD 4166383: Extra Global ASPM Setup Option in the PCIe Port Setup
+//       Removed menu item from here and moved it to the IioSetup file.
+        //
+        // PCI-E Port Aspm Support
+        //
+        oneof varid = SOCKET_IIO_CONFIGURATION.PcieAspm[INDEX],
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_ASPM_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_ASPM_HELP),
+//Transformers_JK014***>>
+            option text = STRING_TOKEN(STR_AUTO), value = PCIE_ASPM_AUTO, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_L1_ONLY), value = PCIE_ASPM_L1_ONLY, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_DISABLE), value = PCIE_ASPM_DISABLE, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+//Transformers_JK014***<<
+        endoneof;
+
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.PcieAspm[INDEX] == 0;
+        //
+        // PCI-E Port L1 Latency
+        //
+          oneof varid = SOCKET_IIO_CONFIGURATION.PcieL1Latency[INDEX],
+              prompt  = STRING_TOKEN(STR_PCIE_PORT_L1_LATENCY_PROMPT),
+              help    = STRING_TOKEN(STR_PCIE_PORT_L1_LATENCY_HELP),
+              option text = STRING_TOKEN(STR_L1_LT_1US),    value = 0, flags = RESET_REQUIRED;
+              option text = STRING_TOKEN(STR_L1_1US_2US),   value = 1, flags = RESET_REQUIRED;
+              option text = STRING_TOKEN(STR_L1_2US_4US),   value = 2, flags = RESET_REQUIRED;
+              option text = STRING_TOKEN(STR_L1_4US_8US),   value = 3, flags = RESET_REQUIRED;
+              #if (INDEX == 0) && (defined (SNR_HOST) || defined (ICXDE_HOST))
+                option text = STRING_TOKEN(STR_L1_8US_16US),  value = 4, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_L1_16US_32US), value = 5, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+              #else
+                option text = STRING_TOKEN(STR_L1_8US_16US),  value = 4, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+                option text = STRING_TOKEN(STR_L1_16US_32US), value = 5, flags = RESET_REQUIRED;
+              #endif
+              option text = STRING_TOKEN(STR_L1_32US_64US), value = 6, flags = RESET_REQUIRED;
+              option text = STRING_TOKEN(STR_L1_GT_64US),   value = 7, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      //
+      // MSI CTRL
+      //
+      oneof varid = SOCKET_IIO_CONFIGURATION.MsiEn[INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_MSI_EN_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_MSI_EN_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      //
+      // Extended Sync Mode
+      //
+      oneof varid = SOCKET_IIO_CONFIGURATION.ExtendedSync[INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_EXTENDED_SYNC_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_EXTENDED_SYNC_HELP),
+          option text = STRING_TOKEN(STR_NO),   value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_YES),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.ComplianceMode[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_COMPLIANCE_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_COMPLIANCE_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_NO),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_YES),       value = 1,  flags = RESET_REQUIRED;
+    endoneof;
+
+#ifdef STACK_INDEX
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.NtbPpd[STACK_INDEX] == 1 OR ideqval SOCKET_IIO_CONFIGURATION.NtbPpd[STACK_INDEX] == 2;
+#endif
+       oneof varid = SOCKET_IIO_CONFIGURATION.EOI[INDEX],
+           prompt  = STRING_TOKEN(STR_IIO_EOI_PROMPT),
+           help    = STRING_TOKEN(STR_IIO_EOI_PROMPT_HELP),
+#if (INDEX == 0)
+           option text = STRING_TOKEN(STR_DISABLE),       value = 1,  flags = RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_ENABLE),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#else
+           option text = STRING_TOKEN(STR_DISABLE),       value = 1,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+           option text = STRING_TOKEN(STR_ENABLE),        value = 0,  flags = RESET_REQUIRED;
+#endif
+      endoneof;
+#ifdef STACK_INDEX
+    endif;
+#endif
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.MSIFATEN[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_FATAL_ERR_OVERRIDE_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_FATAL_ERR_OVERRIDE_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_NO),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_YES),       value = 1,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.MSINFATEN[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_NFATAL_ERR_OVERRIDE_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_NFATAL_ERR_OVERRIDE_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_NO),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_YES),       value = 1,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.MSICOREN[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_CORR_ERR_OVERRIDE_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_CORR_ERR_OVERRIDE_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_NO),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_YES),       value = 1,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.ACPIPMEn[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_ACPI_PME_INT_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_ACPI_PME_INT_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_NO),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_YES),       value = 1,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.P2PRdDis[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_P2P_READ_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_P2P_READ_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),        value = 1,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),         value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.DisPMETOAck[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_PME2ACK_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_PME2ACK_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),        value = 1,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),         value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    #if (INDEX!=0)
+        suppressif NOT ideqval SOCKET_IIO_CONFIGURATION.PcieAcpiHotPlugEnable == 2;
+            oneof varid = SOCKET_IIO_CONFIGURATION.ACPIHP[INDEX],
+                prompt  = STRING_TOKEN(STR_IIO_ACPIHP_PROMPT),
+                help    = STRING_TOKEN(STR_IIO_ACPIHP_PROMPT_HELP),
+                option text = STRING_TOKEN(STR_NO),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+                option text = STRING_TOKEN(STR_YES),       value = 1,  flags = RESET_REQUIRED;
+        endoneof;
+        endif;
+
+        oneof varid = SOCKET_IIO_CONFIGURATION.ACPIPM[INDEX],
+                prompt  = STRING_TOKEN(STR_IIO_ACPIPM_PROMPT),
+                help    = STRING_TOKEN(STR_IIO_ACPIPM_PROMPT_HELP),
+                option text = STRING_TOKEN(STR_NO),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+                option text = STRING_TOKEN(STR_YES),       value = 1,  flags = RESET_REQUIRED;
+        endoneof;
+
+    #endif
+
+    //
+    // PEXDEVCTRL -- need to review -- this register programming is done in SMM Error Logging
+    //
+    oneof varid     = SOCKET_IIO_CONFIGURATION.PcieUnsupportedRequests[INDEX],
+        prompt      = STRING_TOKEN(STR_IIO_PORT_UNSUPPORTED_REQUEST_PROMPT),
+        help        = STRING_TOKEN(STR_IIO_PORT_UNSUPPORTED_REQUEST_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+	oneof varid = SOCKET_IIO_CONFIGURATION.TXEQ[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_TXEQ_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_TXEQ_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),         value = 1,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.SRIS[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_SRIS_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_SRIS_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_NO),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_YES),       value = 1,  flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.SERRE[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_SERRE_PROMPT),
+        help    = STRING_TOKEN(STR_IIO_SERRE_PROMPT_HELP),
+        #if defined (SNR_HOST)
+          option text = STRING_TOKEN(STR_DISABLE),        value = 0,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),         value = 1,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        #else
+          option text = STRING_TOKEN(STR_DISABLE),        value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),         value = 1,  flags = RESET_REQUIRED;
+        #endif
+    endoneof;
+
+
+//add IODC options here
+   oneof varid = SOCKET_IIO_CONFIGURATION.IODC[INDEX],
+      #if ( INDEX < TOTAL_PORTS_VAR)
+        prompt  = STRING_TOKEN(STR_IODC_PROMPT),
+      #endif // INDEX < TOTAL_PORTS_VAR
+       help    = STRING_TOKEN(STR_IODC_PROMPT_HELP),
+       option text = STRING_TOKEN(STR_IODC_GLOBAL_KTI_OPTION),        value = IODC_GLOBAL_KTI_OPTION,             flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+       option text = STRING_TOKEN(STR_AUTO),                               value = IODC_AUTO,                          flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_IODC_EN_REM_INVITOM_PUSH),           value = IODC_EN_REM_INVITOM_PUSH,           flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_IODC_EN_REM_INVITOM_ALLOCFLOW),      value = IODC_EN_REM_INVITOM_ALLOCFLOW,      flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_IODC_EN_REM_INVITOM_ALLOC_NONALLOC), value = IODC_EN_REM_INVITOM_ALLOC_NONALLOC, flags = RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_IODC_EN_REM_INVITOM_AND_WCILF),      value = IODC_EN_REM_INVITOM_AND_WCILF,      flags = RESET_REQUIRED;
+    endoneof;
+
+// NTB configuration bellow is for SPR
+#ifdef NTB_PORT_INDEX
+suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+
+  oneof varid = SOCKET_IIO_CONFIGURATION.NtbPpd[NTB_PORT_INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_NTB_PPD),
+          help    = STRING_TOKEN(STR_IIO_NTB_PPD_HELP),
+          option text = STRING_TOKEN(STR_IIO_NTB_TB),   value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_IIO_NTB_NTB),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.NtbPpd[NTB_PORT_INDEX] == 0;
+      oneof varid = SOCKET_IIO_CONFIGURATION.NtbBarSizeOverride[NTB_PORT_INDEX],  //allow BIOS to bypass BAR SZ register writes when configured as NTB
+          prompt  = STRING_TOKEN(STR_IIO_SZ_ENABLE),
+          help    = STRING_TOKEN(STR_IIO_SZ_ENABLE_HELP),
+          option text = STRING_TOKEN(STR_NO),      value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_YES),     value = 1,  flags = RESET_REQUIRED;
+      endoneof;
+    endif; //end suppression
+
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.NtbPpd[NTB_PORT_INDEX] == 0 OR ideqval SOCKET_IIO_CONFIGURATION.NtbBarSizeOverride[NTB_PORT_INDEX] == 0;
+      oneof varid = SOCKET_IIO_CONFIGURATION.NtbSplitBar[NTB_PORT_INDEX],  //allow BIOS to enable Split BAR(32 bit BAR) for IMBAR2 and EMBAR2
+          prompt  = STRING_TOKEN(STR_IIO_SPLIT_BAR_ENABLE),
+          help    = STRING_TOKEN(STR_IIO_SPLIT_BAR_ENABLE_HELP),
+          option text = STRING_TOKEN(STR_NO),      value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_YES),     value = 1,  flags = RESET_REQUIRED;
+      endoneof;
+
+
+      numeric varid = SOCKET_IIO_CONFIGURATION.NtbBarSizeImBar1[NTB_PORT_INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_IMBAR1SZ),
+          help    = STRING_TOKEN(STR_IIO_IMBAR1SZ_HELP),
+          flags   = 0 | RESET_REQUIRED,
+          minimum = 12,
+          maximum = 39,
+          step = 1,
+          default = 22, defaultstore = MyStandardDefault,
+          default = 22, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif; //end suppression
+
+    suppressif  ideqval SOCKET_IIO_CONFIGURATION.NtbSplitBar[NTB_PORT_INDEX] == 0;
+      numeric varid = SOCKET_IIO_CONFIGURATION.NtbBarSizeImBar2_0[NTB_PORT_INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_IMBAR2_0_SZ),
+          help    = STRING_TOKEN(STR_IIO_IMBAR2_0_SZ_HELP),
+          flags   = 0 | RESET_REQUIRED,
+          minimum = 12,
+          maximum = 39,
+          step = 1,
+          default = 12, defaultstore = MyStandardDefault,
+          default = 12, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+     numeric varid = SOCKET_IIO_CONFIGURATION.NtbBarSizeImBar2_1[NTB_PORT_INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_IMBAR2_1_SZ),
+          help    = STRING_TOKEN(STR_IIO_IMBAR2_1_SZ_HELP),
+          flags   = 0 | RESET_REQUIRED,
+          minimum = 12,
+          maximum = 39,
+          step = 1,
+          default = 12, defaultstore = MyStandardDefault,
+          default = 12, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif; //end suppression
+
+
+    suppressif  ideqval SOCKET_IIO_CONFIGURATION.NtbSplitBar[NTB_PORT_INDEX] == 1;
+      numeric varid = SOCKET_IIO_CONFIGURATION.NtbBarSizeImBar2[NTB_PORT_INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_IMBAR2SZ),
+          help    = STRING_TOKEN(STR_IIO_IMBAR2SZ_HELP),
+          flags   = 0 | RESET_REQUIRED,
+          minimum = 12,
+          maximum = 39,
+          step = 1,
+          default = 22, defaultstore = MyStandardDefault,
+          default = 22, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.NtbBarSizeEmBarSZ1[NTB_PORT_INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_EMBAR1SZ),
+          help    = STRING_TOKEN(STR_IIO_EMBAR1SZ_HELP),
+          flags   = 0 | RESET_REQUIRED,
+          minimum = 12,
+          maximum = 39,
+          step = 1,
+          default = 22, defaultstore = MyStandardDefault,
+          default = 22, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif; //end suppression
+
+    suppressif  ideqval SOCKET_IIO_CONFIGURATION.NtbSplitBar[NTB_PORT_INDEX] == 0;
+      numeric varid = SOCKET_IIO_CONFIGURATION.NtbBarSizeEmBarSZ2_0[NTB_PORT_INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_EMBAR2_0SZ),
+          help    = STRING_TOKEN(STR_IIO_EMBAR2_0SZ_HELP),
+          flags   = 0 | RESET_REQUIRED,
+          minimum = 12,
+          maximum = 39,
+          step = 1,
+          default = 12, defaultstore = MyStandardDefault,
+          default = 12, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_IIO_CONFIGURATION.NtbBarSizeEmBarSZ2_1[NTB_PORT_INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_EMBAR2_1SZ),
+          help    = STRING_TOKEN(STR_IIO_EMBAR2_1SZ_HELP),
+          flags   = 0 | RESET_REQUIRED,
+          minimum = 12,
+          maximum = 39,
+          step = 1,
+          default = 12, defaultstore = MyStandardDefault,
+          default = 12, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif; //end suppression
+
+    suppressif  ideqval SOCKET_IIO_CONFIGURATION.NtbSplitBar[NTB_PORT_INDEX] == 1;
+      numeric varid = SOCKET_IIO_CONFIGURATION.NtbBarSizeEmBarSZ2[NTB_PORT_INDEX],
+          prompt  = STRING_TOKEN(STR_IIO_EMBAR2SZ),
+          help    = STRING_TOKEN(STR_IIO_EMBAR2SZ_HELP),
+          flags   = 0 | RESET_REQUIRED,
+          minimum = 12,
+          maximum = 39,
+          step = 1,
+          default = 22, defaultstore = MyStandardDefault,
+          default = 22, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif; //end suppression
+
+    //if the port is configured as NTB-NTB, allow the user to configure the crosslink control override
+    //Configuration is as follows for ICX:
+    //    11    Force NTB port to DSD/USP (ignores external NTBCROSSLINK pin)
+    //    10    Force NTB port to USD/DSP (ignores external NTBCROSSLINK pin)
+    //Note that this configuration is a "don't care" if port is configured as TB or NTB-RP
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.NtbPpd[NTB_PORT_INDEX] == 0 OR ideqval SOCKET_IIO_CONFIGURATION.NtbPpd[NTB_PORT_INDEX] == 2;
+
+        oneof varid = SOCKET_IIO_CONFIGURATION.NtbXlinkCtlOverride[NTB_PORT_INDEX],
+            prompt  = STRING_TOKEN(STR_IIO_XLINK_CTL_OVR),
+            help    = STRING_TOKEN(STR_IIO_XLINK_CTL_OVR_HELP),
+            option text = STRING_TOKEN(STR_IIO_XLINK_CTL_DSD_USP),    value = 3,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IIO_XLINK_CTL_USD_DSP),    value = 2,  flags = RESET_REQUIRED;
+        endoneof;
+    endif;  //end suppression
+endif;
+#endif
+    // User option to force PCIe Root Port hide
+    //
+#if (INDEX!=0)
+    oneof varid         = SOCKET_IIO_CONFIGURATION.PEXPHIDE[INDEX],
+        prompt          = STRING_TOKEN(STR_PCIE_DEVICE_HIDE_PROMPT),
+        help            = STRING_TOKEN(STR_PCIE_DEVICE_HIDE_PROMPT_HELP),
+        option text     = STRING_TOKEN(STR_NO),                 value = 0x00, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text     = STRING_TOKEN(STR_YES),                value = 0x01, flags = RESET_REQUIRED;
+    endoneof;
+#endif
+
+    suppressif TRUE;
+      checkbox varid    = SOCKET_IIO_CONFIGURATION.HidePEXPMenu[INDEX],
+          prompt   = STRING_TOKEN(STR_NULL_STRING),
+          help     = STRING_TOKEN(STR_NULL_STRING),
+          // Flags behavior for checkbox is overloaded so that it equals
+          // a DEFAULT value.  1 = ON, 0 = off
+          flags    = CHECKBOX_DEFAULT | CHECKBOX_DEFAULT_MFG,
+      endcheckbox;
+    endif;
+
+    //
+    // Option to Enable/Disable MCTP for each PCIe Root Port
+    //
+    oneof varid = SOCKET_IIO_CONFIGURATION.MctpEn[INDEX],
+        prompt  = STRING_TOKEN(STR_IIO_MCTP_EN),
+        help    = STRING_TOKEN(STR_IIO_MCTP_EN_HELP),
+        option text = STRING_TOKEN(STR_NO),      value = 0,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_YES),     value = 1,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;

@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Amt\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Amt.IncludePrivate.Library"
+[files]
+"ActiveManagementLib.h"	
+"AsfMsgLib.h"	
+<endComponent>

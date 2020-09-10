@@ -1,0 +1,186 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+    SUBTITLE(STRING_TOKEN(CONCATENATE3(STR_SATA,CONTROLLER_INDEX,_TT_OPTIONS_FORM_TITLE)))
+	SEPARATOR
+
+      oneof varid  = PCH_SETUP.PchSataTsSuggestSet[CONTROLLER_INDEX],
+         prompt   = STRING_TOKEN(STR_PCH_THRM_SATA_SET_PROMPT),
+         help     = STRING_TOKEN(STR_PCH_THRM_SATA_SET_HELP),
+         option text = STRING_TOKEN(STR_SUGGEST_SETTING), value = 1, flags = DEFAULT | RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_MANUAL), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval PCH_SETUP.PchSataTsSuggestSet[CONTROLLER_INDEX] == 1;
+        subtitle text = STRING_TOKEN(STR_PCH_SATA_PORT_0);
+        oneof varid  = PCH_SETUP.PchP0T1M[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXT1M_PROMPT0),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXT1M_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 1, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchP0T2M[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXT2M_PROMPT0),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXT2M_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 2, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchP0T3M[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXT3M_PROMPT0),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXT3M_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 3, flags = DEFAULT | RESET_REQUIRED;
+        endoneof;
+
+        checkbox varid  = PCH_SETUP.PchP0TDispFinit[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTDISPFINIT_PROMPT0),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTDISPFINIT_HELP),
+          // Flags behavior for checkbox is overloaded so that it equals
+          // a DEFAULT value.  1 = ON, 0 = off
+          flags    = 0 | RESET_REQUIRED,
+          key      = 0,
+        endcheckbox;
+      endif;
+
+      suppressif ideqval PCH_SETUP.PchP0TDispFinit[CONTROLLER_INDEX] == 0 OR ideqval PCH_SETUP.PchSataTsSuggestSet[CONTROLLER_INDEX] == 1;
+        oneof varid  = PCH_SETUP.PchP0TDisp[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTDISP_PROMPT0),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTDISP_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_32), value = 0, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_128), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_8), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchP0Tinact[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTINACT_PROMPT0),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTINACT_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_32), value = 0, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_128), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_8), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      suppressif ideqval PCH_SETUP.PchP0TDispFinit[CONTROLLER_INDEX] == 1 OR ideqval PCH_SETUP.PchSataTsSuggestSet[CONTROLLER_INDEX] == 1;
+        oneof varid  = PCH_SETUP.PchP0TDisp[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTDISP_PROMPT0),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTDISP_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_32), value = 0, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_128), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_8), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchP0Tinact[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTINACT_PROMPT0),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTINACT_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_32), value = 0, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_128), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_8), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      suppressif ideqval PCH_SETUP.PchSataTsSuggestSet[CONTROLLER_INDEX] == 1;
+        subtitle text = STRING_TOKEN(STR_PCH_SATA_PORT_1);
+        oneof varid  = PCH_SETUP.PchP1T1M[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXT1M_PROMPT1),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXT1M_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 1, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchP1T2M[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXT2M_PROMPT1),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXT2M_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 2, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchP1T3M[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXT3M_PROMPT1),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXT3M_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 3, flags = DEFAULT | RESET_REQUIRED;
+        endoneof;
+
+        checkbox varid  = PCH_SETUP.PchP1TDispFinit[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTDISPFINIT_PROMPT1),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTDISPFINIT_HELP),
+          // Flags behavior for checkbox is overloaded so that it equals
+          // a DEFAULT value.  1 = ON, 0 = off
+          flags    = 0 | RESET_REQUIRED,
+          key      = 0,
+        endcheckbox;
+      endif;
+
+      suppressif ideqval PCH_SETUP.PchP1TDispFinit[CONTROLLER_INDEX] == 0 OR ideqval PCH_SETUP.PchSataTsSuggestSet[CONTROLLER_INDEX] == 1;
+        oneof varid  = PCH_SETUP.PchP1TDisp[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTDISP_PROMPT1),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTDISP_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_32), value = 0, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_128), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_8), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchP1Tinact[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTINACT_PROMPT1),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTINACT_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_32), value = 0, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_128), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_FI_8), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      suppressif ideqval PCH_SETUP.PchP1TDispFinit[CONTROLLER_INDEX] == 1 OR ideqval PCH_SETUP.PchSataTsSuggestSet[CONTROLLER_INDEX] == 1;
+        oneof varid  = PCH_SETUP.PchP1TDisp[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTDISP_PROMPT1),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTDISP_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_32), value = 0, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_128), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_8), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchP1Tinact[CONTROLLER_INDEX],
+          prompt   = STRING_TOKEN(STR_PCH_THRM_PXTINACT_PROMPT1),
+          help     = STRING_TOKEN(STR_PCH_THRM_PXTINACT_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_32), value = 0, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_128), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TIME_8), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+      endif;

@@ -1,0 +1,23 @@
+<component>
+	name = "Me"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Include\Me\"
+	RefName = "ServerPlatformPkg.Include.Me"
+[files]
+"Policy\Library\MeSpsPolicyInitDxeLib.h"
+"Policy\Library\MeSpsPolicyUpdateDxeLib.h"
+"Policy\Library\MeSpsPolicyUpdatePeiLib.h"
+"Policy\Ws\Library\PeiSrvMePolicyUpdateLib.h"
+"Policy\Ws\Library\DxeSrvMePolicyLib.h"
+"Policy\Ws\Library\DxeSrvMePolicyUpdateLib.h"
+"Policy\Ws\Library\DxeSrvAmtPolicyUpdateLib.h"
+"Policy\Ws\Library\DxeSrvAmtPolicyLib.h"
+"Policy\Ws\SrvMeSetup.h"
+"Protocol\AmtWrapperProtocol.h"
+"Ws\Setup\MeSetup.h"
+"Ws\Library\DxeMePolicyUpdateLib.h"
+"Ws\Library\DxeAmtPolicyUpdateLib.h"
+"Library\DxeSpsPolicyUpdateLib.h"
+"Library\MeServerPolicyHelperLib.h"
+"Library\NmLib.h"
+<endComponent>

@@ -1,0 +1,623 @@
+<!--
+INTEL CONFIDENTIAL
+Copyright 2017-2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+
+<container>
+    <configuration version="0.5">
+        <group name="me_tab">
+            <file name="input_file" label="Input File" value="" ui_params="{'region_option': 'me', 'binary_input': 'true'}"/>
+            <file name="mfsBinary" calculate="/required_containers/mfs.value" size="0x64000" ui_params="{'visible':'false'}"/>
+            <file name="mfsbBinary" calculate="/required_containers/mfs.value + '.compressed'" size="0x1FFE0" ui_params="{'visible': 'false'}"/>
+            <file name="newMfsbBinary" calculate="/required_containers/mfs.value + '.mfsb'" size="0x20000" ui_params="{'visible': 'false'}"/>
+            <file name="uepBinary" calculate="/required_containers/uep.value" ui_params="{'visible': 'false'}"/>
+            <number name="NumberOfSpiComponents" label="Number of SPI Components" dependency='[{"get": "descriptor/NumberOfSpiComponents.value" }]' ui_params="{'visible':'false'}"/>
+            <file name="utok_file" label="UTOK File" value="" required="false" ui_params="{'region_option':'me', 'visible': 'false'}"/>
+            <file name="idlm_file" label="IDLM File" value="" required="false" ui_params="{'region_option':'me', 'visible': 'false'}"/>
+            <file name="PMCBinary" calculate="/required_containers/pmc.value" ui_params="{'visible':'false'}"/>
+            <number name="DualBootEnabled" label="Dual Boot Enabled" value="0" ui_params="{'option_type':'combobox','region_option':'me','quick_option': 'true'}"
+                    params="{'value_list':{'Not enabled':'0', 'Enabled':'1'}}" />
+            <file name="OemExtInputFile" label="ME Region OEM Key Manifest Binary" value="" required="false" ui_params="{'region_option':'me'}"/>
+            <file name="UfsPhyBinary" label="UFS Phy Binary" value="" required="false" ui_params="{'region_option':'me', 'visible': 'false'}"/>
+            <file name="UnlockToken" label="Unlock Token" value="" required="false" ui_params="{'region_option':'me', 'visible': 'false'}"/>
+        </group>
+        <number name="RcvGpioPin" dependency='[{"get": "mfs/Gpio_EBG-PinRecoveryJumper.value" }]' ui_params="{'visible': 'false', 'read_only': 'true'}" />
+        <number name="RcvGpioPadGrp" dependency='[{"get": "mfs/Gpio_EBG-GroupRecoveryJumper.value" }]' ui_params="{'visible': 'false', 'read_only': 'true'}" />
+        <number name="bpdtMajor" value="0" size="2" ui_params="{'visible': 'false', 'read_only': 'true'}" />
+        <number name="bpdtMinor" value="0" size="2" ui_params="{'visible': 'false', 'read_only': 'true'}" />
+        <number name="bpdtHotfix" value="0" size="2" ui_params="{'visible': 'false', 'read_only': 'true'}" />
+        <number name="bpdtBuild" value="0" size="2" ui_params="{'visible': 'false', 'read_only': 'true'}" />
+        <number name="romBypass" value="0" ui_params="{'visible': 'false'}" />
+    </configuration>
+    <layout>
+        <byte_array name="rom_bypass" size="16" calculate="/configuration/romBypass.value" />
+
+        <layout_pointers>
+            <number name="Size" calculate="parent.size" size="2" />
+            <bit_field name="RedundantCsePointersPresent_and_reserved1" size="1">
+                <bit name="RedundantCsePointersPresent" value="0" bit_low="0" bit_high="0"/>
+                <bit name="Reserved1" value="0" bit_low="1" bit_high="7"/>
+            </bit_field>
+            <number name="Reserved2" value="0" size="1" />
+            <number name="Crc32" value="0" size="4" />
+            <number name="DataPartitionOffset" calculate="/layout/fpt.offset" size="4" />
+            <number name="DataPartitionSize" calculate="/layout/BootPartition1.offset - /layout/fpt.offset" size="4" />
+            <number name="Boot1PartitionOffset" calculate="/layout/BootPartition1.offset" size="4" />
+            <number name="Boot1PartitionSize" calculate="/layout/BootPartition1.size" size="4" />
+            <number name="Boot2PartitionOffset" calculate="/layout/BootPartition2.offset" size="4" />
+            <number name="Boot2PartitionSize" calculate="/layout/BootPartition2.size" size="4" />
+            <number name="Boot3PartitionOffset" calculate="/layout/BootPartition3.size ? /layout/BootPartition3.offset : 0" size="4" />
+            <number name="Boot3PartitionSize" calculate="/layout/BootPartition3.size" size="4" />
+            <number name="Boot4PartitionOffset" calculate="/layout/BootPartition4.size ? /layout/BootPartition4.offset : 0" size="4" />
+            <number name="Boot4PartitionSize" calculate="/layout/BootPartition4.size" size="4" />
+            <number name="Boot5PartitionOffset" calculate="/layout/BootPartition5.size ? /layout/BootPartition5.offset : 0" size="4" />
+            <number name="Boot5PartitionSize" calculate="/layout/BootPartition5.size" size="4" />
+            <number name="TemporaryPagesBaseAddress" value="0" size="4" />
+            <number name="TemporaryPagesBaseSize" value="0" size="4" />
+        </layout_pointers>
+
+        <checksum_calculation>
+            <function_crc name="crc32" size="4" calc_only="True" >
+                <crc_type value="crc32" />
+                <input>
+                   <data path="/layout/layout_pointers" />
+                </input>
+            </function_crc>
+            <function_update_value name="update_crc32">
+                <node calculate="/layout/layout_pointers/Crc32" />
+                <new_value calculate="parent/crc32.value" />
+            </function_update_value>
+        </checksum_calculation>
+
+        <byte_array name="rom_bypass" size="16" calculate="/configuration/romBypass.value" align="0x1000"/>
+
+        <layout_pointers_backup>
+            <number name="Size" calculate="parent.size" size="2" />
+            <bit_field name="RedundantCsePointersPresent" size="1">
+                <bit name="RedundantCsePointersPresent" value="0" bit_low="0" bit_high="0"/>
+                <bit name="Reserved1" value="0" bit_low="1" bit_high="7"/>
+            </bit_field>
+            <number name="Reserved2" value="0" size="1" />
+            <number name="Crc32" value="0" size="4" />
+            <number name="DataPartitionOffset" calculate="/layout/fpt.offset" size="4" />
+            <number name="DataPartitionSize" calculate="/layout/BootPartition1.offset - /layout/fpt.offset" size="4" />
+            <number name="Boot1PartitionOffset" calculate="/layout/BootPartition1.offset" size="4" />
+            <number name="Boot1PartitionSize" calculate="/layout/BootPartition1.size" size="4" />
+            <number name="Boot2PartitionOffset" calculate="/layout/BootPartition2.offset" size="4" />
+            <number name="Boot2PartitionSize" calculate="/layout/BootPartition2.size" size="4" />
+            <number name="Boot3PartitionOffset" calculate="/layout/BootPartition3.size ? /layout/BootPartition3.offset : 0" size="4" />
+            <number name="Boot3PartitionSize" calculate="/layout/BootPartition3.size" size="4" />
+            <number name="Boot4PartitionOffset" calculate="/layout/BootPartition4.size ? /layout/BootPartition4.offset : 0" size="4" />
+            <number name="Boot4PartitionSize" calculate="/layout/BootPartition4.size" size="4" />
+            <number name="Boot5PartitionOffset" calculate="/layout/BootPartition5.size ? /layout/BootPartition5.offset : 0" size="4" />
+            <number name="Boot5PartitionSize" calculate="/layout/BootPartition5.size" size="4" />
+            <number name="TemporaryPagesBaseAddress" value="0" size="4" />
+            <number name="TemporaryPagesBaseSize" value="0" size="4" />
+        </layout_pointers_backup>
+
+        <checksum_calculation>
+            <function_crc name="crc32" size="4" calc_only="True" >
+                <crc_type value="crc32" />
+                <input>
+                   <data path="/layout/layout_pointers_backup" />
+                </input>
+            </function_crc>
+            <function_update_value name="update_crc32">
+                <node calculate="/layout/layout_pointers_backup/Crc32" />
+                <new_value calculate="parent/crc32.value" />
+            </function_update_value>
+        </checksum_calculation>
+
+        <fpt align="0x1000" size="0x1000" map_name="FPT">
+            <fpt_header>
+                <string name="HeaderMarker" calculate="/decomposition/me_binary/fpt_header/HeaderMarker.value" size="4" validate="this.value == '$FPT'" />
+                <number name="NumFptEntries" calculate="/layout/fpt/fpt_entries.child_count_enabled" size="4"/>
+                <number name="HeaderVersion" value="0x21" size="1"/>
+                <number name="EntryVersion" value="0x10" size="1"/>
+                <number name="HeaderLength" calculate="parent.size" size="1"/>
+                <bit_field name="FptRedundancy" size="1">
+                    <bit name="FptRedundancy" value="0" bit_low="0"  bit_high="0" />
+                    <bit name="Reserved" value="0" bit_low="1"  bit_high="7" />
+                </bit_field>
+                <number name="TicksToAdd" value="0xFFFF" size="2"  />
+                <number name="TokensToAdd" value="0xFFFF" size="2"  />
+                <bit_field name="spsFlags" size="4">
+                    <bit name="RcvGpioPin" calculate="/configuration/RcvGpioPin.value" bit_low="0"  bit_high="5" />
+                    <bit name="RcvGpioPadGrp" calculate="/configuration/RcvGpioPadGrp.value" bit_low="6"  bit_high="9" />
+                    <bit name="RcvValid" value="1" bit_low="10"  bit_high="10" />
+                    <bit name="FdvGpioPin" value="0" bit_low="11"  bit_high="16" />
+                    <bit name="FdvGpioPadGrp" value="0" bit_low="17"  bit_high="20" />
+                    <bit name="FdvValid" value="1" bit_low="21"  bit_high="21" />
+                    <bit name="Reserved" value="0" bit_low="22"  bit_high="31" />
+                </bit_field>
+                <number name="HeaderChecksum" value="0" size="4" />
+                <number name="fitmVersionMajor" calculate="/core/fitm_version_major.value" size="2" />
+                <number name="fitmVersionMinor" calculate="/core/fitm_version_minor.value" size="2"/>
+                <number name="fitmVersionHotfix" value="0" size="2"/>
+                <number name="fitmVersionBuild" calculate="/core/fitm_version_build.value" size="2"/>
+            </fpt_header>
+
+            <table name="fpt_entries" count="/decomposition/me_binary/fpt_header/number_of_entries.value">
+                <fpt_entry name="fpt_entry" enabled="/decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'FTPR' and
+                                                     /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'FTUP' and
+                                                     /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'DLMP' and
+                                                     /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'RBEP' and
+                                                     /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'OPR'">
+                    <string name="partition_name" size="4"
+                            calculate="/decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value"/>
+                    <number name="reserved" size="4" value="0"/>
+                    <number name="offset" size="4"
+                            calculate="/layout/partitions/partition{index}.enabled ? /layout/partitions/partition{index}.offset - parent/parent/parent/fpt_header.offset : 0"/>
+                    <number name="length" size="4"
+                            calculate="/layout/partitions/partition{index}.enabled ? /layout/partitions/partition{index}.size : 0"/>
+                    <number name="reserved" size="12" value="0"/>
+                    <number name="partition_flags" size="4"
+                            calculate="/decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_flags.value"/>
+                </fpt_entry>
+            </table>
+
+            <table_pointers>
+                <table_entry_pointer name="fpt_entry_decomp_UEP" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'UEP'"/>
+                <table_entry_pointer name="fpt_entry_UEP" table="/layout/fpt/fpt_entries"
+                                     key="this.index == /layout/fpt/table_pointers/fpt_entry_decomp_UEP.index"/>
+                <table_entry_pointer name="fpt_entry_MFS" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'MFS'"/>
+                <table_entry_pointer name="fpt_entry_decomp_HVMP" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'HVMP'"/>
+                <table_entry_pointer name="fpt_entry_HVMP" table="/layout/fpt/fpt_entries"
+                                     key="this.index == /layout/fpt/table_pointers/fpt_entry_decomp_HVMP.index"/>
+                <table_entry_pointer name="fpt_entry_MFSB" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'MFSB'"/>
+                <table_entry_pointer name="fpt_entry_decomp_UTOK" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'UTOK'"/>
+                <table_entry_pointer name="fpt_entry_UTOK" table="/layout/fpt/fpt_entries"
+                                     key="this.index == /layout/fpt/table_pointers/fpt_entry_decomp_UTOK.index"/>
+                <table_entry_pointer name="fpt_entry_decomp_DLMP" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'DLMP'"/>
+                <table_entry_pointer name="fpt_entry_DLMP" table="/layout/fpt/fpt_entries"
+                                     key="this.index == /layout/fpt/table_pointers/fpt_entry_decomp_DLMP.index"/>
+                <table_entry_pointer name="fpt_entry_RBEP" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'RBEP'"/>
+                <table_entry_pointer name="fpt_entry_FTPR" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'FTPR'"/>
+                <table_entry_pointer name="fpt_entry_FPTB" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'FPTB'"/>
+                <table_entry_pointer name="fpt_entry_EFS" table="/decomposition/me_binary/fpt_entries" key="this/partition_name.value == 'EFS'" required="false"/>
+            </table_pointers>
+            <function_update_value name="update_UEP_offset">
+                <node calculate="parent/table_pointers/fpt_entry_UEP/offset"/>
+                <new_value calculate="/layout/uep.offset - /layout/fpt.offset"/>
+            </function_update_value>
+            <function_update_value name="update_UEP_size">
+                <node calculate="parent/table_pointers/fpt_entry_UEP/length"/>
+                <new_value calculate="/layout/uep.size"/>
+            </function_update_value>
+            <function_update_value name="update_UEP_flags">
+                <node calculate="parent/table_pointers/fpt_entry_UEP/partition_flags"/>
+                <new_value value="1"/>
+            </function_update_value>
+            <function_update_value name="update_HVMP_offset">
+                <node calculate="parent/table_pointers/fpt_entry_HVMP/offset"/>
+                <new_value calculate="/layout/fpt/HVMP.offset - /layout/fpt.offset"/>
+            </function_update_value>
+            <function_update_value name="update_HVMP_size">
+                <node calculate="parent/table_pointers/fpt_entry_HVMP/length"/>
+                <new_value calculate="/layout/fpt/HVMP.size"/>
+            </function_update_value>
+            <function_update_value name="update_HVMP_flags">
+                <node calculate="parent/table_pointers/fpt_entry_HVMP/partition_flags"/>
+                <new_value value="0"/>
+            </function_update_value>
+            <function_update_value name="update_UTOK_offset" enabled="/configuration/utok_file.size > 0">
+                <node calculate="parent/table_pointers/fpt_entry_UTOK/offset"/>
+                <new_value calculate="/layout/utok.offset - /layout/fpt.offset"/>
+            </function_update_value>
+            <function_update_value name="update_UTOK_size" enabled="/configuration/utok_file.size > 0">
+                <node calculate="parent/table_pointers/fpt_entry_UTOK/length"/>
+                <new_value calculate="/layout/utok.size"/>
+            </function_update_value>
+            <function_update_value name="update_UTOK_flags" enabled="/configuration/utok_file.size > 0">
+                <node calculate="parent/table_pointers/fpt_entry_UTOK/partition_flags"/>
+                <new_value value="1"/>
+            </function_update_value>
+
+            <byte_array name="fpt_end"  value="" size="0x0" />
+            <byte_array name="HVMP" value="" size="0x0" offset="0x2EC0"/>
+            <byte_array align="0x1000" />
+        </fpt>
+
+        <checksum_calculation>
+            <function_crc name="crc32" size="4" calc_only="True" >
+                <crc_type value="crc32" />
+                <input>
+                   <data start="/layout/fpt.offset" end="/layout/fpt/fpt_end.offset" />
+                </input>
+            </function_crc>
+            <function_update_value name="update_crc32">
+                <node calculate="/layout/fpt/fpt_header/HeaderChecksum" />
+                <new_value calculate="parent/crc32.value" />
+            </function_update_value>
+        </checksum_calculation>
+        <byte_array size="0x1000" value=""/>
+        <table name="partitions" count="/decomposition/me_binary/fpt_header/number_of_entries.value" sort="/decomposition/me_binary/fpt_entries/fpt_entry{index}/offset.value">
+           <partition map_name="/decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'IVB1' and
+                                /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'IVB2' and
+                                /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'PSVN' and
+                                /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'BIS' and
+                                /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'FLOG'
+                                ? /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value : ''"
+           align="0x1000" enabled="/decomposition/me_binary/partitions/partition{index}.enabled and
+                                   /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'FTPR' and
+                                   /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'RBEP' and
+                                   /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'FTUP' and
+                                   /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'IVBP' and
+                                   /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'OPR' ">
+                <byte_array name="blob" calculate="/decomposition/me_binary/partitions/partition{index}/blob_partition.value"
+                            enabled="/decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value != 'MFSB'"/>
+
+                <byte_array name="newMfsb" enabled="/decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value == 'MFSB' and
+                            /layout/fpt/table_pointers/fpt_entry_EFS.enabled">
+                    <new_mfsb_bin calculate="/configuration/newMfsbBinary.data"/>
+                </byte_array>
+                <byte_array name="mfsb" enabled="/decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value == 'MFSB' and
+                            /layout/fpt/table_pointers/fpt_entry_EFS.enabled == false">
+                    <number name="signature" value="0x4253464D" size="4"/>
+                    <function_crc name="crc32" size="4">
+                        <crc_type value="crc32" />
+                        <input>
+                           <data path="parent/compressed_mfs" />
+                        </input>
+                    </function_crc>
+                    <reserved value="0xFF" size="24"/>
+                    <compressed_mfs calculate="/configuration/mfsbBinary.data"/>
+                </byte_array>
+            </partition>
+        </table>
+        <table_pointers>
+            <table_entry_pointer name="FPTB_partition" table="/layout/partitions"
+                key="this.enabled and this.offset == /layout/fpt/table_pointers/fpt_entry_FPTB/offset.value + /layout/fpt/fpt_header.offset"/>
+            <table_entry_pointer name="MFS_partition" table="/layout/partitions"
+                                 key="this.enabled and this.offset == /layout/fpt/table_pointers/fpt_entry_MFS/offset.value + /layout/fpt/fpt_header.offset"/>
+            <table_entry_pointer name="DLMP_partition" table="/decomposition/me_binary/partitions" required="false"
+                                 key="this.enabled and this.offset == /layout/fpt/table_pointers/fpt_entry_decomp_DLMP/offset.value + /layout/fpt/fpt_header.offset"/>
+            <table_entry_pointer name="UTOK_partition" table="/layout/partitions" required="false"
+                                 key="this.enabled and this.index == /layout/fpt/table_pointers/fpt_entry_UTOK.index"/>
+        </table_pointers>
+
+        <subpartition name="uep" map_name="UEP">
+            <byte_array name="blob" calculate="/configuration/uepBinary.data"/>
+            <padding size="0" value="" offset="parent.offset + 0x2000"/>
+        </subpartition>
+        <subpartition name="dlmp" map_name="DLMP" enabled="/configuration/idlm_file.size > 0">
+            <byte_array name="blob" calculate="/configuration/idlm_file.data"/>
+            <padding size="0" value=""/>
+        </subpartition>
+        <subpartition name="utok" map_name="UTOK" enabled="/configuration/utok_file.size > 0">
+            <byte_array name="blob" calculate="/configuration/utok_file.data"/>
+            <padding size="0" value=""/>
+        </subpartition>
+
+        <function_update_value name="fill_FPTB">
+            <node calculate="/layout/table_pointers/FPTB_partition/blob"/>
+            <new_value calculate="/layout/fpt.value"/>
+        </function_update_value>
+        <function_update_value name="fill_MFS">
+            <node calculate="/layout/table_pointers/MFS_partition/blob"/>
+            <new_value calculate="/configuration/mfsBinary.data"/>
+        </function_update_value>
+        <function_update_value name="fill_UTOK" enabled="/configuration/utok_file.size == 0 and /layout/fpt/table_pointers/fpt_entry_decomp_UTOK/length.value > 0">
+            <node calculate="/layout/table_pointers/UTOK_partition/blob"/>
+            <new_value calculate="/configuration/utok_file.data"/>
+        </function_update_value>
+        <function_update_value name="fill_DLMP" enabled="/configuration/idlm_file.size == 0 and /layout/fpt/table_pointers/fpt_entry_decomp_DLMP/length.value > 0">
+            <node calculate="/layout/table_pointers/DLMP_partition/blob_partition"/>
+            <new_value calculate="/configuration/idlm_file.data"/>
+        </function_update_value>
+
+        <BootPartition1 map_name="SPS Recovery">
+            <bpdt>
+                <group name="bp1_settings">
+                    <number name="header" value="0x000055AA" size="4" />
+                    <number name="count" calculate="parent/parent/bpdt_entries.child_count_enabled" size="2"  />
+                    <number name="version" value="2" size="1"  />
+                    <number name="bpdtConfiguration" value="0" size="1"  />
+                    <number name="checksum" value="0" size="4"/>
+                    <number name="ifwi_version" value="0" size="4"/>
+                    <number name="VersionMajor" calculate="/configuration/bpdtMajor.value" size="2"/>
+                    <number name="VersionMinor" calculate="/configuration/bpdtMinor.value" size="2"/>
+                    <number name="VersionHotfix" calculate="/configuration/bpdtHotfix.value" size="2"/>
+                    <number name="VersionBuild" calculate="/configuration/bpdtBuild.value" size="2"/>
+                </group>
+
+                <bpdt_entries>
+
+                    <bpdt_entry name="IdlmSubPartition_entry">
+                        <number name="type" value="0x9" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/IdlmSubPartition.size ?
+                        /layout/BootPartition1/subpartitions/IdlmSubPartition.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/IdlmSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="IFPOverrideSubPartition_entry">
+                        <number name="type" value="0xA" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/IdlmSubPartition.size ?
+                        /layout/BootPartition1/subpartitions/IFPOverrideSubPartition.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/IFPOverrideSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="SBPDT_entry">
+                        <number name="type" value="0x5" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/IdlmSubPartition.size ?
+                        /layout/BootPartition1/subpartitions/SBPDTSubPartition.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/SBPDTSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="CseRbeSubPartition_entry">
+                        <number name="type" value="0x1" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/CseRbeSubPartition.size ?
+                        /layout/BootPartition1/subpartitions/CseRbeSubPartition/partition.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/CseRbeSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="UfsPhySubPartition_entry">
+                        <number name="type" value="0xC" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/UfsPhySubPartition.size ?
+                        /layout/BootPartition1/subpartitions/UfsPhySubPartition.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/UfsPhySubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="UfsPhyLunSubPartition_entry">
+                        <number name="type" value="0xD" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/UfsPhyLunSubPartition.size ?
+                        /layout/BootPartition1/subpartitions/UfsPhyLunSubPartition.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/UfsPhyLunSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="OemKmSubPartition_entry">
+                        <number name="type" value="0x14" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/OemKmSubPartition.size ?
+                        /layout/BootPartition1/subpartitions/OemKmSubPartition.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/OemKmSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="CseBupSubPartition_entry">
+                        <number name="type" value="0x2" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/CseBupSubPartition.size ?
+                        /layout/BootPartition1/subpartitions/CseBupSubPartition.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/CseBupSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="PmcpSubPartition_entry">
+                        <number name="type" value="0xE" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/PmcpSubPartition/blob.size ?
+                        /layout/BootPartition1/subpartitions/PmcpSubPartition/blob.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/PmcpSubPartition/blob.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="DebugTokenSubPartition_entry">
+                        <number name="type" value="0xB" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition1/subpartitions/DebugTokenSubPartition.size ?
+                        /layout/BootPartition1/subpartitions/DebugTokenSubPartition.offset - /layout/BootPartition1.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition1/subpartitions/DebugTokenSubPartition.size" size="4" />
+                    </bpdt_entry>
+                </bpdt_entries>
+
+            </bpdt>
+            <subpartitions>
+                <byte_array name="UfsPhyLunSubPartition" value="" size="0"/>
+                <byte_array name="UfsPhySubPartition" calculate="/configuration/UfsPhyBinary.data"/>
+                <byte_array name="IdlmSubPartition" calculate="/configuration/idlm_file.data"/>
+                <byte_array name="IFPOverrideSubPartition" value="" size="0"/>
+                <byte_array name="SBPDTSubPartition" value="" size="0"/>
+                <subpartition name="CseRbeSubPartition" align="0x1000">
+                    <table name="partition" count="/decomposition/me_binary/fpt_header/number_of_entries.value" sort="/decomposition/me_binary/fpt_entries/fpt_entry{index}/offset.value">
+                        <partition align="0x1000" enabled="/decomposition/me_binary/partitions/partition{index}.enabled and
+                                               /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value == 'RBEP'">
+                            <byte_array name="blob" calculate="/decomposition/me_binary/partitions/partition{index}/blob_partition.value"/>
+                        </partition>
+                    </table>
+                </subpartition>
+                <subpartition name="PmcpSubPartition" align="0x1000">
+                    <byte_array name="blob" calculate="/configuration/PMCBinary.data"/>
+<!--                    The node below does the same thing as round_to attribute in FITc-->
+                    <padding size="0" value="" align="0x1000"/>
+                </subpartition>
+                <subpartition name="CseBupSubPartition">
+                    <table name="partition" count="/decomposition/me_binary/fpt_header/number_of_entries.value" sort="/decomposition/me_binary/fpt_entries/fpt_entry{index}/offset.value">
+                        <partition align="0x1000" enabled="/decomposition/me_binary/partitions/partition{index}.enabled and
+                                                   /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value == 'FTPR'">
+                            <byte_array name="blob" calculate="/decomposition/me_binary/partitions/partition{index}/blob_partition.value"/>
+                        </partition>
+                    </table>
+                    <padding size="0" value="" align="0x1000"/>
+                </subpartition>
+                <byte_array name="OemSmipSubPartition" value="" size="0" align="0x1000"/>
+                <byte_array name="DebugTokenSubPartition" calculate="/configuration/UnlockToken.data"/>
+                <subpartition name="OemKmSubPartition">
+                    <byte_array align="0x1000" name="blob" calculate="/configuration/OemExtInputFile.data" size="0"/>
+                    <padding size="0" value="" align="0x1000"/>
+                </subpartition>
+            </subpartitions>
+
+            <checksum_calculation>
+                <function_crc name="crc32" size="4" calc_only="True" >
+                    <crc_type value="crc32" />
+                    <input>
+                       <data start="/layout/BootPartition1/bpdt.offset + /layout/BootPartition1/bpdt/bp1_settings/header.size"
+                             end="/layout/BootPartition1/bpdt.offset + /layout/BootPartition1/bpdt.size"/>
+                    </input>
+                </function_crc>
+                <function_update_value name="update_crc32">
+                    <node calculate="/layout/BootPartition1/bpdt/bp1_settings/checksum" />
+                    <new_value calculate="parent/crc32.value" />
+                </function_update_value>
+            </checksum_calculation>
+        </BootPartition1>
+
+        <BootPartition2 map_name="SPS Operational" align="0x1000">
+            <bpdt>
+                <group name="bp2_settings">
+                    <number name="header" value="0x000055AA" size="4" align="0x1000"/>
+                    <number name="count" calculate="parent/parent/bpdt_entries.child_count_enabled" size="2"/>
+                    <number name="version" value="2" size="1"/>
+                    <number name="bpdtConfiguration" value="0" size="1"/>
+                    <number name="checksum" value="0" size="4"/>
+                    <number name="ifwi_version" value="0" size="4"/>
+                    <number name="VersionMajor" calculate="/configuration/bpdtMajor.value" size="2"/>
+                    <number name="VersionMinor" calculate="/configuration/bpdtMinor.value" size="2"/>
+                    <number name="VersionHotfix" calculate="/configuration/bpdtHotfix.value" size="2"/>
+                    <number name="VersionBuild" calculate="/configuration/bpdtBuild.value" size="2"/>
+                </group>
+
+                <bpdt_entries>
+
+                    <bpdt_entry name="IdlmSubPartition_entry">
+                        <number name="type" value="0x9" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/IdlmSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/IdlmSubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/IdlmSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="IFPOverrideSubPartition_entry">
+                        <number name="type" value="0xA" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/IFPOverrideSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/IFPOverrideSubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/IFPOverrideSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="SBPDT_entry">
+                        <number name="type" value="0x5" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/SBPDTSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/SBPDTSubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/SBPDTSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="CseRbeSubPartition_entry">
+                        <number name="type" value="0x1" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/CseRbeSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/CseRbeSubPartition.offset - /layout/BootPartition2.offset : 0 " size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/CseRbeSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="UfsPhySubPartition_entry">
+                        <number name="type" value="0xC" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/UfsPhySubPartition.size ?
+                        /layout/BootPartition2/subpartitions/UfsPhySubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/UfsPhySubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="UfsPhyLunSubPartition_entry">
+                        <number name="type" value="0xD" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/UfsPhyLunSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/UfsPhyLunSubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/UfsPhyLunSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="OemKmSubPartition_entry">
+                        <number name="type" value="0x14" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/OemKmSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/OemKmSubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/OemKmSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="CseMainSubPartition_entry">
+                        <number name="type" value="0x7" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/CseMainSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/CseMainSubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/CseMainSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="IshSubPartition_entry">
+                        <number name="type" value="0x8" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/IshSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/IshSubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/IshSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="PmcpSubPartition_entry">
+                        <number name="type" value="0xE" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/PmcpSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/PmcpSubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/PmcpSubPartition.size" size="4" />
+                    </bpdt_entry>
+                    <bpdt_entry name="CseBupOprSubPartition_entry">
+                        <number name="type" value="0x2" size="4" />
+                        <number name="offset" calculate="/layout/BootPartition2/subpartitions/CseBupOprSubPartition.size ?
+                        /layout/BootPartition2/subpartitions/CseBupOprSubPartition.offset - /layout/BootPartition2.offset : 0" size="4" />
+                        <number name="size" calculate="/layout/BootPartition2/subpartitions/CseBupOprSubPartition.size" size="4" />
+                    </bpdt_entry>
+
+                </bpdt_entries>
+            </bpdt>
+
+            <subpartitions>
+                <byte_array name="UfsPhyLunSubPartition" value="" size="0"/>
+                <byte_array name="UfsPhySubPartition" calculate="/configuration/UfsPhyBinary.data"/>
+                <byte_array name="IdlmSubPartition" calculate="/configuration/idlm_file.data"/>
+                <byte_array name="IFPOverrideSubPartition" value="" size="0"/>
+                <byte_array name="SBPDTSubPartition" value="" size="0"/>
+                <byte_array name="CseMainSubPartition" value="" size="0"/>
+                <subpartition name="CseRbeSubPartition" align="0x1000">
+                    <table name="rbep_partition" count="/decomposition/me_binary/fpt_header/number_of_entries.value" sort="/decomposition/me_binary/fpt_entries/fpt_entry{index}/offset.value">
+                        <partition align="0x1000" enabled="/decomposition/me_binary/partitions/partition{index}.enabled and
+                                               /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value == 'RBEP'">
+                            <byte_array name="blob" calculate="/decomposition/me_binary/partitions/partition{index}/blob_partition.value"/>
+                        </partition>
+                    </table>
+<!--                    The node below does the same thing as round_to attribute in FITc-->
+                    <padding size="0" value="" align="0x1000"/>
+                </subpartition>
+
+                <byte_array name="PmcpSubPartition" align="0x1000" calculate="/configuration/PMCBinary.data"/>
+
+                <subpartition name="CseBupOprSubPartition">
+                    <table name="opr_partition" count="/decomposition/me_binary/fpt_header/number_of_entries.value" sort="/decomposition/me_binary/fpt_entries/fpt_entry{index}/offset.value">
+                        <partition align="0x1000" enabled="/decomposition/me_binary/partitions/partition{index}.enabled and
+                                                   /decomposition/me_binary/fpt_entries/fpt_entry{index}/partition_name.value == 'OPR'">
+                            <byte_array name="blob" calculate="/decomposition/me_binary/partitions/partition{index}/blob_partition.value"/>
+                        </partition>
+                    </table>
+                    <padding size="0" value="" align="0x1000"/>
+                </subpartition>
+
+                <byte_array name="IshSubPartition" value="" size="0"/>
+                <byte_array name="IunpSubPartition" value="" size="0"/>
+                <subpartition name="OemKmSubPartition">
+                    <byte_array align="0x1000" name="blob" calculate="/configuration/OemExtInputFile.data" size="0"/>
+                    <padding size="0" value="" align="0x1000"/>
+                </subpartition>
+            </subpartitions>
+
+            <checksum_calculation>
+                <function_crc name="crc32" size="4" calc_only="True" >
+                    <crc_type value="crc32" />
+                    <input>
+                       <data start="/layout/BootPartition2/bpdt.offset + /layout/BootPartition2/bpdt/bp2_settings/header.size"
+                             end="/layout/BootPartition2/bpdt.offset + /layout/BootPartition2/bpdt.size"/>
+                    </input>
+                </function_crc>
+                <function_update_value name="update_crc32">
+                    <node calculate="/layout/BootPartition2/bpdt/bp2_settings/checksum" />
+                    <new_value calculate="parent/crc32.value" />
+                </function_update_value>
+            </checksum_calculation>
+        </BootPartition2>
+
+        <BootPartition3>
+            <byte_array calculate="/layout/BootPartition2.value" enabled="/configuration/DualBootEnabled.value == 1"/>
+        </BootPartition3>
+        <BootPartition4/>
+        <BootPartition5/>
+    </layout>
+    <decomposition file="/configuration/input_file.path">
+        <me_binary>
+            <byte_array name="layout_pointers" size="0x1000"/>
+            <byte_array name="layout_pointers_backup" size="0x1000"/>
+            <fpt_header>
+                <string name="HeaderMarker" size="4" validate="this.value == '$FPT'" />
+                <number name="number_of_entries" size="4"/>
+                <byte_array name="header_info" size="4"/>
+                <byte_array name="reserved_flags" size="20"/>
+            </fpt_header>
+            <table name="fpt_entries" count="parent/fpt_header/number_of_entries.value">
+                <fpt_entry name="fpt_entry">
+                    <string name="partition_name" size="4"/>
+                    <byte_array name="reserved" size="4"/>
+                    <number name="offset" size="4"/>
+                    <number name="length" size="4"/>
+                    <byte_array name="reserved2" size="12"/>
+                    <number name="partition_flags" size="4"/>
+                </fpt_entry>
+            </table>
+            <byte_array size="0x1000"/>
+            <table name="partitions" count="parent/fpt_header/number_of_entries.value"
+                   sort="parent/fpt_entries/fpt_entry{index}/offset.value">
+                <partition name="partition" align="0x1000" enabled="parent/parent/fpt_entries/fpt_entry{index}/length.value != 0">
+                    <byte_array name="blob_partition" size="parent/parent/parent/fpt_entries/fpt_entry{index}/length.value"/>
+                </partition>
+            </table>
+        </me_binary>
+    </decomposition>
+</container>

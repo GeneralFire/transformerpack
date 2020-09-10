@@ -1,0 +1,20 @@
+<component>
+    name = "EbgPch"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\EbgPch\"
+    RefName = "ClientOneSiliconPkg.Fru.EbgPch"
+[parts]
+"ClientOneSiliconPkg.Fru.EbgPch.Include"
+"ClientOneSiliconPkg.Fru.EbgPch.LibraryPrivate"
+"ClientOneSiliconPkg.Fru.EbgPch.AcpiTables"
+"ClientOneSiliconPkg.Fru.EbgPch.Library"
+[files]
+"IncludePrivate\Library\PmcSocLib.h"
+"IncludePrivate\Library\GbeSocLib.h"
+"IncludePrivate\Register\PmcRegsEbg.h"
+"IncludePrivate\SataSocIntegration.h"
+"IncludePrivate\Register\PsfRegsEbg.h"
+"IncludePrivate\Library\PsfSocLib.h"
+"IncludePrivate\Library\PchPcieRpSocLib.h"
+"IncludePrivate\Library\HdaSocLib.h"
+<endComponent>

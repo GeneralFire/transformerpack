@@ -1,0 +1,8 @@
+<component>
+    name = "Gna"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Gna\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Gna"
+[files]
+"GnaConfig.h"	
+<endComponent>

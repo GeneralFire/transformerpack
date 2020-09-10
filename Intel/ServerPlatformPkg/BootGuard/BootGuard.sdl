@@ -1,0 +1,1403 @@
+TOKEN
+    Name  = "INTEL_BOOT_GUARD_SUPPORT"
+    Value = "1"
+    Help  = "Main switch to enable Intel Boot Guard in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "BOOTGUARD_BUILD_TIME_SUPPORT_USING_BATCH_FILE"
+    Value = "0"
+    Help  = "Main switch to enable BootGuard build time support using batch file. Complete scripting solution that can be delivered to ROM customers with each build for bootguard re-hashing"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_VERIFY_FAILED_FUNCTION"
+    Value = "0"
+    Help  = "This token can select the behavior when FV_MAIN verify. It should input value 0-1. If set 0, the BootGuard will entry recovery mode. If set 1, BootGuard will hung at PEI phase and show post code."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_VERIFY_FAILED_POSTCODE"
+    Value = "0x88"
+    Help  = "This token is useful when INTEL_BOOT_GUARD_CHAIN_OF_TRUST_VERIFY_FAILED_FUNCTION set 1."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_VERIFY_FAILED_FUNCTION" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_BB_VERIFY_FV_AREA"
+    Value  = "0"
+    Help  = "These tokens are not used in Server projects. Please don't change this token."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_BB_VERIFY_FV_AREA_START_ADDRESS"
+    Value = "0"
+    Help  = "Base address of FV which needs security check."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_BB_VERIFY_FV_AREA_SIZE"
+    Value = "0"
+    Help = "Size of FV which needs security check."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_ACM"
+    Value = "1"
+    Help  = "MUST use the correct ACM binary for the matching CPUs, else platform will not behave as expected."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_ACMSVN" #Need to fill this value after ACM is released
+    Value = "0" 
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "BOOT_GUARD_ACM" "=" "0"
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_ACMSVN"
+    Value = "2"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "BOOT_GUARD_ACM" "=" "1"
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_ACMSVN"
+    Value = "0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "BOOT_GUARD_ACM" "=" "2"
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_BPMSVN"
+    Value = "0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_KMSVN"
+    Value = "0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_KEY_PRINT_W_EXPONENT"
+    Help  = "Print OEM Hash Key with Exponent for CPX, ICX and later platform."
+    Value  = "1"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_BB_AFTER_MEMORY_SEGMENT_BASE"
+    Help  = "These tokens are not used in Server projects. Please don't change this token."
+    Value  = "0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_BB_AFTER_MEMORY_SEGMENT_SIZE"
+    Help  = "These tokens are not used in Server projects. Please don't change this token."
+    Value  = "0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_AFTER_MEMORY_BACKUP_ADDRESS"
+    Value  = "0"
+    Help  = "These tokens are not used in Server projects. Please don't change this token."
+    TokenType = Integer
+    TargetH = Yes 
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "SUPPORT_BUILD_TIME_FV_BB_OFFSET"
+    Value  = "0"
+    Help  = "These tokens are not used in Server projects. Please don't change this token."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_SPECIFICATION_VERSION"
+    Value = "11"
+    Help  = "The CooperLake and IceLake project use Boot Guard 1.1, hence set to 11."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "BootGuardSaveTokenValue"
+    Value  = "$(BPM_IBB_MCHBAR) $(BPM_VTD_BAR) $(BPM_IBB_SEGMENT_1_BASE) $(BPM_IBB_SEGMENT_1_SIZE) $(BPM_PBET) $(BIOS_STARTING_ADDRESS) $(KM_KEY_MANIFEST_ID) $(BOOT_GUARD_ACMSVN) $(BPM_NEM_DATA_STACK_SIZE) $(BOOT_GUARD_BPMSVN) $(BOOT_GUARD_KMSVN) $(BPM_IBB_VARIOUS_FLAGS) $(BOOT_GUARD_SIGNING_SERVER_TIMEOUT) $(FIT_ACM_GUID) $(FIT_MICROCODE_GUID) $(FIT_TABLE_GUID) $(HASH_KEY_PRINT_W_EXPONENT) $(DXE_SEGMENT_BASE) $(DXE_SEGMENT_SIZE) $(FV_BB_AFTER_MEMORY_SEGMENT_BASE) $(FV_BB_AFTER_MEMORY_SEGMENT_SIZE) $(FV_AFTER_MEMORY_BACKUP_ADDRESS) $(SUPPORT_BUILD_TIME_FV_BB_OFFSET) $(BOOT_GUARD_SPECIFICATION_VERSION) $(TXT_CF_RESET_AUX_CONTROL) $(TXT_CF_BACKUP_ACT_POLICY) $(TXT_CF_MEM_SCRUB_POLICY) $(TXT_CF_EXECUTION_PROFILE) $(TXT_PWR_DOWN_INTERVAL) $(TXT_PTT_CMOS_OFFSET_0) $(TXT_PTT_CMOS_OFFSET_1) $(TXT_ACPI_BASE_OFFSET) $(TXT_PWRM_BASE_OFFSET) $(HASH_AREA_USED) $(NESTED_FV_BASE)"
+    Help  = "Support the decimal value"
+    TokenType = Expression
+    TargetMAK = Yes
+    Lock = Yes
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_BPM_PEM_KEY_FILENAME"
+    Value  = "$(BOOTGUARD_DIR)$(PATH_SLASH)BpmPEM.key"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_BPM_MODULUS_KEY_FILENAME"
+    Value  = "$(BOOTGUARD_DIR)$(PATH_SLASH)BpmModulus.key"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_KM_PEM_KEY_FILENAME"
+    Value  = "$(BOOTGUARD_DIR)$(PATH_SLASH)KmPEM.key"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_KM_MODULUS_KEY_FILENAME"
+    Value  = "$(BOOTGUARD_DIR)$(PATH_SLASH)KmModulus.key"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_PBULIC_KEY_EXPONENT"
+    Help  = "The token for the KeyGen.exe"
+    Value  = "0x10001"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_MCHBAR"
+    Help  = "BpmKmGen.exe only support the decimal value"
+    Value  = "0" #As per INTEL comments, it is assigned to zero.
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_VARIOUS_FLAGS"
+    Help  = "The Various Flags for IBB Element. Please input decimal value. If want to enable AuthorityMeasure, please input 4 (BIT2), input 2 (BIT1) for Startup from Locality 0."
+    Value  = "6"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes       
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_VTD_BAR"
+    Help  = "BpmKmGen.exe only support the decimal value"
+    Value  = "0" #Need to fill this value after discussing with INTEL
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_PBET"
+    Help  = "BpmKmGen.exe only support the decimal value"
+    Value  = "15"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+
+TOKEN
+    Name  = "KM_KEY_MANIFEST_ID"
+    Help  = "BpmKmGen.exe only support the decimal value, and this field must match the Key Manifest ID of Secure boot of FITC."
+    Value  = "1"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "BPM_MIN_CPU_LLC_SIZE"
+    Value = "4 * 1024 * 1024"
+    Help = "Assign the Min LLC size to 2MB,3MB,or 4MB"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "BPM_MIN_CPU_LLC_SIZE"
+    Value = "6 * 1024 * 1024"#changing this to 6MB as AMISDL error comes while increasing FV_BB size to 4 MB
+    Help = "Assign the Min LLC size to 4MB"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"        
+End
+
+TOKEN
+    Name = "BPM_NEM_DATA_STACK_SIZE"
+    Value = "( $(BPM_MIN_CPU_LLC_SIZE) - (512 *1024) - $(FV_BB_SIZE) ) / 4096"
+    Help = "Size of Hashed IBB <= LLC -  0.5MB - sizeof (Boot Guard ACM) -  sizeof (DataStack) - sizeof (FIT) - sizeof (BPM)"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BIOS_STARTING_ADDRESS"
+    Help  = "Support the decimal value"
+    Value  = "0xFFFFFFFF - $(FLASH_SIZE) + 1"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_TPM_CHAIN_OF_TRUST"
+    Value  = "1"
+    Help  = "Main switch to enable TPM Boot Guard Chain of Trust in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_SUPPORT"
+    Value = "1"
+    Help  = "If enable, FV_MAIN will protect by BootGuard, if disable, FV_MAIN will not be protect by BootGuard."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_SIGNING_SERVER_TIMEOUT"
+    Value  = "0"
+    Help  = "Wait Signing Server's response. The unit of timeout is the second"
+    TokenType = Integer
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "====== Boot Guard Signing Interlock Support ======"
+    TokenType = Expression
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_SIGNING_INTERLOCK_SUPPORT"
+    Value = "0"
+    Help  = "The feature is for OEM to change the sign tool for lock the private key. If enable this feature, please input BPMPublic.key, KmPublic.key, the sign tool name, the sign tool path and the comment for sign tool signing KM and BPM."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "SIGN_SCRIPT_PATH"
+    Value  = "ServerPlatformPkg\BootGuard\SignScript_Cryptocon.bat"
+    Help  = "Please input the path and the name of sign tool which you want to use. ex: (ServerPlatformPkg\BootGuard\CryptoCon.exe)"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOT_GUARD_SIGNING_INTERLOCK_SUPPORT" "=" "1"
+    Token = "BOOTGUARD_BUILD_TIME_SUPPORT_USING_BATCH_FILE" "=" "0"
+    Token = "TOOL_CHAIN_TAG" "!=" "GCC"
+End
+
+TOKEN
+    Name  = "SIGN_SCRIPT_PATH"
+    Value  = "SignScript_Cryptocon.bat"
+    Help  = "Please input the path and the name of sign tool which you want to use. ex: (..\..\Build\BootGuard\CryptoCon.exe)"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOT_GUARD_SIGNING_INTERLOCK_SUPPORT" "=" "1"
+    Token = "BOOTGUARD_BUILD_TIME_SUPPORT_USING_BATCH_FILE" "=" "1"
+    Token = "TOOL_CHAIN_TAG" "!=" "GCC"
+End
+
+TOKEN
+    Name  = "SIGN_SCRIPT_PATH"
+    Value  = "ServerPlatformPkg$(PATH_SLASH)BootGuard$(PATH_SLASH)SignScript_Cryptocon.sh"
+    Help  = "Please input the path and the name of sign tool which you want to use. ex: (ServerPlatformPkg\BootGuard\CryptoCon)"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOT_GUARD_SIGNING_INTERLOCK_SUPPORT" "=" "1"
+    Token = "BOOTGUARD_BUILD_TIME_SUPPORT_USING_BATCH_FILE" "=" "0"
+    Token = "TOOL_CHAIN_TAG" "=" "GCC"
+End
+
+TOKEN
+    Name  = "SIGN_SCRIPT_PATH"
+    Value  = "../../Build$(PATH_SLASH)BootGuard$(PATH_SLASH)SignScript_Cryptocon.sh"
+    Help  = "Please input the path and the name of sign tool which you want to use. ex: (../../Build/BootGuard/CryptoCon)"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOT_GUARD_SIGNING_INTERLOCK_SUPPORT" "=" "1"
+    Token = "BOOTGUARD_BUILD_TIME_SUPPORT_USING_BATCH_FILE" "=" "1"
+    Token = "TOOL_CHAIN_TAG" "=" "GCC"
+End
+
+TOKEN
+    Name  = "BootGuardSignInterLockTokens"
+    Value  = "$(SIGN_SCRIPT_PATH)"
+    Help  = "Support the decimal value"
+    TokenType = Expression
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOT_GUARD_SIGNING_INTERLOCK_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BootGuardSignInterLockTokens"
+    Value  = "NOUSE"
+    Help  = "Support the decimal value"
+    TokenType = Expression
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOT_GUARD_SIGNING_INTERLOCK_SUPPORT" "=" "0"
+End
+
+TOKEN
+    Name  = "=============== Txt Element Setting ==============="
+    TokenType = Expression
+End
+
+TOKEN
+    Name  = "TXT_CF_RESET_AUX_CONTROL"
+    Value  = "0"
+    Help  = "0 - AUX Reset leaf will reset AUX index; 1 - AUX Reset leaf will delete AUX Index"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "TXT_CF_BACKUP_ACT_POLICY"
+    Value  = "0"
+    Help  = "0 - Default policy; 1 - Force Memory Power Down; 2 - Force BtG Unbreakable Shutdown"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "TXT_CF_MEM_SCRUB_POLICY"
+    Value  = "0"
+    Help  = "0 - Default policy; 1 - BIOS Action to scrub memory; 2 - S-ACM Action to scrub memory"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "TXT_CF_EXECUTION_PROFILE"
+    Value  = "0"
+    Help  = "0 - Default profile A; 1 - Profile B: Server model; 2 - Profile D: Client model"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "TXT_PWR_DOWN_INTERVAL"
+    Value  = "60"
+    Help  = "Duration of power down (in 5 sec increments) [1::120]"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "TXT_PTT_CMOS_OFFSET_0"
+    Value  = "126"
+    Help  = "[14::127]. First CMOS byte in bank 0 to store platform wakeup time."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "TXT_PTT_CMOS_OFFSET_1"
+    Value  = "127"
+    Help  = "[14::127]. Second CMOS byte in bank 0 to store platform wakeup time."
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "TXT_ACPI_BASE_OFFSET"
+    Value  = "$(ACPI_BASE_ADDRESS) + 0"
+    Help  = "ACPI IO offset"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "TXT_PWRM_BASE_OFFSET"
+    Value  = "0xFE000000 + 0"
+    Help  = "ACPI MMIO offset"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+ELINK
+    Name  = "$(BOOTGUARD_DIR)/BootGuard.ssp"
+    Parent  = "ADDON_SSP_FILES"
+    InvokeOrder = AfterParent
+    Token = "BOOT_GUARD_SPECIFICATION_VERSION" "=" "11"
+    Token = "CMOS_MANAGER_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "FitFirstEndPatchBIOSRomPath"
+    Value = "$(BUILD_DIR)$(PATH_SLASH)$(PLATFORM_NAME)$(PATH_SLASH)$(TARGET)_$(TOOL_CHAIN_TAG)$(PATH_SLASH)FV$(PATH_SLASH)AMIROM.fd"
+    Help  = "Patch BIOS ROM Path"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "DXE_SEGMENT_BASE"
+    Help  = "BpmKmGen.exe only support the decimal value"
+    Value  = "$(FV_MAIN_BASE) + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "DXE_SEGMENT_SIZE"
+    Help  = "BpmKmGen.exe only support the decimal value"
+    Value  = "$(FV_MAIN_BLOCKS) * $(FLASH_BLOCK_SIZE)"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_1_BASE"
+    Help  = "Base address of IBB Segment 1, BpmKmGen.exe only support the decimal value. +0: hashed, +1: nonhashed."
+    Value  = "$(FV_BB_BASE) + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_1_SIZE"
+    Help  = "Size of IBB Segment 1, BpmKmGen.exe only support the decimal value"
+    Value  = "$(FV_BB_SIZE) + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"   
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_2_BASE"
+    Help  = "Base address of IBB Segment 2, BpmKmGen.exe only support the decimal value. +0: hashed, +1: nonhashed."
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_2_SIZE"
+    Help  = "Size of IBB Segment 2, BpmKmGen.exe only support the decimal value."
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_3_BASE"
+    Help  = "Base address of IBB Segment 3, BpmKmGen.exe only support the decimal value. +0: hashed, +1: nonhashed."
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_3_SIZE"
+    Help  = "Size of IBB Segment 3, BpmKmGen.exe only support the decimal value"
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_4_BASE"
+    Help  = "Base address of IBB Segment 4, BpmKmGen.exe only support the decimal value. +0: hashed, +1: nonhashed."
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_4_SIZE"
+    Help  = "Size of IBB Segment 4, BpmKmGen.exe only support the decimal value"
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_5_BASE"
+    Help  = "Base address of IBB Segment 5, BpmKmGen.exe only support the decimal value. +0: hashed, +1: nonhashed."
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_5_SIZE"
+    Help  = "Size of IBB Segment 5, BpmKmGen.exe only support the decimal value"
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_6_BASE"
+    Help  = "Base address of IBB Segment 6, BpmKmGen.exe only support the decimal value. +0: hashed, +1: nonhashed."
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_6_SIZE"
+    Help  = "Size of IBB Segment 6, BpmKmGen.exe only support the decimal value"
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_7_BASE"
+    Help  = "Base address of IBB Segment 7, BpmKmGen.exe only support the decimal value. +0: hashed, +1: nonhashed."
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_7_SIZE"
+    Help  = "Size of IBB Segment 7, BpmKmGen.exe only support the decimal value"
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_8_BASE"
+    Help  = "Base address of IBB Segment 8, BpmKmGen.exe only support the decimal value. +0: hashed, +1: nonhashed."
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENT_8_SIZE"
+    Help  = "Size of IBB Segment 8, BpmKmGen.exe only support the decimal value"
+    Value  = "0 + 0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BPM_IBB_SEGMENTS_2_to_8"
+    Help  = "Token value of IBB Segments form 2 ~ 8"
+    Value  = "$(BPM_IBB_SEGMENT_2_BASE) $(BPM_IBB_SEGMENT_2_SIZE) $(BPM_IBB_SEGMENT_3_BASE) $(BPM_IBB_SEGMENT_3_SIZE) $(BPM_IBB_SEGMENT_4_BASE) $(BPM_IBB_SEGMENT_4_SIZE) $(BPM_IBB_SEGMENT_5_BASE) $(BPM_IBB_SEGMENT_5_SIZE) $(BPM_IBB_SEGMENT_6_BASE) $(BPM_IBB_SEGMENT_6_SIZE) $(BPM_IBB_SEGMENT_7_BASE) $(BPM_IBB_SEGMENT_7_SIZE) $(BPM_IBB_SEGMENT_8_BASE) $(BPM_IBB_SEGMENT_8_SIZE)"
+    TokenType = Expression
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BootGuardSaveTokenValue2"
+    Value  = "$(HASH_ALGORITHM) $(SIGN_ALGORITHM) $(FV_BB_VERIFY_FV_AREA_START_ADDRESS) $(FV_BB_VERIFY_FV_AREA_SIZE) $(BPM_PFR_SETTING)"
+    Help  = "Support the decimal value"
+    TokenType = Expression
+    TargetMAK = Yes
+    Lock = Yes
+End
+
+TOKEN
+    Name  = "SIGN_ALGORITHM"
+    Value  = "0"
+    Help  = "0: RSA-PKCS#1 v1.5, 1: RSA-PSS"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALGORITHM"
+    Value  = "$(HASH_ALGORITHM_LO) + $(HASH_ALGORITHM_UP)*65536"
+    Help  = "Support the decimal value"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALGORITHM_UP"
+    Value  = "$(HASH_ALG_IBB) + $(HASH_ALG_PIBB)*16 + $(HASH_ALG_POBB)*256 + $(HASH_ALG_TBD)*4096"
+    Help  = "Support the decimal value"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALGORITHM_LO"
+    Value  = "$(HASH_ALG_KM_PUB) + $(HASH_ALG_BPM_PUB)*16 + $(HASH_ALG_KM_SIG)*256 + $(HASH_ALG_BPM_SIG)*4096"
+    Help  = "Support the decimal value"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALG_KM_PUB"
+    Value  = "0"
+    Help  = "Hash algorithm for KM public key, 0: SHA256; 1: SHA384; 2: SHA1; 3: SM3, 4: SHA512"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALG_BPM_PUB"
+    Value  = "0"
+    Help  = "Hash algorithm for BPM public key, 0: SHA256; 1:SHA384"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALG_KM_SIG"
+    Value  = "0"
+    Help  = "Hash algorithm in KM signature(RSASSA), 0: SHA256; 1:SHA384"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALG_BPM_SIG"
+    Value  = "0"
+    Help  = "Hash algorithm in BPM signature(RSASSA), 0: SHA256; 1:SHA384"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALG_IBB"
+    Value  = "0"
+    Help  = "Hash algorithm for IBB, 0: SHA256; 1:SHA384"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALG_PIBB"
+    Value  = "0"
+    Help  = "Hash algorithm for Post IBB, 0: SHA256; 1:SHA384"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALG_POBB"
+    Value  = "0"
+    Help  = "Hash algorithm for Post OBB, 0: SHA256; 1:SHA384"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_ALG_TBD"
+    Value  = "0"
+    Help  = "TBD, 0: SHA256; 1:SHA384"
+    TokenType = Integer
+    TargetMAK = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "NESTED_FV_BASE"
+    Help  = "The base of nested FV in FvMain. The DXE_SEGMENT_SIZE must include the size of FvMain and the size of this FV."
+    Value  = "0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "HASH_AREA_USED"
+    Help  = "1 : Only hash used area in FV. ; 0 : Hash all FV"
+    Value  = "1"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "MICROCODE_FFS_ALIGNMENT"
+    Value  = "Align = 128"
+    Help  = "Defines alignment of the Microcode FFS file\Must have 'Align = X' format.\X must be one of: 8, 16, 128, 512"
+    TokenType = Expression
+    TargetFDF = Yes
+    Range  = "'Align = X', X is one of:8, 16, 128, 512"
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+PcdMapping
+    Name  = "AmiPcdForceShutdownOnFailedRecovery"
+    GuidSpace  = "gAmiModulePkgTokenSpaceGuid"
+    PcdType  = "PcdsDynamicDefault"
+    DataType  = "Boolean"
+    Value  = "FALSE"
+    TargetDSC = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_VERIFY_FAILED_FUNCTION" "=" "0"
+End
+
+PATH
+    Name  = "BOOTGUARD_DIR"
+End
+
+MODULE
+    Help  = "Includes BootGuard.mak to Project"
+    File  = "BootGuard.mak"
+End
+
+ELINK
+    Name  = "MULTIPLE_KM_TOKENS"
+    InvokeOrder = ReplaceParent
+End
+
+TOKEN
+    Name  = "MULTIPLE_KM_SUPPORT"
+    Value = "0"
+    Help  = "Main switch to enable Multiple KM support in the Project."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+    
+TOKEN
+    Name  = "KM_KEY_MANIFEST_ID2"
+    Help  = "BpmKmGen.exe only support the decimal value, and this field must match the Key Manifest ID of Secure boot of FITC."
+    Value  = "2"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "MULTIPLE_KM_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "KM_KEY_MANIFEST_ID2"
+    Help  = "BpmKmGen.exe only support the decimal value, and this field must match the Key Manifest ID of Secure boot of FITC."
+    Value  = "0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "MULTIPLE_KM_SUPPORT" "=" "1"
+    Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+    Name  = "KM_KEY_MANIFEST_ID3"
+    Help  = "BpmKmGen.exe only support the decimal value, and this field must match the Key Manifest ID of Secure boot of FITC."
+    Value  = "3"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "MULTIPLE_KM_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "KM_KEY_MANIFEST_ID3"
+    Help  = "BpmKmGen.exe only support the decimal value, and this field must match the Key Manifest ID of Secure boot of FITC."
+    Value  = "0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "MULTIPLE_KM_SUPPORT" "=" "1"
+    Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+    Name  = "KM_ENTRIES"
+    Value = "1"
+    Help  = "Number of KM entries in FIT table. This number must match with structure entries in IntelLtsxFit.cbin"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "KM_ENTRIES"
+    Value = "2"
+    Help  = "Number of KM entries in FIT table. This number must match with structure entries in IntelLtsxFit.cbin"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "KM_KEY_MANIFEST_ID2" "=" "2"
+    Token = "KM_KEY_MANIFEST_ID3" "=" "0"
+End
+
+TOKEN
+    Name  = "KM_ENTRIES"
+    Value = "2"
+    Help  = "Number of KM entries in FIT table. This number must match with structure entries in IntelLtsxFit.cbin"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "KM_KEY_MANIFEST_ID2" "=" "0"
+    Token = "KM_KEY_MANIFEST_ID3" "=" "3"
+End
+
+TOKEN
+    Name  = "KM_ENTRIES"
+    Value = "3"
+    Help  = "Number of KM entries in FIT table. This number must match with structure entries in IntelLtsxFit.cbin"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "KM_KEY_MANIFEST_ID2" "!=" "0"
+    Token = "KM_KEY_MANIFEST_ID3" "!=" "0"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_KM2_KEY_FILENAME"
+    Value  = "$(BOOTGUARD_DIR)$(PATH_SLASH)Km2.key"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOTGUARD_BUILD_TIME_SUPPORT_USING_BATCH_FILE" "=" "0"
+    Token = "MULTIPLE_KM_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_KM2_KEY_FILENAME"
+    Value  = "..$(PATH_SLASH)..$(PATH_SLASH)$(BOOTGUARD_DIR)$(PATH_SLASH)Km2.key"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOTGUARD_BUILD_TIME_SUPPORT_USING_BATCH_FILE" "=" "1"
+    Token = "MULTIPLE_KM_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_KM3_KEY_FILENAME"
+    Value  = "$(BOOTGUARD_DIR)$(PATH_SLASH)Km3.key"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOTGUARD_BUILD_TIME_SUPPORT_USING_BATCH_FILE" "=" "0"
+    Token = "MULTIPLE_KM_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BOOT_GUARD_KM3_KEY_FILENAME"
+    Value  = "..$(PATH_SLASH)..$(PATH_SLASH)$(BOOTGUARD_DIR)$(PATH_SLASH)Km3.key"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "BOOTGUARD_BUILD_TIME_SUPPORT_USING_BATCH_FILE" "=" "1"
+    Token = "MULTIPLE_KM_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "-KMID $(KM_KEY_MANIFEST_ID2) $(BOOT_GUARD_KM2_KEY_FILENAME)"
+    Parent  = "MULTIPLE_KM_TOKENS"
+    InvokeOrder = AfterParent
+    Token = "KM_KEY_MANIFEST_ID2" "!=" "0"
+End
+
+ELINK
+    Name  = "-KMID $(KM_KEY_MANIFEST_ID3) $(BOOT_GUARD_KM3_KEY_FILENAME)"
+    Parent  = "MULTIPLE_KM_TOKENS"
+    InvokeOrder = AfterParent
+    Token = "KM_KEY_MANIFEST_ID3" "!=" "0"
+End
+
+TOKEN
+    Name  = "BPMKMGEN_TOOL"
+    Value  = "BpmKmGen.exe"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "TOOL_CHAIN_TAG" "!=" "GCC"
+End
+
+TOKEN
+    Name  = "BPMKMGEN_TOOL"
+    Value  = "BpmKmGen"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+    Token = "TOOL_CHAIN_TAG" "=" "GCC"
+End
+
+TOKEN
+        Name  = "MULTI_KM_HASH_SUPPORT"
+        Value = "1"
+        Help  = "Switch for mulitple KM key support"
+        TokenType = Boolean
+        TargetMAK = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+
+TOKEN
+        Name  = "KMHASH_1_USAGE"
+        Help  = "The usage for KMHASH key 1, Normally, this assign to BPM PubKey. value 0: N/A; bit 0: BPM PubKey digest; bit 1: FIT Patch Manifest PubKey digest; bit 2: ACM Manifest PubKey digest; bit 3: SDEV PubKey digest; bit 4: PFR CPLD Root of Trust pubkey digest."
+        Value  = "0x00000001 + 0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_1_HASH_ALG"
+        Help  = "The hash algorithm for KMHASH key 1, Normally, this assign to BPM PubKey. 0: SHA256; 1: SHA384; 2: SHA1; 3: SM3, 4: SHA512"
+        Value  = "$(HASH_ALG_BPM_PUB)"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+
+End
+
+TOKEN
+        Name  = "KMHASH_1_KEY"
+        Help  = "The path for KMHASH key 1, Normally, this assign to BPM PubKey."
+        Value  = "$(BOOT_GUARD_BPM_PEM_KEY_FILENAME)"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+
+TOKEN
+        Name  = "KMHASH_2_USAGE"
+        Help  = "The usage for KMHASH key 2. value 0: N/A; bit 0: BPM PubKey digest; bit 1: FIT Patch Manifest PubKey digest; bit 2: ACM Manifest PubKey digest; bit 3: SDEV PubKey digest; bit 4: PFR CPLD Root of Trust pubkey digest."
+        Value  = "0x00000000 + 0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_2_HASH_ALG"
+        Help  = "The hash algorithm for KMHASH key 2, Normally, this specfic to BPM PubKey. 0: SHA256; 1: SHA384; 2: SHA1; 3: SM3, 4: SHA512"
+        Value  = "0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_2_KEY"
+        Help  = "The path for KMHASH key 2."
+        Value  = "NOUSE"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_3_USAGE"
+        Help  = "The usage for KMHASH key 3. value 0: N/A; bit 0: BPM PubKey digest; bit 1: FIT Patch Manifest PubKey digest; bit 2: ACM Manifest PubKey digest; bit 3: SDEV PubKey digest; bit 4: PFR CPLD Root of Trust pubkey digest."
+        Value  = "0x00000000 + 0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_3_HASH_ALG"
+        Help  = "The hash algorithm for KMHASH key 3, Normally, this specfic to BPM PubKey. 0: SHA256; 1: SHA384"
+        Value  = "0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_3_KEY"
+        Help  = "The path for KMHASH key 3."
+        Value  = "NOUSE"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_4_USAGE"
+        Help  = "The usage for KMHASH key 4. value 0: N/A; bit 0: BPM PubKey digest; bit 1: FIT Patch Manifest PubKey digest; bit 2: ACM Manifest PubKey digest; bit 3: SDEV PubKey digest; bit 4: PFR CPLD Root of Trust pubkey digest."
+        Value  = "0x00000000 + 0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_4_HASH_ALG"
+        Help  = "The hash algorithm for KMHASH key 4, Normally, this specfic to BPM PubKey. 0: SHA256; 1: SHA384; 2: SHA1; 3: SM3, 4: SHA512"
+        Value  = "0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_4_KEY"
+        Help  = "The path for KMHASH key 4."
+        Value  = "NOUSE"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "=============== PFR Element Setting ==============="
+        TokenType = Expression
+End
+
+TOKEN
+        Name  = "PCD_PcdPfrEnable"
+        Help  = "Main switch to enable Intel PFR Feature Support."
+        Value  = "0"
+        TokenType = Boolean
+        TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "PFR_ROOT_KEY_PEM_KEY_FILENAME"
+        Value  = "$(PFR_BLOCK_SIGN_DIR)$(PATH_SLASH)key_root_prv.pem"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+        Name  = "PFR_ROOT_KEY_MODULUS_KEY_FILENAME"
+        Value  = "$(PFR_BLOCK_SIGN_DIR)$(PATH_SLASH)key_root_pub.pem"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+        Name  = "PFR_CSK_KEY_PEM_KEY_FILENAME"
+        Value  = "$(PFR_BLOCK_SIGN_DIR)$(PATH_SLASH)csk_key_private.pem"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+        Name  = "PFR_CSK_KEY__MODULUS_KEY_FILENAME"
+        Value  = "$(PFR_BLOCK_SIGN_DIR)$(PATH_SLASH)csk_key_public.pem"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+        Name  = "BPM_PFR_SETTING"
+        Help  = "Token value for PFR setting"
+        Value  = "$(PFR_CONTROL_FLAG) $(PFR_CPLD_SMBUS_ADDR) $(PFR_ACT_REG_PCH_OFFSET) $(PFR_RCV_REG_PCH_OFFSET) $(PFR_STG_REG_PCH_OFFSET) $(PFR_ACT_REG_BMC_OFFSET) $(PFR_RCV_REG_BMC_OFFSET) $(PFR_STG_REG_BMC_OFFSET)"
+        TokenType = Expression
+        TargetMAK = Yes   
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+        Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+        Name  = "BPM_PFR_SETTING"
+        Help  = "Token value for PFR setting"
+        Value  = "0 0 0 0 0 0 0 0"
+        TokenType = Expression
+        TargetMAK = Yes   
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+        Token = "PCD_PcdPfrEnable" "=" "0"
+End
+
+TOKEN
+        Name  = "PFR_CONTROL_FLAG"
+        Value  = "0 + 0"
+        Help  = "SControl Flags, BpmKmGen.exe only support the decimal value"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFR_CPLD_SMBUS_ADDR"
+        Value  = "0xe0 + 0"
+        Help  = "SMBUS Address of CPLD Device, BpmKmGen.exe only support the decimal value **PORTING NEEDED**"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFR_ACT_REG_PCH_OFFSET"
+        Value  = "0x2ff0000 + 0"
+        Help  = "Active Region Offset in PCH SPI, BpmKmGen.exe only support the decimal value **PORTING NEEDED**"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFR_RCV_REG_PCH_OFFSET"
+        Value  = "0x1bf0000 + 0"
+        Help  = "Recovery Region Offset in PCH SPI, BpmKmGen.exe only support the decimal value **PORTING NEEDED**"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFR_STG_REG_PCH_OFFSET"
+        Value  = "0x7f0000 + 0"
+        Help  = "Staging Region Offset in PCH SPI, BpmKmGen.exe only support the decimal value **PORTING NEEDED**"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFR_ACT_REG_BMC_OFFSET"
+        Value  = "0x80000 + 0"
+        Help  = "Active Region Offset in BMC SPI, BpmKmGen.exe only support the decimal value **PORTING NEEDED**"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFR_RCV_REG_BMC_OFFSET"
+        Value  = "0x2a00000 + 0"
+        Help  = "Recovery Region Offset in BMC SPI, BpmKmGen.exe only support the decimal value **PORTING NEEDED**"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFR_STG_REG_BMC_OFFSET"
+        Value  = "0x4a00000 + 0"
+        Help  = "Staging Region Offset in BMC SPI, BpmKmGen.exe only support the decimal value **PORTING NEEDED**"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "KMHASH_2_USAGE"
+        Help  = "The usage for KMHASH key 2. value 0: N/A; bit 0: BPM PubKey digest; bit 1: FIT Patch Manifest PubKey digest; bit 2: ACM Manifest PubKey digest; bit 3: SDEV PubKey digest; bit 4: PFR CPLD Root of Trust pubkey digest."
+        Value  = "0x00000010 + 0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+        Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_2_HASH_ALG"
+        Help  = "The hash algorithm for KMHASH key 2, Normally, this specfic to BPM PubKey. 0: SHA256; 1: SHA384; 2: SHA1; 3: SM3, 4: SHA512"
+        Value  = "0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+        Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+        Name  = "KMHASH_2_KEY"
+        Help  = "The path for KMHASH key 2 (PFR)."
+        Value  = "$(PFR_ROOT_KEY_PEM_KEY_FILENAME)"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "MULTI_KM_HASH_SUPPORT" "=" "1"
+        Token = "PCD_PcdPfrEnable" "=" "1"
+End
+
+TOKEN
+        Name  = "PFR_ROOT_CSK_KEY_GENERATION"
+        Help  = "0 - Both RK and CSK key will not be generated by BIOS, 1 - Only CSK key will be generated by BIOS, 2 - Both RK and CSK key will be generated by BIOS. In case of 2 CPLD,BMC has to build with the same RK key generated by BIOS"
+        Value  = "0"
+        TokenType = Integer
+        TargetMAK = Yes
+        Token = "PCD_PcdPfrEnable" "=" "1"
+End
+        

@@ -1,0 +1,11 @@
+<component>
+	name = "Include"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Ie\v1\Policy\Include\"
+	RefName = "ServerSiliconPkg.Ie.v1.Policy.Include"
+[files]
+"IeHob.h"	
+[parts]
+"ServerSiliconPkg.Ie.v1.Policy.Include.Library"
+"ServerSiliconPkg.Ie.v1.Policy.Include.Ppi"
+<endComponent>

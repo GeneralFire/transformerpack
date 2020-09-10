@@ -1,0 +1,12 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Gbe\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Gbe.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Gbe.IncludePrivate.Library"
+"ClientOneSiliconPkg.IpBlock.Gbe.IncludePrivate.Register"
+[files]
+"GbeController.h"
+"GbeHandle.h"
+<endComponent>

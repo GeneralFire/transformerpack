@@ -1,0 +1,24 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+TOKEN
+	Name  = "BIOS_GUARD_PEI_AP_RECOVERY_CAPSULE_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable BiosGuardPeiApRecoveryCapsule support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+	Token = "BIOS_GUARD_RECOVERY_SUPPORT" "=" "1"    
+End
+
+INFComponent
+     Name = "BiosGuardPeiApRecoveryCapsule"
+     File = "BiosGuardPeiApRecoveryCapsule.inf"
+     Package = "AmiChipsetModulePkg"     
+     ModuleTypes = "PEIM"
+End
+

@@ -1,0 +1,23 @@
+TOKEN
+	Name  = "PprVlsErrorLogListener_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling PprVlsErrorLogListener support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PprVlsErrorLogListener_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PprVlsErrorLogListener support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "PprVlsErrorLogListener"
+	File  = "PprVlsErrorLogListener.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Token = "PprVlsErrorLogListener_INF_SUPPORT" "=" "1"
+End
+

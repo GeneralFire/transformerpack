@@ -1,0 +1,13 @@
+<component>
+    name = "SmbusDma"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\SmbusDma\"
+    RefName = "ClientOneSiliconPkg.IpBlock.SmbusDma"
+[INF]
+"LibraryPrivate\SmbusDmaInitLib.inf"
+[files]
+"SmbusDma.sdl"	
+"IncludePrivate\Library\PeiSmbusDmaLib.h"
+"IncludePrivate\Register\SmbusDmaRegs.h"
+[parts]
+<endComponent>

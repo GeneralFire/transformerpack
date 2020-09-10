@@ -1,0 +1,11 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Hda\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Hda.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Hda.IncludePrivate.Library"
+"ClientOneSiliconPkg.IpBlock.Hda.IncludePrivate.Register"
+[files]
+"HdaCtrl.h"
+<endComponent>

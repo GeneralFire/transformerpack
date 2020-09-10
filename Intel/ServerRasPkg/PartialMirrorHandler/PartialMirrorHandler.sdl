@@ -1,0 +1,23 @@
+TOKEN
+	Name  = "PartialMirrorHandler_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling PartialMirrorHandler support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PartialMirrorHandler_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PartialMirrorHandler support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "PartialMirrorHandler"
+	File  = "PartialMirrorHandler.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Token = "PartialMirrorHandler_INF_SUPPORT" "=" "1"
+End
+

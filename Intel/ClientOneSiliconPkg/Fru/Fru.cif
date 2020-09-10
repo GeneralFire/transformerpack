@@ -1,0 +1,11 @@
+<component>
+    name = "Fru"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\"
+    RefName = "ClientOneSiliconPkg.Fru"
+[parts]
+"ClientOneSiliconPkg.Fru.EbgPch"
+"ClientOneSiliconPkg.Fru.SprCpu"
+[files]
+"MtlSoc\IncludePrivate\Register\VpuRegs.h"
+<endComponent>

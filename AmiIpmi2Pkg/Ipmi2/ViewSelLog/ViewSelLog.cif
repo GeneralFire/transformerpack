@@ -1,0 +1,13 @@
+<component>
+	name = "ViewSelLog"
+	category = ModulePart
+	LocalRoot = "AmiIpmi2Pkg\Ipmi2\ViewSelLog\"
+	RefName = "AmiIpmi2Pkg.Ipmi2.ViewSelLog"
+[files]
+"ViewSelLog.sdl"	
+"ViewSelLog.sd"	
+"ViewSelLog.uni"	
+"ViewSelLog.c"	
+"ViewSelLog.h"	
+"ViewSelLogOemDef.txt"	
+<endComponent>

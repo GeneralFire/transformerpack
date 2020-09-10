@@ -1,0 +1,120 @@
+TOKEN
+	Name  = "SouthClusterCdf_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling SouthClusterCde support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+#PATH
+#    Name = "SC_PATH"
+#End
+
+TOKEN
+	Name  = "PCH_DEFAULT_SVID"
+	Value  = "0x8086"
+	Help  = "Pch default Sub Sytem Vendor ID. This value is taken from PchRegs.h file."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCH_DEFAULT_SID"
+	Value  = "0x7270"
+	Help  = "Pch default Sub Sytem ID. This value is taken from PchRegs.h file."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "I2cMaster_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling I2cMaster support in the project"
+    TokenType = Boolean
+    Disable = Yes
+End
+
+INFComponent
+    Name  = "I2cMasterDxe"
+    File  = "Dxe/I2cMasterDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "UEFI_DRIVER"
+    Token = "I2cMaster_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "WdtDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable WdtDxe support in Project"
+	TokenType = Boolean
+End                        
+
+INFComponent
+    Name  = "WdtDxe"
+    File  = "Wdt\Dxe\WdtDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "WdtDxe_SUPPORT" "=" "1"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"    
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.DxePcdLib"
+    Override  = "ServerSiliconPkg.WdtDxe"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"    
+End
+
+INFComponent
+    Name  = "SmmControl"
+    File  = "SmmControl\RuntimeDxe\SmmControl.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0" 
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.DxePcdLib"
+    Override  = "ServerSiliconPkg.SmmControl"
+End
+
+LibraryMapping
+    Class  = "DebugPrintErrorLevelLib"
+    Instance  = "MdePkg.BaseDebugPrintErrorLevelLib"
+    Override  = "ServerSiliconPkg.SmmControl"
+End
+
+PcdMapping
+    Name = "PcdDebugPrintErrorLevel"
+    GuidSpace = "gEfiMdePkgTokenSpaceGuid"
+    PcdType = "PcdsPatchableInModule"
+    Value = "0x80000000"
+    Override = "ServerSiliconPkg.SmmControl"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"     
+End
+
+LibraryMapping
+    Class  = "PchInitLib"
+    Instance  = "ServerSiliconPkg.PeiPchInitLib"
+    Token = "PchInitLib_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "PchSmmControlLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PchSmmControlLib support in the project"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name = "PORT61H_EMULATION"
+    Value = "0"
+    Help = "0 - Disable Port 61h emulation, 1 - Enable Port 61h emulation"
+    TokenType = Boolean
+    TargetH = Yes
+End
+

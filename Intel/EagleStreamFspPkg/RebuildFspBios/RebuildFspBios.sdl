@@ -1,0 +1,27 @@
+TOKEN
+    Name  = "REBUILD_FSP_AND_BIOS"
+    Value  = "0"
+    Help  = "Main switch to enable RebuildFspBios support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+
+PATH
+    Name  = "REBUILD_FSP_DIR"
+End
+
+MODULE
+    Help  = "Includes ReBuild makefile to Project"
+    File  = "ReBuildFspBios.mak"
+End
+
+TOKEN
+    Name  = "BUILD_FSP_BINARY"
+    Value  = "1"
+    Help  = "Main switch to build FSP source."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+

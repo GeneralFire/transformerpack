@@ -1,0 +1,64 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file IpmiSdrReader.inf
+#
+#  INF description file for IpmiSdrReader driver.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = IpmiSdrReader
+  FILE_GUID         = A14694E4-78DF-4ef1-A118-7654FF6CFA9D
+  MODULE_TYPE       = DXE_DRIVER
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = InitializeIpmiSdrReader
+
+[Sources]
+  IpmiSdrReader.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  BaseLib
+  DebugLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+
+[Protocols]
+  gEfiDxeIpmiTransportProtocolGuid        #CONSUMES
+
+[Pcd]
+  #SdrVersionNo
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSdrVersionNo
+
+[Depex]
+  gEfiDxeIpmiTransportProtocolGuid
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

@@ -1,0 +1,330 @@
+TOKEN
+    Name  = "BmcLanConfig_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling BmcLanConfig support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "BmcLanConfig_Live_status"
+    Value  = "0"
+    Help  = "Enable/Disable the Live status of BmcLanConfig in Setup. If the token is enabled, It will provide the Live Updation of BmcLanConfig parameters with delay while refreshing and delay in keys working in setup while executing callback() "
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+PATH
+    Name  = "BmcLanConfig_DIR"
+    Path  = "AmiIpmi2Pkg/Ipmi2/BmcLanConfig"
+    Help = "Path to BmcLanConfig sub module in project."
+End
+
+INFComponent
+    Name  = "Ip4BmcLanConfig"
+    File  = "Ip4BmcLanConfig.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Help  = "Includes Ip4BmcLanConfig.inf to Project."
+End
+
+INFComponent
+    Name  = "Ip6BmcLanConfig"
+    File  = "Ip6BmcLanConfig.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "DXE_DRIVER"
+    PreProcess = Yes
+    Help  = "Includes Ip6BmcLanConfig.inf to Project."
+End
+
+ELINK
+    Name  = "$(BmcLanConfig_DIR)/BmcLanConfig.sd"
+    Parent  = "SERVER_MGMT_SETUP_DEFINITIONS"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include BmcLanConfig.sd file in ServerMgmtSetup definitions files list."
+End
+
+ELINK
+    Name  = "$(BmcLanConfig_DIR)/BmcLanConfig.uni"
+    Parent  = "SERVER_MGMT_SETUP_STRING_FILES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include BmcLanConfig.uni file in ServerMgmtSetup string files list."
+End
+
+TOKEN
+    Name  = BMC_LAN_COUNT
+    Value  = "2"
+    TokenType = Integer
+    TargetH = Yes
+    Range  = "1-2"
+    Help  = "Number of LAN ports available for BMC use"
+End
+
+ELINK
+    Name  = "$(BmcLanConfig_DIR)/BmcLanParam.c"
+    Parent  = "SERVER_MGMT_SETUP_CALLBACK_FILES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include BmcLanParam.c file in ServerMgmtSetup callback files list."
+End
+
+ELINK
+    Name  = "AmiIpmiLib"
+    Parent  = "SERVER_MGMT_SETUP_LIBRARY_CLASSES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include AmiIpmiInitLib in Additional ServerMgmt Setup Library Classes."
+End
+
+ELINK
+    Name  = "$(BmcLanConfig_DIR)/BmcLanConfigCommon.c"
+    Parent  = "SERVER_MGMT_SETUP_CALLBACK_FILES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include BmcLanConfigCommon.c file in ServerMgmtSetup callback files list."
+End
+
+ELINK
+    Name  = "NetLib"
+    Parent  = "SERVER_MGMT_SETUP_LIBRARY_CLASSES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include NetLib in Additional ServerMgmt Setup Library Classes."
+End
+
+ELINK
+    Name  = "HiiLib"
+    Parent  = "SERVER_MGMT_SETUP_LIBRARY_CLASSES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include HiiLib in Additional ServerMgmt Setup Library Classes."
+End
+
+ELINK
+    Name  = "PrintLib"
+    Parent  = "SERVER_MGMT_SETUP_LIBRARY_CLASSES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include PrintLib in Additional ServerMgmt Setup Library Classes."
+End
+
+ELINK
+    Name  = "AmiDxeLib"
+    Parent  = "SERVER_MGMT_SETUP_LIBRARY_CLASSES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include AmiDxeLib in Additional ServerMgmt Setup Library Classes."
+End
+
+ELINK
+    Name  = "BaseMemoryLib"
+    Parent  = "SERVER_MGMT_SETUP_LIBRARY_CLASSES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include BaseMemoryLib in Additional ServerMgmt Setup Library Classes."
+End
+
+ELINK
+    Name  = "UefiBootServicesTableLib"
+    Parent  = "ADDITIONAL_AMITSE_LibraryClasses"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include UefiBootServicesTableLib in TSE library classes list."
+End
+
+ELINK
+    Name  = "UefiRuntimeServicesTableLib"
+    Parent  = "ADDITIONAL_AMITSE_LibraryClasses"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include UefiRuntimeServicesTableLib in TSE library classes list."
+End
+
+ELINK
+    Name  = "gEfiDxeIpmiTransportProtocolGuid"
+    Parent  = "SERVER_MGMT_SETUP_PROTOCOLS"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include Efi Dxe Ipmi Transport Protocol Guid in Additional ServerMgmt Setup Protocols list."
+End
+
+ELINK
+    Name  = "gAmiPostManagerProtocolGuid"
+    Parent  = "SERVER_MGMT_SETUP_PROTOCOLS"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include Ami Post Manager Protocol Guid in Additional ServerMgmt Setup Protocols list."
+End
+
+ELINK
+    Name  = "BmcLanParamSetupDisplay,"
+    Parent  = "SERVER_MGMT_SETUP_STRING_INIT"
+    InvokeOrder = AfterParent
+    Token = "BmcLanConfig_Live_status" "=" "0"
+    Help  = "Elink to include default function to initialize the LAN parameters in setup strings."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_STATION_IP1_KEY,BmcLanConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Station IP1 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_SUBNET1_KEY,BmcLanConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Subnet1 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_ROUTER_IP1_KEY,BmcLanConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Router IP1 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_ROUTER_MAC1_KEY,BmcLanConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Router Mac1 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_STATION_IP2_KEY,BmcLanConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Station IP2 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_SUBNET2_KEY,BmcLanConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Subnet2 key."
+End
+
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_ROUTER_IP2_KEY,BmcLanConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Router IP2 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_ROUTER_MAC2_KEY,BmcLanConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Router Mac2 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_FORM_KEY,BmcLanParamSetupDisplayCallback),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Token = "BmcLanConfig_Live_status" "=" "1"
+    Help  = "Elink to include BmcLanParamSetupDisplayCallback in ServerMgmt Setup Item Callbacks list for BMC Network Form key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_FORM_REF_KEY,BmcLanParamSetupDisplayCallback),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Token = "BmcLanConfig_Live_status" "=" "1"
+    Help  = "Elink to include BmcLanParamSetupDisplayCallback in ServerMgmt Setup Item Callbacks list for BMC Network Form Ref key to refresh the BmcLanConfig parameters."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_STATION_IP6_LAN1_KEY,BmcLanIpv6ConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanIpv6ConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Station IP6 Lan1 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_STATION_IP6_LAN2_KEY,BmcLanIpv6ConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanIpv6ConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Station IP6 Lan2 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_STATION_IP6_ROUTER1_LAN1_KEY,BmcLanIpv6Router1ConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanIpv6Router1ConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Router IP6 Lan1 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_STATION_IP6_ROUTER1_LAN2_KEY,BmcLanIpv6Router1ConfigCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanIpv6Router1ConfigCallbackFunction in ServerMgmt Setup Item Callbacks list for Router IP6 Lan2 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_IPV6_SUPPORT_LAN1_KEY,BmcLanIpv6SupportCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanIpv6SupportCallbackFunction in ServerMgmt Setup Item Callbacks list for IPv6 Support Lan1 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_IPV6_SUPPORT_LAN2_KEY,BmcLanIpv6SupportCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanIpv6SupportCallbackFunction in ServerMgmt Setup Item Callbacks list for IPv6 Support Lan2 key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_STATION_IP6_ROUTER1_PREFIX_VALUE_LAN1_KEY,BmcLanIpv6Router1PrefixValueCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanIpv6SupportCallbackFunction in ServerMgmt Setup Item Callbacks list for IPv6 Router Lan1 Prefix Value key."
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_NETWORK_STATION_IP6_ROUTER1_PREFIX_VALUE_LAN2_KEY,BmcLanIpv6Router1PrefixValueCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcLanIpv6SupportCallbackFunction in ServerMgmt Setup Item Callbacks list for IPv6 Router Lan2 Prefix Value key."
+End
+
+ELINK
+    Name  = "AmiNetworkPkg/AmiNetworkPkg.dec"
+    Parent  = "SERVER_MGMT_SETUP_PACKAGES"
+    InvokeOrder = AfterParent
+    Token = "AMI_NETWORK_PKG_VERSION" ">=" "31"
+End
+
+ELINK
+    Name  = "ADDITIONAL_BMCLAN_PACKAGES"
+    Help  = "Parent Elink to link all Additional Bmc Lan Packages."
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "AmiNetworkPkg/AmiNetworkPkg.dec"
+    Parent  = "ADDITIONAL_BMCLAN_PACKAGES"
+    InvokeOrder = AfterParent
+    Token = "AMI_NETWORK_PKG_VERSION" ">=" "31"
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.Ip4BmcLanConfig"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "BmcLanConfig_SUPPORT" "=" "1"
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.Ip6BmcLanConfig"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "BmcLanConfig_SUPPORT" "=" "1"
+End

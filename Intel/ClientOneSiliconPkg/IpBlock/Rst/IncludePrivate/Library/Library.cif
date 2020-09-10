@@ -1,0 +1,11 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Rst\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Rst.IncludePrivate.Library"
+[files]
+"PeiHybridStoragePolicyLib.h"
+"PeiHybridStorageLib.h"
+"PeiRstPolicyLib.h"	
+"PeiRstPrivateLib.h"	
+<endComponent>

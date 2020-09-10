@@ -1,0 +1,8 @@
+TOKEN
+	Name  = "Upi_ENABLE"	
+	Value  = "1"
+	Help  = "Switch for Enabling Upi support in the project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End

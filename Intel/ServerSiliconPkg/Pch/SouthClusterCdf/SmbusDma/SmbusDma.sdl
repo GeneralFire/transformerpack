@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "SmbusDma_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling SmbusDma support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "PchSmbusDmaDxe"
+    File  = "Dxe/PchSmbusDmaDxeCdf.inf"
+    Package  = "ServerSiliconPkg"
+    Arch = "X64"       
+    ModuleTypes  = "DXE_DRIVER"
+#    Token = "PLATFORM_SI_PACKAGE" "=" "0" 
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.DxePcdLib"
+    Override  = "ServerSiliconPkg.PchSmbusDmaDxe"
+End

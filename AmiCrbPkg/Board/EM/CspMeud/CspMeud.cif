@@ -1,0 +1,12 @@
+<component>
+	name = "SPS 5.0"
+	category = ModulePart
+	LocalRoot = "AmiCrbPkg/Board/EM/CspMeud"
+	RefName = "CrbMeud_Sps5"
+[files]
+"CspMeud.c"	
+"CspMeud.h"	
+"CspMeud.sdl"
+"CspMeud10Gbe.c"
+"CspMeud.mak"
+<endComponent>

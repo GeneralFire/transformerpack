@@ -1,0 +1,15 @@
+<component>
+    name = "Pch"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\"
+    RefName = "ClientOneSiliconPkg.Pch"
+[parts]
+"ClientOneSiliconPkg.Pch.ClientOneAcpiTables"
+"ClientOneSiliconPkg.Pch.Include"
+"ClientOneSiliconPkg.Pch.IncludePrivate"
+"ClientOneSiliconPkg.Pch.Library"
+"ClientOneSiliconPkg.Pch.LibraryPrivate"
+"ClientOneSiliconPkg.Pch.PchInit"
+"ClientOneSiliconPkg.Pch.SmmControl"
+"ClientOneSiliconPkg.Pch.PchSmiDispatcher"
+<endComponent>

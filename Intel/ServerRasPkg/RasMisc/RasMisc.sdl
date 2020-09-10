@@ -1,0 +1,23 @@
+TOKEN
+	Name  = "RasMisc_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling RasMisc support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "RASMiscDriver_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RASMiscDriver support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "RASMiscDriver"
+	File  = "RasMisc.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Token = "RASMiscDriver_INF_SUPPORT" "=" "1"
+End
+

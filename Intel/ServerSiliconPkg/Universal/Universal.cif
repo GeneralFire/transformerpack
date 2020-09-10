@@ -1,0 +1,11 @@
+<component>
+	name = "Universal"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Universal\"
+	RefName = "ServerSiliconPkg.Universal"
+[files]
+[parts]
+"ServerSiliconPkg.Universal.Pei"
+"ServerSiliconPkg.Universal.Dxe"
+"ServerSiliconPkg.Universal.Smm"
+<endComponent>

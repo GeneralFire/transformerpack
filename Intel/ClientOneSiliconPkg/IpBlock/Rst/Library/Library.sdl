@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiDxeSmmRstCrLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "RstCrLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmRstCrLibVer3"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiDxeSmmRstCrLibVer3"
+    File  = "PeiDxeSmmRstCrLib/PeiDxeSmmRstCrLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+

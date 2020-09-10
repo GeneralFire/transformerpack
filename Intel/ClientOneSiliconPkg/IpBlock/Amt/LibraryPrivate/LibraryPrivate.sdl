@@ -1,0 +1,66 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "ActiveManagementLib"
+    Instance  = "ClientOneSiliconPkg.PeiActiveManagementLib"
+    Arch = "IA32"
+    Token = "AMT_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiActiveManagementLib"
+    File  = "PeiActiveManagementLib/PeiActiveManagementLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "AMT_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "ActiveManagementLib"
+    Instance  = "ClientOneSiliconPkg.PeiActiveManagementLibNull"
+    Arch = "IA32"
+    Token = "AMT_ENABLE" "=" "0"
+End
+
+#LibraryMapping
+#    Class  = "ActiveManagementLib"
+#    Instance  = "ClientOneSiliconPkg.PeiActiveManagementLibNull"
+#    Arch = "IA32"
+#End
+
+INFComponent
+    Name  = "PeiActiveManagementLibNull"
+    File  = "PeiActiveManagementLibNull/PeiActiveManagementLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "AMT_ENABLE" "=" "0"    
+End
+
+LibraryMapping
+    Class  = "AsfMsgLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeAsfMsgLib"
+    Arch = "IA32"
+     Token = "AMT_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "AsfMsgLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeAsfMsgLib"
+    Arch = "X64"
+     Token = "AMT_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiDxeAsfMsgLib"
+    File  = "PeiDxeAsfMsgLib/PeiDxeAsfMsgLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "AMT_ENABLE" "=" "1"
+End
+

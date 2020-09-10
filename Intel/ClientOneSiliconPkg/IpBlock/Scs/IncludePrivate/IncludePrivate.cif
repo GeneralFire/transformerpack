@@ -1,0 +1,13 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Scs\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Scs.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Scs.IncludePrivate.Library"
+"ClientOneSiliconPkg.IpBlock.Scs.IncludePrivate.Register"
+[files]
+"Iosf2OcpPort.h"
+"ScsSdController.h"
+"ScsUfsController.h"
+<endComponent>

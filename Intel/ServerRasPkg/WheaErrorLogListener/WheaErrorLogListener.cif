@@ -1,0 +1,11 @@
+<component>
+	name = "WheaErrorLogListener"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\WheaErrorLogListener\"
+	RefName = "ServerRasPkg.WheaErrorLogListener"
+[INF]
+"WheaErrorLogListener.inf"
+[files]
+"WheaErrorLogListener.h"	
+"WheaErrorLogListener.sdl"	
+<endComponent>

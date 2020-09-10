@@ -1,0 +1,13 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.IncludePrivate.Library"
+[files]
+"DxeTouchHeciMsgsLib.h"	
+"HeciInitLib.h"	
+"MeInitLib.h"	
+"PeiMeEnhancedDebugLib.h"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Me.IncludePrivate.Library.DxeBeihaiLib"
+<endComponent>

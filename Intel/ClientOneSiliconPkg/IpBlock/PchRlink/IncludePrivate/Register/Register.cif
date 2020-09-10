@@ -1,0 +1,8 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\PchRlink\IncludePrivate\Register\"
+    RefName = "ClientOneSiliconPkg.IpBlock.PchRlink.IncludePrivate.Register"
+[files]
+"PchRlinkRegs.h"	
+<endComponent>

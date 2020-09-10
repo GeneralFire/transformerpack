@@ -1,0 +1,25 @@
+//***********************************************************************
+//*                                                                     *
+//*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+//*                                                                     *
+//*      All rights reserved. Subject to AMI licensing agreement.       *
+//*                                                                     *
+//***********************************************************************
+/** @file Ast2600InitDataTableFile.h
+    This contains the initial data table to config the Super IO.
+**/
+#ifndef  _AST2600INITDATATABLEFILE_H_
+#define  _AST2600INITDATATABLEFILE_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#include "@Elink(AST2600InitDataTableFile, "@Child", "", "")"
+
+/****** DO NOT WRITE BELOW THIS LINE *******/
+#ifdef __cplusplus
+}
+#endif
+#endif

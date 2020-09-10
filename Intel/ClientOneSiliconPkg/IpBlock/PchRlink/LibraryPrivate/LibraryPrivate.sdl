@@ -1,0 +1,21 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Disable = Yes
+End
+
+LibraryMapping
+    Class  = "PeiPchRlinkLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchRlinkLib"
+End
+
+INFComponent
+    Name  = "PeiPchRlinkLib"
+    File  = "PeiPchRlinkLib/PeiPchRlinkLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+

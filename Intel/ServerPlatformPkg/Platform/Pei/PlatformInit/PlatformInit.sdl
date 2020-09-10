@@ -1,0 +1,38 @@
+TOKEN
+	Name  = "PlatformInit_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling PlatformInit support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PlatformInit_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PlatformInit support in Project"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "PlatformInitPreMem_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PlatformInitPreMem support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "PlatformInit"
+	File  = "PlatformInit.inf"
+	Package  = "ServerPlatformPkg"
+	ModuleTypes  = "PEIM"
+	Token = "PlatformInit_INF_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "PlatformInitPreMem"
+	File  = "PlatformInitPreMem.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+    ModuleTypes  = "PEIM" 	
+	Token = "PlatformInitPreMem_INF_SUPPORT" "=" "1"
+End

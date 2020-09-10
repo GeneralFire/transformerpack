@@ -1,0 +1,13 @@
+<component>
+	name = "Intel Emmitsburg Chipset Controller Hub"
+	category = ModulePart
+	LocalRoot = "AmiCrbPkg\Board\SB\"
+	RefName = "Intel-Emmitsburg"
+[INF]
+"SbPei.inf"
+"SbDxe.inf"
+[parts]
+"Intel-Emmitsburg SB Board"
+"Intel-Emmitsburg SB Chipset"
+"SbDebugPorting"
+<endComponent>

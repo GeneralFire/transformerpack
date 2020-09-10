@@ -1,0 +1,9 @@
+<component>
+	name = "Include"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Mem\Include\"
+	RefName = "ServerSiliconPkg.Mem.Include"
+[files]
+"HbmDefaults.h"
+"MemIpVer.h"	
+<endComponent>

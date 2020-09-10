@@ -1,0 +1,11 @@
+<component>
+	name = "AddressTranslationDsm"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\AddressTranslationDsm\"
+	RefName = "ServerRasPkg.AddressTranslationDsm"
+[INF]
+"AddressTranslationDsm.inf"
+[files]
+"AddressTranslationDsm.h"	
+"AddressTranslationDsm.sdl"	
+<endComponent>

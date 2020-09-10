@@ -1,0 +1,9 @@
+<component>
+    name = "Ras"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Ras\"
+    RefName = "ServerSiliconPkg.Ras"
+[parts]
+"ServerSiliconPkg.Ras.Library"
+"ServerSiliconPkg.Ras.LibrarySpr"
+<endComponent>

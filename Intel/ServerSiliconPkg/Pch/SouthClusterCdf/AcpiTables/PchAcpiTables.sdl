@@ -1,0 +1,14 @@
+TOKEN
+	Name  = "PchAcpiTables_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PchAcpiTables support in Project"
+	TokenType = Boolean
+	TargetH = Yes
+	TargetMak = Yes
+	Master = Yes
+End
+
+#PchAcpiTables: PchEbg.asl is already included into DSDT.asl using “Platform ASL Files” in ServerPlatformPkg.sdl 
+#INFComponent definition not needed
+
+

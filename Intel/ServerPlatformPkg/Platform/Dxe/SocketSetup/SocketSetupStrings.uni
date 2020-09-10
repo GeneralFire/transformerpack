@@ -1,0 +1,56 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2012 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+#string STR_HORIZONTAL_LINE             #language en-US "--------------------------------------------------"
+#string STR_DOUBLE_LINE                 #language en-US "========================================"
+#string STR_NULL_STRING                 #language en-US ""
+#string STR_NULL                        #language en-US " "
+
+#string STR_SOCKET_FORM           #language en-US "Socket Configuration"
+#string STR_SOCKET_FORM_HELP     #language en-US "Displays and provides option to change the Socket Settings"
+
+#string STR_DISABLED             #language en-US "Disable"
+#string STR_ENABLED              #language en-US "Enable"
+#string STR_AUTO_STRING          #language en-US "Auto"
+#string STR_DISABLED_STRING      #language en-US "Disable"
+#string STR_ENABLED_STRING       #language en-US "Enable"
+
+#string STR_CPU_STEPPING_PROMPT               #language en-US "CPU Stepping"
+#string STR_CPU_STEPPING_HELP                 #language en-US "Specifies the CPU Stepping.  This value is updated by BIOS at boot time."
+#string STR_SYSTEM_RAS_TYPE_PROMPT            #language en-US "System RAS Type"
+#string STR_SYSTEM_RAS_TYPE_HELP              #language en-US "Specifies the System Ras Type.  This value is updated by BIOS at boot time."
+#string STR_PCIE_SLOT_ITEM_CTRL_PROMPT        #language en-US "PCIe Slot Item Control"
+#string STR_PCIE_SLOT_ITEM_CTRL_HELP          #language en-US "Controls the number of setup questions for PCIe slot OpROM.  This value is updated by BIOS at boot time."
+#string STR_XMP_PROFILES_SUPPORTED_PROMPT     #language en-US "XMP Profiles Supported"
+#string STR_XMP_PROFILES_SUPPORTED_HELP       #language en-US "Specifies the XMP Profiles supported.  This value is updated by BIOS at boot time."
+#string STR_ACM_TYPE_PROMPT                   #language en-US "ACM Type"
+#string STR_ACM_TYPE_HELP                     #language en-US "Specifies the ACM Type.  This value is updated by BIOS at boot time."
+

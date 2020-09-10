@@ -1,0 +1,29 @@
+TOKEN
+    Name  = "Pei_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Pei support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+#LibraryMapping
+#    Class  = "NULL"
+#    Instance  = "EagleStreamRpPkg.CommonPeiBoardInitLib"
+#    ModuleTypes  = "PEIM"
+#End
+
+INFComponent
+    Name  = "CommonPeiBoardInitLib"
+    File  = "PeiCommonBoardInitLib.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PCHTARGET" "=" "EBG"
+End
+
+INFComponent
+    Name  = "CommonPeiBoardInitPostMemLib"
+    File  = "PeiCommonBoardInitPostMemLib.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PCHTARGET" "=" "EBG"
+End

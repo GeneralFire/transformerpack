@@ -1,0 +1,14 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Rst\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Rst.LibraryPrivate"
+[INF]
+"PeiHybridStorageLibNull\PeiHybridStorageLibNull.inf"
+"PeiRstPrivateLib\PeiRstPrivateLibNoRemap.inf"
+[files]
+"LibraryPrivate.sdl"	
+"PeiRstPrivateLib\PeiRstPrivateLibInternal.h"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Rst.LibraryPrivate.PeiRstPolicyLib"
+<endComponent>

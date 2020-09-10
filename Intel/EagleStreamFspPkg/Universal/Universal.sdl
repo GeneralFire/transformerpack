@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "EagleStreamFspPkg_Universal_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Universal support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "ExStatusCodeHandlerPei"
+    File  = "PeiExStatusCodeHandler/ExStatusCodeHandlerPei.inf"
+    Package  = "EagleStreamFspPkg"
+    ModuleTypes  = "PEIM"
+    Arch  = "IA32"
+    Token = "EagleStreamFspPkg_Universal_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamFspPkg.FspEmptyLib"
+    Override  = "EagleStreamFspPkg.ExStatusCodeHandlerPei"
+End

@@ -1,0 +1,8 @@
+TOKEN
+    Name  = "Vpu_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Vpu support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+

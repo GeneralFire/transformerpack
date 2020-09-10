@@ -1,0 +1,113 @@
+## @file
+# Component description file for CPU Hot Add Module.
+# CPU S3 Module that restores configuration of multi-processor environment according
+# to data saved during normal boot phase.
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2011 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CpuHotAdd
+  FILE_GUID                      = BB2F0636-B0DD-489b-ADB6-606FE3A47258
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = CpuHotAddEntry
+
+[Sources]
+  CpuHotAdd.h
+  CpuHotAdd.c
+  MicrocodeLoad.c
+  CpuHotAddSupport.c
+
+[Sources.X64]
+  X64/StartupVector.nasm
+  X64/CpuHotAddFuncs.nasm
+
+[Packages]
+  MdePkg/MdePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  CpRcPkg/CpRcPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+
+[LibraryClasses]
+  TimerLib
+  IoLib
+  BaseMemoryLib
+  LocalApicLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  BaseLib
+  CpuLib
+  SynchronizationLib
+  DebugLib
+  MtrrLib
+  S3BootScriptLib
+  PeCoffLib
+  DxeServicesLib
+  CacheMaintenanceLib
+  CpuPpmLib
+  PcuIpLib
+
+[Guids]
+
+[Protocols]
+  gEfiCpuHotAddDataProtocolGuid
+  gEfiCpuPpmProtocolGuid
+  gEfiCpuCsrAccessGuid
+  gPpmPolicyProtocolGuid
+
+[FixedPcd]
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber
+  gCpPlatFlashTokenSpaceGuid.PcdFlashFvAcmBase
+
+[Pcd]
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuApStackSize
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuS3DataAddress
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuMicrocodePatchAddress
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuMicrocodePatchRegionSize
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuThreadCount
+
+[Depex]
+  #
+  # Note: the extra dependency of gEfiMpServiceProtocolGuid/gEfiVariableWriteArchProtocolGuid is to
+  # ensure that ACPI variable is set by MpDxe driver before
+  # CpuS3 module is executed.
+  #
+  gEfiMpServiceProtocolGuid AND
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiGlobalNvsAreaProtocolGuid AND
+  gEfiCpuPpmProtocolGuid AND
+  gEfiCpuCsrAccessGuid AND
+  gPpmPolicyProtocolGuid

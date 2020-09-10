@@ -1,0 +1,8 @@
+<component>
+    name = "Protocol"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\IncludePrivate\Protocol\"
+    RefName = "ClientOneSiliconPkg.Cpu.IncludePrivate.Protocol"
+[files]
+"CpuNvsArea.h"		
+<endComponent>

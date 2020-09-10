@@ -1,0 +1,27 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#
+# @file AmiPlatformAcpiLibNull.inf
+#
+# INF description file for NULL library of AmiPlatformAcpiLib driver.
+#
+
+[Defines]
+  INF_VERSION             = 0x00010015
+  VERSION_STRING          = 1.0
+  BASE_NAME               = AmiPlatformAcpiLibNull
+  MODULE_TYPE             = BASE
+  LIBRARY_CLASS           = AmiPlatformAcpiLib
+  FILE_GUID               = 12f3706d-f586-4d1b-adae-2c7756326263
+
+[Sources]
+  AmiPlatformAcpiLibNull.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiCrbPkg/AmiCrbPkg.dec

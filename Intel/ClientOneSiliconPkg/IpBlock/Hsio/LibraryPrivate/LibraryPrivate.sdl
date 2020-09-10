@@ -1,0 +1,32 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "ChipsetInitLib"
+    Instance  = "ClientOneSiliconPkg.ChipsetInitLib"
+End
+
+INFComponent
+    Name  = "ChipsetInitLib"
+    File  = "ChipsetInitLib/ChipsetInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "PeiHsioLib"
+    Instance  = "ClientOneSiliconPkg.PeiHsioLib"
+End
+
+INFComponent
+    Name  = "PeiHsioLib"
+    File  = "PeiHsioLib/PeiHsioLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+

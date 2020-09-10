@@ -1,0 +1,8 @@
+<component>
+    name = "HybridGraphics"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\HybridGraphics\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.HybridGraphics"
+[files]
+"HybridGraphicsConfig.h"	
+<endComponent>

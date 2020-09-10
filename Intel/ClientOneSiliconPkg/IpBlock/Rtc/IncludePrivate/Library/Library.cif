@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Rtc\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Rtc.IncludePrivate.Library"
+[files]
+"PeiRtcLib.h"	
+"PeiRtcPolicyLib.h"	
+<endComponent>

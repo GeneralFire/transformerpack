@@ -1,0 +1,12 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\EbgPch\Include\"
+    RefName = "ClientOneSiliconPkg.Fru.EbgPch.Include"
+[files]
+"PchReservedResources.h"
+"Library\PeiUsbTypeCMapSupportLib.h"
+"Register\PchPcrRegs.h"
+"PchBdfAssignment.h"
+"PchPcieRpInfo.h"
+<endComponent>

@@ -1,0 +1,8 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Overclocking\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Overclocking.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Overclocking.IncludePrivate.Library"
+<endComponent>

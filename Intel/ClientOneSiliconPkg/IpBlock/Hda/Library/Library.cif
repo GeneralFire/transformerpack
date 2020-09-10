@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Hda\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Hda.Library"
+[INF]
+"HdaLib\HdaLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

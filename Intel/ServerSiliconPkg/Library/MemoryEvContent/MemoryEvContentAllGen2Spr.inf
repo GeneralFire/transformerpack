@@ -1,0 +1,130 @@
+## @file
+# MemoryQpiInit PEIM
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2009 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = MemoryEvContent
+  FILE_GUID                      = BD84B96A-A61F-4AC6-A901-9056308EFAA5
+  MODULE_TYPE                    = BASE
+  LIBRARY_CLASS                  = MemoryEvContentLib | PEIM DXE_DRIVER DXE_SMM_DRIVER
+
+[Sources]
+  RMT/Pei/RMT.c
+  RMT.h
+  RMT/externals/CpgcPointTest/CpgcPointTest2.c
+  RMT/externals/CpgcPointTest/CpgcPointTest.h
+  RMT/externals/CpgcPointTest/InitPlatform.c
+  RMT/externals/CpgcPointTest/InitPlatform.h
+  RMT/externals/CpgcPointTest/Platform.h
+  RMT/externals/MemPointTest/MemPointTest.c
+  RMT/externals/MemPointTest/MemPointTest.h
+  RMT/externals/util/ChkRetStat.c
+  RMT/externals/util/ChkRetStat.h
+  RMT/externals/util/CommonInitPlatform.c
+  RMT/externals/util/CommonInitPlatform.h
+  RMT/externals/util/MemCfg.c
+  RMT/externals/util/MemCfg.h
+  RMT/externals/util/ChkSystemInfo.c
+  RMT/externals/util/ChkSystemInfo.h
+  RMT/externals/util/CreateMaxResultBuffer.c
+  RMT/externals/util/CreateMaxResultBuffer.h
+  RMT/externals/MarginParam/MarginParam.c
+  RMT/externals/MarginParam/MarginParam.h
+  RMT/externals/MemShmoo/MemShmoo.c
+  RMT/externals/MemShmoo/MemShmoo.h
+  RMT/externals/RmtCore/RmtCore.c
+  RMT/externals/RmtCore/RmtCore.h
+  RMT/externals/RmtCore/Rmt1DSweep.c
+  RMT/externals/RmtCore/Rmt1DSweep.h
+  EvContentInternal.h
+  Spr/CpgcPointTestProjectSpecific.c
+  Spr/RmtProjectSpecific.c
+  Spr/EvContentProjectSpecific.c
+  Margin1D/Pei/Margin1D.c
+  Margin1D/Pei/Margin1D.h
+  Margin1D/Externals/Margin1DCore/Margin1DCore.h
+  Margin1D/Externals/Margin1DCore/Margin1DCore.c
+  Margin1D/Externals/Margin1DCore/Margin1DSweep.h
+  Margin1D/Externals/Margin1DCore/Margin1DSweep.c
+  Margin2D/Pei/Margin2D.c
+  Margin2D/Pei/Margin2D.h
+  Margin2D/Externals/Margin2DCore/Margin2DCore.h
+  Margin2D/Externals/Margin2DCore/Margin2DCore.c
+  Margin2D/Externals/Margin2DCore/Margin2DSweep.h
+  Margin2D/Externals/Margin2DCore/Margin2DSweep.c
+  RunCpgcPointTest/Pei/RunCpgcPointTest.c
+  RunCpgcPointTest/Pei/RunCpgcPointTest.h
+  SetMarginParam/Pei/SetMarginParam.c
+  SetMarginParam/Pei/SetMarginParam.h
+  EvTest.c
+  EvDebugPrint/EvDebugPrint.c
+  EvDebugPrint/EvDebugPrint.h
+  MarginTest/MarginTest.c
+  MarginTest/MarginTest.h
+  BiosSSAPkg/ssabios.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CpRcPkg/CpRcPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+
+[LibraryClasses.Ia32]
+  PeimEntryPoint
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  SsaUtilLib
+  BitMaskLib
+  BaseMemoryCoreLib
+  SysHostPointerLib
+  MemMcIpLib
+  SystemInfoLib
+
+[Pcd]
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMemBootSignalsToTest
+  gEfiCpRcPkgTokenSpaceGuid.PcdEvDebugMsg
+  gEfiCpRcPkgTokenSpaceGuid.PcdSsaCpgcConfigVersion
+  gEfiCpRcPkgTokenSpaceGuid.PcdSsaUseGeneric1DSweep
+  gEfiCpRcPkgTokenSpaceGuid.PcdRmtMarginInCaCsTm
+
+[Guids]
+
+
+[Ppis]
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+
+[BuildOptions.Ia32]
+  MSFT:*_*_*_CC_FLAGS     = /GF

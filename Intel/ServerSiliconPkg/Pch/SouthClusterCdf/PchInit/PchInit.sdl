@@ -1,0 +1,7 @@
+TOKEN
+    Name  = "PchInit_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PchInit support in the project"
+    TokenType = Boolean
+    Master = Yes
+End

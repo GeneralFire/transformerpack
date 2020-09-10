@@ -1,0 +1,22 @@
+TOKEN
+	Name  = "PcieCommonInitLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling PcieCommonInitLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "PcieCommonInitLib"
+	File  = "PcieCommonInitLib.inf"
+	Package  = "CpRcPkg"
+	Arch = "X64"
+    ModuleTypes  = "BASE"  	
+End
+
+LibraryMapping
+	Class  = "PcieCommonInitLib"
+	Instance  = "CpRcPkg.PcieCommonInitLib"
+	Arch = "X64"
+End
+

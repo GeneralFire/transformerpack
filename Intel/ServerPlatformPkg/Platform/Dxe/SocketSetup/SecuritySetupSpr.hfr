@@ -1,0 +1,397 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+
+    //
+    // Security Setup Spr
+    //
+
+    //
+    // TME Support - Start
+    //
+    suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.TmeCapability == 0;
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+      subtitle text = STRING_TOKEN(TME_MKTME_TDX_SUBTITLE);
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+      oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.EnableTme,
+        prompt      = STRING_TOKEN(STR_TME_PROMPT),
+        help        = STRING_TOKEN(STR_TME_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0,         flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1,         flags = RESET_REQUIRED;
+        //option text = STRING_TOKEN(STR_SOFTWARE_CONTROL), value = 2, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableTme == 0;
+        grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.MktmeCapability == 0;
+          oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.EnableMktme,
+            prompt      = STRING_TOKEN(STR_MKTME_PROMPT),
+            help        = STRING_TOKEN(STR_MKTME_PROMPT_HELP),
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+          //option text = STRING_TOKEN(STR_SOFTWARE_CONTROL), value = 2, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+
+        suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableMktme == 0;
+          oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.MktmeIntegrity,
+            questionid  = KEY_MKTME_INTEGRITY,
+            prompt      = STRING_TOKEN (STR_MKTME_MEM_INTEGRITY_PROMPT),
+            help        = STRING_TOKEN (STR_MKTME_MEM_INTEGRITY_HELP),
+            option text = STRING_TOKEN (STR_DISABLED), value = SECURITY_POLICY_DISABLE, flags = RESET_REQUIRED | INTERACTIVE;
+            option text = STRING_TOKEN (STR_ENABLED),  value = SECURITY_POLICY_ENABLE,  flags = DEFAULT | RESET_REQUIRED | INTERACTIVE;
+          endoneof;
+        endif;
+
+        // MK-TME max supported keys
+        text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_MKTME_MAX_KEYS),
+          text  = STRING_TOKEN(STR_MKTME_MAX_KEYS_VALUE),
+          flags = 0, key = 0;
+      endif;
+    endif; // suppressif CPU not capable
+    //
+    // TME Support - End
+    //
+
+    //
+    // TDX Support - Start
+    //
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+      grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.TdxCapability == SECURITY_POLICY_UNSUPPORTED OR
+                ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableTme     == SECURITY_POLICY_DISABLE;
+        oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.EnableTdx,
+          prompt      = STRING_TOKEN(STR_TDX_PROMPT),
+          help        = STRING_TOKEN(STR_TDX_PROMPT_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif; // Grayoutif TdxCapability == SECURITY_POLICY_UNSUPPORTED OR EnableTme == SECURITY_POLICY_DISABLE
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableTdx == SECURITY_POLICY_DISABLE OR
+                 ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableTme == SECURITY_POLICY_DISABLE;
+
+        suppressif NOT (ideqval SOCKET_PROCESSORCORE_CONFIGURATION.MkTmeKeyIdBits == 0x07);
+          oneof varid    = SOCKET_PROCESSORCORE_CONFIGURATION.KeySplit,
+            prompt      = STRING_TOKEN(STR_KEY_SPLIT_PROMPT),
+            help        = STRING_TOKEN(STR_KEY_SPLIT_PROMPT_HELP),
+            option text = STRING_TOKEN(STR_127_0),                 value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_63_64),                 value = 1, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_31_96),                 value = 2, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_15_112),                value = 3, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_7_120),                 value = 4, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_3_124),                 value = 5, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_1_126),                 value = 6, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_0_127),                 value = 7, flags = RESET_REQUIRED;
+          endoneof;
+        endif; //  suppressif ideqval MkTmeKeyIdBits != 7
+
+        suppressif NOT (ideqval SOCKET_PROCESSORCORE_CONFIGURATION.MkTmeKeyIdBits == 0x06);
+          oneof varid    = SOCKET_PROCESSORCORE_CONFIGURATION.KeySplit,
+            prompt      = STRING_TOKEN(STR_KEY_SPLIT_PROMPT),
+            help        = STRING_TOKEN(STR_KEY_SPLIT_PROMPT_HELP),
+            option text = STRING_TOKEN(STR_63_0),                  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_31_32),                 value = 1, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_15_48),                 value = 2, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_7_56),                  value = 3, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_3_60),                  value = 4, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_1_62),                  value = 5, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_0_63),                  value = 6, flags = RESET_REQUIRED;
+          endoneof;
+        endif; //  suppressif ideqval MkTmeKeyIdBits != 6
+
+      endif; // Supressif EnableTdx == SECURITY_POLICY_DISABLE
+    endif; // Supressif NOT CpuType == CPU_SPRSP
+    //
+    // TDX Support - End
+    //
+
+    //
+    // SGX Support - Start
+    //
+    suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsSgxCapable    == SECURITY_POLICY_UNSUPPORTED OR
+               ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableTme       == SECURITY_POLICY_DISABLE     OR
+               ideqval SOCKET_COMMONRC_CONFIGURATION.NumaEn               == SECURITY_POLICY_DISABLE     OR
+           NOT ideqval SOCKET_COMMONRC_CONFIGURATION.MirrorMode           == SECURITY_POLICY_DISABLE;
+
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+      subtitle text = STRING_TOKEN(SGX_SUBTITLE);
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+      suppressif TRUE;
+        oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.CrDimmsPresent,
+          prompt      = STRING_TOKEN(STR_SGX_PROMPT),
+          help        = STRING_TOKEN(STR_SGX_PROMPT_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = SECURITY_POLICY_DISABLE, flags = RESET_REQUIRED | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLED),  value = SECURITY_POLICY_ENABLE,  flags = RESET_REQUIRED;
+        endoneof;
+        oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.EnableSaf,
+          prompt      = STRING_TOKEN(STR_ENABLE_FUSASAF_PROMPT),
+          help        = STRING_TOKEN(STR_ENABLE_FUSASAF_PROMPT_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = SECURITY_POLICY_DISABLE,               flags = RESET_REQUIRED | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLED),  value = SECURITY_POLICY_FUSA_SAF_SGX_ENABLED,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLED),  value = SECURITY_POLICY_ENABLE,                flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsHwCongifSupportedBySgx == SECURITY_POLICY_SUPPORTED   OR
+                 ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsSgxCapable             == SECURITY_POLICY_UNSUPPORTED;
+          subtitle text = STRING_TOKEN(STR_SGX_UNSUPPORT_LABEL);
+      endif;
+
+      suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType         == CPU_SPRSP OR
+                 NOT ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSaf  == SECURITY_POLICY_DFX_ENABLE;
+        suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSgx == SECURITY_POLICY_ENABLE;
+          subtitle text = STRING_TOKEN(STR_FUSASAF_SGX_DISABLED_LABEL);
+        endif; // suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSgx == SECURITY_POLICY_ENABLE
+        suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSgx == SECURITY_POLICY_DISABLE;
+          subtitle text = STRING_TOKEN(STR_FUSASAF_SGX_WILL_BE_DISABLED_LABEL);
+        endif; // suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSgx == SECURITY_POLICY_DISABLE
+      endif; // suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType           == CPU_SPRSP OR
+
+      grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsHwCongifSupportedBySgx   == SECURITY_POLICY_UNSUPPORTED OR
+                ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSaf                  == SECURITY_POLICY_ENABLE;
+        oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.SgxFactoryReset,
+          questionid  = KEY_SGX_FACTORY_RESET,
+          prompt      = STRING_TOKEN(STR_SGX_FACTORY_RESET_PROMPT),
+          help        = STRING_TOKEN(STR_SGX_FACTORY_RESET_HELP),
+          option text = STRING_TOKEN(STR_DISABLED),      value = SECURITY_POLICY_DISABLE,       flags = RESET_REQUIRED | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLED),       value = SECURITY_POLICY_ENABLE,        flags = RESET_REQUIRED | INTERACTIVE;
+        endoneof;
+        oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.EnableSgx,
+          questionid  = KEY_SGX_ENABLE,
+          prompt      = STRING_TOKEN(STR_SGX_PROMPT),
+          help        = STRING_TOKEN(STR_SGX_PROMPT_HELP),
+          option text = STRING_TOKEN(STR_DISABLED),      value = SECURITY_POLICY_DISABLE,       flags = RESET_REQUIRED | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLED),       value = SECURITY_POLICY_ENABLE,        flags = RESET_REQUIRED | INTERACTIVE;
+        endoneof;
+        oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.SgxPackageInfoInBandAccess,
+          questionid  = KEY_SGX_PACKAGE_IB,
+          prompt      = STRING_TOKEN(STR_SGX_PACKAGE_IB_PROMPT),
+          help        = STRING_TOKEN(STR_SGX_PACKAGE_IB_PROMPT_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = SECURITY_POLICY_DISABLE, flags = RESET_REQUIRED | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLED),  value = SECURITY_POLICY_ENABLE,  flags = RESET_REQUIRED | INTERACTIVE;
+        endoneof;
+      endif; // grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsHwCongifSupportedBySgx   == SECURITY_POLICY_UNSUPPORTED OR
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSgx == SECURITY_POLICY_DISABLE;
+        oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSize,
+          questionid  = KEY_SGX_PRM_SIZE,
+          prompt      = STRING_TOKEN(STR_PRM_SIZE_PROMPT),
+          help        = STRING_TOKEN(STR_PRM_SIZE_PROMPT_HELP),
+
+          // No valid PRM size option is set when any of PRM size is not supported by memory configuration
+          suppressif get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) >= SECURITY_POLICY_PRMRR_SIZE_1GB;
+            option text = STRING_TOKEN(STR_INVALID), value = 0x0, flags = RESET_REQUIRED;
+          endif;
+
+          // PRM size for SAF (FuSa) support
+          suppressif NOT  ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType            == CPU_SPRSP                OR
+                          ideqval SOCKET_PROCESSORCORE_CONFIGURATION.SafSupport    == SECURITY_POLICY_DISABLE  OR
+                      NOT  ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSaf     == SECURITY_POLICY_ENABLE;
+
+              suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_64MB) == 0;
+                option text = STRING_TOKEN(STR_64M),   value =    SECURITY_POLICY_PRMRR_SIZE_64MB,   flags = RESET_REQUIRED | INTERACTIVE;
+              endif;
+              suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_128MB) == 0;
+                option text = STRING_TOKEN(STR_128M),   value =    SECURITY_POLICY_PRMRR_SIZE_128MB, flags = RESET_REQUIRED | INTERACTIVE;
+              endif;
+              suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_256MB) == 0;
+                option text = STRING_TOKEN(STR_256M),   value =    SECURITY_POLICY_PRMRR_SIZE_256MB, flags = RESET_REQUIRED | INTERACTIVE;
+              endif;
+              suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_512MB) == 0;
+                option text = STRING_TOKEN(STR_512M),   value =    SECURITY_POLICY_PRMRR_SIZE_512MB, flags = RESET_REQUIRED | INTERACTIVE;
+              endif;
+          endif; // suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType            == CPU_SPRSP OR
+          // PRM size for FuSa (SAF) end
+
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_1GB) == 0;
+            option text = STRING_TOKEN(STR_1G),   value =   SECURITY_POLICY_PRMRR_SIZE_1GB, flags = RESET_REQUIRED | DEFAULT;
+          endif;
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_2GB) == 0;
+            option text = STRING_TOKEN(STR_2G),   value =   SECURITY_POLICY_PRMRR_SIZE_2GB, flags = RESET_REQUIRED | INTERACTIVE;
+          endif;
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_4GB) == 0;
+            option text = STRING_TOKEN(STR_4G),   value =   SECURITY_POLICY_PRMRR_SIZE_4GB, flags = RESET_REQUIRED | INTERACTIVE;
+          endif;
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_8GB) == 0;
+            option text = STRING_TOKEN(STR_8G),   value =   SECURITY_POLICY_PRMRR_SIZE_8GB, flags = RESET_REQUIRED | INTERACTIVE;
+          endif;
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_16GB) == 0;
+            option text = STRING_TOKEN(STR_16G),  value =   SECURITY_POLICY_PRMRR_SIZE_16GB, flags = RESET_REQUIRED | INTERACTIVE;
+          endif;
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_32GB) == 0;
+            option text = STRING_TOKEN(STR_32G),  value =   SECURITY_POLICY_PRMRR_SIZE_32GB, flags = RESET_REQUIRED | INTERACTIVE;
+          endif;
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_64GB) == 0;
+            option text = STRING_TOKEN(STR_64G),  value =  SECURITY_POLICY_PRMRR_SIZE_64GB, flags = RESET_REQUIRED | INTERACTIVE;
+          endif;
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_128GB) == 0;
+            option text = STRING_TOKEN(STR_128G), value =  SECURITY_POLICY_PRMRR_SIZE_128GB, flags = RESET_REQUIRED | INTERACTIVE;
+          endif;
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_256GB) == 0;
+            option text = STRING_TOKEN(STR_256G), value =  SECURITY_POLICY_PRMRR_SIZE_256GB, flags = RESET_REQUIRED | INTERACTIVE;
+          endif;
+          suppressif (get(SOCKET_PROCESSORCORE_CONFIGURATION.SprspOrLaterPrmSizeBitmap) & SECURITY_POLICY_PRMRR_SIZE_512GB) == 0;
+            option text = STRING_TOKEN(STR_512G), value =  SECURITY_POLICY_PRMRR_SIZE_512GB, flags = RESET_REQUIRED | INTERACTIVE;
+          endif;
+        endoneof;
+
+        grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsHwCongifSupportedBySgx   == SECURITY_POLICY_UNSUPPORTED OR
+                  ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSaf                  == SECURITY_POLICY_ENABLE;
+
+          oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.SgxQoS,
+            questionid  = KEY_SGX_QOS,
+            prompt      = STRING_TOKEN(STR_SGX_QOS_PROMPT),
+            help        = STRING_TOKEN(STR_SGX_QOS_PROMPT_HELP),
+            option text = STRING_TOKEN(STR_DISABLED), value = SECURITY_POLICY_DISABLE, flags = RESET_REQUIRED | INTERACTIVE;
+            option text = STRING_TOKEN(STR_ENABLED),  value = SECURITY_POLICY_ENABLE,  flags = RESET_REQUIRED | DEFAULT;
+          endoneof;
+
+          oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.EpochUpdate,
+            questionid  = KEY_SGX_OWNER_EPOCH,
+            prompt      = STRING_TOKEN(STR_SGX_EPOCH_PROMPT),
+            help        = STRING_TOKEN(STR_SGX_EPOCH_PROMPT_HELP),
+            suppressif NOT ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EpochUpdate == SECURITY_POLICY_SGX_OWNER_EPOCH_ACTIVATED;
+              option text = STRING_TOKEN(STR_SGX_EPOCH_ACTIVATED),          value = SECURITY_POLICY_SGX_OWNER_EPOCH_ACTIVATED,      flags = RESET_REQUIRED;
+            endif;
+            option text = STRING_TOKEN(STR_SGX_CHANGE_TO_NEW_RANDOM_EPOCH), value = SECURITY_POLICY_SGX_CHANGE_TO_NEW_RANDOM_EPOCH, flags = RESET_REQUIRED | INTERACTIVE;
+            option text = STRING_TOKEN(STR_SGX_USER_MANUAL_EPOCH),          value = SECURITY_POLICY_SGX_USER_MANUAL_EPOCH,          flags = RESET_REQUIRED | INTERACTIVE | DEFAULT;
+          endoneof;
+
+          suppressif      ideqval SOCKET_PROCESSORCORE_CONFIGURATION.ShowEpoch == SECURITY_POLICY_HIDE;
+            numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.SgxEpoch0,
+              questionid  = KEY_SGX_OWNER_EPOCH0,
+              prompt      = STRING_TOKEN (STR_SGX_EPOCH0_PROMPT),
+              help        = STRING_TOKEN (STR_SGX_EPOCH0_PROMPT_HELP),
+              flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+              minimum     = 0x0,
+              maximum     = 0xFFFFFFFFFFFFFFFF,
+              step        = 0x1,
+            endnumeric;
+
+            numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.SgxEpoch1,
+              questionid  = KEY_SGX_OWNER_EPOCH1,
+              prompt      = STRING_TOKEN (STR_SGX_EPOCH1_PROMPT),
+              help        = STRING_TOKEN (STR_SGX_EPOCH1_PROMPT_HELP),
+              flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+              minimum     = 0x0,
+              maximum     = 0xFFFFFFFFFFFFFFFF,
+              step        = 0x1,
+            endnumeric;
+          endif; // suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.ShowEpoch == SECURITY_POLICY_HIDE
+
+          grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.SgxDebugMode == SECURITY_POLICY_ENABLE;
+            oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.SgxLeWr,
+              questionid  = KEY_SGX_LEWR,
+              prompt      = STRING_TOKEN(STR_SGX_LEWR_PROMPT),
+              help        = STRING_TOKEN(STR_SGX_LEWR_PROMPT_HELP),
+              option text = STRING_TOKEN(STR_DISABLED), value = SECURITY_POLICY_DISABLE, flags = RESET_REQUIRED | INTERACTIVE;
+              option text = STRING_TOKEN(STR_ENABLED),  value = SECURITY_POLICY_ENABLE,  flags = RESET_REQUIRED | DEFAULT;
+            endoneof;
+
+            suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.SgxLeWr == SECURITY_POLICY_DISABLE;
+              numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.SgxLePubKeyHash0,
+                questionid  = KEY_SGX_SGXLEPUBKEYHASH0,
+                prompt      = STRING_TOKEN (STR_SGX_SGXLEPUBKEYHASH0_PROMPT),
+                help        = STRING_TOKEN (STR_SGX_SGXLEPUBKEYHASH0_PROMPT_HELP),
+                flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+                minimum     = 0x0,
+                maximum     = 0xFFFFFFFFFFFFFFFF,
+                step        = 0x1,
+              endnumeric;
+
+              numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.SgxLePubKeyHash1,
+                questionid  = KEY_SGX_SGXLEPUBKEYHASH1,
+                prompt      = STRING_TOKEN (STR_SGX_SGXLEPUBKEYHASH1_PROMPT),
+                help        = STRING_TOKEN (STR_SGX_SGXLEPUBKEYHASH1_PROMPT_HELP),
+                flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+                minimum     = 0x0,
+                maximum     = 0xFFFFFFFFFFFFFFFF,
+                step        = 0x1,
+              endnumeric;
+
+              numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.SgxLePubKeyHash2,
+                questionid  = KEY_SGX_SGXLEPUBKEYHASH2,
+                prompt      = STRING_TOKEN (STR_SGX_SGXLEPUBKEYHASH2_PROMPT),
+                help        = STRING_TOKEN (STR_SGX_SGXLEPUBKEYHASH2_PROMPT_HELP),
+                flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+                minimum     = 0x0,
+                maximum     = 0xFFFFFFFFFFFFFFFF,
+                step        = 0x1,
+              endnumeric;
+
+              numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.SgxLePubKeyHash3,
+                questionid  = KEY_SGX_SGXLEPUBKEYHASH3,
+                prompt      = STRING_TOKEN (STR_SGX_SGXLEPUBKEYHASH3_PROMPT),
+                help        = STRING_TOKEN (STR_SGX_SGXLEPUBKEYHASH3_PROMPT_HELP),
+                flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+                minimum     = 0x0,
+                maximum     = 0xFFFFFFFFFFFFFFFF,
+                step        = 0x1,
+              endnumeric;
+            endif; // suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.SgxLeWr == SECURITY_POLICY_DISABLE
+          endif; // grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.SgxDebugMode == SECURITY_POLICY_ENABLE
+
+
+          oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.SgxAutoRegistrationAgent,
+            questionid  = KEY_SGX_AUTO_REGISTRATION_AGENT,
+            prompt      = STRING_TOKEN(STR_SGX_AUTO_REGISTRATION_AGENT_PROMPT),
+            help        = STRING_TOKEN(STR_SGX_AUTO_REGISTRATION_AGENT_PROMPT_HELP),
+            option text = STRING_TOKEN(STR_DISABLED), value = SECURITY_POLICY_DISABLE, flags = RESET_REQUIRED | INTERACTIVE;
+            option text = STRING_TOKEN(STR_ENABLED),  value = SECURITY_POLICY_ENABLE,  flags = RESET_REQUIRED | DEFAULT;
+          endoneof;
+        // endif; //suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSgx == SECURITY_POLICY_DISABLE
+        endif; // grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsHwCongifSupportedBySgx   == SECURITY_POLICY_UNSUPPORTED OR
+                        //  ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSaf                  == SECURITY_POLICY_ENABLE;
+      endif; // grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsHwCongifSupportedBySgx   == SECURITY_POLICY_UNSUPPORTED OR
+    endif; // suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsSgxCapable    == SECURITY_POLICY_UNSUPPORTED OR
+    //
+    // SGX Support - Stop
+    //
+
+    //
+    // FuSa (SAF) Support - Start
+    //
+    // grayoutif TRUE; // SGX-WA: remove this grayout when Mcheck will support FuSa (SAF) feature
+      suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+        subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+        subtitle text = STRING_TOKEN(STR_FUSASAF_SUBTITLE);
+        subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+        oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.SafSupport,
+          prompt      = STRING_TOKEN(STR_FUSASAF_SUPPORT_PROMPT),
+          help        = STRING_TOKEN(STR_FUSASAF_SUPPORT_PROMPT_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = SECURITY_POLICY_DISABLE, flags = RESET_REQUIRED | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLED),  value = SECURITY_POLICY_ENABLE,  flags = RESET_REQUIRED;
+        endoneof; // SOCKET_COMMONRC_CONFIGURATION.SafSupport
+      endif; // suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP
+    // endif; // grayoutif TRUE
+    //
+    // FuSa (SAF) Support - End
+    //
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);

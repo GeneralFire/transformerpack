@@ -1,0 +1,15 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\SystemAgent\Include\"
+    RefName = "ClientOneSiliconPkg.SystemAgent.Include"
+[files]
+"Bdat4.h"	
+"MemInfoHob.h"	
+"SaDataHob.h"		
+[parts]
+"ClientOneSiliconPkg.SystemAgent.Include.ConfigBlock"
+"ClientOneSiliconPkg.SystemAgent.Include.Library"
+"ClientOneSiliconPkg.SystemAgent.Include.Ppi"
+"ClientOneSiliconPkg.SystemAgent.Include.Protocol"
+<endComponent>

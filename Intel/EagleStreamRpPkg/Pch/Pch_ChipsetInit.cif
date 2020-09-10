@@ -1,0 +1,9 @@
+<component>
+    name = "Pch"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Pch"
+    RefName = "EagleStreamRpPkg.Pch"
+[files]	
+"ChipsetInit\Binaries\Pch_ChipsetInit.sdl"   
+"ChipsetInit\Binaries\Pch_ChipsetInit_FdFileStatement.txt"   
+<endComponent>

@@ -1,0 +1,10 @@
+<component>
+	name = "FspDebugInit"
+	category = ModulePart
+	LocalRoot = "Intel\EagleStreamFspPkg\FspDebugInit\"
+	RefName = "EagleStreamFspPkg.FspDebugInit"
+[INF]
+"Pei\FspDebugServicePei.inf"
+[files]
+"FspDebugInit.sdl"	
+<endComponent>

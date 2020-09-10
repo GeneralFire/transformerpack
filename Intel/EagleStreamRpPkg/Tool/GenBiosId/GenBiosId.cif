@@ -1,0 +1,12 @@
+<component>
+    name = "GenBiosId"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Tool\GenBiosId\"
+    RefName = "EagleStreamRpPkg.Tool.GenBiosId"
+[files]
+"BiosId.env"	
+"BiosIdD.env"	
+"BiosIdH.env"	
+"BiosIdR.env"	
+"BiosIdS.env"	
+<endComponent>

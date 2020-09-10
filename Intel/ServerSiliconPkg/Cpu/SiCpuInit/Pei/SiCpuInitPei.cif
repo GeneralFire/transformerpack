@@ -1,0 +1,11 @@
+<component>
+	name = "SiCpuInitPei"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\SiCpuInit\Pei\"
+	RefName = "ServerSiliconPkg.Cpu.SiCpuInit.SiCpuInitPei"
+[INF]
+"SiCpuInitPei.inf"
+[files]
+"SiCpuInitPei.sdl"
+"SiCpuInitPei.h"	
+<endComponent>

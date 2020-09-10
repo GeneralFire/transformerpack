@@ -1,0 +1,15 @@
+TOKEN
+    Name  = "McSmb_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling McSmb support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "McSmb"
+    TokenType = Expression
+    TargetDSC = Yes
+End
+

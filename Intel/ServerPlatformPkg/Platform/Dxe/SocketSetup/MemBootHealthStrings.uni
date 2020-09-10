@@ -1,0 +1,71 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2018 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+#string STR_MEMORY_HEALTH_CHECK_FORM_TITLE    #language en-US "Memory Boot Health Check"
+#string STR_MEMORY_HEALTH_CHECK_FORM_HELP     #language en-US "Check the restored memory margin offsets are within Warning\Critical Limits"
+
+#string STR_MEMORY_BOOT_HEALTH_CHECK          #language en-US "Memory Boot Health Check"
+#string STR_MEMORY_BOOT_HEALTH_CHECK_HELP     #language en-US "Select option Auto for default values. Manual for new values. Disable for disabling feature"
+
+#string STR_MEM_HEALTH_WARNING_STRING         #language en-US "Warning Offsets"
+#string STR_MEM_HEALTH_CRITICAL_STRING        #language en-US "Critical Offsets"
+
+#string STR_TX_DQ_DELAY_LEFT_EDGE       #language en-US "TxDqDelay Left Edge"
+#string STR_TX_DQ_DELAY_LEFT_EDGE_HELP  #language en-US "Offset for TxDqDelay Left Edge"
+
+#string STR_TX_DQ_DELAY_RIGHT_EDGE      #language en-US "TxDqDelay Right Edge"
+#string STR_TX_DQ_DELAY_RIGHT_EDGE_HELP #language en-US "Offset for TxDqDelay Right Edge"
+
+#string STR_TX_VREF_LEFT_EDGE           #language en-US "TxVref Left Edge"
+#string STR_TX_VREF_LEFT_EDGE_HELP      #language en-US "Offset for TxVref Left Edge"
+
+#string STR_TX_VREF_RIGHT_EDGE          #language en-US "TxVref Right Edge"
+#string STR_TX_VREF_RIGHT_EDGE_HELP     #language en-US "Offset for TxVref Right Edge"
+
+#string STR_RX_DQS_DELAY_LEFT_EDGE      #language en-US "RxDqsDelay Left Edge"
+#string STR_RX_DQS_DELAY_LEFT_EDGE_HELP #language en-US "Offset for RxDqsDelay Left Edge"
+
+#string STR_RX_DQS_DELAY_RIGHT_EDGE       #language en-US "RxDqsDelay Right Edge"
+#string STR_RX_DQS_DELAY_RIGHT_EDGE_HELP  #language en-US "Offset for RxDqsDelay Right Edge"
+
+#string STR_RX_VREF_LEFT_EDGE             #language en-US "RxVref Left Edge"
+#string STR_RX_VREF_LEFT_EDGE_HELP        #language en-US "Offset for RxVref Left Edge"
+
+#string STR_RX_VREF_RIGHT_EDGE            #language en-US "RxVref Right Edge"
+#string STR_RX_VREF_RIGHT_EDGE_HELP       #language en-US "Offset for RxVref Right Edge"
+
+#string STR_RESET_ON_CRITICAL_ERROR       #language en-US "Reboot On Critical Failure"
+#string STR_RESET_ON_CRITICAL_ERROR_HELP  #language en-US "Reboot System on Critical failure to do Memory Training"
+
+#string STR_EMPTY                         #language en-US ""
+//
+// End of file
+//

@@ -1,0 +1,10 @@
+<component>
+	name = "Ras"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\Ras\"
+	RefName = "ServerSiliconPkg.Include.Ras"
+[files]
+"RasCommon.h"
+"RasStateMachine.h"
+"RcData.h"
+<endComponent>

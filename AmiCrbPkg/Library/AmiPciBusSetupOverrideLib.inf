@@ -1,0 +1,41 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#
+# @file AmiPciBusSetupOverrideLib.inf
+#
+# INF description file for AmiPciBusSetupOverrideLib driver.
+#
+
+[Defines]
+  INF_VERSION             = 0x00010015
+  VERSION_STRING          = 1.0
+  BASE_NAME               = AmiPciBusSetupOverrideLib 
+  MODULE_TYPE             = DXE_DRIVER
+  LIBRARY_CLASS           = AmiPciBusSetupOverrideLib | DXE_DRIVER DXE_RUNTIME_DRIVER UEFI_DRIVER
+  FILE_GUID               = D4A8CBBA-8AC6-40EB-9E72-2BB003CD2050
+  CONSTRUCTOR             = AmiPciBusSetupOverrideLibConstructor
+
+[Sources]
+  AmiPciBusSetupOverrideLib.c
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  UefiLib
+  UefiBootServicesTableLib
+  SetupLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+  AmiCrbPkg/AmiCrbPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  CpRcPkg/CpRcPkg.dec
+

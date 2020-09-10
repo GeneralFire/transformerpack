@@ -1,0 +1,57 @@
+TOKEN
+    Name  = "ServerSilicon_ME_SPS_ENABLE"
+    Value  = "1"
+    Help  = "Switch for Enabling Sps support in the project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+
+
+INFComponent
+	Name  = "SpsDxe"
+	File  = "Dxe\SpsDxe.inf"
+	Package  = "ServerSiliconPkg"
+	Arch  = "X64"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "ME_ENABLE" "=" "1"
+	Token = "ME_SPS_ENABLE" "=" "1"	
+End
+
+INFComponent
+	Name  = "SpsPeiPreMem"
+	File  = "Pei\SpsPeiPreMem.inf"
+	Package  = "ServerSiliconPkg"
+	Arch  = "IA32"
+	ModuleTypes  = "PEIM"
+	Token = "ME_SPS_ENABLE" "=" "1"
+	Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "ServerSiliconPkg.SpsIgnitionPreMem"
+    Override = "ServerSiliconPkg.SpsPeiPreMem"
+    Token = "ME_SPS_ENABLE" "=" "1"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "SpsPeiPostMem"
+    File  = "Pei\SpsPeiPostMem.inf"
+    Package  = "ServerSiliconPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"
+    Token = "ME_SPS_ENABLE" "=" "1"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+	Name  = "SpsSmm"
+	File  = "Smm\SpsSmm.inf"
+	Package  = "ServerSiliconPkg"
+	Arch  = "X64"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "ME_ENABLE" "=" "1"
+	Token = "ME_SPS_ENABLE" "=" "1"	
+End

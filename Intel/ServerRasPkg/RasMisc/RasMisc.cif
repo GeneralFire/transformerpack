@@ -1,0 +1,12 @@
+<component>
+	name = "RasMisc"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\RasMisc\"
+	RefName = "ServerRasPkg.RasMisc"
+[INF]
+"RasMisc.inf"
+[files]
+"ShutdownSuppression.h"
+"SmbusRecovery.h"	
+"RasMisc.sdl"	
+<endComponent>

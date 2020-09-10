@@ -1,0 +1,8 @@
+TOKEN
+    Name  = "MeSps.6_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling MeSps.6 support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+

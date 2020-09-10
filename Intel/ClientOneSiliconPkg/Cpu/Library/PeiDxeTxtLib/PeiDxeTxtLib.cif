@@ -1,0 +1,11 @@
+<component>
+    name = "PeiDxeTxtLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\Library\PeiDxeTxtLib\"
+    RefName = "ClientOneSiliconPkg.Cpu.Library.PeiDxeTxtLib"
+[INF]
+"PeiDxeTxtLib.inf"
+[files]
+"Ia32\TxtPeiLib.asm"	
+"PeiDxeTxtLib.sdl"	
+<endComponent>

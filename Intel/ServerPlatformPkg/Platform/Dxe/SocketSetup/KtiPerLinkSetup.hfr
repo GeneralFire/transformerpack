@@ -1,0 +1,181 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2015 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include <KtiSetupDefinitions.h>
+
+//Transformers_JK019***>>
+#define PERLINK_KTI_CONFIG(SKT, PRT) \
+form formid = VFR_FID_KTI_CPU ## SKT ## _LINK ## PRT ,                                                                                     \
+    title   = STRING_TOKEN(STR_KTI_CPU ## SKT ## _LINK ## PRT );                                                                           \
+    subtitle text = STRING_TOKEN(STR_KTI_CPU ## SKT ## _LINK ## PRT );                                                                     \
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);                                                                                        \
+                                                                                                                                              \
+    oneof varid = SOCKET_MP_LINK_CONFIGURATION.Cpu ## SKT ## P ## PRT ## KtiPortDisable,                                                      \
+        prompt  = STRING_TOKEN(STR_KTI_LINK_DISABLE),                                                                                         \
+        help    = STRING_TOKEN(STR_KTI_LINK_DISABLE_HELP),                                                                                    \
+        option text = STRING_TOKEN(STR_NO),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;                                     \
+        option text = STRING_TOKEN(STR_YES), value = 1, flags = RESET_REQUIRED;                                                               \
+    endoneof;                                                                                                                                 \
+                                                                                                                                              \
+    grayoutif NOT ideqval SOCKET_MP_LINK_CONFIGURATION.KtiLinkVnaOverride == KTI_LL_VNA_SETUP_PER_LINK;                                       \
+        numeric varid = SOCKET_MP_LINK_CONFIGURATION.Cpu ## SKT ## P ## PRT ## KtiLinkVnaOverride,                                            \
+            prompt    = STRING_TOKEN(STR_KTI_VNA_OVERRIDE),                                                                                   \
+            help      = STRING_TOKEN(STR_KTI_VNA_OVERRIDE_PER_LINK_HELP),                                                                     \
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,                                                                                    \
+            minimum   = KTI_LL_VNA_SETUP_MIN,                                                                                                 \
+            maximum   = KTI_LL_VNA_SETUP_MAX,                                                                                                 \
+            step      = 0,                                                                                                                    \
+            default   = KTI_LL_VNA_SETUP_MAX, defaultstore = MyStandardDefault,                                                               \
+            default   = KTI_LL_VNA_SETUP_MAX, defaultstore = MyManufactureDefault,                                                            \
+        endnumeric;                                                                                                                           \
+    endif;                                                                                                                                    \
+                                                                                                                                              \
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;                                                                   \
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.Cpu ## SKT ## P ## PRT ## KtiLinkSpeed,                                                        \
+          prompt  = STRING_TOKEN(STR_KTI_LINK_SPEED),                                                                                           \
+          help    = STRING_TOKEN(STR_KTI_FREQ_SELECT_HELP),                                                                                     \
+          option text = STRING_TOKEN(STR_LINKSPEED_96G_STRING),   value = SPEED_REC_96GT,     flags = RESET_REQUIRED;                           \
+          option text = STRING_TOKEN(STR_LINKSPEED_104G_STRING),  value = SPEED_REC_104GT,    flags = RESET_REQUIRED;                           \
+        suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR                                                                 \
+                   ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX OR                                                                 \
+                   ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX;                                                                  \
+          option text = STRING_TOKEN(STR_LINKSPEED_112G_STRING),  value = SPEED_REC_112GT,    flags = RESET_REQUIRED;                           \
+        endif;                                                                                                                                  \
+          option text = STRING_TOKEN(STR_LINKSPEED_AUTO_STRING),  value = MAX_KTI_LINK_SPEED, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT; \
+      endoneof;                                                                                                                                 \
+    endif;                                                                                                                                      \
+                                                                                                                                                \
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;                                                                 \
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.Cpu ## SKT ## P ## PRT ## KtiLinkSpeed,                                                        \
+          prompt  = STRING_TOKEN(STR_KTI_LINK_SPEED),                                                                                           \
+          help    = STRING_TOKEN(STR_KTI_FREQ_SELECT_HELP),                                                                                     \
+          option text = STRING_TOKEN(STR_LINKSPEED_128G_STRING),  value = SPEED_REC_128GT,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT; \
+          option text = STRING_TOKEN(STR_LINKSPEED_144G_STRING),  value = SPEED_REC_144GT,    flags = RESET_REQUIRED;                           \
+          option text = STRING_TOKEN(STR_LINKSPEED_160G_STRING),  value = SPEED_REC_160GT,    flags = RESET_REQUIRED;                           \
+          option text = STRING_TOKEN(STR_LINKSPEED_AUTO_STRING),  value = MAX_KTI_LINK_SPEED, flags = RESET_REQUIRED;                           \
+      endoneof;                                                                                                                                 \
+    endif;                                                                                                                                      \
+                                                                                                                                                \
+endform;
+//Transformers_JK019***>>
+
+#if MAX_SOCKET > 1
+PERLINK_KTI_CONFIG (0, 0)
+PERLINK_KTI_CONFIG (0, 1)
+PERLINK_KTI_CONFIG (0, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_KTI_CONFIG (0, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_KTI_CONFIG (0, 4)
+PERLINK_KTI_CONFIG (0, 5)
+#endif
+#if MAX_SOCKET > 1
+PERLINK_KTI_CONFIG (1, 0)
+PERLINK_KTI_CONFIG (1, 1)
+PERLINK_KTI_CONFIG (1, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_KTI_CONFIG (1, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_KTI_CONFIG (1, 4)
+PERLINK_KTI_CONFIG (1, 5)
+#endif
+#endif
+#if MAX_SOCKET > 2
+PERLINK_KTI_CONFIG (2, 0)
+PERLINK_KTI_CONFIG (2, 1)
+PERLINK_KTI_CONFIG (2, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_KTI_CONFIG (2, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_KTI_CONFIG (2, 4)
+PERLINK_KTI_CONFIG (2, 5)
+#endif
+#endif
+#if MAX_SOCKET > 3
+PERLINK_KTI_CONFIG (3, 0)
+PERLINK_KTI_CONFIG (3, 1)
+PERLINK_KTI_CONFIG (3, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_KTI_CONFIG (3, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_KTI_CONFIG (3, 4)
+PERLINK_KTI_CONFIG (3, 5)
+#endif
+#endif
+#if MAX_SOCKET > 4
+PERLINK_KTI_CONFIG (4, 0)
+PERLINK_KTI_CONFIG (4, 1)
+PERLINK_KTI_CONFIG (4, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_KTI_CONFIG (4, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_KTI_CONFIG (4, 4)
+PERLINK_KTI_CONFIG (4, 5)
+#endif
+#endif
+#if MAX_SOCKET > 5
+PERLINK_KTI_CONFIG (5, 0)
+PERLINK_KTI_CONFIG (5, 1)
+PERLINK_KTI_CONFIG (5, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_KTI_CONFIG (5, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_KTI_CONFIG (5, 4)
+PERLINK_KTI_CONFIG (5, 5)
+#endif
+#endif
+#if MAX_SOCKET > 6
+PERLINK_KTI_CONFIG (6, 0)
+PERLINK_KTI_CONFIG (6, 1)
+PERLINK_KTI_CONFIG (6, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_KTI_CONFIG (6, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_KTI_CONFIG (6, 4)
+PERLINK_KTI_CONFIG (6, 5)
+#endif
+#endif
+#if MAX_SOCKET > 7
+PERLINK_KTI_CONFIG (7, 0)
+PERLINK_KTI_CONFIG (7, 1)
+PERLINK_KTI_CONFIG (7, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_KTI_CONFIG (7, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_KTI_CONFIG (7, 4)
+PERLINK_KTI_CONFIG (7, 5)
+#endif
+#endif
+#endif//NOT SNR OR ICXD

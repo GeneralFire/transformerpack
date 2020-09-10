@@ -1,0 +1,53 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+
+## @file Ip6BmcLanConfig.inf
+#
+#  INF description file for Ip6BmcLanConfig driver.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = Ip6BmcLanConfig
+  FILE_GUID         = E5DAFE50-10CB-41b5-9CB5-274E1CF1A8D7
+  MODULE_TYPE       = DXE_DRIVER
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = InitializeIp6BmcLanConfig
+
+[Sources]
+  Ip6BmcLanConfig.c
+  BmcLanConfigCommon.c
+  BmcLanConfigCommon.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+ $(ADDITIONAL_BMCLAN_PACKAGES)
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  NetLib
+  DebugLib
+  BaseMemoryLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  PcdLib
+  AmiIpmiLib
+
+[Protocols]
+  gEfiDxeIpmiTransportProtocolGuid        #CONSUMES
+
+[Guids]
+  gEfiServerMgmtSetupVariableGuid
+
+[Depex]
+  gEfiDxeIpmiTransportProtocolGuid
+
+

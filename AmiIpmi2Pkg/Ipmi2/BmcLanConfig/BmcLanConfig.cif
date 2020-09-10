@@ -1,0 +1,14 @@
+<component>
+    name = "BmcLanConfig"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\BmcLanConfig\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.BmcLanConfig"
+[INF]
+"Ip4BmcLanConfig.inf"
+"Ip6BmcLanConfig.inf"
+[files]
+"BmcLanConfig.sdl"
+"BmcLanConfig.sd"
+"BmcLanConfig.uni"
+"BmcLanParam.c"
+<endComponent>

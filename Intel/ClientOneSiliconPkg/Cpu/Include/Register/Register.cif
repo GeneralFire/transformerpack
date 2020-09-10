@@ -1,0 +1,9 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\Include\Register\"
+    RefName = "ClientOneSiliconPkg.Cpu.Include.Register"
+[files]
+"ArchMsr.h"
+"CommonMsr.h"			
+<endComponent>

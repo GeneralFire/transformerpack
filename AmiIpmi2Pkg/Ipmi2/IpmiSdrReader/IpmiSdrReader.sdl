@@ -1,0 +1,36 @@
+TOKEN
+    Name  = "IpmiSdrReader_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling IpmiSdrReader support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "IpmiSdrReader"
+    File  = "IpmiSdrReader.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Help  = "Includes IpmiSdrReader.inf to Project."
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.DxePcdLib"
+    Override  = "AmiIpmi2Pkg.IpmiSdrReader"
+    Help  = "Library mapping for DxePcdLib under IpmiSdrReader.inf in Platform.dsc."
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.IpmiSdrReader"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "IpmiSdrReader_SUPPORT" "=" "1"
+End

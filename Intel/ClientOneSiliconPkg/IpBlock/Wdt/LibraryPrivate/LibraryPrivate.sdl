@@ -1,0 +1,54 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "WdtCommonLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmWdtCommonLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiDxeSmmWdtCommonLib"
+    File  = "PeiDxeSmmWdtCommonLib/PeiDxeSmmWdtCommonLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+LibraryMapping
+    Class  = "PeiWdtLib"
+    Instance  = "ClientOneSiliconPkg.PeiWdtLib"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"         
+End
+
+INFComponent
+    Name  = "PeiWdtLib"
+    File  = "PeiWdtLib/PeiWdtLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"          
+End
+
+LibraryMapping
+    Class  = "PeiWdtPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiWdtPolicyLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiWdtPolicyLib"
+    File  = "PeiWdtPolicyLib/PeiWdtPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"      
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"          
+End
+

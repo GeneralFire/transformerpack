@@ -1,0 +1,472 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+#langdef uqi "UQI"
+//
+// Event Log
+//
+// APTIOV_SERVER_OVERRIDE_RC_START
+#string STR_EVENT_LOG_FORM_TITLE             #language en-US "Runtime Error Logging"        // #language en-US "System Event Log"
+#string STR_EVENT_LOG_FORM_HELP              #language en-US  "Press <Enter> to view or change the runtime error log configuration." //#language en-US "Press <Enter> to view or change the event log configuration."
+// APTIOV_SERVER_OVERRIDE_RC_END
+
+#string STR_SYSTEM_ERRORS_PROMPT             #language en-US "System Errors"
+#string STR_SYSTEM_ERRORS_HELP               #language en-US "System Error Enable/Disable setup options."
+
+#string STR_RAS_LOG_PROMPT                   #language en-US "RAS Log Level"
+#string STR_RAS_LOG_HELP                     #language en-US "RAS Log setup options."
+#string STR_RAS_LOG_NONE                     #language en-US "None"
+#string STR_RAS_LOG_MIN                      #language en-US "MIN (BASIC_FLOW)"
+#string STR_RAS_LOG_MID                      #language en-US "MID (BASIC_FLOW, FUNC_FLOW)"
+#string STR_RAS_LOG_MAX                      #language en-US "MAX (BASIC_FLOW, FUNC_FLOW, REG)"
+
+#string STR_POISON_EN_PROMPT                 #language en-US "System Memory Poison "
+#string STR_POISON_EN_HELP                   #language en-US "Enable/Disable System Memory Poison"
+
+#string STR_VIRAL_EN_PROMPT                  #language en-US "Viral Status"
+#string STR_VIRAL_EN_HELP                    #language en-US "Enable/Disable Viral"
+
+#string STR_CLOAK_DEV_HIDE_PROMPT            #language en-US "Cloak Devhide registers from being accessible from OS"
+#string STR_CLOAK_DEV_HIDE_HELP              #language en-US "Enable/Disable OS to access Devhide registers"
+
+#string STR_VIRAL_CLEAR_STATUS_PROMPT        #language en-US "Clear Viral Status"
+#string STR_VIRAL_CLEAR_STATUS_HELP          #language en-US "Enable/Disable Clear Viral Status"
+
+#string STR_CLOAKING_EN_PROMPT               #language en-US "System Cloaking"
+#string STR_CLOAKING_EN_HELP                 #language en-US "When enabled, Corrected errors are masked from OS/SW visibility.This option is valid only when EMCA is enabled"
+
+#string STR_UBOX_PCU_MCA_EN_PROMPT           #language en-US "UboxToPcuMca Enabling"
+#string STR_UBOX_PCU_MCA_EN_HELP             #language en-US "Enbales or disables Ubox Local errors to cause MCA."
+
+#string STR_CATERR_GPIO_SMI_EN_PROMPT        #language en-US "CATERR->GPIO->SMI"
+#string STR_CATERR_GPIO_SMI_EN_HELP          #language en-US "Enable/Disable PCH GPIO to trigger SMI on CATERR"
+
+#string STR_UBOX_UMC_SMI_EN_PROMPT           #language en-US "UBOX UMC TO SMI ENABLE"
+#string STR_UBOX_UMC_SMI_EN_HELP             #language en-US "Enable/Disable UBOX UMC SMI SIGNALLING"
+
+#string STR_SPINLOOP_PROMPT                  #language en-US "FatalErrDebugHalt"
+#string STR_SPINLOOP_HELP                    #language en-US "DEBUG loop for McBank Fatal error case ONLY. Warning: Enable this knob only in conjuction with ITP as thread will halt in Fatal error flow"
+
+#string STR_EMCA_FORM_TITLE                  #language en-US "eMCA Settings"
+#string STR_EMCA_FORM_HELP                   #language en-US "Press <Enter> to view or change the eMCA configuration."
+
+#string STR_WHEA_FORM_TITLE                  #language en-US "Whea Settings"
+#string STR_WHEA_FORM_HELP                   #language en-US "Press <Enter> to view or change the WHEA configuration."
+
+#string STR_KTI_ERR_FORM_TITLE               #language en-US "UPI Error Enabling"
+#string STR_KTI_ERR_FORM_HELP                #language en-US "Press <Enter> to view or change the UPI errors enabling options."
+
+#string STR_ERR_INJ_FORM_TITLE               #language en-US "Error Injection Settings"
+#string STR_ERR_INJ_FORM_HELP                #language en-US "Press <Enter> to view or change the Error Injection configuration."
+
+#string STR_MEM_ERR_FORM_TITLE               #language en-US "Memory Error Enabling"
+#string STR_MEM_ERR_FORM_HELP                #language en-US "Press <Enter> to view or change the Memory errors enabling options."
+
+#string STR_PCI_ERR_FORM_TITLE               #language en-US "PCIe Error Enabling"
+#string STR_PCI_ERR_FORM_HELP                #language en-US "Press <Enter> to view or change the PCIe errors enabling options."
+
+#string STR_IIO_ERR_FORM_TITLE               #language en-US "IIO Error Enabling"
+#string STR_IIO_ERR_FORM_HELP                #language en-US "Press <Enter> to view or change the IIO errors enabling options."
+
+#string STR_CRASHLOG_FORM_TITLE              #language en-US "Crash Log Enabling"
+#string STR_CRASHLOG_FORM_HELP               #language en-US "Press <Enter> to view or change the Crash Log enabling options."
+
+#string STR_EMCALOG_SUPPORT_EN_PROMPT        #language en-US "EMCA Logging Support"
+#string STR_EMCALOG_SUPPORT_EN_HELP          #language en-US "Enable/Disable EMCA Logging"
+
+#string STR_EMCAIGN_OPTIN_PROMPT             #language en-US "Ignore OS EMCA Opt-in"
+#string STR_EMCAIGN_OPTIN_HELP               #language en-US "Enable/Disable Ignore OS EMCA Opt-in and log"
+
+#string STR_EMCA_CSMI_EN_PROMPT              #language en-US "EMCA CMCI-SMI Morphing"
+#string STR_EMCA_CSMI_EN_HELP                #language en-US "Enable/Disable EMCA CSMI"
+
+#string STR_EMCA_CSMI_THRESHOLD_PROMPT       #language en-US "EMCA CMCI-SMI Threshold"
+#string STR_EMCA_CSMI_THRESHOLD_HELP         #language en-US "Set the threshold of correctable error for signaling CMCI-CSMI"
+
+#string STR_EMCA_MSMI_EN_PROMPT              #language en-US "EMCA MCE-SMI Enable"
+#string STR_EMCA_MSMI_EN_HELP                #language en-US "Enable/Disable EMCA Uncorrected SMI for gen2"
+#string STR_EMCAGEN2                         #language en-US "EMCA gen 2 - MSMI"
+
+#string STR_EMCACSMIGEN2                     #language en-US "EMCA gen 2 CSMI"
+
+#string STR_CSMI_DYNAMIC_DISABLE_PROMPT      #language en-US "CSMI Dynamic Disable"
+#string STR_CSMI_DYNAMIC_DISABLE_HELP        #language en-US "[Enable] - BIOS disables CSMI when error threshold reached.\n[Disabled] - CSMI always on."
+
+#string STR_CORR_ERR_ELOG_EN_PROMPT          #language en-US "Corrected Error eLog"
+#string STR_CORR_ERR_ELOG_EN_HELP            #language en-US "Enable/Disable Corrected Error eLog"
+
+#string STR_MEM_ERR_ELOG_EN_PROMPT           #language en-US "Memory Error eLog"
+#string STR_MEM_ERR_ELOG_EN_HELP             #language en-US "Enable/Disable Memory Error eLog"
+
+#string STR_PROC_ERR_ELOG_EN_PROMPT          #language en-US "Processor Error eLog"
+#string STR_PROC_ERR_ELOG_EN_HELP            #language en-US "Enable/Disable Processor Error eLog"
+
+
+#string STR_LMCE_SUPPORT_EN_PROMPT           #language en-US "LMCE Support"
+#string STR_LMCE_SUPPORT_EN_HELP             #language en-US "Enable/Disable Local MCE firmware support"
+
+#string STR_OSC_EN_PROMPT                    #language en-US "Opportunistic Spare Core"
+#string STR_OSC_EN_HELP                      #language en-US "Enable/Disable Opportunistic Spare Core support"
+
+#string STR_MCA_SPIN_LOOP_PROMPT             #language en-US "MCA Spin Loop"
+#string STR_MCA_SPIN_LOOP_HELP               #language en-US "Enable/Disable a spin loop that hangs the system when a Machine Check occurs."
+
+#string STR_UBOX_ERROR_MASK_PROMPT           #language en-US "Ubox Error Mask"
+#string STR_UBOX_ERROR_MASK_HELP             #language en-US "Mask SMI generation for Ubox Error."
+
+#string STR_WHEA_SUPPORT_EN_PROMPT           #language en-US "WHEA Support"
+#string STR_WHEA_SUPPORT_EN_HELP             #language en-US "Enable/Disable WHEA support"
+
+#string STR_AEP_ERROR_INJ_ENABLE_PROMPT       #language en-US "PMem Error Injection"
+#string STR_AEP_ERROR_INJ_ENABLE_HELP         #language en-US "Enable/Disable PMem Error Injection"
+
+#string STR_WHEA_ERROR_INJ_SUPPORT_PROMPT    #language en-US "WHEA Error Injection Support"
+#string STR_WHEA_ERROR_INJ_SUPPORT_HELP      #language en-US "Enable/Disable WHEA Error Injection Support"
+
+#string STR_WHEA_ACPI5_SUPPORT_PROMPT        #language en-US "WHEA Error Injection 5.0 Extension"
+#string STR_WHEA_ACPI5_SUPPORT_HELP          #language en-US "Whea EINJ ACPI 5.0 support for set error type with address and vendor extensions."
+
+#string STR_WHEA_LOG_MEM_ERR_EN_PROMPT       #language en-US "Whea Log Memory Error"
+#string STR_WHEA_LOG_MEM_ERR_EN_HELP         #language en-US "Enable/Disable Whea Log Memory Error"
+
+#string STR_WHEA_LOG_PROC_ERR_EN_PROMPT       #language en-US "Whea Log Processor Error"
+#string STR_WHEA_LOG_PROC_ERR_EN_HELP         #language en-US "Enable/Disable Whea Log Processor Error"
+
+#string STR_WHEA_LOG_PCI_ERR_EN_PROMPT       #language en-US "Whea Log PCI Error"
+#string STR_WHEA_LOG_PCI_ERR_EN_HELP         #language en-US "Enable/Disable Whea Log PCI Error"
+
+#string STR_MCA_BANK_INJ_EN_PROMPT           #language en-US "Mca Bank Error Injection Support "
+#string STR_MCA_BANK_INJ_EN_HELP             #language en-US "Enable/Disable Mca Bank Error Injection Support."
+
+#string STR_MCA_BANK_WARM_BOOT_CLEAR_ERRORS_PROMPT           #language en-US "Mca Bank Warm Boot Clear Errors"
+#string STR_MCA_BANK_WARM_BOOT_CLEAR_ERRORS_HELP             #language en-US "Enable/Disable Mca Bank Warm Boot Clear Errors."
+
+#string STR_SUPPRESS_SHUTDOWN_PROMPT          #language en-US "Shutdown Suppression"
+#string STR_SUPPRESS_SHUTDOWN_HELP            #language en-US "Configures Shutdown Suppression and Log MCA IERR Support."
+#string STR_SUPPRESS_SHUTDOWN_AND_LOGMCA_IERR #language en-US "Shutdown Suppression and Log MCA IERR"
+#string STR_SHUTDOWN_LOGMCA_IERR              #language en-US "Shutdown Log MCA IERR"
+
+#string STR_WHEA_PCIE_ERR_INJ_EN_PROMPT      #language en-US "Whea PCIE Error Injection Support "
+#string STR_WHEA_PCIE_ERR_INJ_EN_HELP        #language en-US "Enable/Disable Whea PCIE Error Injection Support."
+
+#string STR_WHEA_PCIE_EINJAT_PROMPT          #language en-US "Whea PCIe Error Injection Action Table"
+#string STR_WHEA_PCIE_EINJAT_HELP            #language en-US "Use Action Table for Whea PCIe Error Injection"
+
+#string STR_ME_SEG_ERR_INJ_EN_PROMPT          #language en-US "ME Seg Error Injection Support"
+#string STR_ME_SEG_ERR_INJ_EN_HELP            #language en-US "Enable/Disable ME Seg Error Injection Support."
+
+#string STR_PARITY_CHECK_ENABLE_PROMPT        #language en-US "Enable HA Parity Check"
+#string STR_PARITY_CHECK_ENABLE_HELP          #language en-US "Enable/Disable HA Parity Check."
+
+#string STR_KTIFOSMI_PROMPT                  #language en-US "SMI UPI Lane Failover "
+#string STR_KTIFOSMI_HELP                    #language en-US "Enable/disables SMI when clock/data failover is set"
+
+#string STR_MEM_ERR_EN_PROMPT                #language en-US "Memory Error"
+#string STR_MEM_ERR_EN_HELP                  #language en-US "Enable/Disable Memory Error"
+
+#string STR_PCIE_COR_ERR_CNTR_PROMPT         #language en-US "PCIE Corrected Error Threshold Counter"
+#string STR_PCIE_COR_ERR_CNTR_HELP           #language en-US "Enable/Disable PCIE Corrected Error Counter"
+
+#string STR_PCIE_COR_ERR_THRES_PROMPT        #language en-US "PCIE Corrected Error Threshold"
+// APTIOV_SERVER_OVERRIDE_RC_START: Changed Decimal value to Hexadecimal.
+#string STR_PCIE_COR_ERR_THRES_HELP          #language en-US "0x001 - 0x7fff"
+// APTIOV_SERVER_OVERRIDE_RC_END: Changed Decimal value to Hexadecimal.
+
+#string STR_PCIE_COR_ERR_LIMIT_EN_PROMPT     #language en-US "PCIe Corrected Error Limit Check"
+#string STR_PCIE_COR_ERR_LIMIT_EN_HELP       #language en-US "Enable/Disable the feature to disable reporting PCIe corrected errors for a device if they exceed a given limit"
+
+#string STR_PCIE_COR_ERR_LIMIT_PROMPT        #language en-US "PCIe Corrected Error Limit"
+#string STR_PCIE_COR_ERR_LIMIT_HELP          #language en-US "Set the maximum number of corrected errors before corrected error reporting is disabled for a device"
+
+#string STR_MEM_COR_ERR_EN_PROMPT            #language en-US "Memory Corrected Error"
+#string STR_MEM_COR_ERR_EN_HELP              #language en-US "Enable/Disable Memory Corrected Error"
+
+#string STR_MEM_COR_ERR_THRES_PROMPT         #language en-US "Memory Corrected Error Threshold"
+#string STR_MEM_COR_ERR_THRES_HELP           #language en-US "0x001 - 0xfff"
+
+#string STR_MEM_RANK_COR_ERR_THRES_PROMPT    #language en-US "Memory Rank Corrected Error Threshold"
+#string STR_MEM_RANK_COR_ERR_THRES_HELP      #language en-US "0x001 - 0xfff"
+
+#string STR_MEM_LEAKY_BUCKET_VALUE_PROMPT    #language en-US "Memory Leaky Bucket Value"
+#string STR_MEM_LEAKY_BUCKET_VALUE_HELP      #language en-US "0x0000 - 0xffff"
+
+// APTIOV_SERVER_OVERRIDE_RC_START : Unlocking the MSR 0x790 for the ErrorInjection to work from RAS tools
+#string STR_UNLOCK_MSR_PROMPT        	#language en-US "S/W Error Injection Support "
+#string STR_UNLOCK_MSR_HELP         	#language en-US "When Enabled S/W Error Injection is supported by unlocking MSR 0x790"
+// APTIOV_SERVER_OVERRIDE_RC_END : Unlocking the MSR 0x790 for the ErrorInjection to work from RAS tools
+#string STR_MEM_MIRROR_FAIL_OVER_EN_PROMPT   #language en-US "Mirror Fail Over"
+#string STR_MEM_MIRROR_FAIL_OVER_EN_HELP     #language en-US "Enable/Disable Mirror Fail Over"
+
+#string STR_DIR_SCRUB                        #language en-US "Direct Scrub"
+#string STR_BADCHNL_FIRST                    #language en-US "Bad Channel First"
+#string STR_HIGHER_REL                       #language en-US "Higher Reliability Bios enabled"
+
+#string STR_FNV_ERRORS_PROMPT                #language en-US "PMem CTLR Errors"
+#string STR_FNV_ERRORS_HELP                  #language en-US "Enable/Disabled PMem CTLR Error Reporting & Logging"
+
+#string STR_FNV_LOW_PRIORITY_SIGNAL_PROMPT   #language en-US "PMem CTLR Low Priority Error Signaling"
+#string STR_FNV_LOW_PRIORITY_SIGNAL_HELP     #language en-US "Selection of signaling for errors bucketed as Low Priority"
+
+#string STR_FNV_HIGH_PRIORITY_SIGNAL_PROMPT  #language en-US "PMem CTLR High Priority Error Signaling"
+
+#string STR_SMI_SIGNAL                       #language en-US "SMI"
+#string STR_ERR0_PIN                         #language en-US "ERR0# Pin"
+#string STR_ERRPIN                           #language en-US "Error Pin"
+#string STR_CMCI                             #language en-US "CMCI"
+#string STR_NONE                             #language en-US "None"
+
+#string NGN_ADDRESS_RANGE_SCRUB_PROMPT     #language en-US "Set PMem Address Range Scrub"
+#string NGN_ADDRESS_RANGE_SCRUB_HELP       #language en-US "Enable/Disable PMem DIMM Physical Address Range scrub"
+
+#string NGN_HOST_ALERT_AIT_PROMPT              #language en-US "Set PMem Host Alert Policy for AIT Error"
+#string NGN_HOST_ALERT_AIT_HELP                #language en-US "Configures to signal Poison or Viral upon receiving Address Indirection Table Error"
+
+#string NGN_HOST_ALERT_DPA_PROMPT              #language en-US "Set PMem Host Alert Policy for DPA Error"
+#string NGN_HOST_ALERT_DPA_HELP                #language en-US "Configures to signal Poison or Viral upon receiving DIMM Physical Address Error"
+
+#string NGN_HOST_ALERT_UNC_PATROL_SCRUB_PROMPT      #language en-US "Set PMem Host Alert Policy for Patrol Scrub"
+#string NGN_HOST_ALERT_UNC_PATROL_SCRUB_HELP        #language en-US "Enable/Disable signaling PMem interrupt upon receiving Uncorrectable Error for NGN Patrol Scrub"
+
+#string REPORT_ALERT_SPA_PROMPT                #language en-US "Enable Reporting SPA to OS"
+#string REPORT_ALERT_SPA_HELP                  #language en-US "Enable Reporting SPA to OS (Only disable for MCE recovery validation)"
+
+#string STR_POISON                             #language en-US "Poison"
+#string STR_VIRAL                              #language en-US "Viral"
+
+#string STR_SPARE_INT_PROMPT                 #language en-US "Spare Interrupt"
+#string STR_SPARE_INT_HELP                   #language en-US "Spare Interrupt Selection"
+
+#string STR_PFD_EN_PROMPT                    #language en-US "Pfd"
+#string STR_PFD_EN_HELP                      #language en-US "Pfd is to identify hard error out from errors"
+
+#string STR_IIO_ERR_SUPPORT_EN_PROMPT        #language en-US "IIO/PCH Global Error Support"
+#string STR_IIO_ERR_SUPPORT_EN_HELP          #language en-US "Enable/Disable IIO/PCH Error Support."
+
+#string STR_IIO_OS_NATIVE_AER_SUPPORT_EN_PROMPT  #language en-US "Os Native AER Support"
+#string STR_IIO_OS_NATIVE_AER_SUPPORT_EN_HELP  #language en-US "Select FFM or OS native for AER error handling. If select OS native, BIOS also initialize FFM first until handshake, which depens on OS capability"
+
+#string STR_IIO_MCA_SUPPORT_EN_PROMPT        #language en-US "IIO MCA Support"
+#string STR_IIO_MCA_SUPPORT_EN_HELP          #language en-US "Enable/Disable IIO MCA Support"
+
+#string STR_IIO_SEV1_PCC_EN_PROMPT           #language en-US "Clear PCC for IIO Non-Fatal Error"
+#string STR_IIO_SEV1_PCC_EN_HELP             #language en-US "Enable/Disable PCC equal 0 for IIO severity 1 error."
+
+#string STR_IIO_ERROR_REG_CLEAR_EN_PROMPT    #language en-US "IIO Error Registers Clear"
+#string STR_IIO_ERROR_REG_CLEAR_EN_HELP      #language en-US "Enable/Disable Clear IIO Error Registers"
+
+#string STR_IIO_OOB_MODE_EN_PROMPT           #language en-US "IIO OOB Mode"
+#string STR_IIO_OOB_MODE_EN_HELP             #language en-US "Enable/Disable System Event Generation when Error Pin is enabled"
+
+#string STR_IIO_ERR_PIN0_PROG_EN_PROMPT       #language en-US "IIO Error Pin0 Enable"
+#string STR_IIO_ERR_PIN0_PROG_EN_HELP         #language en-US "Enable/Disable IIO Error Pin0"
+#string STR_IIO_ERR_PIN1_PROG_EN_PROMPT       #language en-US "IIO Error Pin1 Enable"
+#string STR_IIO_ERR_PIN1_PROG_EN_HELP         #language en-US "Enable/Disable IIO Error Pin1"
+#string STR_IIO_ERR_PIN2_PROG_EN_PROMPT       #language en-US "IIO Error Pin2 Enable"
+#string STR_IIO_ERR_PIN2_PROG_EN_HELP         #language en-US "Enable/Disable IIO Error Pin2"
+
+#string STR_IIO_LER_SUPPORT_EN_PROMPT        #language en-US "IIO LER Support"
+#string STR_IIO_LER_SUPPORT_EN_HELP          #language en-US "Enable/Disable IIO LER Support"
+
+#string STR_IIO_MA_ERRLOG_LER_PROMPT         #language en-US "LER MA Error Logging"
+#string STR_IIO_MA_ERRLOG_LER_HELP           #language en-US "Disables logging MA error when PCIE port in LER"
+
+#string STR_IIO_EDPC_SUPPORT_EN_PROMPT       #language en-US "IIO eDPC Support"
+#string STR_IIO_EDPC_SUPPORT_EN_HELP         #language en-US "Enable/Disable IIO eDPC Support"
+#string STR_IIO_EDPC_FATAL_ONLY              #language en-US "On Fatal Error"
+#string STR_IIO_EDPC_FATAL_NON_FATAL         #language en-US "On Fatal and Non-Fatal Errors"
+
+#string STR_IIO_EDPC_INTERRUPT_EN_PROMPT     #language en-US "IIO eDPC Interrupt"
+#string STR_IIO_EDPC_INTERRUPT_EN_HELP       #language en-US "Enable/Disable IIO eDPC Interrupt"
+
+#string STR_IIO_EDPC_CORR_MSG_EN_PROMPT      #language en-US "IIO eDPC ERR_COR Message"
+#string STR_IIO_EDPC_CORR_MSG_EN_HELP        #language en-US "Enable/Disable IIO eDPC ERR_COR Message"
+
+#string STR_IIO_COH_INTERFACE_ERR_EN_PROMPT  #language en-US "IIO Coherent Interface Error"
+#string STR_IIO_COH_INTERFACE_ERR_EN_HELP    #language en-US "Enable/Disable IIO Coherent Interface Error"
+
+#string STR_LOG_IRP0_PARITY_ERROR_PROMPT     #language en-US "IIO IRP0 protocol parity error"
+#string STR_LOG_IRP_PARITY_ERROR_HELP        #language en-US "Enable or disable Coherent Interface protocol IIO  parity error reporting"
+
+#string STR_LOG_IRP0_QTOVERFLOW_ERROR_PROMPT #language en-US "IIO IRP0 protocol qt overflow underflow error"
+#string STR_LOG_IRP_QTOVERFLOW_ERROR_HELP    #language en-US "Enable or disable IIO Coherent Interface protocol queue table overflow or underflow error reporting"
+
+#string STR_LOG_IRP0_UNEXPRSP_ERROR_PROMPT   #language en-US "IIO IRP0 protocol rcvd unexprsp"
+#string STR_LOG_IRP_UNEXPRSP_ERROR_HELP      #language en-US "Enable or disable IIO Coherent Interface protocol layer received unexpected response or completion error reporting"
+
+#string STR_LOG_IRP0_UNALIGNEDACC_ERROR_PROMPT #language en-US "IIO IRP0 csr acc 32b unaligned"
+#string STR_LOG_IRP_UNALIGNEDACC_ERROR_HELP  #language en-US "Enable or disable IIO Coherent Interface CSR Access Crossing 32-bit Boundary error reporting"
+
+#string STR_LOG_IRP0_UNCECCCS0_ERROR_PROMPT  #language en-US "IIO IRP0 wrcache uncecccs0 error"
+#string STR_LOG_IRP0_UNCECCCS1_ERROR_PROMPT  #language en-US "IIO IRP0 wrcache uncecccs1 error"
+#string STR_LOG_IRP_UNCECC_ERROR_HELP        #language en-US "Enable or disable IIO Coherent Interface Write Cache Un-correctable ECC error reporting"
+
+#string STR_LOG_IRP0_RCVDPOISON_ERROR_PROMPT #language en-US "IIO IRP0 protocol rcvd poison error"
+#string STR_LOG_IRP_RCVDPOISON_ERROR_HELP    #language en-US "Enable or disable IIO Coherent Interface Protocol Layer Received Poisoned Packet error reporting"
+
+#string STR_LOG_IRP0_CRRECCCS0_ERROR_PROMPT  #language en-US "IIO IRP0 wrcache correcccs0 error"
+#string STR_LOG_IRP0_CRRECCCS1_ERROR_PROMPT  #language en-US "IIO IRP0 wrcache correcccs1 error"
+
+#string STR_LOG_IRP_CRRECC_ERROR_HELP        #language en-US "Enable or disable IIO Coherent Interface Write Cache Correctable ECC error reporting"
+
+#string STR_IIO_MISC_ERR_EN_PROMPT           #language en-US "IIO Misc. Error"
+#string STR_IIO_MISC_ERR_EN_HELP             #language en-US "Enable/Disable IIO Misc. Error"
+
+#string STR_IIO_VTD_ERR_EN_PROMPT            #language en-US "IIO Vtd Error"
+#string STR_IIO_VTD_ERR_EN_HELP              #language en-US "Enable/Disable IIO Vtd Error"
+
+#string STR_IIO_DMA_ERR_EN_PROMPT            #language en-US "IIO Dma Error"
+#string STR_IIO_DMA_ERR_EN_HELP              #language en-US "Enable/Disable IIO Dma Error"
+
+#string STR_IIO_DMI_ERR_EN_PROMPT            #language en-US "IIO Dmi Error"
+#string STR_IIO_DMI_ERR_EN_HELP              #language en-US "Enable/Disable IIO Dmi Error"
+
+#string STR_PCIE_ERR_EN_PROMPT               #language en-US "PCIE Error"
+#string STR_PCIE_ERR_EN_HELP                 #language en-US "Enable/Disable PCIE Error"
+
+#string STR_IIO_PCIE_ADD_COR_ERR_EN_PROMPT   #language en-US "IIO PCIE Additional Corrected Error"
+#string STR_IIO_PCIE_ADD_COR_ERR_EN_HELP     #language en-US "Enable/Disable IIO PCIE Additional Corrected Error"
+
+#string STR_IIO_PCIE_ADD_UR_ERR_EN_PROMPT    #language en-US "IIO PCIE Additional Uncorrected Error"
+#string STR_IIO_PCIE_ADD_UR_ERR_EN_HELP      #language en-US "Enable/Disable IIO PCIE Additional Uncorrected Error"
+
+#string STR_IIO_PCIE_ADD_RCV_COM_WITH_UR_PROMPT  #language en-US "IIO PCIE Additional Received Completion With UR"
+#string STR_IIO_PCIE_ADD_RCV_COM_WITH_UR_HELP    #language en-US "Enable/Disable IIO PCIE Additional Received Completion With UR"
+
+#string STR_IIO_ITC_OTC_CA_MA_PROMPT         #language en-US "ITC/OTC CA/MA Errors"
+#string STR_IIO_ITC_OTC_CA_MA_HELP           #language en-US "Enable/Disable Completer Abort and Master Abort (Unsupported Request) on ITC and OTC"
+
+#string STR_IIO_PSF_UR_PROMPT                    #language en-US "PSF UR Error"
+#string STR_IIO_PSF_UR_HELP                      #language en-US "Enable/Disable Unsupported Request Error on PSF"
+
+#string STR_IIO_PMSB_RTR_PAR_ERR_PROMPT          #language en-US "PMSB Router Parity Error"
+#string STR_IIO_PMSB_RTR_PAR_ERR_HELP            #language en-US "Enable/Disable PMSB Router Parity Error"
+
+#string STR_PCIEX_COR_ERR_PROMPT             #language en-US "Corrected Error"
+#string STR_PCIEX_COR_ERR_HELP               #language en-US "Enable & escalate Correctable Errors to error pins."
+
+#string STR_PCIEX_UR_ERR_PROMPT              #language en-US "Uncorrected Error"
+#string STR_PCIEX_UR_ERR_HELP                #language en-US "Enable & escalate Uncorrectable/Recoverable to error pins."
+
+#string STR_PCIEX_FATAL_ERR_PROMPT           #language en-US "Fatal Error Enable"
+#string STR_PCIEX_FATAL_ERR_HELP             #language en-US "Enable & escalate fatal errors to error pins."
+
+#string STR_PCIE_AER_COR_ERR_EN_PROMPT       #language en-US "PCIE AER Corrected Errors"
+#string STR_PCIE_AER_COR_ERR_EN_HELP         #language en-US "Enable/Disable PCIE AER Corrected Errors"
+
+#string STR_PCIE_AER_ANF_ERR_EN_PROMPT       #language en-US "PCIE AER Advisory Nonfatal Error"
+#string STR_PCIE_AER_ANF_ERR_EN_HELP         #language en-US "Enable/Disable PCIE AER Advisory Nonfatal Error"
+
+#string STR_PCIE_AER_NFATL_ERR_EN_PROMPT     #language en-US "PCIE AER NonFatal Error"
+#string STR_PCIE_AER_NFATL_ERR_EN_HELP       #language en-US "Enable/Disable PCIE AER NonFatal Error"
+
+#string STR_PCIE_AER_FATL_ERR_EN_PROMPT      #language en-US "PCIE AER Fatal Error "
+#string STR_PCIE_AER_FATL_ERR_EN_HELP        #language en-US "Enable/Disable PCIE AER Fatal Error"
+
+#string STR_PCIE_AER_ECRC_ERR_EN_PROMPT      #language en-US "PCIE ECRC Error "
+#string STR_PCIE_AER_ECRC_ERR_EN_HELP        #language en-US "Enable/Disable PCIE ECRC Error"
+
+#string STR_PCIE_AER_UR_ERR_EN_PROMPT        #language en-US "PCIE Unsupported Request Error "
+#string STR_PCIE_AER_UR_ERR_EN_HELP          #language en-US "Enable/Disable PCIE Unsupported Request Error "
+
+#string STR_PCIE_AER_SLDP_ERR_EN_PROMPT      #language en-US "PCIE Surprise Link Down Error "
+#string STR_PCIE_AER_SLDP_ERR_EN_HELP        #language en-US "Enable/Disable PCIE Surprise Link Down Error"
+
+#string STR_ENAB_SERR_PROP_PROMPT            #language en-US "Assert NMI on SERR"
+#string STR_ENAB_SERR_PROP_HELP              #language en-US "On SERR, generate an NMI and log an error.\nNote: [Enabled] must be selected for the Assert NMI on PERR setup option to be visible."
+
+#string STR_ENAB_PERR_PROP_PROMPT            #language en-US "Assert NMI on PERR"
+#string STR_ENAB_PERR_PROP_HELP              #language en-US "On PERR, generate an NMI and log an error.\nNote: This option is only active if the Assert NMI on SERR option has [Enabled] selected."
+
+
+#string STR_BMC_MONITORING_CATERR_PROMPT     #language en-US "BMC Monitoring for CATERR#"
+#string STR_BMC_MONITORING_CATERR_HELP       #language en-US "Enable/Disable BMC Monitoring for CATERR#"
+
+#string STR_PCIE_LEAKY_BUCKET_SUBTITLE        #language en-US "Leaky Bucket Feature"
+
+#string STR_PCIE_EXPECTED_BER_PROMPT          #language en-US "Expected BER"
+#string STR_PCIE_EXPECTED_BER_HELP            #language en-US "Set the expected Bit Error Rate for all speeds."
+
+#string STR_PCIE_GEN12_TIME_WINDOW_PROMPT     #language en-US "Time Window (Gen1/2)"
+#string STR_PCIE_GEN12_TIME_WINDOW_HELP       #language en-US "Set the error burst protection time window for Gen1 and Gen2 speeds. A burst of errors within the window is counted as one."
+
+#string STR_PCIE_GEN34_TIME_WINDOW_PROMPT     #language en-US "Time Window (Gen3/4)"
+#string STR_PCIE_GEN34_TIME_WINDOW_HELP       #language en-US "Set the error burst protection time window for Gen3 and Gen4 speeds. A burst of errors within the window is counted as one."
+
+#string STR_PCIE_GEN12_ERROR_THRESHOLD_PROMPT #language en-US "Error Threshold (Gen1/2)"
+#string STR_PCIE_GEN12_ERROR_THRESHOLD_HELP   #language en-US "Set the error threshold for Gen1 and Gen2 speeds. An event is triggered when the error count exceeds the threshold."
+
+#string STR_PCIE_GEN34_ERROR_THRESHOLD_PROMPT #language en-US "Error Threshold (Gen3/4)"
+#string STR_PCIE_GEN34_ERROR_THRESHOLD_HELP   #language en-US "Set the error threshold for Gen3 and Gen4 speeds. An event is triggered when the error count exceeds the threshold."
+
+#string STR_PCIE_GEN34_RE_EQUALIZATION_PROMPT #language en-US "Gen3/4 Re-Equalization"
+#string STR_PCIE_GEN34_RE_EQUALIZATION_HELP   #language en-US "Enable or disable Gen3 and Gen4 re-equalization. Applies only when operating at Gen2 or Gen4 speeds. When an event is triggered, equalization is re-run."
+
+#string STR_PCIE_GEN2_LINK_DEGRADATION_PROMPT #language en-US "Gen2 Link Degradation"
+#string STR_PCIE_GEN2_LINK_DEGRADATION_HELP   #language en-US "Enable or disable Gen2 link degradation. Applies only when operating at Gen2 speeds. When an event is triggered, 5GT/s and higher modes are disabled."
+
+#string STR_PCIE_GEN3_LINK_DEGRADATION_PROMPT #language en-US "Gen3 Link Degradation"
+#string STR_PCIE_GEN3_LINK_DEGRADATION_HELP   #language en-US "Enable or disable Gen3 link degradation. Applies only when operating at Gen3 speeds. When an event is triggered, 8GT/s and higher modes are disabled."
+
+#string STR_PCIE_GEN4_LINK_DEGRADATION_PROMPT #language en-US "Gen4 Link Degradation"
+#string STR_PCIE_GEN4_LINK_DEGRADATION_HELP   #language en-US "Enable or disable Gen4 link degradation. Applies only when operating at Gen4 speeds. When an event is triggered, 16GT/s and higher modes are disabled."
+
+#string STR_ERR_CONTROL_FORM_TITLE           #language en-US "Error Control Setting"
+#string STR_ERR_CONTROL_FORM_HELP            #language en-US "Press <Enter> to view or change the Error Control Setting options."
+
+#string STR_2LM_CORR_ERROR_LOGGING_PROMPT    #language en-US "2LM Correctable Error Logging in m2mem"
+#string STR_2LM_CORR_ERROR_LOGGING_HELP      #language en-US "Enable or disable 2LM correctable error logging in m2mem."
+
+#string STR_KTI_LATCH_FIRST_CE_PROMPT        #language en-US "Latch First Corrected Error in KTI"
+#string STR_KTI_LATCH_FIRST_CE_HELP          #language en-US "Enable or disable latch first corrected error in KTI."
+
+#string STR_LLC_EWB_ERROR_CONTROL_PROMPT     #language en-US "LLC EWB Error Control"
+#string STR_LLC_EWB_ERROR_CONTROL_HELP       #language en-US "Control the signaling of EWB errors as UCNA or SRAO."
+#string STR_UCNA                             #language en-US "UCNA"
+#string STR_SRAO                             #language en-US "SRAO"
+#string STR_CE                               #language en-US "Correctable Error"
+
+#string STR_PATROL_SCRUB_ERROR_REPORTING_PROMPT  #language en-US "Patrol Scrub Error Reporting"
+#string STR_PATROL_SCRUB_ERROR_REPORTING_HELP    #language en-US "Patrol Scrub Error type selection."
+
+#string STR_CRASH_LOG_PROMPT                      #language en-US "CrashLog Feature"
+#string STR_CRASH_LOG_HELP                        #language en-US "The feature helps collecting crash data from PMC SSRAM"
+
+#string STR_COLLECT_CRASH_LOG_ON_ALL_RESET_PROMPT #language en-US "CrashLog On All Reset"
+#string STR_COLLECT_CRASH_LOG_ON_ALL_RESET_HELP   #language en-US "Option to invoke CrashLog collection on all reset"
+
+#string STR_CRASHLOG_CLEAR_PROMPT                 #language en-US "Clear CrashLog"
+#string STR_CRASHLOG_CLEAR_HELP                   #language en-US "Option to clear CrashLog after collection"
+
+#string STR_CRASHLOG_REARM_PROMPT                 #language en-US "ReArm CrashLog"
+#string STR_CRASHLOG_REARM_HELP                   #language en-US "Option to ReArm CrashLog after collection"
+
+//
+// End of file
+//

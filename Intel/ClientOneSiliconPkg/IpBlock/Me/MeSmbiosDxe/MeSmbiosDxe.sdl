@@ -1,0 +1,16 @@
+TOKEN
+    Name  = "MeSmbiosDxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling MeSmbiosDxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "MeSmbiosDxe"
+    File  = "MeSmbiosDxe.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "ME_WS_ENABLE" "=" "1"
+    Token = "ME_ENABLE" "=" "1"
+End

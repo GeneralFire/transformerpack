@@ -1,0 +1,11 @@
+<component>
+	name = "WheaERST"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\WheaERST\"
+	RefName = "ServerRasPkg.WheaERST"
+[INF]
+"WheaERST.inf"
+[files]
+"WheaERST.h"	
+"WheaERST.sdl"	
+<endComponent>

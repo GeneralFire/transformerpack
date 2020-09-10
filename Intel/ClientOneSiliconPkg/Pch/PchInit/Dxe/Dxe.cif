@@ -1,0 +1,10 @@
+<component>
+    name = "Dxe"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\PchInit\Dxe\"
+    RefName = "ClientOneSiliconPkg.Pch.PchInit.Dxe"
+[INF]
+"PchInitDxeEbg.inf"
+[files]
+"Dxe.sdl"	
+<endComponent>

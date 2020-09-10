@@ -1,0 +1,2811 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include "MemorySetup.h"
+
+  //
+  // Memory Dfx Setup Options
+  //
+  form formid = VFR_FORMID_MEMORY_DFX,
+
+    title   = STRING_TOKEN(STR_MEMORY_DFX_CONFIG_FORM_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_MEMORY_DFX_CONFIG_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.EnableTapSweep,
+        prompt  = STRING_TOKEN (STR_ENABLE_TAP_SWEEP),
+        help    = STRING_TOKEN (STR_ENABLE_TAP_SWEEP_HELP),
+        option text = STRING_TOKEN (STR_DISABLE_TAP), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLE_TAP),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+
+    grayoutif  ideqval SOCKET_MEMORY_CONFIGURATION.EnableTapSweep == 0;
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfeGainBias,
+        prompt      = STRING_TOKEN(STR_DFE_GAIN_BIAS),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 103,
+          step        = 0,
+          default   = 0, defaultstore = MyStandardDefault,
+          default   = 0, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap1Start,
+      prompt        = STRING_TOKEN(STR_TAP1_START),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 140,
+          step        = 0,
+          default   = 140, defaultstore = MyStandardDefault,
+          default   = 140, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap1End,
+        prompt      = STRING_TOKEN(STR_TAP1_END),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 140,
+          step        = 0,
+          default   = 10, defaultstore = MyStandardDefault,
+          default   = 10, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap1Size,
+        prompt      = STRING_TOKEN(STR_TAP1_STEPSIZE),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 1,
+          maximum     = 10,
+          step        = 0,
+          default   = 1, defaultstore = MyStandardDefault,
+          default   = 1, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap2Start,
+        prompt      = STRING_TOKEN(STR_TAP2_START),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 115,
+          step        = 0,
+          default   = 115, defaultstore = MyStandardDefault,
+          default   = 115, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap2End,
+        prompt      = STRING_TOKEN(STR_TAP2_END),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 115,
+          step        = 0,
+          default   = 15, defaultstore = MyStandardDefault,
+          default   = 15, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap2Size,
+        prompt      = STRING_TOKEN(STR_TAP2_STEPSIZE),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 1,
+          maximum     = 10,
+          step        = 0,
+          default   = 1, defaultstore = MyStandardDefault,
+          default   = 1, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap3Start,
+        prompt      = STRING_TOKEN(STR_TAP3_START),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 112,
+          step        = 0,
+          default   = 112, defaultstore = MyStandardDefault,
+          default   = 112, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap3End,
+        prompt      = STRING_TOKEN(STR_TAP3_END),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 112,
+          step        = 0,
+          default   = 12, defaultstore = MyStandardDefault,
+          default   = 12, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap3Size,
+        prompt      = STRING_TOKEN(STR_TAP3_STEPSIZE),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 1,
+          maximum     = 10,
+          step        = 0,
+          default   = 1, defaultstore = MyStandardDefault,
+          default   = 1, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap4Start,
+        prompt      = STRING_TOKEN(STR_TAP4_START),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 109,
+          step        = 0,
+          default   = 109, defaultstore = MyStandardDefault,
+          default   = 109, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap4End,
+        prompt      = STRING_TOKEN(STR_TAP4_END),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 109,
+          step        = 0,
+          default   = 9, defaultstore = MyStandardDefault,
+          default   = 9, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.Tap4Size,
+        prompt      = STRING_TOKEN(STR_TAP4_STEPSIZE),
+          help        = STRING_TOKEN(STR_TAPN_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 1,
+          maximum     = 10,
+          step        = 0,
+          default   = 1, defaultstore = MyStandardDefault,
+          default   = 1, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+
+    endif;
+
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.DcpmmEnable == 0;
+
+      suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR
+                      ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX OR
+                      ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX);
+        oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxDdrtChInterleaveGran,
+            prompt  = STRING_TOKEN(STR_MEM_INT_GRAN_DDRT),
+            help    = STRING_TOKEN(STR_MEM_INT_GRAN_DDRT_HELP),
+            option text = STRING_TOKEN(STR_CH_4KB_TGT_4KB), value = MEM_INT_GRAN_CH_4KB_TGT_4KB, flags = MEM_INT_GRAN_CH_4KB_TGT_4KB_FLAGS;
+            option text = STRING_TOKEN(STR_CH_256B_TGT_4KB),  value = MEM_INT_GRAN_CH_256B_TGT_4KB,  flags = MEM_INT_GRAN_CH_256B_TGT_4KB_FLAGS;
+        endoneof;
+      endif;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxCmdFubMarginging,
+        prompt  = STRING_TOKEN(STR_CMD_FUB_MARGIN_PROMPT),
+        help    = STRING_TOKEN(STR_CMD_FUB_MARGIN_HELP),
+        option text = STRING_TOKEN(STR_ENABLE),           value = CMD_FUB_ENABLE,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLE),          value = CMD_FUB_DISABLE, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement,
+        prompt  = STRING_TOKEN(STR_DIMM_MGMT_PROMPT),
+        help    = STRING_TOKEN(STR_DIMM_MGMT_HELP),
+        option text = STRING_TOKEN(STR_BIOS_SETUP),           value = DIMM_MGMT_BIOS_SETUP,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_CR_MGMT_DRIVER),       value = DIMM_MGMT_CR_MGMT_DRIVER,   flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxLoadDimmMgmtDriver,
+        prompt  = STRING_TOKEN(STR_LOAD_DIMM_MGMT_DRV_PROMPT),
+        help    = STRING_TOKEN(STR_LOAD_DIMM_MGMT_DRV_HELP),
+        option text = STRING_TOKEN(STR_DISABLED),              value = LOAD_NGN_DIMM_MGMT_DRIVER_DIS,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),               value = LOAD_NGN_DIMM_MGMT_DRIVER_EN,   flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPerMemMode,
+          prompt  = STRING_TOKEN(STR_PEM_MEM_MODE),
+          help    = STRING_TOKEN(STR_PER_MEM_MODE_HELP),
+          option text = STRING_TOKEN(STR_DISABLED),          value = NON_PER_MEM_MODE,       flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLED),           value = PER_MEM_MODE,           flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+      endif;
+
+    endif; // suppressif DcpmmEnable == 0
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMaskEn,
+        prompt  = STRING_TOKEN(STR_RANK_MASK_EN_PROMPT),
+        help    = STRING_TOKEN(STR_RANK_MASK_EN_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = RANK_MASK_DISABLE, flags = RANK_MASK_DIS_FLAGS;
+        option text = STRING_TOKEN(STR_ENABLE),  value = RANK_MASK_ENABLE, flags = RANK_MASK_EN_FLAGS;
+    endoneof;
+
+    suppressif ideqval SOCKET_MEMORY_CONFIGURATION.dfxRankMaskEn == RANK_MASK_DISABLE;
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[0],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_0_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[1],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_1_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[2],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_2_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[3],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_3_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[4],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_4_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[5],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_5_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[6],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_6_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[7],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_7_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[8],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_8_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 3)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[9],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_9_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[10],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_10_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[11],
+            prompt    = STRING_TOKEN (STR_SCKT_0_CH_11_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#endif // MAX_IMC > 3
+#endif // MAX_IMC > 2
+#endif // MAX_IMC > 1
+
+#if (MAX_SOCKET > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[12],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_0_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[13],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_1_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[14],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_2_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[15],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_3_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[16],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_4_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[17],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_5_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[18],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_6_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[19],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_7_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[20],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_8_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 3)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[21],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_9_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[22],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_10_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[23],
+            prompt    = STRING_TOKEN (STR_SCKT_1_CH_11_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#endif // MAX_IMC > 3
+#endif // MAX_IMC > 2
+#endif // MAX_IMC > 1
+
+#if (MAX_SOCKET > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[24],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_0_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[25],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_1_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[26],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_2_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[27],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_3_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[28],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_4_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[29],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_5_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[30],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_6_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[31],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_7_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[32],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_8_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 3)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[33],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_9_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[34],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_10_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[35],
+            prompt    = STRING_TOKEN (STR_SCKT_2_CH_11_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#endif // MAX_IMC > 3
+#endif // MAX_IMC > 2
+#endif // MAX_IMC > 1
+
+#if (MAX_SOCKET > 3)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[36],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_0_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[37],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_1_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[38],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_2_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[39],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_3_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[40],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_4_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[41],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_5_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[42],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_6_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[43],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_7_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[44],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_8_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 3)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[45],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_9_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[46],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_10_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[47],
+            prompt    = STRING_TOKEN (STR_SCKT_3_CH_11_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#endif // MAX_IMC > 3
+#endif // MAX_IMC > 2
+#endif // MAX_IMC > 1
+
+#if (MAX_SOCKET > 4)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[48],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_0_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[49],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_1_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[50],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_2_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[51],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_3_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[52],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_4_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[53],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_5_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[54],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_6_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[55],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_7_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[56],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_8_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 3)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[57],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_9_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[58],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_10_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[59],
+            prompt    = STRING_TOKEN (STR_SCKT_4_CH_11_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#endif // MAX_IMC > 3
+#endif // MAX_IMC > 2
+#endif // MAX_IMC > 1
+
+#if (MAX_SOCKET > 5)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[60],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_0_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[61],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_1_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[62],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_2_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[63],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_3_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[64],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_4_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[65],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_5_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[66],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_6_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[67],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_7_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[68],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_8_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 3)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[69],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_9_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[70],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_10_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[71],
+            prompt    = STRING_TOKEN (STR_SCKT_5_CH_11_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#endif // MAX_IMC > 3
+#endif // MAX_IMC > 2
+#endif // MAX_IMC > 1
+
+#if (MAX_SOCKET > 6)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[72],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_0_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[73],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_1_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[74],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_2_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[75],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_3_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[76],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_4_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[77],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_5_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[78],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_6_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[79],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_7_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[80],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_8_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 3)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[81],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_9_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[82],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_10_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[83],
+            prompt    = STRING_TOKEN (STR_SCKT_6_CH_11_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#endif // MAX_IMC > 3
+#endif // MAX_IMC > 2
+#endif // MAX_IMC > 1
+
+#if (MAX_SOCKET > 7)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[84],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_0_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[85],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_1_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[86],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_2_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[87],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_3_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[88],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_4_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[89],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_5_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[90],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_6_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[91],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_7_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[92],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_8_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#if (MAX_IMC > 3)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[93],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_9_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 1)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[94],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_10_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+#if (MAX_MC_CH > 2)
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.dfxRankMask[95],
+            prompt    = STRING_TOKEN (STR_SCKT_7_CH_11_RANK_EN_PROMPT),
+            help      = STRING_TOKEN (STR_SOCKET_X_CH_Y_RANK_EN_HELP),
+            flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+            minimum   = MIN_RANK_ENABLE,
+            maximum   = MAX_RANK_ENABLE,
+            step      = 0,        // Stepping of 0 equates to a manual entering of a value,
+                                  // otherwise it will auto-increment with a left/right arrow
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyStandardDefault,
+            default   = RANK_ENABLE_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+#endif // MAX_MC_CH > 2
+#endif // MAX_MC_CH > 1
+
+#endif // MAX_IMC > 3
+#endif // MAX_IMC > 2
+#endif // MAX_IMC > 1
+
+#endif // MAX_SOCKET > 7
+#endif // MAX_SOCKET > 6
+#endif // MAX_SOCKET > 5
+#endif // MAX_SOCKET > 4
+#endif // MAX_SOCKET > 3
+#endif // MAX_SOCKET > 2
+#endif // MAX_SOCKET > 1
+
+    endif;   //end suppressif disabled
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxBankGroupInterleavingMode,
+        prompt  = STRING_TOKEN(STR_BANK_GROUP_INTERLEAVING_MODE_PROMPT),
+        help    = STRING_TOKEN(STR_BANK_GROUP_INTERLEAVING_MODE_HELP),
+        option text = STRING_TOKEN(STR_COARSE_GRAINED_MODE), value = BANK_GROUP_INTERLEAVING_COARSE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FINE_GRAINED_MODE),   value = BANK_GROUP_INTERLEAVING_FINE,   flags = DEFAULT_MEMORY_SETUP;
+#if defined (SPRHBM_HOST)
+        option text = STRING_TOKEN(STR_FINE_GRAINED_MODE_TWO_BANK_BITS),       value = BANK_GROUP_INTERLEAVING_FINE_TWO_BANK_BITS,       flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FINE_GRAINED_MODE_BANK_INT_8_9_11_13),  value = BANK_GROUP_INTERLEAVING_HBM_BANK_INT_8_9_11_13,   flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FINE_GRAINED_MODE_BANK_INT_6_11_12_13), value = BANK_GROUP_INTERLEAVING_HBM_BANK_INT_6_11_12_13,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FINE_GRAINED_MODE_BANK_INT_7_11_12_13), value = BANK_GROUP_INTERLEAVING_HBM_BANK_INT_7_11_12_13,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FINE_GRAINED_MODE_BANK_INT_7_8_9_10),   value = BANK_GROUP_INTERLEAVING_HBM_BANK_INT_7_8_9_10,    flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FINE_GRAINED_MODE_BANK_INT_10_11_12_13),value = BANK_GROUP_INTERLEAVING_HBM_BANK_INT_10_11_12_13, flags = RESET_REQUIRED;
+#endif // defined (SPRHBM_HOST)
+    endoneof;
+
+    suppressif ideqval SOCKET_MEMORY_CONFIGURATION.volMemMode == VOL_MEM_MODE_2LM;
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxDimmInterleaving,
+          prompt  = STRING_TOKEN(STR_DIMM_INTERLEAVING_PROMPT),
+          help    = STRING_TOKEN(STR_DIMM_INTERLEAVING_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),    value = DIMM_INTER_DISABLE,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),     value = DIMM_INTER_ENABLE,  flags = RESET_REQUIRED| MANUFACTURING | DEFAULT;
+      endoneof;
+    endif;
+
+    suppressif (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP AND
+               ideqval SOCKET_MEMORY_CONFIGURATION.volMemMode == VOL_MEM_MODE_2LM);
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxMod3Support,
+          prompt  = STRING_TOKEN(STR_MOD3_SUPPORT_PROMPT),
+          help    = STRING_TOKEN(STR_MOD3_SUPPORT_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = MOD3_SUPPORT_DISABLE, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE), value = MOD3_SUPPORT_ENABLE, flags = RESET_REQUIRED| MANUFACTURING | DEFAULT;
+      endoneof;
+    endif;
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxRankInterleaving,
+        prompt  = STRING_TOKEN(STR_RANK_INTERLEAVING_PROMPT),
+        help    = STRING_TOKEN(STR_RANK_INTERLEAVING_HELP),
+#ifdef SKX_HOST
+        option text = STRING_TOKEN(STR_1WAY_STRING), value = RANK_1WAY, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_2WAY_STRING), value = RANK_2WAY, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_4WAY_STRING), value = RANK_4WAY, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#else
+        option text = STRING_TOKEN(STR_1WAY_STRING), value = RANK_1WAY, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_2WAY_STRING), value = RANK_2WAY, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_4WAY_STRING), value = RANK_4WAY, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_8WAY_STRING), value = RANK_8WAY, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#endif
+    endoneof;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.DcpmmEnable == 0;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm,
+          prompt  = STRING_TOKEN(STR_PARTITION_DDRT_PROMPT),
+          help    = STRING_TOKEN(STR_PARTITION_DDRT_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),      value = 0,  flags = RESET_REQUIRED| MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),       value = 1,   flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      suppressif ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        subtitle text = STRING_TOKEN(STR_PARTITION_RATIO_PROMPT);
+      endif;
+
+#if (MAX_IMC <= 2)
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[0],
+            prompt  = STRING_TOKEN(STR_S0MC0_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S0MC0_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[1],
+            prompt  = STRING_TOKEN(STR_S0MC1_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S0MC1_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+#if (MAX_SOCKET > 1)
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[2],
+            prompt  = STRING_TOKEN(STR_S1MC0_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S1MC0_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[3],
+            prompt  = STRING_TOKEN(STR_S1MC1_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S1MC1_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+#endif //( MAX_SOCKET > 1)
+
+#if (MAX_SOCKET > 2)
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[4],
+            prompt  = STRING_TOKEN(STR_S2MC0_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S2MC0_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[5],
+            prompt  = STRING_TOKEN(STR_S2MC1_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S2MC1_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+#endif // (MAX_SOCKET > 2)
+
+#if (MAX_SOCKET > 3)
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[6],
+            prompt  = STRING_TOKEN(STR_S3MC0_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S3MC0_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[7],
+            prompt  = STRING_TOKEN(STR_S3MC1_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S3MC1_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+#endif // (MAX_SOCKET > 3)
+
+#endif // (MAX_IMC <= 2)
+
+#if (MAX_IMC > 2)
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[0],
+            prompt  = STRING_TOKEN(STR_S0MC0_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S0MC0_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[1],
+            prompt  = STRING_TOKEN(STR_S0MC1_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S0MC1_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[2],
+            prompt  = STRING_TOKEN(STR_S0MC2_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S0MC2_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[3],
+            prompt  = STRING_TOKEN(STR_S0MC3_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S0MC3_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+#if (MAX_SOCKET > 1)
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[4],
+            prompt  = STRING_TOKEN(STR_S1MC0_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S1MC0_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[5],
+            prompt  = STRING_TOKEN(STR_S1MC1_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S1MC1_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[6],
+            prompt  = STRING_TOKEN(STR_S1MC2_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S1MC2_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[7],
+            prompt  = STRING_TOKEN(STR_S1MC3_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S1MC3_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+#endif //( MAX_SOCKET > 1)
+
+#if (MAX_SOCKET > 2)
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[8],
+            prompt  = STRING_TOKEN(STR_S2MC0_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S2MC0_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[9],
+            prompt  = STRING_TOKEN(STR_S2MC1_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S2MC1_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[10],
+            prompt  = STRING_TOKEN(STR_S2MC2_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S2MC2_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[11],
+            prompt  = STRING_TOKEN(STR_S2MC3_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S2MC3_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+#endif // (MAX_SOCKET > 2)
+
+#if (MAX_SOCKET > 3)
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[12],
+            prompt  = STRING_TOKEN(STR_S3MC0_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S3MC0_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[13],
+            prompt  = STRING_TOKEN(STR_S3MC1_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S3MC1_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[14],
+            prompt  = STRING_TOKEN(STR_S3MC2_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S3MC2_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      suppressif  ideqval SOCKET_MEMORY_CONFIGURATION.dfxDimmManagement == DIMM_MGMT_CR_MGMT_DRIVER;
+        grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPartitionDDRTDimm == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxPartitionRatio[15],
+            prompt  = STRING_TOKEN(STR_S3MC3_PARTITION_RATIO_PROMPT),
+            help    = STRING_TOKEN(STR_S3MC3_PARTITION_RATIO_HELP),
+            option text = STRING_TOKEN(STR_RATIO_50_50_0),      value = RATIO_50_50_0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_RATIO_50_0_50),      value = RATIO_50_0_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_50_50),      value = RATIO_0_50_50,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_100_0_0),      value = RATIO_100_0_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_100_0),      value = RATIO_0_100_0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_RATIO_0_0_100),      value = RATIO_0_0_100,  flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+#endif // (MAX_SOCKET > 3)
+
+#endif // (MAX_IMC > 2)
+
+    endif; // suppressif DcpmmEnable == 0
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.DcpmmEnable == 0;
+
+
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.NgnEccCorr,
+        prompt   = STRING_TOKEN (STR_NGN_ECC_CORR_PROMPT),
+        help     = STRING_TOKEN (STR_NGN_ECC_CORR_HELP),
+        option text = STRING_TOKEN (STR_AUTO),     value = NGN_ECC_CORR_AUTO, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_DISABLED), value = NGN_ECC_CORR_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = NGN_ECC_CORR_ENABLE, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.NgnEccWrChk,
+        prompt   = STRING_TOKEN (STR_NGN_ECC_WR_CHK_PROMPT),
+        help     = STRING_TOKEN (STR_NGN_ECC_WR_CHK_HELP),
+        option text = STRING_TOKEN (STR_AUTO),     value = NGN_ECC_WR_CHK_AUTO, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_DISABLED), value = NGN_ECC_WR_CHK_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = NGN_ECC_WR_CHK_ENABLE, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.NgnEccExitCorr,
+        prompt   = STRING_TOKEN (STR_NGN_ECC_EXIT_CORR_PROMPT),
+        help     = STRING_TOKEN (STR_NGN_ECC_EXIT_CORR_HELP),
+        option text = STRING_TOKEN (STR_AUTO),     value = NGN_ECC_EXIT_CORR_AUTO, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_DISABLED), value = NGN_ECC_EXIT_CORR_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = NGN_ECC_EXIT_CORR_ENABLE, flags = RESET_REQUIRED;
+      endoneof;
+
+    endif; // suppressif DcpmmEnable == 0
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxCAparity,
+        prompt  = STRING_TOKEN(STR_CA_PARITY_PROMPT),
+        help    = STRING_TOKEN(STR_CA_PARITY_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_STRING),         value = CA_PARITY_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED_STRING),          value = CA_PARITY_ENABLE, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxHighAddressStartBitPosition,
+        prompt  = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_PROMPT),
+        help    = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_HELP),
+        option text = STRING_TOKEN(STR_AUTO_STRING),                    value = 0,  flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_33_STRING),   value = 33, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_34_STRING),   value = 34, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_35_STRING),   value = 35, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_36_STRING),   value = 36, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_37_STRING),   value = 37, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_38_STRING),   value = 38, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_39_STRING),   value = 39, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_40_STRING),   value = 40, flags = RESET_REQUIRED;
+        suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_41_STRING),   value = 41, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_42_STRING),   value = 42, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_43_STRING),   value = 43, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_44_STRING),   value = 44, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_45_STRING),   value = 45, flags = RESET_REQUIRED;
+        endif;
+        suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR
+                   ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX OR
+                   ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX OR
+                   ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_46_STRING),   value = 46, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_47_STRING),   value = 47, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_48_STRING),   value = 48, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_49_STRING),   value = 49, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_50_STRING),   value = 50, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_HIGHADDRBIT_51_STRING),   value = 51, flags = RESET_REQUIRED;
+        endif;
+    endoneof;
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxStraddleHighAddressBit,
+        prompt  = STRING_TOKEN(STR_MEMMAP_STRADDLE_HIGHADDRBIT_PROMPT),
+        help    = STRING_TOKEN(STR_MEMMAP_STRADDLE_HIGHADDRBIT_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif NOT ideqval SOCKET_MEMORY_CONFIGURATION.DfxDimmInterleaving == DIMM_INTER_DISABLE;
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxLowMemChannel,
+          prompt  = STRING_TOKEN(STR_MEMMAP_LOWMEMCHANNEL_PROMPT),
+          help    = STRING_TOKEN(STR_MEMMAP_LOWMEMCHANNEL_HELP),
+          option text = STRING_TOKEN(STR_AUTO_STRING), value = 0, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_LOWMEMCHANNEL_0_STRING),  value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_MEMMAP_LOWMEMCHANNEL_1_STRING),  value = 2, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif (ideqval SOCKET_COMMONRC_CONFIGURATION.DcpmmEnable == 0 AND
+               ideqval SOCKET_COMMONRC_CONFIGURATION.HbmSku == 0) OR
+               ideqval SOCKET_MEMORY_CONFIGURATION.volMemMode == VOL_MEM_MODE_1LM;
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.dfxCfgMask2LM,
+        prompt  = STRING_TOKEN(STR_CFG_MASK_2LM),
+        help    = STRING_TOKEN(STR_CFG_MASK_2LM_HELP),
+        option text = STRING_TOKEN(STR_NORMAL),           value = CFG_MASK_2LM_NORMAL,             flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_AGGRESSIVE),       value = CFG_MASK_2LM_AGGRESSIVE,         flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.DcpmmEnable == 0;
+      suppressif ideqval SOCKET_MEMORY_CONFIGURATION.EadrSupport == EADR_DISABLED;
+        oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxEadrDebugLogs,
+          prompt    = STRING_TOKEN (STR_EADR_DBG_LOG_PROMPT),
+          help      = STRING_TOKEN (STR_EADR_DBG_LOG_HELP),
+          option text = STRING_TOKEN (STR_AUTO),              value = EADR_DEBUG_LOGS_AUTO,   flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_EADR_LOGS_DRIVER),  value = EADR_DEBUG_LOGS_DRIVER, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_EADR_LOGS_FLOW),    value = EADR_DEBUG_LOGS_FLOW,   flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_EADR_LOGS_ALL),     value = EADR_DEBUG_LOGS_ALL,    flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxEadrProtocolLogs,
+          prompt    = STRING_TOKEN (STR_EADR_PROTOCOL_DBG_LOG_PROMPT),
+          help      = STRING_TOKEN (STR_EADR_PROTOCOL_DBG_LOG_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),            value = 0, flags = MANUFACTURING | DEFAULT |RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),             value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxEadrFlowTimeLogs,
+          prompt    = STRING_TOKEN (STR_EADR_TIME_DBG_LOG_PROMPT),
+          help      = STRING_TOKEN (STR_EADR_TIME_DBG_LOG_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),            value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),             value = 1, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      suppressif ideqval SOCKET_MEMORY_CONFIGURATION.FadrSupport == FADR_DISABLED;
+        oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxFadrDebugLogs,
+          prompt    = STRING_TOKEN (STR_FADR_DBG_LOG_PROMPT),
+          help      = STRING_TOKEN (STR_FADR_DBG_LOG_HELP),
+          option text = STRING_TOKEN (STR_AUTO),              value = FADR_DEBUG_LOGS_AUTO,   flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FADR_LOGS_DRIVER),  value = FADR_DEBUG_LOGS_DRIVER, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FADR_LOGS_FLOW),    value = FADR_DEBUG_LOGS_FLOW,   flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FADR_LOGS_ALL),     value = FADR_DEBUG_LOGS_ALL,    flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxFadrFlowTimeLogs,
+          prompt    = STRING_TOKEN (STR_FADR_TIME_DBG_LOG_PROMPT),
+          help      = STRING_TOKEN (STR_FADR_TIME_DBG_LOG_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),            value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),             value = 1, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxCrAcpiDebugInterface,
+        prompt   = STRING_TOKEN (STR_CR_ACPI_DEBUG_INTERFACE_PROMPT),
+        help     = STRING_TOKEN (STR_CR_ACPI_DEBUG_INTERFACE_HELP),
+        option text = STRING_TOKEN (STR_ACPI_DEBUG_OBJECT), value = CR_ACPI_DEBUG_INTERFACE_ACPI, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN (STR_COM1),              value = CR_ACPI_DEBUG_INTERFACE_COM1, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxNfitDebugLogs,
+        prompt    = STRING_TOKEN (STR_NFIT_DBG_LOG_PROMPT),
+        help      = STRING_TOKEN (STR_NFIT_DBG_LOG_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = 1, flags = DEFAULT | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxNfitNvdimmSkuBased,
+        prompt    = STRING_TOKEN (STR_NFIT_NVDIMM_SKUBASED_PROMPT),
+        help      = STRING_TOKEN (STR_NFIT_NVDIMM_SKUBASED_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+      endoneof;
+
+      grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.DfxNfitNvdimmSkuBased == 1 OR ideqval SOCKET_MEMORY_CONFIGURATION.NfitPublishMailboxStructs == 0;
+        oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxNfitMailboxWithPropGuid,
+          prompt   = STRING_TOKEN (STR_NFIT_MAILBOX_WITH_PROPGUID_PROMPT),
+          help     = STRING_TOKEN (STR_NFIT_MAILBOX_WITH_PROPGUID_HELP),
+          option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN (STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxCrSkipArsOnBoot,
+        prompt   = STRING_TOKEN (STR_CR_SKIP_ARS_ON_BOOT_PROMPT),
+        help     = STRING_TOKEN (STR_CR_SKIP_ARS_ON_BOOT_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = CR_SKIP_ARS_ON_BOOT_DIS, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = CR_SKIP_ARS_ON_BOOT_EN,  flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxCrBackgroundArs,
+          prompt   = STRING_TOKEN (STR_CR_BACKGROUND_ARS_PROMPT),
+          help     = STRING_TOKEN (STR_CR_BACKGROUND_ARS_HELP),
+          option text = STRING_TOKEN (STR_AUTO),      value = CR_BACKGROUND_ARS_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_DISABLED),  value = CR_BACKGROUND_ARS_DIS,  flags = RESET_REQUIRED;
+      endoneof;
+    endif; // suppressif DcpmmEnable == 0
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR);
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxForceOdtOn,
+        prompt  = STRING_TOKEN (STR_FORCE_ODT_ON_PROMPT),
+        help    = STRING_TOKEN (STR_FORCE_ODT_ON_HELP),
+        option text = STRING_TOKEN (STR_DISABLE), value = FORCE_ODT_ON_DISABLE, flags = FORCE_ODT_ON_DIS_FLAGS;
+        option text = STRING_TOKEN (STR_ENABLE),  value = FORCE_ODT_ON_ENABLE, flags = FORCE_ODT_ON_EN_FLAGS;
+      endoneof;
+    endif;
+
+
+    oneof varid  = SOCKET_MEMORY_CONFIGURATION.EccEnable,
+        prompt   = STRING_TOKEN (STR_ECC_ENABLE_PROMPT),
+        help     = STRING_TOKEN (STR_ECC_ENABLE_HELP),
+        write set(SOCKET_MEMORY_CONFIGURATION.EccSupport, map (pushthis : ECC_DISABLE, ECC_DISABLE;));
+        option text = STRING_TOKEN (STR_DISABLE), value = ECC_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLE),  value = ECC_ENABLE, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.EccEnable == ECC_DISABLE;
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.EccSupport,
+          prompt   = STRING_TOKEN (STR_ECC_CHECK_PROMPT),
+          help     = STRING_TOKEN (STR_ECC_CHECK_HELP),
+          option text = STRING_TOKEN (STR_DISABLE), value = ECC_DISABLE, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_ENABLE),  value = ECC_ENABLE, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    oneof varid  = SOCKET_MEMORY_CONFIGURATION.ShortStroke2GB,
+        prompt   = STRING_TOKEN (STR_SHORT_STROKE_2GB_PROMPT),
+        help     = STRING_TOKEN (STR_SHORT_STROKE_2GB_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = SHORT_STROKE_2GB_DIS, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_SHORT_STROKE_2GB_INTERLEAVED),  value = SHORT_STROKE_2GB_INT, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_SHORT_STROKE_2GB_NON_INTERLEAVED),  value = SHORT_STROKE_2GB_NON_INT, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.DcpmmEnable == 0;
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxDdrtTransactor,
+        prompt   = STRING_TOKEN (STR_DDRT_TRANSACTOR_PROMPT),
+        help     = STRING_TOKEN (STR_DDRT_TRANSACTOR_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+    endif; // suppressif DcpmmEnable == 0
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR);
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxTmeCmiCplFabCreditWa,
+        prompt   = STRING_TOKEN (STR_TME_CMI_CPL_FAB_CREDIT_WA_PROMPT),
+        help     = STRING_TOKEN (STR_TME_CMI_CPL_FAB_CREDIT_WA_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = TME_CMI_CPL_FAB_CREDIT_WORKAROUND_DISABLE, flags = DFX_TME_CMI_CPL_FAB_CREDIT_WORKAROUND_DIS_FLAGS;
+        option text = STRING_TOKEN (STR_ENABLED),  value = TME_CMI_CPL_FAB_CREDIT_WORKAROUND_ENABLE, flags = DFX_TME_CMI_CPL_FAB_CREDIT_WORKAROUND_EN_FLAGS;
+      endoneof;
+    endif;
+
+    suppressif (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR
+                ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX OR
+                ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX);
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxMcDataParityCheck,
+        prompt      = STRING_TOKEN (STR_DFX_MC_DATA_PARITY_CHECK_PROMPT),
+        help        = STRING_TOKEN (STR_DFX_MC_DATA_PARITY_CHECK_HELP),
+        option text = STRING_TOKEN (STR_AUTO),  value = MC_DATA_PARITY_CHECK_AUTO,  flags = DFX_MC_DATA_PARITY_CHECK_AUTO_FLAGS;
+        option text = STRING_TOKEN (STR_DISABLED), value = MC_DATA_PARITY_CHECK_DISABLE, flags = DFX_MC_DATA_PARITY_CHECK_DIS_FLAGS;
+        option text = STRING_TOKEN (STR_ENABLED),  value = MC_DATA_PARITY_CHECK_ENABLE, flags = DFX_MC_DATA_PARITY_CHECK_EN_FLAGS;
+      endoneof;
+    endif;
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR);
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.TrefiPerChannel,
+          prompt  = STRING_TOKEN (STR_TREF_PER_CHANNEL_PROMPT),
+          help    = STRING_TOKEN (STR_TREF_PER_CHANNEL_HELP),
+          option text = STRING_TOKEN (STR_DISABLE),    value = 0, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_ENABLE),     value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.TrefiNumofRank,
+          prompt  = STRING_TOKEN (STR_NUMRANK_PER_CHANNEL_PROMPT),
+          help    = STRING_TOKEN (STR_NUMRANK_PER_CHANNEL_HELP),
+          option text = STRING_TOKEN (STR_ONE_RANK),      value = NumofRank_1, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_TWO_RANK),      value = NumofRank_2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FOUR_RANK),     value = NumofRank_4, flags = RESET_REQUIRED;
+      endoneof;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.TrefiDelay,
+          prompt    = STRING_TOKEN(STR_TREFI_DELAY_PROMPT),
+          help      = STRING_TOKEN(STR_TREFI_DELAY_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = MIN_TREFI_DELAY,
+          maximum   = MAX_TREFI_DELAY,
+          step      = 50,
+          default   = TREFI_DELAY_DEFAULT, defaultstore = MyStandardDefault,
+          default   = TREFI_DELAY_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif;
+
+    oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxDramRxEqTraining,
+        prompt   = STRING_TOKEN (STR_DRAM_RXEQ_PROMPT),
+        help     = STRING_TOKEN (STR_DRAM_RXEQ_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = DRAM_RX_EQ_DIS_FLAGS;
+        option text = STRING_TOKEN (STR_ENABLED),  value = 1, flags = DRAM_RX_EQ_EN_FLAGS;
+    endoneof;
+
+    oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxDramTxEcho,
+        prompt   = STRING_TOKEN (STR_DRAM_TX_ECHO_PROMPT),
+        help     = STRING_TOKEN (STR_DRAM_TX_ECHO_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = DRAM_TX_ECHO_CANCEL_DIS_FLAGS;
+        option text = STRING_TOKEN (STR_ENABLED),  value = 1, flags = DRAM_TX_ECHO_CANCEL_EN_FLAGS;
+    endoneof;
+
+    oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxDramLegacyRxDfe,
+        prompt   = STRING_TOKEN (STR_LEGACY_RXDFE_PROMPT),
+        help     = STRING_TOKEN (STR_LEGACY_RXDFE_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = DRAM_LEGACY_RXDFE_DIS_FLAGS;
+        option text = STRING_TOKEN (STR_ENABLED),  value = 1, flags = DRAM_LEGACY_RXDFE_EN_FLAGS;
+    endoneof;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.DcpmmEnable == 0;
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxDdrtSchedulerDebug,
+        prompt   = STRING_TOKEN (STR_DDRT_SCHEDULER_PROMPT),
+        help     = STRING_TOKEN (STR_DDRT_SCHEDULER_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = DDRT_SCHEDULER_DIS_FLAGS;
+        option text = STRING_TOKEN (STR_ENABLED),  value = 1, flags = DDRT_SCHEDULER_EN_FLAGS;
+      endoneof;
+    endif; // suppressif DcpmmEnable == 0
+
+    oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxRxCtleExtendedRangeEn,
+        prompt   = STRING_TOKEN (STR_RX_CTLE_EXTND_RANGE_PROMPT),
+        help     = STRING_TOKEN (STR_RX_CTLE_EXTND_RANGE_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = RX_CTLE_EXTENDED_RANGE_DIS_FLAGS;
+        option text = STRING_TOKEN (STR_ENABLED),  value = 1, flags = RX_CTLE_EXTENDED_RANGE_EN_FLAGS;
+    endoneof;
+
+#if FixedPcdGetBool (PcdPostedCsrAccessSupported) == 1
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxPostedCsrAccessAllowed,
+        prompt   = STRING_TOKEN (STR_MEM_POSTED_CSR_PROMPT),
+        help     = STRING_TOKEN (STR_MEM_POSTED_CSR_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = POSTED_CSR_ACCESS_DIS,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = POSTED_CSR_ACCESS_EN,   flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_AUTO),     value = POSTED_CSR_ACCESS_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+#endif
+
+#if FixedPcdGetBool (PcdCpgcRegCacheAccessSupported) == 1
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxCpgcRegCacheAccessAllowed,
+        prompt   = STRING_TOKEN (STR_MEM_CPGC_REG_CACHE_PROMPT),
+        help     = STRING_TOKEN (STR_MEM_CPGC_REG_CACHE_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = CPGC_REG_CACHE_ACCESS_DIS,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = CPGC_REG_CACHE_ACCESS_EN,   flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_AUTO),     value = CPGC_REG_CACHE_ACCESS_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+#endif
+
+#if FixedPcdGetBool (PcdCpgcGlobalSyncCtrlSupported) == 1
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxCpgcGlobalSyncCtrl,
+        prompt   = STRING_TOKEN (STR_CPGC_SYNC_CSR_PROMPT),
+        help     = STRING_TOKEN (STR_CPGC_SYNC_CSR_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = CPGC_SYNC_START_DIS,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = CPGC_SYNC_START_EN,   flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_AUTO),     value = CPGC_SYNC_START_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+#endif
+
+#ifdef DDR5_SUPPORT
+    oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxDdr5RefreshMode,
+        prompt   = STRING_TOKEN (STR_DDR5_REFRESH_MODE_PROMPT),
+        help     = STRING_TOKEN (STR_DDR5_REFRESH_MODE_HELP),
+        option text = STRING_TOKEN (STR_AUTO),                   value = DDR5_REFRESH_MODE_AUTO,      flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_REFRESH_MODE_AB_NORMAL), value = DDR5_REFRESH_MODE_AB_NORMAL, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_REFRESH_MODE_AB_FINE),   value = DDR5_REFRESH_MODE_AB_FINE,   flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_REFRESH_MODE_SB_FINE),   value = DDR5_REFRESH_MODE_SB_FINE,   flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxDdr5SsaRxSamplerSelection,
+        prompt   = STRING_TOKEN (STR_DDR5_SSA_RXSAMPLER_SELECTION_PROMPT),
+        help     = STRING_TOKEN (STR_DDR5_SSA_RXSAMPLER_SELECTION_HELP),
+        option text = STRING_TOKEN (STR_AUTO),                            value = DDR5_SSA_RXSAMPLER_AUTO,       flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_DDR5_SSA_RXSAMPLER_EVEN_ODD),     value = DDR5_SSA_RXSAMPLER_EVEN_ODD,   flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_DDR5_SSA_RXSAMPLER_EVEN_ONLY),    value = DDR5_SSA_RXSAMPLER_EVEN_ONLY,  flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_DDR5_SSA_RXSAMPLER_ODD_ONLY),     value = DDR5_SSA_RXSAMPLER_ODD_ONLY,   flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_DDR5_SSA_RXVREF),                 value = DDR5_SSA_RXVREF,               flags = RESET_REQUIRED;
+    endoneof;
+#endif
+
+  //
+  // Below DFx Setup knobs have been created for FC Emulation usage only
+  //
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxTimingOverrideCtrl,
+        prompt  = STRING_TOKEN (STR_DFX_TIMING_OVERRIDE_CTRL_PROMPT),
+        help    = STRING_TOKEN (STR_DFX_TIMING_OVERRIDE_CTRL_HELP),
+        option text = STRING_TOKEN (STR_DISABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),   value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqvallist SOCKET_MEMORY_CONFIGURATION.DfxTimingOverrideCtrl == 0;
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputRt,
+          prompt    = STRING_TOKEN (STR_INPUT_RT_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_RT_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 255,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_RT_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_RT_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.DcpmmEnable == 0;
+        numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxDdrtRt,
+          prompt    = STRING_TOKEN (STR_INPUT_DDRT_RT_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_DDRT_RT_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 255,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_DDRT_RT_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_DDRT_RT_DEFAULT, defaultstore = MyManufactureDefault,
+        endnumeric;
+      endif; // suppressif DcpmmEnable == 0
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputIoLatency,
+          prompt    = STRING_TOKEN (STR_INPUT_IOLAT_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_IOLAT_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 31,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_IOLAT_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_IOLAT_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputIoLatencyIoComp,
+          prompt    = STRING_TOKEN (STR_INPUT_IOLATIOCOMP_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_IOLATIOCOMP_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 127,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_IOLATIOCOMP_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_IOLATIOCOMP_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputTxDqDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_TXDQ_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_TXDQ_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 2047,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_TXDQ_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_TXDQ_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputTxDqsDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_TXDQS_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_TXDQS_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 2047,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_TXDQS_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_TXDQS_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputTxDqBitDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_TXDQBIT_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_TXDQBIT_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 2047,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_TXDQBIT_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_TXDQBIT_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputDdrtTxDqsDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_DDRT_TXDQS_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_DDRT_TXDQS_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 2047,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_DDRT_TXDQS_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_DDRT_TXDQS_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputDdrtTxDqBitDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_DDRT_TXDQBIT_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_DDRT_TXDQBIT_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 2047,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_DDRT_TXDQBIT_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_DDRT_TXDQBIT_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputRxDqDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_RXDQ_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_RXDQ_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 255,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_RXDQ_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_RXDQ_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputRxDqsDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_RXDQS_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_RXDQS_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 255,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_RXDQS_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_RXDQS_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputRxDqBitDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_RXDQBIT_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_RXDQBIT_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 63,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_RXDQBIT_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_RXDQBIT_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputGnt2Erid,
+          prompt    = STRING_TOKEN (STR_INPUT_GNT2ERID_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_GNT2ERID_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 511,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_GNT2ERID_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_GNT2ERID_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxCwlAdjPos,
+          prompt    = STRING_TOKEN (STR_INPUT_CWLADJPOS_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_CWLADJPOS_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 15,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_CWLP_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_CWLP_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxCwlAdjNeg,
+          prompt    = STRING_TOKEN (STR_INPUT_CWLADJNEG_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_CWLADJNEG_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 7,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = INPUT_CWLN_DEFAULT, defaultstore = MyStandardDefault,
+          default   = INPUT_CWLN_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxRcvEnDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_RCVENDEL_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_RCVENDEL_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 2047,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = RCV_EN_DEL_DEFAULT, defaultstore = MyStandardDefault,
+          default   = RCV_EN_DEL_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxDdrtRcvEnDelay,
+          prompt    = STRING_TOKEN (STR_INPUT_DDRT_RCVENDEL_PROMPT),
+          help      = STRING_TOKEN (STR_INPUT_DDRT_RCVENDEL_HELP),
+          flags     = RESET_REQUIRED,
+          minimum   = 0,
+          maximum   = 2047,
+          step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+          default   = DDRT_RCV_EN_DEL_DEFAULT, defaultstore = MyStandardDefault,
+          default   = DDRT_RCV_EN_DEL_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = SOCKET_MEMORY_CONFIGURATION.DfxInputCmdDelay,
+        prompt    = STRING_TOKEN (STR_INPUT_CMD_DELAY_PROMPT),
+        help      = STRING_TOKEN (STR_INPUT_CMD_DELAY_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 511,
+        step      = 0,   // Stepping of 0 equates to a manual entering of a value,
+                           // otherwise it will auto-increment with a left/right arrow
+        default   = INPUT_CMD_DELAY_DEFAULT, defaultstore = MyStandardDefault,
+        default   = INPUT_CMD_DELAY_DEFAULT, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+    endif; // suppressif ideqvallist SOCKET_MEMORY_CONFIGURATION.DfxTimingOverrideCtrl == 0;
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxSsaRmtRecvEnableDenormalize,
+        prompt  = STRING_TOKEN(STR_RMT_RECV_ENABLE_DENORMALIZE),
+        help    = STRING_TOKEN(STR_RMT_RECV_ENABLE_DENORMALIZE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED),              value = DFX_SSA_RMT_RECV_ENABLE_DENORMALIZE_DISABLE,  flags = DFX_SSA_RMT_RECV_ENABLE_DENORMALIZE_DISABLE_FLAGS;
+        option text = STRING_TOKEN(STR_ENABLED),               value = DFX_SSA_RMT_RECV_ENABLE_DENORMALIZE_ENABLE,   flags = DFX_SSA_RMT_RECV_ENABLE_DENORMALIZE_ENABLE_FLAGS;
+    endoneof;
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxUbiosSmbusTrace,
+      prompt    = STRING_TOKEN (STR_SMBUS_TRACE_PROMPT),
+      help      = STRING_TOKEN (STR_SMBUS_TRACE_HELP),
+      option text = STRING_TOKEN (STR_DISABLED), value = UBIOS_SMBUS_TRACE_DISABLE, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_ENABLED),  value = UBIOS_SMBUS_TRACE_ENABLE,  flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_AUTO),     value = UBIOS_SMBUS_TRACE_AUTO,    flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxSmbusI3cMode,
+      prompt    = STRING_TOKEN (STR_SMBUS_I3C_MODE_PROMPT),
+      help      = STRING_TOKEN (STR_SMBUS_I3C_MODE_HELP),
+      option text = STRING_TOKEN (STR_DISABLED), value = SMBUS_I3C_MODE_DISABLE, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_ENABLED),  value = SMBUS_I3C_MODE_ENABLE,  flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_AUTO),     value = SMBUS_I3C_MODE_AUTO,    flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+#ifndef SKX_HOST  // not used in 14nm
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxPeriodicZqCal,
+      prompt    = STRING_TOKEN (STR_DFX_PERIODIC_ZQCAL_PROMPT),
+      help      = STRING_TOKEN (STR_DFX_PERIODIC_ZQCAL_HELP),
+      option text = STRING_TOKEN (STR_DISABLED), value = DFX_PERIODIC_ZQCAL_DISABLE, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_ENABLED),  value = DFX_PERIODIC_ZQCAL_ENABLE,  flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_AUTO),     value = DFX_PERIODIC_ZQCAL_AUTO,    flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+#endif
+
+#if FixedPcdGetBool (PcdSenseAmpCalibHwFsmSupported) == 1
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxSenseAmpCalibHwSwOption,
+      prompt    = STRING_TOKEN (STR_DFX_SENSE_AMP_PROMPT),
+      help      = STRING_TOKEN (STR_DFX_SENSE_AMP_HELP),
+      option text = STRING_TOKEN (STR_SENSE_AMP_HW_FSM), value = DFX_SENSE_AMP_CALIB_HW_FSM,  flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_SENSE_AMP_SW),     value = DFX_SENSE_AMP_CALIB_SW,      flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_AUTO),             value = DFX_SENSE_AMP_CALIB_AUTO,    flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+#endif // PcdSenseAmpCalibHwFsmSupported
+
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxSwXoverOption,
+        prompt    = STRING_TOKEN (STR_DFX_SW_XOVER_PROMPT),
+        help      = STRING_TOKEN (STR_DFX_SW_XOVER_HELP),
+        option text = STRING_TOKEN (STR_SW_XOVER_SERIAL),   value = DFX_XOVER_SW_SERIAL,   flags = DFX_SW_XOVER_SERIAL_FLAGS;
+        option text = STRING_TOKEN (STR_SW_XOVER_PARALLEL), value = DFX_XOVER_SW_PARALLEL, flags = DFX_SW_XOVER_PARALLEL_FLAGS;
+      endoneof;
+    endif;
+
+#ifdef CWV_A0_REMOVE_POST_PO
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.DcpmmEnable == 0;
+      oneof varid  = SOCKET_MEMORY_CONFIGURATION.DfxDdrtSkipMB2Command,
+        prompt   = STRING_TOKEN (STR_DDRT_SKIPMB2COMMAND_PROMPT),
+        help     = STRING_TOKEN (STR_DDRT_SKIPMB2COMMAND_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = DFX_DDRT_SKIP_MB2_DISABLE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = DFX_DDRT_SKIP_MB2_ENABLE, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+    endif; // suppressif DcpmmEnable == 0
+#endif
+    //
+    // Early completion Setup Options
+    //
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.HbmSku == 0;
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxDdrEarlyCmpEn,
+        prompt  = STRING_TOKEN(STR_DFX_DDR_EARLY_CMP_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_DDR_EARLY_CMP_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = DDR_EARLY_CMP_DISABLED, flags = DDR_EARLY_CMP_DISABLED_FLAGS;
+          option text = STRING_TOKEN(STR_ENABLE),  value = DDR_EARLY_CMP_ENABLED,  flags = DDR_EARLY_CMP_ENABLED_FLAGS;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxHbmEarlyCmpEn,
+        prompt  = STRING_TOKEN(STR_DFX_HBM_EARLY_CMP_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_HBM_EARLY_CMP_HELP),
+          option text = STRING_TOKEN(STR_ENABLE),  value = HBM_EARLY_CMP_ENABLED,  flags = HBM_EARLY_CMP_ENABLED_FLAGS;
+          option text = STRING_TOKEN(STR_DISABLE), value = HBM_EARLY_CMP_DISABLED, flags = HBM_EARLY_CMP_DISABLED_FLAGS;
+      endoneof;
+    endif;
+
+    // DFX Setup Options of XOR Decoder
+    suppressif (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR
+                ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX OR
+                ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX OR
+                ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR);
+      goto VFR_FORMID_DFX_XOR_DECODER,
+        prompt = STRING_TOKEN(STR_DFX_XOR_DECODER_UNIT_SUBTITLE),
+        help   = STRING_TOKEN(STR_DFX_XOR_DECODER_UNIT_HELP);
+    endif;
+endform; // form formid = VFR_FORMID_MEMORY_DFX
+
+  //
+  // DFX Setup Options of XOR Decoder
+  //
+  form formid = VFR_FORMID_DFX_XOR_DECODER,
+  title       = STRING_TOKEN(STR_DFX_XOR_DECODER_UNIT_SUBTITLE);
+    // Disable all XOR decoder Setup options for ICX CPU except BankXorEn option
+    suppressif (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP OR
+                ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD);
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxClusterXorEn,
+        prompt  = STRING_TOKEN(STR_DFX_CLUSTER_XOR_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_CLUSTER_XOR_HELP),
+          option text = STRING_TOKEN(STR_ENABLE),  value = CLUSTER_XOR_ENABLED,  flags = CLUSTER_XOR_ENABLED_FLAGS;
+          option text = STRING_TOKEN(STR_DISABLE), value = CLUSTER_XOR_DISABLED, flags = CLUSTER_XOR_DISABLED_FLAGS;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxChannelXorEn,
+        prompt  = STRING_TOKEN(STR_DFX_CHANNEL_XOR_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_CHANNEL_XOR_HELP),
+          option text = STRING_TOKEN(STR_ENABLE),  value = CHANNEL_XOR_ENABLED,  flags = CHANNEL_XOR_ENABLED_FLAGS;
+          option text = STRING_TOKEN(STR_DISABLE), value = CHANNEL_XOR_DISABLED, flags = CHANNEL_XOR_DISABLED_FLAGS;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxPseudoChannelXorEn,
+        prompt  = STRING_TOKEN(STR_DFX_PSEUDO_CHANNEL_XOR_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_PSEUDO_CHANNEL_XOR_HELP),
+          option text = STRING_TOKEN(STR_ENABLE),  value = PSEUDO_CHANNEL_XOR_ENABLED,  flags = PSEUDO_CHANNEL_XOR_ENABLED_FLAGS;
+          option text = STRING_TOKEN(STR_DISABLE), value = PSEUDO_CHANNEL_XOR_DISABLED, flags = PSEUDO_CHANNEL_XOR_DISABLED_FLAGS;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxDimmXorEn,
+        prompt  = STRING_TOKEN(STR_DFX_DIMM_XOR_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_DIMM_XOR_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = DIMM_XOR_DISABLED, flags = DIMM_XOR_DISABLED_FLAGS;
+          option text = STRING_TOKEN(STR_ENABLE),  value = DIMM_XOR_ENABLED,  flags = DIMM_XOR_ENABLED_FLAGS;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxRankXorEn,
+        prompt  = STRING_TOKEN(STR_DFX_RANK_XOR_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_RANK_XOR_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = RANK_XOR_DISABLED, flags = RANK_XOR_DISABLED_FLAGS;
+          option text = STRING_TOKEN(STR_ENABLE),  value = RANK_XOR_ENABLED,  flags = RANK_XOR_ENABLED_FLAGS;
+      endoneof;
+
+      oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxSidXorEn,
+        prompt  = STRING_TOKEN(STR_DFX_SID_XOR_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_SID_XOR_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = SID_XOR_DISABLED, flags = SID_XOR_DISABLED_FLAGS;
+          option text = STRING_TOKEN(STR_ENABLE),  value = SID_XOR_ENABLED,  flags = SID_XOR_ENABLED_FLAGS;
+      endoneof;
+    endif;
+
+    oneof varid = SOCKET_MEMORY_CONFIGURATION.DfxBankXorEn,
+      prompt  = STRING_TOKEN(STR_DFX_BANK_XOR_PROMPT),
+      help    = STRING_TOKEN(STR_DFX_BANK_XOR_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = BANK_XOR_DISABLED, flags = BANK_XOR_DISABLED_FLAGS;
+        option text = STRING_TOKEN(STR_ENABLE),  value = BANK_XOR_ENABLED,  flags = BANK_XOR_ENABLED_FLAGS;
+    endoneof;
+endform;  // form formid = VFR_FORMID_DFX_XOR_DECODER
+

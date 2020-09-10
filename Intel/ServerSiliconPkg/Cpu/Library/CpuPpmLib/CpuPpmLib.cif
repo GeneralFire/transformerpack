@@ -1,0 +1,11 @@
+<component>
+	name = "CpuPpmLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\Library\CpuPpmLib\"
+	RefName = "ServerSiliconPkg.Cpu.Library.CpuPpmLib"
+[INF]
+"CpuPpmLibSprPei.inf"
+"CpuPpmLibSprDxe.inf"
+[files]
+"CpuPpmLib.sdl"	
+<endComponent>

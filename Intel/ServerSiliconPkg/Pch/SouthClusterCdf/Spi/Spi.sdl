@@ -1,0 +1,60 @@
+TOKEN
+    Name  = "Spi_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Spi support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PchSpiRuntime_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PchSpiRuntime support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "PchSpiRuntime"
+    File  = "RuntimeDxe\PchSpiRuntime.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+    Token = "PchSpiRuntime_INF_SUPPORT" "=" "1"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PciExpressLib"
+    Instance  = "MdePkg.DxeRuntimePciExpressLib"
+    Override = "ServerSiliconPkg.PchSpiRuntime"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"    
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.DxePcdLib"
+    Override  = "ServerSiliconPkg.PchSpiRuntime"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"    
+End
+
+TOKEN
+    Name  = "PchSpiSmm_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PchSpiSmm support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "PchSpiSmm"
+    File  = "Smm/PchSpiSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "PchSpiSmm_INF_SUPPORT" "=" "1"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"    
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.DxePcdLib"
+    Override  = "ServerSiliconPkg.PchSpiSmm"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"    
+End

@@ -1,0 +1,14 @@
+<component>
+	name = "UpiHostDataLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Upi\Library\UpiHostDataLib\"
+	RefName = "ServerSiliconPkg.Upi.Library.UpiHostDataLib"
+[INF]
+"UpiHostDataLibPei.inf"
+"UpiHostDataLibDxe.inf"
+"UpiHostDataLibSmm.inf"
+"UpiHostDataLibDxeRuntime.inf"
+[files]
+"UpiHostDataLib.sdl"
+"UpiHostData.h"	
+<endComponent>

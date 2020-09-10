@@ -1,0 +1,11 @@
+<component>
+	name = "DxeSmmMmPciLib"
+	category = ModulePart
+	LocalRoot = "Intel\CpRcPkg\Library\DxeSmmMmPciLib\"
+	RefName = "CpRcPkg.Library.DxeSmmMmPciLib"
+[INF]
+"DxeMmPciLib.inf"
+"SmmMmPciLib.inf"
+[files]
+"DxeSmmMmPciLib.sdl"	
+<endComponent>

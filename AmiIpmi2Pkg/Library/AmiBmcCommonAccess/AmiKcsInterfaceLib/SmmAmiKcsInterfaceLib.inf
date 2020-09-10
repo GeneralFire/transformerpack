@@ -1,0 +1,56 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file SmmAmiKcsInterfaceLib.inf
+#
+#  INF description file for AmiKcsInterfaceLib Library for DXE SMM drivers.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = SmmAmiKcsInterfaceLib
+  FILE_GUID         = B73FFFA6-B027-40E0-B2A6-1CEC5DEEA633
+  MODULE_TYPE       = DXE_SMM_DRIVER
+  VERSION_STRING    = 1.1
+  LIBRARY_CLASS     = AmiKcsInterfaceLib | DXE_SMM_DRIVER
+
+[Sources]
+  SmmAmiKcsInterfaceLib.c
+  AmiKcsInterfaceLibCommon.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+  DebugLib
+  TimerLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  AmiBmcCommonInterfaceLib
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

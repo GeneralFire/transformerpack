@@ -1,0 +1,51 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "SiScheduleResetLib"
+    Instance  = "ClientOneSiliconPkg.BaseSiScheduleResetLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "BaseSiScheduleResetLib"
+    File  = "BaseSiScheduleResetLib/BaseSiScheduleResetLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+LibraryMapping
+    Class  = "PchRtcLib"
+    Instance  = "ClientOneSiliconPkg.PchRtcLib"    
+End
+
+INFComponent
+    Name  = "PchRtcLib"
+    File  = "PeiDxeSmmPchRtcLib/PeiDxeSmmPchRtcLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE" 
+End
+
+
+LibraryMapping
+    Class  = "SmmPchPrivateLib"
+    Instance  = "ClientOneSiliconPkg.SmmPchPrivateLib"
+	Arch = "X64"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1" 	
+End
+
+INFComponent
+    Name  = "SmmPchPrivateLib"
+    File  = "SmmPchPrivateLib/SmmPchPrivateLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"     
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+

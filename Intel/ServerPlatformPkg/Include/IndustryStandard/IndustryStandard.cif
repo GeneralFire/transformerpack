@@ -1,0 +1,9 @@
+<component>
+	name = "IndustryStandard"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Include\IndustryStandard\"
+	RefName = "ServerPlatformPkg.Include.IndustryStandard"
+[files]
+"WheaAcpi.h"
+"WheaDefs.h"
+<endComponent>

@@ -1,0 +1,10 @@
+<component>
+    name = "Espi"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Espi\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Espi"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Espi.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Espi.Library"
+"ClientOneSiliconPkg.IpBlock.Espi.LibraryPrivate"
+<endComponent>

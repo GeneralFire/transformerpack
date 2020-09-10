@@ -1,0 +1,12 @@
+<component>
+    name = "Protocol"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\SystemAgent\Include\Protocol\"
+    RefName = "ClientOneSiliconPkg.SystemAgent.Include.Protocol"
+[files]
+"BdatAccess.h"	
+"MemInfo.h"	
+"MemoryAddressEncode.h"	
+"MemoryAddressEncodeDecode.h"	
+"SaPolicy.h"	
+<endComponent>

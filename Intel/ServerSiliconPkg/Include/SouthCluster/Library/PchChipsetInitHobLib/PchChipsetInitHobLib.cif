@@ -1,0 +1,8 @@
+<component>
+	name = "PchChipsetInitHobLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\SouthCluster\Library\PchChipsetInitHobLib\"
+	RefName = "ServerSiliconPkg.Include.SouthCluster.Library.PchChipsetInitHobLib"
+[files]
+"PchChipsetInitHobLibrary.h"	
+<endComponent>

@@ -1,0 +1,16 @@
+TOKEN
+    Name = "FspDebugInit_SUPPORT"
+    Value = "0"
+    Help  = "Main switch to enable FspDebugInit support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+INFComponent
+    Name  = "FspDebugServicePei"
+    File  = "Pei/FspDebugServicePei.inf"
+    Package  = "WhtileyFspPkg"
+    ModuleTypes  = "PEIM"
+End

@@ -1,0 +1,9 @@
+<component>
+    name = "CpuPcieRp"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\CpuPcieRp\"
+    RefName = "ClientOneSiliconPkg.IpBlock.CpuPcieRp"
+[parts]
+"ClientOneSiliconPkg.IpBlock.CpuPcieRp.Include"
+"ClientOneSiliconPkg.IpBlock.CpuPcieRp.IncludePrivate"
+<endComponent>

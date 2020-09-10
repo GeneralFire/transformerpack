@@ -1,0 +1,10 @@
+<component>
+    name = "Protocol"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\Include\Protocol\"
+    RefName = "ClientOneSiliconPkg.Cpu.Include.Protocol"
+[files]
+"SmmResourceConfigProtocol.h"
+"CpuInfo.h"	
+"CpuPolicyProtocol.h"	
+<endComponent>

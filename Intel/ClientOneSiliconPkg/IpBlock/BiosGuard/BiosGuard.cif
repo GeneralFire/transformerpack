@@ -1,0 +1,11 @@
+<component>
+    name = "BiosGuard"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\BiosGuard\"
+    RefName = "ClientOneSiliconPkg.IpBlock.BiosGuard"
+[files]
+"BiosGuard.sdl"
+"IncludePrivate\Library\BiosGuardInit.h"
+[parts]
+"ClientOneSiliconPkg.IpBlock.BiosGuard.LibraryPrivate"
+<endComponent>

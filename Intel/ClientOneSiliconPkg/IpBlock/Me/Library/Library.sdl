@@ -1,0 +1,138 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "Library"
+    TokenType = Expression
+    TargetDSC = Yes
+End
+
+LibraryMapping
+    Class  = "DxeAsfHeciLib"
+    Instance  = "ClientOneSiliconPkg.DxeAsfHeciLib"
+	Arch  = "X64"    
+    Token = "AMT_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "DxeAsfHeciLib"
+    File  = "DxeAsfHeciLib/DxeAsfHeciLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "AMT_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "DxeAsfLib"
+    Instance  = "ClientOneSiliconPkg.DxeAsfLib"
+    Arch = "X64"
+    Token = "AMT_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "MeChipsetLib"
+    File  = "PeiDxeMeChipsetLib/PeiDxeMeChipsetLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MeChipsetLib"
+    Instance  = "ClientOneSiliconPkg.MeChipsetLib"
+End
+
+INFComponent
+    Name  = "DxeAsfLib"
+    File  = "DxeAsfLib/DxeAsfLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "AMT_ENABLE" "=" "1" 
+End
+
+LibraryMapping
+    Class  = "DxeMeLib"
+    Instance  = "ClientOneSiliconPkg.DxeMeLib"
+    Arch  = "X64"     
+End
+
+INFComponent
+    Name  = "DxeMeLib"
+    File  = "DxeMeLib/DxeMeLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "DxeMePolicyLib"
+    Instance  = "ClientOneSiliconPkg.DxeMePolicyLib"
+    Arch  = "X64"      
+End
+
+INFComponent
+    Name  = "DxeMePolicyLib"
+    File  = "DxeMePolicyLib/DxeMePolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PeiMeLib"
+    Instance  = "ClientOneSiliconPkg.PeiMeLib"
+    Arch  = "IA32"      
+End
+
+INFComponent
+    Name  = "PeiMeLib"
+    File  = "PeiMeLib/PeiMeLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MeFwStsLib"
+    Instance  = "ClientOneSiliconPkg.MeFwStsLib"
+    Arch  = "IA32"        
+End
+
+INFComponent
+    Name  = "MeFwStsLib"
+    File  = "BaseMeFwStsLib\BaseMeFwStsLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MeFwStsLib"
+    Instance  = "ClientOneSiliconPkg.MeFwStsLib"
+    Arch  = "X64"
+    Token = "ME_ENABLE" "=" "1" 
+    Token = "ME_WS_ENABLE" "=" "1"       
+End
+
+INFComponent
+    Name  = "MeFwStsLib"
+    File  = "BaseMeFwStsLib\BaseMeFwStsLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_WS_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PeiMePolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiMePolicyLib"
+    Arch  = "IA32"  
+End
+
+INFComponent
+    Name  = "PeiMePolicyLib"
+    File  = "PeiMePolicyLib\PeiMePolicyLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End

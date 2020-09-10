@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "ClientOneSiliconPkg_Overclocking_UPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling ClientOneSiliconPkg support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiOcPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiOcPolicyLib"
+	Arch = "IA32"	
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiOcPolicyLib"
+    File  = "LibraryPrivate\PeiOcPolicyLib\PeiOcPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"  
+End

@@ -1,0 +1,9 @@
+TOKEN
+    Name  = "TraceHub_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling TraceHub support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+

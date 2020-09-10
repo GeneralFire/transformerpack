@@ -1,0 +1,20 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+[Defines]
+    INF_VERSION     = 0x00010005
+    BASE_NAME       = BiosGuardFlashLibNull
+    FILE_GUID       = BCF7C2B1-7D5E-48C7-8607-6BB33BDA55F6
+    MODULE_TYPE     = BASE
+    VERSION_STRING  = 1.0
+    LIBRARY_CLASS   = BiosGuardFlashLib
+
+[Sources]
+    BiosGuardFlashLibNull.c
+
+[Packages]
+    MdePkg/MdePkg.dec

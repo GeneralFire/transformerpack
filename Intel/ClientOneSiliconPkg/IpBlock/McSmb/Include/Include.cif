@@ -1,0 +1,8 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\McSmb\Include\"
+    RefName = "ClientOneSiliconPkg.IpBlock.McSmb.Include"
+[files]
+"McSmbCtrl.h"	
+<endComponent>

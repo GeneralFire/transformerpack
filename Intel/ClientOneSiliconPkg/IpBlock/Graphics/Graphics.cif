@@ -1,0 +1,9 @@
+<component>
+    name = "Graphics"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Graphics\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Graphics"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Graphics.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Graphics.LibraryPrivate"
+<endComponent>

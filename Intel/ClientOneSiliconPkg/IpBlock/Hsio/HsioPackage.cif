@@ -1,0 +1,11 @@
+<component>
+    name = "Hsio"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Hsio\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Hsio"
+[files]
+"Hsio.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Hsio.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Hsio.LibraryPrivate"
+<endComponent>

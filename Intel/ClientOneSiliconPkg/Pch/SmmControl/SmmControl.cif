@@ -1,0 +1,10 @@
+<component>
+    name = "SmmControl"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\SmmControl\"
+    RefName = "ClientOneSiliconPkg.Pch.SmmControl"
+[INF]
+"RuntimeDxe\SmmControl.inf"
+[files]
+"SmmControl.sdl"	
+<endComponent>

@@ -1,0 +1,8 @@
+<component>
+    name = "IshInfoLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Ish\Library\IshInfoLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Ish.Library.IshInfoLib"
+[INF]
+"IshInfoLibVer2.inf"
+<endComponent>

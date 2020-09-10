@@ -1,0 +1,26 @@
+<component>
+    name = "ServerSecurityPkg"
+    category = eModule
+    LocalRoot = "Intel\ServerSecurityPkg\"
+    RefName = "ServerSecurityPkg"
+[INF]
+"Tdx\TdxPostMem\TdxPostMem.inf"
+"Ppi\AppAdapterSgx3v0\AppAdapterSgx3v0.inf"
+[files]
+"Include\Library\FusaSafPolicyLib.h"
+"Include\Library\PfrLib.h"
+"Include\Library\Stl2BiosLib.h"
+"ServerSecurityPkg.dec"	
+"ServerSecurityPkg.sdl"	
+"Tdx\TdxPostMem\TdxPostMem.h"
+"Include\Library\PfrHw.h"
+"Include\Library\AppAdapterSgx3v0Lib.h"
+"Include\Protocol\PfrProtocol.h"
+"Include\Ppi\AppSgx3v0Ppi.h"
+"Ppi\AppAdapterSgx3v0\AppAdapterSgx3v0.h"
+[parts]
+"ServerSecurityPkg.Library"
+"ServerSecurityPkg.Mktme"
+"ServerSecurityPkg.Sgx"
+"ServerSecurityPkg.Universal"
+<endComponent>

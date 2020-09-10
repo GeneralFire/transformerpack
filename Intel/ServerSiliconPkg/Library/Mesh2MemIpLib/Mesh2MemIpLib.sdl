@@ -1,0 +1,65 @@
+TOKEN
+    Name  = "Mesh2MemIpLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Mesh2MemIpLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "Mesh2MemIpLib"
+    File  = "Mesh2MemIpLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "Mesh2MemIpLib"
+    File  = "Mesh2MemIpLibSmm10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "Mesh2MemIpLib"
+    File  = "Mesh2MemIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "Mesh2MemIpLib"
+    File  = "Mesh2MemIpLibSprHbm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "Mesh2MemIpLib"
+    Instance  = "ServerSiliconPkg.Mesh2MemIpLib"
+End
+
+INFComponent
+#Name changed for smm instance to mapped to DXE_SMM_DRIVER
+    Name  = "Mesh2MemIpLibSmm"
+#Name changed for smm instance to mapped to DXE_SMM_DRIVER    
+    File  = "Mesh2MemIpLibSmmSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "Mesh2MemIpLib"
+    Instance  = "ServerSiliconPkg.Mesh2MemIpLibSmm"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+End

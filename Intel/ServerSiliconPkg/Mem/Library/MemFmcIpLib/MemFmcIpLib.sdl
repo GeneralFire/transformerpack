@@ -1,0 +1,28 @@
+TOKEN
+	Name  = "MemFmcIpLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling MemFmcIpLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "MemFmcIpLib"
+	File  = "FmcIpLibFnv.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "DDR5_ENABLE" "=" "0"
+End
+
+INFComponent
+	Name  = "MemFmcIpLib"
+	File  = "FmcIpLibCwv.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "DDR5_ENABLE" "=" "1"
+End
+
+LibraryMapping
+	Class  = "MemFmcIpLib"
+	Instance  = "ServerSiliconPkg.MemFmcIpLib"
+End

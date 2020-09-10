@@ -1,0 +1,16 @@
+TOKEN
+	Name  = "SerialPortLibUsb_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling SerialPortLibUsb support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "SerialPortLibUsb"
+	File  = "SerialPortLibUsb.inf"
+	Package  = "ServerPlatformPkg"
+	ModuleTypes  = "BASE"
+End
+
+

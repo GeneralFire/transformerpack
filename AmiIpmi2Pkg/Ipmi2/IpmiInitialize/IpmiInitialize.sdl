@@ -1,0 +1,323 @@
+TOKEN
+    Name  = "IpmiInitialize_SUPPORT"
+    Value  = "1"
+    Help  = "Switch to enable IpmiInitialize support in the project."
+    TokenType = Boolean
+    TargetH = Yes
+    Master = Yes
+End
+
+PATH
+    Name  = "IpmiInitialize_DIR"
+    Path  = "AmiIpmi2Pkg/Ipmi2/IpmiInitialize"
+    Help = "Path to IpmiInitialize sub module in project."
+End
+
+TOKEN
+    Name  = "PeiIpmiInitialize_SUPPORT"
+    Value  = "1"
+    Help  = "Switch to enable PeiIpmiInitialize support in the project."
+    TokenType = Boolean
+    Token = "IpmiInitialize_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiIpmiInitialize"
+    File  = "PeiIpmiInitialize.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "PEIM"
+    Help  = "Includes PeiIpmiInitialize.inf to Project."
+    Token = "PeiIpmiInitialize_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "PeiIpmiInitialize"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "AmiIpmi2Pkg.PeiIpmiInitialize"
+    Apriori_Index  = "3"
+    Help  = "Includes PeiIpmiInitialize driver in FV_BB and dispatches based on a priori index."
+    Token = "PeiIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "INIT_HOST_BMC_INTERFACE_HOOK"
+    InvokeOrder = ReplaceParent
+    Help  = "Elink to provide hooks in order to initialize HOST to decode BMC addresses."
+    Token = "PeiIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "InitLpcBmc,"
+    Parent  = "INIT_HOST_BMC_INTERFACE_HOOK"
+    InvokeOrder = AfterParent
+    Help  = "Elink to provide default hook for LPC initialization."
+    Token = "PeiIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "BMC_INIT_DELAY_HOOK"
+    InvokeOrder = ReplaceParent
+    Help  = "Elink to provide hooks to give delay for BMC initialization."
+    Token = "BMC_INIT_DELAY" "=" "1"
+    Token = "PeiIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "BmcInitDelay,"
+    Parent  = "BMC_INIT_DELAY_HOOK"
+    InvokeOrder = AfterParent
+    Help  = "Elink to provide default hook which gives waiting time for BMC initialization."
+    Token = "BMC_INIT_DELAY" "=" "1"
+    Token = "PeiIpmiInitialize_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BMC_INIT_FIXED_DELAY"
+    Value  = "0x1C9C380"
+    Help  = "30 Seconds delay."
+    TokenType = Integer
+    TargetH = Yes
+    Token = "PeiIpmiInitialize_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "DxeIpmiInitialize_SUPPORT"
+    Value  = "1"
+    Help  = "Switch to enable DxeIpmiInitialize support in the project"
+    TokenType = Boolean
+    Token = "IpmiInitialize_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "IPMI_CMOS_CLEAR_RESET_TYPE"
+    Value  = "1"
+    Help  = "Select value 1 - Warm Reset, 0 - Cold Reset"
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "DxeIpmiInitialize"
+    File  = "DxeIpmiInitialize.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+    Help  = "Includes DxeIpmiInitialize.inf to Project."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "DxeIpmiInitialize"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "AmiIpmi2Pkg.DxeIpmiInitialize"
+    Apriori_Index  = "5"
+    Help  = "Includes DxeIpmiInitialize driver in FV_MAIN and dispatches based on a priori index."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+    Title  = "Ipmi KCS Asl Container"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x0"
+    Help  = "Under SPMI scope, initializes the resource details for KCS interface."
+    Dev_type  = "Container"
+    Dev  = 00h
+    ASLfile  = "'AmiIpmi2Pkg/Ipmi2/IpmiInitialize/IpmiKcs.asl;After Pci Tree'"
+    Virtual = Yes
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+    Token = "DEFAULT_SYSTEM_INTERFACE" "=" "AmiSysInterfaceKcs"
+End
+
+PCIDEVICE
+    Title  = "Ipmi BT Asl Container"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x0"
+    Help  = "Under SPMI scope, initializes the resource details for BT interface."
+    Dev_type  = "Container"
+    Dev  = 00h
+    ASLfile  = "'AmiIpmi2Pkg/Ipmi2/IpmiInitialize/IpmiBt.asl;After Pci Tree'"
+    Virtual = Yes
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+    Token = "DEFAULT_SYSTEM_INTERFACE" "=" "AmiSysInterfaceBt"
+End
+
+PCIDEVICE
+    Title  = "Ipmi SSIF Asl Container"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x0"
+    Help  = "Under SPMI scope, initializes the resource details for SSIF interface."
+    Dev_type  = "Container"
+    Dev  = 00h
+    ASLfile  = "'AmiIpmi2Pkg/Ipmi2/IpmiInitialize/IpmiSsif.asl;After Pci Tree'"
+    Virtual = Yes
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+    Token = "DEFAULT_SYSTEM_INTERFACE" "=" "AmiSysInterfaceSsif"
+End
+
+ELINK
+    Name  = "gEfiDxeIpmiTransportProtocolGuid"
+    Parent  = "AdditionalServerMgmtSetupProtocols"
+    InvokeOrder = AfterParent
+    Help  = "Elink to provide Dxe Ipmi Transport Protocol Guid in Additional ServerMgmt Setup Protocols list."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "gAmiPostManagerProtocolGuid"
+    Parent  = "SERVER_MGMT_SETUP_PROTOCOLS"
+    InvokeOrder = AfterParent
+    Help  = "Elink to provide Ami Post Manager Protocol Guid in Additional ServerMgmt Setup Protocols list."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "$(IpmiInitialize_DIR)/BmcTimeZoneCallback.c"
+    Parent  = "SERVER_MGMT_SETUP_CALLBACK_FILES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include BmcTimeZoneCallback.c file in ServerMgmtSetup callback files list when Time zone support is enabled."
+    Token = "BMC_TIMEZONE_SUPPORT" "=" "1"
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_TIME_ZONE_KEY,BmcTimeZoneCallback),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcTimeZoneCallback to ServerMgmtSetup callback's list when Time zone support is enabled."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+    Token = "BMC_TIMEZONE_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "InitBmcTimeZoneDisplay,"
+    Parent = "SERVER_MGMT_SETUP_STRING_INIT"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include default function to initialize the current BMC time zone when Time zone support is enabled."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+    Token = "BMC_TIMEZONE_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "$(IpmiInitialize_DIR)/BmcWarmReset.c"
+    Parent  = "SERVER_MGMT_SETUP_CALLBACK_FILES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include BmcWarmReset.c file in ServerMgmtSetup callback files list when Warm reset support is enabled."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+    Token = "BMC_WARM_RESET_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SERVER_MGMT_CLASS_ID,SERVER_MGMT_SUBCLASS_ID,BMC_WARM_RESET_KEY,BmcWarmResetCallbackFunction),"
+    parent  ="SERVER_MGMT_SETUP_ITEM_CALLBACKS"
+    InvokeOrder  = AfterParent
+    Help  = "Elink to include BmcWarmResetCallbackFunction to ServerMgmtSetup callback's list when Warm reset support is enabled."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+    Token = "BMC_WARM_RESET_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "IPMI_OEM_SPMI_UPDATE_HOOK"
+    InvokeOrder = ReplaceParent
+    Help  = "Elink to provide hooks for OEM SPMI initialization."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "IPMI_OEM_SMBIOS_TYPES_UPDATE_HOOK"
+    InvokeOrder = ReplaceParent
+    Help  = "Elink to provide hooks for OEM Smbios types initialization."
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "IPMI_OEM_SYSTEM_INFO_UPDATE_HOOK"
+    InvokeOrder = ReplaceParent
+    Token = "IPMI_DEFAULT_HOOK_SUPPORT" "=" "0"
+    Help  = "Elink to provide hooks for OEM System info Parameter initialization when Default hook support is disabled."
+End
+
+TOKEN
+    Name = "IPMI_BMC_TIME_SYNC_TO_BIOS_TIME_SUPPORT"
+    Value = "1"
+    Help = "To enable or disable setting BMC time synchronous to BIOS time. 1-Sets Bmc time sync to Bios time, 0-Do not set Bmc time sync to Bios time."
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "SmmIpmiInitialize_SUPPORT"
+    Value  = "1"
+    Help  = "Switch to enable SmmIpmiInitialize support in the project."
+    TokenType = Boolean
+    Token = "SMM_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "SmmIpmiInitialize"
+    File  = "SmmIpmiInitialize.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Help  = "Includes SmmIpmiInitialize.inf to Project."
+    Token = "SMM_SUPPORT" "=" "1"
+    Token = "SmmIpmiInitialize_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BMC_USB_DRIVER_BINDING_SUPPORT"
+        Value  = "1"
+        Help  = "1- (Default) Use AmiUsbDriverBiniding\ 0 - Use Notify Call back"
+        TokenType = Integer
+        TargetH = Yes
+End
+
+INFComponent
+    Name  = "UsbInterface"
+    File  = "AmiUsbInterface.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "UEFI_DRIVER"
+    Token = "BMC_USB_DRIVER_BINDING_SUPPORT" "=" "1"
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.PeiIpmiInitialize"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "PeiIpmiInitialize_SUPPORT" "=" "1"
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.DxeIpmiInitialize"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+   
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.SmmIpmiInitialize"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "SmmIpmiInitialize_SUPPORT" "=" "1"
+End
+

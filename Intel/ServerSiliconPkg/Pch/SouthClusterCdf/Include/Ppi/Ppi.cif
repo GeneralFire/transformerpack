@@ -1,0 +1,13 @@
+<component>
+    name = "Ppi"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Include\Ppi\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.Include.Ppi"
+[files]
+"Dwr.h"	
+"PchHsioPtssTable.h"	
+"PchPolicy.h"	
+"PchReset.h"	
+"Spi.h"	
+"Wdt.h"	
+<endComponent>

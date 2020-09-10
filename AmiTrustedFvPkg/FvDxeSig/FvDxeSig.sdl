@@ -1,0 +1,38 @@
+TOKEN
+    Name  = "FvDxeSig_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "FvDxeSig_SectionGUID"
+    Value  = "72A45C4B-F348-408f-B913-F7839F247CE2"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+INFComponent
+    Name  = "FvDxeSig"
+    File  = "FvDxeSig.inf"
+    Package  = "AmiModulePkg"
+    ModuleTypes  = "USER_DEFINED"
+End
+
+FFS_FILE
+    Name  = "FvDxeSig"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "AmiModulePkg.FvDxeSig"
+    Rule_Override  = "SubtypeGuidUncompressedNoChecksum"
+    Index  = 1
+    Token = "NESTED_FV_MAIN" "=" "0"
+End
+
+FFS_FILE
+    Name  = "FvDxeSig"
+    FD_AREA  = "FV_MAIN_WRAPPER"
+    INFComponent  = "AmiModulePkg.FvDxeSig"
+    Rule_Override  = "SubtypeGuidUncompressedNoChecksum"
+    Index  = 1
+    Token = "NESTED_FV_MAIN" "=" "1"
+End

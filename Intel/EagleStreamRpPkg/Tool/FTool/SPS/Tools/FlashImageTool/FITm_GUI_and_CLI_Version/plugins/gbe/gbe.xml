@@ -1,0 +1,28 @@
+<!--
+INTEL CONFIDENTIAL
+Copyright 2017-2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+
+<container>
+    <configuration version="0.5">
+        <file name="input_file" value="" ui_params="{'region_option': 'gbe', 'binary_input': 'true'}"/>
+        <byte_array name="mac_address" size="6" value="" ui_params="{'region_option': 'gbe'}" />
+    </configuration>
+    <layout>
+        <byte_array name="mac_address" size="6" calculate="/configuration/mac_address.empty ? /decomposition/mac_address.value : /configuration/mac_address.value"/>
+        <byte_array name="blob" calculate="/decomposition/blob.value"/>
+        <byte_array name="padding" size="0" align="0x1000" />
+    </layout>
+    <decomposition file="/configuration/input_file.path">
+        <byte_array name="mac_address" size="6"/>
+        <byte_array name="blob" size="this.buffer_size - parent/mac_address.size"/>
+    </decomposition>
+</container>

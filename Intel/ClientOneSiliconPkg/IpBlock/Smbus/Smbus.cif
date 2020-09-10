@@ -1,0 +1,14 @@
+<component>
+    name = "Smbus"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Smbus\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Smbus"
+[INF]
+"Dxe\SmbusDxe.inf"
+"Smm\SmbusSmm.inf"
+[files]
+"Smbus.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Smbus.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Smbus.LibraryPrivate"
+<endComponent>

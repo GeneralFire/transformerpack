@@ -1,0 +1,11 @@
+<component>
+	name = "SerialPortLibUsb"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Library\SerialPortLibUsb\"
+	RefName = "ServerPlatformPkg.Library.SerialPortLibUsb"
+[INF]
+"SerialPortLibUsb.inf"
+[files]
+"SerialPortLibUsb.sdl"
+"SerialPortLibUsb.h"	
+<endComponent>

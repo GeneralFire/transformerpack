@@ -1,0 +1,30 @@
+<component>
+    name = "Setup"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Platform\Dxe\Setup\"
+    RefName = "EagleStreamRpPkg.Platform.Dxe.Setup"
+[INF]
+"DxePlatform.inf"
+[files]
+"AmtSetup.uni"
+"AmtSetup.hfr"
+"MeSetup.hfr"
+"MeSetup.h"
+"MeSetup.c"
+"ApplicationProfile.h"	
+"Common.hfr"	
+"ErrorManager.vfr"	
+"MeSpsSetup.h"		
+"Security.vfr"	
+"SetupMisc.h"	
+"SetupPreProcTools.hfr"	
+"VFR.uni"	
+"Setup.sdl"	
+"PlatformSetup.txt"
+"MeSpsSetupXAmi.uni"
+"PchSetupStringsXAmi.uni"
+"SetupStringsXAmi.uni"
+"SystemEventLogStringsXAmi.uni"
+"PlatformSetupXAmiStringIncludes.uni"
+"Main.vfr"
+<endComponent>

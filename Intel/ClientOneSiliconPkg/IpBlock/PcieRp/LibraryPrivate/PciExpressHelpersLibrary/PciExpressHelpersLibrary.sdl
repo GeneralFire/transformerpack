@@ -1,0 +1,20 @@
+TOKEN
+    Name  = "PciExpressHelpersLibrary_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PciExpressHelpersLibrary support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PciExpressHelpersLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPciExpressHelpersLib"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPciExpressHelpersLib"
+    File  = "PeiDxeSmmPciExpressHelpersLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+

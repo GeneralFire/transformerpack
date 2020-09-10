@@ -1,0 +1,10 @@
+<component>
+	name = "FspVariable"
+	category = ModulePart
+	LocalRoot = "Intel\EagleStreamFspPkg\FspVariable\"
+	RefName = "EagleStreamFspPkg.FspVariable"
+[INF]
+"FspVariable.inf"
+[files]
+"FspVariable.sdl"	
+<endComponent>

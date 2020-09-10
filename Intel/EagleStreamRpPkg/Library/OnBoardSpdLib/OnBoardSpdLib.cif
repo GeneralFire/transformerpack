@@ -1,0 +1,9 @@
+<component>
+    name = "OnBoardSpdLib"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Library\OnBoardSpdLib\"
+    RefName = "EagleStreamRpPkg.Library.OnBoardSpdLib"
+[parts]
+"EagleStreamRpPkg.Library.OnBoardSpdLib.DDR4"
+"EagleStreamRpPkg.Library.OnBoardSpdLib.DDR5"
+<endComponent>

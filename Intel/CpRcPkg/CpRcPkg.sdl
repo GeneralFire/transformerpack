@@ -1,0 +1,7 @@
+TOKEN
+	Name  = "CpRcPkg_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling CpRcPkg support in the project"
+	TokenType = Boolean
+	Master = Yes
+End

@@ -1,0 +1,14 @@
+<component>
+    name = "Intel Emmitsburg SB Chipset"
+    category = ModulePart
+    LocalRoot = "AmiCrbPkg\Chipset\SB\"
+    RefName = "Intel-Emmitsburg SB Chipset"
+[INF]
+"SbPciHotPlugLib\SbPciHotPlugLib.inf"
+"TcoSmi\TcoSmi.inf"
+[files]
+"SBGeneric.c"	
+"SBCspLib.h"	
+"IRQLINK.ASL"	
+"SB_EXT.ASL"	
+<endComponent>

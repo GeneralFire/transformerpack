@@ -1,0 +1,33 @@
+<component>
+	name = "Library"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Upi\Library\"
+	RefName = "ServerSiliconPkg.Upi.Library"
+[INF]
+"CxlLib\CxlLib.inf"
+"CxlLibNull\CxlLibNull.inf"
+"EightSocketLib\EightSocketLib.inf"
+"EightSocketLibNull\EightSocketLibNull.inf"
+"MultiSocketLib\MultiSocketLib10nm.inf"
+"MultiSocketLib\MultiSocketLibSpr.inf"
+"MultiSocketLibNull\MultiSocketLibNull.inf"
+"SncPrefetchLib\SncPrefetchMultiSktLibSpr.inf"
+"SncPrefetchLib\SncPrefetchMultiSktLib10nm.inf"
+"SncPrefetchLib\SncPrefetchSingleSktLibSpr.inf"
+"SncPrefetchLib\SncPrefetchSingleSktLib10nm.inf"
+"UncoreLib\UncoreLib10nm.inf"
+"UncoreLib\UncoreLibSpr.inf"
+"KtiApiLib\KtiApiLib.inf"
+"S3mLib\S3mLib.inf"
+"S3mLibNull\S3mLibNull.inf"
+[files]
+"MultiSocketLib\MultiSocketInternal.h"
+"EightSocketLib\EightSocketTopoDegradeSupport.h"
+"EightSocketLib\EightSocketInternal.h"
+"MultiSocketLib\KtiDegradedTopology.h"
+"S3mLib\Include\Registers\Spr\SoftStrapDefinition.h"
+"Library.sdl"	
+"UncoreLib\UncoreLibInternal.h"
+[parts]
+"ServerSiliconPkg.Upi.Library.UpiHostDataLib"
+<endComponent>

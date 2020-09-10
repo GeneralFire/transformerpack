@@ -1,0 +1,62 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2016 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+//
+// Memory Interface Configuration
+//
+#string STR_HBM_CONFIG_FORM_TITLE           #language en-US "HBM Configuration"
+#string STR_HBM_CONFIG_FORM_HELP            #language en-US "Displays and provides option to change the HBM Settings"
+
+#string STR_HBM_CONFIG_SETUP                #language en-US "HBM Configuration Setup"
+
+//
+// Enable DBI
+//
+#string STR_HBM_DBI_PROMPT                  #language en-US "DBI Mode"
+#string STR_HBM_DBI_HELP                    #language en-US "Enable/Disable Data Bus Inversion feature in the MR0 and MC"
+
+//
+// Relaxed turnaround
+//
+#string STR_HBM_RELAXED_TA_PROMPT           #language en-US "Relaxed turnaround"
+#string STR_HBM_RELAXED_TA_HELP             #language en-US "Provides +1 UI in the HBM turnarounds"
+
+//
+// HBM refresh mode
+//
+#string STR_HBM_REFRESH_MODE_PROMPT         #language en-US "Refresh Mode"
+#string STR_HBM_REFRESH_MODE_HELP           #language en-US "Selects all-bank or per-bank refresh to enable"
+#string STR_HBM_ALL_BANK_REFRESH            #language en-US "All-bank refresh"
+#string STR_HBM_PER_BANK_REFRESH            #language en-US "Per-bank refresh"
+
+//
+// End of file
+//

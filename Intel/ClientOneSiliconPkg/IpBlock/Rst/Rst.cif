@@ -1,0 +1,10 @@
+<component>
+    name = "Rst"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Rst\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Rst"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Rst.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Rst.Library"
+"ClientOneSiliconPkg.IpBlock.Rst.LibraryPrivate"
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\BiosGuard\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.BiosGuard.LibraryPrivate"
+[INF]
+"PeiBiosGuardLib\PeiBiosGuardLib.inf"
+"PeiBiosGuardLibNull\PeiBiosGuardLibNull.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

@@ -1,0 +1,19 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Include\"
+    RefName = "AmiIpmi2Pkg.Include"
+[files]
+"AmiIpmiNetFnAppDefinitions.h"
+"AmiIpmiNetFnStorageDefinitions.h"
+"AmiIpmiNetFnTransportDefinitions.h"
+"AmiIpmiNetFnChassisDefinitions.h"
+"AmiIpmiBmcCommon.h"
+"AmiStatusCodeConversion.h"
+"AmiServerMgmtSetupVariable.h"
+"AmiFru.h"
+[parts]
+"AmiIpmi2Pkg.Include.Library"
+"AmiIpmi2Pkg.Include.Ppi"
+"AmiIpmi2Pkg.Include.Protocol"
+<endComponent>

@@ -1,0 +1,31 @@
+TOKEN
+    Name  = "PchSmiDispatcher_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PchSmiDispatcher support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "PchSmiDispatcher"
+    TokenType = Expression
+    TargetDSC = Yes
+End
+
+TOKEN
+    Name  = "PchSmiDispatcher_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PchSmiDispatcher support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "PchSmiDispatcher"
+    File  = "Smm/PchSmiDispatcherServer.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+    Token = "PchSmiDispatcher_INF_SUPPORT" "=" "1"
+End
+

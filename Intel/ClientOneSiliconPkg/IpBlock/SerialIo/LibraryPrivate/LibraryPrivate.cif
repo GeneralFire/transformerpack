@@ -1,0 +1,12 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\SerialIo\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.SerialIo.LibraryPrivate"
+[INF]
+"PeiDxeSmmSerialIoPrivateLib\PeiDxeSmmSerialIoPrivateLibVer3.inf"
+"PeiSerialIoInitLib\PeiSerialIoInitLib.inf"
+"PeiSerialIoPolicyLib\PeiSerialIoPolicyLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

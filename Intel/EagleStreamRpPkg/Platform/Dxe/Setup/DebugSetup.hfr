@@ -1,0 +1,196 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2016 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+form formid = AUTO_ID(DEBUG_FORM_ID),
+  title     = STRING_TOKEN(STR_DEBUG_FORM);
+
+  SUBTITLE(STRING_TOKEN(STR_DEBUG_FORM))
+  SEPARATOR
+
+    oneof varid = PCH_SETUP.DciEn,
+      prompt   = STRING_TOKEN(STR_PCH_DCI_HDCIEN),
+      help     = STRING_TOKEN(STR_PCH_DCI_HDCIEN_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PCH_SETUP.DciUsb3TypecUfpDbg,
+      prompt   = STRING_TOKEN(STR_PCH_USB3_TC_UFP_DBG_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_USB3_TC_UFP_DBG_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCH_DEBUG_NO_CHANGE), value = 2, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PCH_SETUP.DciDbcMode,
+      prompt   = STRING_TOKEN(STR_PCH_DCI_DBC_MODE_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_DCI_DBC_MODE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCH_DCI_DBC_MODE_USB2), value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCH_DCI_DBC_MODE_USB3), value = 2, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCH_DCI_DBC_MODE_BOTH), value = 3, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCH_DEBUG_NO_CHANGE), value = 4, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+    oneof varid = PCH_SETUP.PchEnableDbcObs,
+      prompt   = STRING_TOKEN(STR_PCH_USB_OC_OVERRIDE_FOR_DBC),
+      help     = STRING_TOKEN(STR_PCH_USB_OC_OVERRIDE_FOR_DBC_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PCH_SETUP.PmcDbgMsgEn,
+      prompt      = STRING_TOKEN(STR_PMC_DEBUG_MESSAGE_ENABLE_PROMPT),
+      help        = STRING_TOKEN(STR_PMC_DEBUG_MESSAGE_ENABLE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PCH_SETUP.PchTraceHubMode,
+      prompt   = STRING_TOKEN(STR_PCH_TRACE_HUB_PROMPT),
+      help     = STRING_TOKEN(STR_TRACE_HUB_MODE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED | INTERACTIVE;
+      option text = STRING_TOKEN(STR_TRACE_HUB_TARGET_DEBUGGER), value = 1, flags = RESET_REQUIRED | INTERACTIVE;
+      option text = STRING_TOKEN(STR_TRACE_HUB_HOST_DEBUGGER), value = 2, flags = RESET_REQUIRED | INTERACTIVE;
+    endoneof;
+
+    suppressif ideqval PCH_SETUP.PchTraceHubMode == 0;
+      oneof varid  = PCH_SETUP.PchTraceHubMemReg0Size,
+        prompt   = STRING_TOKEN(STR_PCH_TRACE_HUB_MEM_REGION_0_SIZE),
+        help     = STRING_TOKEN(STR_TRACE_HUB_MEM_REGION_0_HELP),
+        option text = STRING_TOKEN(STR_TRACE_HUB_NONE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_1MB),   value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_8MB),   value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_64MB),  value = 3, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_128MB), value = 4, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_256MB), value = 5, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_512MB), value = 6, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid  = PCH_SETUP.PchTraceHubMemReg1Size,
+        prompt   = STRING_TOKEN(STR_PCH_TRACE_HUB_MEM_REGION_1_SIZE),
+        help     = STRING_TOKEN(STR_TRACE_HUB_MEM_REGION_1_HELP),
+        option text = STRING_TOKEN(STR_TRACE_HUB_NONE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_1MB),   value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_8MB),   value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_64MB),  value = 3, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_128MB), value = 4, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_256MB), value = 5, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TRACE_HUB_512MB), value = 6, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    oneof varid  = PCH_SETUP.AetEnableMode,
+      prompt   = STRING_TOKEN(STR_TRACE_HUB_AET_TRACE_ENABLE),
+      help     = STRING_TOKEN(STR_TRACE_HUB_AET_TRACE_ENABLE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_TRACE_HUB_AET_TO_PCH), value = 1, flags = RESET_REQUIRED ;
+      option text = STRING_TOKEN(STR_TRACE_HUB_AET_TO_CPU), value = 2, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.PcieBifurcation[0],
+      prompt      = STRING_TOKEN(STR_PCH_PCIE_BIFURCATION_0),
+      help        = STRING_TOKEN(STR_PCH_PCIE_BIFURCATION_HELP),
+      option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_1_8), value = 9, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_2_4), value = 8, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_1_4_2_2), value = 6, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_2_2_1_4), value = 7, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_4_2), value = 5, flags = RESET_REQUIRED;
+    endoneof;
+
+//ASTDBG: Bifurcate PCH PCIE controller 1 to 4 x2
+    oneof varid   = PCH_SETUP.PcieBifurcation[1],
+      prompt      = STRING_TOKEN(STR_PCH_PCIE_BIFURCATION_1),
+      help        = STRING_TOKEN(STR_PCH_PCIE_BIFURCATION_HELP),
+      option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_1_8), value = 9, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_2_4), value = 8, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_1_4_2_2), value = 6, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_2_2_1_4), value = 7, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_4_2), value = 5, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.PcieBifurcation[2],
+      prompt      = STRING_TOKEN(STR_PCH_PCIE_BIFURCATION_2),
+      help        = STRING_TOKEN(STR_PCH_PCIE_BIFURCATION_HELP),
+      option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_1_8), value = 9, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_2_4), value = 8, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_1_4_2_2), value = 6, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_2_2_1_4), value = 7, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_4_2), value = 5, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.PcieBifurcation[3],
+      prompt      = STRING_TOKEN(STR_PCH_PCIE_BIFURCATION_3),
+      help        = STRING_TOKEN(STR_PCH_PCIE_BIFURCATION_HELP),
+      option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_1_8), value = 9, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_2_4), value = 8, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_1_4_2_2), value = 6, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_2_2_1_4), value = 7, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_BIFURCATION_4_2), value = 5, flags = RESET_REQUIRED;
+    endoneof;
+
+    SEPARATOR
+
+    goto PCH_DWR_CONFIG_FORM_ID,
+      prompt = STRING_TOKEN(STR_PCH_DWR_FORM_TITLE),
+      help   = STRING_TOKEN(STR_PCH_DWR_FORM_HELP),
+      flags = 0,
+      key = 0;
+endform;
+
+form formid = PCH_DWR_CONFIG_FORM_ID,
+  title     = STRING_TOKEN(STR_PCH_DWR_FORM_TITLE);
+  subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+  oneof varid    = PCH_SETUP.Dwr_Enable,
+    prompt   = STRING_TOKEN(STR_DIRTY_WARM_RESET),
+    help     = STRING_TOKEN(STR_DIRTY_WARM_RESET_HELP),
+    option text = STRING_TOKEN(STR_DISABLED_STRING), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    option text = STRING_TOKEN(STR_ENABLED_STRING), value = 1, flags = RESET_REQUIRED;
+  endoneof;
+
+  SEPARATOR
+
+  grayoutif ideqval PCH_SETUP.Dwr_Enable == 0;
+    oneof varid    = PCH_SETUP.Dwr_Stall,
+      prompt   = STRING_TOKEN(STR_DIRTY_WARM_REST_STALL),
+      help     = STRING_TOKEN(STR_DIRTY_WARM_REST_STALL_HELP),
+      option text = STRING_TOKEN(STR_DISABLED_STRING), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLED_STRING), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    oneof varid    = PCH_SETUP.Dwr_BmcRootPort,
+      prompt   = STRING_TOKEN(STR_DIRTY_WARM_REST_BMC_ROOTPORT),
+      help     = STRING_TOKEN(STR_DIRTY_WARM_REST_BMC_ROOTPORT_HELP),
+      option text = STRING_TOKEN(STR_DIRTY_WARM_REST_BMC_ROOTPORT_5), value = 5, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DIRTY_WARM_REST_BMC_ROOTPORT_11), value = 11, flags = RESET_REQUIRED;
+    endoneof;
+
+  endif;
+endform; //End of PCH_DWR_CONFIG_FORM_ID

@@ -1,0 +1,11 @@
+<component>
+    name = "Dxe"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Amt\Sol\Dxe\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Amt.Sol.Dxe"
+[INF]
+"SerialOverLan.inf"
+[files]
+"SerialOverLan.h"	
+"Dxe.sdl"	
+<endComponent>

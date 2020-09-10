@@ -1,0 +1,18 @@
+TOKEN
+        Name  = "BOOT_GUARD_PEI_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable BOOT_GUARD_PEI_SUPPORT in Project"
+        TokenType = Boolean
+        TargetMAK = Yes
+        TargetH = Yes
+        Master = Yes
+        Token = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_SUPPORT" "=" "1"
+End
+
+INFComponent
+        Name = "BootGuardPei"
+        File = "BootGuardPei.inf"
+        Package = "ServerPlatformPkg"
+        Arch = "IA32"
+        ModuleTypes = "PEIM"
+End

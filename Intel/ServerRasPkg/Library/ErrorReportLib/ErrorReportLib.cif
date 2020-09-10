@@ -1,0 +1,11 @@
+<component>
+	name = "ErrorReportLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Library\ErrorReportLib\"
+	RefName = "ServerRasPkg.ErrorReportLib"
+[INF]
+"ErrorReportLib.inf"
+[files]
+"ErrorReportLibPrivate.h"	
+"ErrorReportLib.sdl"	
+<endComponent>

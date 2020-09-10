@@ -1,0 +1,635 @@
+//***********************************************************************
+//*                                                                     *
+//*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+//*                                                                     *
+//*      All rights reserved. Subject to AMI licensing agreement.       *
+//*                                                                     *
+//***********************************************************************
+
+#include "IScsiConfigNVDataStruc.h"
+#include "AmiIScsiConfig.h"
+
+#define EFI_NETWORK_DEVICE_CLASS  0x04
+ // Set default value for Target Port.
+#define ISCSI_WELL_KNOWN_PORT     3260     
+formset
+  guid     = ISCSI_CONFIG_GUID,
+  title    = STRING_TOKEN(STR_ISCSI_CONFIG_FORM_TITLE),
+  help     = STRING_TOKEN(STR_ISCSI_CONFIG_FORM_HELP), 
+  class    = EFI_NETWORK_DEVICE_CLASS,
+  subclass = 0x03,
+
+  varstore ISCSI_CONFIG_IFR_NVDATA,
+    varid = CONFIGURATION_VARSTORE_ID,
+    name = ISCSI_CONFIG_IFR_NVDATA,
+    guid = ISCSI_CONFIG_GUID;
+
+  defaultstore AmiMfgDefault, prompt = STRING_TOKEN(STR_NULL), attribute = 0x1;  
+  form formid = FORMID_MAIN_FORM,
+    title  = STRING_TOKEN(STR_ISCSI_MAIN_FORM_TITLE); 
+    goto FORMID_PRIORITY_FORM,
+        prompt = STRING_TOKEN (STR_PRIORITY_CHANGE_ENTRY),   
+        help   = STRING_TOKEN (STR_PRIORITY_CHANGE_ENTRY_HELP),
+        flags  = INTERACTIVE,
+        key    = KEY_PRIORITY_CHANGE_CONFIG;
+      subtitle text = STRING_TOKEN(STR_NULL);
+    goto FORMID_LOCAL_ISCSI_FORM,
+            prompt = STRING_TOKEN(STR__ISCSI_FORM_TITLE),
+            help = STRING_TOKEN(STR__ISCSI_FORM_TITLE);
+#if (RSD_ISCSI_SUPPORT)
+    goto FORMID_RSD_FORM,
+            prompt = STRING_TOKEN(STR_RSD_ISCSI_FORM_TITLE),
+            help = STRING_TOKEN(STR_RSD_ISCSI_FORM_TITLE);
+#endif   
+  endform;
+  
+form formid = FORMID_LOCAL_ISCSI_FORM,
+    title  = STRING_TOKEN(STR__ISCSI_FORM_TITLE);
+    //  Grayout IScsi Initiator name when access level is user
+    grayoutif ideqval ISCSI_CONFIG_IFR_NVDATA.SystemAccessVar == SYSTEM_PASSWORD_USER;
+      string  varid   = ISCSI_CONFIG_IFR_NVDATA.InitiatorName,
+              prompt  = STRING_TOKEN(STR_ISCSI_CONFIG_INIT_NAME),
+              help    = STRING_TOKEN(STR_ISCSI_CONFIG_INIT_NAME_HELP),
+              flags   = INTERACTIVE,
+              key     = KEY_INITIATOR_NAME,
+              minsize = ISCSI_NAME_IFR_MIN_SIZE,
+              maxsize = ISCSI_NAME_IFR_MAX_SIZE,
+              default = STRING_TOKEN(STR_NULL),                                // Defaults for initiator name
+              default = STRING_TOKEN(STR_NULL), defaultstore = AmiMfgDefault,  // Manufacturing defaults
+      endstring;
+    endif; //grayoutif
+    grayoutif NOT ideqval ISCSI_CONFIG_IFR_NVDATA.IsInitiatorNameValid == 1;   
+    subtitle text = STRING_TOKEN(STR_NULL);
+
+    goto FORMID_MAC_FORM,
+         prompt = STRING_TOKEN(STR_ADD_ATTEMPT_ENTRY),
+         help   = STRING_TOKEN(STR_ADD_ATTEMPT_ENTRY),
+         flags  = INTERACTIVE,
+         key    = KEY_ADD_ATTEMPT;
+
+    label ATTEMPT_ENTRY_LABEL;
+    label LABEL_END;
+
+    subtitle text = STRING_TOKEN(STR_NULL);
+
+    goto FORMID_DELETE_FORM,
+      prompt = STRING_TOKEN (STR_DEL_ATTEMPT_ENTRY),
+      help   = STRING_TOKEN (STR_DEL_ATTEMPT_ENTRY_HELP),
+      flags  = INTERACTIVE,
+      key    = KEY_DELETE_ATTEMPT;
+
+    subtitle text = STRING_TOKEN(STR_NULL);
+
+    goto FORMID_ORDER_FORM,
+      prompt = STRING_TOKEN (STR_ORDER_ATTEMPT_ENTRY),
+        help   = STRING_TOKEN (STR_ORDER_ATTEMPT_ENTRY_HELP),  
+      flags  = INTERACTIVE,
+      key    = KEY_ORDER_ATTEMPT_CONFIG;
+
+    subtitle text = STRING_TOKEN(STR_NULL);
+    endif; //grayoutif 
+
+  endform;
+
+  form formid = FORMID_MAC_FORM,
+    title  = STRING_TOKEN(STR_ISCSI_MAC_FORM_TITLE);
+
+    label MAC_ENTRY_LABEL;
+    label LABEL_END;
+
+  endform;
+
+  form formid = FORMID_ORDER_FORM,
+    title  = STRING_TOKEN(STR_ORDER_ATTEMPT_ENTRY);
+
+    label ORDER_ENTRY_LABEL;
+    label LABEL_END;
+    text
+      help   = STRING_TOKEN (STR_SAVE_AND_EXIT),
+      text   = STRING_TOKEN (STR_SAVE_AND_EXIT),
+  // Adding RESET_REQUIRED flag for prompting user to reset on changing attempt order
+      flags  = INTERACTIVE | RESET_REQUIRED,
+      key    = KEY_SAVE_ORDER_CHANGES;
+    text
+      help   = STRING_TOKEN (STR_NO_SAVE_AND_EXIT),
+      text   = STRING_TOKEN (STR_NO_SAVE_AND_EXIT),
+      flags  = INTERACTIVE,
+      key    = KEY_IGNORE_ORDER_CHANGES;
+  endform;
+
+  form formid = FORMID_PRIORITY_FORM,
+    title  = STRING_TOKEN(STR_PRIORITY_CHANGE_ENTRY);
+    label PRIORITY_ENTRY_LABEL;
+    label LABEL_END;
+  // Adding RESET_REQUIRED flag for prompting user to reset on changing attempt order
+    text
+      help   = STRING_TOKEN (STR_SAVE_AND_EXIT),
+      text   = STRING_TOKEN (STR_SAVE_AND_EXIT),
+      flags  = INTERACTIVE | RESET_REQUIRED,
+      key    = KEY_SAVE_PRIORITY_CHANGES;
+  endform;
+
+  form formid = FORMID_DELETE_FORM,
+    title  = STRING_TOKEN(STR_DEL_ATTEMPT_ENTRY);
+
+    label DELETE_ENTRY_LABEL;
+    label LABEL_END;
+    text
+      help   = STRING_TOKEN (STR_SAVE_AND_EXIT),
+      text   = STRING_TOKEN (STR_SAVE_AND_EXIT),
+  // Adding RESET_REQUIRED flag for prompting user to reset on deleting an attempt
+  
+      flags  = INTERACTIVE | RESET_REQUIRED,  
+      key    = KEY_SAVE_DELETE_ATTEMPT;
+
+    text
+      help   = STRING_TOKEN (STR_NO_SAVE_AND_EXIT),
+        text   = STRING_TOKEN (STR_NO_SAVE_AND_EXIT),
+      flags  = INTERACTIVE,
+      key    = KEY_IGNORE_DELETE_ATTEMPT;
+  endform;
+
+  form formid = FORMID_ATTEMPT_FORM,
+    title  = STRING_TOKEN(STR_ISCSI_ATTEMPT_FORM_TITLE);
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.AttemptName,
+            prompt  = STRING_TOKEN(STR_ISCSI_ATTEMPT_NAME),
+            help    = STRING_TOKEN(STR_ISCSI_ATTEMPT_NAME_HELP),
+            flags   = READ_ONLY,
+            key     = KEY_ATTEMPT_NAME,
+            minsize = 0,
+         // Changing macro name to ATTEMPT_NAME_IFR_MAX_SIZE
+            maxsize = ATTEMPT_NAME_SIZE,               
+        default = STRING_TOKEN(STR_NULL),                                //  Defaults for Attempt Name
+            default = STRING_TOKEN(STR_NULL), defaultstore = AmiMfgDefault,  // Manufacturing defaults 
+    endstring;
+
+    subtitle text = STRING_TOKEN(STR_NULL);
+
+    oneof varid  = ISCSI_CONFIG_IFR_NVDATA.Enabled,
+          prompt = STRING_TOKEN(STR_ISCSI_MODE_PROMPT),
+          help   = STRING_TOKEN(STR_ISCSI_MODE_HELP),
+          option text = STRING_TOKEN(STR_ISCSI_MODE_DISABLED),         value = ISCSI_DISABLED,         flags = 0;  // Defaults are set below
+          option text = STRING_TOKEN(STR_ISCSI_MODE_ENABLED),          value = ISCSI_ENABLED,          flags = 0;
+          option text = STRING_TOKEN(STR_ISCSI_MODE_ENABLED_FOR_MPIO), value = ISCSI_ENABLED_FOR_MPIO, flags = 0;        
+          default = ISCSI_DISABLED,  // Defaults for iSCSI mode
+          default = ISCSI_DISABLED, defaultstore = AmiMfgDefault,    // Manufacturing defaults 
+    endoneof;
+
+    subtitle text = STRING_TOKEN(STR_NULL);
+
+    oneof varid  = ISCSI_CONFIG_IFR_NVDATA.IpMode,
+          questionid = KEY_IP_MODE,
+          prompt = STRING_TOKEN(STR_IP_MODE_PROMPT),
+          help   = STRING_TOKEN(STR_IP_MODE_HELP),
+          option text = STRING_TOKEN(STR_IP_MODE_IP4),        value = IP_MODE_IP4,        flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_IP_MODE_IP6),        value = IP_MODE_IP6,        flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_IP_MODE_AUTOCONFIG), value = IP_MODE_AUTOCONFIG, flags = INTERACTIVE;            
+      default = IP_MODE_IP4,  // Defaults for IP mode
+          default = IP_MODE_IP4, defaultstore = AmiMfgDefault,    // Manufacturing defaults  
+    endoneof;
+
+    subtitle text = STRING_TOKEN(STR_NULL);
+
+    numeric varid   = ISCSI_CONFIG_IFR_NVDATA.ConnectRetryCount,
+            prompt  = STRING_TOKEN(STR_ISCSI_CONFIG_RETRY),
+            help    = STRING_TOKEN(STR_ISCSI_CONFIG_RETRY_HELP),
+            flags   = 0,
+            minimum = CONNECT_MIN_RETRY,
+            maximum = CONNECT_MAX_RETRY,
+            step    = 1,  // Step is made one
+            default = CONNECT_MIN_RETRY,  // Defaults for Connection Retry Count
+            default = CONNECT_MIN_RETRY, defaultstore = AmiMfgDefault,    // Manufacturing defaults
+    endnumeric;
+
+    numeric varid   = ISCSI_CONFIG_IFR_NVDATA.ConnectTimeout,
+            prompt  = STRING_TOKEN(STR_ISCSI_CONFIG_TIMEOUT),
+            help    = STRING_TOKEN(STR_ISCSI_CONFIG_TIMEOUT_HELP),
+            flags   = 0,
+            minimum = CONNECT_MIN_TIMEOUT,
+            maximum = CONNECT_MAX_TIMEOUT,
+            step    = 1,  // Step is made one
+            default = CONNECT_DEFAULT_TIMEOUT,
+            default = CONNECT_DEFAULT_TIMEOUT, defaultstore = AmiMfgDefault,    // Manufacturing defaults   
+    endnumeric;
+
+    subtitle text = STRING_TOKEN(STR_NULL);
+    text
+        help  = STRING_TOKEN(STR_ISCSI_OUI_FROMAT_ISID_HELP),
+        text  = STRING_TOKEN(STR_ISCSI_OUI_FROMAT_ISID),
+        text  = STRING_TOKEN(STR_ISCSI_OUI_FROMAT_ISID_VALUE),
+        flags = 0, key = 0;
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.IsId, 
+            prompt  = STRING_TOKEN(STR_ISCSI_CONFIG_ISID),
+            help    = STRING_TOKEN(STR_ISCSI_CONFIG_ISID_HELP),
+            flags   = INTERACTIVE,
+            key     = KEY_CONFIG_ISID,
+            minsize = ISID_CONFIGURABLE_MIN_LEN,
+            maxsize = ISID_CONFIGURABLE_MAX_LEN,
+            default = STRING_TOKEN(STR_NULL),  // Defaults for IsID
+            default = STRING_TOKEN(STR_NULL), defaultstore = AmiMfgDefault,    // Manufacturing defaults  
+    endstring;
+
+    subtitle text = STRING_TOKEN(STR_NULL);
+
+    suppressif ideqval ISCSI_CONFIG_IFR_NVDATA.IpMode == IP_MODE_AUTOCONFIG;
+    checkbox varid = ISCSI_CONFIG_IFR_NVDATA.InitiatorInfoFromDhcp,
+            prompt = STRING_TOKEN(STR_ISCSI_ENABLE_DHCP),
+            help   = STRING_TOKEN(STR_ISCSI_ENABLE_DHCP),
+            flags  = INTERACTIVE | CHECKBOX_DEFAULT | CHECKBOX_DEFAULT_MFG,  // Optimal and Manufacturing defaults for InitiatorInfoFromDhcp           
+        key    = KEY_DHCP_ENABLE,
+    endcheckbox;
+    endif;
+
+    suppressif ideqval ISCSI_CONFIG_IFR_NVDATA.IpMode == IP_MODE_IP6 OR 
+               ideqval ISCSI_CONFIG_IFR_NVDATA.IpMode == IP_MODE_AUTOCONFIG;
+               
+    grayoutif ideqval ISCSI_CONFIG_IFR_NVDATA.InitiatorInfoFromDhcp == 0x01;
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.LocalIp,
+            prompt  = STRING_TOKEN(STR_ISCSI_LOCAL_IP_ADDRESS),
+            help    = STRING_TOKEN(STR_ISCSI_IP_ADDRESS_HELP),
+            flags   = INTERACTIVE,
+            key     = KEY_LOCAL_IP,
+            minsize = IP4_MIN_SIZE,
+            maxsize = IP4_MAX_SIZE,
+            default = STRING_TOKEN(STR_DEFAULT_LOCAL_IP),  // Set default value for Local IP
+            default = STRING_TOKEN(STR_DEFAULT_LOCAL_IP), defaultstore = AmiMfgDefault,    // Manufacturing defaults    
+    endstring;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.SubnetMask,
+            prompt  = STRING_TOKEN(STR_ISCSI_LOCAL_MASK),
+            help    = STRING_TOKEN(STR_ISCSI_IP_ADDRESS_HELP),
+            flags   = INTERACTIVE,
+            key     = KEY_SUBNET_MASK,
+            minsize = IP4_MIN_SIZE,
+            maxsize = IP4_MAX_SIZE,       
+            default = STRING_TOKEN(STR_DEFAULT_SUBNET_MASK),  // Set default value for Subnet Mask
+            default = STRING_TOKEN(STR_DEFAULT_SUBNET_MASK), defaultstore = AmiMfgDefault,  // Manufacturing defaults    
+    endstring;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.Gateway,
+            prompt  = STRING_TOKEN(STR_ISCSI_LOCAL_GATEWAY),
+            help    = STRING_TOKEN(STR_ISCSI_IP_ADDRESS_HELP),
+            flags   = INTERACTIVE,
+            key     = KEY_GATE_WAY,
+            minsize = IP4_MIN_SIZE,
+            maxsize = IP4_MAX_SIZE,      
+            default = STRING_TOKEN(STR_DEFAULT_GATEWAY),  // Set default value for Gateway
+            default = STRING_TOKEN(STR_DEFAULT_GATEWAY), defaultstore = AmiMfgDefault,  // Manufacturing defaults  
+    endstring;
+     endif;
+    endif;
+
+    suppressif ideqval ISCSI_CONFIG_IFR_NVDATA.IpMode == IP_MODE_AUTOCONFIG;
+    subtitle text = STRING_TOKEN(STR_NULL);
+    endif;     
+
+    suppressif ideqval ISCSI_CONFIG_IFR_NVDATA.IpMode == IP_MODE_AUTOCONFIG OR
+               ideqval ISCSI_CONFIG_IFR_NVDATA.InitiatorInfoFromDhcp == 0x00;
+    checkbox varid  = ISCSI_CONFIG_IFR_NVDATA.TargetInfoFromDhcp,
+             prompt = STRING_TOKEN(STR_ISCSI_ENABLE_DHCP_ON_TARGET),
+             help   = STRING_TOKEN(STR_ISCSI_ENABLE_DHCP_ON_TARGET),
+             default = 0,
+             default = 0, defaultstore = AmiMfgDefault,  // Manufacturing defaults
+    endcheckbox;
+    endif;
+
+    suppressif ideqval ISCSI_CONFIG_IFR_NVDATA.IpMode == IP_MODE_AUTOCONFIG OR
+               ideqval ISCSI_CONFIG_IFR_NVDATA.TargetInfoFromDhcp == 0x01;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.TargetName,
+            prompt  = STRING_TOKEN(STR_ISCSI_TARGET_NAME),
+            help    = STRING_TOKEN(STR_ISCSI_TARGET_NAME_HELP),
+            flags   = INTERACTIVE,
+            key     = KEY_TARGET_NAME,
+            minsize = ISCSI_NAME_IFR_MIN_SIZE,
+            maxsize = ISCSI_NAME_IFR_MAX_SIZE,
+            default = STRING_TOKEN(STR_NULL),
+            default = STRING_TOKEN(STR_NULL), defaultstore = AmiMfgDefault,  // Manufacturing defaults
+
+    endstring;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.TargetIp,
+            prompt  = STRING_TOKEN(STR_ISCSI_TARGET_ADDRESS),
+            help    = STRING_TOKEN(STR_ISCSI_TARGET_ADDRESS_HELP),
+            flags   = INTERACTIVE,
+            key     = KEY_TARGET_IP,
+            minsize = ISCSI_TARGET_URI_MIN_SIZE,
+            maxsize = ISCSI_TARGET_URI_MAX_SIZE,
+            default = STRING_TOKEN(STR_DEFAULT_TARGET_IP),  // Set default value for Target IP
+            default = STRING_TOKEN(STR_DEFAULT_TARGET_IP), defaultstore = AmiMfgDefault,  // Manufacturing defaults  
+    endstring;
+
+    numeric varid   = ISCSI_CONFIG_IFR_NVDATA.TargetPort,
+            prompt  = STRING_TOKEN(STR_ISCSI_TARGET_PORT),
+            help    = STRING_TOKEN(STR_ISCSI_TARGET_PORT),
+            flags   = 0,
+            minimum = TARGET_PORT_MIN_NUM,
+            maximum = TARGET_PORT_MAX_NUM,
+            step    = 1,  // Step is made one
+            default = ISCSI_WELL_KNOWN_PORT,         // Set default value for Target Port.
+            default = ISCSI_WELL_KNOWN_PORT, defaultstore = AmiMfgDefault,  // Manufacturing defaults    
+    endnumeric;
+
+    string varid    = ISCSI_CONFIG_IFR_NVDATA.BootLun,
+            prompt  = STRING_TOKEN(STR_ISCSI_BOOT_LUN),
+            help    = STRING_TOKEN(STR_ISCSI_BOOT_LUN_HELP),
+            flags   = INTERACTIVE,
+            key     = KEY_BOOT_LUN,
+            minsize = LUN_MIN_SIZE,
+            maxsize = LUN_MAX_SIZE,
+            default = STRING_TOKEN(STR_DEFAULT_BOOT_LUN),  // Set the default value for Boot LUN
+            default = STRING_TOKEN(STR_DEFAULT_BOOT_LUN), defaultstore = AmiMfgDefault,  // Manufacturing defaults
+    endstring;
+    
+    endif;
+
+    suppressif ideqval ISCSI_CONFIG_IFR_NVDATA.IpMode == IP_MODE_AUTOCONFIG;
+    subtitle text = STRING_TOKEN(STR_NULL);
+    endif; 
+
+    oneof varid  = ISCSI_CONFIG_IFR_NVDATA.AuthenticationType,
+          questionid = KEY_AUTH_TYPE,      
+          prompt = STRING_TOKEN(STR_AUTHEN_TYPE_PROMPT),
+          help   = STRING_TOKEN(STR_AUTHEN_TYPE_HELP),
+          option text = STRING_TOKEN(STR_AUTHEN_TYPE_CHAP),     value = ISCSI_AUTH_TYPE_CHAP, flags = INTERACTIVE;  // Add interactive flag to get control to key.
+          option text = STRING_TOKEN(STR_AUTHEN_TYPE_NONE),     value = ISCSI_AUTH_TYPE_NONE, flags = 0;
+      default = ISCSI_AUTH_TYPE_NONE,  // Set the default value for Authentication Type
+          default = ISCSI_AUTH_TYPE_NONE, defaultstore = AmiMfgDefault,  // Manufacturing defaults
+    endoneof;
+
+    suppressif NOT ideqval ISCSI_CONFIG_IFR_NVDATA.AuthenticationType == ISCSI_AUTH_TYPE_CHAP;    
+    oneof varid  = ISCSI_CONFIG_IFR_NVDATA.CHAPType,
+          prompt = STRING_TOKEN(STR_CHAP_TYPE_PROMPT),
+          help   = STRING_TOKEN(STR_CHAP_TYPE_HELP),
+          option text = STRING_TOKEN(STR_CHAP_TYPE_UNI),    value = ISCSI_CHAP_UNI,    flags = 0;
+          option text = STRING_TOKEN(STR_CHAP_TYPE_MUTUAL), value = ISCSI_CHAP_MUTUAL, flags = 0;
+      default = ISCSI_CHAP_MUTUAL,  // Set the default value for CHAPType
+          default = ISCSI_CHAP_MUTUAL, defaultstore = AmiMfgDefault,  // Manufacturing defaults
+    endoneof;
+    endif;
+
+    suppressif NOT ideqval ISCSI_CONFIG_IFR_NVDATA.AuthenticationType == ISCSI_AUTH_TYPE_CHAP;
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.CHAPName,
+            prompt  = STRING_TOKEN(STR_ISCSI_CHAP_NAME),
+            help    = STRING_TOKEN(STR_ISCSI_CHAP_NAME),
+            flags   = INTERACTIVE,
+            key     = KEY_CHAP_NAME,
+            minsize = 0,
+            maxsize = ISCSI_CHAP_NAME_MAX_LEN,
+            default = STRING_TOKEN(STR_NULL),  // Set default value for CHAPName
+            default = STRING_TOKEN(STR_NULL), defaultstore = AmiMfgDefault,  // Manufacturing defaults
+    endstring;
+   
+    // Change the "CHAP Secret" control from String varid to Passoword varid.
+    // and add the text control for displaying the status of CHAP secret.
+    password  varid    = ISCSI_CONFIG_IFR_NVDATA.CHAPSecret,
+            prompt   = STRING_TOKEN(STR_ISCSI_CHAP_SECRET),
+            help     = STRING_TOKEN(STR_ISCSI_CHAP_SECRET_HELP),
+            flags    = INTERACTIVE,
+            key      = KEY_CHAP_SECRET,
+            minsize  = ISCSI_CHAP_SECRET_MIN_LEN,
+            maxsize  = ISCSI_CHAP_SECRET_MAX_LEN,
+            default  = STRING_TOKEN(STR_NULL),  // Set default value for CHAPSecret
+            default  = STRING_TOKEN(STR_NULL), defaultstore = AmiMfgDefault,  // Manufacturing defaults
+    endpassword;
+
+    text
+      help   = STRING_TOKEN (STR_ISCSI_CHAP_SECRET_HELP),
+      text   = STRING_TOKEN (STR_CHAP_SECRET_STATUS),
+      text   = STRING_TOKEN (STR_ISCSI_CHAP_STATUS),
+      flags  = 0,
+      key    = 0;
+    endif;
+
+    suppressif NOT ideqval ISCSI_CONFIG_IFR_NVDATA.AuthenticationType == ISCSI_AUTH_TYPE_CHAP OR
+               NOT ideqval ISCSI_CONFIG_IFR_NVDATA.CHAPType == ISCSI_CHAP_MUTUAL;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.ReverseCHAPName,
+            prompt  = STRING_TOKEN(STR_ISCSI_REVERSE_CHAP_NAME),
+            help    = STRING_TOKEN(STR_ISCSI_REVERSE_CHAP_NAME),
+            flags   = INTERACTIVE,
+            key     = KEY_REVERSE_CHAP_NAME,
+            minsize = 0,
+            maxsize = ISCSI_CHAP_NAME_MAX_LEN,
+            default = STRING_TOKEN(STR_NULL),  // Set default value for Reverse CHAP Name
+            default = STRING_TOKEN(STR_NULL), defaultstore = AmiMfgDefault,  // Manufacturing defaults    
+    endstring;
+    // Change the "Reverse CHAP Secret" control from String varid to Passoword varid.
+    // and add the text control for displaying the status of Reverse CHAP secret.
+
+    password  varid    = ISCSI_CONFIG_IFR_NVDATA.ReverseCHAPSecret,
+            prompt   = STRING_TOKEN(STR_ISCSI_REVERSE_CHAP_SECRET),
+            help     = STRING_TOKEN(STR_ISCSI_CHAP_SECRET_HELP),
+            flags    = INTERACTIVE,
+            key      = KEY_REVERSE_CHAP_SECRET,
+            minsize  = ISCSI_CHAP_SECRET_MIN_LEN,
+            maxsize  = ISCSI_CHAP_SECRET_MAX_LEN,
+            default  = STRING_TOKEN(STR_NULL),  // Set default value for Reverse CHAP Secret
+            default = STRING_TOKEN(STR_NULL), defaultstore = AmiMfgDefault,  // Manufacturing defaults
+    endpassword;
+
+    text
+      help   = STRING_TOKEN (STR_ISCSI_CHAP_SECRET_HELP),
+      text   = STRING_TOKEN (STR_REVERSE_CHAP_SECRET_STATUS),
+      text   = STRING_TOKEN (STR_ISCSI_REVERSE_CHAP_STATUS),
+      flags  = 0,
+      key    = 0;    
+
+    endif;
+
+    suppressif TRUE;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.ISCSIMacAddr,
+            prompt  = STRING_TOKEN(STR_ISCSI_MAC_PROMPT),
+            help    = STRING_TOKEN(STR_ISCSI_MAC_PROMPT),
+            minsize = 0,
+            maxsize = ISCSI_MAX_MAC_STRING_LEN,
+    endstring;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.ISCSIAttemptOrder,
+            prompt  = STRING_TOKEN(STR_ISCSI_ATTEMPT_ORDER),
+            help    = STRING_TOKEN(STR_ISCSI_ATTEMPT_ORDER),
+            minsize = 0,
+            maxsize = ATTEMPT_NAME_LIST_SIZE,
+    endstring;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.ISCSIAddAttemptList,
+            prompt  = STRING_TOKEN(STR_ISCSI_ADD_ATTEMPTS),
+            help    = STRING_TOKEN(STR_ISCSI_ADD_ATTEMPTS),
+            minsize = 0,
+            maxsize = ATTEMPT_NAME_LIST_SIZE,
+    endstring;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.ISCSIDeleteAttemptList,
+            prompt  = STRING_TOKEN(STR_ISCSI_DELETE_ATTEMPTS),
+            help    = STRING_TOKEN(STR_ISCSI_DELETE_ATTEMPTS),
+            minsize = 0,
+            maxsize = ATTEMPT_NAME_LIST_SIZE,
+    endstring;
+
+    string  varid   = ISCSI_CONFIG_IFR_NVDATA.ISCSIDisplayAttemptList,
+            prompt  = STRING_TOKEN(STR_ISCSI_DISPLAY_ATTEMPTS),
+            help    = STRING_TOKEN(STR_ISCSI_DISPLAY_ATTEMPTS),
+            flags   = READ_ONLY,
+            minsize = 0,
+            maxsize = ATTEMPT_NAME_LIST_SIZE,
+    endstring;
+
+    label KEYWORD_ENTRY_LABEL;
+    label LABEL_END;
+    endif;
+
+    subtitle text = STRING_TOKEN(STR_NULL);
+
+    text
+      help   = STRING_TOKEN (STR_SAVE_CHANGES_HELP),
+      text   = STRING_TOKEN (STR_SAVE_CHANGES),
+  // Adding RESET_REQUIRED flag for prompting user to reset on adding 
+  // and saving a new attempt
+      flags  = INTERACTIVE | RESET_REQUIRED,
+
+      key    = KEY_SAVE_ATTEMPT_CONFIG;
+    goto FORMID_MAIN_FORM,
+    prompt = STRING_TOKEN (STR_RETURN_MAIN_FORM),
+    help   = STRING_TOKEN (STR_RETURN_MAIN_FORM),
+    flags  = 0;
+
+  endform;
+#if (RSD_ISCSI_SUPPORT == 1)
+
+  form formid = FORMID_RSD_FORM,
+    title  = STRING_TOKEN(STR_RSD_ISCSI_FORM_TITLE);
+   //help  = STRING_TOKEN(STR_RSD_ISCSI_FORM_TITLE);
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_NULL),
+        flags = INTERACTIVE, 
+        key = KEY_RSD_UPDATE_ATTEMPT_LIST;
+        
+        label RSD_ATTEMPT_START;
+        label RSD_ATTEMPT_END;
+
+     subtitle text = STRING_TOKEN(STR_NULL);
+      
+  endform;
+  
+  form formid = FORMID_RSD_ATTEMPT_FORM,
+    title = STRING_TOKEN(STR_RSD_ISCSI_FORM_TITLE);
+
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_ATTEMPT_NAME),
+        text = STRING_TOKEN(STR_RSD_ISCSI_ATTEMPT_NAME_VALUE);
+      subtitle text = STRING_TOKEN(STR_NULL);
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_MODE),
+        text = STRING_TOKEN(STR_RSD_ISCSI_MODE_VALUE);
+         subtitle text = STRING_TOKEN(STR_NULL);
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_IP_MODE),
+        text = STRING_TOKEN(STR_RSD_IP_MODE_VALUE);
+         subtitle text = STRING_TOKEN(STR_NULL);
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_CONFIG_RETRY),
+        text = STRING_TOKEN(STR_RSD_ISCSI_CONFIG_RETRY_VALUE);
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_CONFIG_TIMEOUT),
+        text = STRING_TOKEN(STR_RSD_ISCSI_CONFIG_TIMEOUT_VALUE);
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_CONFIG_ISID),
+        text = STRING_TOKEN(STR_RSD_ISCSI_CONFIG_ISID_VALUE);
+    
+// Initiator Details
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_INIT_IP_CONFIG),
+        text = STRING_TOKEN(STR_RSD_ISCSI_INIT_IP_CONFIG_VALUE);
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_CONFIG_INIT_NAME),
+        text = STRING_TOKEN(STR_RSD_ISCSI_CONFIG_INIT_NAME_VALUE);
+        
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_LOCAL_IP_ADDRESS),
+        text = STRING_TOKEN(STR_RSD_ISCSI_LOCAL_IP_ADDRESS_VALUE);
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_LOCAL_MASK),
+        text = STRING_TOKEN(STR_RSD_ISCSI_LOCAL_MASK_VALUE);        
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_LOCAL_GATEWAY),
+        text = STRING_TOKEN(STR_RSD_ISCSI_LOCAL_GATEWAY_VALUE);      
+         subtitle text = STRING_TOKEN(STR_NULL);
+    
+    //Target details
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_SERVER_IP_CONFIG),
+        text = STRING_TOKEN(STR_RSD_ISCSI_SERVER_IP_CONFIG_VALUE);
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_TARGET_NAME),
+        text = STRING_TOKEN(STR_RSD_ISCSI_TARGET_NAME_VALUE);      
+         
+ 
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_TARGET_ADDRESS),
+        text = STRING_TOKEN(STR_RSD_ISCSI_TARGET_ADDRESS_VALUE);      
+        
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_TARGET_PORT),
+        text = STRING_TOKEN(STR_RSD_ISCSI_TARGET_PORT_VALUE);      
+       
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_ISCSI_BOOT_LUN),
+        text = STRING_TOKEN(STR_RSD_ISCSI_BOOT_LUN_VALUE);      
+        subtitle text = STRING_TOKEN(STR_NULL);
+        
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_AUTHEN_TYPE),
+        text = STRING_TOKEN(STR_RSD_AUTHEN_TYPE_VALUE);      
+
+    text
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_CHAP_TYPE),
+        text = STRING_TOKEN(STR_RSD_CHAP_TYPE_VALUE);     
+       
+        
+    text 
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_CHAP_SECRET_STATUS),
+        text = STRING_TOKEN(STR_RSD_CHAP_SECRET_STATUS_VALUE);
+        
+    text 
+        help = STRING_TOKEN(STR_NULL),
+        text = STRING_TOKEN(STR_RSD_REVERSE_CHAP_SECRET_STATUS),
+        text = STRING_TOKEN(STR_RSD_REVERSE_CHAP_SECRET_STATUS_VALUE);         
+  
+   endform; 
+ #endif
+endformset;

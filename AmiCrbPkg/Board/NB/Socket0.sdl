@@ -1,0 +1,1609 @@
+TOKEN
+    Name  = "Socket0_support"
+    Value  = "1"
+    Help  = "Main Switch for Enabling Sapphire Rapid NB Board in the Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Root bridge (Stack 0)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 00h
+    SleepNum  = 01h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PC0010nmD.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\Mother.asi'"
+    ASLdeviceName  = "PC00"
+    UID  = "00h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    InitRoutine  = "RootBrgInit"
+    ASL_PTS  = "Method;IPTS(Arg0)"
+    ASL_WAK  = "Method;IWAK(Arg0)"
+End
+
+PCIDEVICE
+    Title  = "IIOMISC on PC00"
+    Parent  = "Socket 0 Root bridge (Stack 0)"
+    Attribute  = "0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Fun  = 00h
+    ASLdeviceName  = "IIM0"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+End
+
+PCIDEVICE
+    Title  = "Legacy PCI Express Port 0 on PC00"
+    Parent  = "Socket 0 Root bridge (Stack 0)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 03h
+    Fun  = 00h
+    ASLdeviceName  = "RLK0"
+    IntA =  LNKA; 16
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+### Socket 0 Stack 1 Devices
+PCIDEVICE
+    Title  = "Socket 0 Root bridge (Stack 1)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 01h
+    SleepNum  = 01h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\SOCKET_0.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\STACK_1.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\IioRootBridge.asi'"
+    ASLdeviceName  = "PC01"
+    UID  = "01h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    InitRoutine  = "RootBrgInit"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port A on PC01"
+    Parent  = "Socket 0 Root bridge (Stack 1)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 01h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPA"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port B on PC01"
+    Parent  = "Socket 0 Root bridge (Stack 1)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 02h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPB"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port C on PC01"
+    Parent  = "Socket 0 Root bridge (Stack 1)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 03h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPC"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port D on PC01"
+    Parent  = "Socket 0 Root bridge (Stack 1)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPD"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port E on PC01"
+    Parent  = "Socket 0 Root bridge (Stack 1)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 05h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPE"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port F on PC01"
+    Parent  = "Socket 0 Root bridge (Stack 1)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 06h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPF"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port G on PC01"
+    Parent  = "Socket 0 Root bridge (Stack 1)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 07h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPG"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port H on PC01"
+    Parent  = "Socket 0 Root bridge (Stack 1)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 08h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPH"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+### Socket 0 Stack 2 Devices
+PCIDEVICE
+    Title  = "Socket 0 Root bridge (Stack 2)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 02h
+    SleepNum  = 01h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\SOCKET_0.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\STACK_2.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\IioRootBridge.asi'"
+    ASLdeviceName  = "PC02"
+    UID  = "02h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    InitRoutine  = "RootBrgInit"
+End
+PCIDEVICE
+    Title  = "PCI Express Port A on PC02"
+    Parent  = "Socket 0 Root bridge (Stack 2)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 01h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPA"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port B on PC02"
+    Parent  = "Socket 0 Root bridge (Stack 2)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 02h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPB"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port C on PC02"
+    Parent  = "Socket 0 Root bridge (Stack 2)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 03h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPC"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port D on PC02"
+    Parent  = "Socket 0 Root bridge (Stack 2)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPD"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port E on PC02"
+    Parent  = "Socket 0 Root bridge (Stack 2)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 05h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPE"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port F on PC02"
+    Parent  = "Socket 0 Root bridge (Stack 2)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 06h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPF"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port G on PC02"
+    Parent  = "Socket 0 Root bridge (Stack 2)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 07h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPG"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port H on PC02"
+    Parent  = "Socket 0 Root bridge (Stack 2)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 08h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPH"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+### Socket 0 Stack 3 Devices
+PCIDEVICE
+    Title  = "Socket 0 Root bridge (Stack 3)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 03h
+    SleepNum  = 01h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\SOCKET_0.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\STACK_3.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\IioRootBridge.asi'"
+    ASLdeviceName  = "PC03"
+    UID  = "03h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    InitRoutine  = "RootBrgInit"
+End
+PCIDEVICE
+    Title  = "PCI Express Port A on PC03"
+    Parent  = "Socket 0 Root bridge (Stack 3)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 01h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPA"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port B on PC03"
+    Parent  = "Socket 0 Root bridge (Stack 3)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 02h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPB"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port C on PC03"
+    Parent  = "Socket 0 Root bridge (Stack 3)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 03h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPC"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port D on PC03"
+    Parent  = "Socket 0 Root bridge (Stack 3)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPD"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port E on PC03"
+    Parent  = "Socket 0 Root bridge (Stack 3)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 05h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPE"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port F on PC03"
+    Parent  = "Socket 0 Root bridge (Stack 3)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 06h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPF"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port G on PC03"
+    Parent  = "Socket 0 Root bridge (Stack 3)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 07h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPG"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port H on PC03"
+    Parent  = "Socket 0 Root bridge (Stack 3)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 08h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPH"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+### Socket 0 Stack 4 Devices
+PCIDEVICE
+    Title  = "Socket 0 Root bridge (Stack 4)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 04h
+    SleepNum  = 01h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\SOCKET_0.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\STACK_4.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\IioRootBridge.asi'"
+    ASLdeviceName  = "PC04"
+    UID  = "04h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    InitRoutine  = "RootBrgInit"
+End
+PCIDEVICE
+    Title  = "PCI Express Port A on PC04"
+    Parent  = "Socket 0 Root bridge (Stack 4)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 01h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPA"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port B on PC04"
+    Parent  = "Socket 0 Root bridge (Stack 4)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 02h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPB"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port C on PC04"
+    Parent  = "Socket 0 Root bridge (Stack 4)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 03h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPC"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port D on PC04"
+    Parent  = "Socket 0 Root bridge (Stack 4)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPD"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port E on PC04"
+    Parent  = "Socket 0 Root bridge (Stack 4)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 05h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPE"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port F on PC04"
+    Parent  = "Socket 0 Root bridge (Stack 4)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 06h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPF"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port G on PC04"
+    Parent  = "Socket 0 Root bridge (Stack 4)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 07h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPG"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port H on PC04"
+    Parent  = "Socket 0 Root bridge (Stack 4)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 08h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPH"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+### Socket 0 Stack 5 Devices
+PCIDEVICE
+    Title  = "Socket 0 Root bridge (Stack 5)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 05h
+    SleepNum  = 01h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\SOCKET_0.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\STACK_5.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\IioRootBridge.asi'"
+    ASLdeviceName  = "PC05"
+    UID  = "05h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    InitRoutine  = "RootBrgInit"
+End
+PCIDEVICE
+    Title  = "PCI Express Port A on PC05"
+    Parent  = "Socket 0 Root bridge (Stack 5)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 01h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPA"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port B on PC05"
+    Parent  = "Socket 0 Root bridge (Stack 5)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 02h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPB"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port C on PC05"
+    Parent  = "Socket 0 Root bridge (Stack 5)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 03h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPC"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port D on PC05"
+    Parent  = "Socket 0 Root bridge (Stack 5)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPD"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port E on PC05"
+    Parent  = "Socket 0 Root bridge (Stack 5)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 05h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPE"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port F on PC05"
+    Parent  = "Socket 0 Root bridge (Stack 5)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 06h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPF"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port G on PC05"
+    Parent  = "Socket 0 Root bridge (Stack 5)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 07h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPG"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Port H on PC05"
+    Parent  = "Socket 0 Root bridge (Stack 5)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 08h
+    Fun  = 00h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieHp.asi','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\PcieNonHpDev.asi'"
+    ASLdeviceName  = "BRPH"
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+End
+
+## Dummy Stack 6 for Virtual Root bridge PC06, RC has no definition
+PCIDEVICE
+    Title  = "Socket 0 Virtual Root bridge (Stack 6)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 06h
+    SleepNum  = 01h
+    ASLdeviceName  = "PC06"
+    UID  = "06h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "RootBrgInit"
+End
+
+## Dummy Stack 7 for Virtual Root bridge PC07, RC has no definition
+PCIDEVICE
+    Title  = "Socket 0 Virtual Root bridge (Stack 7)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 07h
+    SleepNum  = 01h
+    ASLdeviceName  = "PC07"
+    UID  = "07h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "RootBrgInit"
+End
+
+### DINO Stacks ###
+### Notes: ASL Instances of Devices from DINO Stacks (8,9,A,B) are not generated through SDL.
+### Instead they are generated through AMI_DINO.asl.
+# DINO Stack 8
+PCIDEVICE
+    Title  = "Socket 0 DIN0 Stack (Stack 8)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 08h
+    SleepNum  = 01h
+    ASLdeviceName  = "PC08"
+    UID  = "08h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "RootBrgInit"
+End
+
+PCIDEVICE
+    Title  = "DIN0 on PC08"
+    Parent  = "Socket 0 DIN0 Stack (Stack 8)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "DIN0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "DSA0 on DIN0 on PC08"
+    Parent  = "DIN0 on PC08"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 01h
+    ASLdeviceName  = "DSA0"
+    SleepNum  = 00h
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "IAX0 on DIN0 on PC08"
+    Parent  = "DIN0 on PC08"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 02h
+    ASLdeviceName  = "IAX0"
+    SleepNum  = 00h
+    IntA =  LNKB; 16
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes 
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "CPM0 on PC08"
+    Parent  = "Socket 0 DIN0 Stack (Stack 8)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "CPM0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "HQM0 on PC08"
+    Parent  = "Socket 0 DIN0 Stack (Stack 8)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "HQM0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+# DINO Stack 9
+PCIDEVICE
+    Title  = "Socket 0 DIN0 Stack (Stack 9)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 09h
+    SleepNum  = 01h
+    ASLdeviceName  = "PC09"
+    UID  = "09h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "RootBrgInit"
+End
+
+PCIDEVICE
+    Title  = "DIN0 on PC09"
+    Parent  = "Socket 0 DIN0 Stack (Stack 9)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "DIN0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "DSA0 on DIN0 on PC09"
+    Parent  = "DIN0 on PC09"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 01h
+    ASLdeviceName  = "DSA0"
+    SleepNum  = 00h
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "IAX0 on DIN0 on PC09"
+    Parent  = "DIN0 on PC09"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 02h
+    ASLdeviceName  = "IAX0"
+    SleepNum  = 00h
+    IntA =  LNKB; 16
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes 
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "CPM0 on PC09"
+    Parent  = "Socket 0 DIN0 Stack (Stack 9)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "CPM0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "HQM0 on PC09"
+    Parent  = "Socket 0 DIN0 Stack (Stack 9)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "HQM0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+# DINO Stack A
+PCIDEVICE
+    Title  = "Socket 0 DIN0 Stack (Stack A)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 0Ah
+    SleepNum  = 01h
+    ASLdeviceName  = "PC0A"
+    UID  = "0Ah"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "RootBrgInit"
+End
+
+PCIDEVICE
+    Title  = "DIN0 on PC0A"
+    Parent  = "Socket 0 DIN0 Stack (Stack A)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "DIN0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "DSA0 on DIN0 on PC0A"
+    Parent  = "DIN0 on PC0A"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 01h
+    ASLdeviceName  = "DSA0"
+    SleepNum  = 00h
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "IAX0 on DIN0 on PC0A"
+    Parent  = "DIN0 on PC0A"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 02h
+    ASLdeviceName  = "IAX0"
+    SleepNum  = 00h
+    IntA =  LNKB; 16
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes 
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "CPM0 on PC0A"
+    Parent  = "Socket 0 DIN0 Stack (Stack A)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "CPM0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "HQM0 on PC0A"
+    Parent  = "Socket 0 DIN0 Stack (Stack A)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "HQM0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+# DINO Stack B
+PCIDEVICE
+    Title  = "Socket 0 DIN0 Stack (Stack B)"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 0Bh
+    SleepNum  = 01h
+    ASLdeviceName  = "PC0B"
+    UID  = "0Bh"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "RootBrgInit"
+End
+
+PCIDEVICE
+    Title  = "DIN0 on PC0B"
+    Parent  = "Socket 0 DIN0 Stack (Stack B)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "DIN0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "DSA0 on DIN0 on PC0B"
+    Parent  = "DIN0 on PC0B"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 01h
+    ASLdeviceName  = "DSA0"
+    SleepNum  = 00h
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "IAX0 on DIN0 on PC0B"
+    Parent  = "DIN0 on PC0B"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 02h
+    ASLdeviceName  = "IAX0"
+    SleepNum  = 00h
+    IntA =  LNKB; 16
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes 
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "CPM0 on PC0B"
+    Parent  = "Socket 0 DIN0 Stack (Stack B)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "CPM0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "HQM0 on PC0B"
+    Parent  = "Socket 0 DIN0 Stack (Stack B)"
+    Attribute  = "0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 04h
+    Fun  = 00h
+    ASLdeviceName  = "HQM0"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    SuppressDeviceGeneration = Yes
+    InitRoutine  = "PcieRootPortInitCallback"
+    Disable = Yes
+End
+
+# Socket 0 UnCore START
+PCIDEVICE
+    Title  = "Socket 0 Uncore 0"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 0Ch
+    SleepNum  = 01h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\SOCKET_0.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\STACK_C.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\Uncore.asi'"
+    ASLdeviceName  = "UC0C"
+    UID  = "80h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    InitRoutine  = "RootBrgInit"
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 0 UBOX Device"
+    Parent  = "Socket 0 Uncore 0"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName  = "UBX0"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 0 CHASIS_SMBUS Devices"
+    Parent  = "Socket 0 Uncore 0"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 0Bh
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName  = "CSM0"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 0 MS2MEM_SCF_MS2MEM0 Device"
+    Parent  = "Socket 0 Uncore 0"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 0Ch
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName  = "M2M0"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 0 MS2MEM_SCF_MS2MEM1 Device"
+    Parent  = "Socket 0 Uncore 0"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 0Dh
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName  = "M2M1"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 0 MCDDR0 Device"
+    Parent  = "Socket 0 Uncore 0"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 1Ah
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName  = "MCD0"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 0 MCDDR1 Device"
+    Parent  = "Socket 0 Uncore 0"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 1Bh
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName  = "MCD1"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 1"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x303f"
+    Dev_type  = "RootBridge"
+    Dev  = 00h
+    Fun  = 00h
+    BridgeBusNum  = 0Dh
+    SleepNum  = 01h
+    ASLfile  = "'ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\SOCKET_0.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\STACK_D.asl','ServerPlatformPkg\Features\Acpi\AcpiTables\Dsdt\Uncore.asi'"
+    ASLdeviceName  = "UC0D"
+    UID  = "81h"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    FixedBus = Yes
+    PCIExpress = Yes
+    InitRoutine  = "RootBrgInit"
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 1 GRP1_CHA8-10 Device"
+    Parent  = "Socket 0 Uncore 1"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 01h
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName  = "CHA1"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 1 GRP0_CHA0-7 Device"
+    Parent  = "Socket 0 Uncore 1"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 0Ah
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName  = "CHA2"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 1 GRP0_CHA8-10 Device"
+    Parent  = "Socket 0 Uncore 1"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 0Bh
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName  = "CHA3"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 1 CHAALL0-1 Device"
+    Parent  = "Socket 0 Uncore 1"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 1Dh
+    Fun  = 00h
+    SleepNum  = 11h
+    ASLdeviceName  = "CA00"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 1 CHASIS_PUINT0-7 Device"
+    Parent  = "Socket 0 Uncore 1"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 1Eh
+    Fun  = 00h
+    SleepNum  = 11h
+    ASLdeviceName  = "PUC0"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+
+PCIDEVICE
+    Title  = "Socket 0 Uncore 1 Gen3Phy Device"
+    Parent  = "Socket 0 Uncore 1"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 1Fh
+    Fun  = 00h
+    SleepNum  = 11h
+    ASLdeviceName  = "GN30"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+End
+#Socket 0 Uncore END

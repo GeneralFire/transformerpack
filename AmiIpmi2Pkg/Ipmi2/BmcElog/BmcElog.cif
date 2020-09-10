@@ -1,0 +1,11 @@
+<component>
+    name = "BmcElog"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\BmcElog\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.BmcElog"
+[INF]
+"DxeBmcElog.inf"
+"SmmBmcElog.inf"
+[files]
+"BmcElog.sdl"
+<endComponent>

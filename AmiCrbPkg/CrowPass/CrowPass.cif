@@ -1,0 +1,13 @@
+<component>
+	name = "CrowPass"
+	category = ModulePart
+	LocalRoot = "AmiCrbPkg\CrowPass\"
+	RefName = "CrowPass"
+
+[files]
+"CrowPass.sdl"
+
+[parts]
+"CrowPassHii"
+"CrowPassDriver"
+<endComponent>

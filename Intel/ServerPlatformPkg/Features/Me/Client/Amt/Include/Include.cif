@@ -1,0 +1,9 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Me\Client\Amt\Include\"
+    RefName = "ServerPlatformPkg.Features.Me.Client.Amt.Include"
+[files]
+"Library\AmtSupport.h"
+"Protocol\AmtWrapperProtocol.h"
+<endComponent>

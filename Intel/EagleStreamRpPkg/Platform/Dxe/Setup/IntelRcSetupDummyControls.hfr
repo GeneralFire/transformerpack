@@ -1,0 +1,57 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2019, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//
+// @file  IntelRcSetupDummyControls.hfr 
+//
+//   Defines dummy controls in Intel RC setup form set.
+//
+
+form formid = 0xFFFF,
+    title   = STRING_TOKEN(STR_NULL_STRING);
+    suppressif TRUE;
+        oneof varid  = SYSTEM_CONFIGURATION.PlatformOCSupport,
+            questionid = 0xDFF2,
+            prompt = STRING_TOKEN(STR_NULL_STRING),
+            help   = STRING_TOKEN(STR_NULL_STRING),
+            option text = STRING_TOKEN(STR_NULL_STRING), value = 0x00, flags = INTERACTIVE;
+        endoneof;
+        oneof varid  = SYSTEM_CONFIGURATION.BiosGuardPlatformSupported,
+            questionid = 0xDFF3,
+            prompt = STRING_TOKEN(STR_NULL_STRING),
+            help   = STRING_TOKEN(STR_NULL_STRING),
+            option text = STRING_TOKEN(STR_NULL_STRING), value = 0x00, flags = INTERACTIVE;
+        endoneof;
+        oneof varid  = SYSTEM_CONFIGURATION.AntiFlashWearoutSupported,
+            questionid = 0xDFF4,
+            prompt = STRING_TOKEN(STR_NULL_STRING),
+            help   = STRING_TOKEN(STR_NULL_STRING),
+            option text = STRING_TOKEN(STR_NULL_STRING), value = 0x00, flags = INTERACTIVE;
+        endoneof;
+    endif;
+endform;
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2019, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

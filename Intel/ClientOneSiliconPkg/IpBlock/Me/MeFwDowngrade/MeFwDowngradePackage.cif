@@ -1,0 +1,10 @@
+<component>
+    name = "MeFwDowngrade"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\MeFwDowngrade\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.MeFwDowngrade"
+[INF]
+"Dxe\MeFwDowngrade.inf"
+[files]
+"MeFwDowngrade.sdl"	
+<endComponent>

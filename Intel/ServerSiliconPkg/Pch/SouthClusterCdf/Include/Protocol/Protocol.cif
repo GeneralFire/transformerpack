@@ -1,0 +1,23 @@
+<component>
+    name = "Protocol"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Include\Protocol\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.Include.Protocol"
+[files]
+"IoTrapExDispatch.h"	
+"PchAcpiSmiDispatch.h"	
+"PchEspiSmiDispatch.h"	
+"PchGpioUnlockSmiDispatch.h"	
+"PchPcieSmiDispatch.h"	
+"PchPolicy.h"	
+"PchReset.h"	
+"PchSmiDispatch.h"	
+"PchSmmIoTrapControl.h"	
+"PchSmmPeriodicTimerControl.h"	
+"PchTcoSmiDispatch.h"	
+"PchThermalLevels.h"	
+"ScsEmmcSoftwareTuning.h"	
+"SmmSmbus.h"	
+"Spi.h"	
+"Wdt.h"	
+<endComponent>

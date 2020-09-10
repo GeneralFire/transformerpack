@@ -1,0 +1,57 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file AmiBmcCommonInterfaceLib.inf
+#
+#  INF description file for AmiBmcCommonInterfaceLib Library.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = AmiBmcCommonInterfaceLib
+  FILE_GUID         = D86308F8-5246-4B2F-AC25-E3D17170D6EF
+  MODULE_TYPE       = BASE
+  VERSION_STRING    = 1.1
+  LIBRARY_CLASS     = AmiBmcCommonInterfaceLib
+
+[Sources]
+  AmiBmcCommonInterfaceLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+  IoLib
+  DebugLib
+  TimerLib
+  BaseMemoryLib
+  AmiIpmiLib
+  $(AMI_BMC_COMMON_ACCESS_INTERFACE_LIB)
+  $(AMI_OEM_INTERFACE_LIB)
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

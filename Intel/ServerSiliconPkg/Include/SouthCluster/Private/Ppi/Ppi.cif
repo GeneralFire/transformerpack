@@ -1,0 +1,8 @@
+<component>
+	name = "Ppi"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\SouthCluster\Private\Ppi\"
+	RefName = "ServerSiliconPkg.Include.SouthCluster.Private.Ppi"
+[files]
+"PchPmcXramOffsetData.h"	
+<endComponent>

@@ -1,0 +1,24 @@
+TOKEN
+    Name  = "LibrarySpr_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibrarySpr support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Disable = Yes
+End
+
+TOKEN
+    Name  = "Build_LibrarySpr"
+    Value  = "0"
+    Help  = "Switch for building LibrarySpr Package"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "LibrarySpr"
+    TokenType = Expression
+    TargetDSC = Yes
+    Token = "Build_LibrarySpr" "=" "1"
+End
+

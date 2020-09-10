@@ -1,0 +1,8 @@
+<component>
+    name = "BiosGuard"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\BiosGuard\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.BiosGuard"
+[files]
+"BiosGuardConfig.h"	
+<endComponent>

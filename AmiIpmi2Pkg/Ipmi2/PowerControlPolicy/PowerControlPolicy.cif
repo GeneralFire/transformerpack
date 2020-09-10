@@ -1,0 +1,12 @@
+<component>
+	name = "PowerControlPolicy"
+	category = ModulePart
+	Rank = 40
+	LocalRoot = "AmiIpmi2Pkg\Ipmi2\PowerControlPolicy\"
+	RefName = "AmiIpmi2Pkg.Ipmi2.PowerControlPolicy"
+[files]
+"PowerControlPolicy.sdl"	
+"PowerControlPolicy.uni"	
+"PowerControlPolicy.sd"	
+"PowerControlPolicy.c"
+<endComponent>

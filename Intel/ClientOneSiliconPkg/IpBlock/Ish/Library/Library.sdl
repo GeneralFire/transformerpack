@@ -1,0 +1,26 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling IshInfoLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "IshInfoLib"
+    Instance  = "ClientOneSiliconPkg.IshInfoLibVer2"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+INFComponent
+    Name  = "IshInfoLibVer2"
+    File  = "IshInfoLib\IshInfoLibVer2.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "BASE"  
+    Token = "ME_ENABLE" "=" "1"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"                
+End
+

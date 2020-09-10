@@ -1,0 +1,10 @@
+<component>
+    name = "Gbe"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Gbe\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Gbe"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Gbe.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Gbe.Library"
+"ClientOneSiliconPkg.IpBlock.Gbe.LibraryPrivate"
+<endComponent>

@@ -1,0 +1,57 @@
+## @file
+# ServerSecurity Package
+# Cross Platform Modules for Tiano
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2018 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = ServerSiliconPkg
+  PACKAGE_GUID                   = 5B0DB3F8-B097-4BEF-8396-F3AB3F4FB16B
+  PACKAGE_VERSION                = 0.91
+
+[Includes]
+  Include
+  Include/Library
+  Include/Protocol
+
+[Guids]
+  gFusaSafDataHobGuid              = { 0x9C10254B, 0xB9E4, 0x49E1, { 0x97, 0x4F, 0xF2, 0x97, 0x23, 0x85, 0x9D, 0xCD } }
+  gStl2BiosFusaSafUefiVariableGuid = { 0xD8D77E4D, 0x5A52, 0x48BC, { 0xAF, 0xAD, 0xD0, 0xBE, 0x97, 0x9D, 0x1A, 0x53 } }
+  gEfiSeamLoaderSvnVariableGuid    = { 0xFFE88134, 0x0C2F, 0x4F69, { 0xA9, 0xAC, 0xD8, 0xF5, 0xAD, 0x18, 0x5E, 0x23 } }
+  gSecurityPkgPcdSpaceGuid         = { 0xF25495A8, 0x94FC, 0x413D, { 0x82, 0x9F, 0x62, 0xD8, 0x0C, 0xA9, 0x73, 0x58 } }
+
+[Protocols]
+
+  gPfrProtocolGuid                 = { 0x8B841B47, 0xC9B4, 0x46AC, { 0x82, 0x70, 0x84, 0x26, 0x29, 0x62, 0xE1, 0x56 } }
+
+[Ppis]
+
+[PcdsFeatureFlag]
+
+[PcdsDynamic]
+gSecurityPkgPcdSpaceGuid.PcdSgxPrivacy|TRUE|BOOLEAN|0x00000001
+gSecurityPkgPcdSpaceGuid.PcdSgxAddPackageSupport|TRUE|BOOLEAN|0x00000002

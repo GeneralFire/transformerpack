@@ -1,0 +1,11 @@
+<component>
+	name = "FspUpd"
+	category = ModulePart
+	LocalRoot = "Intel\EagleStreamFspPkg\Upd\"
+	RefName = "EagleStreamFspPkg.FspUpd"
+
+[files]
+"FsptUpd.dsc"	
+"FspmUpd.dsc"	
+"FspsUpd.dsc"
+<endComponent>

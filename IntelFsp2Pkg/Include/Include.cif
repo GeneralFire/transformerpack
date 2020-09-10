@@ -1,0 +1,28 @@
+<component>
+	name = "Include"
+	category = ModulePart
+	LocalRoot = "IntelFsp2Pkg\Include\"
+	RefName = "IntelFsp2Pkg.Include"
+[files]
+"FspEas.h"
+"FspGlobalData.h"
+"FspMeasurePointId.h"
+"FspStatusCode.h"
+"FspEas\FspApi.h"
+"Guid\FspHeaderFile.h"
+"Guid\GuidHobFspEas.h"
+"Library\CacheAsRamLib.h"
+"Library\CacheLib.h"
+"Library\DebugDeviceLib.h"
+"Library\FspCommonLib.h"
+"Library\FspPlatformLib.h"
+"Library\FspSecPlatformLib.h"
+"Library\FspSwitchStackLib.h"
+"Ppi\FspmArchConfigPpi.h"
+"Ppi\TempRamExitPpi.h"
+[parts]
+#"IntelFsp2Pkg.Include.FspEas"
+#"IntelFsp2Pkg.Include.Guid"
+#"IntelFsp2Pkg.Include.Library"
+#"IntelFsp2Pkg.Include.Ppi"
+<endComponent>

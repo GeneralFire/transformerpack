@@ -1,0 +1,8 @@
+<component>
+    name = "Uart"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\SerialIo\Uart\"
+    RefName = "ClientOneSiliconPkg.IpBlock.SerialIo.Uart"
+[parts]
+"ClientOneSiliconPkg.IpBlock.SerialIo.Uart.Library"
+<endComponent>

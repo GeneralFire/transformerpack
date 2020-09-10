@@ -1,0 +1,102 @@
+## @file
+# PEI implementation of the Memory Install library class.
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2019 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = MemoryInstallLib
+  FILE_GUID                      = A2B46AB2-0E3C-4B13-A9EB-04D96EA98B1E
+  MODULE_TYPE                    = PEIM
+  LIBRARY_CLASS                  = MemoryInstallLib | PEIM
+
+[Sources]
+  MemoryInstallLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CpRcPkg/CpRcPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  IntelFsp2Pkg/IntelFsp2Pkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+  ServerSiliconPkg/Iio/IioRcPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  HobLib
+  PeiServicesLib
+  CpuAndRevisionLib
+  UpiHostDataLib
+  KtiApiLib
+  UsraCsrLib
+  MemMapDataLib
+  SysHostPointerLib
+  PeiServicesTablePointerLib
+  SecurityPolicyLib
+
+[Pcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdImr2Enable
+  gEfiCpRcPkgTokenSpaceGuid.PcdImr2Size
+  gEfiCpRcPkgTokenSpaceGuid.PcdDprSizeFeatureSupport
+  gEfiCpRcPkgTokenSpaceGuid.PcdLtMemSize
+  gEfiCpRcPkgTokenSpaceGuid.PcdNvDimmEn
+  gSiPkgTokenSpaceGuid.PcdVTdPolicyPropertyMask             ## CONSUMES
+  gSiPkgTokenSpaceGuid.PcdVTdPeiDmaBufferSize               ## CONSUMES
+
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuThreadCount
+  gSiPkgTokenSpaceGuid.PcdFspBinaryEnable
+  gSiPkgTokenSpaceGuid.PcdPeiMemoryBaseAddressDefault
+
+[Guids]
+  gPsmiInitDataGuid
+  gEfiPlatformInfoGuid
+  gVtdPmrInfoDataHobGuid                                    #PRODUCES
+  gImr2BaseAddressHobGuid                                   #PRODUCES
+  gFspInfoHobGuid
+  gEfiMemoryTypeInformationGuid
+  gEfiReservedMemoryDataGuid
+  gEfiSmmPeiSmramMemoryReserveGuid
+  gEfiAcpiVariableGuid
+# APTIOV_SERVER_OVERRIDE_RC_START :
+#  gFspBootLoaderTolumHobGuid
+#  gFspReservedMemoryResourceHobGuid
+# APTIOV_SERVER_OVERRIDE_RC_START :
+  gPbspTearDownNemAddressHobGuid                            #PRODUCES
+    
+[Ppis]
+  gPeiPlatformMemorySizePpiGuid
+  gPeiBaseMemoryTestPpiGuid
+# APTIOV_SERVER_OVERRIDE_RC_START : To support Capsule update in EGS 
+  gEfiPeiCapsulePpiGuid
+# APTIOV_SERVER_OVERRIDE_RC_END : To support Capsule update in EGS 

@@ -1,0 +1,11 @@
+<component>
+	name = "AmiMrcHooksWrapperLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Library\AmiMrcHooksWrapperLib\"
+	RefName = "ServerPlatformPkg.Library.AmiMrcHooksWrapperLib"
+[INF]
+"AmiMrcHooksWrapperLib.inf"
+[files]
+"AmiMrcHooksWrapperLib.sdl"
+"PlatformHooksElinkAutoGenTempl.txt"
+<endComponent>

@@ -1,0 +1,9 @@
+<component>
+    name = "Ipu"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Ipu\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Ipu"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Ipu.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Ipu.LibraryPrivate"
+<endComponent>

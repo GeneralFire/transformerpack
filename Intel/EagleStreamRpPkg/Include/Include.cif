@@ -1,0 +1,10 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Include\"
+    RefName = "EagleStreamRpPkg.Include"
+[files]	
+"OemSmbios.h"
+[parts]
+"EagleStreamRpPkg.Include.Protocol"
+<endComponent>

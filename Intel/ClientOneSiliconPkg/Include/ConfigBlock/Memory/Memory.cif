@@ -1,0 +1,9 @@
+<component>
+    name = "Memory"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Memory\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Memory"
+[parts]
+"ClientOneSiliconPkg.Include.ConfigBlock.Memory.Ver1"
+"ClientOneSiliconPkg.Include.ConfigBlock.Memory.Ver2"
+<endComponent>

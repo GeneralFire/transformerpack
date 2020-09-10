@@ -1,0 +1,1103 @@
+<WA>
+    <!-- ********************** BEGIN WORKAROUNDS FOR HAND-EDITS ********************** -->
+    <!-- Svhooks need to be removed for MSM_PMON.h -->
+    <registerFile name="sprsp_top/oobmsm_gpsb/oobmsm_reg/CFG_MSM_FUNC_1">
+        <Register name="MSM_SCRATCH_PAD_DISCMSM_SCRATCH_PAD_DISC">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IIO_PCIEDMI.h -->
+    <registerFile name="sprsp_top/pciernd_sprrnd4x16\[0\]/dmi0/rcrbbar_inst">
+        <Register name="UPCFGCSR">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for M2MEM_MAIN.h -->
+    <registerFile name="sprsp_top/m2mem_reg\[\d*\]/m2m/CFG_M2MEM_CSR">
+        <Register name="Defeatures0">
+            <field name = "WcilOptDis">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for HBM_MIDSTACKGBL.h -->
+    <registerFile name="sprsp_top/hbmio\[0\]/midstack_creg/mem_hbmio_midstack_registers">
+        <Register name= "uc_bios_mailbox_ctl_creg">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name= "uc_hw_control_creg">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name= "uc_bios_mailbox_data0_creg">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name= "uc_bios_mailbox_data1_creg">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IIO_DFX_VTD.h -->
+    <registerFile name="sprsp_top/m2iosf_top\[\d*\]/m2iosf_reg/CFG_BDF_1_0_3_CFG">
+        <Register name= "irp_misc_dfx2_1_7_4_CFG">
+            <field name = "p_pf_timeout_cnt">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name= "Enable_B2B_OTC_VtdPipe_0_CFG">
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn0_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn1_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn2_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn3_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn4_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn5_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn6_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn7_P">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name= "Enable_B2B_OTC_VtdPipe_1_CFG">
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn8_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn9_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn10_P">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "CsrEnableVtdPipeB2bSnnnH_chn11_P">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for NPK_MAIN.h -->
+    <registerFile name="sprsp_top/northpeak_top_map\[0\]/file_ttc_pci_cfg|sprsp_top/northpeak_top_map/file_ttc_pci_cfg">
+        <Register name= "CMD">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/northpeak_top_map\[0\]/file_ttc_pci_cfg|sprsp_top/northpeak_top_map/file_ttc_pci_cfg">
+        <Register name= "MTB_UBAR">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/northpeak_top_map\[0\]/file_ttc_pci_cfg|sprsp_top/northpeak_top_map/file_ttc_pci_cfg">
+        <Register name= "MTB_LBAR">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for NPK_TPH.h -->
+    <registerFile name="sprsp_top/northpeak_top_map\[0\]/file_tph|sprsp_top/northpeak_top_map/file_tph">
+        <Register name= ".*">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- WA for IIO_PCIE_G5.h -->
+    <registerFile name = "sprsp_top/pcie_ivyrn4x16\[0\]/rp0/cfg_inst">
+        <Register name="LINKCTL3">
+            <name>LINKCT3L</name>
+        </Register>
+        <Register name="LINKCTL2">
+            <name>LINKCT2L</name>
+        </Register>
+        <Register name="LINKCAP2">
+            <name>LINKCA2P</name>
+        </Register>
+        <Register name="LINKSTS2">
+            <name>LINKST2S</name>
+        </Register>
+        <Register name="BCTL">
+            <name>BCTL_FBLP</name>
+        </Register>
+        <Register name="LINKCAP">
+            <name>LINKCAP_FBLP</name>
+        </Register>
+        <Register name="LINKCA2P">
+            <name>LINKCAP2_FBLP</name>
+        </Register>
+        <Register name="LINKCTL">
+            <name>LINKCTL_FBLP</name>
+        </Register>
+        <Register name="LINKCT2L">
+            <name>LINKCTL2</name>
+        </Register>
+        <Register name="LINKCT3L">
+            <name>LINKCTL3_FBLP</name>
+        </Register>
+        <Register name="LINKSTS">
+            <name>LINKSTS_FBLP</name>
+        </Register>
+        <Register name="LINKST2S">
+            <name>LINKSTS2</name>
+        </Register>
+        <Register name="PLKCTL">
+            <name>PLKCTL_FBLP</name>
+        </Register>
+        <Register name="CAPSR">
+            <name>CAPSR_FBLP</name>
+        </Register>
+        <Register name="LANEERRSTS">
+            <name>LANEERRSTS_FBLP</name>
+        </Register>
+        <Register name="G4STS">
+            <name>G4STS_FBLP</name>
+        </Register>
+        <Register name="G5STS">
+            <name>G5STS_FBLP</name>
+        </Register>
+        <Register name="RPPMCSR">
+            <name>RPPMCSR_FBLP</name>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for SB_FBLP.h -->
+    <registerFile name="sprsp_top/pcie_ivyrn4x16\[0\]/rp0/msg_inst0">
+        <Register name="RXTERMENCTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="LTSSMTRNCTL2">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="STAGGERCTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+		<Register name="LTSSMTRNCTL3">
+            <name>LTSSMTRNCT3L</name>
+        </Register>
+		<Register name= "LTSSMTRNCTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+		<Register name="LTSSMTRNCT3L">
+            <name>LTSSMTRNCTL3</name>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for CHA_MISC.h -->
+    <registerFile name="(sprsp_top/CHA_MULTI/SAD/CFG_CBO_UNICAST_GROUP0_0x000_0x2ff)">
+        <Register name="ha_ad_credits1_cfg">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="HA_AD_CREDITS">
+            <field name = "ad_vna_port[4-5]">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="HA_BL_CREDITS">
+            <field name = "bl_vna_port[4-5]">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="HA_BL_CREDITS1">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="HA_BL_CREDITS2">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="HA_AD_CREDITS2">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IIO_PCIE_G5.h -->
+    <registerFile name="(sprsp_top/pcie_ivyrn4x16\[0\]/rp0/cfg_inst)">
+        <Register name="PLKCTL_FBLP">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="(sprsp_top/pcierli_sprrli4x16\[0\]/rp0/cfg_inst)">
+        <Register name="PLKCTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IIO_PCIENTB.h -->
+    <registerFile name="(sprsp_top/pciernd_sprrnd4x16\[0\]/ntb_iep/cfg_inst)">
+        <Register name="PLKCTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IIO_PCIEDMI.h -->
+    <registerFile name="(sprsp_top/pciernd_sprrnd4x16\[0\]/dmi0/rcrbbar_inst)">
+        <Register name="PLKCTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IIO_CXL_IO.h -->
+    <registerFile name="sprsp_top/pcierli_sprrli4x16\[0\]/rp0/rcrbbar_inst">
+        <Register name="PTMGTECSR">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="PLKCTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IIO_PCIEGen4.h -->
+    <registerFile name="sprsp_top/pciernd_sprrnd4x16\[0\]/rp0/cfg_inst">
+        <Register name="PTMGTECSR">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IIO_PCIE_G5.h -->
+    <registerFile name="sprsp_top/pcierli_sprrli4x16\[0\]/rp0/cfg_inst">
+        <Register name="PTMGTECSR">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for SB_CXPSMB.h -->
+    <registerFile name="sprsp_top/cxpsmb_top/priv">
+        <Register name="SEGMAP0">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="SEGROW0">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IEH_SATELLITE.h -->
+    <registerFile name="sprsp_top/ieh\[\d*\]/iehregs/IEH_REG_CFG">
+        <Register name="G_AGENT_SRCID_06">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="G_AGENT_SRCID_07">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="G_AGENT_SRCID_08">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="G_AGENT_SRCID_09">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for MCDDC_DP.h -->
+    <registerFile name="sprsp_top/mc_reg\[\d*\]/mc_wp_crnode/MEM_MCDP_CSR">
+        <Register name="mc0_dp_chkn_bit2">
+            <field name = "dis_rdb_byp">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+            <Register name="mc0_dp_chkn_bit3">
+                <field name = "dis_esddc_poison">
+                    <svhooks>False</svhooks>
+                </field>
+                <field name = "dis_esddc_dir">
+                    <svhooks>False</svhooks>
+                </field>
+                <field name = "dis_esddc_ns">
+                    <svhooks>False</svhooks>
+                </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for SB_FBLP.h -->
+    <registerFile name="sprsp_top/pcie_ivyrn4x16\[0\]/rp0/msg_inst0">
+        <Register name="UPCFGCSR">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- WorkAround of SPR 1p0 for 19ww39b -->
+    <!-- Svhooks need to be removed for MCDDC_DP.h -->
+    <registerFile name="sprsp_top/mc_reg\[\d*\]/mc_wp_crnode/MEM_MCDP_CSR">
+        <Register name="mc0_dp_chkn_bit3">
+            <field name = "dis_meta_ecc_corr">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "dis_hphase_and_odd_delay_fix_for_wrcrc">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- WorkAround of SPR 1p0 for 19ww36c -->
+    <!-- Remove SV_HOOKS for CHABC_SAD.h  -->
+    <registerFile name="(sprsp_top/CHA_MULTI/EGRESS/CFG_CBO_BCAST_0_0x400_0xfff)">
+        <Register name="cbomcaconfig_lbw">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- WorkAround of SPR 1p0 for 19ww33b -->
+    <!-- Remove SV_HOOKS for SB_M2PCIE.h  -->
+    <registerFile name="(sprsp_top/m2iosf_top\[0\]/m2iosf_reg/MSG_msr_rw_iio_pstack)">
+        <Register name="tc_misc_ucr">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Remove SV_HOOKS for IIO_PCIE_G5.h -->
+    <registerFile name="(sprsp_top/pcie_ivyrn4x16\[0\]/rp0/cfg_inst)">
+        <Register name="UPCFGCSR">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Remove SV_HOOKS for IIO_PCIEGen4.h -->
+    <registerFile name="(sprsp_top/pciernd_sprrnd4x16\[0\]/rp0/cfg_inst)">
+        <Register name="UPCFGCSR">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Remove SV_HOOKS for CHABC_SAD.h -->
+    <registerFile name="(sprsp_top/CHA_MULTI/EGRESS/CFG_CBO_BCAST_0_0x400_0xfff)">
+        <Register name="cha_rtr_snp_ctl0">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="cha_rtr_snp_ctl1">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Remove SV_HOOKS for CHA_PMA.h -->
+    <registerFile name="(sprsp_top/CHA_MULTI/PIPE/CFG_CBO_UNICAST_GROUP1_0x000_0x2ff)">
+        <Register name="ad_vna_credit_config_cfg">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="bl_vna_credit_config_cfg">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Remove SV_HOOKS for IIO_VTD.h -->
+    <registerFile name="(sprsp_top/m2iosf_top\[\d*\]/m2iosf_reg/CFG_BDF_1_0_0_CFG)">
+        <Register name="IMRGLOBAL_BM_CP_1_1_0_CFG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="IMRGLOBAL_BM_WAC_1_1_0_CFG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- WorkAround of SPR 1p0 for 19ww26 -->
+    <!-- Remove SV_HOOKS for MC_2LM.h -->
+    <registerFile name="sprsp_top/mc_reg\[\d*\]/mc_2lmddrt_crnode/MEM_MC2LM_CSR">
+        <Register name="DDRT_CONFIG_CTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/ddrphy_top\[0\]/ddrcc0_type/ddrcc0_chall/ddrcc0_mem">
+        <Register name="DDRCC_DFX_CTL0">
+            <field name = "tmr_test_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/ddrphy_top\[0\]/ddrd1_type/ddrd1_n0_chall/ddrd1_n0_mem">
+        <Register name="DDRD_N0_DFX_CTL0">
+            <field name = "tmr_test_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/ddrphy_top\[0\]/ddrclk_type/ddrclk_chall/ddrclk_mem">
+        <Register name="DDRCLK_DFX_CTL0">
+            <field name = "tmr_test_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/ddrphy_top\[0\]/ddrcc0_type/ddrcc0_ch0/ddrcc0_mem">
+        <Register name="DDRCC_DFX_CTL0">
+            <field name = "tmr_test_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/ddrphy_top\[0\]/ddrd1_type/ddrd1_n0_ch0/ddrd1_n0_mem">
+        <Register name="DDRD_N0_DFX_CTL0">
+            <field name = "tmr_test_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/ddrphy_top\[0\]/ddrd1_type/ddrd1_n0_ch0a_0/ddrd1_n0_mem">
+        <Register name="DDRD_N0_DFX_CTL0">
+            <field name = "tmr_test_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/ddrphy_top\[0\]/ddrcc0_type/ddrcc0_ch0a/ddrcc0_mem">
+        <Register name="DDRCC_DFX_CTL0">
+            <field name = "tmr_test_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/ddrphy_top\[0\]/ddrclk_type/ddrclk_ch0/ddrclk_mem">
+        <Register name="DDRCLK_DFX_CTL0">
+            <field name = "tmr_test_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_shared/cpgc_v/cpgc_v_sub_MEM">
+        <Register name="CPGC2_CREDIT_CFG">
+            <field name = "rd_cpl_credits_init|rsp_credits_init|credits_config_done|ism_idle|credits_initialized">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_shared/cpgc_v/cpgc_v_sub_MEM">
+        <Register name="CPGC2_STG_CHICKEN">
+            <field name = "rtn_wtrmrk|stg_wtrmrk">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_shared/cpgc_v/cpgc_v_sub_MEM">
+        <Register name="CPGC2_STG_CHICKEN">
+            <field name = "rtn_preload|stg_preload">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_shared/cpgc_v/cpgc_v_sub_MEM">
+        <Register name="CPGC2_V_CHICKEN">
+            <field name = "xpq_ch_credit|xpq_ch_override|stg_ch_credit|stg_ch_override|rtn_bypass_disable|axi_order_mode|mpr_test_req_dblr|internal_err">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- WorkAround of SPR 0p8 -->
+    <!-- Remove SV_HOOKS for IIO_PCIEGEN4.h -->
+    <registerFile name="sprsp_top/pciernd_sprrnd4x16\[0\]/rp0/cfg_inst">
+        <Register name="XPTDEF2">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Remove SV_HOOKS for IIO_PCIE_G5.h -->
+    <registerFile name="sprsp_top/pcierli_sprrli4x16\[0\]/rp0/cfg_inst">
+        <Register name="XPTDEF2">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Remove SV_HOOKS for IIO_CXL_IO.h -->
+    <registerFile name="sprsp_top/pcierli_sprrli4x16\[0\]/rp0/rcrbbar_inst">
+        <Register name="XPTDEF2">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Remove _bcast_0 for CHABC_SAD.H -->
+    <registerFile name="(sprsp_top/CHA_MULTI/SAD/CFG_CBO_BCAST_0_0x000_0x3ff|sprsp_top/cbo_slice\[\d+\]/SAD/CFG_CBO_BCAST_0_0x000_0x3ff)">
+        <Register name="dram_global_interleave_cfg">
+             <field name = "rt0_interleave_shift">
+                <name>rt0_interleave_mode</name>
+            </field>
+    </Register>
+    </registerFile>
+    <!-- Remove _bcast_0 for CHABC_SAD.H -->
+    <registerFile name="(sprsp_top/CHA_MULTI/SAD/CFG_CBO_BCAST_0_0x000_0x3ff|sprsp_top/cbo_slice\[\d+\]/SAD/CFG_CBO_BCAST_0_0x000_0x3ff)">
+        <Register name="_bcast_0">
+            <name></name>
+        </Register>
+    </registerFile>
+    <!-- Remove SV_HOOKS for MCDDC_CTL.h -->
+    <registerFile name="sprsp_top/mc_reg\[\d*\]/mcdecs_crnode/MEM_MCDECS_CSR">
+        <Register name="scratchpad2">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/dd_reg\[0\]/dd/MEM_DD_CSR">
+        <Register name="pm">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/mdfis\[0\]/chnl2_creg/mem_mdfis_chnl2_registers|sprsp_top/mdi\[0\]/mdi_left_creg/mem_mdfis_chnl2_registers">
+        <Register name="MDFIS_TRAINING_FSM_CTRL0_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_STANDALONE_SEQUENCE_HI_GV_REG0_LOWER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_STANDALONE_SEQUENCE_HI_GV_REG0_UPPER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+         <Register name="MDFIS_STANDALONE_SEQUENCE_HI_GV_REG1_LOWER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+         <Register name="MDFIS_STANDALONE_SEQUENCE_HI_GV_REG1_UPPER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+          <Register name="MDFIS_DIE2DIE_SEQUENCE_HI_GV_REG0_LOWER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+           <Register name="MDFIS_DIE2DIE_SEQUENCE_HI_GV_REG0_UPPER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_DIE2DIE_SEQUENCE_HI_GV_REG1_LOWER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+         <Register name="MDFIS_DIE2DIE_SEQUENCE_HI_GV_REG1_UPPER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_RXOFF_PHASE_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+         <Register name="MDFIS_RCOMP_PHASE_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+          <Register name="MDFIS_ILW_PHASE_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+           <Register name="MDFIS_DCC_PHASE_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_SLOOP_PHASE_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+         <Register name="MDFIS_LLOOP_PHASE_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+          <Register name="MDFIS_PATGEN_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+           <Register name="MDFIS_RXVREF_PHASE_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_TX_PA_PHASE_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_COUNTER_1MS_CTRL_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_STANDALONE_SEQUENCE_REG2_LOWER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_STANDALONE_SEQUENCE_REG2_UPPER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="MDFIS_DIE2DIE_SEQUENCE_REG2_LOWER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+         <Register name="MDFIS_DIE2DIE_SEQUENCE_REG2_UPPER_CREG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for IIO_PCIEDMI.h -->
+    <registerFile name="(sprsp_top/pciernd_sprrnd4x16\[0\]/dmi0/rcrbbar_inst)">
+        <Register name= "XPTDEF2">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name= "XPTDEF">
+            <field name = "MALCHKD">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- WorkAround of SPR 0p5 -->
+    <!-- Remove the BDF (such as, "1_0_0_") for IIO_VTD.h-->
+    <registerFile name="sprsp_top/m2iosf_top\[\d*\]/m2iosf_reg/CFG_BDF_1_0_0_CFG">
+        <Register name="_\d+_\d+_\d+_CFG">
+            <name></name>
+        </Register>
+    </registerFile>
+    <!-- update TX_DATA_PORT for SB_I3C.h -->
+    <registerFile name="(sprsp_top/lpss\[0\]/sb_i3c_0/sb_i3c_ctrl|sprsp_top/lpss\[1\]/sb_i3c_0/sb_i3c_ctrl)">
+        <Register name= "TX_DATA_PORT">
+            <field name = "TX_DATA_PORT">
+                <name>data_port</name>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="(sprsp_top/lpss\[0\]/sb_i3c_0/sb_i3c_ctrl|sprsp_top/lpss\[1\]/sb_i3c_0/sb_i3c_ctrl)">
+        <Register name= "TX_DATA_PORT">
+            <name>DATA_PORT</name>
+        </Register>
+    </registerFile>
+
+    <!-- WorkAround of SPR 0p5a -->
+    <!-- Svhooks need to be removed for SB_PSF.h -->
+    <registerFile name="(sprsp_top/psf_sprpi5\[0\]/psf_1_sprpi5)">
+        <Register name= "PSF_1_PSF_GLOBAL_CONFIG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for SB_M2PCIE.h -->
+    <registerFile name="(sprsp_top/m2iosf_top\[0\]/m2iosf_reg/MSG_R2PCIE_UCR)">
+        <Register name= "R2PGNCTRL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for UBOX_MISC.h -->
+    <registerFile name="(sprsp_top/ubox/ncdecs/ncdecs/CFG_UBOX_F2)">
+        <Register name= "UBOX_SMICTRL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+ <!-- WorkAround of SPR 0p3 -->
+    <!-- Svhooks need to be removed for MCCADB_MAIN.h -->
+    <registerFile name="(sprsp_top/mc_cadb_reg\[0\]/CADB_C/cadb_c_sub_MEM|sprsp_top/mc_cadb_reg\[0\]/CADB_S/cadb_s_sub_MEM)">
+        <Register name= ".*">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+
+    <registerFile name="(sprsp_top/mc_cadb_reg\[0\]/CADB_C/cadb_c_sub_MEM)">
+            <Register name= "CADB_OVERRIDE">
+                <field name = ".*">
+                    <svhooks>True</svhooks>
+                </field>
+            </Register>
+    </registerFile>
+
+    <!-- Svhooks need to be removed for MCCPGC_MAIN.h -->
+    <registerFile name="(sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_buffer0/cpgc_b/cpgc_b_sub_MEM|sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_channel0/cpgc_d/cpgc_d_sub_MEM|sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_env/cpgc_p/cpgc_p_sub_MEM)">
+        <Register name= ".*">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="(sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_env/cpgc_v/cpgc_v_sub_MEM|sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_reqgen0/cpgc_a/cpgc_a_sub_MEM|sprsp_top/mc_cpgc_reg\[\d*\]/cpgc_reqgen0/cpgc_t/cpgc_t_sub_MEM)">
+        <Register name= ".*">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <!-- Remove the BDF ("0_12_0_") and Svhooks for M2MEM_MAIN.h-->
+    <registerFile name="sprsp_top/m2mem_reg/m2m/CFG_M2MEM_PCIE_CSR">
+        <Register name="(_\d+)?_\d+_\d+_\d+">
+            <name>&#92;g&lt;1&gt;</name>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/m2mem_reg/m2m/CFG_M2MEM_CSR">
+        <Register name="DEFEATURES1">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+
+    <!-- Svhooks need to be removed for M3KTI_MAIN.h -->
+    <registerFile name="sprsp_top/upi_1x_creg\[0\]/rcconfig/CFG_R3QPI_F0|sprsp_top/upimdf\[0\]/rcconfig/CFG_R3QPI_F0">
+        <Register name="M3KPRETL|M3KINGCTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KCTRL">
+            <field name = "socketid">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KPRECTRL">
+            <field name = "mini_sad_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name ="M3GLERRCFG">
+            <field name = "resetglobalfatalerror"><svhooks>False</svhooks></field>
+            <field name = "resetglobalviral"><svhooks>False</svhooks></field>
+            <field name = "maskm3fatalerror"><svhooks>False</svhooks></field>
+            <field name = "maskktifatalerrorin"><svhooks>False</svhooks></field>
+            <field name = "maskktiviralout"><svhooks>False</svhooks></field>
+            <field name = "maskktiiviralin"><svhooks>False</svhooks></field>
+            <field name = "maskpcufatalerrorout"><svhooks>False</svhooks></field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/upi_1x_creg/rcconfig/CFG_R3QPI_F0">
+        <Register name="M3KPRETL|M3KINGCTL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KCTRL">
+            <field name = "socketid">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KPRECTRL">
+            <field name = "mini_sad_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name ="M3GLERRCFG">
+            <field name = "resetglobalfatalerror"><svhooks>False</svhooks></field>
+            <field name = "resetglobalviral"><svhooks>False</svhooks></field>
+            <field name = "maskm3fatalerror"><svhooks>False</svhooks></field>
+            <field name = "maskktifatalerrorin"><svhooks>False</svhooks></field>
+            <field name = "maskktiviralout"><svhooks>False</svhooks></field>
+            <field name = "maskktiiviralin"><svhooks>False</svhooks></field>
+            <field name = "maskpcufatalerrorout"><svhooks>False</svhooks></field>
+        </Register>
+    </registerFile>
+
+    <!-- Remove " _0" for KTI_LLPMON.h and M3KTI_MAIN.h -->
+    <registerFile name="sprsp_top/upi_1x_creg\[0\]/ktiln/CFG_KTI0_0|sprsp_top/upi_1x_creg\[0\]/rcconfig/CFG_R3QPI_F0|sprsp_top/upimdf\[0\]/ktiln/CFG_KTI0_0">
+        <Register name="^VID_0">
+            <name>VID</name>
+        </Register>
+    </registerFile>
+    <!-- Remove " _0" for KTI_LLPMON.h and M3KTI_MAIN.h -->
+    <registerFile name="sprsp_top/upi_1x_creg/ktiln/CFG_KTI0_0|sprsp_top/upi_1x_creg/rcconfig/CFG_R3QPI_F0|sprsp_top/upimdf/ktiln/CFG_KTI0_0">
+        <Register name="^VID_0">
+            <name>VID</name>
+        </Register>
+    </registerFile>
+    <!-- WorkAround of SPR 0p0 -->
+    <!-- These registerfiles will NOT have _CFG removed from the end of CSR names -->
+    <registerFile name="(?!(.*_EKV|sprsp_top/ms2idi\[0\]/MS2IDI_TOP/MEM_MS2IDI|sprsp_top/mc_reg\[0\]/mcdecs_crnode/MEM_MCDECS_CSR|sprsp_top/mc_reg\[0\]/mc_dec_crnode/MEM_MCMAINS_CSR|sprsp_top/mc_reg\[0\]/mc_dfxwraps_crnode/MEM_MCDFXWRAPS_CSR|sprsp_top/mc_reg\[0\]/mcscheds_bs_crnode/MEM_MCSCHEDS_CSR|sprsp_top/mc_reg\[0\]/mcscheds_pq_crnod/MEM_MCSCHEDS_CSR|sprsp_top/mc_reg\[0\]/mc_2lmcntl_crnode/MEM_MC2LM_CSR|sprsp_top/mc_reg\[0\]/mc_2lmddrt_crnode/MEM_MC2LM_CSR|sprsp_top/mc_reg\[0\]/mc_rrd_crnode/MEM_MCDP_CSR|sprsp_top/mc_reg\[0\]/mc_wp_crnode/MEM_MCDP_CSR|sprsp_top/mc_reg\[0\]/mc_wdb_crnode/MEM_MCDP_CSR|sprsp_top/mc_cadb_reg\[0\]/CADB_C/cadb_c_sub_MEM|sprsp_top/mc_cadb_reg\[0\]/CADB_P/cadb_p_sub_MEM|sprsp_top/mc_cadb_reg\[0\]/CADB_S/cadb_s_sub_MEM|sprsp_top/mc_cpgc_reg\[0\]/cpgc_buffer0/cpgc_b/cpgc_b_sub_MEM|sprsp_top/mc_cpgc_reg\[0\]/cpgc_channel0/cpgc_d/cpgc_d_sub_MEM|sprsp_top/mc_cpgc_reg\[0\]/cpgc_channel1/cpgc_d/cpgc_d_sub_MEM|sprsp_top/mc_cpgc_reg\[0\/cpgc_env/cpgc_p/cpgc_p_sub_MEM|sprsp_top/mc_cpgc_reg\[0\]/cpgc_env/cpgc_v/cpgc_v_sub_MEM|sprsp_top/mc_cpgc_reg\[0\]/cpgc_reqgen0/cpgc_a/cpgc_a_sub_MEM|sprsp_top/mc_cpgc_reg\[0\]/cpgc_reqgen0/cpgc_t/cpgc_t_sub_MEM))">
+        <Register name="_CFG$" >
+            <name></name>
+        </Register>
+    </registerFile>
+
+    <!-- Svhooks need to be removed for SB_PSF.h -->
+    <registerFile name="sprsp_top/psf_spr\[0\]/psf_1">
+        <Register name="PSF_1_PSF_GLOBAL_CONFIG">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+
+    <!-- Svhooks need to be removed for IIO_PCIE.h -->
+    <registerFile name="sprsp_top/pcieg3_top_creg\[0\]/pcieg3_rp_ntb/pcieg3_rp_ntb/CFG_BDF_1_1_0_CFG">
+        <Register name="MCAST_BLK_ALL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+
+    <!-- Remove the BDF (such as, "1_0_0_") for IIO_VMD.h, IIO_PCIE.h, IIO_DFX_GLOBAL.h, IIO_DFX_GLOBAL_DMI.h, IIO_RAS.h M2MEM_MAIN.h-->
+    <registerFile name="sprsp_top/m2iosf_top\[\d+\]/m2iosf_reg/CFG_BDF_1_0_5_CFG|sprsp_top/pcieg3_top_creg\[\d+\]/pcieg3_rp_ntb/pcieg3_rp_ntb/CFG_BDF_1_1_0_CFG|sprsp_top/m2iosf_top\[\d+\]/m2iosf_reg/CFG_BDF_1_0_3_CFG|sprsp_top/m2iosf_top\[\d+\]/m2iosf_reg/CFG_BDF_1_0_2_CFG|sprsp_top/m2mem_reg\[0\]/m2m/CFG_M2MEM_PCIE_CSR">
+        <Register name="(_\d+)?_\d+_\d?\d+_\d+">
+            <name>&#92;g&lt;1&gt;</name>
+        </Register>>
+    </registerFile>
+
+    <!-- Add some unique tags for CHABC_SAD1.h-->
+    <registerFile name = "(sprsp_top/CHA_MULTI/SAD/CFG_CBO_BCAST_1_0x000_0x3ff|sprsp_top/cbo_slice\[\d+\]/SAD/CFG_CBO_BCAST_1_0x000_0x3ff)">
+        <Register name="LB_W_MCHECK_CHA_CP_BCAST_1">
+            <name>LB_W_MCHECK_CHA_CP</name>
+        </Register>
+        <Register name="LB_W_MCHECK_CHA_WAC_BCAST_1">
+            <name>LB_W_MCHECK_CHA_WAC</name>
+        </Register>
+        <Register name="LB_W_MCHECK_CHA_RAC_BCAST_1">
+            <name>LB_W_MCHECK_CHA_RAC</name>
+        </Register>
+    </registerFile>
+    <registerFile name = "sprsp_top/CHA_MULTI/SAD/CFG_CBO_BCAST_1_0x000_0x3ff">
+        <Register name="LB_W_MCHECK_CHA_.*">
+            <use_unique_name>True</use_unique_name>
+        </Register>
+    </registerFile>
+
+    <!-- Remove " _0" of register "VID_0" and "SVID_0" for M3KTI_MAIN.h and KTI_LLPMON.h -->
+    <registerFile name="sprsp_top/upi_1x_creg\[0\]/rcconfig/CFG_R3QPI_F0|sprsp_top/upi_1x_creg\[0\]/ktiln/CFG_KTI0_0|sprsp_top/upimdf\[0\]/rcconfig/CFG_R3QPI_F0|sprsp_top/upimdf\[0\]/ktiln/CFG_KTI0_0">
+        <Register name="VID_0">
+            <name>VID</name>
+        </Register>
+    </registerFile>
+    <!-- Remove " _0" of register "VID_0" and "SVID_0" for M3KTI_MAIN.h and KTI_LLPMON.h -->
+    <registerFile name="sprsp_top/upi_1x_creg/rcconfig/CFG_R3QPI_F0|sprsp_top/upi_1x_creg/ktiln/CFG_KTI0_0|sprsp_top/upimdf/rcconfig/CFG_R3QPI_F0|sprsp_top/upimdf/ktiln/CFG_KTI0_0">
+        <Register name="VID_0">
+            <name>VID</name>
+        </Register>
+    </registerFile>
+    <!-- Svhooks need to be removed for MC_MAIN.h -->
+    <registerFile name="sprsp_top/mc_reg\[0\]/mcdecs_crnode/MEM_MCDECS_CSR">
+        <Register name="MEM_SIZE_CONTROL|ADDDC_REGION[23]_CONTROL">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/mc_reg\[0\]/mc_dec_crnode/MEM_MCMAINS_CSR">
+        <Register name="MCNMCACHINGCFG">
+            <field name = "WCILFOptDis">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="tadwayness_[1-7]">
+            <field name = "tad_limit">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+
+
+    <!-- Svhooks need to be removed for CHA_MISC.h -->
+    <registerFile name="sprsp_top/cbo_slice\[0\]/SAD/CFG_CBO_UNICAST_GROUP0_0x000_0x2ff">
+        <Register name="HA_AD_CREDITS$">
+            <field name = "ad_vna_port[2-3]">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="HA_BL_CREDITS$">
+            <field name = "bl_vna_port[2-3]">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+
+    <!-- Svhooks need to be removed for UBOX_MISC.h -->
+    <registerFile name="sprsp_top/ubox/ncdecs/ncdecs/CFG_UBOX_F2">
+        <Register name="CPUBUSNO_VALID">
+            <field name = "busno_programmed">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+
+    <!-- Svhooks need to be removed for M3KTI_MAIN.h -->
+    <registerFile name="sprsp_top/upi_1x_creg\[0\]/rcconfig/CFG_R3QPI_F0|sprsp_top/upimdf\[0\]/rcconfig/CFG_R3QPI_F0">
+        <Register name="M3KCTRL">
+            <field name = "socketid">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KPRECTRL">
+            <field name = "mini_sad_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KPRETL">
+            <field name = "mini_sad_targets">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KINGCTL">
+            <field name = "validtxcyclemode">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "flitsinbgfifothresholdunnnh">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/upi_1x_creg/rcconfig/CFG_R3QPI_F0">
+        <Register name="M3KCTRL">
+            <field name = "socketid">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KPRECTRL">
+            <field name = "mini_sad_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KPRETL">
+            <field name = "mini_sad_targets">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KINGCTL">
+            <field name = "validtxcyclemode">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "flitsinbgfifothresholdunnnh">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+    <registerFile name="sprsp_top/upi_1x_creg/rcconfig/CFG_R3QPI_F0">
+        <Register name="M3KCTRL">
+            <field name = "socketid">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KPRECTRL">
+            <field name = "mini_sad_mode">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KPRETL">
+            <field name = "mini_sad_targets">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="M3KINGCTL">
+            <field name = "validtxcyclemode">
+                <svhooks>False</svhooks>
+            </field>
+            <field name = "flitsinbgfifothresholdunnnh">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+
+    <!-- Svhooks need to be removed for UBOX_CFG.h -->
+    <registerFile name="sprsp_top/ubox/ncevents/ncevents/CFG_UBOX_F0">
+        <Register name="LB_MCHECK_W_CP|LB_MCHECK_W_WAC">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="LB_MCHECK_W_RAC">
+            <field name = "lb_mcheck_w_sai_pol_([0-2]?\d|3[0-1])$">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+        <Register name="UBOX_GL_ERR_CFG">
+            <field name = "maskextviral">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+
+    <!-- Svhooks need to be removed for M2MEM_MAIN.h -->
+    <registerFile name="sprsp_top/m2mem_reg\[0\]/m2m/CFG_M2MEM_CSR">
+        <Register name="DEFEATURES1">
+            <field name = ".*">
+                <svhooks>False</svhooks>
+            </field>
+        </Register>
+    </registerFile>
+</WA>

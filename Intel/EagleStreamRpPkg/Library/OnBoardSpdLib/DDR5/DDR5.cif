@@ -1,0 +1,11 @@
+<component>
+    name = "DDR5"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Library\OnBoardSpdLib\DDR5\"
+    RefName = "EagleStreamRpPkg.Library.OnBoardSpdLib.DDR5"
+[INF]
+"OnBoardSpdLib.inf"
+[files]
+"OnBoardSpdLibPrivate.h"	
+"DDR5.sdl"	
+<endComponent>

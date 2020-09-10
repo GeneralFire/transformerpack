@@ -1,0 +1,9 @@
+<component>
+    name = "Protocol"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\SystemAgent\IncludePrivate\Protocol\"
+    RefName = "ClientOneSiliconPkg.SystemAgent.IncludePrivate.Protocol"
+[files]
+"SaIotrapSmi.h"	
+"SaNvsArea.h"	
+<endComponent>

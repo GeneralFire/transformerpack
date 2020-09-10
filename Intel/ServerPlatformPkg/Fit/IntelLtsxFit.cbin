@@ -1,0 +1,179 @@
+//***********************************************************************
+//*                                                                     *
+//*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+//*                                                                     *
+//*      All rights reserved. Subject to AMI licensing agreement.       *
+//*                                                                     *
+//***********************************************************************
+
+
+//*****************************************************************************
+/** @file 
+    This file contains the FIT Structure definition.  This structure
+    is given a temporary value. During build process, other tools will 
+    update this sturcture.
+*/
+
+// Module specific Includes
+#include <Token.h>
+
+#define FIT_BB_SIZE         (FV_BB_BLOCKS * FLASH_BLOCK_SIZE) / 16
+#define FIT_BB_SIZE_UPPER   (FIT_BB_SIZE & 0x0ff0000) >> 16
+
+#define FIT_SIGNATURE       0x2020205f5449465f  // "   _FIT_"
+#define AMI_TYPE_7_SIG      0xabcdeffedcba0123
+#define AMI_LAST_ENTRY_SIG  0xabcdef0123456789
+
+#define IO_TYPE_VERSION     0x0000
+
+typedef struct _STD_FIT_ENTRY {
+    UINT64           TblAddress;
+    UINT16           TblSizeL;
+    UINT8            TblSizeU;
+    UINT8            Rsvd;
+    UINT16           TblVer;
+    UINT8            TblType;
+    UINT8            TblChkSum;
+} STD_FIT_ENTRY;
+
+typedef struct _CMOS_FIT_ENTRY {
+    UINT16           IndexAddress;
+    UINT16           DataAddress;
+    UINT8            AccessWidth;
+    UINT8            BitPosition;
+    UINT16           Index;
+    UINT16           UpperSize;
+    UINT8            LowerSize;
+    UINT8            Rsvd;
+    UINT16           Version;
+    UINT8            CvType;
+    UINT8            Checksum;
+} CMOS_FIT_ENTRY;
+
+//****************************************************//
+
+// TYPE 0 and TYPE 1 entries are combined due to some alignment issue with GCC compiler.  Using pragma pack
+// could not resolve the issue.
+
+STD_FIT_ENTRY	Type0_1[FIT_NUM_MICROCODE_PATCHES + 1] = {
+// Mandatory type 0 entry.  DO NOT CHANGE THIS.
+    {FIT_SIGNATURE, 0x0000, 0x00, 0x00, 0x0100, 0x00, 0x00},
+// Microcode type 1 entries.  These are filled out by the FIT utility.
+// DO NOT CHANGE THIS directly.  Please modify the appropriate
+// SDL tokens instead. 
+// NOTE: The number of Microcode entries in this structure must match
+// the value assigned to FIT_NUM_MICROCODE_PATCHES.
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00},
+    {0xffffffff, 0x0000, 0x00, 0x00, 0x0100, 0x7f, 0x00}
+};
+
+#if (defined ACM_INCLUSION_IN_BIOS) && (ACM_INCLUSION_IN_BIOS == 1)
+// Mandatory type 2 entry. DO NOT CHANGE THIS.
+STD_FIT_ENTRY Type2 = {
+    FV_ACM_BASE,
+    0x0000,
+    0x00,
+    0x00,
+    0x0100,
+    0x02,
+    0x00
+};
+#endif
+
+#if (defined FIT_TYPE_7_PRESENT) && (FIT_TYPE_7_PRESENT == 1)
+// Placeholder type 7 entry for FIT type 7 and 8 entries.  DO NOT
+// CHANGE THIS.
+STD_FIT_ENTRY Type7_0 = {
+    AMI_TYPE_7_SIG,
+    0x0000,
+    0x00,
+    0x00,
+    0x0100,
+    0x07,
+    0x00
+};
+
+// Bootblock type 7 entry.  This can be modified according to policy
+// and or OEM needs.  Additional entries can be inserted as desired.
+STD_FIT_ENTRY Type7_1 = {
+    FV_BB_BASE,
+    FIT_BB_SIZE & 0x0ffff,
+    FIT_BB_SIZE_UPPER,
+    0x00,
+    0x0100,
+    0x07,
+    0x00
+};
+#endif
+
+#if (defined FIT_SIGNED_POLICY_SUPPORT) && (FIT_SIGNED_POLICY_SUPPORT == 1)
+// BIOS Policy Record (Type 9).
+STD_FIT_ENTRY Type9 = {
+    0x0000000000000000,
+    0x0000,
+    0x00,
+    0x00,
+    0x100,
+    0x09,
+    0x00
+};
+#endif
+
+// TXT Support type 10 entry.
+CMOS_FIT_ENTRY Type10[] = { 
+    LTSX_CMOS_INDEX_REG_ADDRESS,
+    LTSX_CMOS_DATA_REG_ADDRESS,
+    LTSX_CMOS_ACCESS_WIDTH,
+    LTSX_TXT_CMOS_BIT_POSITION,
+    LTSX_TXT_CMOS_ADDRESS,
+    0x0000,
+    0x00,
+    0x00,
+    IO_TYPE_VERSION,
+    0x0a,
+    0x00
+};
+
+// NOTE: The number of entries in this structure must match
+// the value assigned to KM_ENTRIES.
+#if (defined INTEL_BOOT_GUARD_SUPPORT) && (INTEL_BOOT_GUARD_SUPPORT == 1)
+STD_FIT_ENTRY Type11[KM_ENTRIES] = {
+    {0x0000000000000000, 0x0000, 0x00, 0x00, 0x01, 0x0b, 0x00},
+#if (KM_ENTRIES > 1)
+    {0x0000000000000000, 0x0000, 0x00, 0x00, 0x01, 0x0b, 0x00},
+#if (KM_ENTRIES > 2)
+    {0x0000000000000000, 0x0000, 0x00, 0x00, 0x01, 0x0b, 0x00}
+#endif
+#endif
+};
+
+STD_FIT_ENTRY Type12 = {
+    0x0000000000000000,
+    0x0000,
+    0x00,
+    0x00,
+    0x01,
+    0x0c,
+    0x00
+};
+#endif
+
+UINT64  LastEntry = AMI_LAST_ENTRY_SIG;

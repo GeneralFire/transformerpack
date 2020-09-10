@@ -1,0 +1,8 @@
+<component>
+    name = "UbaUpdatePcds"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaUpdatePcds\"
+    RefName = "EagleStreamRpPkg.Uba.UbaUpdatePcds"
+[parts]
+"EagleStreamRpPkg.Uba.UbaUpdatePcds.Pei"
+<endComponent>

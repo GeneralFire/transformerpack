@@ -1,0 +1,43 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiThermalLib"
+    Instance  = "ServerSiliconPkg.PchLibNull"
+End
+
+LibraryMapping
+    Class  = "PeiThermalLib"
+    Instance  = "ClientOneSiliconPkg.PeiThermalLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "PeiThermalLib"
+    File  = "PeiThermalLib/PeiThermalLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1" 
+End
+
+LibraryMapping
+    Class  = "PeiThermalPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiThermalPolicyLib"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiThermalPolicyLib"
+    File  = "PeiThermalPolicyLib/PeiThermalPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+

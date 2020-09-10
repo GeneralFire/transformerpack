@@ -1,0 +1,12 @@
+<component>
+	name = "SPS 5.0"
+	category = ModulePart
+	LocalRoot = "AmiModulePkg/Ofbd/Meud/Platform/"
+	RefName = "CspMeud"
+[files]
+"CspMeud.sdl"
+"CspMeud.c"
+"CspMeud.h"
+"CspMeud10Gbe.c"
+"CspMeud.mak"
+<endComponent>

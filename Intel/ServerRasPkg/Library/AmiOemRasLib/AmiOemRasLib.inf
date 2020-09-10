@@ -1,0 +1,54 @@
+#//**********************************************************************//
+#//**********************************************************************//
+#//**                                                                  **//
+#//**        (C)Copyright 1985-2019, American Megatrends, Inc.         **//
+#//**                                                                  **//
+#//**                       All Rights Reserved.                       **//
+#//**                                                                  **//
+#//**       5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093       **//
+#//**                                                                  **//
+#//**                       Phone: (770)-246-8600                      **//
+#//**                                                                  **//
+#//**********************************************************************//
+#//**********************************************************************//
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmiOemRasLib
+  FILE_GUID                      = 216B02F2-7FA0-426D-8727-94B381605951
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmiOemRasLib
+
+[Sources]
+  AmiOemRasLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ServerRasPkg/RasPkg.dec
+  CpRcPkg/CpRcPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  CpRcPkg/RcPlat10nm.dec
+
+[Protocols]
+
+[LibraryClasses]
+  BaseLib
+
+[Guids]
+
+
+#//**********************************************************************//
+#//**********************************************************************//
+#//**                                                                  **//
+#//**        (C)Copyright 1985-2019, American Megatrends, Inc.         **//
+#//**                                                                  **//
+#//**                       All Rights Reserved.                       **//
+#//**                                                                  **//
+#//**       5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093       **//
+#//**                                                                  **//
+#//**                       Phone: (770)-246-8600                      **//
+#//**                                                                  **//
+#//**********************************************************************//
+#//**********************************************************************//

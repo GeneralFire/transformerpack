@@ -1,0 +1,14 @@
+<component>
+	name = "Pch"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Pch\"
+	RefName = "ServerSiliconPkg.Pch"
+[files]
+"SouthClusterLbg\Include\Private\PchAssert.h"
+"SouthClusterLbg\Include\Private\PchPolicyHob.h"
+"SouthClusterLbg\Include\Register\PchRegsEva.h"
+"SouthClusterLbg\Include\GpioPinsSklH.h"
+[parts]
+"ServerSiliconPkg.Pch.AcpiTables"
+"ServerSiliconPkg.Pch.SouthClusterCdf"
+<endComponent>

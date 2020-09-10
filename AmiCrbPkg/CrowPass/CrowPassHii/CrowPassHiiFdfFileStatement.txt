@@ -1,0 +1,8 @@
+FILE DRIVER = b918a410-0a67-4259-81e7-d2ee2748e2e9
+              
+{
+    SECTION COMPRESS PI_STD{
+        SECTION DXE_DEPEX = AmiCrbPkg/CrowPass/CrowPassDriver/IntelDCPersistentMemoryDriver.depex
+        SECTION PE32      = $(CROW_PASS_HII_EFI_FILE_PATH)
+    }
+}

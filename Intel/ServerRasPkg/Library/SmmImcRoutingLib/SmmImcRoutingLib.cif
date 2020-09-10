@@ -1,0 +1,13 @@
+<component>
+	name = "SmmImcRoutingLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Library\SmmImcRoutingLib\"
+	RefName = "ServerRasPkg.SmmImcRoutingLib"
+[INF]
+"SmmImcRoutingLib.inf"
+[files]
+"ADDDCPrivate.h"	
+"ImcRoutingPrivate.h"	
+"SDDCPrivate.h"	
+"SmmImcRoutingLib.sdl"	
+<endComponent>

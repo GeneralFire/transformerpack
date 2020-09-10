@@ -1,0 +1,37 @@
+TOKEN
+    Name  = "Universal_SUPPORT"
+    Value  = "1"
+    Help  = "Main token to enable/disable Universal support in the ServerSecurityPkg"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+   Name  = "TxtDxe"
+   File  = "GetSec\Dxe\TxtDxe.inf"
+   Package  = "ServerSecurityPkg"
+   Arch = "X64"
+   ModuleTypes  = "DXE_DRIVER"      
+End
+
+LibraryMapping
+    Class  = "PlatformLtDxeLib"
+    Instance  = "ServerSecurityPkg.PlatformLtDxeLibNull"
+    Override  = "ServerSecurityPkg.TxtDxe"
+End
+
+INFComponent
+   Name  = "TxtPei"
+   File  = "GetSec\Pei\TxtPei.inf"
+   Package  = "ServerSecurityPkg"
+   ModuleTypes  = "PEIM"
+   Token = "SECURITY_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "DebugLib"
+    Instance  = "MdePkg.BaseDebugLibNull"
+    Override  = "ServerSecurityPkg.TxtPei"
+    Token = "SECURITY_SUPPORT" "=" "1"
+End
+

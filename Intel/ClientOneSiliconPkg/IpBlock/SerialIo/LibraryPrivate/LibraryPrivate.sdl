@@ -1,0 +1,51 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "SerialIoPrivateLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmSerialIoLibVer3"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmSerialIoLibVer3"
+    File  = "PeiDxeSmmSerialIoPrivateLib/PeiDxeSmmSerialIoPrivateLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PeiSerialIoInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiSerialIoInitLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiSerialIoInitLib"
+    File  = "PeiSerialIoInitLib/PeiSerialIoInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PeiSerialIoPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiSerialIoPolicyLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiSerialIoPolicyLib"
+    File  = "PeiSerialIoPolicyLib/PeiSerialIoPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End
+

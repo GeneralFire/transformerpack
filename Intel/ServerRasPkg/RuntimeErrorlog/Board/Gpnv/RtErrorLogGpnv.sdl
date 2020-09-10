@@ -1,0 +1,43 @@
+TOKEN
+	Name  = "RtErrorLogGpnv_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RtErrorLogGpnv support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+	Token = "GpnvErrorLogging_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "LogPciErrorToGpnv,"
+	Parent  = "PciErrorHandlers"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "LogMemErrorToGpnv,"
+	Parent  = "MemErrorHandlers"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    	Name  = "LogProcessorErrorToGpnv,"
+    	Parent  = "ProcessorErrorHandlers"
+    	InvokeOrder = AfterParent
+End
+
+INFComponent
+	Name  = "RtErrorLogGpnvLib"
+	File  = "RtErrorLogGpnv.inf"
+	Package  = "ServerPlatformPkg"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "RtErrorLogGpnv_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+	Class  = "RtErrorLogGpnvLib"
+	Instance  = "ServerPlatformPkg.RtErrorLogGpnvLib"
+	Arch  = "common"
+	ModuleTypes  = "DXE_DRIVER DXE_SMM_DRIVER"
+	Token = "RtErrorLogGpnv_SUPPORT" "=" "1"
+End

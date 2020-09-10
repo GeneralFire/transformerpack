@@ -1,0 +1,28 @@
+TOKEN
+    Name  = "PsfLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PsfLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PchPsfPrivateLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPsfLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+LibraryMapping
+    Class  = "PsfLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPsfLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPsfLib"
+    File  = "PeiDxeSmmPsfLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+

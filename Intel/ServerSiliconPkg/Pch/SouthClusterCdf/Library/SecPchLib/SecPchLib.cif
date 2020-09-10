@@ -1,0 +1,12 @@
+<component>
+    name = "SecPchLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\SecPchLib\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.Library.SecPchLib"
+[INF]
+"SecPchLib.inf"
+[files]
+"Ia32\SecPchLib.inc"	
+"Ia32\SecPchLib.nasm"
+"SecPchLib.sdl"	
+<endComponent>

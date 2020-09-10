@@ -1,0 +1,14 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\Include\Library\"
+    RefName = "ServerSiliconPkg.Me.MeSps6.Include.Library"
+[files]
+"DxeSpsPolicyLib.h"		
+"MeConfigLib.h"	
+"MeCosignLib.h"		
+"MeStorageLib.h"	
+"MeTypeLib.h"	
+"MeWatchdogControlLib.h"	
+"SpsPeiLib.h"	
+<endComponent>

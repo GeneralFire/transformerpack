@@ -1,0 +1,8 @@
+<component>
+    name = "Telemetry"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Telemetry\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Telemetry"
+[files]
+"TelemetryPeiConfig.h"	
+<endComponent>

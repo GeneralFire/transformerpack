@@ -1,0 +1,11 @@
+<component>
+    name = "Pei"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Platform\Pei\"
+    RefName = "EagleStreamRpPkg.Platform.Pei"
+[INF]
+"PlatformInfo\PlatformInfo.inf"
+"PlatformDeepS5\PlatformDeepS5.inf"
+[files]
+"Pei.sdl"	
+<endComponent>

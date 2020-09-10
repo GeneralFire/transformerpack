@@ -1,0 +1,14 @@
+<component>
+    name = "Pei"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\Common\Pei\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.Common.Pei"
+[INF]
+"PeiCommonBoardInitLib.inf"
+"PeiCommonBoardInitPostMemLib.inf"
+[files]
+"IioBifurcationSlotTable.h"	
+"PeiCommonBoardInitLib.h"
+"PeiCommonBoardInitPostMemLib.h"	
+"Pei.sdl"	
+<endComponent>

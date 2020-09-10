@@ -1,0 +1,28 @@
+<component>
+	name = "Library"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Iio\Include\Library\"
+	RefName = "ServerSiliconPkg.Iio.Include.Library"
+[files]
+"IioApiLib.h"
+"IioCxlInit.h"
+"IioDmiApi.h"
+"IioSpkInit.h"
+"IioIoApicInit.h"
+"IioDfxInit.h"
+"IioVtdInit.h"
+"IioSecurePlatformLib.h"
+"IioMiscFeatureLib.h"
+"IioMs2iosfInit.h"
+"IioNtbInit.h"
+"IioNpkInit.h"
+"IioDataHubLib.h"
+"IioAccessLib.h"
+"IioInitDxeLib.h"	
+"IioInitLib.h"	
+"OemIioInit.h"	
+"IioVmdInit.h"
+"IioPcieInit.h"
+"IioIoatLib.h"
+"IioDmiLib.h"
+<endComponent>

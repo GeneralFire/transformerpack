@@ -1,0 +1,24 @@
+TOKEN
+    Name  = "PeiSmbusLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiSmbusLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiSmbusLib"
+    Instance  = "ClientOneSiliconPkg.PeiSmbusLib"
+    Arch = "IA32"        
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiSmbusLib"
+    File  = "PeiSmbusLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"      
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+

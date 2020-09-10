@@ -1,0 +1,13 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IncludePrivate.Library"
+[files]
+"BaseIpuFruLib.h"
+"BaseTraceHubInfoFruLib.h"
+"PcieInitLib.h"	
+"PchIoExpanderBdfLib.h"
+"PeiSiPolicyOverrideLib.h"	
+"PeiSiSsidLib.h"	
+<endComponent>

@@ -1,0 +1,13 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Spi\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Spi.LibraryPrivate"
+[INF]
+"BaseSpiCommonLib\BaseSpiCommonLib.inf"
+"PeiDxeSmmSpiAccessPrivateLib\PeiDxeSmmSpiAccessPrivateLib.inf"
+"PeiSpiExtendedDecodeLib\PeiSpiExtendedDecodeLib.inf"
+"PeiSpiPolicyLib\PeiSpiPolicyLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

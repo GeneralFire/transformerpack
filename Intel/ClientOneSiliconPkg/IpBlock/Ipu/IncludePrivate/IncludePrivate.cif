@@ -1,0 +1,10 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Ipu\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Ipu.IncludePrivate"
+[files]
+"IpuConfigHob.h"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Ipu.IncludePrivate.Library"
+<endComponent>

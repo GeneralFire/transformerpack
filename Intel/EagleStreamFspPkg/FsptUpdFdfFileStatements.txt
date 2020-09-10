@@ -1,0 +1,6 @@
+!ifndef $(CFG_PREBUILD)
+  FILE RAW = $(FSP_T_UPD_FFS_GUID)
+  {
+    SECTION RAW = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV/$(FSP_T_UPD_TOOL_GUID).bin
+  }
+!endif

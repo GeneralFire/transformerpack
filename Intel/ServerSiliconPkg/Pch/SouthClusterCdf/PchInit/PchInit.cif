@@ -1,0 +1,11 @@
+<component>
+    name = "PchInit"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\PchInit\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.PchInit"
+[INF]
+[files]
+"PchInit.sdl"	
+[parts]
+"ServerSiliconPkg.Pch.SouthClusterCdf.PchInit.Dxe.EmmcSoftwareTuning"
+<endComponent>

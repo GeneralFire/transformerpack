@@ -1,0 +1,8 @@
+<component>
+	name = "PchSmmLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\SouthCluster\Library\PchSmmLib\"
+	RefName = "ServerSiliconPkg.Include.SouthCluster.Library.PchSmmLib"
+[files]
+"CommonHeader.h"	
+<endComponent>

@@ -1,0 +1,10 @@
+<component>
+    name = "IpmiSdrReader"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\IpmiSdrReader\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.IpmiSdrReader"
+[INF]
+"IpmiSdrReader.inf"
+[files]
+"IpmiSdrReader.sdl"
+<endComponent>

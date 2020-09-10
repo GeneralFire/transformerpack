@@ -1,0 +1,114 @@
+TOKEN
+	Name  = "MeSps6_Sps_Library_Support"
+	Value  = "1"
+	Help  = "Main switch to enable MeSps6_Sps_Library_Support in Project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+LibraryMapping
+	Class  = "MeConfigLib"
+	Instance  = "ServerSiliconPkg.MeConfigLib"
+End
+
+INFComponent
+	Name  = "MeConfigLib"
+	File  = "MeConfigLib\MeConfigLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MeFiaMuxStrapsLib"
+    Instance  = "ServerSiliconPkg.MeFiaMuxStrapsLib"
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "MeFiaMuxStrapsLib"
+    File  = "MeFiaMuxStrapsLib\MeFiaMuxStrapsLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+	Class  = "DxeSpsPolicyLib"
+	Instance  = "ServerSiliconPkg.DxeSpsPolicyLib"
+    Arch = "X64"  
+End
+
+INFComponent
+	Name  = "DxeSpsPolicyLib"
+	File  = "DxeSpsPolicyLib\DxeSpsPolicyLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "SpsDxeLib"
+    Instance  = "ServerSiliconPkg.SpsDxeLib"
+    Arch = "X64"  
+    Token = "ME_SPS_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "SpsDxeLib"
+    File  = "SpsDxeLib\SpsDxeLibVer3.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "ME_SPS_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MeGetConfigBlock"
+    Instance  = "ServerSiliconPkg.MeGetPeiConfigBlock"
+    Arch = "IA32"    
+End
+
+INFComponent
+    Name  = "MeGetPeiConfigBlock"
+    File  = "MeGetPeiConfigBlock/MeGetPeiConfigBlock.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PeiSpsPreMemPolicyLib"
+    Instance  = "ServerSiliconPkg.PeiSpsPreMemPolicyLib"
+    Arch = "IA32"    
+End
+
+INFComponent
+    Name  = "PeiSpsPreMemPolicyLib"
+    File  = "PeiSpsPreMemPolicyLib/PeiSpsPreMemPolicyLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "SpsGetDxeConfigBlockLib"
+    Instance  = "ServerSiliconPkg.SpsGetDxeConfigBlockLib"
+    Arch = "X64"      
+End
+
+INFComponent
+    Name  = "SpsGetDxeConfigBlockLib"
+    File  = "SpsGetDxeConfigBlock/SpsGetDxeConfigBlock.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "SpsPeiLib"
+	Instance  = "ServerSiliconPkg.SpsPeiLib"
+    Arch  = "IA32"  
+End
+
+INFComponent
+	Name  = "SpsPeiLib"
+	File  = "SpsPeiLib/SpsPeiLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+End
+
+

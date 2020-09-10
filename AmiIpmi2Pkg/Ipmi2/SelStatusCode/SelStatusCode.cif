@@ -1,0 +1,13 @@
+<component>
+    name = "SelStatusCode"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\SelStatusCode\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.SelStatusCode"
+[INF]
+"PeiSelStatusCode.inf"
+"DxeSelStatusCode.inf"
+[files]
+"SelStatusCode.sdl"
+"SelSetup.sd"
+"SelSetup.uni"
+<endComponent>

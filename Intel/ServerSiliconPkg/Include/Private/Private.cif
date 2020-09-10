@@ -1,0 +1,13 @@
+<component>
+	name = "Private"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\Private\"
+	RefName = "ServerSiliconPkg.Include.Private"
+[files]
+"Library\DxeTraceHubLib.h"
+"PchLbgHsioSx.h"	
+"PchLbgHsioSx_Ext.h"	
+"PchPolicyHob.h"
+"Library\UsbInitLib.h"
+"Library\PeiCpuAndPchTraceHubLib.h"
+<endComponent>

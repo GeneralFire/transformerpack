@@ -1,0 +1,25 @@
+TOKEN
+    Name  = "Dxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Dxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SpiDxe_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SpiDxe support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "SpiDxe"
+    File  = "SpiSmmDxe.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "SpiDxe_INF_SUPPORT" "=" "1"
+End
+
+
+

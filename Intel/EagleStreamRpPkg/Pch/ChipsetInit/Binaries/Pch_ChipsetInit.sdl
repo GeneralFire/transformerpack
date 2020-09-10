@@ -1,0 +1,14 @@
+TOKEN
+     Name = "Pch_ChipsetInit_SUPPORT"
+     Value = "1"
+     TokenType = Boolean
+     TargetMAK = Yes
+     Master = Yes
+     Help = "Main switch to enable Pch_ChipsetInit support in Project"
+End
+
+#FFS_FILE
+#   Name  = "Pch_ChipsetInit_Binary"
+#   FD_AREA  = "FV_BB"
+#   FILE_Stmt  = "EagleStreamRpPkg/Pch/ChipsetInit/Binaries/Pch_ChipsetInit_FdFileStatement.txt"
+#End

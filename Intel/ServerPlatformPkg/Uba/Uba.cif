@@ -1,0 +1,10 @@
+<component>
+	name = "Uba"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Uba\"
+	RefName = "ServerPlatformPkg.Uba"
+[files]
+"Uba.sdl"
+[parts]
+"ServerPlatformPkg.Uba.CfgDb"
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "Ast2600Includes"
+	category = ModulePart
+	LocalRoot = "AmiModulePkg\IO\Ast2600\"
+	RefName = "Ast2600Includes"
+[files]
+"Ast2600InitLib.h"
+"OemInitDataTable.h"
+<endComponent>
+
+

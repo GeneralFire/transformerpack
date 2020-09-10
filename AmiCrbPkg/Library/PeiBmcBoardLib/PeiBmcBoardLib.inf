@@ -1,0 +1,34 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#
+# @file PeiBmcBoardLib.inf
+#
+# INF description file for PeiBmcBoardLib library.
+#
+
+[Defines]
+  INF_VERSION             = 0x00010015
+  VERSION_STRING          = 1.0
+  BASE_NAME               = PeiBmcBoardLib
+  MODULE_TYPE             = PEIM
+  LIBRARY_CLASS           = PeiBmcBoardLib
+  FILE_GUID               = 8FB8A07B-58A9-4def-8900-D4C23C717484
+
+[Sources]
+  PeiBmcBoardLib.c
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  PchCycleDecodingLib
+  MmPciLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  CpRcPkg/CpRcPkg.dec

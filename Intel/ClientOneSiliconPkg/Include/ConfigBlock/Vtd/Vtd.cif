@@ -1,0 +1,8 @@
+<component>
+    name = "Vtd"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Vtd\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Vtd"
+[files]
+"VtdConfig.h"	
+<endComponent>

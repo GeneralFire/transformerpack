@@ -1,0 +1,12 @@
+<component>
+	name = "Pei"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\Pei\"
+	RefName = "ServerPlatformPkg.Universal.TraceHubStatusCodeHandler.TraceHubStatusCodeHandlerPei"
+[INF]
+"TraceHubStatusCodeHandlerPei.inf"
+[files]
+"TraceHubStatusCodeHandlerPei.h"	
+"TraceHubStatusCodeHandlerPei.sdl"	
+"TraceHubStatusCodeWorkerPei.h"
+<endComponent>

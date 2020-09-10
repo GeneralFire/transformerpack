@@ -1,0 +1,467 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "BaseHbmIoIpLib"
+    File  = "BaseHbmIoIpLib\BaseHbmIoIpLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "HBM_ENABLE" "=" "1"            
+End
+
+LibraryMapping
+    Class  = "HbmIoIpLib"
+    Instance  = "ServerSiliconPkg.BaseHbmIoIpLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "HBM_ENABLE" "=" "1"        
+End
+
+INFComponent
+    Name  = "HbmIoIpLibNull"
+    File  = "BaseHbmIoIpLib/HbmIoIpLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "HBM_ENABLE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "HbmIoIpLib"
+    Instance  = "ServerSiliconPkg.HbmIoIpLibNull"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "HBM_ENABLE" "=" "0"     
+End
+
+
+INFComponent
+    Name  = "HbmChipLib"
+    File  = "HbmChipLib/HbmChipLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "HBM_ENABLE" "=" "1"        
+End
+
+LibraryMapping
+    Class  = "HbmChipLib"
+    Instance  = "ServerSiliconPkg.HbmChipLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "HBM_ENABLE" "=" "1"     
+End
+
+INFComponent
+    Name  = "HbmChipLibNull"
+    File  = "HbmChipLibNull/HbmChipLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "HBM_ENABLE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "HbmChipLib"
+    Instance  = "ServerSiliconPkg.HbmChipLibNull"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "HBM_ENABLE" "=" "0"     
+End
+
+
+INFComponent
+    Name  = "BaseMemRcLib"
+    File  = "BaseMemRcLib/BaseMemRcLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MemRcLib"
+    Instance  = "ServerSiliconPkg.BaseMemRcLib"
+End
+
+INFComponent
+    Name  = "CxlMemLibHwTarget"
+    File  = "CxlMemLib\CxlMemLibHwTarget.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "CxlMemLib"
+    Instance  = "ServerSiliconPkg.CxlMemLibHwTarget"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+INFComponent
+    Name  = "HbmMemLibHwTarget"
+    File  = "HbmMemLib\HbmMemLibHwTarget.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"  
+    Token = "HBM_ENABLE" "=" "1"     
+End
+
+LibraryMapping
+    Class  = "HbmMemLib"
+    Instance  = "ServerSiliconPkg.HbmMemLibHwTarget"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "1"       
+End
+
+INFComponent
+    Name  = "HbmMemLibNullTarget"
+    File  = "HbmMemLib\HbmMemLibHwTarget.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"  
+    Token = "HBM_ENABLE" "=" "0"     
+End
+
+LibraryMapping
+    Class  = "HbmMemLib"
+    Instance  = "ServerSiliconPkg.HbmMemLibNullTarget"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "0"       
+End
+
+INFComponent
+    Name  = "MemDecodeHbmLib"
+    File  = "MemDecodeHbmLib/MemDecodeHbmLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MemDecodeHbmLib"
+    Instance  = "ServerSiliconPkg.MemDecodeHbmLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "MemDecodeHbmLibNull"
+    File  = "MemDecodeHbmLibNull\MemDecodeHbmLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MemDecodeHbmLib"
+    Instance  = "ServerSiliconPkg.MemDecodeHbmLibNull"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "HwMemSmeeIpTargetLib"
+    File  = "MemSmeeIpLib\HwMemSmeeIpTargetLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MemSmeeIpTargetLib"
+    Instance  = "ServerSiliconPkg.HwMemSmeeIpTargetLib"
+End
+
+INFComponent
+    Name  = "MemSmeeIpLibSpr"
+    File  = "MemSmeeIpLib\MemSmeeIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MemSmeeIpLib"
+    Instance  = "ServerSiliconPkg.MemSmeeIpLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+INFComponent
+    Name  = "MemoryInstallLib"
+    File  = "MemoryInstallLib\MemoryInstallLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "MemoryInstallLib"
+    Instance  = "ServerSiliconPkg.MemoryInstallLib"
+    Arch  = "IA32"
+End
+
+INFComponent
+    Name  = "MemCallTableLibSpr"
+    File  = "MemCallTableLib\MemCallTableLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "DDR5_ENABLE" "=" "1"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "MemCallTableLib"
+    Instance  = "ServerSiliconPkg.MemCallTableLibSpr"
+    Token = "DDR5_ENABLE" "=" "1"
+    Token = "CPU_SPR_SUPPORT" "=" "1"      
+End
+
+INFComponent
+    Name  = "MemCallTableLibSprDdr4"
+    File  = "MemCallTableLib\MemCallTableLibSprDdr4.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "DDR5_ENABLE" "=" "0"
+    Token = "CPU_SPR_SUPPORT" "=" "1"      
+End
+
+LibraryMapping
+    Class  = "MemCallTableLib"
+    Instance  = "ServerSiliconPkg.MemCallTableLibSprDdr4"
+    Token = "DDR5_ENABLE" "=" "0"
+    Token = "CPU_SPR_SUPPORT" "=" "1"      
+End
+
+INFComponent
+    Name  = "MemRoutingLib"
+    File  = "MemRoutingLib\MemRoutingLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MemRoutingLib"
+    Instance  = "ServerSiliconPkg.MemRoutingLib"
+End
+
+INFComponent
+    Name  = "MemPorLibSpr"
+    File  = "MemPorLib\MemPorLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "MemPorLib"
+    Instance  = "ServerSiliconPkg.MemPorLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"   
+End
+
+INFComponent
+    Name  = "PkgDelayLibSpr"
+    File  = "PkgDelayLib\PkgDelayLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "PkgDelayLib"
+    Instance  = "ServerSiliconPkg.PkgDelayLibSpr"
+End
+
+INFComponent
+    Name  = "VictimAggressorLib"
+    File  = "VictimAggressorLib\Spr\VictimAggressorLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "VictimAggressorLib"
+    Instance  = "ServerSiliconPkg.VictimAggressorLib"
+End
+
+INFComponent
+    Name  = "SwizzleLib10nm"
+    File  = "SwizzleLib\SwizzleLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "SwizzleLib"
+    Instance  = "ServerSiliconPkg.SwizzleLib10nm"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "SwizzleLibSpr"
+    File  = "SwizzleLib\SwizzleLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SwizzleLib"
+    Instance  = "ServerSiliconPkg.SwizzleLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+
+INFComponent
+    Name  = "MemDecodeLib10nmWave1"
+    File  = "MemDecodeLib/MemDecodeLib10nmWave1.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"    
+    
+End
+LibraryMapping
+    Class  = "MemDecodeLib"
+    Instance  = "ServerSiliconPkg.MemDecodeLib10nmWave1"
+    ModuleTypes  = "PEIM DXE_DRIVER DXE_SMM_DRIVER"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "MemDecodeLib10nmWave3"
+    File  = "MemDecodeLib/MemDecodeLib10nmWave3.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+    
+End
+
+LibraryMapping
+    Class  = "MemDecodeLib"
+    Instance  = "ServerSiliconPkg.MemDecodeLib10nmWave3"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "MemMap2SgxInterface"
+    File  = "MemMap2SgxInterface\MemMap2SgxInterface.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "MemMap2SgxInterface"
+    Instance  = "ServerSiliconPkg.MemMap2SgxInterface"
+End
+
+INFComponent
+    Name  = "MemTurnaroundTimingLib10nmSpr"
+    File  = "MemTurnaroundTimingLib\MemTurnaroundTimingLib10nmSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "HBM_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MemTurnaroundTimingLib"
+    Instance  = "ServerSiliconPkg.MemTurnaroundTimingLib10nmSpr"
+    Token = "HBM_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "MemTurnaroundTimingLib10nmSprHbm"
+    File  = "MemTurnaroundTimingLib\MemTurnaroundTimingLib10nmSprHbm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "HBM_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MemTurnaroundTimingLib"
+    Instance  = "ServerSiliconPkg.MemTurnaroundTimingLib10nmSprHbm"
+    Token = "HBM_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "MemPopulationPorLib"
+    File  = "MemPopulationPorLib\MemPopulationPorLib10nmWave1.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"    
+End
+
+LibraryMapping
+    Class  = "MemPopulationPorLib"
+    Instance  = "ServerSiliconPkg.MemPopulationPorLib"
+    Token = "CPU_SPR_SUPPORT" "=" "0"      
+End
+
+INFComponent
+    Name  = "MemPopulationPorLib"
+    File  = "MemPopulationPorLib\MemPopulationPorLib10nmWave3.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "MemPopulationPorLib"
+    Instance  = "ServerSiliconPkg.MemPopulationPorLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"      
+End
+
+INFComponent
+    Name  = "InterleaveFormatLib"
+    File  = "InterleaveFormatLib\InterleaveFormatLib10nmWave1.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"    
+End
+
+LibraryMapping
+    Class  = "InterleaveFormatLib"
+    Instance  = "ServerSiliconPkg.InterleaveFormatLib"
+    Token = "CPU_SPR_SUPPORT" "=" "0"      
+End
+
+INFComponent
+    Name  = "OdtTableLibDdr4Spr"
+    File  = "OdtTableLib\OdtTableLibDdr4Spr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "DDR5_ENABLE" "=" "0"    
+End
+
+LibraryMapping
+    Class  = "OdtTableLib"
+    Instance  = "ServerSiliconPkg.OdtTableLibDdr4Spr"
+    Token = "DDR5_ENABLE" "=" "0"      
+End
+
+INFComponent
+    Name  = "PmemMiscLib10nmWave3"
+    File  = "PmemMiscLib\PmemMiscLib10nmWave3.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "PmemMiscLib"
+    Instance  = "ServerSiliconPkg.PmemMiscLib10nmWave3"
+    Token = "CPU_SPR_SUPPORT" "=" "1"      
+End
+
+INFComponent
+    Name  = "OdtTableLibDdr5Spr"
+    File  = "OdtTableLib\OdtTableLibDdr5Spr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "DDR5_ENABLE" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "OdtTableLib"
+    Instance  = "ServerSiliconPkg.OdtTableLibDdr5Spr"
+    Token = "DDR5_ENABLE" "=" "1"      
+End

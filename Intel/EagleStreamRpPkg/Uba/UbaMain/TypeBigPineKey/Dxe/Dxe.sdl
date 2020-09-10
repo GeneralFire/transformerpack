@@ -1,0 +1,113 @@
+TOKEN
+    Name  = "Dxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Dxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "IioCfgUpdateBigPineKey_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable IioCfgUpdateBigPineKey support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "IioCfgUpdateBigPineKey"
+    File  = "IioCfgUpdateDxe/IioCfgUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "IioCfgUpdateBigPineKey_INF_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "OpromUpdateDxeBigPineKey_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable OpromUpdateDxeBigPineKey support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "OpromUpdateDxeBigPineKey"
+    File  = "OpromUpdateDxe/OpromUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "OpromUpdateDxeBigPineKey_INF_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "SetupConfigUpdateDxeBigPineKey_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SetupConfigUpdateDxeBigPineKey support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "SetupConfigUpdateDxeBigPineKey"
+    File  = "SetupCfgUpdateDxe/SetupCfgUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "SetupConfigUpdateDxeBigPineKey_INF_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "SlotDataUpdateDxeBigPineKey_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SlotDataUpdateDxeBigPineKey support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "SlotDataUpdateDxeBigPineKey"
+    File  = "SlotDataUpdateDxe/SlotDataUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "SlotDataUpdateDxeBigPineKey_INF_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "SmbiosDataUpdateDxeBigPineKey_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SmbiosDataUpdateDxeBigPineKey support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "SmbiosDataUpdateDxeBigPineKey"
+    File  = "SmbiosDataUpdateDxe/SmbiosDataUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "SmbiosDataUpdateDxeBigPineKey_INF_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "StaticSkuDataDxeBigPineKey_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable StaticSkuDataDxeBigPineKey support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "StaticSkuDataDxeBigPineKey"
+    File  = "StaticSkuDataDxe/StaticSkuDataDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "StaticSkuDataDxeBigPineKey_INF_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "UsbOcUpdateDxeBigPineKey_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable UsbOcUpdateDxeBigPineKey support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "UsbOcUpdateDxeBigPineKey"
+    File  = "UsbOcUpdateDxe/UsbOcUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "UsbOcUpdateDxeBigPineKey_INF_SUPPORT" "=" "1"
+End
+

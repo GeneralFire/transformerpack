@@ -1,0 +1,62 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file PeiAmiIpmbInterfaceLib.inf
+#
+#  INF description file for IpmbInterfacePeiLib Library for PEIMs.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = PeiAmiIpmbInterfaceLib
+  FILE_GUID         = 843DBE4E-4750-4335-9094-58645D897D62
+  MODULE_TYPE       = PEIM
+  VERSION_STRING    = 1.1
+  LIBRARY_CLASS     = AmiIpmbInterfaceLib | PEIM
+
+[Sources]
+  PeiAmiIpmbInterfaceLib.c
+  AmiIpmbInterfaceLibCommon.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+  HobLib
+  DebugLib
+  BaseMemoryLib
+  PeiServicesTablePointerLib
+  AmiBmcCommonInterfaceLib
+
+[Ppis]
+  gEfiPeiI2cMasterPpiGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+
+[Guids]
+  gAmiPeiIpmiHobGuid
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

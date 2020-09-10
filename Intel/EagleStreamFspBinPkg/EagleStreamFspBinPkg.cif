@@ -1,0 +1,11 @@
+<component>
+    name = "EagleStreamFspBinPkg"
+    category = modulepart
+    LocalRoot = "Intel\EagleStreamFspBinPkg\"
+    RefName = "EagleStreamFspBinPkg"
+[files]
+"EagleStreamFspBinPkg.sdl"	
+"Debug\Fsp.fd"	
+"Release\Fsp.fd"
+"Fsp.bsf"	
+<endComponent>

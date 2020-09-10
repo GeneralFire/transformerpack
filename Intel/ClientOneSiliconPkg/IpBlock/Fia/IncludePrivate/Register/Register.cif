@@ -1,0 +1,10 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Fia\IncludePrivate\Register\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Fia.IncludePrivate.Register"
+[files]
+"PchFia15Regs.h"
+"PchFia19Regs.h"	
+"PchFiaRegs.h"	
+<endComponent>

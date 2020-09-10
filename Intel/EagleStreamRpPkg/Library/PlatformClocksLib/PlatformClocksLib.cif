@@ -1,0 +1,10 @@
+<component>
+    name = "PlatformClocksLib"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Library\PlatformClocksLib\"
+    RefName = "EagleStreamRpPkg.Library.PlatformClocksLib"
+[INF]
+"Pei\PlatformClocksLib.inf"
+[files]
+"PlatformClocksLib.sdl"	
+<endComponent>

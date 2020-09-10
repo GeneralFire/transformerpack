@@ -1,0 +1,10 @@
+<component>
+    name = "Tool"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Tool\"
+    RefName = "EagleStreamRpPkg.Tool"
+[parts]
+"EagleStreamRpPkg.Tool.BoardInfo"
+"EagleStreamRpPkg.Tool.GenBiosId"
+"EagleStreamRpPkg.Tool.FTool.SPS"
+<endComponent>

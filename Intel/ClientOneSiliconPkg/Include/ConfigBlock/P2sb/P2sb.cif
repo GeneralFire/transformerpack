@@ -1,0 +1,8 @@
+<component>
+    name = "P2sb"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\P2sb\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.P2sb"
+[files]
+"P2sbConfig.h"	
+<endComponent>

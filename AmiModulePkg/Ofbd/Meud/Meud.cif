@@ -1,0 +1,24 @@
+<component>
+    name = "On Flash Block Description (APTIO) - Intel ME Update"
+    category = eModule
+    LocalRoot = "AmiModulePkg\Ofbd\Meud\"
+    RefName = "OfbdMeud"
+[files]
+"Meud.sdl"	
+"Meud.chm"	
+"Meud.c"	
+"Meud.h"	
+[parts]
+"CspMeud"
+"AutoMeud"
+"MEFwUpdLcl"
+"MeudFwCapsuleHdr"
+"MeEsrtUpdate"
+[dependency]
+SmiFlash >= "SS: AptioV;$/AptioV/Source/Modules/SmiFlash;SmiFlash_20"
+MdePkg >= "SS: AptioV;$/AptioV/Source/Interfaces/MdePkg;MdePkg_08"
+AmiModulePkg >= "SS: AptioV;$/AptioV/Source/Interfaces/AmiModulePkg;AmiModulePkg_38"
+Ofbd >= "SS: AptioV;$/AptioV/Source/Modules/Ofbd;5.001_OFBD_03"
+FLASH_COMBINED_SOURCE >= "SS: AptioV;$/AptioV/Source/Hardware/Flash/Flash;Flash_30"
+AmiCompatibilityPkg >= "SS: AptioV;$/AptioV/Source/Interfaces/AmiCompatibilityPkg;AmiCompatibilityPkg_28"
+<endComponent>

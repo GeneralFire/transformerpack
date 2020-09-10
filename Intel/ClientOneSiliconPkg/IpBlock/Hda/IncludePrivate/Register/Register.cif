@@ -1,0 +1,9 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Hda\IncludePrivate\Register\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Hda.IncludePrivate.Register"
+[files]
+"AceRegs.h"
+"HdaRegs.h"	
+<endComponent>

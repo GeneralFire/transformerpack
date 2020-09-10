@@ -1,0 +1,10 @@
+<component>
+	name = "Register"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Include\Register\"
+	RefName = "ServerRasPkg.Include.Register"
+[files]
+"IioRegDef.h"	
+"MachineCheck.h"	
+"PcieRegDef.h"	
+<endComponent>

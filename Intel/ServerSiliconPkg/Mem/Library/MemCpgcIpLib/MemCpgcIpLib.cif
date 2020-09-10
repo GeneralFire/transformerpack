@@ -1,0 +1,23 @@
+<component>
+    name = "MemCpgcIpLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Mem\Library\MemCpgcIpLib\"
+    RefName = "ServerSiliconPkg.Mem.Library.MemCpgcIpLib"
+[INF]
+"10nm\HwMemCpgcIpTargetLib\HwMemCpgcIpTargetLib.inf"
+"Spr\HwMemCpgcIpTargetLib\HwMemCpgcIpTargetLib.inf"
+"MemCpgcIpLib10nm.inf"
+"MemCpgcIpLibSpr.inf"
+[files]
+"Spr\Include\MemCpgcTestTable.h"
+"MemCpgcIpLib.sdl"	
+"10nm\CpgcChip.h"	
+"10nm\MemCpgcDdr5.c"
+"10nm\MemCpgcRegs.h"	
+"Spr\Include\CpgcChip.h"	
+"Spr\Include\MemCpgcRegs.h"
+"Spr\Include\Registers\CpgcIpRegisters.h"
+"Spr\Include\Registers\Soc\MCCADB_MAIN.h"
+"Spr\Include\Registers\Soc\MCCPGC_MAIN.h"
+"Spr\Include\MemCpgcRegCache.h"
+<endComponent>

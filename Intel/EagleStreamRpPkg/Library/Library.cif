@@ -1,0 +1,15 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Library\"
+    RefName = "EagleStreamRpPkg.Library"
+[INF]
+"PlatformSpecificAcpiTableLib\PlatformSpecificAcpiTableLib.inf"
+"UbaGpioInitLib\UbaGpioInitLib.inf"
+[files]
+"Library.sdl"	
+[parts]
+"EagleStreamRpPkg.Library.OnBoardSpdLib"
+"EagleStreamRpPkg.Library.PlatformClocksLib"
+"EagleStreamRpPkg.Library.SetupLib"
+<endComponent>

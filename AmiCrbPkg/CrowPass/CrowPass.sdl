@@ -1,0 +1,39 @@
+TOKEN
+	Name  = "CrowPass_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CrowPass support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+    Name  = "CROW_PASS_DRIVER_EFI_FILE_PATH"
+    Value  = "AmiCrbPkg/CrowPass/CrowPassDriver/IntelOptanePMemDriver.efi"
+    TokenType = Expression
+    TargetMAK = Yes
+    TargetFDF = Yes
+    Help  = "CROW PASS DRIVER FILE PATH"
+End
+
+FFS_FILE
+	Name  = "CrowPassDriver"
+	FD_AREA  = "FV_MAIN"
+	FILE_Stmt  = "AmiCrbPkg/CrowPass/CrowPassDriver/CrowPassDriverFdfFileStatement.txt"
+End
+
+TOKEN
+    Name  = "CROW_PASS_HII_EFI_FILE_PATH"
+    Value  = "AmiCrbPkg/CrowPass/CrowPassHii/IntelOptanePMemHii.efi"
+    TokenType = Expression
+    TargetMAK = Yes
+    TargetFDF = Yes
+    Help  = "CROW PASS HII FILE PATH"
+End
+
+FFS_FILE
+	Name  = "CrowPassHii"
+	FD_AREA  = "FV_MAIN"
+	FILE_Stmt  = "AmiCrbPkg/CrowPass/CrowPassHii/CrowPassHiiFdfFileStatement.txt"
+End
+

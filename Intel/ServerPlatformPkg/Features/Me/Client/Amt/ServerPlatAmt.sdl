@@ -1,0 +1,78 @@
+TOKEN
+    Name  = "PLATFORM_MEAMT_SUPPORT" 
+    Value  = "1"
+    Help  = "Switch for Enabling Platform MePkg support in the project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "AmtSaveMebxConfig_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable AmtSaveMebxConfig support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "AmtSaveMebxConfig"
+    File  = "AmtSaveMebxConfigDxe/AmtSaveMebxConfigDxe.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "AMT_ENABLE" "=" "1"
+    Token = "AmtSaveMebxConfig_INF_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "AmtPlatformLib"
+    Instance  = "ServerPlatformPkg.AmtPlatformLib"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "AmtStatusCodePei"
+    File  = "AmtStatusCodePei\AmtStatusCodePei.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+    Token = "AMT_ENABLE" "=" "1"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "AmtPlatformLib"
+    File  = "Library/AmtPlatformLib/AmtPlatformLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "AmtPetAlertDxe"
+    File  = "AmtPetAlertDxe\AmtPetAlertDxe.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+TOKEN
+    Name  = "AmtWrapperDxe_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable AmtWrapperDxe support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "AmtWrapperDxe"
+    File  = "AmtWrapperDxe\AmtWrapperDxe.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "AMT_ENABLE" "=" "1"
+    Token = "AmtWrapperDxe_INF_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "AsfTable"
+    File  = "AsfTable/AsfTable.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "AMT_ENABLE" "=" "1"
+End

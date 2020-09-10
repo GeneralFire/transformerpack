@@ -1,0 +1,77 @@
+TOKEN
+	Name  = "Sgx_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Sgx support in the project"
+	TokenType = Boolean
+        TargetH = Yes	
+	Master = Yes
+End
+
+TOKEN
+    Name  = "SgxEarlyInit_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SgxEarlyInit support in Project"
+    TokenType = Boolean
+End
+
+
+LibraryMapping
+    Class  = "BaseLib"
+    Instance  = "ServerSiliconPkg.BaseLib"
+    Override  = "ServerSecurityPkg.SgxLateInitWave3"
+    Token = "SgxLateInitWave3_SUPPORT" "=" "1"
+End
+
+
+INFComponent
+    Name  = "SgxEarlyInitPeimSPR"
+    File  = "SgxEarlyInit\SPR\SgxEarlyInit.inf"
+    Package  = "ServerSecurityPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"
+    Token = "CPU_SPR_SUPPORT" "=" "1"  
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.BaseUsraLib"
+    Override  = "ServerSecurityPkg.SgxEarlyInitPeimSPR"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "BaseLib"
+    Instance  = "ServerSiliconPkg.BaseLib"
+    Override  = "ServerSecurityPkg.SgxEarlyInitPeimSPR"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterLogLib"
+    Instance  = "ServerSiliconPkg.UsraRegisterLogLibUBios"
+    Override  = "ServerSecurityPkg.SgxEarlyInitPeimSPR"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterFilterLib"
+    Instance  = "CpRcPkg.UsraRegisterFilterLibNull"
+    Override  = "ServerSecurityPkg.SgxEarlyInitPeimSPR"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "SgxLateInitSPR"
+    File  = "SgxLateInit/SPR/SgxLateInit.inf"
+    Package  = "ServerSecurityPkg"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_DRIVER" 
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "BaseLib"
+    Instance  = "ServerSiliconPkg.BaseLib"
+    Override  = "ServerSecurityPkg.SgxLateInitSPR"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End

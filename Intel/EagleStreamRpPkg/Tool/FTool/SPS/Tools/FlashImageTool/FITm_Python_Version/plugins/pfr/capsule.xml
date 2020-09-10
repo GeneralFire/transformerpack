@@ -1,0 +1,65 @@
+<!--
+INTEL CONFIDENTIAL
+Copyright 2017-2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+
+<container>
+  <configuration version="0.5">
+    <file name="Signed_pfmBinary" calculate="/required_containers/signed_pfm.value" ui_params="{'visible': 'false'}"/>  
+    <file name="PFMBinary" calculate="/required_containers/pfm.value" ui_params="{'visible': 'false'}"/>
+    <!-- dependent containers list -->
+    <file name="DescriptorBinary" calculate="/required_containers/descriptor.value" ui_params="{'visible':'false'}"/>
+    <file name="MeBinary" calculate="/required_containers/me.value" ui_params="{'visible':'false'}"/>
+    <file name="GbeBinary" calculate="/required_containers/gbe.value" ui_params="{'visible':'false'}"/>
+    <file name="BiosBinary" calculate="/required_containers/bios.value" ui_params="{'visible':'false'}"/>
+    <file name="PdrBinary" calculate="/required_containers/pdr.value" ui_params="{'visible':'false'}"/>     
+    <file name="Der1Binary" calculate="/required_containers/der1.value" ui_params="{'visible':'false'}"/>       
+    <file name="Sec_biosBinary" calculate="/required_containers/sec_bios.value" ui_params="{'visible':'false'}"/>       
+    <file name="BmcBinary" calculate="/required_containers/bmc.value" ui_params="{'visible':'false'}"/>
+    <file name="Der2Binary" calculate="/required_containers/der2.value" ui_params="{'visible':'false'}"/>       
+    <file name="IeBinary" calculate="/required_containers/ie.value" ui_params="{'visible':'false'}"/>
+    <file name="Spare1Binary" calculate="/required_containers/spare1.value" ui_params="{'visible':'false'}"/>
+    <file name="PttBinary" calculate="/required_containers/ptt.value" ui_params="{'visible':'false'}"/>
+    
+    <group name="compressed_data" label="Compressed Data" ui_params="{'visible':'false'}">
+        <number name="page_size" size="4" value="0x1000" />
+        <number name="pattern" size="4" value="0xFF" />
+        <number name="payload_length" size="4" value="0x0" />
+        <number name="data_length" size="4" value="0x0" />
+        <number name="size_of_bit_map" size="4" value="0x800" />
+        <number name="payload_max" size="4" value="0x13FEF80" />
+    </group>
+    <iterable name="pfm_entries" dependency='[{"get": "pfm/pfm_entries" }]' ui_params="{'visible': 'false', 'read_only': 'true'}"/>
+  </configuration>
+  <layout>
+    <recovery_area>
+        <signed_pfm>
+            <byte_array name="signed_pfm" calculate="/configuration/Signed_pfmBinary.data" />
+        </signed_pfm>
+        <compression_header>
+            <number name="compression_header_tag" size="4" value="0x5f504243"/>
+            <number name="pbc_version" size="4" value="0x2" />
+            <number name="page_size" size="4" calculate="/configuration/page_size.value" />
+            <number name="pattern_size" size="4" value="0x1" />
+            <number name="pattern_for_compression" size="4" calculate="/configuration/pattern.value" />
+            <number name="size" size="4" value="0x4000" /> <!-- TODO 0x4000 for 64MB Flash. 0x8000 for 128MB Flash -->
+            <number name="payload_length" size="4" value="0x0" /> <!-- TODO Length of compressed payload in bytes -->
+            <byte_array name="reserved" size="100"/>
+        </compression_header>
+        <compressed_spi>
+            <byte_array name="active_bit_map" size="/configuration/size_of_bit_map.value" value="0" />
+            <byte_array name="compression_bit_map" size="/configuration/size_of_bit_map.value" value="0" />
+            <byte_array name="compressed_image" size="10" value="0" />
+        </compressed_spi>
+        <padding value="" align="0x13FFC00" size="0"/> <!-- max size 0x1400000 - signature size 0x400 -->
+    </recovery_area>
+  </layout>
+</container>

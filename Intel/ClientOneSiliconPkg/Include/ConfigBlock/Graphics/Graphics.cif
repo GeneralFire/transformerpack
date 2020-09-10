@@ -1,0 +1,9 @@
+<component>
+    name = "Graphics"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Graphics\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Graphics"
+[parts]
+"ClientOneSiliconPkg.Include.ConfigBlock.Graphics.Gen11"
+"ClientOneSiliconPkg.Include.ConfigBlock.Graphics.Gen12"
+<endComponent>

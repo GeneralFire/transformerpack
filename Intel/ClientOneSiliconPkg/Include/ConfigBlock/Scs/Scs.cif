@@ -1,0 +1,8 @@
+<component>
+    name = "Scs"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Scs\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Scs"
+[files]
+"ScsConfig.h"	
+<endComponent>

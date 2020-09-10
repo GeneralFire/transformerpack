@@ -1,0 +1,38 @@
+TOKEN
+	Name  = "AddressTranslationDsm_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling AddressTranslationDsm support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "AddressTranslationDsm_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AddressTranslationDsm support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "AddressTranslationDsm"
+	File  = "AddressTranslationDsm.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Token = "AddressTranslationDsm_INF_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "RankSpareAddressTranslationLib"
+    Instance  = "ServerSiliconPkg.RankSpareAddressTranslationLib"
+    Override  = "ServerRasPkg.AddressTranslationDsm"
+    Token = "AddressTranslationDsm_INF_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "DriverAcpiTable"
+    FD_AREA  = "FV_MAIN"
+    INFComponent  = "ServerRasPkg.AddressTranslationDsm"
+    Rule_Override  = "DRIVER_ACPITABLE"
+    Token = "AddressTranslationDsm_INF_SUPPORT" "=" "1"
+End
+

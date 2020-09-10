@@ -1,0 +1,151 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2016 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+#if defined (CPX_HOST) || defined (SKX_HOST)
+    //
+    // Only for CPX
+    //
+    oneof varid = SOCKET_IIO_CONFIGURATION.DevPresIoApicIio[INDEX],
+    #if INDEX == 0
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK0),
+    #elif INDEX == 1
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK1),
+    #elif INDEX == 2
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK2),
+    #elif INDEX == 3
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK3),
+    #elif INDEX == 4
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK4),
+    #elif INDEX == 5
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK5),
+    #elif INDEX == 6
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK0),
+    #elif INDEX == 7
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK1),
+    #elif INDEX == 8
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK2),
+    #elif INDEX == 9
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK3),
+    #elif INDEX == 10
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK4),
+    #elif INDEX == 11
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK5),
+    #elif INDEX == 12
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK0),
+    #elif INDEX == 13
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK1),
+    #elif INDEX == 14
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK2),
+    #elif INDEX == 15
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK3),
+    #elif INDEX == 16
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK4),
+    #elif INDEX == 17
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK5),
+    #elif INDEX == 18
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK0),
+    #elif INDEX == 19
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK1),
+    #elif INDEX == 20
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK2),
+    #elif INDEX == 21
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK3),
+    #elif INDEX == 22
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK4),
+    #elif INDEX == 23
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK5),
+    #elif INDEX == 24
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK0),
+    #elif INDEX == 25
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK1),
+    #elif INDEX == 26
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK2),
+    #elif INDEX == 27
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK3),
+    #elif INDEX == 28
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK4),
+    #elif INDEX == 29
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK5),
+    #elif INDEX == 30
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK0),
+    #elif INDEX == 31
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK1),
+    #elif INDEX == 32
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK2),
+    #elif INDEX == 33
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK3),
+    #elif INDEX == 34
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK4),
+    #elif INDEX == 35
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK5),
+    #elif INDEX == 36
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK0),
+    #elif INDEX == 37
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK1),
+    #elif INDEX == 38
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK2),
+    #elif INDEX == 39
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK3),
+    #elif INDEX == 40
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK4),
+    #elif INDEX == 41
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK5),
+    #elif INDEX == 42
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK0),
+    #elif INDEX == 43
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK1),
+    #elif INDEX == 44
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK2),
+    #elif INDEX == 45
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK3),
+    #elif INDEX == 46
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK4),
+    #elif INDEX == 47
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK5),
+    #else
+      #error need code update, INDEX out of bounds
+    #endif
+      help    = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_HELP),
+      //
+      // Enable IOAPICs for CPX/SKX, they actually has IOAPICs in IIO
+      //
+      option text = STRING_TOKEN(STR_NO),   value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_YES),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+#else
+      //
+      // Disable IOAPICs if SOC does not have IOAPICs
+      // Suppress text of menu
+      //
+suppressif TRUE;
+    oneof varid = SOCKET_IIO_CONFIGURATION.DevPresIoApicIio[0],
+      prompt  = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_PROMPT_STACK0),
+      help    = STRING_TOKEN(STR_IIO_IOAPIC_ENABLE_HELP),
+      option text = STRING_TOKEN(STR_NO),   value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      option text = STRING_TOKEN(STR_YES),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+endif;
+#endif  // CPX_HOST || SKX_HOST

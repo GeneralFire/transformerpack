@@ -1,0 +1,10 @@
+<component>
+	name = "FspHeader"
+	category = ModulePart
+	LocalRoot = "Intel\EagleStreamFspPkg\FspHeader\"
+	RefName = "EagleStreamFspPkg.FspHeader"
+[INF]
+"FspHeader.inf"
+[files]
+"FspHeader.sdl"	
+<endComponent>

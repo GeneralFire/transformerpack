@@ -1,0 +1,12 @@
+<component>
+    name = "Sps"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Me\MeSps.6\Sps\"
+    RefName = "ServerPlatformPkg.Features.Me.MeSps6.Sps"
+[INF]
+"Acpi\SpsAcpiHooks.inf"
+"Acpi\SpsAcpiSsdt.inf"
+[files]
+"Sps.sdl"
+"Acpi\SpsUpdateAsl.h"
+<endComponent>

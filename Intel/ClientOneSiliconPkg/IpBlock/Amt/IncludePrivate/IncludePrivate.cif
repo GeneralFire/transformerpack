@@ -1,0 +1,10 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Amt\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Amt.IncludePrivate"
+[files]
+"AmtForcePushPetHob.h"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Amt.IncludePrivate.Library"
+<endComponent>

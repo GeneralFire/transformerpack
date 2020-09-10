@@ -1,0 +1,16 @@
+<component>
+    name = "HeciTransport"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\HeciTransport\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.HeciTransport"
+[INF]
+"DxeSmm\HeciTransportDxe.inf"
+"DxeSmm\HeciTransportSmm.inf"
+"HeciCommonLib\HeciCommonLib.inf"
+"HeciTraceLib\HeciTraceLib.inf"
+"Pei\HeciTransportPei.inf"
+[files]
+"HeciTransport.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Me.HeciTransport.HeciTransportCoreLib"
+<endComponent>

@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "CrystalRidgeLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling CrystalRidgeLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "CrystalRidgeLib"
+	File  = "CrystalRidgeLib.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+	Class  = "CrystalRidgeLib"
+	Instance  = "ServerRasPkg.CrystalRidgeLib"
+End
+

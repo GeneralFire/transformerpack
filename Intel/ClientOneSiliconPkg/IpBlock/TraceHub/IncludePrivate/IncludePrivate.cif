@@ -1,0 +1,10 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\TraceHub\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.TraceHub.IncludePrivate"
+[files]
+[parts]
+"ClientOneSiliconPkg.IpBlock.TraceHub.IncludePrivate.Library"
+"ClientOneSiliconPkg.IpBlock.TraceHub.IncludePrivate.Register"
+<endComponent>

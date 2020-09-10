@@ -1,0 +1,18 @@
+# Temporarily disable this for now due to build errors as Intel FSP build doesn't use it either
+TOKEN
+    Name = "FspVariable_SUPPORT"
+    Value = "0"
+    Help  = "Main switch to enable FspPcdInit support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+INFComponent
+    Name  = "FspVariable"
+    File  = "FspVariable.inf"
+    Package  = "EagleStreamFspPkg"
+    ModuleTypes  = "PEIM"
+End
+

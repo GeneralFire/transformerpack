@@ -1,0 +1,17 @@
+<component>
+    name = "ConfigBlock"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\Include\ConfigBlock\"
+    RefName = "ClientOneSiliconPkg.Cpu.Include.ConfigBlock"
+[files]
+"CpuConfig.h"	
+"CpuConfigLibPreMemConfig.h"		
+"CpuPowerMgmtBasicConfig.h"	
+"CpuPowerMgmtCustomConfig.h"	
+"CpuPowerMgmtPsysConfig.h"	
+"CpuPowerMgmtTestConfig.h"		
+"CpuSecurityPreMemConfig.h"	
+"CpuSgxConfig.h"	
+"CpuTestConfig.h"	
+"CpuTxtConfig.h"	
+<endComponent>

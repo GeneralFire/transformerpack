@@ -1,0 +1,71 @@
+TOKEN
+    Name  = "PcuMailBoxLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PcuMailBoxLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "PcuMailBoxLib10nm"
+    File  = "PcuMailBoxLib10nmWave1.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "PcuMailBoxLibSpr"
+    File  = "PcuMailBoxLib10nmWave3.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "HwPcuMailBoxTargetLib"
+    File  = "10nmWave1\HwTargetLib\HwPcuMailBoxTargetLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "HwPcuMailBoxTargetLib"
+    File  = "10nmWave3\HwTargetLib\HwPcuMailBoxTargetLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "PcuMailBoxRasLib"
+    File  = "PcuMailBoxRasLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"    
+End
+
+LibraryMapping
+    Class  = "PcuMailBoxLib"
+    Instance  = "ServerSiliconPkg.PcuMailBoxLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PcuMailBoxLib"
+    Instance  = "ServerSiliconPkg.PcuMailBoxLib10nm"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PcuMailBoxTargetLib"
+    Instance  = "ServerSiliconPkg.HwPcuMailBoxTargetLib"
+End
+
+LibraryMapping
+    Class  = "PcuMailBoxRasLib"
+    Instance  = "ServerSiliconPkg.PcuMailBoxRasLib"
+    Arch = "X64"
+    ModuleTypes = "DXE_SMM_DRIVER"
+End
+

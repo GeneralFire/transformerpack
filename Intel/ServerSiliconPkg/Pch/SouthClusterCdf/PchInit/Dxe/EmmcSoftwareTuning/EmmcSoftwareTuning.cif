@@ -1,0 +1,11 @@
+<component>
+    name = "EmmcSoftwareTuning"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\PchInit\Dxe\EmmcSoftwareTuning\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.PchInit.Dxe.EmmcSoftwareTuning"
+[INF]
+"EmmcSoftwareTuningCdf.inf"
+[files]
+"EmmcSoftwareTuning.h"	
+"EmmcSoftwareTuning.sdl"	
+<endComponent>

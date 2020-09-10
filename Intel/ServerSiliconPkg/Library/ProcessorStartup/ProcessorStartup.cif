@@ -1,0 +1,22 @@
+<component>
+	name = "ProcessorStartup"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Library\ProcessorStartup\"
+	RefName = "ServerSiliconPkg.Library.ProcessorStartup"
+[INF]
+"ProcessorStartupCdfSpr.inf"
+"ProcessorStartupCdfSprBTG.inf"
+"ProcessorStartupCdfSprFsp.inf"
+"ProcessorStartupCdfSprBTGFsp.inf"
+[files]
+"ProcessorStartup.sdl"
+"Ia32\Flat32.inc"	
+"Ia32\ProcessorStartup.inc"	
+"Ia32\ProcessorStartupChipset.inc"
+"Ia32\ProcessorStartupPlatform.inc"
+"Ia32\ProcessorStartupUncore.inc"
+"Ia32\ProcessorStartup.nasm"
+"Ia32\ProcessorStartupUncoreSpr.inc"
+"Ia32\ProcessorUncoreCommon.inc"
+"Ia32\SecEntry.nasm"
+<endComponent>

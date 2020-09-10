@@ -1,0 +1,21 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiSiSsidLib"
+    Instance  = "ClientOneSiliconPkg.PeiSiSsidLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiSiSsidLib"
+    File  = "PeiSiSsidLib/PeiSiSsidLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End

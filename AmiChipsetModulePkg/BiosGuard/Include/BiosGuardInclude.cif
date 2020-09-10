@@ -1,0 +1,10 @@
+<component>
+	name = "Include"
+	category = ModulePart
+	LocalRoot = "AmiChipsetModulePkg\BiosGuard\Include\"
+	RefName = "BiosGuardInclude"
+[files]
+"Protocol/AmiBiosGuardProtocol.h"
+"Library/AmiBiosGuardMiscLib.h"
+"PlatformDefinition.h"
+<endComponent>

@@ -1,0 +1,51 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "VpuInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiVpuInitLib"
+End
+
+INFComponent
+    Name  = "PeiVpuInitLib"
+    File  = "PeiVpuInitLib/PeiVpuInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "VpuInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiVpuInitLibNull"
+End
+
+INFComponent
+    Name  = "PeiVpuInitLibNull"
+    File  = "PeiVpuInitLibNull/PeiVpuInitLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "PeiVpuPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiVpuPolicyLib"
+End
+
+INFComponent
+    Name  = "PeiVpuPolicyLib"
+    File  = "PeiVpuPolicyLib/PeiVpuPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PeiVpuPolicyLib"
+    File  = "PeiVpuPolicyLibNull/PeiVpuPolicyLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+

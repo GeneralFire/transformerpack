@@ -1,0 +1,8 @@
+<component>
+	name = "DxeSiFviLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\SouthCluster\Library\DxeSiFviLib\"
+	RefName = "ServerSiliconPkg.Include.SouthCluster.Library.DxeSiFviLib"
+[files]
+"SiFviLib.h"	
+<endComponent>

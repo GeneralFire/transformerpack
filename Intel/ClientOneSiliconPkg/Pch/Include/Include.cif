@@ -1,0 +1,18 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\Include\"
+    RefName = "ClientOneSiliconPkg.Pch.Include"
+[files]
+"ChipsetInfoHob.h"	
+"PchInfoHob.h"	
+"PchLimits.h"	
+"PchPolicyCommon.h"	
+"PchPreMemPolicyCommon.h"	
+"PchResetPlatformSpecific.h"	
+[parts]
+"ClientOneSiliconPkg.Pch.Include.ConfigBlock"
+"ClientOneSiliconPkg.Pch.Include.Library"
+"ClientOneSiliconPkg.Pch.Include.Protocol"
+"ClientOneSiliconPkg.Pch.Include.Register"
+<endComponent>

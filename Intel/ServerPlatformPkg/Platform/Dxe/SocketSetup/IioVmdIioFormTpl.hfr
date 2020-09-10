@@ -1,0 +1,109 @@
+/** @file
+  IIO related form templates for each (IIO) socket
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2019 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+//
+// Forms included for each IIO (usually it means for each socket)
+//
+
+//
+// VMD Form template for each IIO
+// INPUT:
+//   - IIO_INDEX: <0..7> - index of the IIO complex (usually same as socketId)
+//
+form formid = HFR_CONCAT2(VFR_FORMID_VMD_IIO, IIO_INDEX),
+  title = STRING_TOKEN(HFR_CONCAT2(STR_IIO_VMD_FORM_IIO_, IIO_INDEX));
+
+  //
+  // Calculate total stack indexes
+  //
+  #define STACK_0_TOTAL_IDX    HFR_MUL_6(IIO_INDEX)       // every IIO|socket has 6 stacks
+  #define STACK_1_TOTAL_IDX    HFR_INC(STACK_0_TOTAL_IDX)
+  #define STACK_2_TOTAL_IDX    HFR_INC(STACK_1_TOTAL_IDX)
+  #define STACK_3_TOTAL_IDX    HFR_INC(STACK_2_TOTAL_IDX)
+  #define STACK_4_TOTAL_IDX    HFR_INC(STACK_3_TOTAL_IDX)
+  #define STACK_5_TOTAL_IDX    HFR_INC(STACK_4_TOTAL_IDX)
+
+  suppressif ideqval SOCKET_IIO_CONFIGURATION.PchPresentOnStack[IIO_INDEX] == 0;
+    #if !defined(SKX_HOST)
+      //
+      // PCH ports are supported only with VMD 2.0 (10nm) and later
+      // SKX has VMD 1.0
+      //
+      #define  DMI_STACK         1
+      #define  STACK_IDX         0
+      #define  STACK_TOTAL_IDX   STACK_0_TOTAL_IDX
+      #include "IioVmdStackTpl.hfr" // Stack 0 - link to PCH
+
+      #undef   DMI_STACK
+    #endif // !defined(SKX_HOST)
+  endif; // suppressif ideqval SOCKET_IIO_CONFIGURATION.PchPresentOnStack[IiO_INDEX] == 0x00;
+
+  //
+  // Load templates for each IOU (undef is inside templates)
+  //
+  #define STACK_IDX         1
+  #define STACK_TOTAL_IDX   STACK_1_TOTAL_IDX
+  #include "IioVmdStackTpl.hfr" // Stack 1 (IOU 0)
+
+  #if !defined (SNR_HOST) // SNR and ICX-D LCC has only one PCIe stack
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD AND ideqval SOCKET_COMMONRC_CONFIGURATION.CpuChop == CPU_CHOP_TYPE_HCC);
+      #define STACK_IDX         2
+      #define STACK_TOTAL_IDX   STACK_2_TOTAL_IDX
+      #include "IioVmdStackTpl.hfr" // Stack 2 (IOU 1)
+    endif;
+
+    #if !defined (ICXDE_HOST)
+      #define STACK_IDX         2
+      #define STACK_TOTAL_IDX   STACK_2_TOTAL_IDX
+      #include "IioVmdStackTpl.hfr" // Stack 2 (IOU 1)
+
+      #define STACK_IDX         3
+      #define STACK_TOTAL_IDX   STACK_3_TOTAL_IDX
+      #include "IioVmdStackTpl.hfr" // Stack 3 (IOU 2)
+
+      #define STACK_IDX         4
+      #define STACK_TOTAL_IDX   STACK_4_TOTAL_IDX
+      #include "IioVmdStackTpl.hfr" // Stack 4 (IOU 3)
+
+      #define STACK_IDX         5
+      #define STACK_TOTAL_IDX   STACK_5_TOTAL_IDX
+      #include "IioVmdStackTpl.hfr" // Stack 5 (IOU 4)
+    #endif //!defined (ICXDE_HOST)
+  #endif //!defined (SNR_HOST)
+
+  //
+  // cleanup
+  //
+  #undef STACK_TOTAL_0_IDX
+  #undef STACK_TOTAL_1_IDX
+  #undef STACK_TOTAL_2_IDX
+  #undef STACK_TOTAL_3_IDX
+  #undef STACK_TOTAL_4_IDX
+  #undef STACK_TOTAL_5_IDX
+
+endform;

@@ -1,0 +1,8 @@
+<component>
+    name = "Setup"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Me\MeSps.6\Ws\Include\Setup\"
+    RefName = "ServerPlatformPkg.Features.Me.MeSps6.Ws.Include.Setup"
+[files]
+"MeSetup.h"	
+<endComponent>

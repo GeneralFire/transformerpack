@@ -1,0 +1,298 @@
+/** @file JedecNvdimm.asi
+  JEDEC-compliant NVDIMM ACPI implementation
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2014 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include "JedecNvdimmDebug.asi"
+
+#define DSM_LEAF_UUID                   "1EE68B36-D4BD-4a1a-9A16-4F8E53D46E05"
+#define REVISION_1                      1
+#define NIG_FUNCTION_INDEX              0xFFFFFFFB
+#define NIC_FUNCTION_INDEX              0xFFFFFFFC
+#define NIH_FUNCTION_INDEX              0xFFFFFFFD
+#define NBS_FUNCTION_INDEX              0xFFFFFFFE
+#define NCH_FUNCTION_INDEX              0xFFFFFFFF
+#define MIN_SPECIAL_FUNCTION_INDEX      NIG_FUNCTION_INDEX
+#define MAX_DSM_NUMBER                  32
+
+#define DSM_STS_SUCCESS                 0x00
+#define DSM_STS_NOT_SUPPORTED           0x01  // Function not supported
+#define DSM_STS_INVALID_PARAMS          0x02
+#define DSM_STS_I2C_COMMUNICATION_ERR   0x03
+#define DSM_STS_FUNC_SPECIFIC_ERROR     0x04  // Function-specific error code
+#define DSM_STS_VEN_SPECIFIC_ERROR      0x05  // Vendor-specific error code
+
+  //
+  // _LSI method implementation
+  //
+  Method (JLSI, 1) {
+    Return (Package () {LABEL_STORAGE_FAILURE, 0, 0})
+  }
+
+  //
+  // _LSR method implementation
+  //
+  Method (JLSR, 3) {
+    Return (Package () {LABEL_STORAGE_FAILURE, Buffer () {0}})
+  }
+
+  //
+  // _LSW method implementation
+  //
+  Method (JLSW, 4) {
+    Return (LABEL_STORAGE_FAILURE)
+  }
+
+  //
+  // Process leaf notifications pre SWGPE disable
+  //
+  Method (JLPR, 0) {
+    Return (Package () {0, 0})
+  }
+
+  //
+  // Process root notifications pre SWGPE disable
+  //
+  Method (JRPR, 0) {
+    Return (0)
+  }
+
+  //
+  // Process leaf notifications post SWGPE disable
+  //
+  Method (JLPT, 1) {
+    Store (Package () {0, 0}, Local0)
+    Store (DBM0, Index (Local0, 0))
+    Store (DBM1, Index (Local0, 1))
+    Return (Local0)
+  }
+
+  //
+  // Process root notifications post SWGPE disable
+  //
+  Method (JRPT, 1) {
+    Return (0)
+  }
+
+  Method (JNCH, 1) {
+    Store (ToUUID (DSM_LEAF_UUID), Local0)
+    Store (1, Local1)
+    Return (JNLD(Local0, Local1, NCH_FUNCTION_INDEX, Buffer() {}, Arg0))
+  }
+
+  Method (JNBS, 1) {
+    Store (ToUUID (DSM_LEAF_UUID), Local0)
+    Store (1, Local1)
+    Return (JNLD (Local0, Local1, NBS_FUNCTION_INDEX, Buffer() {}, Arg0))
+  }
+
+  Method (JNIC, 1) {
+    Store (ToUUID (DSM_LEAF_UUID), Local0)
+    Store (1, Local1)
+    Return (JNLD (Local0, Local1, NIC_FUNCTION_INDEX, Buffer() {}, Arg0))
+  }
+
+  Method (JNIG, 1) {
+    Store (ToUUID (DSM_LEAF_UUID), Local0)
+    Store (1, Local1)
+    Return (JNLD (Local0, Local1, NIG_FUNCTION_INDEX, Buffer() {}, Arg0))
+  }
+
+  Method (JNIH, 2) {
+    Store (ToUUID (DSM_LEAF_UUID), Local0)
+    Store (1, Local1)
+    Return (JNLD (Local0, Local1, NIH_FUNCTION_INDEX, Arg0, Arg1))
+  }
+
+
+
+  //
+  // Leaf DSM implementation
+  //
+  Method (JNLD, 5, Serialized) {
+    // CR commands supported
+    // Arg0: DSM GUID Supported
+    // Arg1: Revision
+    // Arg2: Function Index
+    // Arg3: Input Buffer
+    // Arg4: _ADR in a form of 0x##socket##0##channel##dimm
+    // RETA: Returned Buffer
+    DEBUG1 (Local6, DEBUG_ERROR, "LEAF", " JNLD Function")
+    // _DSM Interface for Byte Addressable Energy Backed Function Class, Function Interface 1
+    If (LEqual (Arg0, ToUUID (DSM_LEAF_UUID))) {   // Make sure correct UUID
+      If (LEqual (ToInteger (Arg1), 1)) {                                  // Make sure revision is 1
+        If (LEqual (ToInteger (Arg2), 0)) {
+          DEBUG1 (Local6, DEBUG_ERROR, "LEAF", " Function Index equal to 0")
+          Return (Buffer() {0xff, 0xff, 0xff, 0xff})
+        }
+
+        // Only process the supported function indexes
+        If (Or (LLess (ToInteger (Arg2), MAX_DSM_NUMBER), LGreaterEqual (ToInteger (Arg2), MIN_SPECIAL_FUNCTION_INDEX))) {
+          // Store Function Index and NFIT Device Handle (DIMM location)
+          Store (ToInteger (Arg4), NFHD)            // Store ADR handler
+          Store (ToInteger (Arg2), FUNI)            // Store Function Index
+
+          //
+          // Arg3 is a package usually with paramagers buffer, or empty buffer if no parameters,
+          // but Arg3 can be also empty package.
+          //
+          If (SizeOf (Arg3)) {
+
+            ToBuffer (DeRefOf (Index (Arg3, 0)), Local0)
+            If (LLessEqual (SizeOf (Local0), DSM_INPB_SIZE)) {
+
+              Store (SizeOf (Local0), INPL)  // Store input length in INPL bitfield for SMI handler
+              Store (Local0, INPB)           // Store data in INPB for SMI handler
+
+            } Else {
+              //
+              // Size of Arg3 is bigger than buffer for communication with SMI handler.
+              // Return invalid parameters error.
+              //
+              DEBUG1 (Local6, DEBUG_ERROR, "LEAF", " Input buffer is too big to communicate with SMI handler")
+              Return (Buffer() {DSM_STS_INVALID_PARAMS, 0, 0, 0})
+            }
+          } Else {
+            //
+            // Empty package passed in Arg3, put zero in input length.
+            //
+            Store (0, INPL)
+          }
+
+          Store (4, NFST)                                  // Assume Function ERROR
+
+          // Generate SMI
+          Store (0xFD, SMIC)
+
+          // Create Return Buffer
+          // We need to include Output Length & Status in the Output Buffer
+          Name (RETA, Buffer (Add (OUTL, 4)) {} )
+
+          // Update Status from ACPI Exchange
+          CreateDwordField (RETA, 0x00, STAA) // Status
+          Store (NFST, STAA)
+
+          // Copy buffer from OUTL length in bytes starting at DATA (offset 4 bytes from Buffer)
+          If (LNotEqual (OUTL, 0)) {
+            CreateField (RETA, 0x20, Multiply (OUTL, 8), DATA)
+            Mid (OUTB, 0, OUTL, DATA)
+          }
+
+          // Return buffer
+          Return (RETA)
+        } // if func valid
+
+        DEBUG1 (Local6, DEBUG_ERROR, "LEAF", " Command not supported, wrong function index")
+        Return (Buffer() {DSM_STS_NOT_SUPPORTED, 0, 0, 0})      // Indicate command not supported (invalid func)
+      } // if revision 1
+
+      DEBUG1 (Local6, DEBUG_ERROR, "LEAF", " Command not supported, wrong revision")
+      Return (Buffer () {0x00}) // Indicate command not supported (invalid revision)
+    } // GUID Check
+
+    DEBUG1 (Local6, DEBUG_ERROR, "LEAF", " Command not supported, invalid GUID")
+    Return (Buffer () {0x00}) // Indicate command not supported (invalid GUID)
+  } // End of Method
+
+  //
+  // Root DSM implementation
+  //
+  Method (JNRD, 4, Serialized) {
+    // CR commands supported
+    // Function Index 1 - Query Address range scrubbing capabilities
+    // Input - 16 bytes (ARS Start SPA Address - 8 bytes, ARS Length - 8 bytes)
+    // Output - 8 bytes (Status - 4 bytes, Max ARS Data Size)
+    //
+    // Function Index 2 - Start address range scrubbing
+    // Input - 24 bytes (ARS Start Address - 8 bytes, ARS length - 8 bytes, Type - 2 bytes, Flags - 1 byte, Reserved - 5 bytes)
+    // Output - 8 bytes (Status - 4 bytes, Estimated Time for Scrub - 4 bytes)
+    //
+    // Function Index 3 - Query Adress range scrubbing status
+    // Input - NULL
+    // Output - varies (Status - 4 bytes, ARS Data - 4k)
+    //
+    // Function Index 4 - Clear Uncorrectable Error
+    // Input - 16 bytes (Clear Uncorrectable Error SPA Range Base - 8 bytes, Clear Uncorrectable Error Range Length - 8 bytes)
+    // Output - 16 bytes (Status - 4 bytes, Reserved - 4 bytes, Cleared Uncorrectable Error Range Length - 8 bytes)
+
+    If (LEqual (Arg0, ToUUID ("2F10E7A4-9E91-11E4-89D3-123B93F75CBA"))) {  // Make sure correct UUID
+      If (LEqual (ToInteger (Arg1), 1)) {                                  // Make sure revision is 1
+        If (LEqual (ToInteger (Arg2), 0)) {
+            //0,1,2,3,4 function is supported
+            Return (Buffer() {0x1F}) // Wrong function index
+        }
+
+        // Only process the supported function indexes
+        If (LLessEqual (ToInteger (Arg2), 4)) {
+          // Store Function Index and NFIT Device Handle
+          Store (ToInteger (Arg2), FUNI)
+          Store (0xFFFFFFFF, NFHD)  // Specify call is being made from NVDR
+
+          // Map Arg3 into separate elements of structure
+          If (LOr (LEqual (FUNI, 1), LOr (LEqual (FUNI, 2), LEqual (FUNI, 4)))) {
+            // Function Index 1 - Query Address range scrubbing capabilities
+            // Function Index 2 - Start address range scrubbing
+            // Function Index 4 - Clear Uncorrectable Error
+            CreateQwordField (DeRefOf (Index (Arg3, 0)), 0x00, ASTA)  // ARS Start Address
+            CreateQwordField (DeRefOf (Index (Arg3, 0)), 0x08, ALEN)  // ARS Length
+            Store (ASTA, ARSA)
+            Store (ALEN, ARSL)
+
+          }
+
+          If (LEqual (FUNI, 2)) {
+            // Function Index 2 - Start address range scrubbing
+            CreateWordField (DeRefOf (Index (Arg3, 0)), 0x10, ATYP) // ARS Type
+            CreateByteField (DeRefOf (Index (Arg3, 0)), 0x12, AFLA) // ARS Flags
+            Store (ATYP, ARST)
+            Store (AFLA, ARSF)
+          }
+
+          // Generate SMI
+          Store (0xFD, SMIC)
+
+          // Create Return Buffer
+          Name (RETB, Buffer (Add (OUTL, 4)) {} )
+
+          // Update Status
+          CreateDwordField (RETB, 0x00, STAT) // Status
+          Store (NFST, STAT)
+
+          // Copy buffer
+          If (LNotEqual (OUTL, 0)) {
+            CreateField (RETB, 0x20, Multiply (OUTL, 8), DATB)
+            Mid (OUTB, 0, OUTL, DATB)
+          }
+
+          // Return buffer
+          Return (RETB)
+        }
+        Return (Buffer() {DSM_STS_NOT_SUPPORTED, 0, 0, 0}) // Wrong function index
+      }
+      Return (Buffer () {0x00}) // Wrong revision
+    }
+    Return (Buffer () {0x00}) // Wrong UUID (this value is different for root and NVDIMM)
+  }

@@ -1,0 +1,188 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+## @file AmiIpmi2Pkg.dec
+#   This is AmiIpmi2Pkg declaration file which includes all Guids, Pcds,
+#   Protocols etc which are common to this package.
+##
+
+[Defines]
+  DEC_SPECIFICATION     = 0x00010005
+  PACKAGE_NAME          = AmiIpmi2Pkg
+  PACKAGE_GUID          = 3A21584F-1306-40ac-AF65-818CAF445B31
+  PACKAGE_VERSION       = 0.1
+
+[Includes]
+  Include
+  ../
+  ../Build
+
+[LibraryClasses]
+  ##  @libraryclass  Provides generic functions among all interfaces.
+  AmiBmcCommonInterfaceLib|Include/Library/AmiBmcCommonInterfaceLib.h
+  
+  ##  @libraryclass  Provides generic functions for KCS interface.
+  AmiKcsInterfaceLib|Include/Library/AmiKcsInterfaceLib.h
+
+  ##  @libraryclass  Provides generic functions for BT interface.
+  AmiBtInterfaceLib|Include/Library/AmiBtInterfaceLib.h
+
+  ##  @libraryclass  Provides generic functions for SSIF interface.
+  AmiSsifInterfaceLib|Include/Library/AmiSsifInterfaceLib.h
+
+  ##  @libraryclass  Provides generic functions for IPMB interface.
+  AmiIpmbInterfaceLib|Include/Library/AmiIpmbInterfaceLib.h
+
+  ##  @libraryclass  Provides generic functions for USB interface.
+  AmiUsbInterfaceLib|Include/Library/AmiUsbInterfaceLib.h
+
+  ##  @libraryclass  Provides generic functions for Sel logging.
+  AmiSelLib|Include/Library/AmiSelLib.h
+  
+  ##  @libraryclass  Provides generic functions for Ipmi initializations.
+  AmiIpmiInitLib|Include/Library/AmiIpmiInitLib.h
+  
+  ##  @libraryclass  Provides generic functions for IpmiBoot.
+  AmiIpmiBootLib|Include/Library/AmiIpmiBootLib.h
+
+[Guids]
+  ## AmiIpmi2Pkg Token Space Guid.
+  gAmiIpmi2PkgTokenSpaceGuid            = { 0x1e21c326, 0xd40, 0x40f2, { 0x9f, 0x2, 0x3a, 0x9b, 0x78, 0x38, 0xaa, 0x6b } }
+
+  ## Include/AmiServerMgmtSetupVariable.h
+  gEfiServerMgmtSetupVariableGuid       = { 0x1239999, 0xfc0e, 0x4b6e, { 0x9e, 0x79, 0xd5, 0x4d, 0x5d, 0xb6, 0xcd, 0x20 } }
+
+  ## Include/AmiIpmiBmcCommon.h
+  gEfiIpmiCmosClearVariableGuid         = { 0x675b8766, 0x7f03, 0x4181, { 0x9b, 0xe1, 0x73, 0xbc, 0x45, 0xdf, 0xf7, 0x99 } }
+
+  ## Include/AmiIpmiBmcCommon.h
+  gAmiPeiIpmiHobGuid                    = { 0xcb4d3e13, 0x1e34, 0x4373, {0x8a, 0x81, 0xe9, 0x0, 0x10, 0xf1, 0xdb, 0xa4 } }
+
+  ## Ipmi/IpmiBoot/IpmiBoot.h
+  gEfiIpmiBootGuid                      = { 0x842680f2, 0x1a9c, 0x48e6, { 0xa4, 0x33, 0xbe, 0x9a, 0xcb, 0xd, 0xd4, 0x38 } }
+
+  gEfiIpmiFormatFruGuid                 = { 0x3531fdc6, 0xeae,  0x4cd2, { 0xb0, 0xa6, 0x5f, 0x48, 0xa0, 0xdf, 0xe3, 0x8  } }
+
+  gEfiSystemTypeFruGuid                 = { 0xaab16018, 0x679d, 0x4461, { 0xba, 0x20, 0xe7, 0xc,  0xf7, 0x86, 0x6a, 0x9b } }
+
+[Ppis]
+  ## Include/Ppi/AmiIpmiTransportPpi.h
+  gEfiPeiIpmiTransportPpiGuid           = { 0x8122cebd, 0xf4fd, 0x4ea8, { 0x97, 0x6c, 0xf0, 0x3, 0xad, 0xdc, 0x4c, 0xb4 } }
+
+  ## Include/Ppi/AmiSelPpi.h
+  gEfiPeiSelPpiGuid                     = { 0xe50b6e5d, 0x359b, 0x4be0, { 0xa0, 0xb0, 0x7, 0x15, 0xa3, 0x1, 0xa6, 0x6 } }
+
+[Protocols]
+  ## Include/Protocol/AmiIpmiTransportProtocol.h
+  gEfiDxeIpmiTransportProtocolGuid      = { 0x4a1d0e66, 0x5271, 0x4e22, { 0x83, 0xfe, 0x90, 0x92, 0x1b, 0x74, 0x82, 0x13 } }
+
+  ## Include/Protocol/AmiIpmiTransportProtocol.h
+  gEfiSmmIpmiTransportProtocolGuid      = { 0x1dbd1503, 0xa60, 0x4230, { 0xaa, 0xa3, 0x80, 0x16, 0xd8, 0xc3, 0xde, 0x2f } }
+
+  ## Include/Protocol/AmiIpmiSelfTestLogProtocol.h
+  gEfiBmcSelfTestLogProtocolGuid        = { 0x9fe6a332, 0x1a1f, 0x43e3, { 0xbd, 0x25, 0xf7, 0x89, 0x1c, 0x6f, 0xc7, 0x4a } }
+
+  ## Include/Protocol/AmiFrbProtocol.h
+  gEfiSmFrbProtocolGuid                 = { 0xbc5f861c, 0x86ed, 0x417e, { 0xbb, 0x7b, 0x6c, 0x2, 0x6b, 0xcd, 0x75, 0x5b } }
+
+  ## Include/Protocol/AmiSelProtocol.h
+  gEfiSelStatusCodeProtocolGuid         = { 0xbc5f861c, 0x86ed, 0x417e, { 0xbb, 0x7b, 0x6c, 0x2, 0x6b, 0xdc, 0x65, 0x23 } }
+
+  ## Include/Protocol/AmiRedirFruProtocol.h
+  gEfiRedirFruProtocolGuid              = { 0x28638cfa, 0xea88, 0x456c, { 0x92, 0xa5, 0xf2, 0x49, 0xca, 0x48, 0x85, 0x35 } }
+
+  ## Include/Protocol/AmiRedirElogProtocol.h
+  gEfiRedirElogProtocolGuid             = { 0x16d11030, 0x71ba, 0x4e5e, { 0xa9, 0xf9, 0xb4, 0x75, 0xa5, 0x49, 0x4, 0x8a } }
+
+  ##AmiIpmiPkg\Include\Include\IpmiUsbDxe.h
+  gAmiIpmiUsbExitBootNotifyProtocolGuid = { 0x0588edc8, 0x5205, 0x48b8, {0xb2, 0xa9, 0x5, 0x70, 0x32, 0x3a, 0x4c, 0xc6 } }
+
+  ##AmiIpmiPkg\Include\Protocol\IpmiInfoProtocol.h
+  gAmiIpmiInfoProtocolGuid              = { 0xb32cc448, 0xd76a, 0x416d, {0x8c, 0x9a, 0x35, 0xd5, 0x8c, 0x7, 0xb8, 0x5e } }
+
+[PcdsFixedAtBuild]
+  ## Default string.
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdStrDefault|L"To be filled by O.E.M."|VOID*|0x40000031
+
+
+
+[PcdsDynamic,PcdsDynamicEx]
+  ## Smbios Type 1 Strings - These strings will be updated at runtime by IpmiRedirFru driver.
+  ## System Manufacturer
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemManufacturer|L"To be filled by O.E.M.                                            "|VOID*|0x40000011
+
+  ## System Product Name
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemProductName|L"To be filled by O.E.M.                                            "|VOID*|0x40000012
+
+  ## System Version
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemVersion|L"To be filled by O.E.M.                                            "|VOID*|0x40000013
+
+  ## System Serial Number
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemSerialNumber|L"To be filled by O.E.M.                                            "|VOID*|0x40000014
+
+  ## System UUID (128 bit)
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSystemUuid|{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}|VOID*|0x40000015
+
+  ## Smbios Type 2 Strings - These strings will be updated at runtime by IpmiRedirFru driver.
+  ## Base Board Manufacturer
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardManufacturer|L"To be filled by O.E.M.                                            "|VOID*|0x40000017
+
+  ## Base Board Product Name
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardProductName|L"To be filled by O.E.M.                                            "|VOID*|0x40000018
+
+  ## Base Board Version
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardVersion|L"To be filled by O.E.M.                                            "|VOID*|0x40000019
+
+  ## Base Board Serial Number
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardSerialNumber|L"To be filled by O.E.M.                                            "|VOID*|0x4000001A
+
+  ## Base Board Asset Tag
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardAssetTag|L"To be filled by O.E.M.                                            "|VOID*|0x4000001B
+
+  ## Smbios Type 3 Strings - These strings will be updated at runtime by IpmiRedirFru driver.
+  ## Chassis Manufacturer
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisManufacturer|L"To be filled by O.E.M.                                            "|VOID*|0x40000021
+
+  ## Chassis Version
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisVersion|L"To be filled by O.E.M.                                            "|VOID*|0x40000022
+
+  ## Chassis Serial Number
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisSerialNumber|L"To be filled by O.E.M.                                            "|VOID*|0x40000023
+
+  ## Chassis Asset Tag
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisAssetTag|L"To be filled by O.E.M.                                            "|VOID*|0x40000024
+
+  ## Chassis Type
+  #  Default value is Unknown (2).
+  #  Please refer MdePkg/Include/IndustryStandard/SmBios.h for other values.
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisType|0x02|UINT8|0x40000025
+
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBaseBoardPartNumber|L"To be filled by O.E.M.                                            "|VOID*|0x40000026
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdChassisPartNumber|L"To be filled by O.E.M.                                            "|VOID*|0x40000027
+  
+  ## Sdr Version Number
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSdrVersionNo|L"Unknown"|VOID*|0x4000002F
+
+  ## Bulk Data Trasfer Timeout to be sent to UsbBulkTransfer method
+  #  The default value is 65535 milliseconds.
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBulkDataTransferTimeout|65535|UINT16|0x40000034
+
+  ## Store NVRAM variable value "When SEL is Full" Setup option to be used in PEI driver
+  #  Default value is Do Nothing (0).
+  #  Possible values are: Do Nothing (0) and Erase immediately (1)
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSelFullBehaviour|0x00|UINT8|0x40000035
+
+  ## Represents OS WDT is already disabled while entering into setup or not. Default value is FALSE.
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdOsWdtDisabledOnSetupEntry|FALSE|BOOLEAN|0x40000037
+  
+  ## Store the supported LAN Channel Number from BMC in this PCD
+  #  Default value is 0 : Channel number 0 for Primary IPMB and 0Fh for System Interface. 
+  #  Channel number should be with in 1 to 0Bh range
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdLanChannelPtr|{0x00, 0x00, 0x00, 0x00}|VOID*|0x40000038
+
+

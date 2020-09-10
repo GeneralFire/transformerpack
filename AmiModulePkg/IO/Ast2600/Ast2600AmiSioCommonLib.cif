@@ -1,0 +1,11 @@
+<component>
+    name = "Ast2600AmiSioCommonLib"
+    category = ModulePart
+    LocalRoot = "AmiModulePkg\IO\Ast2600\"
+    RefName = "Ast2600AmiSioCommonLib"
+[files]
+"Ast2600AmiSioCommonLib.sdl"	
+"Ast2600AmiSioCommonLib.c"	
+<endComponent>
+
+

@@ -1,0 +1,10 @@
+<component>
+	name = "WheaLastBootError"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\WheaLastBootError\"
+	RefName = "ServerRasPkg.WheaLastBootError"
+[INF]
+"WheaLastBootError.inf"
+[files]	
+"WheaLastBootError.sdl"	
+<endComponent>

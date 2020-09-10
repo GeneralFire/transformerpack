@@ -1,0 +1,78 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "DxePchPcieRpPolicyLib"
+    Instance  = "ClientOneSiliconPkg.DxePchPcieRpPolicyLib"
+    Arch = "X64"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+INFComponent
+    Name  = "DxePchPcieRpPolicyLib"
+    File  = "DxePchPcieRpPolicyLib/DxePchPcieRpPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "X64"
+    ModuleTypes  = "BASE"      
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"           
+End
+
+
+LibraryMapping
+    Class  = "PeiEnterprisePcieRpInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiEnterprisePcieRpInitLib"  
+End
+
+INFComponent
+    Name  = "PeiEnterprisePcieRpInitLib"
+    File  = "PeiEnterprisePcieRpInitLib/PeiEnterprisePcieRpInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"  
+End
+
+
+LibraryMapping
+    Class  = "PeiPchPcieClocksLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchPcieClocksLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "PeiPchPcieClocksLib"
+    File  = "PeiPchPcieClocksLib/PeiPchPcieClocksLibVer2.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "PeiPcieRpPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiPcieRpPolicyLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+INFComponent
+    Name  = "PeiPcieRpPolicyLib"
+    File  = "PeiPcieRpPolicyLib/PeiPcieRpPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+LibraryMapping
+    Class  = "PcieRpLib"
+    Instance  = "ClientOneSiliconPkg.PcieEnterpriseRpLib"
+End
+
+INFComponent
+    Name  = "PcieEnterpriseRpLib"
+    File  = "PcieEnterpriseRpLib\PcieEnterpriseRpLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End

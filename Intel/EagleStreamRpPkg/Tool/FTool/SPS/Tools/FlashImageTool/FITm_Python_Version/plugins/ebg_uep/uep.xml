@@ -1,0 +1,505 @@
+<!--INTEL CONFIDENTIAL
+Copyright 2017-2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.-->
+<container>
+  <configuration version="0.5">
+    <group name="UEP" ui_params="{'gui_tab': 'Platform Security', 'tree_view': 'true'}">
+      <group label="OEM data" name="OEM_data">
+        <number name="Glitch_Detection_Enable" label="Glitch Detection Enable" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Glitch Detection Enable','Platform security': 'true'}"/>
+        <number name="ME_Region_OEM_Key_Manifest_Present" label="ME Region OEM Key Manifest Present" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Indicates whether this manifest must be present. Must be Enabled for Co-Signed Verified Boot to function.','Platform security': 'true'}"/>
+        <number name="Co-Signed_Verified_Boot_enabled" label="Co-Signed Verified Boot enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enables or disables Co-Signed Verified Boot feature','Platform security': 'true'}"/>
+        <number name="Revocation_hashes_enabled" label="Revocation hashes enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enables or disables revocable OEM Key Hashes [0/1/2]. Should be set to Enabled for Co-Signed Verified Boot','Platform security': 'true'}"/>
+        <number name="OEM_Key_hash_size" label="OEM Key hash size" value="0" params="{'value_list': {'384': '0', '512': '1'}}" ui_params="{'description': 'Separate fuse bit that selects hash size for OEM Key.','Platform security': 'true'}"/>
+        <number name="OEM_Key_0_Valid" label="OEM Key 0 Valid" value="1" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Separate fuse bit that selects whether OEM Key 0 is valid.','Platform security': 'true'}"/>
+        <number name="OEM_Key_1_Valid" label="OEM Key 1 Valid" value="1" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Separate fuse bit that selects whether OEM Key 1 is valid.','Platform security': 'true'}"/>
+        <number name="OEM_Key_2_Valid" label="OEM Key 2 Valid" value="1" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Separate fuse bit that selects whether OEM Key 2 is valid.','Platform security': 'true'}"/>
+        <number name="OEM_Key_Hash_Algorithm" label="OEM Key Hash Algorithm" value="0" params="{'value_list':  {'RSA 3K SSA PSS': '0', 'RSA 3K PKCS v1.5': '1', 'ECC Secp384 r1': '2', 'ECC Brainpool384 r1': '3'}}" ui_params="{'description': 'OEM Key Hash Algorithm','Platform security': 'true'}"/>
+        <number name="Key_Split_feature_enabled" label="Key Split feature enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Key Split feature enabled','Platform security': 'true'}"/>
+        <number name="Persistent_PRTC_Backup_Power" label="Persistent PRTC Backup Power" value="0" params="{'value_list': {'Enabled': '0', 'Disabled': '1'}}" ui_params="{'description': 'Persistent PRTC Backup Power','Platform security': 'true'}"/>
+        <number name="Valhalla_Canyon_enabled" label="Valhalla Canyon enabled"  dependency='[{"get": "descriptor/VlnFeatureEnabled"}]'  ui_params="{'visible':'false'}"/>
+        <number name="Pseudo_Timestamp_Offset" label="Pseudo Timestamp Offset" value="0" params="{'value_min': '0','value_max': '0x3FFF'}" ui_params="{'description': 'Configures value of Pseudo Timestamp Offset','Platform security': 'true'}"/>
+        <number name="OEM_debug_authentication_required" label="OEM debug authentication required" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'OEM debug authentication required','Platform security': 'true'}"/>
+        <number name="OEM_Debug_Key_Revocation" label="OEM Debug Key Revocation" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'OEM Debug Key Revocation','Platform security': 'true'}"/>
+        <number name="OEM_Debug_Key_Revocation_Scheme" label="OEM Debug Key Revocation Scheme" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'OEM Debug Key Revocation Scheme','Platform security': 'true'}"/>
+        <byte_array name="OEM_Key_0_Hash" label="OEM Key 0 Hash" value="00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" size="64" ui_params="{'description': 'Actual hash value of Public portion of revocable OEM Key 0.','Platform security': 'true'}"/>
+        <number name="OEM_Key_0_Hash_Revocation_bit" label="OEM Key 0 Hash Revocation bit" value="0" params="{'value_list': {'Unrevoked': '0', 'Revoked': '1'}}" ui_params="{'description': 'Separate fuse bit that selects whether to enable or disable key hash revocation for OEM Keys 0.','Platform security': 'true'}"/>
+        <number name="OEM_Key_1_Hash_Revocation_bit" label="OEM Key 1 Hash Revocation bit" value="0" params="{'value_list': {'Unrevoked': '0', 'Revoked': '1'}}" ui_params="{'description': 'Separate fuse bit that selects whether to enable or disable key hash revocation for OEM Keys 1.','Platform security': 'true'}"/>
+        <number name="OEM_Key_2_Hash_Revocation_bit" label="OEM Key 2 Hash Revocation bit" value="0" params="{'value_list': {'Unrevoked': '0', 'Revoked': '1'}}" ui_params="{'description': 'Separate fuse bit that selects whether to enable or disable key hash revocation for OEM Keys 2.','Platform security': 'true'}"/>
+        <byte_array name="OEM_Key_1_Hash" label="OEM Key 1 Hash" value="00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" size="64" ui_params="{'description': 'Actual hash value of Public portion of revocable OEM Key 1.','Platform security': 'true'}"/>
+        <byte_array name="OEM_Key_2_Hash" label="OEM Key 2 Hash" value="00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" size="64" ui_params="{'description': 'Actual hash value of Public portion of revocable OEM Key 2.','Platform security': 'true'}"/>
+      </group>
+      <group label="Intel PTT" name="Intel_PTT">
+        <number name="RPMC_Support" label="RPMC Support" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'RPMC Support','Platform security': 'true'}"/>
+        <number name="RPMC_Rebinding" label="RPMC Rebinding" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'RPMC Rebinding','Platform security': 'true'}"/>
+        <number name="Intel_PTT_Supported_[FPF]" label="Intel PTT Supported [FPF]" value="1" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Fuse value that determines if Intel PTT is enabled/disabled on platform. This value is irreversible. Once disabled here, Intel PTT can never be enabled on the platform','Platform security': 'true'}"/>
+      </group>
+      <group label="SVNs" name="SVNs">
+        <number name="ME_SVN_enabled" label="ME SVN enabled" value="1" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on ME','Platform security': 'true'}"/>
+        <number name="IDLM_SVN_enabled" label="IDLM SVN enabled" value="1" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on IDLM Manifest','Platform security': 'true'}"/>
+        <number name="ME_Region_OEM_Key_Manifest_SVN_enabled" label="ME Region OEM Key Manifest SVN enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on ME Region OEM Key Manifest','Platform security': 'true'}"/>
+        <number name="PMC_SVN_enabled" label="PMC SVN enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on PMC Patch Manifest','Platform security': 'true'}"/>
+        <number name="_FIT_Patch_SVN_enabled" label="FIT Patch SVN enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on FIT Patch Manifest','Platform security': 'true'}"/>
+        <number name="OS_Loader_SVN_enabled" label="OS Loader SVN enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on OS Loader Manifest','Platform security': 'true'}"/>
+        <number name="OS_Kernel_SVN_enabled" label="OS Kernel SVN enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on OS Kernel Manifest','Platform security': 'true'}"/>
+        <number name="ROT_SVN_enabled" label="ROT SVN enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on CSE Root of Trust Key Manifest','Platform security': 'true'}"/>
+        <number name="ACM_SVN_enabled" label="ACM SVN enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on ACM Manifest','Platform security': 'true'}"/>
+        <number name="IAFW_Region_OEM_Key_Manifest_SVN_enabled" label="IAFW Region OEM Key Manifest SVN enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on IAFW Region OEM Key Manifest','Platform security': 'true'}"/>
+        <number name="Boot_Policy_Manifest_SVN_enabled" label="Boot Policy Manifest SVN enabled" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enable or disable ARB check on Boot Policy Manifest','Platform security': 'true'}"/>
+        <number name="ME_SVN_value" label="ME SVN value" value="0" size="4" ui_params="{'description': 'ME Security Version Number','Platform security': 'true'}"/>
+        <number name="IDLM_SVN_value" label="IDLM SVN value" value="0" size="4" ui_params="{'description': 'IDLM Security Version Number','Platform security': 'true'}"/>
+        <byte_array name="ME_Region_OEM_Key_Manifest_SVN_value" label="ME Region OEM Key Manifest SVN value" value="0000000000" size="5" ui_params="{'description': 'ME Region OEM Key Manifest Security Version Number','Platform security': 'true'}"/>
+        <number name="ROT_SVN_value" label="ROT SVN value" value="0" params="{'value_min': '0','value_max': '0x7FFF'}" ui_params="{'description': 'CSE Root of Trust Key Manifest Security Version Number','Platform security': 'true'}"/>
+        <number name="OS_Loader_SVN_value" label="OS Loader SVN value" value="0" params="{'value_min': '0','value_max': '0xFFFFFFFFFF'}" ui_params="{'description': 'OS Loader Security Version Number','Platform security': 'true'}"/>
+        <number name="OS_Kernel_SVN_value" label="OS Kernel SVN value" value="0" params="{'value_min': '0','value_max': '0xFFFFFFFFFF'}" ui_params="{'description': 'OS Kernel Security Version Number','Platform security': 'true'}"/>
+        <number name="ACM_SVN_value" label="ACM SVN value" value="0" params="{'value_min': '0','value_max': '0x7FFF'}" ui_params="{'description': 'ACM Manifest Security Version Number','Platform security': 'true'}"/>
+        <number name="IAFW_Region_OEM_Key_Manifest_SVN_value" label="IAFW Region OEM Key Manifest SVN value" value="0" params="{'value_min': '0','value_max': '0x7FFF'}" ui_params="{'description': 'IAFW Region OEM Key Manifest Security Version Number','Platform security': 'true'}"/>
+        <number name="Boot_Policy_Manifest_SVN_value" label="Boot Policy Manifest SVN value" value="0" params="{'value_min': '0','value_max': '0xFFFFFFFFFF'}" ui_params="{'description': 'Boot Policy Manifest Security Version Number','Platform security': 'true'}"/>
+        <number name="PMC_SVN_value" label="PMC SVN value" value="0" params="{'value_min': '0','value_max': '0x7FFF'}" ui_params="{'description': 'PMC Security Version Number','Platform security': 'true'}"/>
+        <number name="CPU_KM_SVN_value" label="CPU KM SVN value" value="0" params="{'value_min': '0','value_max': '0x7FFF'}" ui_params="{'description': 'CPU Security Version Number','Platform security': 'true'}"/>
+        <number name="FIT_Patch_SVN_value" label="FIT Patch SVN value" value="0" params="{'value_min': '0','value_max': '0x7FFF'}" ui_params="{'description': 'FIT Patch Security Version Number','Platform security': 'true'}"/>
+      </group>
+      <group label="Boot Guard" name="Boot_Guard">
+        <number name="Boot_Profile" label="Boot Profile" value="0" params="{'value_list': {'0': '0', '3': '3', '4': '4', '5': '5'}}" ui_params="{'description': 'Configures which Boot Policy Profile will be used. Supported Profiles are 0, 3, 4, 5.','Platform security': 'true'}"/>
+        <number name="FBGAcmEn" dependency="[{'switch':{'source':'Boot_Profile.value', 'value_list':{'4':'1', '5':'1', 'default':'0x0'}}}]" ui_params="{'visible':'false'}" value="0x0"/>
+        <number name="BtGuardCpuDebugEnable" ui_params="{'visible':'false'}" value="0x0"/>
+        <number name="BtGuardBspInitEnable" ui_params="{'visible':'false'}" value="0x0"/>
+        <number name="ProtectBiosEnvironment" dependency="[{'switch':{'source':'Boot_Profile.value', 'value_list':{'0':'0', 'default':'0x1'}}}]" ui_params="{'visible':'false'}" value="0x0"/>
+        <number name="MeasuredBoot" dependency="[{'switch':{'source':'Boot_Profile.value', 'value_list':{'3':'1', '5':'1', 'default':'0x0'}}}]" ui_params="{'visible':'false'}" value="0x0"/>
+        <number name="VerifiedBoot" dependency="[{'switch':{'source':'Boot_Profile.value', 'value_list':{'0':'0', 'default':'0x1'}}}]" ui_params="{'visible':'false'}" value="0x0"/>
+        <number name="BtGuardKeyManifestId" ui_params="{'visible':'false'}" value="0x1"/>
+        <number name="BtGuardS3Optimize" ui_params="{'visible':'false'}" value="0x0"/>
+        <number name="Error_Enforcement_Policy_0" label="Boot Profile" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Platform Halt Enforcement','Platform security': 'true','visible': 'false'}" dependency="[{'switch':{'source':'Boot_Profile.value', 'value_list':{'4':'0x1', '5':'0x1', 'default':'0x0'}}}]"/>
+        <number name="Error_Enforcement_Policy_1" label="Boot Profile" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Platform Halt Enforcement','Platform security': 'true','visible': 'false'}" dependency="[{'switch':{'source':'Boot_Profile.value', 'value_list':{'4':'0x1', '5':'0x1', 'default':'0x0'}}}]"/>
+      </group>
+      <group label="Flash Descriptor Verification" name="Flash_Descriptor_Verification">
+        <number name="Flash_Descriptor_Signing" label="Flash Descriptor Signing" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}" ui_params="{'description': 'Enabled or disable flash descriptor signing process.','Platform security': 'true'}"/>
+      </group>
+      <group label="TXT configuration" name="TXT_configuration">
+        <number name="TXT_Supported" label="TXT Supported" value="0" params="{'value_list': {'No': '0', 'Yes': '1'}}" ui_params="{'description': 'Determines whether Intel TXT is enabled on the platform.','Platform security': 'true'}"/>
+      </group>
+      <group label="DFX" name="DFX">
+        <number name="DFX_Aggregator_global_disable" label="DFX Aggregator global disable" value="0" params="{'value_min': '0','value_max': '0x1'}" ui_params="{'description': 'DFX Aggregator global disable','Platform security': 'true'}"/>
+        <number name="DFX_global_re-enable" label="DFX global re-enable" value="0" params="{'value_min': '0','value_max': '0x1'}" ui_params="{'description': 'DFX global re-enable','Platform security': 'true'}"/>
+        <number name="DFX_disable_external" label="DFX disable external" value="0" params="{'value_min': '0','value_max': '0x1F'}" ui_params="{'description': 'DFX disable external','Platform security': 'true'}"/>
+        <number name="DFX_re-enable_external" label="DFX re-enable external" value="0" params="{'value_min': '0','value_max': '0x1'}" ui_params="{'description': 'DFX re-enable external','Platform security': 'true'}"/>
+      </group>
+    </group>
+    <number name="OfflineSigning" dependency='[{"get": "descriptor/OfflineSigning"}]' params="{'value_list':{'Disabled': '0', 'Enabled': '1'}}" ui_params="{'visible':'false'}"/>
+    <rsa_key name="FdSigningKey" dependency='[{"get": "descriptor/FdSigningKey"}]' ui_params="{'visible':'false'}"/>
+  </configuration>
+  <layout fill="0">
+    <number name="signature" value="0x50455524" size="4"/>
+    <function_crc name="crc16" size="2">
+      <crc_type value="crc16"/>
+      <input>
+        <data path="/layout/uep_arrays"/>
+      </input>
+    </function_crc>
+    <uep_arrays>
+      <number name="reserved" value="0" size="2"/>
+      <array_0 size="128">
+        <empty size="0"/>
+      </array_0>
+      <array_1 size="128">
+        <bit_field value="0" size="1" offset="0xa8">
+          <bit name="OEM_CFG_DONE" bit_low="0" bit_high="0" value="0"/>
+          <bit name="Glitch_Detection_Enable" bit_low="1" bit_high="1" calculate="/configuration/Glitch_Detection_Enable.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0xac">
+          <bit name="GLITCH_D_DIS" bit_low="0" bit_high="0" value="0"/>
+        </bit_field>
+        <byte_array name="HW_OEM_SECRET_KEY" size="32" offset="0xb0" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <byte_array name="DRNG" size="32" offset="0xd0" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <bit_field value="0" size="1" offset="0xf0">
+          <bit name="SPI" bit_low="0" bit_high="0" value="0"/>
+          <bit name="UFS" bit_low="1" bit_high="1" value="1"/>
+          <bit name="EMMC" bit_low="2" bit_high="2" value="1"/>
+          <bit name="RPMC_Support" bit_low="3" bit_high="3" calculate="/configuration/RPMC_Support.value"/>
+          <bit name="RPMC_Rebinding" bit_low="4" bit_high="4" calculate="/configuration/RPMC_Rebinding.value"/>
+          <bit name="RPMB_DIS" bit_low="5" bit_high="5" value="0"/>
+          <bit name="RPMB_RB_DIS" bit_low="6" bit_high="6" value="0"/>
+          <bit name="DNX" bit_low="7" bit_high="7" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0xf1">
+          <bit name="ME_Region_OEM_Key_Manifest_Present" bit_low="0" bit_high="0" calculate="/configuration/ME_Region_OEM_Key_Manifest_Present.value"/>
+          <bit name="SB" bit_low="1" bit_high="1" value="1"/>
+          <bit name="ME_SVN_enabled" bit_low="2" bit_high="2" calculate="/configuration/ME_SVN_enabled.value"/>
+          <bit name="IDLM_SVN_enabled" bit_low="3" bit_high="3" calculate="/configuration/IDLM_SVN_enabled.value"/>
+          <bit name="ME_Region_OEM_Key_Manifest_SVN_enabled" bit_low="5" bit_high="5" calculate="/configuration/ME_Region_OEM_Key_Manifest_SVN_enabled.value"/>
+          <bit name="Co-Signed_Verified_Boot_enabled" bit_low="6" bit_high="6" calculate="/configuration/Co-Signed_Verified_Boot_enabled.value"/>
+          <bit name="Revocation_hashes_enabled" bit_low="7" bit_high="7" calculate="/configuration/Revocation_hashes_enabled.value"/>
+        </bit_field>
+        <bit_field value="0" size="2" offset="0xf2">
+          <bit name="RMD" bit_low="0" bit_high="0" value="0"/>
+          <bit name="OEM_Key_hash_size" bit_low="1" bit_high="1" calculate="/configuration/OEM_Key_hash_size.value"/>
+          <bit name="OEM_Key_0_Valid" bit_low="2" bit_high="2" calculate="/configuration/OEM_Key_0_Valid.value"/>
+          <bit name="OEM_Key_1_Valid" bit_low="3" bit_high="3" calculate="/configuration/OEM_Key_1_Valid.value"/>
+          <bit name="OEM_Key_2_Valid" bit_low="4" bit_high="4" calculate="/configuration/OEM_Key_2_Valid.value"/>
+          <bit name="OEM_Key_Hash_Algorithm" bit_low="7" bit_high="8" calculate="/configuration/OEM_Key_Hash_Algorithm.value"/>
+          <bit name="LO_ID" bit_low="9" bit_high="15" value="0"/>
+        </bit_field>
+        <bit_field name="SB_POLICY" size="2" offset="0xf4" value="0">
+          <bit name="FBGAcmEn" bit_low="0" bit_high="0" calculate="/configuration/FBGAcmEn.value"/>
+          <bit name="BtGuardCpuDebugEnable" bit_low="1" bit_high="1" calculate="/configuration/BtGuardCpuDebugEnable.value"/>
+          <bit name="BtGuardBspInitEnable" bit_low="2" bit_high="2" calculate="/configuration/BtGuardBspInitEnable.value"/>
+          <bit name="ProtectBiosEnvironment" bit_low="3" bit_high="3" calculate="/configuration/ProtectBiosEnvironment.value"/>
+          <bit name="MeasuredBoot" bit_low="4" bit_high="4" calculate="/configuration/MeasuredBoot.value"/>
+          <bit name="VerifiedBoot" bit_low="5" bit_high="5" calculate="/configuration/VerifiedBoot.value"/>
+          <bit name="BtGuardKeyManifestId" bit_low="6" bit_high="9" calculate="/configuration/BtGuardKeyManifestId.value"/>
+          <bit name="BtGuardS3Optimize" bit_low="10" bit_high="10" calculate="/configuration/BtGuardS3Optimize.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0xf6">
+          <bit name="Key_Split_feature_enabled" bit_low="0" bit_high="0" calculate="/configuration/Key_Split_feature_enabled.value"/>
+          <bit name="Co-Signed_Verified_Boot_enabled" bit_low="1" bit_high="1" calculate="/configuration/Co-Signed_Verified_Boot_enabled.value"/>
+          <bit name="PMC_SVN_enabled" bit_low="2" bit_high="2" calculate="/configuration/PMC_SVN_enabled.value"/>
+          <bit name="_FIT_Patch_SVN_enabled" bit_low="3" bit_high="3" calculate="/configuration/_FIT_Patch_SVN_enabled.value"/>
+          <bit name="OS_Loader_SVN_enabled" bit_low="4" bit_high="4" calculate="/configuration/OS_Loader_SVN_enabled.value"/>
+          <bit name="OS_Kernel_SVN_enabled" bit_low="5" bit_high="5" calculate="/configuration/OS_Kernel_SVN_enabled.value"/>
+          <bit name="ROT_SVN_enabled" bit_low="6" bit_high="6" calculate="/configuration/ROT_SVN_enabled.value"/>
+          <bit name="Flash_Descriptor_Signing" bit_low="7" bit_high="7" calculate="/configuration/OfflineSigning.value == 1 or /configuration/FdSigningKey.empty == 0 ? 1 : 0"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0xf7">
+          <bit name="ACM_SVN_enabled" bit_low="0" bit_high="0" calculate="/configuration/ACM_SVN_enabled.value"/>
+          <bit name="IAFW_Region_OEM_Key_Manifest_SVN_enabled" bit_low="1" bit_high="1" calculate="/configuration/IAFW_Region_OEM_Key_Manifest_SVN_enabled.value"/>
+          <bit name="Boot_Policy_Manifest_SVN_enabled" bit_low="2" bit_high="2" calculate="/configuration/Boot_Policy_Manifest_SVN_enabled.value"/>
+          <bit name="TXT_Supported" bit_low="3" bit_high="3" calculate="/configuration/TXT_Supported.value"/>
+          <bit name="Boot_Profile" bit_low="4" bit_high="4" calculate="/configuration/Error_Enforcement_Policy_0.value"/>
+          <bit name="Boot_Profile" bit_low="5" bit_high="5" calculate="/configuration/Error_Enforcement_Policy_1.value"/>
+          <bit name="Persistent_PRTC_Backup_Power" bit_low="6" bit_high="6" calculate="/configuration/Persistent_PRTC_Backup_Power.value"/>
+          <bit name="Valhalla_Canyon_enabled" bit_low="7" bit_high="7" calculate="/configuration/Valhalla_Canyon_enabled.value"/>
+        </bit_field>
+        <bit_field value="0" size="3" offset="0xfc">
+          <bit name="Pseudo_Timestamp_Offset" bit_low="0" bit_high="13" calculate="/configuration/Pseudo_Timestamp_Offset.value"/>
+          <bit name="DCRT_EN" bit_low="14" bit_high="14" value="0"/>
+          <bit name="FW_TYPE" bit_low="15" bit_high="17" value="2"/>
+          <bit name="LO_ID_V" bit_low="18" bit_high="18" value="1"/>
+          <bit name="FW_TYPE_V" bit_low="19" bit_high="19" value="1"/>
+          <bit name="P_TIME_ST_OFF_V" bit_low="20" bit_high="20" value="1"/>
+          <bit name="OEM_debug_authentication_required" bit_low="21" bit_high="21" calculate="/configuration/OEM_debug_authentication_required.value"/>
+          <bit name="OEM_Debug_Key_Revocation" bit_low="22" bit_high="22" calculate="/configuration/OEM_Debug_Key_Revocation.value"/>
+          <bit name="OEM_Debug_Key_Revocation_Scheme" bit_low="23" bit_high="23" calculate="/configuration/OEM_Debug_Key_Revocation_Scheme.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0xff">
+          <bit name="AMT_HW_EN" bit_low="0" bit_high="0" value="0"/>
+          <bit name="Intel_PTT_Supported_[FPF]" bit_low="1" bit_high="1" calculate="/configuration/Intel_PTT_Supported_[FPF].value"/>
+          <bit name="SATA_OOB_EN" bit_low="2" bit_high="2" value="0"/>
+        </bit_field>
+      </array_1>
+      <array_2 size="128">
+        <byte_array name="OEM_Key_0_Hash" size="64" offset="0x110" calculate="/configuration/OEM_Key_0_Hash.value"/>
+        <number name="RPMC_MC" size="2" offset="0x154" value="0"/>
+        <number name="ME_SVN_value" size="4" offset="0x158" calculate="/configuration/ME_SVN_value.value"/>
+        <number name="IDLM_SVN_value" size="4" offset="0x15c" calculate="/configuration/IDLM_SVN_value.value"/>
+        <byte_array name="ME_Region_OEM_Key_Manifest_SVN_value" size="5" offset="0x160" calculate="/configuration/ME_Region_OEM_Key_Manifest_SVN_value.value"/>
+        <bit_field value="0" size="1" offset="0x165">
+          <bit name="OEM_Key_0_Hash_Revocation_bit" bit_low="0" bit_high="0" calculate="/configuration/OEM_Key_0_Hash_Revocation_bit.value"/>
+          <bit name="OEM_Key_1_Hash_Revocation_bit" bit_low="1" bit_high="1" calculate="/configuration/OEM_Key_1_Hash_Revocation_bit.value"/>
+          <bit name="OEM_Key_2_Hash_Revocation_bit" bit_low="2" bit_high="2" calculate="/configuration/OEM_Key_2_Hash_Revocation_bit.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x167">
+          <bit name="SOC_CL" bit_low="7" bit_high="7" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="12" offset="0x168">
+          <bit name="ROT_SVN_value" bit_low="0" bit_high="14" calculate="/configuration/ROT_SVN_value.value"/>
+          <bit name="OS_Loader_SVN_value" bit_low="15" bit_high="54" calculate="/configuration/OS_Loader_SVN_value.value"/>
+          <bit name="OS_Kernel_SVN_value" bit_low="55" bit_high="94" calculate="/configuration/OS_Kernel_SVN_value.value"/>
+          <bit name="DROP_SHIP_SEAL" bit_low="95" bit_high="95" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="12" offset="0x174">
+          <bit name="ACM_SVN_value" bit_low="0" bit_high="14" calculate="/configuration/ACM_SVN_value.value"/>
+          <bit name="IAFW_Region_OEM_Key_Manifest_SVN_value" bit_low="15" bit_high="29" calculate="/configuration/IAFW_Region_OEM_Key_Manifest_SVN_value.value"/>
+          <bit name="Boot_Policy_Manifest_SVN_value" bit_low="30" bit_high="69" calculate="/configuration/Boot_Policy_Manifest_SVN_value.value"/>
+          <bit name="PMC_SVN_value" bit_low="70" bit_high="84" calculate="/configuration/PMC_SVN_value.value"/>
+          <bit name="FTPM_EK" bit_low="85" bit_high="85" value="0"/>
+          <bit name="FTPM_AH" bit_low="86" bit_high="95" value="0"/>
+        </bit_field>
+      </array_2>
+      <array_3 size="128">
+        <bit_field value="0" size="1" offset="0x18c">
+          <bit name="OEM_CFG_DONE" bit_low="0" bit_high="0" value="0"/>
+          <bit name="Glitch_Detection_Enable" bit_low="1" bit_high="1" calculate="/configuration/Glitch_Detection_Enable.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x190">
+          <bit name="GLITCH_D_DIS" bit_low="0" bit_high="0" value="0"/>
+        </bit_field>
+        <byte_array name="HW_OEM_SECRET_KEY" size="32" offset="0x194" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <byte_array name="DRNG" size="32" offset="0x1b4" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <byte_array name="P_TIME_ST_CNTR" size="30" offset="0x1d4" value="000000000000000000000000000000000000000000000000000000000000"/>
+        <bit_field value="0" size="1" offset="0x1f4">
+          <bit name="SPI" bit_low="0" bit_high="0" value="0"/>
+          <bit name="UFS" bit_low="1" bit_high="1" value="1"/>
+          <bit name="EMMC" bit_low="2" bit_high="2" value="1"/>
+          <bit name="RPMC_Support" bit_low="3" bit_high="3" calculate="/configuration/RPMC_Support.value"/>
+          <bit name="RPMC_Rebinding" bit_low="4" bit_high="4" calculate="/configuration/RPMC_Rebinding.value"/>
+          <bit name="RPMB_DIS" bit_low="5" bit_high="5" value="0"/>
+          <bit name="RPMB_RB_DIS" bit_low="6" bit_high="6" value="0"/>
+          <bit name="DNX" bit_low="7" bit_high="7" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x1f5">
+          <bit name="ME_Region_OEM_Key_Manifest_Present" bit_low="0" bit_high="0" calculate="/configuration/ME_Region_OEM_Key_Manifest_Present.value"/>
+          <bit name="SB" bit_low="1" bit_high="1" value="1"/>
+          <bit name="ME_SVN_enabled" bit_low="2" bit_high="2" calculate="/configuration/ME_SVN_enabled.value"/>
+          <bit name="IDLM_SVN_enabled" bit_low="3" bit_high="3" calculate="/configuration/IDLM_SVN_enabled.value"/>
+          <bit name="ME_Region_OEM_Key_Manifest_SVN_enabled" bit_low="5" bit_high="5" calculate="/configuration/ME_Region_OEM_Key_Manifest_SVN_enabled.value"/>
+          <bit name="Co-Signed_Verified_Boot_enabled" bit_low="6" bit_high="6" calculate="/configuration/Co-Signed_Verified_Boot_enabled.value"/>
+          <bit name="Revocation_hashes_enabled" bit_low="7" bit_high="7" calculate="/configuration/Revocation_hashes_enabled.value"/>
+        </bit_field>
+        <bit_field value="0" size="2" offset="0x1f6">
+          <bit name="RMD" bit_low="0" bit_high="0" value="0"/>
+          <bit name="OEM_Key_hash_size" bit_low="1" bit_high="1" calculate="/configuration/OEM_Key_hash_size.value"/>
+          <bit name="OEM_Key_0_Valid" bit_low="2" bit_high="2" calculate="/configuration/OEM_Key_0_Valid.value"/>
+          <bit name="OEM_Key_1_Valid" bit_low="3" bit_high="3" calculate="/configuration/OEM_Key_1_Valid.value"/>
+          <bit name="OEM_Key_2_Valid" bit_low="4" bit_high="4" calculate="/configuration/OEM_Key_2_Valid.value"/>
+          <bit name="OEM_Key_Hash_Algorithm" bit_low="7" bit_high="8" calculate="/configuration/OEM_Key_Hash_Algorithm.value"/>
+          <bit name="LO_ID" bit_low="9" bit_high="15" value="0"/>
+        </bit_field>
+        <bit_field name="SB_POLICY" size="2" offset="0x1f8" value="0">
+          <bit name="FBGAcmEn" bit_low="0" bit_high="0" calculate="/configuration/FBGAcmEn.value"/>
+          <bit name="BtGuardCpuDebugEnable" bit_low="1" bit_high="1" calculate="/configuration/BtGuardCpuDebugEnable.value"/>
+          <bit name="BtGuardBspInitEnable" bit_low="2" bit_high="2" calculate="/configuration/BtGuardBspInitEnable.value"/>
+          <bit name="ProtectBiosEnvironment" bit_low="3" bit_high="3" calculate="/configuration/ProtectBiosEnvironment.value"/>
+          <bit name="MeasuredBoot" bit_low="4" bit_high="4" calculate="/configuration/MeasuredBoot.value"/>
+          <bit name="VerifiedBoot" bit_low="5" bit_high="5" calculate="/configuration/VerifiedBoot.value"/>
+          <bit name="BtGuardKeyManifestId" bit_low="6" bit_high="9" calculate="/configuration/BtGuardKeyManifestId.value"/>
+          <bit name="BtGuardS3Optimize" bit_low="10" bit_high="10" calculate="/configuration/BtGuardS3Optimize.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x1fa">
+          <bit name="Key_Split_feature_enabled" bit_low="0" bit_high="0" calculate="/configuration/Key_Split_feature_enabled.value"/>
+          <bit name="Co-Signed_Verified_Boot_enabled" bit_low="1" bit_high="1" calculate="/configuration/Co-Signed_Verified_Boot_enabled.value"/>
+          <bit name="PMC_SVN_enabled" bit_low="2" bit_high="2" calculate="/configuration/PMC_SVN_enabled.value"/>
+          <bit name="_FIT_Patch_SVN_enabled" bit_low="3" bit_high="3" calculate="/configuration/_FIT_Patch_SVN_enabled.value"/>
+          <bit name="OS_Loader_SVN_enabled" bit_low="4" bit_high="4" calculate="/configuration/OS_Loader_SVN_enabled.value"/>
+          <bit name="OS_Kernel_SVN_enabled" bit_low="5" bit_high="5" calculate="/configuration/OS_Kernel_SVN_enabled.value"/>
+          <bit name="ROT_SVN_enabled" bit_low="6" bit_high="6" calculate="/configuration/ROT_SVN_enabled.value"/>
+          <bit name="Flash_Descriptor_Signing" bit_low="7" bit_high="7" calculate="/configuration/OfflineSigning.value == 1 or /configuration/FdSigningKey.empty == 0 ? 1 : 0"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x1fb">
+          <bit name="ACM_SVN_enabled" bit_low="0" bit_high="0" calculate="/configuration/ACM_SVN_enabled.value"/>
+          <bit name="IAFW_Region_OEM_Key_Manifest_SVN_enabled" bit_low="1" bit_high="1" calculate="/configuration/IAFW_Region_OEM_Key_Manifest_SVN_enabled.value"/>
+          <bit name="Boot_Policy_Manifest_SVN_enabled" bit_low="2" bit_high="2" calculate="/configuration/Boot_Policy_Manifest_SVN_enabled.value"/>
+          <bit name="TXT_Supported" bit_low="3" bit_high="3" calculate="/configuration/TXT_Supported.value"/>
+          <bit name="Boot_Profile" bit_low="4" bit_high="4" calculate="/configuration/Error_Enforcement_Policy_0.value"/>
+          <bit name="Boot_Profile" bit_low="5" bit_high="5" calculate="/configuration/Error_Enforcement_Policy_1.value"/>
+          <bit name="Persistent_PRTC_Backup_Power" bit_low="6" bit_high="6" calculate="/configuration/Persistent_PRTC_Backup_Power.value"/>
+          <bit name="Valhalla_Canyon_enabled" bit_low="7" bit_high="7" calculate="/configuration/Valhalla_Canyon_enabled.value"/>
+        </bit_field>
+        <bit_field value="0" size="4" offset="0x1fc">
+          <bit name="CPU_KM_SVN_value" bit_low="0" bit_high="14" calculate="/configuration/CPU_KM_SVN_value.value"/>
+          <bit name="FIT_Patch_SVN_value" bit_low="15" bit_high="29" calculate="/configuration/FIT_Patch_SVN_value.value"/>
+        </bit_field>
+      </array_3>
+      <array_4 size="128">
+        <byte_array name="OEM_Key_1_Hash" size="64" offset="0x210" calculate="/configuration/OEM_Key_1_Hash.value"/>
+        <byte_array name="P_TIME_ST_CNTR" size="30" offset="0x250" value="000000000000000000000000000000000000000000000000000000000000"/>
+        <bit_field value="0" size="1" offset="0x270">
+          <bit name="OEM_CFG_DONE" bit_low="0" bit_high="0" value="0"/>
+          <bit name="Glitch_Detection_Enable" bit_low="1" bit_high="1" calculate="/configuration/Glitch_Detection_Enable.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x274">
+          <bit name="GLITCH_D_DIS" bit_low="0" bit_high="0" value="0"/>
+        </bit_field>
+        <byte_array name="HW_OEM_SECRET_KEY" size="32" offset="0x278" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+      </array_4>
+      <array_5 size="128">
+        <byte_array name="DRNG" size="32" offset="0x298" value="0000000000000000000000000000000000000000000000000000000000000000"/>
+        <byte_array name="OEM_Key_2_Hash" size="64" offset="0x2b8" calculate="/configuration/OEM_Key_2_Hash.value"/>
+        <bit_field value="0" size="3" offset="0x2f8">
+          <bit name="Pseudo_Timestamp_Offset" bit_low="0" bit_high="13" calculate="/configuration/Pseudo_Timestamp_Offset.value"/>
+          <bit name="DCRT_EN" bit_low="14" bit_high="14" value="0"/>
+          <bit name="FW_TYPE" bit_low="15" bit_high="17" value="2"/>
+          <bit name="LO_ID_V" bit_low="18" bit_high="18" value="1"/>
+          <bit name="FW_TYPE_V" bit_low="19" bit_high="19" value="1"/>
+          <bit name="P_TIME_ST_OFF_V" bit_low="20" bit_high="20" value="1"/>
+          <bit name="OEM_debug_authentication_required" bit_low="21" bit_high="21" calculate="/configuration/OEM_debug_authentication_required.value"/>
+          <bit name="OEM_Debug_Key_Revocation" bit_low="22" bit_high="22" calculate="/configuration/OEM_Debug_Key_Revocation.value"/>
+          <bit name="OEM_Debug_Key_Revocation_Scheme" bit_low="23" bit_high="23" calculate="/configuration/OEM_Debug_Key_Revocation_Scheme.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x2fb">
+          <bit name="AMT_HW_EN" bit_low="0" bit_high="0" value="0"/>
+          <bit name="Intel_PTT_Supported_[FPF]" bit_low="1" bit_high="1" calculate="/configuration/Intel_PTT_Supported_[FPF].value"/>
+          <bit name="SATA_OOB_EN" bit_low="2" bit_high="2" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="4" offset="0x2fc">
+          <bit name="CPU_KM_SVN_value" bit_low="0" bit_high="14" calculate="/configuration/CPU_KM_SVN_value.value"/>
+          <bit name="FIT_Patch_SVN_value" bit_low="15" bit_high="29" calculate="/configuration/FIT_Patch_SVN_value.value"/>
+        </bit_field>
+      </array_5>
+      <array_6 size="128">
+        <byte_array name="OEM_Key_0_Hash" size="64" offset="0x310" calculate="/configuration/OEM_Key_0_Hash.value"/>
+        <number name="RPMC_MC" size="2" offset="0x354" value="0"/>
+        <number name="ME_SVN_value" size="4" offset="0x358" calculate="/configuration/ME_SVN_value.value"/>
+        <number name="IDLM_SVN_value" size="4" offset="0x35c" calculate="/configuration/IDLM_SVN_value.value"/>
+        <byte_array name="ME_Region_OEM_Key_Manifest_SVN_value" size="5" offset="0x360" calculate="/configuration/ME_Region_OEM_Key_Manifest_SVN_value.value"/>
+        <bit_field value="0" size="1" offset="0x365">
+          <bit name="OEM_Key_0_Hash_Revocation_bit" bit_low="0" bit_high="0" calculate="/configuration/OEM_Key_0_Hash_Revocation_bit.value"/>
+          <bit name="OEM_Key_1_Hash_Revocation_bit" bit_low="1" bit_high="1" calculate="/configuration/OEM_Key_1_Hash_Revocation_bit.value"/>
+          <bit name="OEM_Key_2_Hash_Revocation_bit" bit_low="2" bit_high="2" calculate="/configuration/OEM_Key_2_Hash_Revocation_bit.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x367">
+          <bit name="SOC_CL" bit_low="7" bit_high="7" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="12" offset="0x368">
+          <bit name="ROT_SVN_value" bit_low="0" bit_high="14" calculate="/configuration/ROT_SVN_value.value"/>
+          <bit name="OS_Loader_SVN_value" bit_low="15" bit_high="54" calculate="/configuration/OS_Loader_SVN_value.value"/>
+          <bit name="OS_Kernel_SVN_value" bit_low="55" bit_high="94" calculate="/configuration/OS_Kernel_SVN_value.value"/>
+          <bit name="DROP_SHIP_SEAL" bit_low="95" bit_high="95" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="12" offset="0x374">
+          <bit name="ACM_SVN_value" bit_low="0" bit_high="14" calculate="/configuration/ACM_SVN_value.value"/>
+          <bit name="IAFW_Region_OEM_Key_Manifest_SVN_value" bit_low="15" bit_high="29" calculate="/configuration/IAFW_Region_OEM_Key_Manifest_SVN_value.value"/>
+          <bit name="Boot_Policy_Manifest_SVN_value" bit_low="30" bit_high="69" calculate="/configuration/Boot_Policy_Manifest_SVN_value.value"/>
+          <bit name="PMC_SVN_value" bit_low="70" bit_high="84" calculate="/configuration/PMC_SVN_value.value"/>
+          <bit name="FTPM_EK" bit_low="85" bit_high="85" value="0"/>
+          <bit name="FTPM_AH" bit_low="86" bit_high="95" value="0"/>
+        </bit_field>
+      </array_6>
+      <array_7 size="128">
+        <byte_array name="OEM_Key_1_Hash" size="64" offset="0x390" calculate="/configuration/OEM_Key_1_Hash.value"/>
+      </array_7>
+      <array_8 size="128">
+        <byte_array name="OEM_Key_0_Hash" size="64" offset="0x410" calculate="/configuration/OEM_Key_0_Hash.value"/>
+        <number name="RPMC_MC" size="2" offset="0x454" value="0"/>
+        <number name="ME_SVN_value" size="4" offset="0x458" calculate="/configuration/ME_SVN_value.value"/>
+        <number name="IDLM_SVN_value" size="4" offset="0x45c" calculate="/configuration/IDLM_SVN_value.value"/>
+        <byte_array name="ME_Region_OEM_Key_Manifest_SVN_value" size="5" offset="0x460" calculate="/configuration/ME_Region_OEM_Key_Manifest_SVN_value.value"/>
+        <bit_field value="0" size="1" offset="0x465">
+          <bit name="OEM_Key_0_Hash_Revocation_bit" bit_low="0" bit_high="0" calculate="/configuration/OEM_Key_0_Hash_Revocation_bit.value"/>
+          <bit name="OEM_Key_1_Hash_Revocation_bit" bit_low="1" bit_high="1" calculate="/configuration/OEM_Key_1_Hash_Revocation_bit.value"/>
+          <bit name="OEM_Key_2_Hash_Revocation_bit" bit_low="2" bit_high="2" calculate="/configuration/OEM_Key_2_Hash_Revocation_bit.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x467">
+          <bit name="SOC_CL" bit_low="7" bit_high="7" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="12" offset="0x468">
+          <bit name="ROT_SVN_value" bit_low="0" bit_high="14" calculate="/configuration/ROT_SVN_value.value"/>
+          <bit name="OS_Loader_SVN_value" bit_low="15" bit_high="54" calculate="/configuration/OS_Loader_SVN_value.value"/>
+          <bit name="OS_Kernel_SVN_value" bit_low="55" bit_high="94" calculate="/configuration/OS_Kernel_SVN_value.value"/>
+          <bit name="DROP_SHIP_SEAL" bit_low="95" bit_high="95" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="12" offset="0x474">
+          <bit name="ACM_SVN_value" bit_low="0" bit_high="14" calculate="/configuration/ACM_SVN_value.value"/>
+          <bit name="IAFW_Region_OEM_Key_Manifest_SVN_value" bit_low="15" bit_high="29" calculate="/configuration/IAFW_Region_OEM_Key_Manifest_SVN_value.value"/>
+          <bit name="Boot_Policy_Manifest_SVN_value" bit_low="30" bit_high="69" calculate="/configuration/Boot_Policy_Manifest_SVN_value.value"/>
+          <bit name="PMC_SVN_value" bit_low="70" bit_high="84" calculate="/configuration/PMC_SVN_value.value"/>
+          <bit name="FTPM_EK" bit_low="85" bit_high="85" value="0"/>
+          <bit name="FTPM_AH" bit_low="86" bit_high="95" value="0"/>
+        </bit_field>
+      </array_8>
+      <array_9 size="128">
+        <byte_array name="OEM_Key_2_Hash" size="64" offset="0x490" calculate="/configuration/OEM_Key_2_Hash.value"/>
+        <byte_array name="P_TIME_ST_CNTR" size="30" offset="0x4d0" value="000000000000000000000000000000000000000000000000000000000000"/>
+        <bit_field value="0" size="1" offset="0x4f0">
+          <bit name="SPI" bit_low="0" bit_high="0" value="0"/>
+          <bit name="UFS" bit_low="1" bit_high="1" value="1"/>
+          <bit name="EMMC" bit_low="2" bit_high="2" value="1"/>
+          <bit name="RPMC_Support" bit_low="3" bit_high="3" calculate="/configuration/RPMC_Support.value"/>
+          <bit name="RPMC_Rebinding" bit_low="4" bit_high="4" calculate="/configuration/RPMC_Rebinding.value"/>
+          <bit name="RPMB_DIS" bit_low="5" bit_high="5" value="0"/>
+          <bit name="RPMB_RB_DIS" bit_low="6" bit_high="6" value="0"/>
+          <bit name="DNX" bit_low="7" bit_high="7" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x4f1">
+          <bit name="ME_Region_OEM_Key_Manifest_Present" bit_low="0" bit_high="0" calculate="/configuration/ME_Region_OEM_Key_Manifest_Present.value"/>
+          <bit name="SB" bit_low="1" bit_high="1" value="1"/>
+          <bit name="ME_SVN_enabled" bit_low="2" bit_high="2" calculate="/configuration/ME_SVN_enabled.value"/>
+          <bit name="IDLM_SVN_enabled" bit_low="3" bit_high="3" calculate="/configuration/IDLM_SVN_enabled.value"/>
+          <bit name="ME_Region_OEM_Key_Manifest_SVN_enabled" bit_low="5" bit_high="5" calculate="/configuration/ME_Region_OEM_Key_Manifest_SVN_enabled.value"/>
+          <bit name="Co-Signed_Verified_Boot_enabled" bit_low="6" bit_high="6" calculate="/configuration/Co-Signed_Verified_Boot_enabled.value"/>
+          <bit name="Revocation_hashes_enabled" bit_low="7" bit_high="7" calculate="/configuration/Revocation_hashes_enabled.value"/>
+        </bit_field>
+        <bit_field value="0" size="2" offset="0x4f2">
+          <bit name="RMD" bit_low="0" bit_high="0" value="0"/>
+          <bit name="OEM_Key_hash_size" bit_low="1" bit_high="1" calculate="/configuration/OEM_Key_hash_size.value"/>
+          <bit name="OEM_Key_0_Valid" bit_low="2" bit_high="2" calculate="/configuration/OEM_Key_0_Valid.value"/>
+          <bit name="OEM_Key_1_Valid" bit_low="3" bit_high="3" calculate="/configuration/OEM_Key_1_Valid.value"/>
+          <bit name="OEM_Key_2_Valid" bit_low="4" bit_high="4" calculate="/configuration/OEM_Key_2_Valid.value"/>
+          <bit name="OEM_Key_Hash_Algorithm" bit_low="7" bit_high="8" calculate="/configuration/OEM_Key_Hash_Algorithm.value"/>
+          <bit name="LO_ID" bit_low="9" bit_high="15" value="0"/>
+        </bit_field>
+        <bit_field name="SB_POLICY" size="2" offset="0x4f4" value="0">
+          <bit name="FBGAcmEn" bit_low="0" bit_high="0" calculate="/configuration/FBGAcmEn.value"/>
+          <bit name="BtGuardCpuDebugEnable" bit_low="1" bit_high="1" calculate="/configuration/BtGuardCpuDebugEnable.value"/>
+          <bit name="BtGuardBspInitEnable" bit_low="2" bit_high="2" calculate="/configuration/BtGuardBspInitEnable.value"/>
+          <bit name="ProtectBiosEnvironment" bit_low="3" bit_high="3" calculate="/configuration/ProtectBiosEnvironment.value"/>
+          <bit name="MeasuredBoot" bit_low="4" bit_high="4" calculate="/configuration/MeasuredBoot.value"/>
+          <bit name="VerifiedBoot" bit_low="5" bit_high="5" calculate="/configuration/VerifiedBoot.value"/>
+          <bit name="BtGuardKeyManifestId" bit_low="6" bit_high="9" calculate="/configuration/BtGuardKeyManifestId.value"/>
+          <bit name="BtGuardS3Optimize" bit_low="10" bit_high="10" calculate="/configuration/BtGuardS3Optimize.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x4f6">
+          <bit name="Key_Split_feature_enabled" bit_low="0" bit_high="0" calculate="/configuration/Key_Split_feature_enabled.value"/>
+          <bit name="Co-Signed_Verified_Boot_enabled" bit_low="1" bit_high="1" calculate="/configuration/Co-Signed_Verified_Boot_enabled.value"/>
+          <bit name="PMC_SVN_enabled" bit_low="2" bit_high="2" calculate="/configuration/PMC_SVN_enabled.value"/>
+          <bit name="_FIT_Patch_SVN_enabled" bit_low="3" bit_high="3" calculate="/configuration/_FIT_Patch_SVN_enabled.value"/>
+          <bit name="OS_Loader_SVN_enabled" bit_low="4" bit_high="4" calculate="/configuration/OS_Loader_SVN_enabled.value"/>
+          <bit name="OS_Kernel_SVN_enabled" bit_low="5" bit_high="5" calculate="/configuration/OS_Kernel_SVN_enabled.value"/>
+          <bit name="ROT_SVN_enabled" bit_low="6" bit_high="6" calculate="/configuration/ROT_SVN_enabled.value"/>
+          <bit name="Flash_Descriptor_Signing" bit_low="7" bit_high="7" calculate="/configuration/OfflineSigning.value == 1 or /configuration/FdSigningKey.empty == 0 ? 1 : 0"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x4f7">
+          <bit name="ACM_SVN_enabled" bit_low="0" bit_high="0" calculate="/configuration/ACM_SVN_enabled.value"/>
+          <bit name="IAFW_Region_OEM_Key_Manifest_SVN_enabled" bit_low="1" bit_high="1" calculate="/configuration/IAFW_Region_OEM_Key_Manifest_SVN_enabled.value"/>
+          <bit name="Boot_Policy_Manifest_SVN_enabled" bit_low="2" bit_high="2" calculate="/configuration/Boot_Policy_Manifest_SVN_enabled.value"/>
+          <bit name="TXT_Supported" bit_low="3" bit_high="3" calculate="/configuration/TXT_Supported.value"/>
+          <bit name="Boot_Profile" bit_low="4" bit_high="4" calculate="/configuration/Error_Enforcement_Policy_0.value"/>
+          <bit name="Boot_Profile" bit_low="5" bit_high="5" calculate="/configuration/Error_Enforcement_Policy_1.value"/>
+          <bit name="Persistent_PRTC_Backup_Power" bit_low="6" bit_high="6" calculate="/configuration/Persistent_PRTC_Backup_Power.value"/>
+          <bit name="Valhalla_Canyon_enabled" bit_low="7" bit_high="7" calculate="/configuration/Valhalla_Canyon_enabled.value"/>
+        </bit_field>
+        <bit_field value="0" size="3" offset="0x4f8">
+          <bit name="Pseudo_Timestamp_Offset" bit_low="0" bit_high="13" calculate="/configuration/Pseudo_Timestamp_Offset.value"/>
+          <bit name="DCRT_EN" bit_low="14" bit_high="14" value="0"/>
+          <bit name="FW_TYPE" bit_low="15" bit_high="17" value="2"/>
+          <bit name="LO_ID_V" bit_low="18" bit_high="18" value="1"/>
+          <bit name="FW_TYPE_V" bit_low="19" bit_high="19" value="1"/>
+          <bit name="P_TIME_ST_OFF_V" bit_low="20" bit_high="20" value="1"/>
+          <bit name="OEM_debug_authentication_required" bit_low="21" bit_high="21" calculate="/configuration/OEM_debug_authentication_required.value"/>
+          <bit name="OEM_Debug_Key_Revocation" bit_low="22" bit_high="22" calculate="/configuration/OEM_Debug_Key_Revocation.value"/>
+          <bit name="OEM_Debug_Key_Revocation_Scheme" bit_low="23" bit_high="23" calculate="/configuration/OEM_Debug_Key_Revocation_Scheme.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x4fb">
+          <bit name="AMT_HW_EN" bit_low="0" bit_high="0" value="0"/>
+          <bit name="Intel_PTT_Supported_[FPF]" bit_low="1" bit_high="1" calculate="/configuration/Intel_PTT_Supported_[FPF].value"/>
+          <bit name="SATA_OOB_EN" bit_low="2" bit_high="2" value="0"/>
+        </bit_field>
+        <bit_field value="0" size="4" offset="0x4fc">
+          <bit name="CPU_KM_SVN_value" bit_low="0" bit_high="14" calculate="/configuration/CPU_KM_SVN_value.value"/>
+          <bit name="FIT_Patch_SVN_value" bit_low="15" bit_high="29" calculate="/configuration/FIT_Patch_SVN_value.value"/>
+        </bit_field>
+      </array_9>
+      <array_10 size="128">
+        <byte_array name="OEM_Key_1_Hash" size="64" offset="0x510" calculate="/configuration/OEM_Key_1_Hash.value"/>
+      </array_10>
+      <array_11 size="128">
+        <byte_array name="OEM_Key_2_Hash" size="64" offset="0x590" calculate="/configuration/OEM_Key_2_Hash.value"/>
+        <bit_field value="0" size="1" offset="0x600">
+          <bit name="DFX_Aggregator_global_disable" bit_low="0" bit_high="0" calculate="/configuration/DFX_Aggregator_global_disable.value"/>
+          <bit name="DFX_global_re-enable" bit_low="1" bit_high="1" calculate="/configuration/DFX_global_re-enable.value"/>
+          <bit name="DFX_disable_external" bit_low="2" bit_high="6" calculate="/configuration/DFX_disable_external.value"/>
+          <bit name="DFX_re-enable_external" bit_low="7" bit_high="7" calculate="/configuration/DFX_re-enable_external.value"/>
+        </bit_field>
+        <bit_field value="0" size="1" offset="0x604">
+          <bit name="DFX_Aggregator_global_disable" bit_low="0" bit_high="0" calculate="/configuration/DFX_Aggregator_global_disable.value"/>
+          <bit name="DFX_global_re-enable" bit_low="1" bit_high="1" calculate="/configuration/DFX_global_re-enable.value"/>
+          <bit name="DFX_disable_external" bit_low="2" bit_high="6" calculate="/configuration/DFX_disable_external.value"/>
+          <bit name="DFX_re-enable_external" bit_low="7" bit_high="7" calculate="/configuration/DFX_re-enable_external.value"/>
+        </bit_field>
+      </array_11>
+      <array_12 size="128">
+        <bit_field value="0" size="1" offset="0x608">
+          <bit name="DFX_Aggregator_global_disable" bit_low="0" bit_high="0" calculate="/configuration/DFX_Aggregator_global_disable.value"/>
+          <bit name="DFX_global_re-enable" bit_low="1" bit_high="1" calculate="/configuration/DFX_global_re-enable.value"/>
+          <bit name="DFX_disable_external" bit_low="2" bit_high="6" calculate="/configuration/DFX_disable_external.value"/>
+          <bit name="DFX_re-enable_external" bit_low="7" bit_high="7" calculate="/configuration/DFX_re-enable_external.value"/>
+        </bit_field>
+      </array_12>
+    </uep_arrays>
+  </layout>
+</container>

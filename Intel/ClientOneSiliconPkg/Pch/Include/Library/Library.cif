@@ -1,0 +1,17 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\Include\Library\"
+    RefName = "ClientOneSiliconPkg.Pch.Include.Library"
+[files]
+"DxePchPolicyLib.h"	
+"PchCycleDecodingLib.h"	
+"PchInfoLib.h"	
+"PchPolicyLib.h"
+"PchRasLib.h"	
+"PchResetLib.h"	
+"PchRtcLib.h"
+"PchPciBdfLib.h"
+"PchSmmControlLib.h"	
+"SecPchLib.h"	
+<endComponent>

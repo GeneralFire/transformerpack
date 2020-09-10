@@ -1,0 +1,83 @@
+TOKEN
+	Name  = "MemThermManageLib10nm_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling MemThermManageLib10nm support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+    Name  = "MemThermManageLibWave1"
+    File  = "MemThermManageLibWave1.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MemThermManageLib"
+    Instance  = "ServerSiliconPkg.MemThermManageLibWave1"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "MemThermManageLibWave3"
+    File  = "MemThermManageLibWave3.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MemThermManageLib"
+    Instance  = "ServerSiliconPkg.MemThermManageLibWave3"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "MemThermManageLibWave3Hbm"
+    File  = "MemThermManageLibWave3Hbm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MemThermManageLib"
+    Instance  = "ServerSiliconPkg.MemThermManageLibWave3Hbm"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "HBM_ENABLE" "=" "1"
+End
+
+
+INFComponent
+	Name  = "MemThermManageTargetLib"
+	File  = "Wave3/HwTargetLib/HwThermManageTargetLibWave3.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "DDR5_ENABLE" "=" "1"
+End
+
+LibraryMapping
+	Class  = "MemThermManageTargetLib"
+	Instance  = "ServerSiliconPkg.MemThermManageTargetLib"
+	Token = "DDR5_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "MemThermManageTargetLib"
+    File  = "Wave1/HwTargetLib/HwThermManageTargetLibWave1.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "DDR5_ENABLE" "=" "0"
+End
+
+
+LibraryMapping
+	Class  = "MemThermManageTargetLib"
+	Instance  = "ServerSiliconPkg.MemThermManageTargetLib"
+	Token = "DDR5_ENABLE" "=" "0"
+End

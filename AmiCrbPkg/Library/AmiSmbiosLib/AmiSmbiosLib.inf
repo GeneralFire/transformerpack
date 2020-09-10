@@ -1,0 +1,37 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Defines]
+  INF_VERSION                   = 0x00010005
+  VERSION_STRING                = 1.0
+  BASE_NAME                     = AmiSmbiosLib
+  MODULE_TYPE                   = BASE
+  LIBRARY_CLASS                 = AmiSmbiosLib
+  FILE_GUID                     = 5913213A-A9E2-414E-8658-F85D3B125DD8
+
+[Sources]
+  AmiSmbiosLib.c
+
+[LibraryClasses]
+ IoLib
+ PcdLib
+
+[Packages]
+  ServerPlatformPkg/PlatformPkg.dec
+  MdePkg/MdePkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+  AmiCrbPkg/AmiCrbPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  
+[Pcd]
+  gPlatformTokenSpaceGuid.PcdWakeupType

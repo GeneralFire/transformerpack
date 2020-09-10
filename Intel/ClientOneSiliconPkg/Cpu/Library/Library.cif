@@ -1,0 +1,14 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\Library\"
+    RefName = "ClientOneSiliconPkg.Cpu.Library"
+[INF]
+#"PeiDxeSmmBootGuardLibNull\PeiDxeSmmBootGuardLibNull.inf"
+"PeiDxeSmmBootGuardLib\PeiDxeSmmBootGuardLib.inf"
+"PeiDxeTxtLib\PeiDxeTxtLib.inf"
+[files]
+"Library.sdl"	
+[parts]
+"ClientOneSiliconPkg.Cpu.Library.PeiDxeTxtLib"
+<endComponent>

@@ -1,0 +1,70 @@
+TOKEN
+    Name  = "BmcElog_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling BmcElog support in the project."
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "DxeBmcElog_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling DxeBmcElog support in the project."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+INFComponent
+    Name  = "DxeBmcElog"
+    File  = "DxeBmcElog.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+    Help  = "Includes DxeBmcElog.inf to Project."
+    Token = "DxeBmcElog_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "SmmBmcElog_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling SmmBmcElog support in the project."
+    TokenType = Boolean
+    Token = "SMM_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "SmmBmcElog"
+    File  = "SmmBmcElog.inf"
+    Package  = "AmiIpmi2Pkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Help  = "Includes SmmBmcElog.inf to Project."
+    Token = "SmmBmcElog_SUPPORT" "=" "1"
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.DxeBmcElog"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "DxeBmcElog_SUPPORT" "=" "1"
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.SmmBmcElog"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "SmmBmcElog_SUPPORT" "=" "1"
+End
+

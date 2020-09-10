@@ -1,0 +1,85 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2019 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+#string STR_PROCESSOR_DFX_CONFIG_FORM_TITLE                #language en-US "Processor Dfx Configuration"
+#string STR_PROCESSOR_DFX_CONFIG_FORM_HELP                 #language en-US "Displays and provides option to change the Processor Dfx Settings"
+
+#string STR_SGX_VARIABLES_PROTECTION_PROMPT                #language en-US "SGX UEFI Variables Protection"
+#string STR_SGX_VARIABLES_PROTECTION_PROMPT_HELP           #language en-US "Enable/Disable SGX UEFI Variables Protection"
+
+#string STR_SGX_DEBUG_PRINT_PROMPT                         #language en-US "SGX Debug Print"
+#string STR_SGX_DEBUG_PRINT_HELP                           #language en-US "SGX Debug Print - prints info messages"
+
+#string STR_SGX_MCHECK_MSR_72_PROMPT                       #language en-US "MCHECK MSR 0x72"
+#string STR_SGX_MCHECK_MSR_72_HELP                         #language en-US "Triggers MCHECK with MSR 0x72, support for Simics"
+
+#string STR_SGX_ISNOTCAPABLE_PROMPT                        #language en-US "Mock that system HW is not SGX capable"
+#string STR_SGX_SGX_ISNOTCAPABLE_HELP                      #language en-US "Mock that system HW is not SGX capable which allows to test suppress in BIOS menu"
+
+#string STR_SGX_ADDPACKAGESUPPORT_PROMPT                   #language en-US "SGX APB Support"
+#string STR_SGX_ADDPACKAGESUPPORT_HELP                     #language en-US "FPE on APB"
+
+#string STR_TDX_DFX_ALLOW_PROMPT                           #language en-US "Allow to run TDX without SGX"
+#string STR_TDX_DFX_ALLOW_HELP                             #language en-US "Allow to run TDX bypassing SGX en requirement"
+
+#string STR_SGX_REG_SERVER_SEL_PROMPT                      #language en-US "SGX registration server"
+#string STR_SGX_REG_SERVER_SEL_HELP                        #language en-US "Choose which server should be used for SGX registration"
+
+#string STR_DISABLED                                       #language en-US "Disabled"
+#string STR_ENABLED                                        #language en-US "Enabled"
+#string STR_AUTO                                           #language en-US "Auto"
+
+#string STR_SBX                                            #language en-US "SBX"
+#string STR_PRX                                            #language en-US "PRX"
+
+#string STR_TME_POC_PROMPT                                 #language en-US "Enable TME and BPS"
+#string STR_TME_POC_HELP                                   #language en-US "Enable TME with BPS DIMMs inserted"
+
+#string STR_TME_BASE_PROMPT                                #language en-US "TME Exclusion Base Address Increment Value"
+#string STR_TME_BASE_PROMPT_HELP                           #language en-US "Total Memory Encryption (TME) Exclusion Base Address"
+
+#string STR_TME_LEN_PROMPT                                 #language en-US "TME Exclusion Length Increment value"
+#string STR_TME_LEN_PROMPT_HELP                            #language en-US "Total Memory Encryption (TME) Exclusion Length"
+
+#string STR_TME_KEY_RESTORE_PROMPT                         #language en-US "TME key restore"
+#string STR_TME_KEY_RESTORE_HELP                           #language en-US "Enable/Disable TME key restore from NV-storage"
+
+#string STR_MKTME_MEM_INTEGRITY_PROMPT                     #language en-US "Mktme memory integrity"
+#string STR_MKTME_MEM_INTEGRITY_HELP                       #language en-US "ُEnable/Disable Mktme Integrity"
+// FuSa (SAF) Start
+#string STR_FUSA_SAF_SGX_ENB                               #language en-US "FuSa and SGX enabled (both feature flags will be set for MCheck)"
+
+#string STR_FUSASAF_ENABLE_PROMPT                          #language en-US "FuSa (SAF)"
+#string STR_FUSASAF_ENABLE_HELP                            #language en-US "FuSa (Scan at Field) Disable/Enable"
+
+#string STR_FUSASAF_IMAGE_LOAD_PROMPT                      #language en-US "FuSa (SAF) Image Load"
+#string STR_FUSASAF_IMAGE_LOAD_HELP                        #language en-US "FuSa (Scan at Field) Image Load - path to file with test patterns"
+// FuSa (SAF) End

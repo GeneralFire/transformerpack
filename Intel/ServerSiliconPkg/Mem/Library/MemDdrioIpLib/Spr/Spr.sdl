@@ -1,0 +1,21 @@
+TOKEN
+    Name  = "Spr_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Spr support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MemDdrioIpTargetLib"
+    Instance  = "ServerSiliconPkg.HwMemDdrioIpTargetLib"
+End
+
+INFComponent
+    Name  = "HwMemDdrioIpTargetLib"
+    File  = "HwMemDdrioIpTargetLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+

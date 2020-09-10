@@ -1,0 +1,59 @@
+<!--
+INTEL CONFIDENTIAL
+Copyright 2018-2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+<!--
+It is actual layout of the ModularFIT output image, which
+consists of containers and optional dynamic fields if needed
+-->
+<image layout_name="EagleStream" layout_version="1.0.1267">
+    <configuration>
+        <file name="output_file" label="Output File" value="outimage.bin" required="false" ui_params="{'quick_option': 'true'}"/>
+        <string name="region_order" label="Region Order" value="D3245689FE1"/>
+        <string name="region_order_dict" value="{'1': 'bios', '2': 'me', '3': 'gbe', '4': 'pdr', '5': 'der1', '6': 'sec_bios', '8': 'bmc', '9': 'der2', 'D':'spare1', 'E':'pfr', 'F':'ptt'}" ui_params="{'read_only': 'true'}"/>
+        <string name="default_platform"  value="Archer City SPR"  params="{'value_list': {'Archer City SPR': 'Archer City SPR', 'Archer City CLX': 'Archer City CLX', 'Archer City xPV SPR': 'Archer City xPV SPR', 'Archer City xPV CLX': 'Archer City xPV CLX', 'A21': 'A21', 'Archer City Modular': 'Archer City Modular'}}" />
+        <string name="extended_region" value="me" />
+        <number name="extended_region_limit_size" value="0x1000000" />
+        <string name="conditional_region"  value="spare1" />
+        <number name="descriptor_size" label="Descriptor Region size" value="0x1000" nullable="True"/>
+        <number name="me_size" label="ME Region size" value="0x0" nullable="True" ui_params="{'region_option':'me'}"/>
+        <number name="gbe_size" label="GBE Region size" value="0x0" nullable="True"/>
+        <number name="pdr_size" label="PDR Region size" value="0x0" nullable="True"/>
+        <number name="der1_size" label="DER1 Region size" value="0x0" nullable="True"/>
+        <number name="sec_bios_size" label="Secondary BIOS Region size" value="0x0" nullable="True"/>
+        <number name="bmc_size" label="Embedded Controller Region size" value="0x0" nullable="True"/>
+        <number name="der2_size" label="DER2 Region size" value="0x0" nullable="True"/>
+        <number name="spare1_size" label="Spare 1 Region size" value="0x0" nullable="True"/>
+        <number name="pfr_size" label="PFR Region size" value="0x2810000" nullable="True"/>
+        <number name="ptt_size" label="PTT Region size" value="0x0" nullable="True"/>
+        <number name="bios_size" label="BIOS Region size" value="0x0" nullable="True"/>
+    </configuration>
+    <build_options>
+        #Important: the names should not be changed
+        <number name="syncFlashComponent1Size" calculate="/layout/descriptor/FlashComponent1Size.value" />
+        <number name="syncFlashComponent2Size" calculate="/layout/descriptor/FlashComponent2Size.value" />
+        <number name="syncNumberOfSpiComponents" calculate="/layout/descriptor/NumberOfSpiComponents.value" />
+    </build_options>
+    <layout label="Flash Image">
+        <container name='descriptor' label="Descriptor Region" can_be_binary="False" padding="0x1000" size="/configuration/descriptor_size.value" order_changeable="false"/>
+        <container name='me' label="ME Region" can_be_binary="True" padding="0x1000" size="/configuration/me_size.value"/>
+        <container name='gbe' label="GBE Region" enabled="False" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/gbe_size.value"/>
+        <container name='pdr' label="PDR Region" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/pdr_size.value"/>
+        <container name='der1' label="DER1 Region" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/der1_size.value"/>
+        <container name='sec_bios' label="Secondary BIOS Region" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/sec_bios_size.value"/>
+        <container name='bmc' label="Baseboard Management Controller Region" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/bmc_size.value"/>
+        <container name='der2' label="DER2 Region" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/der2_size.value"/>
+        <container name='spare1' label="Spare 1 Region" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/spare1_size.value"/>
+        <container name='pfr' label="PFR Region" enabled="False" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/pfr_size.value"/>
+        <container name='ptt' label="PTT Region" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/ptt_size.value"/>
+        <container name='bios' label="BIOS Region" enabled="False" is_required="False" can_be_binary="True" padding="0x1000" size="/configuration/bios_size.value"  order_changeable="true"/>
+    </layout>
+</image>

@@ -1,0 +1,82 @@
+## @file
+# General BDS defines and produce general interfaces for platform BDS driver including:
+# 1) BDS boot policy interface;
+# 2) BDS boot device connect interface;
+# 3) BDS Misc interfaces for mainting boot variable, ouput string, etc.
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2007 - 2018 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = LogoLib
+  FILE_GUID                      = F5AE5B5C-42E8-4A9B-829D-5B631CD5367A
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = LogoLib|DXE_DRIVER UEFI_APPLICATION
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  Bmp.h
+  Logo.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ServerPlatformPkg/PlatformPkg.dec 
+
+[LibraryClasses]
+  BaseLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  UefiLib
+  BaseMemoryLib
+# APTIOV_SERVER_OVERRIDE_RC_START
+#  BaseBmpSupportLib
+# APTIOV_SERVER_OVERRIDE_RC_END
+  DebugLib
+  PrintLib
+  PcdLib
+  DxeServicesLib
+
+[Guids]
+
+[Protocols]
+  gEfiGraphicsOutputProtocolGuid                # PROTOCOL SOMETIMES_CONSUMES
+  gEfiUgaDrawProtocolGuid |PcdUgaConsumeSupport # PROTOCOL SOMETIMES_CONSUMES
+  gEfiBootLogoProtocolGuid                      # PROTOCOL SOMETIMES_CONSUMES
+  gEfiUserManagerProtocolGuid                   # PROTOCOL CONSUMES
+
+  gEfiOEMBadgingProtocolGuid                    # PROTOCOL CONSUMES
+
+[FeaturePcd]
+  gEfiMdePkgTokenSpaceGuid.PcdUgaConsumeSupport
+
+[Pcd]

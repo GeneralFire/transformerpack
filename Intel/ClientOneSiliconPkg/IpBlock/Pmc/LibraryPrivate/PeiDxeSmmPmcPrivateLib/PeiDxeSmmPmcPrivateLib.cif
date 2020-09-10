@@ -1,0 +1,11 @@
+<component>
+    name = "PeiDxeSmmPmcPrivateLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Pmc\LibraryPrivate\PeiDxeSmmPmcPrivateLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Pmc.LibraryPrivate.PeiDxeSmmPmcPrivateLib"
+[INF]
+"PeiDxeSmmPmcPrivateLib.inf"
+"PeiDxeSmmPmcPrivateLibWithS3.inf"
+[files]
+"PeiDxeSmmPmcPrivateLib.sdl"	
+<endComponent>

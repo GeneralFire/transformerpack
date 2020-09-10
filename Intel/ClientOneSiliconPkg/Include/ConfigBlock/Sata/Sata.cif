@@ -1,0 +1,8 @@
+<component>
+    name = "Sata"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Sata\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Sata"
+[files]
+"SataConfig.h"	
+<endComponent>

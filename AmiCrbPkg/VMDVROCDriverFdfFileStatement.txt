@@ -1,0 +1,10 @@
+FILE DRIVER = 117828f1-da7d-4bc1-8b58-9a954fed5121 {
+     SECTION DXE_DEPEX = AmiCrbPkg/VMDVROC_1.depex
+     SECTION PE32  = AmiCrbPkg/VMDVROC_1.efi
+  }
+
+  FILE DRIVER = 217828c1-da75-5bc1-7b58-91954fed0101 {
+     SECTION DXE_DEPEX = AmiCrbPkg/VMDVROC_2.depex
+     SECTION PE32  = AmiCrbPkg/VMDVROC_2.efi
+  }
+

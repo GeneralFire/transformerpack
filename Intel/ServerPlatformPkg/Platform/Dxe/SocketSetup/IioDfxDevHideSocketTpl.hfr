@@ -1,0 +1,130 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+//
+// Dfx Devhide form template included for each socket
+//
+
+//
+// INPUT:
+//   - IIO_INDEX      - socket index
+//
+
+//
+// DevHide table contains 8 stacks for each socket:
+//  - 6 x iio stack
+//  - 2 x uncore stack
+//
+
+#define  TOTAL_STACK_INDEX_0  HFR_MUL_8(IIO_INDEX)
+#define  TOTAL_STACK_INDEX_1  HFR_INC(TOTAL_STACK_INDEX_0)
+#define  TOTAL_STACK_INDEX_2  HFR_INC(TOTAL_STACK_INDEX_1)
+#define  TOTAL_STACK_INDEX_3  HFR_INC(TOTAL_STACK_INDEX_2)
+#define  TOTAL_STACK_INDEX_4  HFR_INC(TOTAL_STACK_INDEX_3)
+#define  TOTAL_STACK_INDEX_5  HFR_INC(TOTAL_STACK_INDEX_4)
+#define  TOTAL_STACK_INDEX_6  HFR_INC(TOTAL_STACK_INDEX_5)
+#define  TOTAL_STACK_INDEX_7  HFR_INC(TOTAL_STACK_INDEX_6)
+
+form formid = HFR_CONCAT2(VFR_FORMID_IIO_DFX_DEVHIDE_SKT, IIO_INDEX),
+     title  = STRING_TOKEN(HFR_CONCAT2(STR_IIO_DFX_DEVHIDE_FORM_SKT, IIO_INDEX));
+
+  //
+  // On 10nm and SPR CPUs, hide stacks 0-5. Devices are hidden per IP now.
+  //
+  suppressif NOT ideqvallist SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX CPU_CLX CPU_CPX;
+    #define  STACK_INDEX  0
+    #define  TOTAL_STACK_INDEX   TOTAL_STACK_INDEX_0
+    #include "IioDfxDevHideStackTpl.hfr"
+    #undef   STACK_INDEX
+    #undef   TOTAL_STACK_INDEX
+
+    #define  STACK_INDEX  1
+    #define  TOTAL_STACK_INDEX   TOTAL_STACK_INDEX_1
+    #include "IioDfxDevHideStackTpl.hfr"
+    #undef   STACK_INDEX
+    #undef   TOTAL_STACK_INDEX
+
+    #define  STACK_INDEX  2
+    #define  TOTAL_STACK_INDEX   TOTAL_STACK_INDEX_2
+    #include "IioDfxDevHideStackTpl.hfr"
+    #undef   STACK_INDEX
+    #undef   TOTAL_STACK_INDEX
+
+    #define  STACK_INDEX  3
+    #define  TOTAL_STACK_INDEX   TOTAL_STACK_INDEX_3
+    #include "IioDfxDevHideStackTpl.hfr"
+    #undef   STACK_INDEX
+    #undef   TOTAL_STACK_INDEX
+
+    #define  STACK_INDEX  4
+    #define  TOTAL_STACK_INDEX   TOTAL_STACK_INDEX_4
+    #include "IioDfxDevHideStackTpl.hfr"
+    #undef   STACK_INDEX
+    #undef   TOTAL_STACK_INDEX
+
+    suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR CPU_ICXD;
+      //
+      // Hide stack 5 for SOCs (SNR/ICXD)
+      //
+      #define  STACK_INDEX  5
+      #define  TOTAL_STACK_INDEX   TOTAL_STACK_INDEX_5
+      #include "IioDfxDevHideStackTpl.hfr"
+      #undef   STACK_INDEX
+      #undef   TOTAL_STACK_INDEX
+    endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR CPU_ICXD;
+  endif; // suppressif NOT ideqvallist SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX CPU_CLX CPU_CPX;
+
+  //
+  // On 10nm CPUs, the last 2 stacks are the UNCORE ones
+  //
+  suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX CPU_CLX CPU_CPX;
+    //
+    // There are no uncore stacks for 14nm
+    //
+    #define  STACK_INDEX  6
+    #define  TOTAL_STACK_INDEX   TOTAL_STACK_INDEX_6
+    #include "IioDfxDevHideStackTpl.hfr"
+    #undef   STACK_INDEX
+    #undef   TOTAL_STACK_INDEX
+
+    #define  STACK_INDEX  7
+    #define  TOTAL_STACK_INDEX   TOTAL_STACK_INDEX_7
+    #include "IioDfxDevHideStackTpl.hfr"
+    #undef   STACK_INDEX
+    #undef   TOTAL_STACK_INDEX
+  endif;
+
+  #undef  TOTAL_STACK_INDEX_0
+  #undef  TOTAL_STACK_INDEX_1
+  #undef  TOTAL_STACK_INDEX_2
+  #undef  TOTAL_STACK_INDEX_3
+  #undef  TOTAL_STACK_INDEX_4
+  #undef  TOTAL_STACK_INDEX_5
+  #undef  TOTAL_STACK_INDEX_6
+  #undef  TOTAL_STACK_INDEX_7
+
+endform;

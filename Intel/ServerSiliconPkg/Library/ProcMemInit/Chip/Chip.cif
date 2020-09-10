@@ -1,0 +1,18 @@
+<component>
+	name = "Chip"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Library\ProcMemInit\Chip\"
+	RefName = "ServerSiliconPkg.Library.ProcMemInit.Chip"
+[files]
+"Common\InitializeMemoryData.c"
+"Include\MemProjectSpecific.h"
+"Include\MrcThermalInclude.h"
+"Include\CpuPciAccess.h"	
+"Include\EvAutoRecipe.h"
+"Include\FnvAccessCommon.h"	
+"Include\KtiEvRecipeTable_SPR.h"
+"Include\MemHostChip.h"	
+"Include\SysHostChip.h"
+"Include\ScratchPadReg.h"
+"Include\BiosSsaChipFunc.h"
+<endComponent>

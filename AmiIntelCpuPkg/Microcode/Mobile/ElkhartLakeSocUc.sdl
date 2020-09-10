@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "SOC_9066X_ELKHARTLAKE"
+    Value = "0"
+    Help  = "Intel(R) Soc ElkhartLake"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SOC_M0190660"
+    Value  = "1"
+    Help  = "Intel(R) Elkhart Lake A Stepping(90660)"
+    TokenType = Boolean
+End
+
+ELINK
+    Name  = "$(MICROCODE_MOBILE_DIR)/M0190660_00000005.pdb"
+    Parent  = "MICROCODE_FILES"
+    Help  = "Intel(R) Elkhart Lake A Stepping(90660)"
+    Token = "SOC_M0190660" "=" "1"
+    InvokeOrder = AfterParent
+End

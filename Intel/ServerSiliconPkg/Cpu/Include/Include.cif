@@ -1,0 +1,17 @@
+<component>
+	name = "Include"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\Include\"
+	RefName = "ServerSiliconPkg.Cpu.Include"
+	
+[files]
+"CpuDataStruct.h"
+"PpmPolicyPeiDxeCommon.h"
+"CpuPolicyPeiDxeCommon.h"
+"ProcessorPpmSetup.h"
+[parts]
+"ServerSiliconPkg.Cpu.Include.Guid"
+"ServerSiliconPkg.Cpu.Include.Library"
+"ServerSiliconPkg.Cpu.Include.Ppi"
+"ServerSiliconPkg.Cpu.Include.Protocol"
+<endComponent>

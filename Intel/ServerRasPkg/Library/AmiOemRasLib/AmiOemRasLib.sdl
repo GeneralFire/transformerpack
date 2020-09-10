@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "AmiOemRasLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling AmiOemRasLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "AmiOemRasLib"
+	File  = "AmiOemRasLib.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "Base"
+End
+
+LibraryMapping
+	Class  = "AmiOemRasLib"
+	Instance  = "ServerRasPkg.AmiOemRasLib"
+End
+

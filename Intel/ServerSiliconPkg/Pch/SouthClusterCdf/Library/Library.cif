@@ -1,0 +1,38 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.Library"
+[INF]
+"BasePchSerialIoUartLibNull\BasePchSerialIoUartLibNull.inf"
+"BaseResetSystemLib\BaseResetSystemLib.inf"
+"BaseSmbusLib\BaseSmbusLib.inf"
+"DxePchPolicyLib\DxePchPolicyLib.inf"
+"PeiDxeSmmGbeMdiLib\PeiDxeSmmGbeMdiLib.inf"
+"PeiDxeSmmPmcLib\PeiDxeSmmPmcLib.inf"
+"PeiDxeSmmPchWdtCommonLib\PeiDxeSmmPchWdtCommonLib.inf"
+"PeiDxeSmmSataLib\PeiDxeSmmSataLibCdf.inf"
+"PeiOcWdtLib\PeiOcWdtLib.inf"
+"PeiOcWdtLibNull\PeiOcWdtLibNull.inf"
+"PeiPchPcieLib\PeiPchPcieLib.inf"
+"PeiDxeSmmTraceHubHookLib\PeiDxeSmmTraceHubHookLib.inf"
+"PeiDxeSmmPchEspiLib\PeiDxeSmmPchEspiLib.inf"
+"PeiDxeSmmPchPcrLib\PeiDxeSmmPchPcrLib.inf"
+"PeiPchSmmControlLib\PeiPchSmmControlLib.inf"
+"PeiSpiLib\PeiSpiLib.inf"
+"PeiPchSmmControlLibNull\PeiPchSmmControlLibNull.inf"
+"PeiDxeSmmPchGbeLib\PeiDxeSmmPchGbeLib.inf"
+"PeiDxeSmmPchCycleDecodingLib\PeiDxeSmmPchCycleDecodingLib.inf"
+"PeiDxeSmmGpioLib\PeiDxeSmmGpioLib.inf"
+"PeiPchResetLib\PeiPchResetLib.inf"
+"PeiResetSystemLib\PeiResetSystemLib.inf"
+"PeiDxeSmmPchSerialIoLib\PeiDxeSmmPchSerialIoLibCnl.inf"
+"DxeResetSystemLib\DxeResetSystemLib.inf"
+"DxeSmmPchRasLib\DxeSmmPchRasLib.inf"
+[files]
+"SouthClusterCdfLibrary.sdl"	
+[parts]
+"ServerSiliconPkg.Pch.SouthClusterCdf.Library.Private"
+"ServerSiliconPkg.Pch.SouthClusterCdf.Library.FiaMuxInitLib"
+"ServerSiliconPkg.Pch.SouthClusterCdf.Library.SecPchLib"
+<endComponent>

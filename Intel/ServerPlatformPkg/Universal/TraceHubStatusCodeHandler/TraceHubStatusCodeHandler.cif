@@ -1,0 +1,12 @@
+<component>
+	name = "TraceHubStatusCodeHandler"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Universal\TraceHubStatusCodeHandler\"
+	RefName = "ServerPlatformPkg.Universal.TraceHubStatusCodeHandler"
+[files]
+"TraceHubStatusCodeHandler.sdl"	
+[parts]
+"ServerPlatformPkg.Universal.TraceHubStatusCodeHandler.TraceHubStatusCodeHandlerPei"
+"ServerPlatformPkg.Universal.TraceHubStatusCodeHandler.TraceHubStatusCodeHandlerRuntimeDxe"
+"ServerPlatformPkg.Universal.TraceHubStatusCodeHandler.TraceHubStatusCodeHandlerSmm"
+<endComponent>

@@ -1,0 +1,14 @@
+<component>
+    name = "Frb"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\Frb\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.Frb"
+[INF]
+"PeiFrb.inf"
+"DxeFrb.inf"
+[files]
+"Frb.sdl"
+"DxeFrb.sd"
+"DxeFrb.uni"
+"DxeFrbHook.c"
+<endComponent>

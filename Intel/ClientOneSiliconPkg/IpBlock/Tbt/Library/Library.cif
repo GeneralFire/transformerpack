@@ -1,0 +1,12 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Tbt\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Tbt.Library"
+[INF]
+"PeiITbtPolicyLib\PeiITbtPolicyLib.inf"
+[files]
+"Library.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Tbt.Library.PeiITbtPolicyLib"
+<endComponent>

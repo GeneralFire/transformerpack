@@ -1,0 +1,13 @@
+<component>
+	name = "Ast2600Setup"
+	category = ModulePart
+	LocalRoot = "AmiModulePkg\IO\Ast2600\"
+	RefName = "Ast2600Setup"
+[files]
+"Ast2600Setup.sd"
+"Ast2600Setup.uni"
+"Ast2600Setup.c"
+"Ast2600Setup.h"
+<endComponent>
+
+

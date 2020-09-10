@@ -1,0 +1,83 @@
+## @file
+# Component information file for the Silicon Init PEI module.
+# This PEIM produces the Cache PPI and builds CPU HOB.
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2016 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION         = 0x00010017
+  BASE_NAME           = SiCpuInitPei
+  FILE_GUID           = 0693BAA5-35D0-4360-83F6-1DF26D3C53CE
+  VERSION_STRING      = 1.0
+  MODULE_TYPE         = PEIM
+  ENTRY_POINT         = SiCpuInitPeiEntryPoint
+
+[Sources]
+  SiCpuInitPei.c
+  SiCpuInitPei.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  CpRcPkg/CpRcPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  DebugLib
+  BaseLib
+  PeiServicesLib
+  ReportStatusCodeLib
+  BaseMemoryLib
+  HobLib
+  PcdLib
+  SystemInfoLib
+  PreSiliconEnvDetectLib
+  CpuPreMemPolicyLib
+  CpuAndRevisionLib
+
+[Guids]
+  gEdkiiCpuFeaturesSetDoneGuid ## PPI ## GUID # Install PPI
+
+[Ppis]
+  gEfiPeiMpServicesPpiGuid                      ## NOTIFY
+  gEfiEndOfPeiSignalPpiGuid                     ## NOTIFY
+  gPeiPostScriptTablePpiGuid                    ## NOTIFY
+  ## NOTIFY
+  ## CONSUMES
+  gPeiCpuLatePolicyPpiGuid
+
+[Pcd]
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuFeaturesSetting                      ## PRODUCES
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuClockModulationDutyCycle             ## PRODUCES
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+
+[Depex]
+  TRUE

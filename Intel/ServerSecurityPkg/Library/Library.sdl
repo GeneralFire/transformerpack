@@ -1,0 +1,110 @@
+TOKEN
+	Name  = "Library_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Library support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+    Name  = "AppAdapterSgx3v0InternalLib"
+    File  = "AppAdapterSgx3v0InternalLib\AppAdapterSgx3v0InternalLib.inf"
+    Package  = "ServerSecurityPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "AppAdapterSgx3v0InternalLib"
+    Instance  = "ServerSecurityPkg.AppAdapterSgx3v0InternalLib"
+End
+
+INFComponent
+    Name  = "FusaSafPolicyLib"
+    File  = "Saf/FusaSafPolicyLib/FusaSafPolicyLib.inf"
+    Package  = "ServerSecurityPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "FusaSafPolicyLib"
+    Instance  = "ServerSecurityPkg.FusaSafPolicyLib"
+End
+
+INFComponent
+    Name  = "Stl2BiosLib"
+    File  = "Saf\Stl2BiosLib\Stl2BiosLib.inf"
+    Package  = "ServerSecurityPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "Stl2BiosLib"
+    Instance  = "ServerSecurityPkg.Stl2BiosLib"
+End
+
+INFComponent
+    Name  = "LtDxeLib"
+    File  = "LtDxeLib/LtDxeLib.inf"
+    Package  = "ServerSecurityPkg"
+    Arch = "X64"
+    ModuleTypes  = "BASE"    
+End
+
+INFComponent
+    Name  = "LtPeiLib"
+    File  = "LtPeiLib/LtPeiLib.inf"
+    Package  = "ServerSecurityPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+End
+
+#INFComponent
+#    Name  = "PeiBootGuardLib"
+#    File  = "PeiBootGuardLib/PeiBootGuardLib.inf"
+#    Package  = "ServerSecurityPkg"
+#    Arch  = "IA32"
+#    ModuleTypes  = "PEIM"
+#End
+
+INFComponent
+    Name  = "PlatformLtDxeLibNull"
+    File  = "PlatformLtDxeLibNull/PlatformLtDxeLibNull.inf"
+    Package  = "ServerSecurityPkg"
+    Arch = "X64"
+    ModuleTypes  = "BASE"      
+End
+
+LibraryMapping
+    Class  = "LtDxeLib"
+    Instance  = "ServerSecurityPkg.LtDxeLib"
+	Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "LtPeiLib"
+    Instance  = "ServerSecurityPkg.LtPeiLib"
+	Arch = "IA32"
+End
+
+INFComponent
+    Name  = "BiosGuardInitLib"
+    File  = "BiosGuardInitLib/BiosGuardInit.inf"
+    Package  = "ServerSecurityPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "BiosGuardInitLib"
+	Instance  = "ServerSecurityPkg.BiosGuardInitLib"
+End
+
+#LibraryMapping
+#    Class  = "BootGuardLib"
+#    Instance  = "ServerSecurityPkg.PeiBootGuardLib"
+#    Arch  = "IA32"
+#End
+
+LibraryMapping
+    Class  = "PlatformLtDxeLib"
+    Instance  = "ServerSecurityPkg.PlatformLtDxeLibNull"
+End

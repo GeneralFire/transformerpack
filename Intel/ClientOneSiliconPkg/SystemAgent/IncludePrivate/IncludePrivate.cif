@@ -1,0 +1,12 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\SystemAgent\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.SystemAgent.IncludePrivate"
+[files]
+"SaConfigHob.h"	
+"SaNvsAreaDef.h"	
+[parts]
+"ClientOneSiliconPkg.SystemAgent.IncludePrivate.Library"
+"ClientOneSiliconPkg.SystemAgent.IncludePrivate.Protocol"
+<endComponent>

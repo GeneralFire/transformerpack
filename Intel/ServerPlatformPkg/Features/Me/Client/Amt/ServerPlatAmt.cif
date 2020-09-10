@@ -1,0 +1,21 @@
+<component>
+	name = "ServerPlatAmt"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Me\Client\Amt"
+	RefName = "ServerPlatformPkg.Features.Me.Client.Amt"
+[files]
+"ServerPlatAmt.sdl"
+"AmtWrapperDxe\AmtWrapperDxe.h"
+"AmtWrapperDxe\AsfSupport.h"
+"AsfTable\AsfTable.h"
+"AmtPetAlertDxe\AmtPetAlert.h"
+[INF]	
+"AmtStatusCodePei\AmtStatusCodePei.inf"
+"AmtSaveMebxConfigDxe\AmtSaveMebxConfigDxe.inf"
+"AmtPetAlertDxe\AmtPetAlertDxe.inf"
+"AmtWrapperDxe\AmtWrapperDxe.inf"
+"AsfTable\AsfTable.inf"
+"Library\AmtPlatformLib\AmtPlatformLib.inf"
+[parts]
+"ServerPlatformPkg.Features.Me.Client.Amt.Include"
+<endComponent>

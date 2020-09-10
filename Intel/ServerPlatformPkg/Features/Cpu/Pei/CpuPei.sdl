@@ -1,0 +1,15 @@
+TOKEN
+	Name  = "Pei_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Dxe support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "PlatformCpuPolicyPei"
+	File  = "PlatformCpuPolicyPei\PlatformCpuPolicyPei.inf"
+	Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+

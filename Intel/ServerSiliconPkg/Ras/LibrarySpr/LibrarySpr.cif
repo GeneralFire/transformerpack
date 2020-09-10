@@ -1,0 +1,10 @@
+<component>
+    name = "LibrarySpr"
+    category = MODULEPART
+    LocalRoot = "Intel\ServerSiliconPkg\Ras\LibrarySpr\"
+    RefName = "ServerSiliconPkg.Ras.LibrarySpr"
+[files]
+"LibrarySpr.sdl"	
+[parts]
+"ServerSiliconPkg.Ras.LibrarySpr.AddressDecodeLib"
+<endComponent>

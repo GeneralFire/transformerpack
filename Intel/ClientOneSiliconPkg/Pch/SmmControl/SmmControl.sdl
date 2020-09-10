@@ -1,0 +1,17 @@
+TOKEN
+    Name  = "SmmControl_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling SmmControl support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "SmmControl"
+    File  = "RuntimeDxe/SmmControl.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "X64"    
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End
+

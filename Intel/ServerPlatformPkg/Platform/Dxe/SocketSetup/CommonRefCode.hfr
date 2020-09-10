@@ -1,0 +1,239 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include <KtiSetupDefinitions.h>
+  //
+  // Tylersburg Submenu
+  //
+
+defaultstore MyStandardDefault,
+  prompt      = STRING_TOKEN(STR_STANDARD_DEFAULT_PROMPT),
+  attribute   = 0x0000;                         // Default ID: 0000 standard default
+
+defaultstore MyManufactureDefault,
+  prompt      = STRING_TOKEN(STR_MANUFACTURE_DEFAULT_PROMPT),
+  attribute   = 0x0001;
+
+form formid = VFR_FORMID_COMMONRC,
+    title   = STRING_TOKEN(STR_RC_COMMON_FORM_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_RC_COMMON_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+// APTIOV_SERVER_OVERRIDE_RC_START : dynamic MMCFG base change support.
+#ifndef DYNAMIC_MMCFG_BASE_FLAG 
+suppressif TRUE; 
+#endif
+// APTIOV_SERVER_OVERRIDE_RC_END : dynamic MMCFG base change support.
+    oneof varid = SOCKET_COMMONRC_CONFIGURATION.MmcfgBase,
+          prompt  = STRING_TOKEN(STR_UPI_MMCFG_BASE),
+          help    = STRING_TOKEN(STR_UPI_MMCFG_BASE_HELP),
+          option text = STRING_TOKEN(STR_1G),      value = 0,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1_5G),    value = 1,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1_75G),   value = 2,  flags = RESET_REQUIRED;
+          suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.MmcfgSize == 5;
+          option text = STRING_TOKEN(STR_2G),      value = 3,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_2_25G),   value = 4,  flags = RESET_REQUIRED;
+          endif;
+          suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.MmcfgSize == 4 OR
+                     ideqval SOCKET_COMMONRC_CONFIGURATION.MmcfgSize == 5;
+          option text = STRING_TOKEN(STR_3G),      value = 5,  flags = RESET_REQUIRED;
+          endif;
+          option text = STRING_TOKEN(STR_AUTO_STRING), value = 6,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    oneof varid = SOCKET_COMMONRC_CONFIGURATION.MmcfgSize,
+          prompt  = STRING_TOKEN(STR_UPI_MMCFG_SIZE),
+          help    = STRING_TOKEN(STR_UPI_MMCFG_SIZE_HELP),
+          suppressif (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP) AND
+                     (ideqval SOCKET_COMMONRC_CONFIGURATION.NumCpus > 1);
+          option text = STRING_TOKEN(STR_64M),     value = 0,  flags = RESET_REQUIRED;
+          endif;
+          suppressif (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP) AND
+                     (ideqval SOCKET_COMMONRC_CONFIGURATION.NumCpus > 2);
+          option text = STRING_TOKEN(STR_128M),    value = 1,  flags = RESET_REQUIRED;
+          endif;
+          suppressif (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP) AND
+                     (ideqval SOCKET_COMMONRC_CONFIGURATION.NumCpus > 4);
+          option text = STRING_TOKEN(STR_256M),    value = 2,  flags = RESET_REQUIRED;
+          endif;
+          option text = STRING_TOKEN(STR_512M),    value = 3,  flags = RESET_REQUIRED;
+#if defined (SPR_HOST) && (MAX_SOCKET > 4)
+          option text = STRING_TOKEN(STR_1G),      value = 4,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_2G),      value = 5,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_AUTO_STRING), value = 6,  flags = RESET_REQUIRED;
+#else
+          option text = STRING_TOKEN(STR_1G),      value = 4,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_2G),      value = 5,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_AUTO_STRING), value = 6,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#endif
+    endoneof;
+
+// APTIOV_SERVER_OVERRIDE_RC_START : dynamic MMCFG base change support.
+#ifndef DYNAMIC_MMCFG_BASE_FLAG 
+endif;
+#endif
+// APTIOV_SERVER_OVERRIDE_RC_END : dynamic MMCFG base change support.
+    oneof varid = SOCKET_COMMONRC_CONFIGURATION.MmiohBase,
+          prompt  = STRING_TOKEN(STR_UPI_MMIOH_BASE),
+          help    = STRING_TOKEN(STR_UPI_MMIOH_BASE_HELP),
+#if defined (SNR_HOST) || defined (ICXDE_HOST)
+          suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR;
+            option text = STRING_TOKEN(STR_56T),     value = 0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_40T),     value = 1,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_32T),     value = 2,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_24T),     value = 3,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_16T),     value = 4,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_4T),      value = 5,  flags = RESET_REQUIRED;
+          endif;
+          option text = STRING_TOKEN(STR_2T),      value = 6,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_1T),      value = 7,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_512G),    value = 8,  flags = RESET_REQUIRED;
+          suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR;
+            option text = STRING_TOKEN(STR_3584T),   value = 9,  flags = RESET_REQUIRED;
+          endif;
+#else
+          option text = STRING_TOKEN(STR_56T),     value = 0,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_40T),     value = 1,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_32T),     value = 2,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_24T),     value = 3,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16T),     value = 4,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4T),      value = 5,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_2T),      value = 6,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1T),      value = 7,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_512G),    value = 8,  flags = RESET_REQUIRED;
+          suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX;
+            option text = STRING_TOKEN(STR_3584T),   value = 9,  flags = RESET_REQUIRED;
+          endif;
+#endif // defined (SNR_HOST) || defined (ICXDE_HOST)
+    endoneof;
+    oneof varid = SOCKET_COMMONRC_CONFIGURATION.MmiohSize,
+          prompt  = STRING_TOKEN(STR_UPI_MMIOH_SIZE),
+          help    = STRING_TOKEN(STR_UPI_MMIOH_SIZE_HELP),
+#if !defined (SNR_HOST)
+          option text = STRING_TOKEN(STR_1G),      value = 0,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4G),      value = 1,  flags = RESET_REQUIRED;
+#endif
+          option text = STRING_TOKEN(STR_16G),     value = 2,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_64G),     value = 3,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_256G),    value = 4,  flags = RESET_REQUIRED;
+#if !defined (SNR_HOST)
+          option text = STRING_TOKEN(STR_1024G),   value = 5,  flags = RESET_REQUIRED;
+#endif
+    endoneof;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+               ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD OR
+               ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+      oneof varid = SOCKET_COMMONRC_CONFIGURATION.IsocEn,
+            prompt  = STRING_TOKEN(STR_ISOCEN),
+            help    = STRING_TOKEN(STR_ISOCEN_HELP),
+#if defined (PPO_FLAG) || defined (SPR_HOST)
+            option text = STRING_TOKEN(STR_DISABLE),      value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_ENABLE),       value = 1,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_AUTO_STRING),  value = 2,  flags = RESET_REQUIRED ;
+#else
+            option text = STRING_TOKEN(STR_DISABLE),      value = 0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),       value = 1,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_AUTO_STRING),  value = 2,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#endif
+      endoneof;
+    endif;
+
+    grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableSgx == 1;
+      oneof varid = SOCKET_COMMONRC_CONFIGURATION.NumaEn,
+            prompt  = STRING_TOKEN(STR_NUMAEN),
+            help    = STRING_TOKEN(STR_NUMAEN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),      value = 0,  flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),       value = 1,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      endoneof;
+    endif;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR
+               ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX OR
+               ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX OR
+               ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR;
+      grayoutif (NOT ideqval SOCKET_MP_LINK_CONFIGURATION.SncEn == KTI_DISABLE);
+        oneof varid = SOCKET_COMMONRC_CONFIGURATION.UmaBasedClustering,
+            questionid = KEY_UMA_BASED_CLUSTERING,
+            prompt  = STRING_TOKEN(STR_UMABASEDCLUSTERING_PROMPT),
+            help    = STRING_TOKEN(STR_UMABASEDCLUSTERING_HELP),
+#if defined (SPR_HOST)
+            option text = STRING_TOKEN(STR_UMABASEDCLUSTERING_DISABLE),    value = UMABASEDCLUSTERING_DISABLED,   flags = INTERACTIVE | RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_UMABASEDCLUSTERING_HEMISPHERE), value = UMABASEDCLUSTERING_HEMISPHERE, flags = INTERACTIVE | RESET_REQUIRED;
+            suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuChop == CPU_CHOP_TYPE_UCC;
+            option text = STRING_TOKEN(STR_UMABASEDCLUSTERING_QUADRANT),   value = UMABASEDCLUSTERING_QUADRANT,   flags = INTERACTIVE | RESET_REQUIRED;
+            endif;
+#elif defined (ICX_HOST)
+            option text = STRING_TOKEN(STR_UMABASEDCLUSTERING_DISABLE),    value = UMABASEDCLUSTERING_DISABLED,   flags = INTERACTIVE | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_UMABASEDCLUSTERING_HEMISPHERE), value = UMABASEDCLUSTERING_HEMISPHERE, flags = INTERACTIVE | RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#else
+            option text = STRING_TOKEN(STR_UMABASEDCLUSTERING_DISABLE),    value = UMABASEDCLUSTERING_DISABLED,   flags = INTERACTIVE | RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_UMABASEDCLUSTERING_HEMISPHERE), value = UMABASEDCLUSTERING_HEMISPHERE, flags = INTERACTIVE | RESET_REQUIRED;
+            suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD;
+              option text = STRING_TOKEN(STR_UMABASEDCLUSTERING_QUADRANT),   value = UMABASEDCLUSTERING_QUADRANT,   flags = INTERACTIVE | RESET_REQUIRED;
+            endif;
+#endif
+        endoneof;
+      endif;// suppressif NOT ideqval SOCKET_MP_LINK_CONFIGURATION.SncEn == KTI_DISABLE;
+    endif; // CpuType
+
+    grayoutif  NOT ideqval SOCKET_COMMONRC_CONFIGURATION.NumaEn == NUMA_EN;
+        oneof varid = SOCKET_MEMORY_CONFIGURATION.Srat,
+            prompt  = STRING_TOKEN(STR_SRAT_PROMPT),
+            help    = STRING_TOKEN(STR_SRAT_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),          value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),           value = 1, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_MEMORY_CONFIGURATION.Srat == 0;
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.SratMemoryHotPlug,
+            prompt  = STRING_TOKEN(STR_SRAT_MEM_HOT_PLUG_PROMPT),
+            help    = STRING_TOKEN(STR_SRAT_MEM_HOT_PLUG_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),          value = 0, flags = MANUFACTURING | DEFAULT | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),           value = 1, flags = RESET_REQUIRED;
+          endoneof;
+
+          oneof varid = SOCKET_MEMORY_CONFIGURATION.SratCpuHotPlug,
+            prompt  = STRING_TOKEN(STR_SRAT_CPU_HOT_PLUG_PROMPT),
+            help    = STRING_TOKEN(STR_SRAT_CPU_HOT_PLUG_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),          value = 0, flags = MANUFACTURING | DEFAULT |RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),           value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+    endif;
+
+#if FixedPcdGetBool (PcdBiosDfxKnobEnabled)
+    //
+    // Jump to ComonRefCode Dfx onfiguration Form
+    //
+    goto VFR_FORMID_DFX_COMMONRC,
+        prompt = STRING_TOKEN(STR_RC_DFX_COMMON_FORM_TITLE),
+        help   = STRING_TOKEN(STR_RC_DFX_COMMON_FORM_HELP);
+#endif
+
+endform;

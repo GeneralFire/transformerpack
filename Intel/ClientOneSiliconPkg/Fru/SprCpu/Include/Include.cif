@@ -1,0 +1,11 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\SprCpu\Include\"
+    RefName = "ClientOneSiliconPkg.Fru.SprCpu.Include"
+[files]
+"TcssInfo.h"	
+[parts]
+"ClientOneSiliconPkg.Fru.SprCpu.Include.Library"
+"ClientOneSiliconPkg.Fru.SprCpu.Include.Register"
+<endComponent>

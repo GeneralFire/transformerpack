@@ -1,0 +1,64 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+## @file
+#   This is AMI PCI Express CSP override Lib
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmiPciAccessCspBaseLibOverride
+  FILE_GUID                      = 6E53E391-40FC-4539-9055-06469C50AFBC
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PciAccessCspLib
+  
+[Sources]
+  AmiPciAccessCspBaseLibOverride.c
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  AmiCrbPkg/AmiCrbPkg.dec       #  Added to support MCFG ACPI Table update.
+  CpRcPkg/CpRcPkg.dec
+  
+[Protocols]
+  gAmiBoardInfo2ProtocolGuid
+  gAmiBoardSioInitProtocolGuid
+  gAmiBoardPciInitProtocolGuid
+  gEfiIioUdsProtocolGuid
+  gEfiGlobalNvsAreaProtocolGuid # Added to support MCFG ACPI Table update.
+  
+[LibraryClasses]
+  AmiDxeLib
+  IoLib
+  PcdLib
+  DebugLib
+  AmiPciBusLib
+  AmiPlatformAcpiLib            # Added to support MCFG ACPI Table update.
+  UpiHostDataLib
+  SystemInfoLib
+
+[Guids]
+  gEfiSetupVariableGuid
+  gEfiSocketPciResourceDataGuid
+  gEfiSocketCommonRcVariableGuid
+  gAmiBusResourceMapGuid
+  
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gAmiModulePkgTokenSpaceGuid.AmiPcdPcieBaseAddressBuffer
+  gAmiModulePkgTokenSpaceGuid.AmiPcdMaxSegmentSupported  
+  gAmiModulePkgTokenSpaceGuid.AmiPcdPciOutOfResourcesStatus
+  
+[Depex]
+  gEfiIioUdsProtocolGuid

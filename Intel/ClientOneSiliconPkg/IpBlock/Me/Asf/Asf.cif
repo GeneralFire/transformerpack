@@ -1,0 +1,10 @@
+<component>
+    name = "Asf"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\Asf\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.Asf"
+[INF]
+"Dxe\AsfDxe.inf"
+[files]
+"Asf.sdl"	
+<endComponent>

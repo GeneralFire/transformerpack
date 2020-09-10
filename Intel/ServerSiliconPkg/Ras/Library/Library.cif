@@ -1,0 +1,24 @@
+<component>
+	name = "Library"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Ras\Library\"
+	RefName = "ServerSiliconPkg.Ras.Library"
+[INF]
+"LastBootErrorPeiLib\LastBootErrorPeiLib.inf"
+"PeiDxeRasRcDataLib\DxeRasRcDataLib.inf"
+"PeiDxeRasRcDataLib\PeiRasRcDataLib.inf"
+"PeiRasGlobalDataLib\PeiRasGlobalDataLib.inf"
+"PeiRasRcPolicyPpiLib\PeiRasRcPolicyPpiLib.inf"
+"CpuCsrAccessLib\CpuCsrAccessLib.inf"
+"DxeRasGlobalDataLib\DxeRasGlobalDataLib.inf"
+"BaseRasRcMirrorLib\BaseRasRcMirrorLib.inf"
+"RankSpareAddressTranslationLib\RankSpareAddressTranslationLib.inf"
+"RankSpareAddressTranslationNullLib\RankSpareAddressTranslationNullLib.inf"
+"RasRegisterClearLib\RasRegisterClearLib.inf"
+"RasRuntimeStatusLib\RasRuntimeStatusLib.inf"
+"S3MemData\S3MemDataLib.inf"
+"SmmRasGlobalDataLib\SmmRasGlobalDataLib.inf"
+[files]
+"LastBootErrorPeiLib\LastBootErrorPeiLibInternal.h"
+"Library.sdl"	
+<endComponent>

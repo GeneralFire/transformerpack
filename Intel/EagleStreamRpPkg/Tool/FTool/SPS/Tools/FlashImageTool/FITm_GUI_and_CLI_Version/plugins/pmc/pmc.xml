@@ -1,0 +1,39 @@
+<!--
+INTEL CONFIDENTIAL
+Copyright 2017-2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+<container>
+    <configuration version="0.5">
+        <group name="PMC">
+            <file name="PMCBinary" value="" ui_params="{'region_option':'me', 'binary_input': 'true'}"/>
+        </group>
+        <byte_array name="version_major" size="4" value="" ui_params="{'read_only': 'true'}"/>
+        <byte_array name="version_minor" size="4" value="" ui_params="{'read_only': 'true'}"/>
+        <byte_array name="version_hotfix" size="4" value="" ui_params="{'read_only': 'true'}"/>
+        <byte_array name="version_build" size="4" value="" ui_params="{'read_only': 'true'}"/>
+    </configuration>
+    <layout>
+        <byte_array name="blob1" calculate="/decomposition/blob1.value"/>
+        <byte_array name="version_major" calculate="/decomposition/version_major.value"/>
+        <byte_array name="version_minor" calculate="/decomposition/version_minor.value"/>
+        <byte_array name="version_hotfix" calculate="/decomposition/version_hotfix.value"/>
+        <byte_array name="version_build" calculate="/decomposition/version_build.value"/>
+        <byte_array name="blob2" calculate="/decomposition/blob2.value"/>
+    </layout>
+    <decomposition file="/configuration/PMCBinary.path">
+        <byte_array name="blob1" size="0x7B"/>
+        <byte_array name="version_major" size="4"/>
+        <byte_array name="version_minor" size="4"/>
+        <byte_array name="version_hotfix" size="4"/>
+        <byte_array name="version_build" size="4"/>
+        <byte_array name="blob2" size="this.buffer_size - parent/version_build.size - parent/version_build.offset"/>
+    </decomposition>
+</container>

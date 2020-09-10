@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "SmmImcRoutingLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling SmmImcRoutingLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "SmmImcRoutingLib"
+	File  = "SmmImcRoutingLib.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+	Class  = "ImcRoutingLib"
+	Instance  = "ServerRasPkg.SmmImcRoutingLib"
+End
+

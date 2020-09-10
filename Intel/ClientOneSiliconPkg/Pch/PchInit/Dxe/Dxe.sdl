@@ -1,0 +1,21 @@
+TOKEN
+    Name  = "Dxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Dxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "PchInitDxeEbg"
+    File  = "PchInitDxeEbg.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "X64"    
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.DxePcdLib"
+    Override  = "ClientOneSiliconPkg.PchInitDxeEbg"
+End

@@ -1,0 +1,8 @@
+<component>
+    name = "Tsn"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Tsn\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Tsn"
+[files]
+"TsnConfig.h"	
+<endComponent>

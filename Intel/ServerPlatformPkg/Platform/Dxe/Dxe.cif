@@ -1,0 +1,31 @@
+<component>
+    name = "PlatformDxe"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Platform\Dxe\"
+    RefName = "ServerPlatformPkg.Platform.Dxe"
+[INF]
+"PolicyInitDxe\PolicyInitDxe.inf"
+"PlatformEarlyDxe\PlatformEarlyDxe.inf"
+"PlatformType\PlatformType.inf"
+"S3NvramSave\S3NvramSave.inf"
+"UuidDxe\UuidDxe.inf"
+"PlatformPowerButton\PlatformPowerButton.inf"
+"OpaPlatCfg\OpaPlatCfg.inf"
+"SyscfgSyncDxe\SyscfgSyncDxe.inf"
+"SmbiosMiscDxe\SmbiosMiscDxe.inf"
+"ReserveMemory\ReserveMem.inf"
+"UncoreMiscDxe\UncoreMiscDxe.inf"
+"FrameworkHiiAlias\FrameworkHiiAlias.inf"
+"ForceEfiBoot\ForceEfiBootDxe.inf"
+"ForceEfiBoot\ForceEfiBootApp.inf"
+"EmulationDfxSetup\EmulationDfxSetup.inf"
+"BreakpointCallbackDxe\BreakpointCallbackDxe.inf"
+"PlatformFirmwareVersionInfoDxe\PlatformFirmwareVersionInfoDxe.inf"
+[files]
+"PlatformDxe.sdl"	
+"PolicyInitDxe\PolicyInitDxe.h"	
+"EmulationDfxSetup\EmulationDfxSetup.h"	
+[parts]
+"ServerPlatformPkg.Platform.Dxe.MemorySubClass"
+"ServerPlatformPkg.Platform.Dxe.SocketSetup"
+<endComponent>

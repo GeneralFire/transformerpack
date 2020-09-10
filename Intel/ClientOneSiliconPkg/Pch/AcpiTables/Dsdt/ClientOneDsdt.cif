@@ -1,0 +1,29 @@
+<component>
+    name = "ClientOneDsdt"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\AcpiTables\Dsdt\"
+    RefName = "ClientOneSiliconPkg.Pch.AcpiTables.ClientOneDsdt"
+[INF]
+"PchAcpiTablesSelfTest.inf"
+[files]
+"HsioDefine.asl"	
+"HsioLib.asl"		
+"Pch.asl"		
+"PchHda.asl"	
+"PchHdaIntelDisplayAudio.asl"	
+"PchHdaSoundWireCtrl.asl"	
+"PchHdaUsbAudioOffload.asl"	
+"PchHeci.asl"	
+"PchIsh.asl"	
+"PchNvs.asl"			
+"PchTraceHub.asl"	
+"PchXdci.asl"	
+"PchXhci.asl"	
+"PchTsn.asl"
+"Pcr.asl"	
+"Pmc.asl"	
+"Thc.asl"	
+"TimedGpio.asl"	
+"TraceHubDebug.asl"		
+"ClientOneDsdt.sdl"	
+<endComponent>

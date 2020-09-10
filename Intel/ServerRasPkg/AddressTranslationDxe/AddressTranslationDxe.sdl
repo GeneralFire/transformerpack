@@ -1,0 +1,30 @@
+TOKEN
+	Name  = "AddressTranslationDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling AddressTranslationDxe support in the project"
+	TokenType = Boolean
+	Master = Yes
+        Token = "CPU_SKX_ONLY_SUPPORT" "=" "0"
+End
+
+TOKEN
+	Name  = "AddressTranslationDxe_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AddressTranslationDxe support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "AddressTranslationDxe"
+	File  = "AddressTranslationDxe.inf"
+	Package  = "ServerRasPkg"
+	Arch = "X64"
+	Token = "AddressTranslationDxe_INF_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "RankSpareAddressTranslationLib"
+    Instance  = "ServerSiliconPkg.RankSpareAddressTranslationLib"
+    Override  = "ServerRasPkg.AddressTranslationDxe"
+    Token = "AddressTranslationDxe_INF_SUPPORT" "=" "1"
+End

@@ -1,0 +1,9 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\PchRlink\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.PchRlink.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.IpBlock.PchRlink.IncludePrivate.Library"
+"ClientOneSiliconPkg.IpBlock.PchRlink.IncludePrivate.Register"
+<endComponent>

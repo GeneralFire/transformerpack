@@ -1,0 +1,18 @@
+<component>
+	name = "Include"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Include\"
+	RefName = "ServerRasPkg.Include"
+[files]
+"RasAcpi.h"
+"IehTypes.h"
+"Emca.h"	
+"PCIeErrorTypes.h"	
+"RasSwSmi.h"	
+"SiliconSettingRAS.h"	
+[parts]
+"ServerRasPkg.Include.Guid"
+"ServerRasPkg.Include.Library"
+"ServerRasPkg.Include.Protocol"
+"ServerRasPkg.Include.Register"
+<endComponent>

@@ -1,0 +1,8 @@
+<component>
+    name = "Fusa"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Fusa\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Fusa"
+[files]
+"FusaConfig.h"	
+<endComponent>

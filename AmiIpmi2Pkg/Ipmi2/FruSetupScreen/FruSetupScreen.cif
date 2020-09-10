@@ -1,0 +1,11 @@
+<component>
+    name = "FruSetupScreen"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\FruSetupScreen\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.FruSetupScreen"
+[files]
+"FruSetupScreen.sdl"
+"FruSetupScreen.sd"
+"FruSetupScreen.uni"
+"FruSetupScreen.c"
+<endComponent>

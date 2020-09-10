@@ -1,0 +1,17 @@
+<component>
+    name = "Protocol"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\Include\Protocol\"
+    RefName = "ClientOneSiliconPkg.Pch.Include.Protocol"
+[files]
+"IoTrapExDispatch.h"	
+"PchAcpiSmiDispatch.h"	
+"PchEspiSmiDispatch.h"	
+"PchPcieSmiDispatch.h"	
+"PchPolicy.h"	
+"PchSmiDispatch.h"	
+"PchSmmIoTrapControl.h"	
+"PchSmmPeriodicTimerControl.h"	
+"PchTcoSmiDispatch.h"	
+"SmmSmbus.h"	
+<endComponent>

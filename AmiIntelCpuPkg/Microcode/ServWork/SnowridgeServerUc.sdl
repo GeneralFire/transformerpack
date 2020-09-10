@@ -1,0 +1,43 @@
+TOKEN
+    Name  = "SERVWORK_8066X"
+    Value = "0"
+    Help  = "Intel(R) Snowridge"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SERVWORK_M0180660_80661_80662_80663"
+    Value  = "1"
+    Help  = "Intel(R) Snowridge Processor A-0/A-1/A-2/A-3 Stepping"
+    TokenType = Boolean
+    Token = "SELECT_SILICON_STEPPING" "=" "0"
+End
+
+TOKEN
+    Name  = "SERVWORK_M0180664"
+    Value  = "1"
+    Help  = "Intel(R) Snowridge Processor B-0 Stepping"
+    TokenType = Boolean
+    Token = "SELECT_SILICON_STEPPING" "=" "1"
+End
+
+
+ELINK
+    Name  = "$(MICROCODE_SERVWORK_DIR)/M0180660_80661_80662_80663_90010007.mcb"
+    Parent  = "MICROCODE_FILES"
+    Help  = "Intel(R) Snowridge Processor A0 stepping (0x80660), A1 stepping (0x80661), A2 stepping (0x80662) and A3 stepping (0x80663)"
+    Token = "SERVWORK_M0180660_80661_80662_80663" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(MICROCODE_SERVWORK_DIR)/M0180664_80665_9b090000.mcb"
+    Parent  = "MICROCODE_FILES"
+    Help  = "Intel(R) Snowridge Processor B0 stepping (0x80664)"
+    Token = "SERVWORK_M0180664" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+
+

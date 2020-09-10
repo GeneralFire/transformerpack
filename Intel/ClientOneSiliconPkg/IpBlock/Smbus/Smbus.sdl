@@ -1,0 +1,24 @@
+TOKEN
+    Name  = "Smbus_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Smbus support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "SmbusDxe"
+    File  = "Dxe/SmbusDxe.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"      
+End
+
+INFComponent
+    Name  = "SmbusSmm"
+    File  = "Smm/SmbusSmm.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"       
+End
+

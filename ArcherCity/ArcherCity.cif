@@ -1,0 +1,8 @@
+<component>
+	name = "ArcherCity"
+	category = Flavor
+	LocalRoot = "ArcherCity\"
+	RefName = "ArcherCity"
+[files]
+"ArcherCity.sdl"	
+<endComponent>

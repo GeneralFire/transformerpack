@@ -1,0 +1,11 @@
+<component>
+	name = "CsrAddressTranslationLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Library\CsrAddressTranslationLib\"
+	RefName = "ServerSiliconPkg.Library.CsrAddressTranslationLib"
+[INF]
+"Spr\CsrAddressTranslationLib.inf"
+[files]
+"CsrAddressTranslationLib.sdl"	
+"Spr\CsrAddressTranslationLibInternal.h"
+<endComponent>

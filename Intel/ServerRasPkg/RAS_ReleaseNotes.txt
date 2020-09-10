@@ -1,0 +1,1315 @@
+12/19/2019
+
+Project Label: 5.17_WhitleyCrb_0ACMS_ICX_028
+Module Label: ServerRasPkgPackage_23
+
+=====================
+Memory RAS Features :
+=====================
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Power up - Post Package Repair (PPR) Support
+
+Project Label            : 5.17_WhitleyCrb_0ACMS_ICX_028
+
+Module  Label            : ServerRasPkgPackage_23
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Patrol Scrubbing and Demand Scrubbing Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_027
+
+Module  Label            : ServerRasPkgPackage_22
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Memory Data Scrambling with CMD & ADDR Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_027
+
+Module  Label            : ServerRasPkgPackage_22
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : PCI Express End to End CRC (ECRC) Support
+
+Project Label            : 5.17_WhitleyCrb_0ACMS_ICX_028
+
+Module  Label            : ServerRasPkgPackage_23
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+=====================
+Known issues:
+=====================
+
+Silicon/Intel RC code issues :
+1. IPS: 00462334 : SDDDC feature is not working. Expected behavior two SMI Spare Copy start and Sapre copy complete SMI needs to be triggered. After error injection, Spare copy complete SMI is not getting triggered.
+				   As per Intel this feature won't work on LCC CPU and expected to work on HCC CPU.
+2. IPS: 00462943 : ADDDC feature not working. After error injection, Spare copy complete is not happening instead system always report "copy_in_progress".
+                   As per Intel this feature won't work on LCC CPU and expected to work on HCC CPU.
+3. IPS: 00462329 : Not able to validate RANK Sparing features - Setup option is suppressed for ICX CPU's.
+4. IPS: 00463866 : "CRC Mode" setup option is suppressed for ICX CPU's. Not able to validate the CRC16/32 Feature.
+5. IPS: 00465524 : MCA- Non Recovery Feture (SRAO-PS) is not working. Scrub_EN bit is not getting set when DIMM is populated on non-zero Channels.
+6. IPS: 00469708 : PCIe Corrected Error Information (Error counters and Leaky-bucket logic) test fail, read Offset 768h, always 0
+
+Tool issues:
+1. IPS: 00463202 : ITP CScripts v0.95 is not supporting command Address parity error injection support.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+10/07/2019
+
+Project Label: 5.16_WhitleyCrb_0ACMS_023
+Module Label: ServerRasPkgPackage_21
+
+================================================================
+RAS features validation status using ITP C Scripts. 
+================================================================
+
+=====================
+Memory RAS Features :
+=====================
+
+Feature                  : Memory Correctable and Uncorrectable Errors Enabling and Logging Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Patrol Scrubbing and Demand Scrubbing Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Partially working
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : RANK Level Memory Sparing Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature not ready/Silicon issue
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Mirroring Support (Full and Partial)
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Partially working
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : SDDC/SDDC+1 Enabling and Logging Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature not ready/Silicon issue
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : ADDC MR Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature not ready/Silicon issue
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Power up - Post Package Repair (PPR) Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Partially working
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Memory Data Scrambling with CMD & ADDR Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Partially working
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Partial Cache Line Sparing (PCLS) Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+========================
+PCI, PCI-e AER Logging :
+========================
+
+Feature                  : PCI Correctable and Uncorrectable Errors Enabling and Logging Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : PCI Express End to End CRC (ECRC) Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature not ready/Silicon issue
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : PCI Express Enhanced Downstream Port Containment (EDPC) Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : PCI Express Hot Plug/Removal Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Work in Progress
+
+-------------------------------------------------------------------------------------------------------
+
+===================
+CPU :
+===================
+
+Feature                  : Error Reporting (MCA, AER) and Signaling (MCE, CMCI, NMI,SMI) Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Corrupt Data Containment – Core /Uncore Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : DCU/IFU Error Handling Enhancement Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Error reporting (e.g. MCA, AER) - core, Uncore, IIO Error reporting through Enhanced MCA Gen2 (EMCA2) Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Error Reporting through IOMCA Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : MCA Bank Error Control
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : PCIe Corrected Error Information (Error counters and Leaky-bucket logic) Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature not ready/Silicon issue
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Viral Mode of error containment Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+===================
+Intel UPI :
+===================
+
+Feature                  : UPI Correctable Errors Enabling and Logging Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : UPI Uncorrectable Errors Enabling and Logging Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature not ready/Silicon issue
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Intel UPI Protocol Protection via 16 bit CRC Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Partially working
+
+-------------------------------------------------------------------------------------------------------
+
+===================
+System level RAS :
+===================
+
+Feature                  : MCA Recovery - Execution Path Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : MCA Recovery Non-execution Path Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature not ready/Silicon issue
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : MCA Recovery 2.0 (based on EMCA gen2) (R_SYS03) Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Local Machine Check Exception (LMCE) Based Recovery(R_SYS11) Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Feature working and validated
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Failed DIMM Isolation Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Partially working
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Execution outside of SMRR region detection Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Work in Progress
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Thread in Long Flow/Blocked indicators Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Work in Progress
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : Targeted SMI Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Work in Progress
+
+-------------------------------------------------------------------------------------------------------
+
+Feature                  : SMM dump state storage into internal MSRs Support
+
+Project Label            : 5.16_WhitleyCrb_0ACMS_023
+
+Module  Label            : ServerRasPkgPackage_21
+
+Status: Work in Progress
+
+-------------------------------------------------------------------------------------------------------
+
+=====================
+Known issues:
+=====================
+
+Silicon/Intel RC code issues :
+1. IPS: 00461480 : Node information is not getting filled in TranslateSad ()
+2. IPS: 00462334 : SDDDC feature is not working. Expected behavior two SMI Spare Copy start and Sapre copy complete SMI needs to be triggered.
+                   After error injection, Spare copy complete SMI is not getting triggered.
+3. IPS: 00462329 : Not able to validate RANK Sparing features - Setup option is suppressed for ICX CPU's.
+4. IPS: 00462943 : ADDDC feature not working. After error injection, Spare copy complete is not happening instead system always report "copy_in_progress"
+5. IPS: 00463866 : "CRC Mode" setup option is suppressed for ICX CPU's. Not able to validate the CRC16/32 Feature.
+6. IPS: 00465524 : MCA- Non Recovery Feture (SRAO-PS) is not working. Scrub_EN bit is not getting set when DIMM is populated on non-zero Channels.
+7. IPS: 00461844 : Patrol Scrub disabling through setup option is not working. 
+8. IPS: 00467664 : Post Package repair (PPR) is not working properly. After memory CE, PPR NVRAM Variable is created in RAS SMI handler.
+				   Next boot, MRC consumes this NVRAM variable and initiate the PPR flow for the DIMM. 
+				   Node information is not proper in NVRAM variable (IPS: 00461480). Because of this mismatch, PPR flow is not getting initated.
+9. IPS: 00467670 : Memory Data Scrambling Bits are not getting set properly when DIMM is populated on non-zero channels.
+10. IPS: 00467675 : PCI Express End to End CRC (ECRC) feature not working as RC code is not setting "ECRC Generation Capable" and "ECRC Check Capable" bits for the ROOT PORT.
+11. IPS: 00469708 : PCIe Corrected Error Information (Error counters and Leaky-bucket logic) test fail, read Offset 768h, always 0
+
+Tool issues:
+1. IPS: 00458351 : BMC FW is not allowing to add SEL Entries. As per Intel BMC FW with this support will be released by WW41
+2. IPS: 00463202 : ITP CScripts v0.95 is not supporting command Address parity error injection support.
+3. IPS: 00465529 : ITP CScripts v0.95 is not supporting the Mirror fail over support. AMI used memory UCE command for mirroring feature validation.
+4. IPS: 00466438 : ITP CScripts v0.95 is reporting error when injecting UPI CE error on non-legacy socket.
+5. IPS: 00468288 : IDK tool Support for Whitley Platforms.
+
+=========================================================
+Setup Options to change to support WHITLEY RAS Features
+=========================================================
+
+------------------------------------------------------------------------------------------------------------
+Functionality:
+------------------------------------------------------------------------------------------------------------
+
+Setup Questions:
+
+AMI have below setup questions Support for Error Logging:
+
+1.  System Errors               : Enable/Disable Runtime Error Logging Support.
+
+2.  S/W Error Injection Support : Some utilities needs MSR 0x790 to be unlocked.
+
+3.  RAS Log level 				: Allows user to select how much RAS debug messages needs to be printed.
+
+4.  System Memory Poison        : Enable/Disable Poison Support.
+
+5.  Viral Status         		: Enable/Disable Viral.
+
+6.  IIO/PCH Global Error        : Enable/Disable the IIO Error Logging.
+
+7.  OS Native AER Support		: Select Firmware first handling (FFM) or OS native AER handling.
+
+8.  IIO MCA Support             : Enable/Disable IIO MCA Support.
+
+9.	Expected BER				: PCIE Leaky Bucket feature. 
+
+	Time Window GEN1/2			: A burst of errors within this window is counted as one error.
+	
+	Time Window GEN1/2			: A burst of errors within this window is counted as one error.
+	
+	Time Window GEN3/4			: A burst of errors within this window is counted as one error.
+
+	Error Threshold value (GEN1/2)  : Error threshold value for GEN1/2 Speeds.
+	
+	Error Threshold value (GEN3/4)  : Error threshold value for GEN3/4 Speeds.
+	
+	GEN3/4 Re-Equalization   	: Enable/Disable Equalization.
+
+	GEN2 Link degradation 		: Enable or disable Gen2 link degradation.
+	
+	GEN3 Link degradation		: Enable or disable Gen3 link degradation.
+	
+	GEN4 Link degradation		: Enable or disable Gen4 link degradation.
+
+10.  EMCA Logging Support        : Enable/Disable the EMCA Logging.
+
+11.  EMCA CMCI-SMI Morphing      : Enable/Disable EMCA CSMI for Correctable Errors.
+
+12. EMCA MCE-SMI Enable         : Enable/Disable EMCA Uncorrectabled SMI for gen1 and gen2.
+
+13. Opportunistic Spare Core	: Enable/Disable Opportunistic Spare Core Support
+    Support
+ 
+14. WHEA Settings		
+    WHEA Support                : Enable/Disable the WHEA ACPI support.
+    Whea Log Memory Error		: Enable/Disable Whea Log Memory Error.
+    Whea Log Processor Error	: Enable/Disable Whea Log Processor Error.
+    Whea Log PCI Error			: Enable/Disable Whea Log PCI Error.
+
+15. UPI Error Enabling       
+    SMI UPI Lane Failover       : Enable/Disable SMI when clock/data failover is set.
+    
+16. Memory Error Enabling    
+    Memory Error      			: Enable/Disable Memory Error. 
+    Spare Interrupt             : Spare Interrupt Selection.
+    
+17. Memory RAS Configuration Setup
+    Correctable Error Threshold : Correctable Error Threshold (1 - 32767) used for sparing, SDDC etc..
+
+18. ADDDC Sparing				: Enable/Disable ADDDC Sparing	
+    
+19. PCIe Error Enabling 
+    Corrected Error			: Enable & escalate Correctable Errors to error pins.
+    Uncorrected Error		: Enable & escalate Uncorrectable/Recoverable to error pins.
+    Fatal Error Enable		: Enable & escalate fatal errors to error pins.
+    Assert NMI on SERR		: On SERR, generate an NMI and log an error.\nNote: [Enabled] must be selected for the Assert NMI on PERR setup option to be visible.
+    Assert NMI on PERR		: On PERR, generate an NMI and log an error.\nNote: This option is only active if the Assert NMI on SERR option has [Enabled] selected.
+
+--------------------
+Memory RAS Features
+--------------------
+
+Memory error logging Support
+------------------------------------------------
+
+Setup Options to be changed for supporting Memory error logging:
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging ->Memory Error Enabling -> Memory Error - [Enable]
+3. Platform Configuration -> Runtime Error Logging ->Memory Error Enabling -> Spare Interrupt - [SMI]
+4. Platform Configuration -> Runtime Error Logging-> S/W Error Injection Support [Enable]
+5. Socket Configuration   -> Memory configuration -> Memory RAS configuration -> Correctable Error Threshold - [1]
+
+
+Memory Error (UCE) Logging :
+---------------------------------------
+
+Setup Options to be changed for supporting Memory ErrorLogging:
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging -> Memory Error Enabling -> Memory Error - [Enable]
+3. Platform Configuration -> Runtime Error Logging -> eEMCA Settings -> EMCA Logging Support - [Enable]
+4. Platform Configuration -> Runtime Error Logging -> eEMCA Settings -> EMCA MCE-SMI Enable - [EMCA gen2 - MSMI]
+5. Platform Configuration -> Runtime Error Logging -> S/W Error Injection Support [Enable]
+
+
+Memory Rank Sparing Support
+---------------------------
+
+Hardware Requirements :
+
+1. Minimum need to use 2R DIMM's to validate the Rank Sparing support.
+
+Setup Options to be changed for supporting Memory Rank Spare logging:
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging -> Memory Error Enabling -> Memory Error - [Enable]
+3. Platform Configuration -> Runtime Error Logging -> Memory Error Enabling -> Spare Interrupt - [SMI]
+4. Platform Configuration -> Memory configuration -> Memory RAS configuration -> Correctable Error Threshold - [1]
+5. Platform Configuration -> Memory configuration -> Memory RAS configuration -> Memory Rank Sparing - [Enable]
+6. Platform Configuration -> Runtime Error Logging-> S/W Error Injection Support [Enable]
+
+
+Memory Mirroring Support
+------------------------
+
+Harware Requirements :
+
+1. Popuate DIMM's of same size and rank in each Channel's under same Memory Controller.
+2.  Ex : Populate 16GB 2Rx4 DIMM on Socket 0 Channel 0  DIMM 0 and channel 1 DIMM 0.
+
+Setup Options to be changed for supporting Mirror Logging (Full Channel Mirroring):
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging -> Memory Error Enabling -> Memory Error - [Enable]
+3. Platform Configuration -> Runtime Error Logging -> eEMCA Settings -> EMCA Logging Support - [Enable]
+4. Platform Configuration -> Runtime Error Logging -> eEMCA Settings -> EMCA MCE-SMI Enable - [EMCA gen 2 - MSMI]
+5. Socket Configuration   -> Memory configuration -> Memory RAS configuration -> Mirror Mode - [Full Mirror Mode]
+
+Setup Options to be changed for supporting Mirror Logging (Partial Mirroring):
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging -> Memory Error Enabling -> Memory Error - [Enable]
+3. Platform Configuration -> Runtime Error Logging -> eEMCA Settings -> EMCA Logging Support - [Enable]
+4. Platform Configuration -> Runtime Error Logging -> eEMCA Settings -> EMCA MCE-SMI Enable - [EMCA gen 2 - MSMI]
+5. Socket Configuration   -> Memory configuration -> Memory RAS configuration -> Mirror Mode - [Partial Mirror Mode]
+8. Socket Configuration   -> Memory configuration -> Memory RAS configuration -> Partial Mirror1 Size [4] ( Units in terms of 1GB)
+9. Socket Configuration   -> Memory configuration -> Memory RAS configuration -> Partial Mirror2 Size [0] ( Units in terms of 1GB)
+10. Socket Configuration   -> Memory configuration -> Memory RAS configuration -> Partial Mirror3 Size [0] ( Units in terms of 1GB)
+11. Socket Configuration   -> Memory configuration -> Memory RAS configuration -> Partial Mirror4 Size [0] ( Units in terms of 1GB)
+
+If more Partial mirroring range is required, user can change these options accordingly. 
+Partial Mirror1 Size needs to be filled or else system won't be in Partial Mirroring Mode.
+
+Example : If 32GB Memory is populated on a system and with above settings
+
+Memory Map : 
+0GB - 4GB   : Non-Mirrored Range
+4GB - 8GB   : Mirrored Range
+8GB - 32GB  : Non-Mirrored Range.
+
+Using ITP C Script comamnd, mirrored memory range can be found.
+
+a) mc.addTrans() to find the mirrored range
+b) Select option 3 : Show core address map
+c) Search TAD @ Socket x MC X (Open Page Address Mapping mode Fixed or Adaptive)
+d) Search Mirrored keyword and it will which ranges are mirrored
+
+   Injected mirror_fail over at  mirrored range address 5GB which falls under, SMI will getting generated CE error 
+   will be logged as expected and there won't be MCE.
+   happend as expected.
+
+   In case of error injection outside the mirrored range, UCE will be logged as expected.
+
+
+ADDDC (SR/MR) Logging Support
+---------------------
+
+Hardware requirements :
+
+1. Need to use x4 DIMM's . Memory Mode needs to be Independent.
+
+Setup Options to be changed for supporting ADDDC Logging:
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging ->Memory Error Enabling -> Memory Error - [Enable]
+3. Platform Configuration -> Runtime Error Logging ->Memory Error Enabling -> Spare Interrupt - [SMI]
+4. Platform Configuration -> Memory RAS configuration -> Correctable Error - [1 - 32767]
+5. Socket Configuration   -> Memory RAS configuration -> ADDDC Sparing - [Enable]
+6. Platform Configuration -> Memory configuration -> Memory RAS configuration -> SDDC Plus One - [Enable]
+
+SDDC Logging Support (Standard SKU Supports SDDC and Advanced SKU supports SDDC + 1)
+---------------------
+
+Hardware requirements :
+
+1. Need to use x4 DIMM's or X8 DIMM's based on Memory Mode (Independent or LockStep)
+2. If DIMM is X4, memory mode can be Independent or Static Virtual Lockstep Mode enabled.
+3. If DIMM is X8, memory mode can not be in Independent Mode. It needs to be in Static Virtual Lockstep Mode.
+
+Setup Options to be changed for supporting SDDC Logging:
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging -> S/W Error Injection Support - [Enable]
+3. Platform Configuration -> Runtime Error Logging -> Memory Error Enabling -> Memory Error - [Enabled]
+4. Platform Configuration -> Runtime Error Logging -> Memory Error Enabling -> Spare Interrupt - [SMI]
+5. Platform Configuration -> Memory configuration -> Memory RAS configuration -> Correctable Error Threshold - [1]
+6. Platform Configuration -> Memory configuration -> Memory RAS configuration -> SDDC Plus One - [Enable]
+
+Demand Scrub Support
+--------------------
+
+1. Scoket Configuration   -> Memory configuration -> Memory RAS configuration -> Demand Scrub - [Enabled]
+
+
+Patrol Scrub Support
+--------------------
+
+1. Scoket Configuration   -> Memory configuration -> Memory RAS configuration -> Patrol Scrub - [Enabled]
+
+
+PCI-e error logging
+--------------------
+
+Setup Options to be changed for supporting PCI-e error logging:
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging -> IIO Error Enabling -> IIO/PCH Global Error - [Enable]
+4. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Corrected Error - [Enable]
+5. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Uncorrected Error - [Enable]
+6. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Fatal Error Enable - [Enable]			 	
+7. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Assert NMI on SERR - [Enable]
+8. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Assert NMI on PERR - [Enable]
+
+
+IOMCA Feature:
+--------------------------
+
+Setup Options to be changed for supporting PCI-e error logging with IOMCA option enabled:
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging -> IIO Error Enabling -> IIO/PCH Global Error - [Enable]
+3. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Corrected Error - [Enable]
+4. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Uncorrected Error - [Enable]
+5. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Fatal Error Enable - [Enable]			 	
+6. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Assert NMI on SERR - [Enable]
+7. Platform Configuration -> Runtime Error Logging -> PCIe Error Enabling -> Assert NMI on PERR - [Enable]
+7. Platform Configuration -> Runtime Error Logging -> eEMCA Settings -> EMCA Logging Support - [Enable]
+8. Platform Configuration -> Runtime Error Logging -> eEMCA Settings -> EMCA MCE-SMI Enable - [EMCA gen 2 - MSMI]
+9. Platform Configuration -> Runtime Error Logging -> IIO Error Enabling -> IIO MCA Support - [Enable]
+
+WHEA/APEI
+---------
+
+Setup Options to be changed for supporting WHEA Errorlogging:
+
+1. Platform Configuration -> Runtime Error Logging -> System Errors - [Enable]
+2. Platform Configuration -> Runtime Error Logging -> Whea settings -> WHEA Support - [Enable]
+3. Platform Configuration -> Runtime Error Logging -> Whea settings -> Whea Log Memory Error - [Enable]	
+4. Platform Configuration -> Runtime Error Logging -> Whea settings -> Whea Log Processor Error - [Enable]
+5. Platform Configuration -> Runtime Error Logging -> Whea settings -> Whea Log PCI Error - [Enable]		
+
+================================================
+Test procedure used to validate the Error Logging
+================================================
+
+1. Memory Error logging:
+
+------------------------------------------------------------------------------------------------------------
+A: Software Method : Used Intel ITP II C Scripts to inject memory errors.
+------------------------------------------------------------------------------------------------------------
+
+Procedure to use Intel C Scripts :
+
+	a. Intel PVT Version                   : 1.0.10175.200
+	b. Intel ITP II C Scripts Version      : 572261-cscripts-whitley-platforms-0-95-rev-816325
+	c. Run Cmd “startCScripts.py -a ipc” file that is found in the CScritps folder. 
+	d. Error Injection Syntax :
+   		Examples : 
+			ei.injectMemError(0x100000, errType = "uce", checkEInjLock=False) for uncorrectable. 
+			ei.injectMemError(0x100000 , errType = "ce", checkEInjLock=False)  for correctable
+	
+			Need to pass checkEInjLock = FALSE or else C Script 0.95 won't inject error. This is a known issue.
+			Later version of C Script may not need this argument.
+			To generate 3 multiple errors at once : it should be more than threshold
+			for x in range(0x3):
+			...     ei.injectMemError(0x1000 + x)
+			...
+   		
+   			sv.socket0.uncore.memss.mc0.ch0.correrrcnt_0.show to check Error Count for correctable errors
+			sv.socket0.uncore.memss.mc0.ch0.correrrorstatus.show to check error status check for correctale errors
+			sv.socket0.uncore.ha0_mc5_status.show to check the status of uncorrectable errors
+
+2. PCI Error logging:
+PCI errors are generated Using ITP C Scripts.
+	
+	Error Injection Syntax :
+   		Examples : 
+			ei.injectPCIeError(Socket#, Port_Num# errType = "uce") for uncorrectable
+			ei.injectMemError(Socket#, Port_Num# , errType = "ce")  for correctable
+
+3. IOH core, VT-d Error Logging:
+No hardware or software utilities are available to generate these Errors. Verified code flow with debugger utilities like Intel ITP. 
+
+4. IOMCA
+PCI errors are generated Using ITP C Scripts and Adaptec SCSI Card 29320LPE. 
+	
+	a. Injected the uncorrectable error using the PCIAdaptec card with EMCA and IOMCA enabled.
+	b. System resets with blue screen 0x124 MCE triggered and erors are logged in IIO MC Bank after system reset.
+	c. After Reset, IIO Machine Check Bank Status Register : (419h) IA32_MC6_STATUS  :  0xBF80000000010405
+	d. expected MCOD : Three MCA error codes :
+			•0010 000f rrrrrrrr: f=1 fatal, f=0 non fatal. (r= reserved/ software ignore)
+			•0000 0100 0000 0101 signifying an internal unclassified error type
+			•Status register also contains the Bus/Device/Function of the device which detected the error
+			
+	e. In windows you see the Blue screen Error like below
+		*** STOP: 0x00000124 (0x0000000000000000,0xFFFFFA800E658028,0x00000000FB800000,0
+		x0000000000000E0B)
+
+
+------------------------------------------------------------------------------------------------------------
+
+5. Testing procedure for SDDC/SDDC+1.
+----------------------------------------------------------
+SDDC
+----------------------------------------------------------
+a. Inject CE (as per threshold value).
+b. Confirm whether the Device is getting Tagged from the Debug log or ITP log.
+c. Select a different device ei.memDevs(dev0=3,dev0msk=0x8,dev1=4,dev1msk=0x10)
+d. Inject one more CE and in the ITP log 
+e. Check the ITP for this message "Correction was a +1 correction" if the SKU Supports SDDC+1 feature. 
+f. If SDDC+1 is not supported, MCE will happen when injecting one CE after device is getting tagged.
+
+6. Testing procedure for ADDDC/ADDDC+1
+
+-------------------------------------------------
+ADDDC - Single Region (Standard SKU supports SR)
+-------------------------------------------------
+
+a) First Strike (First Error) : Single Bank of a DRAM can be pushed to VLS (Virtual LockStep mode), during which process the failed Bank gets mapped out via copy to spare DRAM’s Bank.
+
+b) Second strike: BIOS can copy the full rank to the ECC DRAM device (SDDC), from then DIMM will have error detection capability only and not the correction capability.
+
+c) Third strike: AS the dimm lost the correction capability, system will generate MCE in Standard SKU
+
+----------------------------------------------
+Test case#1 : Same Device and Different banks
+-----------------------------------------------
+
+Inject Error on DEV 1 :
+
+First Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 3, errType = "ce")
+
+System needs to go to BANK VLS. Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in ADDDC mode.
+
+Second Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 1, errType = "ce")
+
+System needs to go to SDDCPlusone mode. Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in SDDDC mode.
+
+As this device (DEV 1) is tagged, tried injecting the third error on DEV 5.
+Third Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, errType = "ce")
+
+System will generate machine check excpetion.
+
+
+------------------------------------------------
+Test case#2 : Different Device and same banks
+------------------------------------------------
+
+Inject on DEV 1 :
+
+First Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 1, errType = "ce")
+
+System needs to go to BANK VLS. Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in ADDDC mode.
+
+Inject on DEV3 :
+
+Second Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 1, errType = "ce")
+
+System needs to go to SDDCPlusone mode. Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in SDDDC mode.
+
+As this device (DEV 3) is tagged, tried injecting the third error on DEV 5.
+Third Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, errType = "ce")
+
+System will generate machine check excpetion.
+
+
+----------------------------------------------
+ADDDC -multiRegion (Advanced SKU supports MR)
+-----------------------------------------------
+
+a) Two regions can be used to perform Virtual lock step, each region can be at Bank or Rank granularity. It support maximum of 2 region. It can be either BANK and BANK failure or BANK and RANK failure.
+
+b) An additional single bit correction is possible after the second spare copy.
+
+------------------------------------------------------------------------
+Test case#1 : BANK- BANK failure (2 bank failure on different devices).
+-------------------------------------------------------------------------
+
+Injected on DEV 1 :
+
+First Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 3, errType = "ce")
+
+System needs to go to BANK VLS and make use of ADDDC Region 0.Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in ADDDC mode.
+
+Injected on DEV 3.
+Second Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 1, errType = ce)
+
+System needs to go to BANK VLS and make use of ADDDC Region 1.Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in ADDDC mode.
+
+As 2 regions got exhausted, next error will push to SDDCplusone mode.
+
+Injected on DEV 5.
+
+Third Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 0, errType = "ce")
+
+System needs to go to SDDCPlus one mode.Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in SDDDC mode.
+
+Injected on DEV 7.
+Fourth Strike : Advanced SKU has SDDDPlusone + 1 capable, there won't be any MCE in case of next error as like Standard SKU.
+
+ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, errType = "ce")
+
+System should not generate MCE as expected. ITP log shows like below.
+"Log data is valid, overflow=1, ECC mode = sddc +1 1LM".
+
+--------------------------------------
+Test case#2 : BANK-RANK-SDDCPLUS mode
+--------------------------------------
+
+Injected on DEV 1 :
+
+First Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 3, errType = "ce")
+
+System needs to go to BANK VLS.Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in ADDDC mode.
+
+Injected on same DEV1 :
+
+Second Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 1, errType = "ce")
+
+System needs to go to RANK VLS mode.Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in ADDDC mode
+
+As 2 regions got exhausted, next error will push to SDDCplusone mode.
+
+Injected on Dev 5.
+Third Strike : ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, sub_rank=0,bank_group=2, bank = 2, errType = "ce")
+
+System needs to go to SDDCPlus mode.Run this ITP C Script command ras.adddc_status_check(socket=0,mc=0) to check system is in SDDDC mode.
+
+Injected on DEV 7.
+Fourth Strike : Advanced SKU has SDDDPlusone + 1 capable, there won't be any MCE in case of next error as like Standard SKU.
+
+ei.injectMemError(socket=0, channel=0, dimm=0, rank=1, errType = "ce")
+
+System should not generate MCE as expected. ITP log shows like below.
+"Log data is valid, overflow=1, ECC mode = sddc +1 1LM".
+
+
+================================================
+IPMI SEL log Format with Different Errors
+================================================
+
+BMC SEL log format on Memory errors:
+------------------------------------
+
+Memory SEL Log:
+
+  SensorType Bit[7:0] = EFI_MEMORY_SENSOR_TYPE <0x0C>
+  SensorNumber Bit[7:0] = 0x8
+
+  OEMEvData1 Bit[7:4] = 0xA (Indicates that OEMEvData2 and OEMEvData3 are OEM values)
+  OEMEvData1 Bit[3:0] = Error Type 
+    Error Type:
+      Correctable Memory Error: 0x00
+      UnCorrectable Memory Error: 0x01
+      Correctable Memory Error Logging Limit Reached: 0x05
+
+  OEMEvData2 Bit[0] = Current/Last Boot Error 
+    Current Boot : 0
+    Last Boot    : 1
+
+  DIMM Location is logged to "Event 3" as Follows 
+       
+	OEMEvData3 Bit[7:5]: CPU Socket Number.
+	OEMEvData3 Bit[4:2]: Channel Number.
+	OEMEvData3 Bit[1:0]: DIMM Number.
+
+ 
+BMC SEL log format on PCI and Leaky Bucket errors:
+--------------------------------------------------
+
+PCIe SEL Log:
+  SensorType Bit[7:0] = SEL_SENS_TYPE_CRIT_ERR <0x13>
+  SensorNumber Bit[7:0] = 0x00
+  OEMEvData1 Bit[7:4] = 0xA (Indicates that OEMEvData2 and OEMEvData3 are OEM values)
+  OEMEvData1 Bit[3:0] = Error Type 
+Error Type
+  PCI PERR                   -           0x04
+  PCI SERR                   -           0x05
+  Bus Correctable Error      -           0x07
+  Bus Uncorrectable Error    -           0x08
+  Bus Fatal Error            -           0x0A
+  OEMEvData2 Bit[7:0] = PCI bus number for failed device.
+  OEMEvData3 Bit[7:3] = PCI device number for failed device.
+  OEMEvData3 Bit[2:0] = PCI function number for failed device.
+
+LastBootError Behavior on  PCI and Leaky Bucket errors :
+--------------------------------------------------------
+
+PCIe SEL Log:
+  SensorType Bit[7:0] = SEL_SENS_TYPE_CRIT_ERR <0x13>
+  SensorNumber Bit[7:0] = 0x00
+  OEMEvData1 Bit[7:4] = 0xA (Indicates that OEMEvData2 and OEMEvData3 are OEM values)
+  OEMEvData1 Bit[3:0] = 0xF (Indicates LastBoot PCIe Error )
+  OEMEvData2 Bit[7:0] = PCI bus number for failed device.
+  OEMEvData3 Bit[7:3] = PCI device number for failed device.
+  OEMEvData3 Bit[2:0] = PCI function number for failed device.
+
+
+BMC SEL log format on Processor Errors.
+---------------------------------------------------
+
+Core/CHA/PCU Errors are logged as Processor configuration error in the SEL.
+
+  SensorType Bit[7:0] = EFI_PROCESSOR_SENSOR_TYPE <0x07>
+  SensorNumber Bit[7:0] = 0x0
+  
+  OEMEvData1 Bit[7:4] = 0xA (Indicates that OEMEvData2 and OEMEvData3 are OEM values)
+  OEMEvData1 Bit[3:0] = 0x05 (PROCESSOR CONFIGURATION_ERROR)
+  OEMEvData2 Bit[7:4] = CPU Socket Number.
+  OEMEvData2 Bit[3:0] = Bank Type (Please see below)
+    Bank Type: 
+     0 (0000) - None
+     1 (0001) - IFU
+     2 (0010) - DCU
+     3 (0011) - DTLB
+     4 (0100) - MLC
+     5 (0101) - PCU
+     6 (0110) - IIO
+     7 (0111) - CHA
+     8 (1000) - KTI
+
+  OEMEvData3 Bit[7:4] = Processor Error Type (Please see below)
+	Processor Error Type
+	 00 - Unknown
+	 01 - Cache
+	 02 - TLB
+	 03 - Bus
+	 04 - Micro Arch
+	
+  OEMEvData3 Bit[3:0] = Error Severity (Correctable/Uncorrectable)
+    Error Severity:
+     00 - Correctable Error
+     01 - Fatal Error
+     02 - Corrected Error
+     
+BMC SEL log format on Spare Core Errors.
+---------------------------------------------------
+
+Core/CHA/PCU Errors are logged as Processor configuration error in the SEL.
+
+  SensorType Bit[7:0] = EFI_PROCESSOR_SENSOR_TYPE <0x07>
+  SensorNumber Bit[7:0] = 0x0
+  
+  OEMEvData1 Bit[7:4] = 0xA (Indicates that OEMEvData2 and OEMEvData3 are OEM values)
+  OEMEvData1 Bit[3:0] = 0x05 (PROCESSOR CONFIGURATION_ERROR)
+  OEMEvData2 Bit[7:4] = CPU Socket Number.
+  OEMEvData2 Bit[3:0] = Error Severity (Correctable/Uncorrectable)
+    
+    Error Severity:
+     00 - Correctable Error
+     01 - Fatal Error
+     02 - Corrected Error
+     
+  OEMEvData3 Bit[7:4] = CPU Failed Core Number
+
+
+BMC SEL log format on UPI Errors.
+---------------------------------------------------
+
+  SensorType Bit[7:0] = EFI_PROCESSOR_SENSOR_TYPE <0x07>
+  SensorNumber Bit[7:0] = 0x0
+  
+  OEMEvData2 Bit[7:4] = CPU Socket Number.
+  OEMEvData2 Bit[3:0] = Bank Type (0x08 - KTI/UPI)
+  OEMEvData3 Bit[7:4] = Lan Index / UPI Port
+  OEMEvData3 Bit[3:0] = Error Severity (Correctable/Uncorrectable)
+    Error Severity:
+     00 - Correctable Error
+     01 - Fatal Error
+     02 - Corrected Error
+	 
+  
+BMC SEL log format on IIO Internal errors.
+---------------------------------------------------
+
+IIO Internal errors are logged as Processor configuration error in the SEL.
+
+  SensorType Bit[7:0] = EFI_PROCESSOR_SENSOR_TYPE <0x07>
+  SensorNumber Bit[7:0] = 0x0
+  
+  OEMEvData1 Bit[7:4] = 0xA (Indicates that OEMEvData2 and OEMEvData3 are OEM values)
+  OEMEvData1 Bit[3:0] = 0x05 (PROCESSOR CONFIGURATION_ERROR)
+  OEMEvData2 Bit[7:4] = CPU Socket Number.
+  OEMEvData2 Bit[2:1] = Stack Number.
+  OEMEvData2 Bit[0] = Current/Last Boot Error 
+    Current Boot : 0
+    Last Boot    : 1
+
+  OEMEvData3 Bit[7:0] = Error Type (Please refer below Error Types)
+  
+  For ICX CPU :
+  -------------
+
+  OTC Errors
+  -----------
+    IIO_INTERNAL_OTC_BIT00 = 0x70,  // otc_crdt_uf, Bits[0:0]
+    IIO_INTERNAL_OTC_BIT01 = 0x71,  // otc_crdt_of, Bits[1:1]
+    IIO_INTERNAL_OTC_BIT02 = 0x72,  // otc_par_hdr_rf, Bits[2:2]
+    IIO_INTERNAL_OTC_BIT03 = 0x73,  // otc_par_addr_rf, Bits[3:3]
+    IIO_INTERNAL_OTC_BIT04 = 0x74,  // otc_ecc_uncor_rf, Bits[4:4]
+    IIO_INTERNAL_OTC_BIT05 = 0x75,  // otc_cabort, Bits[5:5]
+    IIO_INTERNAL_OTC_BIT06 = 0x76,  // otc_mabort, Bits[6:6]
+    IIO_INTERNAL_OTC_BIT07 = 0x77,  // otc_mtc_tgt_err, Bits[7:7]
+    IIO_INTERNAL_OTC_BIT08 = 0x78,  // otc_ecc_cor_rf, Bits[8:8]
+    IIO_INTERNAL_OTC_BIT09 = 0x79,  // otc_mctp_bcast_to_dmi, Bits[9:9]
+    IIO_INTERNAL_OTC_BIT10 = 0x7A,  // otc_par_rte, Bits[10:10]
+    IIO_INTERNAL_OTC_BIT11 = 0x7B,  // otc_irp_dat_par, Bits[11:11]
+    IIO_INTERNAL_OTC_BIT12 = 0x7C,  // otc_irp_addr_par, Bits[12:12]
+    IIO_INTERNAL_OTC_BIT13 = 0x7D,  // otc_hw_assert, Bits[13:13]
+    IIO_INTERNAL_OTC_BIT14 = 0x7E,  // otc_txn_dur_lock, Bits[14:14]
+    IIO_INTERNAL_OTC_BIT15 = 0x7F,  // otc_gpsb_par, Bits[15:15]
+    IIO_INTERNAL_OTC_BIT16 = 0x80,  // otc_sb_uf, Bits[16:16]
+    IIO_INTERNAL_OTC_BIT17 = 0x81,  // otc_sb_of, Bits[17:17]
+    IIO_INTERNAL_OTC_BIT18 = 0x82,  // otc_misc_snarf_fifo_of, Bits[18:18]
+    IIO_INTERNAL_OTC_BIT19 = 0x83,  // otc_misc_snarf_fifo_uf, Bits[19:19]
+    IIO_INTERNAL_OTC_BIT20 = 0x84,  // otc_misc_oobmsm_mult_pend, Bits[20:20]
+    IIO_INTERNAL_OTC_RESERVED = 0x85 // Reserved / Others
+
+  Vtd Uncorrectable Fatal/Non-Fatal Errors
+  -----------------------------------------
+    IIO_INTERNAL_VTD_UNC_BIT00 = 0x90,  // iommu_data_iotlb_par_err, Bits[0:0]
+    IIO_INTERNAL_VTD_UNC_BIT01 = 0x91,  // pq_req_par_err, Bits[1:1]
+    IIO_INTERNAL_VTD_UNC_BIT02 = 0x92,  // pwt_req_par_err, Bits[2:2]
+    IIO_INTERNAL_VTD_UNC_BIT03 = 0x93,  // iommu_mem_resp_abort, Bits[3:3]
+    IIO_INTERNAL_VTD_UNC_BIT16 = 0x94,  // pmr_check_abort, Bits[16:16]
+    IIO_INTERNAL_VTD_UNC_BIT17 = 0x95,  // hpa_overflow, Bits[17:17]
+    IIO_INTERNAL_VTD_UNC_BIT18 = 0x96,  // gpa_overflow, Bits[18:18]
+    IIO_INTERNAL_VTD_UNC_BIT19 = 0x97,  // illegal_msi, Bits[19:19]
+    IIO_INTERNAL_VTD_UNC_BIT20 = 0x98,  // at_translated_illegal_device, Bits[20:20]
+    IIO_INTERNAL_VTD_UNC_BIT21 = 0x99,  // spare, Bits[21:21]
+    IIO_INTERNAL_VTD_UNC_RESERVED = 0x9A // Reserved / Others
+	
+  Vtd Corrected Errors
+  ---------------------
+    IIO_INTERNAL_VTD_COR_BIT00 = 0xA0,  // iommu_tag_iotlb_par_err, Bits[0:0]
+    IIO_INTERNAL_VTD_COR_BIT01 = 0xA1,  // iommu_tag_sl_l2_par_err, Bits[1:1]
+    IIO_INTERNAL_VTD_COR_BIT02 = 0xA2,  // iommu_tag_sl_l3_par_err, Bits[2:2]
+    IIO_INTERNAL_VTD_COR_BIT03 = 0xA3,  // iommu_tag_sl_l4_par_err, Bits[3:3]
+    IIO_INTERNAL_VTD_COR_BIT04 = 0xA4,  // iommu_tag_sl_l5_par_err, Bits[4:4]
+    IIO_INTERNAL_VTD_COR_BIT05 = 0xA5,  // iommu_tag_fl_l2_par_err, Bits[5:5]
+    IIO_INTERNAL_VTD_COR_BIT06 = 0xA6,  // iommu_tag_fl_l3_par_err, Bits[6:6]
+    IIO_INTERNAL_VTD_COR_BIT07 = 0xA7,  // iommu_tag_fl_l4_par_err, Bits[7:7]
+    IIO_INTERNAL_VTD_COR_BIT08 = 0xA8,  // iommu_tag_fl_l5_par_err, Bits[8:8]
+    IIO_INTERNAL_VTD_COR_BIT09 = 0xA9,  // iommu_tag_pasid_par_err, Bits[9:9]
+    IIO_INTERNAL_VTD_COR_BIT10 = 0xAA,  // iommu_tag_rcc_par_err, Bits[10:10]
+    IIO_INTERNAL_VTD_COR_BIT11 = 0xAB,  // iommu_tag_ice_par_err, Bits[11:11]
+    IIO_INTERNAL_VTD_COR_BIT12 = 0xAC,  // iommu_data_sl_l2_par_err, Bits[12:12]
+    IIO_INTERNAL_VTD_COR_BIT13 = 0xAD,  // iommu_data_sl_l3_par_err, Bits[13:13]
+    IIO_INTERNAL_VTD_COR_BIT14 = 0xAE,  // iommu_data_sl_l4_par_err, Bits[14:14]
+    IIO_INTERNAL_VTD_COR_BIT15 = 0xAF,  // iommu_data_sl_l5_par_err, Bits[15:15]
+    IIO_INTERNAL_VTD_COR_BIT16 = 0xB0,  // iommu_data_fl_l2_par_err, Bits[16:16]
+    IIO_INTERNAL_VTD_COR_BIT17 = 0xB1,  // iommu_data_fl_l3_par_err, Bits[17:17]
+    IIO_INTERNAL_VTD_COR_BIT18 = 0xB2,  // iommu_data_fl_l4_par_err, Bits[18:18]
+    IIO_INTERNAL_VTD_COR_BIT19 = 0xB3,  // iommu_data_fl_l5_par_err, Bits[19:19]
+    IIO_INTERNAL_VTD_COR_BIT20 = 0xB4,  // iommu_data_pasid_err, Bits[20:20]
+    IIO_INTERNAL_VTD_COR_BIT21 = 0xB5,  // iommu_data_rcc_par_err, Bits[21:21]
+    IIO_INTERNAL_VTD_COR_BIT22 = 0xB6,  // iommu_data_ice_par_err, Bits[22:22]
+    IIO_INTERNAL_VTD_COR_BIT23 = 0xB7,  // iommu_data_pwt_other_par_err, Bits[23:23]
+    IIO_INTERNAL_VTD_COR_RESERVED = 0xB8 // Reserved / Others
+	
+  IRP Errors
+  -----------
+    IIO_INTERNAL_IRPERR_BIT01 = 0xC0,  // wrcache_correcc_error_cs0, Bits[1:1]
+    IIO_INTERNAL_IRPERR_BIT02 = 0xC1,  // wrcache_correcc_error_cs1, Bits[2:2]
+    IIO_INTERNAL_IRPERR_BIT03 = 0xC2,  // protocol_rcvd_poison, Bits[3:3]
+    IIO_INTERNAL_IRPERR_BIT04 = 0xC3,  // wrcache_uncecc_error_cs0, Bits[4:4]
+    IIO_INTERNAL_IRPERR_BIT05 = 0xC4,  // wrcache_uncecc_error_cs1, Bits[5:5]
+    IIO_INTERNAL_IRPERR_BIT06 = 0xC5,  // csr_acc_32b_unaligned, Bits[6:6]
+    IIO_INTERNAL_IRPERR_BIT10 = 0xC6,  // protocol_rcvd_unexprsp, Bits[10:10]
+    IIO_INTERNAL_IRPERR_BIT13 = 0xC7,  // protocol_qt_overflow_underflow, Bits[13:13]
+    IIO_INTERNAL_IRPERR_BIT14 = 0xC8,  // protocol_parity_error, Bits[14:14]
+    IIO_INTERNAL_IRPERR_BIT16 = 0xC9,  // p2p_hdr_rf_addr_par_error, Bits[16:16]
+    IIO_INTERNAL_IRPERR_BIT17 = 0xCA,  // faf_rf_addr_par_error, Bits[17:17]
+    IIO_INTERNAL_IRPERR_BIT18 = 0xCB,  // addrcam0_addr_par_error, Bits[18:18]
+    IIO_INTERNAL_IRPERR_BIT19 = 0xCC,  // addrcam1_addr_par_error, Bits[19:19]
+    IIO_INTERNAL_IRPERR_BIT20 = 0xCD,  // pf_timeout_err_cs0, Bits[20:20]
+    IIO_INTERNAL_IRPERR_BIT21 = 0xCE,  // pf_timeout_err_cs1, Bits[21:21]
+    IIO_INTERNAL_IRPERR_RESERVED = 0xCF // Reserved / Others
+	
+  Ring Errors
+  ------------
+    IIO_INTERNAL_IRPRING_BIT00 = 0xD0,  // bl_parity_error, Bits[0:0]
+    IIO_INTERNAL_IRPRING_BIT01 = 0xD1,  // snp_addr_parity_error, Bits[1:1]
+    IIO_INTERNAL_IRPRING_BIT02 = 0xD2,  // rxdata1_parity_error, Bits[2:2]
+    IIO_INTERNAL_IRPRING_BIT03 = 0xD3,  // rxdata0_parity_error, Bits[3:3]
+    IIO_INTERNAL_IRPRING_BIT04 = 0xD4,  // blq_parity_error, Bits[4:4]
+    IIO_INTERNAL_IRPRING_BIT05 = 0xD5,  // bl_ecc_corrected_error, Bits[5:5]
+    IIO_INTERNAL_IRPRING_BIT06 = 0xD6,  // bl_ecc_uncorrectable_error, Bits[6:6]
+    IIO_INTERNAL_IRPRING_BIT07 = 0xD7,  // bl_cqid_parity_error, Bits[7:7]
+    IIO_INTERNAL_IRPRING_BIT08 = 0xD8,  // ak0_cqid_parity_error, Bits[8:8]
+    IIO_INTERNAL_IRPRING_BIT09 = 0xD9,  // ak1_cqid_parity_error, Bits[9:9]
+    IIO_INTERNAL_IRPRING_BIT10 = 0xDA,  // txq0_addr_par_error, Bits[10:10]
+    IIO_INTERNAL_IRPRING_BIT11 = 0xDB,  // txq1_addr_par_error, Bits[11:11]
+    IIO_INTERNAL_IRPRING_BIT12 = 0xDC,  // snpq_rf_addr_parity_error, Bits[12:12]
+    IIO_INTERNAL_IRPRING_BIT13 = 0xDD,  // unexpected_go_err_rcvd, Bits[13:13]
+    IIO_INTERNAL_IRPRING_RESERVED = 0xDE // Reserved / Others
+	
+  ITC Errors
+  -----------
+    IIO_INTERNAL_ITC_BIT12 = 0xE0,  // itc_enq_data_overflow, Bits[12:12]
+    IIO_INTERNAL_ITC_BIT13 = 0xE1,  // sw2iosf_mps_err, Bits[13:13]
+    IIO_INTERNAL_ITC_BIT14 = 0xE2,  // sw2iosf_req_buf_uf, Bits[14:14]
+    IIO_INTERNAL_ITC_BIT15 = 0xE3,  // sw2iosf_req_buf_ov, Bits[15:15]
+    IIO_INTERNAL_ITC_BIT16 = 0xE4,  // itc_irp_cred_uf, Bits[16:16]
+    IIO_INTERNAL_ITC_BIT17 = 0xE5,  // itc_irp_cred_of, Bits[17:17]
+    IIO_INTERNAL_ITC_BIT18 = 0xE6,  // itc_par_iosf_dat, Bits[18:18]
+    IIO_INTERNAL_ITC_BIT19 = 0xE7,  // itc_par_hdr_rf, Bits[19:19]
+    IIO_INTERNAL_ITC_BIT20 = 0xE8,  // itc_vtmisc_hdr_rf, Bits[20:20]
+    IIO_INTERNAL_ITC_BIT21 = 0xE9,  // itc_par_addr_rf, Bits[21:21]
+    IIO_INTERNAL_ITC_BIT22 = 0xEA,  // itc_ecc_cor_rf, Bits[22:22]
+    IIO_INTERNAL_ITC_BIT23 = 0xEB,  // itc_ecc_uncor_rf, Bits[23:23]
+    IIO_INTERNAL_ITC_BIT24 = 0xEC,  // itc_cabort, Bits[24:24]
+    IIO_INTERNAL_ITC_BIT25 = 0xED,  // itc_mabort, Bits[25:25]
+    IIO_INTERNAL_ITC_BIT26 = 0xEE,  // inb_unsuccessful_cmpl, Bits[26:26]
+    IIO_INTERNAL_ITC_BIT27 = 0xEF,  // itc_enq_overflow, Bits[27:27]
+    IIO_INTERNAL_ITC_BIT28 = 0xF0,  // itc_misc_prh_overflow, Bits[28:28]
+    IIO_INTERNAL_ITC_BIT29 = 0xF1,  // itc_hw_assert, Bits[29:29]
+    IIO_INTERNAL_ITC_BIT30 = 0xF2,  // itc_par_iosf_cmd, Bits[30:30]
+    IIO_INTERNAL_ITC_BIT31 = 0xF3,  // itc_msgd_illegal_size, Bits[31:31]
+    IIO_INTERNAL_ITC_RESERVED = 0xF4 // Reserved / Others
+    
+    
+  For CPX CPU : 
+  -------------
+  
+  CBDMA Channel Errors 
+  ------------------
+    IIO_INTERNAL_CHN_ERR_BIT00 = 0x50,// dma_trans_saddr_err, Bits[0:0]
+    IIO_INTERNAL_CHN_ERR_BIT01 = 0x51,// dma_xfrer_daddr_err, Bits[1:1]
+    IIO_INTERNAL_CHN_ERR_BIT02 = 0x52,// nxt_desc_addr_err, Bits[2:2]
+    IIO_INTERNAL_CHN_ERR_BIT03 = 0x53,// descriptor_error, Bits[3:3]
+    IIO_INTERNAL_CHN_ERR_BIT04 = 0x54,// chn_addr_valerr, Bits[4:4]
+    IIO_INTERNAL_CHN_ERR_BIT05 = 0x55,// chancmd_err, Bits[5:5]
+    IIO_INTERNAL_CHN_ERR_BIT06 = 0x56,// cdata_parerr, Bits[6:6]
+    IIO_INTERNAL_CHN_ERR_BIT07 = 0x57,// dma_data_parerr, Bits[7:7]
+    IIO_INTERNAL_CHN_ERR_BIT08 = 0x58,// rd_data_err, Bits[8:8]
+    IIO_INTERNAL_CHN_ERR_BIT09 = 0x59,// wr_data_err, Bits[9:9]
+    IIO_INTERNAL_CHN_ERR_BIT10 = 0x5A,// desc_ctrl_err, Bits[10:10]
+    IIO_INTERNAL_CHN_ERR_BIT11 = 0x5B,// desc_len_err, Bits[11:11]
+    IIO_INTERNAL_CHN_ERR_BIT12 = 0x5C,// mp_addr_err, Bits[12:12]
+    IIO_INTERNAL_CHN_ERR_BIT13 = 0x5D,// int_cfg_err,  Bits[13:13]
+    IIO_INTERNAL_CHN_ERR_BIT16 = 0x5E,// crc_xorp_err, Bits[16:16]
+    IIO_INTERNAL_CHN_ERR_BIT17 = 0x5F,// xorqerr, Bits[17:17]
+    IIO_INTERNAL_CHN_ERR_BIT18 = 0x60,// desccnterr, Bits[18:18]
+    IIO_INTERNAL_CHN_ERR_BIT19 = 0x61,// dif_allftag_err, Bits[19:19]
+    IIO_INTERNAL_CHN_ERR_BIT20 = 0x62,// dif_guardtag_err, Bits[20:20]
+    IIO_INTERNAL_CHN_ERR_BIT21 = 0x63,// dif_apptag_err, Bits[21:21]
+    IIO_INTERNAL_CHN_ERR_BIT22 = 0x64,// dif_reftag_err, Bits[22:22]
+    IIO_INTERNAL_CHN_ERR_BIT23 = 0x65,// dif_bndl_err, Bits[23:23]
+    IIO_INTERNAL_CHN_ERR_RESERVED = 0x66 // Reserved / Others
+    
+  OTC Errors
+  -----------
+    IIO_INTERNAL_OTC_BIT00 = 0x70,  // otc_crdt_uf, Bits[0:0]
+    IIO_INTERNAL_OTC_BIT01 = 0x71,  // otc_crdt_of, Bits[1:1]
+    IIO_INTERNAL_OTC_BIT02 = 0x72,  // otc_par_hdr_rf, Bits[2:2]
+    IIO_INTERNAL_OTC_BIT03 = 0x73,  // otc_par_addr_rf, Bits[3:3]
+    IIO_INTERNAL_OTC_BIT04 = 0x74,  // otc_ecc_uncor_rf, Bits[4:4]
+    IIO_INTERNAL_OTC_BIT05 = 0x75,  // otc_cabort, Bits[5:5]
+    IIO_INTERNAL_OTC_BIT06 = 0x76,  // otc_mabort, Bits[6:6]
+    IIO_INTERNAL_OTC_BIT07 = 0x77,  // otc_mtc_tgt_err, Bits[7:7]
+    IIO_INTERNAL_OTC_BIT08 = 0x78,  // otc_ecc_cor_rf, Bits[8:8]
+    IIO_INTERNAL_OTC_BIT09 = 0x79,  // otc_mctp_bcast_to_dmi, Bits[9:9]
+    IIO_INTERNAL_OTC_BIT10 = 0x7A,  // otc_par_rte, Bits[10:10]
+    IIO_INTERNAL_OTC_BIT11 = 0x7B,  // otc_irp_dat_par, Bits[11:11]
+    IIO_INTERNAL_OTC_BIT12 = 0x7C,  // otc_irp_addr_par, Bits[12:12]
+    IIO_INTERNAL_OTC_BIT13 = 0x7D,  // otc_hw_assert, Bits[13:13]
+    IIO_INTERNAL_OTC_RESERVED = 0x85 // Reserved / Others
+    
+  Vtd Uncorrectable Fatal/Non-Fatal Errors
+  ----------------------------------------- 
+    IIO_INTERNAL_VTD_UNC_BIT00 = 0x90,  // perr_context_cache, Bits[0:0]
+    IIO_INTERNAL_VTD_UNC_BIT01 = 0x91,  // perr_l1_lookup, Bits[1:1]
+    IIO_INTERNAL_VTD_UNC_BIT02 = 0x92,  // perr_l2_lookup, Bits[2:2]
+    IIO_INTERNAL_VTD_UNC_BIT03 = 0x93,  // perr_l3_lookup, Bits[3:3]
+    IIO_INTERNAL_VTD_UNC_BIT04 = 0x94,  // perr_tlb0, Bits[4:4]
+    IIO_INTERNAL_VTD_UNC_BIT05 = 0x95,  // perr_tlb1, Bits[5:5]
+    IIO_INTERNAL_VTD_UNC_BIT06 = 0x96,  // unsucc_ci_rdcp, Bits[6:6]
+    IIO_INTERNAL_VTD_UNC_BIT07 = 0x97,  // miscerrs, Bits[7:7]
+    IIO_INTERNAL_VTD_UNC_BIT08 = 0x98,  // protmemviol, Bits[8:8]
+    IIO_INTERNAL_VTD_UNC_BIT31 = 0x99,  // vtderr, Bits[31:31]
+    IIO_INTERNAL_VTD_UNC_RESERVED = 0x9A // Reserved / Others
+    
+    
+  IRP Errors
+  ----------
+    IIO_INTERNAL_IRPERR_BIT01 = 0xC0,  // wrcache_correcc_error_cs0, Bits[1:1]
+    IIO_INTERNAL_IRPERR_BIT02 = 0xC1,  // wrcache_correcc_error_cs1, Bits[2:2]
+    IIO_INTERNAL_IRPERR_BIT03 = 0xC2,  // protocol_rcvd_poison, Bits[3:3]
+    IIO_INTERNAL_IRPERR_BIT04 = 0xC3,  // wrcache_uncecc_error_cs0, Bits[4:4]
+    IIO_INTERNAL_IRPERR_BIT05 = 0xC4,  // wrcache_uncecc_error_cs1, Bits[5:5]
+    IIO_INTERNAL_IRPERR_BIT06 = 0xC5,  // csr_acc_32b_unaligned, Bits[6:6]
+    IIO_INTERNAL_IRPERR_BIT10 = 0xC6,  // protocol_rcvd_unexprsp, Bits[10:10]
+    IIO_INTERNAL_IRPERR_BIT13 = 0xC7,  // protocol_qt_overflow_underflow, Bits[13:13]
+    IIO_INTERNAL_IRPERR_BIT14 = 0xC8,  // protocol_parity_error, Bits[14:14]
+    IIO_INTERNAL_IRPERR_RESERVED = 0xCF // Reserved / Others
+    
+  Ring Errors
+  ------------
+    IIO_INTERNAL_IRPRING_BIT00 = 0xD0,  // bl_parity_error, Bits[0:0]
+    IIO_INTERNAL_IRPRING_BIT01 = 0xD1,  // snp_addr_parity_error, Bits[1:1]
+    IIO_INTERNAL_IRPRING_BIT02 = 0xD2,  // rxdata1_parity_error, Bits[2:2]
+    IIO_INTERNAL_IRPRING_BIT03 = 0xD3,  // rxdata0_parity_error, Bits[3:3]
+    IIO_INTERNAL_IRPRING_BIT04 = 0xD4,  // blq_parity_error, Bits[4:4]
+    IIO_INTERNAL_IRPRING_RESERVED = 0xDE // Reserved / Others
+    
+  ITC Errors
+  -----------
+    IIO_INTERNAL_ITC_BIT16 = 0xE4,  // itc_irp_cred_uf, Bits[16:16]
+    IIO_INTERNAL_ITC_BIT17 = 0xE5,  // itc_irp_cred_of, Bits[17:17]
+    IIO_INTERNAL_ITC_BIT18 = 0xE6,  // itc_par_pcie_dat, Bits[18:18]
+    IIO_INTERNAL_ITC_BIT19 = 0xE7,  // itc_par_hdr_rf, Bits[19:19]
+    IIO_INTERNAL_ITC_BIT20 = 0xE8,  // itc_vtmisc_hdr_rf, Bits[20:20]
+    IIO_INTERNAL_ITC_BIT21 = 0xE9,  // itc_par_addr_rf, Bits[21:21]
+    IIO_INTERNAL_ITC_BIT22 = 0xEA,  // itc_ecc_cor_rf, Bits[22:22]
+    IIO_INTERNAL_ITC_BIT23 = 0xEB,  // itc_ecc_uncor_rf, Bits[23:23]
+    IIO_INTERNAL_ITC_BIT24 = 0xEC,  // itc_cabort, Bits[24:24]
+    IIO_INTERNAL_ITC_BIT25 = 0xED,  // itc_mabort, Bits[25:25]
+    IIO_INTERNAL_ITC_BIT26 = 0xEE,  // itc_mtc_tgt_err, Bits[26:26]
+    IIO_INTERNAL_ITC_BIT27 = 0xEF,  // itc_enq_overflow, Bits[27:27]
+    IIO_INTERNAL_ITC_BIT28 = 0xF0,  // itc_misc_prh_overflow, Bits[28:28]
+    IIO_INTERNAL_ITC_BIT29 = 0xF1,  // itc_hw_assert, Bits[29:29]
+    IIO_INTERNAL_ITC_RESERVED = 0xF4 // Reserved / Others
+    
+  CBDMA Uncorrectable Errors 
+  --------------------------
+    IIO_INTERNAL_DMA_UNC_BIT02 = 0xF5, // received_poisoned_data_from_dp_status, Bits[2:2]
+    IIO_INTERNAL_DMA_UNC_BIT03 = 0xF6, // dma_internal_hw_parity_error_status, Bits[3:3]
+    IIO_INTERNAL_DMA_UNC_BIT04 = 0xF7, // cfg_reg_parity_error_status, Bits[4:4]
+    IIO_INTERNAL_DMA_UNC_BIT07 = 0xF8, // rd_cmpl_header_error_status, Bits[7:7]
+    IIO_INTERNAL_DMA_UNC_BIT10 = 0xF9, // read_address_decode_error_status, Bits[10:10]
+    IIO_INTERNAL_DMA_UNC_BIT12 = 0xFA, // syndrome Bits[12:12]
+    IIO_INTERNAL_DMA_UNC_RESERVED = 0xFB // Reserved / Others
+

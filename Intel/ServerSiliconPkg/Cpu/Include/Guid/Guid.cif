@@ -1,0 +1,8 @@
+<component>
+    name = "Guid"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Cpu\Include\Guid\"
+    RefName = "ServerSiliconPkg.Cpu.Include.Guid"
+[files]
+"CpuNvramData.h"	
+<endComponent>

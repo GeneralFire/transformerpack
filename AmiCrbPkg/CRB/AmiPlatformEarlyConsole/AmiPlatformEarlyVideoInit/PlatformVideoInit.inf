@@ -1,0 +1,43 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+## @file
+#  This file provide the LIB function for the Platform Video Controller Init 
+##
+[Defines]
+  INF_VERSION       = 0x00010005
+  VERSION_STRING    = 1.0
+  BASE_NAME         = PlatformVideoInitLib
+  LIBRARY_CLASS     = PlatformVideoInitLib
+  MODULE_TYPE       = BASE
+  
+[Sources]
+  PlatformVideoInit.c
+  PlatformVideoInit.h	
+  FastVideo.c
+  FastVideo.h
+  AspeedVideo.c
+  AspeedVideo.h
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiCrbPkg/AmiCrbPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec 
+  
+[LibraryClasses]
+  DebugLib
+  PreSiliconEnvDetectLib
+ 
+[Ppis]
+  gEfiPeiStallPpiGuid
+  
+[Guids] 
+  gVideoInitDoneSentGuid	# Early Video Initialization
+
+[Pcd] 
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  

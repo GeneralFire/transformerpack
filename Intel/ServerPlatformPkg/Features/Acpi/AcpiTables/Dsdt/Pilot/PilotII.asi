@@ -1,0 +1,134 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2001 - 2013 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+//------------------------------------------------------------------------
+// !!! BELOW ARE GENERIC SIO CONTROL METHODS. DO NOT REQUIRE MODIFICATIONS
+//----------------------------------------------------------------------
+//  Set of Field names to be used to access SIO configuration space.
+    OperationRegion(SMCF,    //Name of Operation Region for SuperIO device
+      SystemIO,    //Type of address space
+      0x4E,        //Offset to start of region
+      2)           //Size of region in bytes
+                   //End of Operation Region
+    Field(SMCF, ByteAcc, NoLock,Preserve){
+      INXF, 8,     //Field named INDX is 8 bit wide
+      DATF, 8      //Field DATA is 8 bit wide
+    }
+
+//----------------------------------------------------------------------
+//  Set of Field names to be used to access SIO configuration space.
+//----------------------------------------------------------------------
+    IndexField(INXF, DATF, ByteAcc, NoLock, Preserve){
+      //
+      // Global Configuration Registers:
+      //
+      Offset(7),
+      LDNF, 8,  // Logical Device Number
+
+      Offset(0x20),
+      DIDF, 8, // Super IO Device ID register
+
+      //
+      // Per-Device Configuration Registers:
+      //
+      Offset(0x30),
+      ACTF, 8, // Active register
+
+      Offset(0x60),
+      AHFF, 8, // Primary i/o base address, high byte
+      ALFF, 8, //  low byte
+
+      Offset(0x70),
+      INTF, 8, // Primary IRQ register
+
+      Offset(0x71),
+      INSF, 8, // IRQ type select (some devices)
+
+      Offset(0x74),
+      DMCF, 8, // Primary DMA channel (some devices)
+    } //End of indexed field
+
+
+//------------------------------------------------------------------------
+// Enter Config Mode, Select LDN
+// Arg0 : Logical Device number
+//------------------------------------------------------------------------
+
+    Method(ENFF, 1){
+      Store(0x5a, INXF)
+      Store(Arg0, LDNF)    //Select LDN
+    }
+
+
+//------------------------------------------------------------------------
+// Exit Config Mode
+//------------------------------------------------------------------------
+    Method(EXFF, 0){
+      Store(0xa5, INXF)
+    }
+
+//Implement the serial port _PRW method (GPE 0x1D - GPIO 13 wake from S5).
+//------------------------------------------------------------------------
+// SuperI/O SWC ACPI block IO registers
+//------------------------------------------------------------------------
+    OperationRegion(SWCR,    //Name of Operation Region for SuperIO device
+      SystemIO,    //Type of address space
+      0x680,       //Offset to start of region
+      2)           //Size of region in bytes
+                   //End of Operation Region
+    Field(SWCR, ByteAcc, NoLock,Preserve){
+      SWCI, 8,     //Field named INDX is 8 bit wide
+      SWCD, 8      //Field DATA is 8 bit wide
+    }
+
+    IndexField(SWCI, SWCD, ByteAcc, NoLock, Preserve){
+      Offset(0x00), RIS1, 1,    // +0.0 = RI1 Event Status
+                    RIS2, 1,    // +0.1 = RI2 Event Status
+                        , 6,
+      Offset(0x02), RIE1, 1,    // +2.0 = RI1 Event Enable
+                    RIE2, 1,    // +2.1 = RI2 Event enable
+                        , 6,
+    } //end of indexed field
+
+    Method(PTS2, 1){
+// Clear RI2 status
+      Store(1, RIS2)        // Clear RI2 Event Status
+      Store(1, RIE2)        // Enable RI2 Event
+    }
+
+    Method(WAK2, 1){
+// Disable RI2 Event
+      Store(0, RIE2)        // Disable RI2 Event
+      Store(1, RIS2)        // Clear RI2 Event Status
+    }
+
+#include "Uar1.asi"
+#include "Uar2.asi"
+#include "Ps2.asi"
+#include "IpmiOprRegions.asi"
+
+

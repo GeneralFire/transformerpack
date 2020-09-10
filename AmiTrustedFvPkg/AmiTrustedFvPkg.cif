@@ -1,0 +1,19 @@
+<component>
+	name = "AmiTrustedFvPkg"
+	category = eModule
+	LocalRoot = "AmiTrustedFvPkg"
+	RefName = "AmiTrustedFvPkg"
+[files]
+"AmiTrustedFvPkg.dec"
+"AmiTrustedFvPkg.chm"
+"AmiTrustedFvPkg.sdl"
+"AmiTrustedFvPkg.mak"
+[parts]
+"FvDxeValidate"
+"AmiTrustedFvPkg.Include"
+"FvDxeSig"
+"FvDxeKey"
+[dependency]
+AmiCryptoPkg >= "SS: AptioV;$/AptioV/Source/Interfaces/AmiCryptoPkg;AmiCryptoPkg_38.01"
+<endComponent>
+    

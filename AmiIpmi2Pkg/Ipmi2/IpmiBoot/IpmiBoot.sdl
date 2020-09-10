@@ -1,0 +1,148 @@
+TOKEN
+    Name  = "IpmiBoot_SUPPORT"
+    Value  = 1
+    Help  = "Switch for Enabling IpmiBoot support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+PATH
+    Name  = "IpmiBoot_DIR"
+    Path  = "AmiIpmi2Pkg/Ipmi2/IpmiBoot"
+    Help  = "Path to IpmiBoot sub module in project."
+End
+
+ELINK
+    Name  = "RestoreBootorder,"
+    Parent  = "ReadBootOptions,"
+    InvokeOrder = BeforeParent
+    Help  = "Elink to include function to restore boot order before reading boot options."
+End
+
+ELINK
+    Name  = "SetIpmiBootOptionPriorities,"
+    Parent  = "SetBootOptionPriorities,"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include function to set boot order after BDS sets boot order."
+End
+
+ELINK
+    Name  = "ClearIpmiBootVariable,"
+    Parent  = "RestoreBootorder,"
+    InvokeOrder = BeforeParent
+    Token = "IPMI_BOOT_OVERRIDE" "=" "1"
+    Help  = "Elink to include function to clear Ipmi Boot variable before restoring boot order, if Ipmi boot override token is enabled."
+End
+
+ELINK
+    Name  = "SaveIpmiSetBootOrder,"
+    Parent  = "SaveBootOptions,"
+    InvokeOrder = AfterParent
+    Token = "IPMI_BOOT_OVERRIDE" "=" "1"
+    Help  = "Elink to include function to Save Ipmi boot order after BDS saves boot options, if Ipmi boot override token is enabled."
+End
+
+ELINK
+    Name  = "$(IpmiBoot_DIR)/ByPassUserPassWord.c"
+    Parent  = "TSE_SOURCE_FILES"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include ByPassUserPassWord.c in TSE source files list."
+End
+
+ELINK
+    Name  = "AmiIpmiBootLib"
+    Parent  = "ADDITIONAL_AMITSE_LibraryClasses"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include IpmiBootLib in TSE library classes list."
+End
+
+ELINK
+    Name  = "IpmiByPassUserPassWord,"
+    Parent  = "ProcessConInAvailability,"
+    Priority  = 0
+    InvokeOrder = ReplaceParent
+    Help  = "Elink to support bypass user password in Ipmi while entering into setup."
+End
+
+ELINK
+    Name  = "AmiIpmi2Pkg/AmiIpmi2Pkg.dec"
+    Parent  = "ADDITIONAL_AMITSE_Packages"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include AmiIpmi2Pkg.dec in AMITSE Packages list."
+End
+
+ELINK
+    Name  = "AmiTsePkg/AmiTsePkg.dec"
+    Parent  = "ADDITIONAL_AMITSE_Packages"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include AmiIpmi2Pkg.dec in AMITSE Packages list."
+End
+
+ELINK
+    Name  = "gEfiDxeIpmiTransportProtocolGuid"
+    Parent  = "ADDITIONAL_AMITSE_Protocols"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include Efi Dxe Ipmi Transport Protocol Guid in AMITSE Protocols list."
+End
+
+ELINK
+    Name  = "gEfiIpmiBootGuid"
+    Parent  = "ADDITIONAL_AMITSE_Guids"
+    InvokeOrder = AfterParent
+    Help  = "Elink to include Efi Ipmi Boot Protocol Guid in AMITSE Guids list."
+End
+
+ELINK
+    Name  = "ADDITIONAL_IPMI_BOOT_GUIDS"
+    Help  = "Parent Elink to link all Additional IPMI Boot Guids."
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "ADDITIONAL_IPMI_BOOT_PACKAGES"
+    Help  = "Parent Elink to link all Additional IPMI Boot Packages."
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "AmiRedfishPkg/AmiRedfishPkg.dec"
+    Parent  = "ADDITIONAL_IPMI_BOOT_PACKAGES"
+    InvokeOrder = AfterParent
+    Token = "RfBootOptions_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "gAmiRedfishHiProtocolGuid"
+    Parent  = "ADDITIONAL_IPMI_BOOT_PROTOCOL_GUIDS"
+    InvokeOrder = AfterParent
+    Token = "RfBootOptions_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "IpmiBoot"
+    File  = "IpmiBoot.inf"
+    Package  = "AmiIpmi2Pkg"
+    PreProcess = Yes
+    Help  = "Includes IpmiBoot.inf to Project."
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiIpmi2Pkg.IpmiBoot"
+    Override  = "AmiModulePkg.Bds"
+    Help  = "Library mapping for IpmiBoot under BDS.inf in Platform.dsc."
+End
+
+PcdMapping
+    Name  = "PcdFixedDebugPrintErrorLevel"
+    GuidSpace  = "gEfiMdePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x00"
+    Override  = "AmiIpmi2Pkg.IpmiBoot"
+    Offset  = 00h
+    Length  = 00h
+    Help  = "Disables debug messages based on SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT token value"
+    TargetDSC = Yes
+    Token = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT" "=" "0"
+    Token = "IpmiBoot_SUPPORT" "=" "1"
+End

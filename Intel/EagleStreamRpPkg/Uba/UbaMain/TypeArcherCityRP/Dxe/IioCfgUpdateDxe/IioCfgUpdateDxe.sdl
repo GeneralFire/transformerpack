@@ -1,0 +1,24 @@
+TOKEN
+    Name  = "IioCfgUpdateDxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling IioCfgUpdateDxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "IioCfgUpdateDxeArcherCityRP_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable IioCfgUpdateDxeArcherCityRP support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "IioCfgUpdateDxeArcherCityRP"
+    File  = "IioCfgUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "PPO_FLAG" "=" "0"
+    Token = "IioCfgUpdateDxeArcherCityRP_INF_SUPPORT" "=" "1"
+End
+

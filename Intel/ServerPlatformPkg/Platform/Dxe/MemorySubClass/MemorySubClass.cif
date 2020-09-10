@@ -1,0 +1,11 @@
+<component>
+	name = "MemorySubClass"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Platform\Dxe\MemorySubClass\"
+	RefName = "ServerPlatformPkg.Platform.Dxe.MemorySubClass"
+[INF]
+"MemorySubClass.inf"
+[files]
+"MemorySubClass.h"	
+"MemorySubClass.sdl"	
+<endComponent>

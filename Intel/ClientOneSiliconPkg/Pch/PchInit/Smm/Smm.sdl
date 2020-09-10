@@ -1,0 +1,31 @@
+TOKEN
+    Name  = "Smm_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Smm support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "Smm"
+    TokenType = Expression
+    TargetDSC = Yes
+End
+
+TOKEN
+    Name  = "PchInitSmm_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PchInitSmm support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "PchInitSmm"
+    File  = "PchInitSmm.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+    Token = "PchInitSmm_INF_SUPPORT" "=" "1"
+End
+

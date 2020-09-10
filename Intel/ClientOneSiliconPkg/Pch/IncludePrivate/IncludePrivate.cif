@@ -1,0 +1,14 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.Pch.IncludePrivate"
+[files]					
+"PchConfigHob.h"		
+"PchNvsAreaDef.h"	
+"PchRstHob.h"	
+"SiScheduleResetHob.h"	
+[parts]
+"ClientOneSiliconPkg.Pch.IncludePrivate.Library"
+"ClientOneSiliconPkg.Pch.IncludePrivate.Protocol"
+<endComponent>

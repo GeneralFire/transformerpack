@@ -1,0 +1,15 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\PcieRp\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.PcieRp.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.IpBlock.PcieRp.IncludePrivate.Library"
+[files]
+"Register\EnterprisePcieRpRegs.h"
+"Register\PcieSipRegs.h"
+"Register\Generated\EnterprisePcieCfgRegs.h"
+"Register\Generated\EnterprisePcieMmioExpptmbarRegs.h"
+"Register\Generated\EnterprisePcieMmioExpptmbarSbRegs.h"
+"Register\Generated\EnterprisePcieMsgRegs.h"
+<endComponent>

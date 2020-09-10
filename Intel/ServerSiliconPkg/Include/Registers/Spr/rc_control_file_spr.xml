@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+-->
+
+<Configuration>
+	<RitVersion>08b5241b7d2fdda52fd0f8706b965673b0736642</RitVersion>
+	<CsrWorkbook>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww29h_SPRMCC-1D\RIT-RcRegs\CsrWorkbook.SPR.20ww31.xlsx</CsrWorkbook>
+	<UseLegacyAddressCodes>false</UseLegacyAddressCodes>
+	<Program>
+		<Name>SPRA0</Name>
+		<FilterByXmlName>True</FilterByXmlName>
+		<CrifFile>
+			<File>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\19ww48f-1p0-SPR-4D\XML\19ww48f-1p0-SPR-4D.zip</File>
+			<RegistersType>CSR</RegistersType>
+		</CrifFile>
+		<WAFile>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww29h_SPRMCC-1D\RIT-RcRegs\new_wa_file_spr.xml</WAFile>
+	</Program>
+
+	<Program>
+		<Name>SPRB0</Name>
+		<FilterByXmlName>True</FilterByXmlName>
+		<CrifFile>
+			<File>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww16a-SPRA0+B0+HBM-Combo-4D\XML\20ww16a-SPRB0-4D.zip</File>
+			<RegistersType>CSR</RegistersType>
+		</CrifFile>
+		<WAFile>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww29h_SPRMCC-1D\RIT-RcRegs\new_wa_file_spr.xml</WAFile>
+	</Program>
+
+	<Program>
+		<Name>SPRHBM</Name>
+		<FilterByXmlName>True</FilterByXmlName>
+		<CrifFile>
+			<File>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww24c-SPRHBM-4D\XML\20ww24c-SPRHBM-4D.zip</File>
+			<RegistersType>CSR</RegistersType>
+		</CrifFile>
+		<WAFile>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww29h_SPRMCC-1D\RIT-RcRegs\new_wa_file_spr.xml</WAFile>
+	</Program>
+
+	<Program>
+		<Name>SPRC0</Name>
+		<FilterByXmlName>True</FilterByXmlName>
+		<CrifFile>
+			<File>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww30d-SPRC0-4D\XML\20ww30d-SPRC0-4D.zip</File>
+			<RegistersType>CSR</RegistersType>
+		</CrifFile>
+		<WAFile>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww29h_SPRMCC-1D\RIT-RcRegs\new_wa_file_spr.xml</WAFile>
+	</Program>
+
+	<Program>
+		<Name>SPRMCC</Name>
+		<FilterByXmlName>True</FilterByXmlName>
+		<CrifFile>
+			<File>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww29h_SPRMCC-1D\XML\20ww29h-SPRMCC-1D.zip</File>
+			<RegistersType>CSR</RegistersType>
+		</CrifFile>
+		<WAFile>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww29h_SPRMCC-1D\RIT-RcRegs\new_wa_file_spr.xml</WAFile>
+	</Program>
+
+	<Program>
+		<Name>SPRUCC</Name>
+		<FilterByXmlName>True</FilterByXmlName>
+		<CrifFile>
+			<File>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww28c-SPRUCC-2D\XML\20ww28c-SPRUCC-2D.zip</Directory>
+			<RegistersType>CSR</RegistersType>
+		</CrifFile>
+		<WAFile>\\twssfsprd01.gar.corp.intel.com\pid_bios\EagleStream\CrifXMLArchive\20ww29h_SPRMCC-1D\RIT-RcRegs\new_wa_file_spr.xml</WAFile>
+	</Program>
+</Configuration>

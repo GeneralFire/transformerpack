@@ -1,0 +1,24 @@
+TOKEN
+	Name  = "PlatformVariablePcdInitPei_SUPPORT"
+	Value  = "0"
+	Help  = "Switch for Enabling PlatformVariablePcdInitPei support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PlatformVariablePcdInitPei_INF_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable PlatformVariablePcdInitPei support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "PlatformVariableInitPei"
+	File  = "PlatformVariableInitPei.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "IA32"
+    ModuleTypes  = "PEIM" 	
+	Token = "PlatformVariablePcdInitPei_INF_SUPPORT" "=" "1"
+End
+

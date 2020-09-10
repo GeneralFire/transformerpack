@@ -1,0 +1,10 @@
+<component>
+    name = "PeiIshLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Ish\LibraryPrivate\PeiIshLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Ish.LibraryPrivate.PeiIshLib"
+[INF]
+"PeiIshLibVer2.inf"
+[files]
+"PeiIshLib.sdl"	
+<endComponent>

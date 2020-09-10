@@ -1,0 +1,37 @@
+LibraryMapping
+    Class  = "PeiMeInitLib"
+    Instance  = "LibraryPrivate.PeiMeInitLib"
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "PeiMeInitLib"
+    File  = "PeiMeInitLib/PeiMeInitLibVer3.inf"
+    Package  = "LibraryPrivate"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "PeiMeEnhancedDebugLib"
+    Instance  = "LibraryPrivate.PeiMeEnhancedDebugLibNull"
+End
+
+INFComponent
+    Name  = "PeiMeEnhancedDebugLibNull"
+    File  = "PeiMeEnhancedDebugLibNull\PeiMeEnhancedDebugLibNull.inf"
+    Package  = "LibraryPrivate"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "HeciInitLib"
+    Instance  = "LibraryPrivate.PeiDxeHeciInitLib"
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "PeiDxeHeciInitLib"
+    File  = "PeiDxeHeciInitLib\PeiDxeHeciInitLibVer3.inf"
+    Package  = "LibraryPrivate"
+    ModuleTypes  = "PEIM"
+End

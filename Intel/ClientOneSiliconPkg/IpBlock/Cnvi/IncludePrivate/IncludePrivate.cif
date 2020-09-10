@@ -1,0 +1,10 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Cnvi\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Cnvi.IncludePrivate"
+[files]
+"CnviConfigHob.h"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Cnvi.IncludePrivate.Library"
+<endComponent>

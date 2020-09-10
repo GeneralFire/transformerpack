@@ -1,0 +1,9 @@
+<component>
+    name = "Common"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\Common\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.Common"
+[parts]
+"EagleStreamRpPkg.Uba.UbaMain.Common.Dxe"
+"EagleStreamRpPkg.Uba.UbaMain.Common.Pei"
+<endComponent>

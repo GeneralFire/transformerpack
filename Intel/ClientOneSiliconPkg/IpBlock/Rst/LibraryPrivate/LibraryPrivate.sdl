@@ -1,0 +1,35 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiRstPrivateLib"
+    Instance  = "ClientOneSiliconPkg.PeiRstPrivateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiRstPrivateLib"
+    File  = "PeiRstPrivateLib/PeiRstPrivateLibNoRemap.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+LibraryMapping
+    Class  = "PeiHybridStorageLib"
+    Instance  = "ClientOneSiliconPkg.PeiHybridStorageLibNull"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiHybridStorageLibNull"
+    File  = "PeiHybridStorageLibNull/PeiHybridStorageLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End

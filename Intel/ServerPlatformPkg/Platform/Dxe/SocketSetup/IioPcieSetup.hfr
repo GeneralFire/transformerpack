@@ -1,0 +1,1462 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+//------------------ IIO # 0 -----------------//
+  //
+  // PCI Express Port 0 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P0,
+#if defined (SNR_HOST) || defined (ICXDE_HOST)
+    title = STRING_TOKEN(STR_PCIE_RLINK_PROMPT);
+    subtitle text = STRING_TOKEN(STR_PCIE_RLINK_PROMPT);
+#else
+    title = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+#endif // defined (SNR_HOST) || defined (ICXDE_HOST)
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   0
+#if defined (SPR_HOST)
+    #define LINKMAXWIDTH 8
+#else
+    #define LINKMAXWIDTH 4
+#endif // defined (SPR_HOST)
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 1 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P1,
+    title = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   1
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 0
+    #define NTB_INDEX_10NM 0
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 2 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P2,
+    title = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   2
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 3 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P3,
+    title = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   3
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 4 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P4,
+    title = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   4
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 5 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P5,
+    title = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   5
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 1
+    #define NTB_INDEX_10NM 1
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 6 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P6,
+    title = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   6
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 7 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P7,
+    title = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   7
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 8 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P8,
+    title = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   8
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 9 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P9,
+    title = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   9
+    #define LINKMAXWIDTH 16
+
+    #define NTB_INDEX_10NM 2
+      #include "IioPciePortSetup.hfr"
+
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 10 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P10,
+    title = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   10
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 11 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P11,
+    title = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   11
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 12 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P12,
+    title = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   12
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 13 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P13,
+    title = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   13
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 2
+    #define NTB_INDEX_10NM 3
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 14 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P14,
+    title = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   14
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 15 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P15,
+    title = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   15
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 16 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P16,
+    title = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   16
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 17 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P17,
+    title = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   17
+    #define LINKMAXWIDTH 16
+    #define NTB_INDEX_10NM 4
+      #include "IioPciePortSetup.hfr"
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 18 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P18,
+    title = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   18
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 19 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P19,
+    title = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   19
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 20 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO0P20,
+    title = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   20
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+
+#if MAX_SOCKET > 1
+//------------------ IIO # 1 -----------------//
+  //
+  // PCI Express Port 0 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P0,
+    title = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   21
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 1 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P1,
+    title = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   22
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 3
+    #define NTB_INDEX_10NM 5
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 2 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P2,
+    title = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   23
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 3 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P3,
+    title = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   24
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 4 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P4,
+    title = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   25
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 5 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P5,
+    title = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   26
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 4
+    #define NTB_INDEX_10NM 6
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 6 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P6,
+    title = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   27
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 7 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P7,
+    title = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   28
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 8 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P8,
+    title = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   29
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 9 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P9,
+    title = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   30
+    #define LINKMAXWIDTH 16
+
+    #define NTB_INDEX_10NM 7
+      #include "IioPciePortSetup.hfr"
+
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 10 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P10,
+    title = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   31
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 11 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P11,
+    title = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   32
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 12 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P12,
+    title = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   33
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 13 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P13,
+    title = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   34
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 5
+    #define NTB_INDEX_10NM 8
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 14 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P14,
+    title = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   35
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 15 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P15,
+    title = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   36
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 16 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P16,
+    title = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   37
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 17 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P17,
+    title = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   38
+    #define LINKMAXWIDTH 16
+    #define NTB_INDEX_10NM 9
+      #include "IioPciePortSetup.hfr"
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 18 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P18,
+    title = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   39
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 19 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P19,
+    title = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   40
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 20 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO1P20,
+    title = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   41
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+#endif
+#if MAX_SOCKET > 2
+//------------------ IIO # 2 -----------------//
+  //
+  // PCI Express Port 0 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P0,
+    title = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   42
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 1 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P1,
+    title = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   43
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 6
+    #define NTB_INDEX_10NM 10
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 2 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P2,
+    title = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   44
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 3 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P3,
+    title = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   45
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 4 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P4,
+    title = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   46
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 5 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P5,
+    title = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   47
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 7
+    #define NTB_INDEX_10NM 11
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 6 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P6,
+    title = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   48
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 7 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P7,
+    title = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   49
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 8 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P8,
+    title = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   50
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 9 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P9,
+    title = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   51
+    #define LINKMAXWIDTH 16
+
+    #define NTB_INDEX_10NM 12
+      #include "IioPciePortSetup.hfr"
+
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 10 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P10,
+    title = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   52
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 11 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P11,
+    title = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   53
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 12 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P12,
+    title = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   54
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 13 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P13,
+    title = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   55
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 8
+    #define NTB_INDEX_10NM 13
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 14 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P14,
+    title = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   56
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 15 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P15,
+    title = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   57
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 16 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P16,
+    title = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   58
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 17 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P17,
+    title = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   59
+    #define LINKMAXWIDTH 16
+    #define NTB_INDEX_10NM 14
+      #include "IioPciePortSetup.hfr"
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 18 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P18,
+    title = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   60
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 19 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P19,
+    title = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   61
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 20 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO2P20,
+    title = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   62
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+#endif
+#if MAX_SOCKET > 3
+//------------------ IIO # 3 -----------------//
+  //
+  // PCI Express Port 0 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P0,
+    title = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   63
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 1 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P1,
+    title = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   64
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 9
+    #define NTB_INDEX_10NM 15
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 2 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P2,
+    title = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   65
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 3 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P3,
+    title = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   66
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 4 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P4,
+    title = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   67
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 5 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P5,
+    title = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   68
+    #define LINKMAXWIDTH 16
+    #define STACK_INDEX 10
+    #define NTB_INDEX_10NM 16
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 6 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P6,
+    title = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   69
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 7 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P7,
+    title = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   70
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 8 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P8,
+    title = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   71
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 9 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P9,
+    title = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   72
+    #define LINKMAXWIDTH 16
+    #define NTB_INDEX_10NM 17
+      #include "IioPciePortSetup.hfr"
+
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 10 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P10,
+    title = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   73
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 11 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P11,
+    title = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   74
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 12 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P12,
+    title = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   75
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 13 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P13,
+    title = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   76
+    #define LINKMAXWIDTH 16
+    #define NTB_INDEX_10NM 18
+    #define STACK_INDEX 11
+      #include "IioPciePortSetup.hfr"
+    #undef STACK_INDEX
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 14 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P14,
+    title = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   77
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 15 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P15,
+    title = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   78
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 16 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P16,
+    title = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   79
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 17 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P17,
+    title = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   80
+    #define LINKMAXWIDTH 16
+    #define NTB_INDEX_10NM 19
+      #include "IioPciePortSetup.hfr"
+    #undef NTB_INDEX_10NM
+  endform;
+  //
+  // PCI Express Port 18 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P18,
+    title = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   81
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 19 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P19,
+    title = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   82
+    #define LINKMAXWIDTH 8
+      #include "IioPciePortSetup.hfr"
+  endform;
+  //
+  // PCI Express Port 20 Configuration
+  //
+  form formid = VFR_FORMID_PCIE_IIO3P20,
+    title = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+
+    subtitle text = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #undef  LINKMAXWIDTH
+    #define INDEX   83
+    #define LINKMAXWIDTH 4
+      #include "IioPciePortSetup.hfr"
+  endform;
+#endif

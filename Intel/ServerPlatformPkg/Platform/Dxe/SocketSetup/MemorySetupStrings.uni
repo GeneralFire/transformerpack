@@ -1,0 +1,1527 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+//
+// Memory Interface Configuration
+//
+#string STR_MEMORY_CONFIG_FORM_TITLE        #language en-US "Memory Configuration"
+#string STR_MEMORY_CONFIG_FORM_HELP         #language en-US "Displays and provides option to change the Memory Settings"
+
+#string STR_MEMORY_RAS_CONFIG_FORM_TITLE    #language en-US "Memory RAS Configuration"
+#string STR_MEMORY_RAS_CONFIG_FORM_HELP     #language en-US "Displays and provides option to change the Memory RAS Settings"
+#string STR_RAS_CONFIG_SETUP                #language en-US "Memory RAS Configuration Setup"
+
+#string STR_MEMORY_NGN_CONFIG_FORM_TITLE    #language en-US "PMem Configuration"
+#string STR_MEMORY_NGN_CONFIG_FORM_HELP     #language en-US "Displays and provides option to change the PMem settings"
+#string STR_NGN_CONFIG_SETUP                #language en-US "PMem Configuration Setup"
+
+#string STR_IOH_MEM_FORM_TITLE              #language en-US "Integrated Memory Controller (iMC)"
+
+#string STR_1                               #language en-US "1"
+#string STR_2                               #language en-US "2"
+#string STR_3                               #language en-US "3"
+#string STR_4                               #language en-US "4"
+#string STR_5                               #language en-US "5"
+#string STR_6                               #language en-US "6"
+#string STR_7                               #language en-US "7"
+#string STR_8                               #language en-US "8"
+#string STR_16                              #language en-US "16"
+#string STR_32                              #language en-US "32"
+#string STR_64                              #language en-US "64"
+#string STR_128                             #language en-US "128"
+
+#string STR_STANDARD_DEFAULT_PROMPT         #language en-US "Standard Default"
+#string STR_MANUFACTURE_DEFAULT_PROMPT      #language en-US "Manufacture Default"
+
+#string STR_ENFORCE_POR_PROMPT              #language en-US "Enforce POR"
+#string STR_ENFORCE_POR_HELP                #language en-US "Enable - Enforces Plan Of Record restrictions for DDR4 frequency and voltage programming. Disable - Disables this feature and user is able to run at higher frequencies, specified in the DDR Frequency Limit field (limited by processor support). Auto - Sets it to the MRC default setting (current default is Enable)."
+#string STR_POR                             #language en-US "Enforce POR"
+//#string STR_STRETCH                       #language en-US "Enforce Stretch Goals"
+
+#string STR_ENFORCE_POPULATION_POR_PROMPT   #language en-US "Enforce Population POR"
+#string STR_ENFORCE_POPULATION_POR_HELP     #language en-US "Enable Memory Population POR Enforcement.  Selecting Enforce Validated Populations will only allow populations that have been validated."
+#string STR_DISABLE_ENFORCEMENT             #language en-US "Disable Enforcement"
+#string STR_ENFORCE_SUPPORTED_POPULATIONS   #language en-US "Enforce Supported Populations"
+#string STR_ENFORCE_VALIDATED_POPULATIONS   #language en-US "Enforce Validated Populations"
+
+#string STR_PPO_INTERPOSER_PROMPT           #language en-US "PPO Interposer"
+#string STR_PPO_INTERPOSER_HELP             #language en-US "Enable will choose PPO Interposer 2, Disable or Auto will choose PPO interposer 1"
+
+#string STR_RASMODE_PROMPT                  #language en-US "RAS Mode"
+#string STR_RASMODE_HELP                    #language en-US "Mirror Mode will set entire 1LM/2LM memory in system to be mirrored, consequently reducing the memory capacity by half. If Rank Sparing is enabled, Mirroring will not take effect"
+
+#string STR_MIRRORMODE_PROMPT               #language en-US "Mirror Mode"
+#string STR_MIRRORMODE_HELP                 #language en-US "Full Mirror Mode will set entire 1LM memory in system to be mirrored, consequently reducing the memory capacity by half. Partial Mirror Mode will enable the required size of memory to be mirrored. If rank sparing is enabled partial mirroring will not take effect. Enabling any type of Mirror Mode will disable XPT Prefetch."
+
+#string STR_MIRROR_ENABLE                   #language en-US "Full Mirror Mode"
+#string STR_PMIRR_ENABLE                    #language en-US "Partial Mirror Mode"
+
+#string STR_ERROR_FULL_MIRROR_VS_TAD0       #language en-US "Error: Disable \"Mirror TAD0\" to enable Full Mirror Mode 1LM/2LM."
+
+#string STR_MIRR1_SIZE_PROMPT               #language en-US "Partial Mirror 1 Size (GB)"
+#string STR_MIRR2_SIZE_PROMPT               #language en-US "Partial Mirror 2 Size (GB)"
+#string STR_MIRR3_SIZE_PROMPT               #language en-US "Partial Mirror 3 Size (GB)"
+#string STR_MIRR4_SIZE_PROMPT               #language en-US "Partial Mirror 4 Size (GB)"
+#string STR_MIRR_SIZE_HELP                  #language en-US "Select multiplier of 1 GB for the size of the SAD to be created"
+
+#string STR_PARTIAL_MIRR_UEFI_PROMPT        #language en-US "UEFI ARM Mirror"
+#string STR_PARTIAL_MIRR_UEFI_HELP          #language en-US "Imitate behavior of UEFI based Address Range Mirror with setup option"
+
+#string STR_NEW_SDDC_PROMPT                 #language en-US "New SDDC Mode"
+#string STR_NEW_SDDC_HELP                   #language en-US "Enable 48B SDDC ECC from ICX C0 Onwards"
+
+#string STR_ENHANCED_SDDC_PROMPT            #language en-US "Enhanced SDDC"
+#string STR_ENHANCED_SDDC_HELP              #language en-US "Enable enhanced SDDC"
+
+#string STR_MEMORY_SAI_POLICY_GROUP_BIOS_W_PROMPT  #language en-US "Enable Pcode WA for SAI PG"
+#string STR_MEMORY_SAI_POLICY_GROUP_BIOS_W_HELP    #language en-US "Enable Pcode Work Around for SAI Policy group for A Step"
+
+#string STR_PARTIAL_MIRR_PERCENT_PROMPT     #language en-US "ARM Mirror percentage"
+#string STR_PARTIAL_MIRR_PERCENT_HELP       #language en-US "Enter the percentage to be mirrored in basis points. 12.75% is represented 1275"
+
+#string STR_SRAT_PROMPT                     #language en-US "Publish SRAT"
+#string STR_SRAT_HELP                       #language en-US "Publish the SRAT ACPI table to the OS."
+
+#string STR_SRAT_MEM_HOT_PLUG_PROMPT        #language en-US "SRAT Memory Hot Plug"
+#string STR_SRAT_MEM_HOT_PLUG_HELP          #language en-US "Fix for OS that does not support memory hot plug.\nEx: SuSE SLES10 SP2. \n \nEnable by default. \nDisable will clear all hot plug bits and remove the hot plug entries in SRAT table."
+
+#string STR_SRAT_CPU_HOT_PLUG_PROMPT        #language en-US "SRAT CPU Hot Plug"
+#string STR_SRAT_CPU_HOT_PLUG_HELP          #language en-US "Set Processor Flag to Enabled for all processor entries in SRAT."
+
+#string STR_BAD_CHNL_FIRST                  #language en-US "Bad Channel First (legacy)"
+#string STR_DIR_SCRUB                       #language en-US "Direct Scrub"
+#string STR_SWAP_MAPOUT                     #language en-US "Channel Runtime Mirror Swap and Channel Mapout"
+#string STR_HRMFO_THRSLD_PROMPT             #language en-US "HRMFO Threshold"
+#string STR_HRMFO_THRSLD_HELP               #language en-US "Configure HRMFO Threshold"
+
+#string STR_PARTIAL_SAD0_PROMPT             #language en-US "Mirror TAD0"
+#string STR_PARTIAL_SAD0_HELP               #language en-US "Enable Mirror on entire memory for TAD0"
+
+#string STR_ECCMODE_PROMPT                  #language en-US "ECC Mode Switch"
+#string STR_ECCMODE_HELP                    #language en-US "Enable Far Memory controller switch from Mode A to Mode B"
+
+#string STR_PAGE_POLICY_PROMPT              #language en-US "Page Policy"
+#string STR_PAGE_POLICY_HELP                #language en-US "Select Page Policy"
+#string STR_CLOSED_PAGE                     #language en-US "Closed"
+#string STR_OPEN_PAGE                       #language en-US "Open"
+#string STR_ADAPTIVE_PAGE                   #language en-US "Adaptive"
+
+#string STR_DDR_FREQ_1200_STRING            #language en-US "1200"
+#string STR_DDR_FREQ_1333_STRING            #language en-US "1333"
+#string STR_DDR_FREQ_1400_STRING            #language en-US "1400"
+#string STR_DDR_FREQ_1600_STRING            #language en-US "1600"
+#string STR_DDR_FREQ_1800_STRING            #language en-US "1800"
+#string STR_DDR_FREQ_1866_STRING            #language en-US "1866"
+#string STR_DDR_FREQ_2000_STRING            #language en-US "2000"
+#string STR_DDR_FREQ_2133_STRING            #language en-US "2133"
+#string STR_DDR_FREQ_2200_STRING            #language en-US "2200"
+#string STR_DDR_FREQ_2400_STRING            #language en-US "2400"
+#string STR_DDR_FREQ_2600_STRING            #language en-US "2600"
+#string STR_DDR_FREQ_2666_STRING            #language en-US "2666"
+#string STR_DDR_FREQ_2800_STRING            #language en-US "2800"
+#string STR_DDR_FREQ_2933_STRING            #language en-US "2933"
+#string STR_DDR_FREQ_3000_STRING            #language en-US "3000"
+#string STR_DDR_FREQ_3200_STRING            #language en-US "3200"
+#string STR_DDR_FREQ_3000_STRING_OVRCLK     #language en-US "3000-OvrClk"
+#string STR_DDR_FREQ_3200_STRING_OVRCLK     #language en-US "3200-OvrClk"
+#string STR_DDR_FREQ_3400_STRING_OVRCLK     #language en-US "3400-OvrClk"
+#string STR_DDR_FREQ_3466_STRING_OVRCLK     #language en-US "3466-OvrClk"
+#string STR_DDR_FREQ_3600_STRING            #language en-US "3600"
+#string STR_DDR_FREQ_3600_STRING_OVRCLK     #language en-US "3600-OvrClk"
+#string STR_DDR_FREQ_3733_STRING_OVRCLK     #language en-US "3733-OvrClk"
+#string STR_DDR_FREQ_3800_STRING_OVRCLK     #language en-US "3800-OvrClk"
+#string STR_DDR_FREQ_4000_STRING            #language en-US "4000"
+#string STR_DDR_FREQ_4000_STRING_OVRCLK     #language en-US "4000-OvrClk"
+#string STR_DDR_FREQ_4200_STRING_OVRCLK     #language en-US "4200-OvrClk"
+#string STR_DDR_FREQ_4266_STRING_OVRCLK     #language en-US "4266-OvrClk"
+#string STR_DDR_FREQ_4400_STRING            #language en-US "4400"
+#string STR_DDR_FREQ_4400_STRING_OVRCLK     #language en-US "4400-OvrClk"
+#string STR_DDR_FREQ_4800_STRING            #language en-US "4800"
+#string STR_DDR_FREQ_4800_STRING_OVRCLK     #language en-US "4800-OvrClk"
+#string STR_DDR_FREQ_5200_STRING_OVRCLK     #language en-US "5200-OvrClk"
+#string STR_DDR_FREQ_5600_STRING_OVRCLK     #language en-US "5600-OvrClk"
+#string STR_DDR_FREQ_800_RESVD_STRING       #language en-US "Reserved"
+#string STR_DDR_FREQ_1000_RESVD_STRING      #language en-US "Reserved"
+#string STR_DDR_FREQ_1066_RESVD_STRING      #language en-US "Reserved"
+#string STR_DDR_FREQ_1200_RESVD_STRING      #language en-US "Reserved"
+
+#string STR_IMC_BCLK_PROMPT                 #language en-US "IMC BCLK"
+#string STR_IMC_BCLK_HELP                   #language en-US "Auto, 100MHz or 133MHz"
+#string STR_100                             #language en-US "100MHz"
+#string STR_133                             #language en-US "133MHz"
+
+#string STR_DRAM_MAINT_PROMPT               #language en-US "DRAM Maintenance"
+#string STR_DRAM_MAINT_HELP                 #language en-US "Select Manual to customize DRAM Maintenance settings"
+
+#string STR_DRAM_MAINT_MODE_PROMPT          #language en-US "DRAM Maintenance Mode"
+#string STR_DRAM_MAINT_MODE_HELP            #language en-US "Select between pTRR and TRR mode"
+
+#string STR_DRAM_MAINT_TRR_PROMPT           #language en-US "TRR Mode"
+#string STR_DRAM_MAINT_TRR_HELP             #language en-US "Select between TRR mode A and B"
+
+#string STR_PTRR_MODE                       #language en-US "pTRR Mode"
+#string STR_TRR_MODE                        #language en-US "TRR Mode"
+#string STR_TRR_MODE_A                      #language en-US "TRR Mode A"
+#string STR_TRR_MODE_B                      #language en-US "TRR Mode B"
+
+#string STR_PATROL_SCRUB_PROMPT             #language en-US "Patrol Scrub"
+#string STR_PATROL_SCRUB_HELP               #language en-US "Enable/Disable Patrol Scrub"
+#string STR_PATROL_EOP                      #language en-US "Enable at End of POST"
+
+#string STR_PATROL_SCRUB_DURATION_PROMPT    #language en-US "Patrol Scrub Interval"
+#string STR_PATROL_SCRUB_DURATION_HELP      #language en-US "Selects the number of hours (1-24) required to complete full scrub. A value of zero means auto!"
+
+#string STR_PATROL_SCRUB_ADDRMODE_PROMPT    #language en-US "Patrol Scrub Address Mode"
+#string STR_PATROL_SCRUB_ADDRMODE_HELP      #language en-US "Selects the address mode between System Physical Address (or) Reverse Address"
+
+#string STR_SPA                             #language en-US "System Physical Address"
+#string STR_REVERSE_ADDR                    #language en-US "Reverse Address"
+
+#string STR_DEMAND_SCRUB_PROMPT             #language en-US "Demand Scrub"
+#string STR_DEMAND_SCRUB_HELP               #language en-US "Enable/Disable Demand Scrub"
+
+#string STR_MEMORY_CE_FLOOD_POLICY_PROMPT           #language en-US "Memory Correctable Error Flood Policy"
+#string STR_MEMORY_CE_FLOOD_ONCE                    #language en-US "Once"
+#string STR_MEMORY_CE_FLOOD_FREQUENCY               #language en-US "Frequency"
+#string STR_MEMORY_CE_FLOOD_POLICY_HELP             #language en-US "[Disabled] - Don't deal with Memory CE flood.\n[Once] - Only First Memory CE will trigger SMI,
+                                                     and BIOS will disable this rank silicon side to trigger SMI.\n[Frequency] Disable SMI when Memory CE reache threshold within time limits."
+
+#string STR_SPAREERRTH_PROMPT               #language en-US "Correctable Error Threshold"
+// APTIOV_SERVER_OVERRIDE_RC_START: Changed Decimal value to Hexadecimal.
+#string STR_SPAREERRTH_HELP                 #language en-US "Correctable Error Threshold (0x01 - 0x7fff) used for sparing, and leaky bucket"
+// APTIOV_SERVER_OVERRIDE_RC_END: Changed Decimal value to Hexadecimal.
+#string STR_TRIGGER_SW_ERRTH_PROMPT         #language en-US "Trigger SW Error Threshold"
+#string STR_TRIGGER_SW_ERRTH_HELP           #language en-US "Enable or Disable Sparing trigger SW Error Match Threshold"
+
+#string STR_SPARE_SW_ERRTH_PROMPT           #language en-US "Sparing SW Error Match Threshold"
+#string STR_SPARE_SW_ERRTH_HELP             #language en-US "SW Correctable Error Threshold (1 - 32767) used for bank level information"
+
+#string STR_TIME_WINDOW_PROMPT              #language en-US "Correctable Error Time Window"
+#string STR_TIME_WINDOW_HELP                #language en-US "Correctable Error time window based interface in Hour (0 - 24)"
+
+#string NGN_DIE_SPARING_PROMPT              #language en-US "Set PMem Die Sparing"
+#string NGN_DIE_SPARING_HELP                #language en-US "Enable/Disable PMem Die Sparing"
+
+#string STR_PLUSONE_EN_PROMPT               #language en-US "Plus One"
+#string STR_PLUSONE_EN_HELP                 #language en-US "Enable/Disable Plus One"
+
+#string STR_SDDC_EN_PROMPT                  #language en-US "SDDC"
+#string STR_SDDC_EN_HELP                    #language en-US "Enable/Disable SDDC"
+
+#string STR_PCLS_PROMPT                    #language en-US "Partial Cache Line Sparing PCLS"
+#string STR_PCLS_HELP                      #language en-US "Enable/Disable PCLS Sparing"
+
+#string STR_PCLS_S3_PROMPT                 #language en-US "Warning! Cannot enable PCLS and ACPI S3 mode together. Disable ACPI S3 under power management and retry"
+
+#string STR_ADDDC_PROMPT                    #language en-US "ADDDC Sparing"
+#string STR_ADDDC_HELP                      #language en-US "Enable/Disable ADDDC Sparing"
+
+#string STR_ADDDC_ERR_INJ_PROMPT            #language en-US "Enable ADDDC Error Injection"
+#string STR_ADDDC_ERR_INJ_HELP              #language en-US "Enable/Disable ADDDC error injection. This requires to force the interleave granularity to 64B for B/L step parts"
+
+
+#string STR_LEAKY_BKT_TIME_WINDOW_PROMPT    #language en-US "Leaky bucket time window based interface"
+#string STR_LEAKY_BKT_TIME_WINDOW_HELP      #language en-US "Enable/Disable leaky bucket time window based interface"
+
+#string STR_LEAKY_BKT_LO_PROMPT             #language en-US "Leaky bucket low bit"
+#string STR_LEAKY_BKT_LO_HELP               #language en-US "Leaky bucket low bit" (1 - 63)"
+
+#string STR_LEAKY_BKT_HI_PROMPT             #language en-US "Leaky bucket high bit"
+#string STR_LEAKY_BKT_HI_HELP               #language en-US "Leaky bucket high bit" (1 - 63)"
+
+#string STR_LEAKY_BKT_HOUR_PROMPT           #language en-US "Leaky bucket time window based interface Hour"
+#string STR_LEAKY_BKT_HOUR_HELP             #language en-US "Leaky bucket time window based interface Hour" (0 - 24)"
+
+#string STR_LEAKY_BKT_MINUTE_PROMPT         #language en-US "Leaky bucket time window based interface Minute"
+#string STR_LEAKY_BKT_MINUTE_HELP           #language en-US "Leaky bucket time window based interface Minute" (0 - 60)"
+
+#string STR_WRITE_POSTING_PROMPT            #language en-US "Write Posting"
+#string STR_WRITE_POSTING_HELP              #language en-US "Enable/Disable Write Posting"
+
+#string STR_MEM_FLOWS_PROMPT                #language en-US "Mem Flows"
+#string STR_MEM_FLOWS_HELP                  #language en-US "Enable(1)/Disable(0) memory training steps in MRC flow; X_OVER-BIT0; SENSE_AMP-BIT1; E_CMDCLK-BIT2; REC_EN-BIT3; RD_DQS-BIT4; WR_LVL-BIT5; WR_FLYBY-BIT6; WR_DQ-BIT7; CMDCLK-BIT8; RD_ADV-BIT9; WR_ADV-BIT10; RD_VREF-BIT11; WR_VREF-BIT12; RT_OPT-BIT13; RX_TX_DESKEW-BIT14; TX_EQ-BIT15; IMODE-BIT16; EARLY_RID-BIT17; DQ_SWIZ-BIT18; LRBUF_RD-BIT19; LRBUF_WR-BIT20; RANK_MARGIN-BIT21; EARLY_WR_VREF-BIT22; EARLY_RD_VREF-BIT23; LR_RD_VREF-BIT24; MEM_INIT-BIT25; DQ_SWIZZLE_EN-BIT26; NORMAL_MODE-BIT27; CMD_VREF-BIT28; LR_WR_VREF-BIT29; MEMTEST-BIT30; E_CTLCLK-BIT31"
+
+#string STR_MEM_FLOWS_EXT_PROMPT            #language en-US "Mem FlowsExt"
+#string STR_MEM_FLOWS_EXT_HELP              #language en-US "Enable(1)/Disable(0) memory training steps in MRC flow; RX_CTLE_EN-BIT0; PXC_EN-BIT1; CMD_NORM_EN-BIT2; LRDIMM_BKSIDE_DQ-BIT3; DRAM_RX_EQ-BIT4; BCOM-BIT5; CHECK_POR-BIT6; MMRC_INIT-BIT7; THROTTLING_EARLY-BIT8; THROTTLING-BIT9; POST_TRAINING-BIT10; E_CONFIG-BIT11; L_CONFIG-BIT12; BIOS_SSA_RMT_EN-BIT13; MCODT_EN-BIT14; MCRON_EN-BIT15; DIMMRON_EN-BIT16; QCA_EN-BIT17; X16_DQSWIZ-BIT18; TCO_COMP_EN-BIT19; TX_SLEW_RATE_EN-BIT20; INIT_MEMMAP-BIT21; CMD_TX_EQ_EN-BIT22; RCOMP_STAT_LEG-BIT23; DDJC_EN-BIT24; RX_DFE_EN-BIT25; DCS-BIT26; QCS-BIT27; DCA-BIT28; HW_XOVER_EN-BIT29; CMI_SMEE_CFG_EN-BIT30; QxCA_CLK_EN-BIT31"
+
+#string STR_MEM_FLOWS_EXT2_PROMPT           #language en-US "Mem FlowsExt2"
+#string STR_MEM_FLOWS_EXT2_HELP             #language en-US "Enable(1)/Disable(0) memory training steps in MRC flow; TX_DQDQS_PRE_DFE-BIT0; TX_DQDQS_POST_DFE-BIT1; DCA_DUTY-BIT2; RCD_DCA_DFE-BIT3; RX_DQDQS_PRE_DFE_BIT4; RX_DQDQS_POST_DFE_BIT5; TX_PERIODIC_RETRAIN-BIT6; CA_SLEW_RATE-BIT7; DCA_TCO-BIT8; E_REQ_CLK-BIT9; TURNAROUND_TRAIN-BIT10; RX_DFE-BIT11; TX_DFE-BIT12; DQ_SLEW_RATE-BIT13; DB_DFE-BIT14"
+
+#string STR_MEM_FLOWS_EXT3_PROMPT           #language en-US "Mem FlowsExt3"
+#string STR_MEM_FLOWS_EXT3_HELP             #language en-US "Enable(1)/Disable(0) memory training steps in MRC flow"
+
+#string STR_CMD_SETUP_PROMPT                #language en-US "Cmd Setup % Offset"
+#string STR_CMD_SETUP_HELP                  #language en-US "Cmd setup / hold percent offset for late cmd traning result. The possible values are from 0 to 100"
+
+#string STR_PERIODIC_RCOMP_ENABLE_PROMPT    #language en-US "Periodic Rcomp"
+#string STR_PERIODIC_RCOMP_ENABLE_HELP      #language en-US "Anto(2)/Enable(1)/Disable(0) Memory Periodic Rcomp cycles"
+
+#string STR_PERIODIC_RCOMP_INTERVAL_PROMPT  #language en-US "Periodic Rcomp Interval"
+#string STR_PERIODIC_RCOMP_INTERVAL_HELP    #language en-US "Memory Periodic Rcomp interval. The possible values for regsiter COMP_INTERVAL are from 0 to 15. The time is indicated by power(2,COMP_INTERVAL)*10.24 usec."
+#string STR_INTERVAL_10P24US                #language en-US "10.24 us"
+#string STR_INTERVAL_20P48US                #language en-US "20.48 us"
+#string STR_INTERVAL_40P96US                #language en-US "40.96 us"
+#string STR_INTERVAL_81P92US                #language en-US "81.92 us"
+#string STR_INTERVAL_163P84US               #language en-US "163.84 us"
+#string STR_INTERVAL_327P68US               #language en-US "327.68 us"
+#string STR_INTERVAL_655P36US               #language en-US "655.36 us"
+#string STR_INTERVAL_1310P72US              #language en-US "1310.72 us"
+#string STR_INTERVAL_2621P44US              #language en-US "2621.44 us"
+#string STR_INTERVAL_5242P88US              #language en-US "5242.88 us"
+#string STR_INTERVAL_10P48576MS             #language en-US "10.48576 ms"
+#string STR_INTERVAL_20P97152MS             #language en-US "20.97152 ms"
+#string STR_INTERVAL_41P94304MS             #language en-US "41.94304 ms"
+#string STR_INTERVAL_83P88608MS             #language en-US "83.88608 ms"
+#string STR_INTERVAL_167P77216MS            #language en-US "167.77216 ms"
+#string STR_INTERVAL_335P54432MS            #language en-US "335.54432 ms"
+#string STR_INTERVAL_671P08864MS            #language en-US "671.08864 ms"
+
+#string STR_TRAINING_COMP_OPTIONS_PROMPT    #language en-US "Training Compensation Options Values"
+#string STR_TRAINING_COMP_OPTIONS_HELP      #language en-US "Options for issuing a Compensation cycle (RCOMP) at specific points in training"
+
+#string STR_TRAINING_COMP_MMRC_INIT         #language en-US "One RCOMP cycle only on PHY Init (MMRC Init)"
+#string STR_TRAINING_COMP_EVERY_JEDEC_INIT  #language en-US "One RCOMP cycle after every JEDEC Init"
+#string STR_TRAINING_COMP_EVERY_TRAINING    #language en-US "One RCOMP cycle right before every training step"
+
+#string STR_PPR_TYPE                        #language en-US "PPR Type"
+#string STR_PPR_TYPE_HELP                   #language en-US "Selects Post Package Repair Type - Hard / Soft / Disabled. Auto - Sets it to the MRC default setting; current default is Soft PPR."
+#string STR_PPR_TYPE_HARD                   #language en-US "Hard PPR"
+#string STR_PPR_TYPE_SOFT                   #language en-US "Soft PPR"
+#string STR_PPR_DISABLED                    #language en-US "PPR Disabled"
+
+#string STR_PPR_ERR_INJ                     #language en-US "PPR Error Injection test"
+#string STR_PPR_ERR_INJ_HELP                #language en-US "Enable / Disable support for c-script err inj test"
+
+#string STR_RANK_MASK_EN_PROMPT             #language en-US "DIMM Rank Enable Mask"
+#string STR_RANK_MASK_EN_HELP               #language en-US "Selects ranks to enable/disable per DIMM"
+
+#string STR_SCKT_0_CH_0_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 0 Rank Enable BitMask"
+#string STR_SCKT_0_CH_1_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 1 Rank Enable BitMask"
+#string STR_SCKT_0_CH_2_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 2 Rank Enable BitMask"
+#string STR_SCKT_0_CH_3_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 3 Rank Enable BitMask"
+#string STR_SCKT_0_CH_4_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 4 Rank Enable BitMask"
+#string STR_SCKT_0_CH_5_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 5 Rank Enable BitMask"
+#string STR_SCKT_0_CH_6_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 6 Rank Enable BitMask"
+#string STR_SCKT_0_CH_7_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 7 Rank Enable BitMask"
+#string STR_SCKT_0_CH_8_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 8 Rank Enable BitMask"
+#string STR_SCKT_0_CH_9_RANK_EN_PROMPT      #language en-US "Socket 0 Channel 9 Rank Enable BitMask"
+#string STR_SCKT_0_CH_10_RANK_EN_PROMPT     #language en-US "Socket 0 Channel 10 Rank Enable BitMask"
+#string STR_SCKT_0_CH_11_RANK_EN_PROMPT     #language en-US "Socket 0 Channel 11 Rank Enable BitMask"
+
+#string STR_SCKT_1_CH_0_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 0 Rank Enable BitMask"
+#string STR_SCKT_1_CH_1_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 1 Rank Enable BitMask"
+#string STR_SCKT_1_CH_2_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 2 Rank Enable BitMask"
+#string STR_SCKT_1_CH_3_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 3 Rank Enable BitMask"
+#string STR_SCKT_1_CH_4_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 4 Rank Enable BitMask"
+#string STR_SCKT_1_CH_5_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 5 Rank Enable BitMask"
+#string STR_SCKT_1_CH_6_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 6 Rank Enable BitMask"
+#string STR_SCKT_1_CH_7_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 7 Rank Enable BitMask"
+#string STR_SCKT_1_CH_8_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 8 Rank Enable BitMask"
+#string STR_SCKT_1_CH_9_RANK_EN_PROMPT      #language en-US "Socket 1 Channel 9 Rank Enable BitMask"
+#string STR_SCKT_1_CH_10_RANK_EN_PROMPT     #language en-US "Socket 1 Channel 10 Rank Enable BitMask"
+#string STR_SCKT_1_CH_11_RANK_EN_PROMPT     #language en-US "Socket 1 Channel 11 Rank Enable BitMask"
+
+#string STR_SCKT_2_CH_0_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 0 Rank Enable BitMask"
+#string STR_SCKT_2_CH_1_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 1 Rank Enable BitMask"
+#string STR_SCKT_2_CH_2_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 2 Rank Enable BitMask"
+#string STR_SCKT_2_CH_3_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 3 Rank Enable BitMask"
+#string STR_SCKT_2_CH_4_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 4 Rank Enable BitMask"
+#string STR_SCKT_2_CH_5_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 5 Rank Enable BitMask"
+#string STR_SCKT_2_CH_6_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 6 Rank Enable BitMask"
+#string STR_SCKT_2_CH_7_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 7 Rank Enable BitMask"
+#string STR_SCKT_2_CH_8_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 8 Rank Enable BitMask"
+#string STR_SCKT_2_CH_9_RANK_EN_PROMPT      #language en-US "Socket 2 Channel 9 Rank Enable BitMask"
+#string STR_SCKT_2_CH_10_RANK_EN_PROMPT     #language en-US "Socket 2 Channel 10 Rank Enable BitMask"
+#string STR_SCKT_2_CH_11_RANK_EN_PROMPT     #language en-US "Socket 2 Channel 11 Rank Enable BitMask"
+
+#string STR_SCKT_3_CH_0_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 0 Rank Enable BitMask"
+#string STR_SCKT_3_CH_1_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 1 Rank Enable BitMask"
+#string STR_SCKT_3_CH_2_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 2 Rank Enable BitMask"
+#string STR_SCKT_3_CH_3_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 3 Rank Enable BitMask"
+#string STR_SCKT_3_CH_4_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 4 Rank Enable BitMask"
+#string STR_SCKT_3_CH_5_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 5 Rank Enable BitMask"
+#string STR_SCKT_3_CH_6_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 6 Rank Enable BitMask"
+#string STR_SCKT_3_CH_7_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 7 Rank Enable BitMask"
+#string STR_SCKT_3_CH_8_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 8 Rank Enable BitMask"
+#string STR_SCKT_3_CH_9_RANK_EN_PROMPT      #language en-US "Socket 3 Channel 9 Rank Enable BitMask"
+#string STR_SCKT_3_CH_10_RANK_EN_PROMPT     #language en-US "Socket 3 Channel 10 Rank Enable BitMask"
+#string STR_SCKT_3_CH_11_RANK_EN_PROMPT     #language en-US "Socket 3 Channel 11 Rank Enable BitMask"
+
+#string STR_SCKT_4_CH_0_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 0 Rank Enable BitMask"
+#string STR_SCKT_4_CH_1_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 1 Rank Enable BitMask"
+#string STR_SCKT_4_CH_2_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 2 Rank Enable BitMask"
+#string STR_SCKT_4_CH_3_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 3 Rank Enable BitMask"
+#string STR_SCKT_4_CH_4_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 4 Rank Enable BitMask"
+#string STR_SCKT_4_CH_5_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 5 Rank Enable BitMask"
+#string STR_SCKT_4_CH_6_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 6 Rank Enable BitMask"
+#string STR_SCKT_4_CH_7_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 7 Rank Enable BitMask"
+#string STR_SCKT_4_CH_8_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 8 Rank Enable BitMask"
+#string STR_SCKT_4_CH_9_RANK_EN_PROMPT      #language en-US "Socket 4 Channel 9 Rank Enable BitMask"
+#string STR_SCKT_4_CH_10_RANK_EN_PROMPT     #language en-US "Socket 4 Channel 10 Rank Enable BitMask"
+#string STR_SCKT_4_CH_11_RANK_EN_PROMPT     #language en-US "Socket 4 Channel 11 Rank Enable BitMask"
+
+#string STR_SCKT_5_CH_0_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 0 Rank Enable BitMask"
+#string STR_SCKT_5_CH_1_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 1 Rank Enable BitMask"
+#string STR_SCKT_5_CH_2_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 2 Rank Enable BitMask"
+#string STR_SCKT_5_CH_3_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 3 Rank Enable BitMask"
+#string STR_SCKT_5_CH_4_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 4 Rank Enable BitMask"
+#string STR_SCKT_5_CH_5_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 5 Rank Enable BitMask"
+#string STR_SCKT_5_CH_6_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 6 Rank Enable BitMask"
+#string STR_SCKT_5_CH_7_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 7 Rank Enable BitMask"
+#string STR_SCKT_5_CH_8_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 8 Rank Enable BitMask"
+#string STR_SCKT_5_CH_9_RANK_EN_PROMPT      #language en-US "Socket 5 Channel 9 Rank Enable BitMask"
+#string STR_SCKT_5_CH_10_RANK_EN_PROMPT     #language en-US "Socket 5 Channel 10 Rank Enable BitMask"
+#string STR_SCKT_5_CH_11_RANK_EN_PROMPT     #language en-US "Socket 5 Channel 11 Rank Enable BitMask"
+
+#string STR_SCKT_6_CH_0_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 0 Rank Enable BitMask"
+#string STR_SCKT_6_CH_1_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 1 Rank Enable BitMask"
+#string STR_SCKT_6_CH_2_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 2 Rank Enable BitMask"
+#string STR_SCKT_6_CH_3_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 3 Rank Enable BitMask"
+#string STR_SCKT_6_CH_4_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 4 Rank Enable BitMask"
+#string STR_SCKT_6_CH_5_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 5 Rank Enable BitMask"
+#string STR_SCKT_6_CH_6_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 6 Rank Enable BitMask"
+#string STR_SCKT_6_CH_7_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 7 Rank Enable BitMask"
+#string STR_SCKT_6_CH_8_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 8 Rank Enable BitMask"
+#string STR_SCKT_6_CH_9_RANK_EN_PROMPT      #language en-US "Socket 6 Channel 9 Rank Enable BitMask"
+#string STR_SCKT_6_CH_10_RANK_EN_PROMPT     #language en-US "Socket 6 Channel 10 Rank Enable BitMask"
+#string STR_SCKT_6_CH_11_RANK_EN_PROMPT     #language en-US "Socket 6 Channel 11 Rank Enable BitMask"
+
+#string STR_SCKT_7_CH_0_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 0 Rank Enable BitMask"
+#string STR_SCKT_7_CH_1_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 1 Rank Enable BitMask"
+#string STR_SCKT_7_CH_2_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 2 Rank Enable BitMask"
+#string STR_SCKT_7_CH_3_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 3 Rank Enable BitMask"
+#string STR_SCKT_7_CH_4_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 4 Rank Enable BitMask"
+#string STR_SCKT_7_CH_5_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 5 Rank Enable BitMask"
+#string STR_SCKT_7_CH_6_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 6 Rank Enable BitMask"
+#string STR_SCKT_7_CH_7_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 7 Rank Enable BitMask"
+#string STR_SCKT_7_CH_8_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 8 Rank Enable BitMask"
+#string STR_SCKT_7_CH_9_RANK_EN_PROMPT      #language en-US "Socket 7 Channel 9 Rank Enable BitMask"
+#string STR_SCKT_7_CH_10_RANK_EN_PROMPT     #language en-US "Socket 7 Channel 10 Rank Enable BitMask"
+#string STR_SCKT_7_CH_11_RANK_EN_PROMPT     #language en-US "Socket 7 Channel 11 Rank Enable BitMask"
+
+#string STR_SOCKET_X_CH_Y_RANK_EN_HELP      #language en-US "Enable(1)/Disable(0) Ranks, possible bitmask from 0 to 0xFF"
+
+#string STR_MEM_SPARING_EN_PROMPT           #language en-US "Memory Rank Sparing"
+#string STR_MEM_SPARING_EN_HELP             #language en-US "Enable/Disable Memory Rank Sparing. This feature is only available on 1LM"
+
+#string STR_MEM_MULTISPARING_PROMPT         #language en-US "Multi Rank Sparing"
+#string STR_MEM_MULTISPARING_HELP           #language en-US "Set Multi Rank Sparing number, default and the maximum is 2 ranks per channel"
+
+#string STR_ONERANK_SPARE                   #language en-US "One Rank"
+#string STR_TWORANK_SPARE                   #language en-US "Two Rank"
+
+#string STR_REFRESH_WM_PROMPT               #language en-US "Refresh Watermarks"
+#string STR_REFRESH_WM_HELP                 #language en-US "Auto selects Low WM (Hi/Panic = 1/2) for 16Gb-based DIMMs and High WM (Hi/Panic = 8/9) for other DIMM configs. Low WM can mitigate power delivery issues with 128GB and larger DIMMs. Low WM can also mitigate failures due to row hammer traffic patterns. High WM can provide better performance when power delivery and row hammer is not a concern."
+#string STR_REFRESH_WM_HIGH_STRING          #language en-US "High WM"
+#string STR_REFRESH_WM_LOW_STRING           #language en-US "Low WM"
+
+#string STR_PROMOTE_MRC_WARNING_PROMPT      #language en-US "MRC Promote Warnings"
+#string STR_PROMOTE_MRC_WARNING_HELP        #language en-US "Determines if MRC warnings are promoted to system level"
+
+#string STR_DDR_MEMORY_TYPE_PROMPT          #language en-US "Memory Type"
+#string STR_DDR_MEMORY_TYPE_HELP            #language en-US "Selects the Memory type supported by this platform."
+#string STR_UDIMM_ONLY                      #language en-US "UDIMMs only"
+#string STR_RDIMM_ONLY                      #language en-US "RDIMMs only"
+#string STR_UDIMM_RDIMM                     #language en-US "UDIMMs and RDIMMs"
+
+#string STR_ALLOW_CORRECTABLE_ERROR_EN_PROMPT #language en-US "Allow Memory Training Correctable Error"
+#string STR_ALLOW_CORRECTABLE_ERROR_EN_HELP   #language en-US "Enable - Allows correctable errors during memory training. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Disable."
+
+#string STR_ALLOW_CORRECTABLE_MEM_TEST_ERROR_EN_PROMPT #language en-US "Allow Memory Test Correctable Error"
+#string STR_ALLOW_CORRECTABLE_MEM_TEST_ERROR_EN_HELP   #language en-US "Enable - Logs error and allows correctable errors during memory test(DIMM Rank not removed). Disable - Logs error and removes DIMM Rank. Auto - Sets it to the MRC default setting; current default is Enable."
+
+#string STR_DLL_RESET_TEST_PROMPT           #language en-US "DLL Reset Test"
+#string STR_DLL_RESET_TEST_HELP             #language en-US "Set this to the number of loops to execute the DDL reset test. The test will execute RMT for the provided number of loops without DLL resets and then it will exectue RMT for the same number of loops with DLL resets."
+
+#string STR_MEMTOPOLOGY_DISPLAY_FORM_TITLE  #language en-US "Memory Topology"
+#string STR_MEMTOPOLOGY_DISPLAY_FORM_HELP   #language en-US "Displays memory topology with Dimm population information"
+
+#string STR_ECC_SUPPORT_PROMPT              #language en-US "ECC Support"
+#string STR_ECC_SUPPORT_HELP                #language en-US "Enable - Enables DDR ECC Support. Disable - Disables this feature."
+
+#string STR_CMD_FUB_MARGIN_PROMPT           #language en-US "Skip Command Fub MA14, MA15, MA16"
+#string STR_CMD_FUB_MARGIN_HELP             #language en-US "Skips margining MA14, MA15 MA16 during BSSA RMT for PMEM dimms"
+
+#string STR_DM_MEM_TEST_PROMPT              #language en-US "Dram Maintenance Test"
+#string STR_DM_MEM_TEST_HELP                #language en-US "Dram Maintenance Test during normal boot"
+#string STR_DM_DIRECTION_TEST_PROMPT        #language en-US "Dram Maintenance Test Direction"
+#string STR_DM_DIRECTION_TEST_HELP          #language en-US "Dram Maintenance Test Direction UP or DOWN"
+#string STR_UP                              #language en-US "UP Direction"
+#string STR_DOWN                            #language en-US "DOWN Direction"
+#string STR_DM_INV_TEST_PROMPT              #language en-US "Dram Maintenance Test Invertion"
+#string STR_DM_INV_TEST_HELP                #language en-US "Dram Maintenance Test Invertion Enable or Disable"
+#string STR_DM_REPETITION_TEST_PROMPT       #language en-US "Dram Maintenance Test Repetitions"
+#string STR_DM_REPETITION_TEST_HELP         #language en-US "Number of Dram Maintenance Test Repetitions"
+#string STR_DM_ITER_TEST_PROMPT             #language en-US "Dram Maintenance Test Interation on Row"
+#string STR_DM_ITER_TEST_HELP               #language en-US "Number of Dram Maintenance Test Interation on Row"
+#string STR_DM_SWIZZLE_PROMPT               #language en-US "Dram Maintenance Swizzle enabling"
+#string STR_DM_SWIZZLE_HELP                 #language en-US "Dram Maintenance Address Swizzling enable if needed"
+#string STR_DM_REFRESH_PROMPT               #language en-US "Dram Maintenance Refresh enabling during test"
+#string STR_DM_REFRESH_HELP                 #language en-US "Dram Maintenance Test can disable refresh during the test"
+
+#string STR_TRNG_RESULT_OFFSET_PROMPT           #language en-US "Training Result Offset"
+#string STR_TRNG_RESULT_OFFSET_HELP             #language en-US "Enable - Enables training results to be offset. Disable - Disables this feature; current default is Enable"
+
+#string STR_TRNG_RESULT_OFFSET_RECV_EN_PROMPT     #language en-US "Offset RecEnDelay"
+#string STR_TRNG_RESULT_OFFSET_RECV_EN_HELP       #language en-US "How much to offset RecEnDelay final memory training results. +ve starts at 0 --> for an offset of +7, enter 7; -ve starts at 100 --> for an offset of -5, enter 105 (Rnage -32 to +32)"
+
+#string STR_TRNG_RESULT_OFFSET_TX_DQ_PROMPT     #language en-US "Offset TxDq"
+#string STR_TRNG_RESULT_OFFSET_TX_DQ_HELP       #language en-US "How much to offset TxDq final memory training results. +ve starts at 0 --> for an offset of +7, enter 7; -ve starts at 100 --> for an offset of -5, enter 105"
+
+#string STR_TRNG_RESULT_OFFSET_RX_DQ_PROMPT     #language en-US "Offset RxDq"
+#string STR_TRNG_RESULT_OFFSET_RX_DQ_HELP       #language en-US "How much to offset RxDq final memory training results. +ve starts at 0 --> for an offset of +7, enter 7; -ve starts at 100 --> for an offset of -5, enter 105"
+
+#string STR_TRNG_RESULT_OFFSET_TX_VREF_PROMPT   #language en-US "Offset TxVref"
+#string STR_TRNG_RESULT_OFFSET_TX_VREF_HELP     #language en-US "How much to offset TxVref final memory training results. +ve starts at 0 --> for an offset of +7, enter 7; -ve starts at 100 --> for an offset of -5, enter 105"
+
+#string STR_TRNG_RESULT_OFFSET_RX_VREF_PROMPT   #language en-US "Offset RxVref"
+#string STR_TRNG_RESULT_OFFSET_RX_VREF_HELP     #language en-US "How much to offset RxVref final memory training results. +ve starts at 0 --> for an offset of +7, enter 7; -ve starts at 100 --> for an offset of -5, enter 105"
+
+#string STR_TRNG_RESULT_OFFSET_CMD_ALL_PROMPT   #language en-US "Offset CmdAll"
+#string STR_TRNG_RESULT_OFFSET_CMD_ALL_HELP     #language en-US "How much to offset CmdAll final memory training results. +ve starts at 0 --> for an offset of +7, enter 7; -ve starts at 100 --> for an offset of -5, enter 105"
+
+#string STR_TRNG_RESULT_OFFSET_CMD_VREF_PROMPT  #language en-US "Offset CmdVref"
+#string STR_TRNG_RESULT_OFFSET_CMD_VREF_HELP    #language en-US "How much to offset CmdVref final memory training results. +ve starts at 0 --> for an offset of +7, enter 7; -ve starts at 100 --> for an offset of -5, enter 105"
+
+#string STR_TRNG_RESULT_OFFSET_CTL_ALL_PROMPT   #language en-US "Offset CtlAll"
+#string STR_TRNG_RESULT_OFFSET_CTL_ALL_HELP     #language en-US "How much to offset CtlAll final memory training results. +ve starts at 0 --> for an offset of +7, enter 7; -ve starts at 100 --> for an offset of -5, enter 105"
+
+#string STR_SW_MEM_TEST_PROMPT              #language en-US "SW MemTest"
+#string STR_SW_MEM_TEST_HELP                #language en-US "Enable/disable software memory test during normal boot"
+
+#string STR_MEM_TEST_PROMPT                 #language en-US "MemTest"
+#string STR_MEM_TEST_HELP                   #language en-US "Enable - Enables memory test during normal boot. Disable - Disables this feature."
+
+#string STR_MEM_TEST_LOOPS_PROMPT           #language en-US "MemTest Loops"
+#string STR_MEM_TEST_LOOPS_HELP             #language en-US "Number of memory test loops during normal boot, set to 0 to run memtest infinitely"
+
+#string STR_ADV_MEM_TEST_OPTIONS_PROMPT     #language en-US "Adv MemTest Options"
+#string STR_ADV_MEM_TEST_OPTIONS_HELP       #language en-US "This option is a bit mask[15:0]: All 0 = disabled: bit-0=XMATS8, bit-1=XMATS16, bit-2=XMATS32, bit-3=XMATS64, bit-4=WCMATS8, bit-5=WCMCH8, bit-6=GNDB64, bit-7=MARCHCM64, bit-11=TWR, bit-12=DATARET, bit-13=MATS8TC1, bit-14=MATS8TC2, bit-15=MATS8TC3"
+
+#string STR_ADV_MEM_TEST_RESET_LIST_PROMPT  #language en-US "Adv MemTest Reset Failure Tracking List"
+#string STR_ADV_MEM_TEST_RESET_LIST_HELP    #language en-US "Enable/disable Reset of the Row Failure Tracking List after each Adv MemTest option. Useful for testing performance of multiple options."
+
+#string STR_ADV_MEM_TEST_COND_PROMPT  #language en-US "Adv MemTest Conditions"
+#string STR_ADV_MEM_TEST_COND_HELP    #language en-US "Auto = set test conditions based on test type; Manual = specify global test conditions; Disable = Do not apply test conditions."
+
+#string STR_ADV_MEM_TEST_COND_VDD_PROMPT  #language en-US "Adv MemTest VDD Level"
+#string STR_ADV_MEM_TEST_COND_VDD_HELP    #language en-US "Specify VDD level in units of mV."
+
+#string STR_ADV_MEM_TEST_COND_TWR_PROMPT  #language en-US "Adv MemTest tWR"
+#string STR_ADV_MEM_TEST_COND_TWR_HELP    #language en-US "Specify tWR timing in units of tCK."
+
+#string STR_ADV_MEM_TEST_COND_TREFI_PROMPT  #language en-US "Adv MemTest tREFI"
+#string STR_ADV_MEM_TEST_COND_TREFI_HELP    #language en-US "Specify tREFI (refresh rate) timing in units of tCK."
+
+#string STR_ADV_MEM_TEST_COND_PAUSE_PROMPT  #language en-US "Adv MemTest Pause"
+#string STR_ADV_MEM_TEST_COND_PAUSE_HELP    #language en-US "Specify a pause delay in units of usec. This is a time period where refresh is disabled between write and read sequences."
+
+#string STR_MEM_TEST_COLD_FAST_BOOT_PROMPT  #language en-US "MemTest On Cold Fast Boot"
+#string STR_MEM_TEST_COLD_FAST_BOOT_HELP    #language en-US "Enable - Enables memory test during cold fast boot. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Disable."
+
+#string STR_ATTEMPT_FAST_BOOT_PROMPT        #language en-US "Attempt Fast Boot"
+#string STR_ATTEMPT_FAST_BOOT_HELP_SKX      #language en-US "Enable - Portions of memory reference code will be skipped when possible to increase boot speed on warm boots. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Enable."
+#string STR_ATTEMPT_FAST_BOOT_HELP_10NM     #language en-US "Enable - Portions of memory reference code will be skipped when possible to increase boot speed on warm boots. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Disable."
+
+#string STR_ATTEMPT_FAST_BOOT_COLD_PROMPT   #language en-US "Attempt Fast Cold Boot"
+#string STR_ATTEMPT_FAST_BOOT_COLD_HELP     #language en-US "Enable - Portions of memory reference code will be skipped when possible to increase boot speed on cold boots. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Disable."
+
+#string STR_SECURE_ERASE_UNIT_SUBTITLE      #language en-US "PMem Secure Erase Unit"
+#string STR_SET_SECURE_ERASE_UNIT_HELP      #language en-US "Erases the persistent memory region of the selected DIMMs"
+#string STR_SET_SECURE_ERASE                #language en-US "Erase All DIMMs"
+#string STR_SET_SECURE_ERASE_HELP           #language en-US "Erases the persistent memory region of all PMem in the system"
+
+#string STR_SECURE_ERASE_S0_CH0             #language en-US "S0 CH0"
+#string STR_SECURE_ERASE_S0_CH0_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 0, Socket 0"
+#string STR_SECURE_ERASE_S0_CH1             #language en-US "S0 CH1"
+#string STR_SECURE_ERASE_S0_CH1_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 1, Socket 0"
+#string STR_SECURE_ERASE_S0_CH2             #language en-US "S0 CH2"
+#string STR_SECURE_ERASE_S0_CH2_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 2, Socket 0"
+#string STR_SECURE_ERASE_S0_CH3             #language en-US "S0 CH3"
+#string STR_SECURE_ERASE_S0_CH3_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 3, Socket 0"
+#string STR_SECURE_ERASE_S0_CH4             #language en-US "S0 CH4"
+#string STR_SECURE_ERASE_S0_CH4_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 4, Socket 0"
+#string STR_SECURE_ERASE_S0_CH5             #language en-US "S0 CH5"
+#string STR_SECURE_ERASE_S0_CH5_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 5, Socket 0"
+#string STR_SECURE_ERASE_S0_CH6             #language en-US "S0 CH6"
+#string STR_SECURE_ERASE_S0_CH6_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 6, Socket 0"
+#string STR_SECURE_ERASE_S0_CH7             #language en-US "S0 CH7"
+#string STR_SECURE_ERASE_S0_CH7_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 7, Socket 0"
+
+#string STR_SECURE_ERASE_S1_CH0             #language en-US "S1 CH0"
+#string STR_SECURE_ERASE_S1_CH0_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 0, Socket 1"
+#string STR_SECURE_ERASE_S1_CH1             #language en-US "S1 CH1"
+#string STR_SECURE_ERASE_S1_CH1_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 1, Socket 1"
+#string STR_SECURE_ERASE_S1_CH2             #language en-US "S1 CH2"
+#string STR_SECURE_ERASE_S1_CH2_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 2, Socket 1"
+#string STR_SECURE_ERASE_S1_CH3             #language en-US "S1 CH3"
+#string STR_SECURE_ERASE_S1_CH3_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 3, Socket 1"
+#string STR_SECURE_ERASE_S1_CH4             #language en-US "S1 CH4"
+#string STR_SECURE_ERASE_S1_CH4_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 4, Socket 1"
+#string STR_SECURE_ERASE_S1_CH5             #language en-US "S1 CH5"
+#string STR_SECURE_ERASE_S1_CH5_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 5, Socket 1"
+#string STR_SECURE_ERASE_S1_CH6             #language en-US "S1 CH6"
+#string STR_SECURE_ERASE_S1_CH6_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 6, Socket 1"
+#string STR_SECURE_ERASE_S1_CH7             #language en-US "S1 CH7"
+#string STR_SECURE_ERASE_S1_CH7_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 7, Socket 1"
+
+#string STR_SECURE_ERASE_S2_CH0             #language en-US "S2 CH0"
+#string STR_SECURE_ERASE_S2_CH0_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 0, Socket 2"
+#string STR_SECURE_ERASE_S2_CH1             #language en-US "S2 CH1"
+#string STR_SECURE_ERASE_S2_CH1_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 1, Socket 2"
+#string STR_SECURE_ERASE_S2_CH2             #language en-US "S2 CH2"
+#string STR_SECURE_ERASE_S2_CH2_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 2, Socket 2"
+#string STR_SECURE_ERASE_S2_CH3             #language en-US "S2 CH3"
+#string STR_SECURE_ERASE_S2_CH3_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 3, Socket 2"
+#string STR_SECURE_ERASE_S2_CH4             #language en-US "S2 CH4"
+#string STR_SECURE_ERASE_S2_CH4_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 4, Socket 2"
+#string STR_SECURE_ERASE_S2_CH5             #language en-US "S2 CH5"
+#string STR_SECURE_ERASE_S2_CH5_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 5, Socket 2"
+#string STR_SECURE_ERASE_S2_CH6             #language en-US "S2 CH6"
+#string STR_SECURE_ERASE_S2_CH6_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 6, Socket 2"
+#string STR_SECURE_ERASE_S2_CH7             #language en-US "S2 CH7"
+#string STR_SECURE_ERASE_S2_CH7_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 7, Socket 2"
+
+#string STR_SECURE_ERASE_S3_CH0             #language en-US "S3 CH0"
+#string STR_SECURE_ERASE_S3_CH0_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 0, Socket 3"
+#string STR_SECURE_ERASE_S3_CH1             #language en-US "S3 CH1"
+#string STR_SECURE_ERASE_S3_CH1_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 1, Socket 3"
+#string STR_SECURE_ERASE_S3_CH2             #language en-US "S3 CH2"
+#string STR_SECURE_ERASE_S3_CH2_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 2, Socket 3"
+#string STR_SECURE_ERASE_S3_CH3             #language en-US "S3 CH3"
+#string STR_SECURE_ERASE_S3_CH3_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 3, Socket 3"
+#string STR_SECURE_ERASE_S3_CH4             #language en-US "S3 CH4"
+#string STR_SECURE_ERASE_S3_CH4_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 4, Socket 3"
+#string STR_SECURE_ERASE_S3_CH5             #language en-US "S3 CH5"
+#string STR_SECURE_ERASE_S3_CH5_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 5, Socket 3"
+#string STR_SECURE_ERASE_S3_CH6             #language en-US "S3 CH6"
+#string STR_SECURE_ERASE_S3_CH6_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 6, Socket 3"
+#string STR_SECURE_ERASE_S3_CH7             #language en-US "S3 CH7"
+#string STR_SECURE_ERASE_S3_CH7_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 7, Socket 3"
+
+#string STR_SECURE_ERASE_S4_CH0             #language en-US "S4 CH0"
+#string STR_SECURE_ERASE_S4_CH0_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 0, Socket 4"
+#string STR_SECURE_ERASE_S4_CH1             #language en-US "S4 CH1
+#string STR_SECURE_ERASE_S4_CH1_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 1, Socket 4"
+#string STR_SECURE_ERASE_S4_CH2             #language en-US "S4 CH2"
+#string STR_SECURE_ERASE_S4_CH2_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 2, Socket 4"
+#string STR_SECURE_ERASE_S4_CH3             #language en-US "S4 CH3"
+#string STR_SECURE_ERASE_S4_CH3_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 3, Socket 4"
+#string STR_SECURE_ERASE_S4_CH4             #language en-US "S4 CH4"
+#string STR_SECURE_ERASE_S4_CH4_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 4, Socket 4"
+#string STR_SECURE_ERASE_S4_CH5             #language en-US "S4 CH5"
+#string STR_SECURE_ERASE_S4_CH5_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 5, Socket 4"
+#string STR_SECURE_ERASE_S4_CH6             #language en-US "S4 CH6"
+#string STR_SECURE_ERASE_S4_CH6_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 6, Socket 4"
+#string STR_SECURE_ERASE_S4_CH7             #language en-US "S4 CH7"
+#string STR_SECURE_ERASE_S4_CH7_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 7, Socket 4"
+
+#string STR_SECURE_ERASE_S5_CH0             #language en-US "S5 CH0"
+#string STR_SECURE_ERASE_S5_CH0_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 0, Socket 5"
+#string STR_SECURE_ERASE_S5_CH1             #language en-US "S5 CH1"
+#string STR_SECURE_ERASE_S5_CH1_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 1, Socket 5"
+#string STR_SECURE_ERASE_S5_CH2             #language en-US "S5 CH2"
+#string STR_SECURE_ERASE_S5_CH2_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 2, Socket 5"
+#string STR_SECURE_ERASE_S5_CH3             #language en-US "S5 CH3"
+#string STR_SECURE_ERASE_S5_CH3_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 3, Socket 5"
+#string STR_SECURE_ERASE_S5_CH4             #language en-US "S5 CH4"
+#string STR_SECURE_ERASE_S5_CH4_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 4, Socket 5"
+#string STR_SECURE_ERASE_S5_CH5             #language en-US "S5 CH5"
+#string STR_SECURE_ERASE_S5_CH5_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 5, Socket 5"
+#string STR_SECURE_ERASE_S5_CH6             #language en-US "S5 CH6"
+#string STR_SECURE_ERASE_S5_CH6_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 6, Socket 5"
+#string STR_SECURE_ERASE_S5_CH7             #language en-US "S5 CH7"
+#string STR_SECURE_ERASE_S5_CH7_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 7, Socket 5"
+
+#string STR_SECURE_ERASE_S6_CH0             #language en-US "S6 CH0"
+#string STR_SECURE_ERASE_S6_CH0_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 0, Socket 6"
+#string STR_SECURE_ERASE_S6_CH1             #language en-US "S6 CH1"
+#string STR_SECURE_ERASE_S6_CH1_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 1, Socket 6"
+#string STR_SECURE_ERASE_S6_CH2             #language en-US "S6 CH2"
+#string STR_SECURE_ERASE_S6_CH2_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 2, Socket 6"
+#string STR_SECURE_ERASE_S6_CH3             #language en-US "S6 CH3"
+#string STR_SECURE_ERASE_S6_CH3_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 3, Socket 6"
+#string STR_SECURE_ERASE_S6_CH4             #language en-US "S6 CH4"
+#string STR_SECURE_ERASE_S6_CH4_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 4, Socket 6"
+#string STR_SECURE_ERASE_S6_CH5             #language en-US "S6 CH5"
+#string STR_SECURE_ERASE_S6_CH5_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 5, Socket 6"
+#string STR_SECURE_ERASE_S6_CH6             #language en-US "S6 CH6"
+#string STR_SECURE_ERASE_S6_CH6_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 6, Socket 6"
+#string STR_SECURE_ERASE_S6_CH7             #language en-US "S6 CH7"
+#string STR_SECURE_ERASE_S6_CH7_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 7, Socket 6"
+
+#string STR_SECURE_ERASE_S7_CH0             #language en-US "S7 CH0"
+#string STR_SECURE_ERASE_S7_CH0_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 0, Socket 7"
+#string STR_SECURE_ERASE_S7_CH1             #language en-US "S7 CH1"
+#string STR_SECURE_ERASE_S7_CH1_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 1, Socket 7"
+#string STR_SECURE_ERASE_S7_CH2             #language en-US "S7 CH2"
+#string STR_SECURE_ERASE_S7_CH2_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 2, Socket 7"
+#string STR_SECURE_ERASE_S7_CH3             #language en-US "S7 CH3"
+#string STR_SECURE_ERASE_S7_CH3_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 3, Socket 7"
+#string STR_SECURE_ERASE_S7_CH4             #language en-US "S7 CH4"
+#string STR_SECURE_ERASE_S7_CH4_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 4, Socket 7"
+#string STR_SECURE_ERASE_S7_CH5             #language en-US "S7 CH5"
+#string STR_SECURE_ERASE_S7_CH5_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 5, Socket 7"
+#string STR_SECURE_ERASE_S7_CH6             #language en-US "S7 CH6"
+#string STR_SECURE_ERASE_S7_CH6_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 6, Socket 7"
+#string STR_SECURE_ERASE_S7_CH7             #language en-US "S7 CH7"
+#string STR_SECURE_ERASE_S7_CH7_HELP        #language en-US "Erases the persistent memory region of PMem in Channel 7, Socket 7"
+
+#string STR_TWO_WAY_NM_CACHE_UNIT_SUBTITLE  #language en-US "Biased 2-way Near Memory Cache Support"
+#string STR_TWO_WAY_NM_CACHE_UNIT_HELP      #language en-US "Configure biased 2-way near memory cache support settings"
+
+#string STR_ENABLE_TWO_WAY_NM_CACHE         #language en-US "Enable biased 2-way near memory cache"
+#string STR_ENABLE_TWO_WAY_NM_CACHE_HELP    #language en-US "Enable or disable biased 2-way near memory cache support"
+
+#string STR_NON_PREFERRED_WAY_MASK          #language en-US "Non-preferred way mask"
+#string STR_NON_PREFERRED_WAY_MASK_HELP     #language en-US "10-bit mask used to control the bias counter ratio:\n Bit 0 applies to 1st miss\n Bit 1 applies to 2nd miss\n ...\n Bit 9 applies to 10th miss and it repeats (Bit 0 applies to 11th miss and so on)\nIf bit X of this mask is:\n 0 - (n*10+X+1)th miss should be allocated in preferred way\n 1 – (n*10+X+1)th miss should be allocated in non-preferred way"
+
+#string STR_PREFERRED_READ_FIRST            #language en-US "Preferred read first"
+#string STR_PREFERRED_READ_FIRST_HELP       #language en-US "Select whether reads are issued to the preferred or non-preferred way first"
+#string STR_PREFERRED_WAY                   #language en-US "Preferred Way First"
+#string STR_NON_PREFERRED_WAY               #language en-US "Non-preferred Way First"
+
+#string STR_FAST_ZERO_MEM                   #language en-US "Boot-time Fast Zero Memory"
+#string STR_FAST_ZERO_MEM_HELP              #language en-US "Enable or disable boot-time fast zero memory support"
+
+#string STR_VOL_MEM_MODE                    #language en-US "Volatile Memory Mode"
+#string STR_VOL_MEM_MODE_HELP               #language en-US "Selects 1LM or 2LM mode for volatile memory. For 2LM memory mode, BIOS will try to configure 2LM but if BIOS is unable to configure 2LM, volatile memory mode will fall back to 1LM"
+#string STR_1LM                             #language en-US "1LM"
+#string STR_2LM                             #language en-US "2LM"
+
+#string STR_DDR_CACHE_MEM_TYPE_PROMPT       #language en-US "2LM Memory Type"
+#string STR_DDR_CACHE_MEM_TYPE_HELP         #language en-US "Selects the volatile memory type to use as cache"
+#string STR_DDR_CACHE_PMEM                  #language en-US "DDR caching PMem"
+#string STR_HBM_CACHE_DDR                   #language en-US "HBM caching DDR"
+
+#string STR_DDR_CACHE_SIZE_PROMPT           #language en-US "DDR Cache Size"
+#string STR_DDR_CACHE_SIZE_HELP             #language en-US "Selects the DDR Cache Size for each populated channel used for 2LM configurations. Any remaining DDR will be mapped as 1LM memory."
+#string STR_DDR_CACHE_ALL                   #language en-US "All"
+#string STR_8GB                             #language en-US "8GB"
+#string STR_16GB                            #language en-US "16GB"
+#string STR_32GB                            #language en-US "32GB"
+#string STR_64GB                            #language en-US "64GB"
+#string STR_128GB                           #language en-US "128GB"
+#string STR_256GB                           #language en-US "256GB"
+
+#string STR_APP_DIRECT_CACHE_PROMPT         #language en-US "AppDirect cache"
+#string STR_APP_DIRECT_CACHE_HELP           #language en-US "Selects whether caching is enabled for the memory region"
+
+#string STR_EADR_SUPPORT_PROMPT             #language en-US "eADR Support"
+#string STR_EADR_SUPPORT_HELP               #language en-US "Enable/Disable eADR capability in the platform, Pmem/AppDirect caching knob takes precedence"
+
+#string STR_EADR_CACHE_FLUSH_MODE_PROMPT    #language en-US "CPU Cache Flush Mode"
+#string STR_EADR_CACHE_FLUSH_MODE_HELP      #language en-US "Sets CPU cache flush execution mode"
+
+#string STR_EADR_FLUSH_MODE_SERIAL          #language en-US "Serial"
+#string STR_EADR_FLUSH_MODE_PARALLEL        #language en-US "Parallel"
+
+#string STR_FADR_SUPPORT_PROMPT             #language en-US "fADR Support"
+#string STR_FADR_SUPPORT_HELP               #language en-US "Enable/Disable fADR capability in the platform"
+
+#string STR_BLK_MEM_MODE                    #language en-US "Block Memory Mode"
+#string STR_BLK_MEM_MODE_HELP               #language en-US "Selects whether block memory should be enabled"
+#string STR_NON_BLK_MODE                    #language en-US "Non Block memory mode"
+#string STR_BLK_MODE                        #language en-US "Block memory mode"
+
+#string STR_MEM_INT_GRAN_1LM                #language en-US "1LM Memory Interleave Granularity"
+#string STR_MEM_INT_GRAN_1LM_HELP           #language en-US "Selects the 1LM memory interleave granularity"
+#string STR_4KB_256B_256B                   #language en-US "4KB Target, 256B Channel (4KB across CPU sockets, 256B across MCs within socket, 256B across channels within MCs)"
+#string STR_256B_256B                       #language en-US "256B Target, 256B Channel"
+#string STR_64B_64B                         #language en-US "64B Target, 64B Channel"
+
+#string STR_APD                             #language en-US "APD On"
+#string STR_PPDF                            #language en-US "PPDF On"
+#string STR_PPDS                            #language en-US "PPDS On"
+#string STR_APD_PPDF                        #language en-US "APD On, PPDF On"
+#string STR_APD_PPDS                        #language en-US "APD On, PPDS On"
+
+#string STR_CK_SELF_REFRESH_PROMPT          #language en-US "CK in SR"
+#string STR_CK_SELF_REFRESH_PROMPT_HELP     #language en-US "Configures CK behavior during self-refresh"
+#string STR_DRIVEN                          #language en-US "Driven"
+#string STR_TRI_STATE                       #language en-US "Tri-State"
+#string STR_PULL_LOW                        #language en-US "Pulled Low"
+#string STR_PULL_HIGH                       #language en-US "Pulled High"
+
+#string STR_OPP_SR_PROMPT                   #language en-US "Opportunistic SR"
+#string STR_OPP_SR_PROMPT_HELP              #language en-US "Enables or disables opportunistic self-refresh"
+
+#string STR_DDR_VOLTAGE_PROMPT              #language en-US "DDR3 Voltage Level"
+#string STR_DDR_VOLTAGE_HELP                #language en-US "Auto - If all dimms are 1.35V capable then set to 1.35V else set to 1.50V, Force - All DIMMs forced to 1.50V operation."
+#string STR_DDR_FORCE_150                   #language en-US "Force to 1.50V"
+#string STR_DDR_FORCE_135                   #language en-US "Force to 1.35V"
+
+#string STR_BANK_XOR_PROMPT                 #language en-US "Bank XOR"
+#string STR_BANK_XOR_HELP                   #language en-US "Enables Bank XORing to aleviate bank thrashing"
+
+#string STR_PAGE_TABLE_ALIAS_PROMPT         #language en-US "Page Table Aliasing"
+#string STR_PAGE_TABLE_ALIAS_HELP           #language en-US "Enables the bit to be set for Page Table Aliasing"
+#string STR_SET_TO_0                        #language en-US "Set To 0"
+#string STR_SET_TO_1                        #language en-US "Set To 1"
+
+#string STR_BIOS_SSA_LOADER_PROMPT          #language en-US "BSSA Module Loader"
+#string STR_BIOS_SSA_LOADER_HELP            #language en-US "Enables loading the BSSA test module"
+
+#string STR_BIOS_SSA_RMT_PROMPT             #language en-US "BSSA Rank Margin Tool"
+#string STR_BIOS_SSA_RMT_HELP               #language en-US "Enables the BSSA Rank Margin Tool"
+
+#string STR_RMT_ON_ADVANCED_TRAINING_PROMPT    #language en-US "Rmt on Advanced Memtest"
+#string STR_RMT_ON_ADVANCED_TRAINING_HELP      #language en-US "Execute RMT after advanced Memory Training, as per memory policy"
+
+#string STR_BIOS_SSA_HBM_RMT_PROMPT         #language en-US "BSSA Hbm Rank Margin Tool"
+#string STR_BIOS_SSA_HBM_RMT_HELP           #language en-US "Enables the BSSA Hbm Rank Margin Tool (Functionality not implemented)"
+
+#string STR_BIOS_SSA_RMT_FCB_PROMPT         #language en-US "BSSA RMT on Fast Cold Boot"
+#string STR_BIOS_SSA_RMT_FCB_HELP           #language en-US "Enable/Disable the BSSA Rank Margin Tool on a Fast Cold Boot"
+
+#string STR_BIOS_SSA_PER_BIT_PROMPT         #language en-US "Per Bit Margining"
+#string STR_BIOS_SSA_PER_BIT_HELP           #language en-US "Enable Per Bit Margining"
+
+#string STR_BIOS_SSA_DISPLAY_TABLE_PROMPT      #language en-US "Display Tables"
+#string STR_BIOS_SSA_DISPLAY_TABLE_HELP        #language en-US "Enable displaying results as tables"
+
+#string STR_BIOS_SSA_DISPLAY_PLOTS_PROMPT      #language en-US "Display Plots"
+#string STR_BIOS_SSA_DISPLAY_PLOTS_HELP        #language en-US "Enable the display of per-bit results as plots"
+
+#string STR_BIOS_SSA_LOOP_CNT_PROMPT           #language en-US "Loop Count"
+#string STR_BIOS_SSA_LOOP_CNT_HELP             #language en-US "Exponential loop count for single rank test"
+
+#string STR_BIOS_SSA_BACKSIDE_MARGINING_PROMPT #language en-US "Backside Margining"
+#string STR_BIOS_SSA_BACKSIDE_MARGINING_HELP   #language en-US "Enable margin test on the register or buffer backside"
+
+#string STR_BIOS_SSA_EARLY_READ_ID_PROMPT      #language en-US "Early Read ID Margining"
+#string STR_BIOS_SSA_EARLY_READ_ID_HELP        #language en-US "Enable PMem Early Read ID test"
+
+#string STR_BIOS_SSA_STEP_SIZE_OVERRIDE_PROMPT #language en-US "Step Size Override"
+#string STR_BIOS_SSA_STEP_SIZE_OVERRIDE_HELP   #language en-US "Enable overriding the default step sizes"
+
+#string STR_BIOS_SSA_RXDQS_PROMPT           #language en-US "RxDqs"
+#string STR_BIOS_SSA_RXDQS_HELP             #language en-US "Step size of RxDqs. Auto: 1. Supported values: 1,2,4,8"
+
+#string STR_BIOS_SSA_RXVREF_PROMPT          #language en-US "RxVref"
+#string STR_BIOS_SSA_RXVREF_HELP            #language en-US "Step size of RxVref. Auto: 1. Supported values: 1,2,4,8"
+
+#string STR_BIOS_SSA_TXDQ_PROMPT            #language en-US "TxDq"
+#string STR_BIOS_SSA_TXDQ_HELP              #language en-US "Step size of TxDq. Auto: 1. Supported values: 1,2,4,8"
+
+#string STR_BIOS_SSA_TXVREF_PROMPT          #language en-US "TxVref"
+#string STR_BIOS_SSA_TXVREF_HELP            #language en-US "Step size of TxVref. Auto: 1. Supported values: 1,2,4,8"
+
+#string STR_BIOS_SSA_CMDALL_PROMPT          #language en-US "CmdAll"
+#string STR_BIOS_SSA_CMDALL_HELP            #language en-US "Step size of CmdAll. Auto: 1. Supported values: 1,2,4,8"
+
+#string STR_BIOS_SSA_CMDVREF_PROMPT         #language en-US "CmdVref"
+#string STR_BIOS_SSA_CMDVREF_HELP           #language en-US "Step size of CmdVref. Auto: 1. Supported values: 1,2,4,8"
+
+#string STR_BIOS_SSA_CTLALL_PROMPT          #language en-US "CtlAll"
+#string STR_BIOS_SSA_CTLALL_HELP            #language en-US "Step size of CtlAll. Auto: 1. Supported values: 1,2,4,8"
+
+#string STR_BIOS_SSA_ERID_DELAY_PROMPT      #language en-US "EridDelay"
+#string STR_BIOS_SSA_ERID_DELAY_HELP        #language en-US "Step size of EridDelay. Auto: 1. Supported values: 1,2,4,8"
+
+#string STR_BIOS_SSA_ERID_VREF_PROMPT       #language en-US "EridVref"
+#string STR_BIOS_SSA_ERID_VREF_HELP         #language en-US "Step size of EridVref. Auto: 1. Supported values: 1,2,4,8"
+
+#string STR_BIOS_SSA_RMT_DEBUG_MSGS_PROMPT  #language en-US "RMT Debug Messages"
+#string STR_BIOS_SSA_RMT_DEBUG_MSGS_HELP    #language en-US "Enables the BSSA RMT debug messages"
+
+#string STR_LOG_PARSING_PROMPT              #language en-US "Enhanced Log Parsing"
+#string STR_LOG_PARSING_HELP                #language en-US "Enables additional output in debug log for easier machine parsing"
+
+#string STR_DDR_CYCLING_PROMPT              #language en-US "DDR Cycling"
+#string STR_DDR_CYCLING_HELP                #language en-US "When enabled, MRC will train the memory and then power cycle over and over to stress MRC"
+
+#string STR_ADR_ENABLE                      #language en-US "Enable ADR"
+#string STR_ADR_ENABLE_HELP                 #language en-US "Enables the detecting and enabling of ADR\nThis is not available if eADR is enabled since eADR requires ADR to be enabled"
+
+#string STR_CHECK_PM_STS                    #language en-US "Check PCH_PM_STS"
+#string STR_CHECK_PM_STS_HELP               #language en-US "Use the PCH_PM_STS regigister as a recovery indicator"
+
+#string STR_CHECK_PLATFORM                  #language en-US "Check PlatformDetectADR"
+#string STR_CHECK_PLATFORM_HELP             #language en-US "Use the PlatformDetectADR function as a recovery indicator"
+
+#ifdef MEM_NVDIMM_EN
+#string STR_ADR_DATA_SAVE_MODE_HELP         #language en-US "Data Save Mode for ADR. Batterybacked or Type 01 NVDIMM"
+#string STR_ADR_DATA_SAVE_MODE              #language en-US "ADR Data Save Mode"
+#endif
+#string STR_ADR_LEGACYMODE_EN               #language en-US "Legacy ADR Mode"
+#string STR_ADR_LEGACYMODE_EN_HELP          #language en-US "Enable/Disable Legacy ADR Mode\nThis is not available if eADR is enabled since eADR requires this mode to be enabled"
+
+#string STR_ADR_MIN_MEM_SIZE                #language en-US "Minimum System Memory Size"
+#string STR_ADR_MIN_MEM_SIZE_HELP           #language en-US "Minimum memory size assigned as system memory when only JEDEC NVDIMMs are present"
+#string STR_2GB                             #language en-US "2GB"
+#string STR_4GB                             #language en-US "4GB"
+#string STR_6GB                             #language en-US "6GB"
+#string STR_8GB                             #language en-US "8GB"
+
+#string STR_ADR_DATASAVE_BBU                #language en-US "Batterybacked DIMMs"
+#string STR_ADR_DATASAVE_DIS                #language en-US "Disable"
+
+#ifdef MEM_NVDIMM_EN
+#string STR_ADR_DATASAVE_NVDIMM             #language en-US "NVDIMMs"
+#string STR_ERASEARM_NVDIMM                 #language en-US "Erase-Arm NVDIMMs"
+#string STR_ERASEARM_NVDIMM_HELP            #language en-US "Enables/Disables Erasing and Arming NVDIMMs"
+#string STR_RESTORE_NVDIMM                  #language en-US "Restore NVDIMMs"
+#string STR_RESTORE_NVDIMM_HELP             #language en-US "Enables/Disables Automatic resotring of NVDIMMs"
+#string STR_INTERLEAVE_NVDIMM               #language en-US "Interleave NVDIMMs"
+#string STR_INTERLEAVE_NVDIMM_HELP          #language en-US "Controls if NVDIMMs are interleaved together or not"
+#string STR_NVDIMM_ENERGY_POLICY                #language en-US "NVDIMM Energy Policy"
+#string STR_NVDIMM_ENERGY_POLICY_HELP           #language en-US "Set the energy policy for NVDIMMs"
+#string STR_NVDIMM_ENERGY_POLICY_DEVICE_MANAGED #language en-US "Device-Managed"
+#string STR_NVDIMM_ENERGY_POLICY_HOST_MANAGED   #language en-US "Host-Managed"
+#endif
+
+#string STR_BDAT_EN_PROMPT                  #language en-US "BDAT"
+#string STR_BDAT_EN_HELP                    #language en-US "Enable Disables publishing BDAT ACPI Table"
+
+#string STR_SCRAMBLE_EN_DDRT_PROMPT         #language en-US "Data Scrambling for PMem"
+#string STR_SCRAMBLE_EN_DDRT_HELP           #language en-US "Enable - Enables data scrambling for PMem. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Enable."
+
+#string STR_SCRAMBLE_EN_PROMPT              #language en-US "Data Scrambling for DDR4/5"
+#string STR_SCRAMBLE_EN_HELP                #language en-US "Enable - Enables data scrambling for DDR4 and DDR5. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Enable."
+
+#string STR_SCRAMBLE_SEED_LOW_PROMPT        #language en-US "Scrambling Seed Low"
+#string STR_SCRAMBLE_SEED_LOW_HELP          #language en-US "Low 32 bits of the scrambling seed"
+#string STR_SCRAMBLE_SEED_HIGH_PROMPT       #language en-US "Scrambling Seed High"
+#string STR_SCRAMBLE_SEED_HIGH_HELP         #language en-US "High 32 bits of the scrambling seed"
+
+#string STR_LEGACY_RMT_PROMPT               #language en-US "Rank Margin Tool"
+#string STR_LEGACY_RMT_HELP                 #language en-US "Enable - Enables the legacy rank margin tool to run after DDR4 memory training. Disable - Disables this feature. Current default is Enable. Should be disabled in production releases."
+#string STR_RANK_MULT_PROMPT                #language en-US "Rank Multiplication"
+#string STR_RANK_MULT_HELP                  #language en-US "Force the Rank Multiplication factor for LRDIMM"
+
+#string STR_MODULE_DELAY_PROMPT             #language en-US "LRDIMM Module Delay"
+#string STR_MODULE_DELAY_HELP               #language en-US "When Disabled, MRC will not use SPD bytes 90-95 for LRDIMM Module Delay. When Auto, MRC will boundary check the values and use default values, if SPD is 0 or out of range"
+
+#string STR_PAGE_POLICY_DISPLAY_FORM_TITLE  #language en-US "Page Policy"
+#string STR_PAGE_POLICY_DISPLAY_FORM_HELP   #language en-US "Set memory page policy parameters"
+
+#string STR_MEMORY_TRAINING_DISPLAY_FORM_TITLE #language en-US "Memory Training"
+#string STR_MEMORY_TRAINING_DISPLAY_FORM_HELP  #language en-US "DDR4 training options"
+
+#string STR_EYE_DIAGRAM_PROMPT              #language en-US "Eye Diagrams"
+#string STR_EYE_DIAGRAM_HELP                #language en-US "Enables Rx and Tx Dq eye diagrams for each rank"
+#string STR_PER_BIT_MARGIN_PROMPT           #language en-US "Per Bit Margin"
+#string STR_PER_BIT_MARGIN_HELP             #language en-US "Enable - Enables the logging from the serial port of DDR Per Bit Margin Data. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Disable."
+#string STR_OPTION1                         #language en-US "Option 1"
+#string STR_OPTION2                         #language en-US "Option 2"
+#string STR_OPTION3                         #language en-US "Option 3"
+#string STR_OPTION4                         #language en-US "Option 4"
+
+#string STR_WRITE_PREAMBLE_PROMPT           #language en-US "Write Preamble TCLK"
+#string STR_DDR4_WRITE_PREAMBLE_HELP        #language en-US "Override WritePreamble to 1TCLK or 2TCLK. Auto will set WritePreamble timing to 1TCLK. PMem configurations do not support 2TCLK."
+#string STR_DDR5_WRITE_PREAMBLE_HELP        #language en-US "Override WritePreamble to 2TCLK or 3TCLK or 4TCLK. Auto will set WritePreamble timing to 2TCLK."
+#string STR_READ_PREAMBLE_PROMPT            #language en-US "Read Preamble TCLK"
+#string STR_DDR4_READ_PREAMBLE_HELP         #language en-US "Override ReadPreamble to 1TCLK or 2TCLK. Auto will set ReadPreamble timing to 2TCLK for speeds 2933 and above. DDR4 speeds below 2400 and PMem configurations do not support 2TCLK."
+#string STR_DDR5_READ_PREAMBLE_HELP         #language en-US "Override ReadPreamble to 1TCLK or 2TCLK. Auto will set ReadPreamble timing to 2TCLK."
+#string STR_1TCLK                           #language en-US "1TCLK"
+#string STR_2TCLK                           #language en-US "2TCLK"
+#string STR_3TCLK                           #language en-US "3TCLK"
+#string STR_4TCLK                           #language en-US "4TCLK"
+
+#string STR_RANK_SWITCH_FIX_PROMPT          #language en-US "Rank Switch Configuration"
+#string STR_RANK_SWITCH_FIX_HELP            #language en-US "TA Floor enforces t_rrdr, t_rrdd minimum of 3; Rcven Ave attempts to match Rcven logic delay across ranks"
+#string STR_RANK_SWITCH_TA_FLOOR            #language en-US "TA Floor"
+#string STR_RANK_SWITCH_RCVEN_AVE           #language en-US "Rcven Ave"
+#string STR_RANK_SWITCH_RCVEN_AVE_PT1       #language en-US "Reserved"
+
+#string STR_EARLY_WR_CRC_DDRIO_PROMPT       #language en-US "Early WR CRC in DDRIO feature Control"
+#string STR_EARLY_WR_CRC_DDRIO_HELP         #language en-US "Enable - Enables Early Write CRC in the DDRIO. Disable - Disables this feature."
+
+#string STR_WR_CRC_PROMPT                   #language en-US "WR CRC feature Control"
+#string STR_WR_CRC_HELP                     #language en-US "Enable - Enables Write CRC. Disable - Disables this feature."
+
+//RAS
+
+#string STR_MEM_THERMAL_SUBTITLE            #language en-US "Memory Thermal"
+#string STR_MEM_THERMAL_SUBTITLE_HELP       #language en-US "Set memory thermal settings"
+
+#string STR_DEEP                            #language en-US "Deep"
+#string STR_SHALLOW                         #language en-US "Shallow"
+
+#string STR_MEM_PWR_SAV_PROMPT              #language en-US "Mem Power Savings Mode"
+#string STR_MEM_PWR_SAV_PROMPT_HELP         #language en-US "Configures CKE and related Memory Power Savings Features"
+#string STR_SLOW                            #language en-US "Slow"
+#string STR_FAST                            #language en-US "Fast"
+#string STR_USER_DEF                        #language en-US "User Defined"
+
+#string STR_MEM_PWR_SAVE_ADV_SUBTITLE       #language en-US "Memory Power Savings Advanced Options"
+#string STR_MEM_PWR_SAVE_ADV_SUBTITLE_HELP  #language en-US "Advanced Settings for CKE and related Memory Power Savings Features"
+
+#string STR_CKE_DISPLAY_FORM_TITLE          #language en-US "CKE Feature"
+#string STR_CKE_DISPLAY_FORM_HELP           #language en-US "CKE Feature"
+
+#string STR_SREF_DISPLAY_FORM_TITLE         #language en-US "Self Refresh Feature"
+#string STR_SREF_DISPLAY_FORM_HELP          #language en-US "Self Refresh Feature"
+
+#string STR_CKE_PROMPT                      #language en-US "CKE Throttling"
+#string STR_CKE_HELP                        #language en-US "Configures CKE Throttling"
+
+#string STR_SREF_PROMPT                     #language en-US "SREF Feature"
+#string STR_SREF_HELP                       #language en-US "Select manual or auto programming Self Refresh feature"
+
+#string STR_SREF_STATIC_PROMPT              #language en-US "PKGC SREF EN"
+#string STR_SREF_STATIC_HELP                #language en-US "Enables or disables PKGC Self Refresh"
+
+#string STR_DATA_DLL_OFF_PROMPT              #language en-US "Data DLL Off EN"
+#string STR_DATA_DLL_OFF_HELP                #language en-US "Enables or disables Data DLL Off feature of Low Power Mode"
+
+#string STR_CKE_IDLE_TIMER_PROMPT           #language en-US "CKE Idle Timer"
+#string STR_CKE_IDLE_TIMER_HELP             #language en-US "CKE Idle Timer in ns. Value should be greater than 20 ns"
+
+#string STR_APD_PROMPT                      #language en-US "APD"
+#string STR_APD_HELP                        #language en-US "APD On/Off"
+#string STR_PPD_PROMPT                      #language en-US "PPD"
+#string STR_PPD_HELP                        #language en-US "PPD On/Off"
+#string STR_DDRTCKE_PROMPT                  #language en-US "PMem CKE"
+#string STR_DDRTCKE_HELP                    #language en-US "PMem CKE On/Off"
+
+#string STR_SREF_IDLE_TIMER_PROMPT          #language en-US "SREF Idle Timer"
+#string STR_SREF_IDLE_TIMER_HELP            #language en-US "SREF Idle Timer in ns."
+#string STR_DDRT_SREF_PROMPT                #language en-US "PMem SELF REFRESH"
+#string STR_DDRT_SREF_HELP                  #language en-US "PMem SELF REFRESH"
+#string MDLL_OFF_PROMPT                     #language en-US "MDLL OFF"
+#string MDLL_OFF_HELP                       #language en-US "MDLL OFF"
+
+#string STR_OPP_SR_PROMPT                   #language en-US "Opportunistic SR"
+#string STR_OPP_SR_HELP                     #language en-US "Enables or disables opportunistic self-refresh"
+#string STR_CK_SELF_REFRESH_PROMPT          #language en-US "CK in SR"
+#string STR_CK_SELF_REFRESH_PROMPT_HELP     #language en-US "Configures CK behavior during self-refresh"
+#string STR_DRIVEN                          #language en-US "Driven"
+#string STR_TRI_STATE                       #language en-US "Tri-State"
+#string STR_PULL_LOW                        #language en-US "Pulled Low"
+#string STR_PULL_HIGH                       #language en-US "Pulled High"
+
+#string STR_OFF                             #language en-US "Off"
+
+#string STR_MDLL_SDEN_PROMPT                #language en-US "MDLL Off"
+#string STR_MDLL_SDEN_PROMPT_HELP           #language en-US "Enable to shut down MDLL during SR"
+
+#string STR_MEMHOT_THROTTLING_MODE_PROMPT      #language en-US "MEMHOT Throttling Mode"
+#string STR_MEMHOT_THROTTLING_MODE_PROMPT_HELP #language en-US "Configure MEMHOT Input and Output Mode: Mem Hot Sense Therm Throt or Mem Hot Output Therm Throt."
+
+#string STR_TEMP_REFRESH_OPTION_PROMPT        #language en-US "Select Temperature Refresh Value"
+#string STR_TEMP_REFRESH_OPTION_HELP          #language en-US "Option to manually enter Temperature refresh value. Select Manual to enter value, Auto for default"
+
+#string STR_SET_HALFX_VALUE_PROMPT             #language en-US "Set Halfx Temperature Refresh"
+#string STR_SET_HALFX_VALUE_HELP               #language en-US "Set Halfx Temperature refresh value"
+
+#string STR_SET_TWOX_VALUE_PROMPT             #language en-US "Set TWOx Temperature Refresh"
+#string STR_SET_TWOX_VALUE_HELP               #language en-US "Set TWOx Temperature refresh value"
+
+#string STR_SET_FOURX_VALUE_PROMPT             #language en-US "Set FOURx Temperature Refresh"
+#string STR_SET_FOURX_VALUE_HELP               #language en-US "Set FOURx Temperature refresh value"
+
+#string STR_MEMHOT_IN_SUPPORT             #language en-US "MemHot Input Pin"
+#string STR_MEMHOT_IN_SUPPORT_HELP        #language en-US "Configure Memhot input"
+
+#string STR_MEMHOT_OUT_SUPPORT             #language en-US "MemHot Output Pin"
+#string STR_MEMHOT_OUT_SUPPORT_HELP        #language en-US "Configure Memhot output"
+
+#string STR_MEMHOT_OUTPUT_THROTTLING_MODE_PROMPT      #language en-US "MEMHOT Output Throttling Mode Options"
+#string STR_MEMHOT_OUTPUT_THROTTLING_MODE_PROMPT_HELP #language en-US "Configure MEMHOT Output Mode options: Enable/Disable the Throt Output high, mid and low bit fields."
+
+#string STR_OUTPUT_H                        #language en-US "Enable only temphi"
+#string STR_OUTPUT_HM                       #language en-US "Enable only temphi & mid"
+#string STR_OUTPUT_HML                      #language en-US "Enable only temphi, mid and low"
+
+#string STR_INPUT_OUTPUT_ENABLED            #language en-US "Input and Output Enabled"
+
+#string STR_DIMMTEMPSTAT_PROMPT             #language en-US "DIMM Temperature override"
+#string STR_DIMMTEMPSTAT_PROMPT_HELP        #language en-US "DIMM temperature for OLTT Mode"
+
+#string STR_ELECTRICAL_THROTTLING_MODE_PROMPT      #language en-US "Mem Electrical Throttling"
+#string STR_ELECTRICAL_THROTTLING_MODE_PROMPT_HELP #language en-US "Configure Memory Electrical Throttling"
+
+#string PPDS_IDLE_TIMER_PROMPT              #language en-US "PPDS idle counter."
+#string PPDS_IDLE_TIMER_HELP                #language en-US "PPDS idle counter after all rank's rank idle counters (PDWN_IDEL_CNTR) have been expired."
+
+#string STR_RMT_COLD_FAST_BOOT_PROMPT       #language en-US "RMT On Cold Fast Boot"
+#string STR_RMT_COLD_FAST_BOOT_HELP         #language en-US "Enable - Enables Rank Margin Tool on Cold Fast Boot. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Disable. Should be disabled in production releases."
+
+#string STR_MULTI_THREADED_PROMPT           #language en-US "Multi-Threaded MRC"
+#string STR_MULTI_THREADED_HELP             #language en-US "Enable - Executes the Memory Reference Code multi-threaded. Disable - Disables this feature. Auto - Sets it to MRC default setting; current default is Enable."
+
+
+#string STR_REFRESH_MODE_PROMPT             #language en-US "Refresh Options"
+#string STR_REFRESH_MODE_HELP               #language en-US "Select self refresh mode"
+#string STR_ACCELERATED_SELF_REFRESH        #language en-US "Acc Self Refr"
+#string STR_2X_REFRESH                      #language en-US "2x Refresh"
+
+#string STR_HIGHER_SYS_ADDR_SPACE_PROMPT    #language en-US "Higher System Addres Space"
+#string STR_HIGHER_SYS_ADDR_SPACE_HELP      #language en-US "Higher System Addres Space Disable/Enable"
+
+#string STR_READ_VREF_CENTERING_PROMPT      #language en-US "Read Vref Centering"
+#string STR_READ_VREF_CENTERING_HELP        #language en-US "Read Vref Centering Disable/Enable"
+
+#string STR_WRITE_VREF_CENTERING_PROMPT     #language en-US "Write Vref Centering"
+#string STR_WRITE_VREF_CENTERING_HELP       #language en-US "Write Vref Centering Disable/Enable"
+
+#string STR_COMMAND_2_DATA_TUNING_PROMPT    #language en-US "Command 2 Data Tuning"
+#string STR_COMMAND_2_DATA_TUNING_HELP      #language en-US "Command 2 Data Tuning Disable/Enable"
+
+#string STR_HALT_ON_MEM_TRAINING_ERROR_PROMPT #language en-US "Halt on mem Training Error"
+#string STR_HALT_ON_MEM_TRAINING_ERROR_HELP   #language en-US "Halt on mem Training Error Disable/Enable"
+
+#ifdef DEBUG_CODE_BLOCK
+#string STR_AUTO_RESET                        #language en-US "Auto Reset"
+#string STR_HALT_ON_MEM_TRAINING_ERROR_AUTO_HELP   #language en-US "Halt on mem Training Error Disable/Enable, Auto Reset- Halt on with Reset and Maximum Debug Msg Level on mem Training Error"
+#endif //DEBUG_CODE_BLOCK
+
+#string STR_FAN_SPD_CTRL_THRTL_MODE            #language en-US "Throttling Mode"
+#string STR_FAN_SPD_CTRL_THRTL_MODE_HELP       #language en-US "Configure Thermal Throttling Mode."
+#string STR_OPEN_LOOP_THERMAL_THROTTLING       #language en-US "OLTT"
+#string STR_CLOSE_LOOP_THERMAL_THROTTLING      #language en-US "CLTT"
+#string STR_CLOSE_LOOP_PECI_THERMAL_THROTTLING #language en-US "CLTT with PECI"
+
+#string STR_MEMTRIPREPORTING_CONFIG           #language en-US "MEMTRIP REPORTING"
+#string STR_MEMTRIPREPORTING_CONFIG_HELP      #language en-US "If set to 0, processor will ignore all Mem Trip tree. If set to 1 processor will include all Mem Trip tree."
+
+#string STR_OFFPKGMEMTOTHERMTRIP_CONFIG        #language en-US "OFF PKG MEM TO THERMTRIP"
+#string STR_OFFPKGMEMTOTHERMTRIP_CONFIG_HELP   #language en-US "If set to 0, processor will ignore offpkg Memtrip to thermtrip tree. If set to 1 processor will include offpkg Memtrip to thermtrip tree."
+
+#string STR_OFFPKGMEMTOMEMTRIP_CONFIG          #language en-US "OFF PKG MEM TO MEMTRIP"
+#string STR_OFFPKGMEMTOMEMTRIP_CONFIG_HELP     #language en-US "If set to 0, processor will ignore offpkg memtrip to memtrip tree. If set to 1 processor will include offpkg memtrip to memtrip tree."
+#string STR_OPP_READ_DURING_WMM_PROMPT      #language en-US "Opp read during WMM"
+#string STR_OPP_READ_DURING_WMM_HELP        #language en-US "Enable - Enables issuing read commands opportunistically during Write Major Mode. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Enable."
+
+#string STR_NORM_OPP_INTERVAL_PROMPT        #language en-US "Normal Operation Duration"
+#string STR_NORM_OPP_INTERVAL_HELP          #language en-US "Set normal operation duration interval (0 - 65535)"
+
+#string STR_XMP_FORM_SUBTITLE               #language en-US "Memory Timings Override"
+#string STR_XMP_PROFILE_PROMPT              #language en-US "XMP Profile"
+#string STR_XMP_PROFILE_HELP                #language en-US "Selects the XMP profile to use"
+#string STR_XMP_PROFILE1                    #language en-US "Profile 1"
+#string STR_XMP_PROFILE2                    #language en-US "Profile 2"
+
+#string STR_XMP_DDR_FREQ_LIMIT_PROMPT       #language en-US "Memory Frequency"
+#string STR_XMP_DDR_FREQ_LIMIT_HELP         #language en-US "Maximum Memory Frequency Selections in Mhz. If Enforce POR is disabled, user will be able to run at higher frequencies than the memory support (limited by processor support). Do not select Reserved"
+
+#string STR_VDD_PROMPT                      #language en-US "Memory Voltage"
+#string STR_VDD_HELP                        #language en-US "Selects the desired memory voltage. To select 1.200V enter 1200."
+#string STR_COMMAND_TIMING_PROMPT           #language en-US "Command Timing"
+#string STR_COMMAND_TIMING_HELP             #language en-US "Selects the desired memory controller command timing"
+#string STR_1N                              #language en-US "1N"
+#string STR_2N                              #language en-US "2N"
+#string STR_3N                              #language en-US "3N"
+#string STR_CAS_LATENCY                     #language en-US "CAS Latency"
+#string STR_CAS_LATENCY_HELP                #language en-US "0 - 4 = Auto, 5 - 11 = Desired CAS latency"
+#string STR_TRP_LATENCY                     #language en-US "tRP"
+#string STR_TRP_LATENCY_HELP                #language en-US "0 - 4 = Auto, 5 - 11 = Desired tRP latency"
+#string STR_TRCD_LATENCY                    #language en-US "tRCD"
+#string STR_TRCD_LATENCY_HELP               #language en-US "0 - 4 = Auto, 5 - 11 = Desired tRCD latency"
+#string STR_TRAS_LATENCY                    #language en-US "tRAS"
+#string STR_TRAS_LATENCY_HELP               #language en-US "0 = Auto else Desired tRAS latency"
+#string STR_TWR_LATENCY                     #language en-US "tWR"
+#string STR_TWR_LATENCY_HELP                #language en-US "0 = Auto else Desired tWR latency"
+#string STR_TRFC_LATENCY                    #language en-US "tRFC"
+#string STR_TRFC_LATENCY_HELP               #language en-US "0 = Auto else Desired tRFC"
+#string STR_TRRD_LATENCY                    #language en-US "tRRD"
+#string STR_TRRD_LATENCY_HELP               #language en-US "0 = Auto else Desired tRRD"
+#string STR_TRTP_LATENCY                    #language en-US "tRTP"
+#string STR_TRTP_LATENCY_HELP               #language en-US "0 = Auto else Desired tRTP"
+#string STR_TWTR_LATENCY                    #language en-US "tWTR"
+#string STR_TWTR_LATENCY_HELP               #language en-US "0 = Auto else Desired tWTR"
+#string STR_TFAW_LATENCY                    #language en-US "tFAW"
+#string STR_TFAW_LATENCY_HELP               #language en-US "0 = Auto else Desired tFAW"
+#string STR_TCWL_LATENCY                    #language en-US "tCWL"
+#string STR_TCWL_LATENCY_HELP               #language en-US "0 = Auto else Desired tCWL"
+#string STR_TRC_LATENCY                     #language en-US "tRC"
+#string STR_TRC_LATENCY_HELP                #language en-US "0 = Auto else Desired tRC"
+#string STR_REFRESH_RATE                    #language en-US "Refresh Rate"
+#string STR_REFRESH_RATE_HELP               #language en-US "0 = Auto, else tCK units"
+
+#string STR_COMMAND_NORMAL_PROMPT           #language en-US "Command Normalization"
+#string STR_COMMAND_NORMAL_HELP             #language en-US "Enable/Disable Command Normalization"
+
+#string STR_COMMAND_VREF_PROMPT             #language en-US "Command Vref Training"
+#string STR_COMMAND_VREF_HELP               #language en-US "Enable\Disable Command Vref"
+
+#string STR_MC_RON_EN_PROMPT                #language en-US "MC RON Training"
+#string STR_MC_RON_EN_HELP                  #language en-US "Enable\Disable MC RON Training"
+
+#string STR_DRAM_RON_EN_PROMPT                #language en-US "DRAM RON Training"
+#string STR_DRAM_RON_EN_HELP                  #language en-US "Enable\Disable DRAM RON Training"
+
+#string STR_RX_ODT_EN_PROMPT                #language en-US "Rx ODT Training"
+#string STR_RX_ODT_EN_HELP                  #language en-US "Enable\Disable Rx ODT Training"
+
+#string STR_RX_CTLE_TRN_EN_PROMPT                #language en-US "Rx CTLE Training"
+#string STR_RX_CTLE_TRN_EN_HELP                  #language en-US "Enable\Disable Rx CTLE Training"
+
+#string STR_LR_DIMM_BACKSIDE_VREF_PROMPT             #language en-US "LRDIMM Backside Vref"
+#string STR_LR_DIMM_BACKSIDE_VREF_HELP               #language en-US "Enable\Disable LRDIMM Backside Vref Training"
+
+#string STR_LRDIMM_WR_VREF_EN_PROMPT      #language en-US "LRDIMM Write Vref"
+#string STR_LRDIMM_WR_VREF_EN_HELP        #language en-US "Enable\Disable LRDIMM Write Vref Training"
+
+#string STR_LRDIMM_RD_VREF_EN_PROMPT      #language en-US "LRDIMM Read Vref"
+#string STR_LRDIMM_RD_VREF_EN_HELP        #language en-US "Enable\Disable LRDIMM Read Vref Training"
+
+#string STR_LRDIMM_TX_DQ_CENTERING_PROMPT       #language en-US "LRDIMM TX DQ Centering"
+#string STR_LRDIMM_TX_DQ_CENTERING_HELP         #language en-US "Enable\Disable LRDIMM TX DQ Centering"
+
+#string STR_LRDIMM_RX_DQ_CENTERING_PROMPT       #language en-US "LRDIMM RX DQ Centering"
+#string STR_LRDIMM_RX_DQ_CENTERING_HELP         #language en-US "Enable\Disable LRDIMM RX DQ Centering"
+
+#string STR_TX_EQ_PROMPT                    #language en-US "Tx Eq Training"
+#string STR_TX_EQ_HELP                      #language en-US "Enable/Disable Tx Eq Training"
+
+#string STR_CMD_TX_EQ_PROMPT                #language en-US "CMD Tx Eq Training"
+#string STR_CMD_TX_EQ_HELP                  #language en-US "Enable/Disable CMD Tx Eq Training"
+
+#string STR_RX_DFE_PROMPT                   #language en-US "Rx Dfe Training"
+#string STR_RX_DFE_HELP                     #language en-US "Enable/Disable Rx DFE Training.  AUTO will enable if DDR Freq >= 2400.  Enable or Disable will control Rx DFE regardless of frequency"
+
+#string STR_RX_DFE_DDR5_TRAINING_PROMPT     #language en-US "RX DFE DDR5 Training"
+#string STR_RX_DFE_DDR5_TRAINING_HELP       #language en-US "Enable/Disable the RX DFE DDR5 Training step."
+
+#string STR_TX_DFE_DDR5_TRAINING_PROMPT     #language en-US "TX DFE DDR5 Training"
+#string STR_TX_DFE_DDR5_TRAINING_HELP       #language en-US "Enable/Disable the TX DFE DDR5 Training step."
+
+#string STR_TX_RF_SLEW_RATE_PROMPT         #language en-US "TX Rise Fall Slew Rate Training"
+#string STR_TX_RF_SLEW_RATE_HELP           #language en-US "Enable/Disable TX Rise Fall Slew Rate Training. AUTO will enable if DDR Freq >= 2933. Enable or Disable will control TXRFSR regardless of frequency"
+
+#string STR_IMODE_PROMPT                    #language en-US "iMode Training"
+#string STR_IMODE_HELP                      #language en-US "Enable/Disable iMode Training"
+
+#string STR_TCOCOMP_PROMPT                    #language en-US "Tco Comp Training"
+#string STR_TCOCOMP_HELP                      #language en-US "Enable/Disable Tco Comp Training"
+
+#string STR_ROUND_TRIP_LATENCY_PROMPT       #language en-US "RoundTrip Latency Training"
+#string STR_ROUND_TRIP_LATENCY_HELP         #language en-US "Enable/Disable RoundTrip Latency Training"
+
+#string STR_DUTY_CYCLE_PROMPT               #language en-US "Duty Cycle Training"
+#string STR_DUTY_CYCLE_HELP                 #language en-US "Enable/Disable Duty Cycle Training"
+
+#string STR_PXC_PROMPT                      #language en-US "PXC Training"
+#string STR_PXC_HELP                        #language en-US "Enable/Disable PXC Training"
+
+#string STR_DDJC_PROMPT                     #language en-US "DDJC Training"
+#string STR_DDJC_HELP                       #language en-US "Enable/Disable DDJC Training"
+
+#string STR_LRDIMM_DBDFE_PROMPT             #language en-US "LRDIMM DB DFE Training"
+#string STR_LRDIMM_DBDFE_HELP               #language en-US "Enable/Disable LRDIMM DB DFE Training"
+#string STR_PMEM_ONLY                       #language en-US "PMem Only"
+#string STR_ALL_LRDIMM                      #language en-US "All LRDIMM"
+
+#string STR_DRAM_DUTY_CYCLE_ADJUSTER_PROMPT #language en-US "DRAM Duty Cycle Adjuster Training"
+#string STR_DRAM_DUTY_CYCLE_ADJUSTER_HELP   #language en-US "Enable/Disable DRAM Duty Cycle Adjuster Training"
+
+#string STR_ADVANCED_STROBE_CENTERING_PROMPT #language en-US "Advanced Strobe Centering"
+#string STR_ADVANCED_STROBE_CENTERING_HELP   #language en-US "Enable/Disable Advanced Strobe Centering"
+
+#string STR_EXT_DIMM_VREF_CIRCUIT_PROMPT    #language en-US "Dimm Vref Ciruit"
+#string STR_EXT_DIMM_VREF_CIRCUIT_HELP      #language en-US "Choose internal or external Dimm vref circuit"
+#string STR_INTERNAL                        #language en-US "Internal"
+#string STR_EXTERNAL                        #language en-US "External"
+
+#string STR_PROMOTE_WARNINGS_PROMPT         #language en-US "Promote Warnings"
+#string STR_PROMOTE_WARNINGS_HELP           #language en-US "Determines if warnings are promoted to system level"
+
+#string STR_MEM_MAP_SUBTITLE                #language en-US "Memory Map"
+#string STR_MEM_MAP_HELP                    #language en-US "Set memory mapping settings"
+
+#string STR_BIOS_SSA_CONFIG_MENU_SUBTITLE   #language en-US "BSSA Configuration Menu"
+#string STR_BIOS_SSA_CONFIG_MENU_HELP       #language en-US "Configuration options for the BSSA Tool"
+
+#string STR_NGN_BCOM_MARGIN_PROMPT          #language en-US "DDRT DIMM BCOM Margining Support"
+#string STR_NGN_BCOM_MARGIN_HELP            #language en-US "Enables DDRT DIMM BCOM margining support for RMT and BSSA"
+
+#string STR_CA_PARITY_PROMPT                #language en-US "C/A Parity Enable"
+#string STR_CA_PARITY_HELP                  #language en-US "Enable - Enables DDR4 Command Address Parity. Disable - Disables this feature. Auto - Sets it to the MRC default setting; current default is Enable."
+
+#string STR_DIMM_ISOLATION_PROMPT           #language en-US "DIMM Isolation Enable"
+#string STR_DIMM_ISOLATION_HELP             #language en-US "Enable - Enables DIMM Isolation for Command/Address Parity and Write CRC. Disable - Disables this feature; current default is Enable."
+
+#string STR_SMB_SPEED_PROMPT                #language en-US "SMB Clock Frequency"
+#string STR_SMB_SPEED_HELP                  #language en-US "Sets DDR4 SMBus Clock Frequencies For SPD Access. Current default is 700Khz. Note: If Intel Optane Persistent Memory (PMem) is present, SMBus Clock Frequency is restricted to 400Khz regardless of this setting."
+#string STR_SMB_100K                        #language en-US "100 Khz"
+#string STR_SMB_400K                        #language en-US "400 Khz"
+#string STR_SMB_700K                        #language en-US "700 Khz"
+#string STR_SMB_1M                          #language en-US "1 Mhz"
+
+#string STR_SMB_SPEED_I3C_HELP              #language en-US "Sets DDR5 SMBus Clock Frequencies For SPD Access."
+#string STR_SMB_I2C_100K_I3C_4M             #language en-US "100 Khz in I2C mode; 4Mhz in I3C mode"
+#string STR_SMB_I2C_400K_I3C_6M             #language en-US "400 Khz in I2C mode; 6Mhz in I3C mode"
+#string STR_SMB_I2C_700K_I3C_8M             #language en-US "700 Khz in I2C mode; 8Mhz in I3C mode"
+#string STR_SMB_I2C_1M_I3C_10M              #language en-US "1 Mhz in I2C mode; 10Mhz in I3C mode"
+
+#string STR_SMB_SPD_ACCESS_PROMPT           #language en-US "SPD-SMBUS Access"
+#string STR_SMB_SPD_ACCESS_HELP             #language en-US "Allow Cpu Spd Smbus access to be Locked\UnLocked before booting to OS"
+#string STR_LOCK_ACCESS                     #language en-US "Lock"
+#string STR_UNLOCK_ACCESS                   #language en-US "UnLock"
+
+#string STR_TURNAROUND_PROMPT               #language en-US "Turnaround Time Optimization"
+#string STR_TURNAROUND_HELP                 #language en-US "Enables optimal turnaround times"
+
+#string STR_TURNAROUND_DDRT_PROMPT          #language en-US "Turnaround Time Optimization PMem"
+#string STR_TURNAROUND_DDRT_HELP            #language en-US "Enables optimal turnaround times for PMem"
+
+#string STR_ONERANKTIMINGMODE_PROMPT        #language en-US "One Rank Timing Mode"
+#string STR_ONERANKTIMINGMODE_HELP          #language en-US "LRDIMM One Rank Timing Mode turnaround time optimization"
+
+#string STR_PDA_PROMPT                      #language en-US "PDA"
+#string STR_PDA_HELP                        #language en-US "Enables Per DRAM Addressing"
+
+#string STR_CUSTOMREFRESHRATEEN_PROMPT      #language en-US "Custom Refresh Enable"
+#string STR_CUSTOMREFRESHRATEEN_HELP        #language en-US "Enable/disable a custom memory refresh rate"
+
+#string STR_CUSTOMREFRESHRATE_PROMPT        #language en-US "Custom Refresh Rate"
+#string STR_CUSTOMREFRESHRATE_HELP_SKX      #language en-US "Refresh Rate in 0.1x units of the standard 7.8 usec interval. Valid range is 20 to 40 (i.e. 2x to 4x)"
+#string STR_CUSTOMREFRESHRATE_HELP_ICX_KNH  #language en-US "Refresh Rate in 0.1x units of the standard 7.8 usec interval. Valid range is 20 to 80 (i.e. 2x to 8x)"
+
+#string STR_ALLOW_2X_REFRESH_PROMPT         #language en-US "2x Refresh Enable"
+#string STR_ALLOW_2X_REFRESH_HELP           #language en-US "Enable/Disable 2x Refresh"
+
+#string STR_FRC_MIRR_WR_TO_FAILED_EN_PROMPT #language en-US "frcmirrwrstofailed Enable Mask"
+#string STR_FRC_MIRR_WR_TO_FAILED_EN_HELP   #language en-US "Selects frcmirrwrstofailed enable/disable"
+
+#string STR_MIRR_FAIL_MODE_PROMPT           #language en-US "Mirror Fail-Over Mode"
+#string STR_MIRR_FAIL_MODE_HELP             #language en-US "Direct Scrub will skip ECC correction and instead directly scrub the error using the mirror copy of data"
+
+#string STR_STAGGER_REF_PROMPT              #language en-US "Stagger Ref Enable Mask"
+#string STR_STAGGER_REF_HELP                #language en-US "Selects Stagger Ref enable/disable"
+
+#string STR_LOCK_NGN_CSR_PROMPT             #language en-US "Lock PMem CSRs"
+#string STR_LOCK_NGN_CSR_HELP               #language en-US "Enable\Disable Lock PMem CSRs"
+
+#string STR_FACTORY_RESET_CLEAR_PROMPT      #language en-US "PMem Factory Reset/Clear "
+#string STR_FACTORY_RESET_CLEAR_HELP        #language en-US "Enable\Disable Factory Reset/Clear.  'Average Power Budget' setup question will override default Average Power Budget"
+
+#string STR_NGN_DEBUG_LOCK_PROMPT           #language en-US "Debug lock for PMem"
+#string STR_NGN_DEBUG_LOCK_HELP             #language en-US "Enable\Disable Debug lock for PMem"
+
+#string STR_NGN_CMD_TIME_PROMPT             #language en-US "PMem CMD Time"
+#string STR_NGN_CMD_TIME_HELP               #language en-US "Select 1N\2N PMem Command tme"
+
+#string STR_NGN_ECC_CORR_PROMPT             #language en-US "PMem ECC Correctable error"
+#string STR_NGN_ECC_CORR_HELP               #language en-US "Disable PMem Write ECC Correction"
+
+#string STR_NGN_ECC_WR_CHK_PROMPT           #language en-US "PMem ECC Write Check"
+#string STR_NGN_ECC_WR_CHK_HELP             #language en-US "Enable\Disable PMem ECC Write Check"
+
+#string STR_NGN_ECC_EXIT_CORR_PROMPT        #language en-US "PMem ECC Write Retry Flow Exit"
+#string STR_NGN_ECC_EXIT_CORR_HELP          #language en-US "Enable Write ECC Flow A Correction on Retry Flow Exit"
+
+#string STR_NGN_ECC_RD_CHK_PROMPT           #language en-US "PMem ECC Read Check"
+#string STR_NGN_ECC_RD_CHK_HELP             #language en-US "Enable\Disable PMem ECC Read Check"
+
+#string STR_BLOCK_GNT2CMD1CYC_PROMPT        #language en-US "BLOCK GNT2CMD1CYC"
+#string STR_BLOCK_GNT2CMD1CYC_HELP          #language en-US "Enable\Disable BLOCK GNT2CMD1CYC"
+#string STR_DIS_DDRT_OPPRD_PROMPT           #language en-US "Disable DDRT DIMM OPPRD"
+#string STR_DIS_DDRT_OPPRD_HELP             #language en-US "Enable\Disable Disable DDRT DIMM OPPRD"
+
+#string STR_NGN_ARS_PUBLISH_PROMPT          #language en-US "Publish ARS capability"
+#string STR_NGN_ARS_PUBLISH_HELP            #language en-US "Enable\Disable publishing of the Address Range Scrub capability to the OS"
+
+#string STR_NVMCTRL_MEDIA_STATUS_EXCEPTION_PROMPT  #language en-US "PMem MediaStatus Exception"
+#string STR_NVMCTRL_MEDIA_STATUS_EXCEPTION_HELP    #language en-US "PMem MediaStatus Exception Enable/Disable"
+
+#string STR_AEP_DIMM_NOT_SUPPORTED_EXCEPTION_PROMPT   #language en-US "100 series PMem Not Supported Exception"
+#string STR_AEP_DIMM_NOT_SUPPORTED_EXCEPTION_HELP     #language en-US "100 series PMem Not Supported Exception Enable/Disable"
+
+#string STR_CR_FAST_GO_CONFIG_PROMPT            #language en-US "PMem FastGo Configuration"
+#string STR_CR_FAST_GO_CONFIG_HELP              #language en-US "Select PMem FastGo Configuration Profiles"
+
+#string STR_CR_LATCH_SYSTEM_SHUTDOWN_PROMPT #language en-US "PMem Latch System Shutdown State"
+#string STR_CR_LATCH_SYSTEM_SHUTDOWN_HELP   #language en-US "Latch System Shutdown State"
+
+#string STR_POR                             #language en-US "POR"
+#string STR_PO_SAFE                         #language en-US "PO Safe Value"
+
+#string STR_NGN_AVERAGE_POWER_PROMPT         #language en-US "100 Series PMem Average Power Budget (in mW)"
+#string STR_NGN_AVERAGE_POWER_HELP           #language en-US "Sets the power management policy for average power (must be an increment of 250 mW). Warning: Average power range depends on NVDIMM size. For 128GB range is 10..15 W, for 256/512GB range is 12..18 W. If value out of range is set, it is silently corrected."
+
+#string STR_AVERAGE_POWER_LIMIT_PROMPT       #language en-US "200 Series PMem Average Power Limit (in mW)"
+#string STR_AVERAGE_POWER_LIMIT_HELP         #language en-US "Power limit in mW used for average power. Valid range for power limit starts from 10000mW and must be a multiple of 250mW."
+
+#string STR_AVERAGE_POWER_TIME_CONSTANT_PROMPT       #language en-US "200 Series PMem Turbo Average Power Time Constant (in mSec)"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_HELP         #language en-US "Value used as a base time window for power usage measurements."
+#string STR_MBB_AVERAGE_POWER_TIME_CONSTANT_PROMPT   #language en-US "200 Series PMem Memory Bandwidth Boost(MBB) Average Power Time Constant (in mSec)"
+#string STR_MBB_AVERAGE_POWER_TIME_CONSTANT_HELP     #language en-US "Value used as a base time window for power usage measurements.Valid range starts from 1000msec to 120000msec(must be an increment of 1000msec)."
+
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING0  #language en-US "96"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING1  #language en-US "128"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING2  #language en-US "192"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING3  #language en-US "256"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING4  #language en-US "384"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING5  #language en-US "512"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING6  #language en-US "786"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING7  #language en-US "1024"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING8  #language en-US "1536"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING9  #language en-US "2048"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING10 #language en-US "3072"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING11 #language en-US "4096"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING12 #language en-US "6144"
+#string STR_AVERAGE_POWER_TIME_CONSTANT_STRING13 #language en-US "8192"
+
+#string STR_TURBO_POWER_STATE_PROMPT            #language en-US "200 Series PMem Turbo/Memory Bandwidth Boost(MBB) Feature"
+#string STR_TURBO_POWER_STATE_HELP              #language en-US "Allows enabling and disabling of the Turbo/Memory Bandwidth Boost(MBB) Feature on the Module."
+
+#string STR_TURBO_POWER_LIMIT_PROMPT            #language en-US "200 Series PMem Turbo/Memory Bandwidth Boost Feature(MBB) Power Limit (in mW)"
+#string STR_TURBO_POWER_LIMIT_HELP              #language en-US "Power limit in mW used for limiting the Turbo/Memory Bandwidth Boost(MBB) Feature power consumption.Valid range for Turbo Power Limit starts from 15000mW."
+
+#string STR_MEM_STRING1                     #language en-US "Empty"
+#string STR_MEM_STRING2                     #language en-US "Empty"
+#string STR_MEM_STRING3                     #language en-US "Empty"
+#string STR_MEM_STRING4                     #language en-US "Empty"
+#string STR_MEM_STRING5                     #language en-US "Empty"
+#string STR_MEM_STRING6                     #language en-US "Empty"
+#string STR_MEM_STRING7                     #language en-US "Empty"
+#string STR_MEM_STRING8                     #language en-US "Empty"
+#string STR_MEM_STRING9                     #language en-US "Empty"
+#string STR_MEM_STRING10                    #language en-US "Empty"
+#string STR_MEM_STRING11                    #language en-US "Empty"
+#string STR_MEM_STRING12                    #language en-US "Empty"
+#string STR_MEM_STRING13                    #language en-US "Empty"
+#string STR_MEM_STRING14                    #language en-US "Empty"
+#string STR_MEM_STRING15                    #language en-US "Empty"
+#string STR_MEM_STRING16                    #language en-US "Empty"
+#string STR_MEM_STRING17                    #language en-US "Empty"
+#string STR_MEM_STRING18                    #language en-US "Empty"
+#string STR_MEM_STRING19                    #language en-US "Empty"
+#string STR_MEM_STRING20                    #language en-US "Empty"
+#string STR_MEM_STRING21                    #language en-US "Empty"
+#string STR_MEM_STRING22                    #language en-US "Empty"
+#string STR_MEM_STRING23                    #language en-US "Empty"
+#string STR_MEM_STRING24                    #language en-US "Empty"
+#string STR_MEM_STRING25                    #language en-US "Empty"
+#string STR_MEM_STRING26                    #language en-US "Empty"
+#string STR_MEM_STRING27                    #language en-US "Empty"
+#string STR_MEM_STRING28                    #language en-US "Empty"
+#string STR_MEM_STRING29                    #language en-US "Empty"
+#string STR_MEM_STRING30                    #language en-US "Empty"
+#string STR_MEM_STRING31                    #language en-US "Empty"
+#string STR_MEM_STRING32                    #language en-US "Empty"
+#string STR_MEM_STRING33                    #language en-US "Empty"
+#string STR_MEM_STRING34                    #language en-US "Empty"
+#string STR_MEM_STRING35                    #language en-US "Empty"
+#string STR_MEM_STRING36                    #language en-US "Empty"
+#string STR_MEM_STRING37                    #language en-US "Empty"
+#string STR_MEM_STRING38                    #language en-US "Empty"
+#string STR_MEM_STRING39                    #language en-US "Empty"
+#string STR_MEM_STRING40                    #language en-US "Empty"
+#string STR_MEM_STRING41                    #language en-US "Empty"
+#string STR_MEM_STRING42                    #language en-US "Empty"
+#string STR_MEM_STRING43                    #language en-US "Empty"
+#string STR_MEM_STRING44                    #language en-US "Empty"
+#string STR_MEM_STRING45                    #language en-US "Empty"
+#string STR_MEM_STRING46                    #language en-US "Empty"
+#string STR_MEM_STRING47                    #language en-US "Empty"
+#string STR_MEM_STRING48                    #language en-US "Empty"
+
+#if defined (SKX_HOST)
+#string STR_CR_FAST_GO_STRING0              #language en-US "Default (no FastGo optimization)"
+#string STR_CR_FAST_GO_STRING1              #language en-US "Option 1"
+#string STR_CR_FAST_GO_STRING2              #language en-US "Option 2"
+#string STR_CR_FAST_GO_STRING3              #language en-US "Option 3"
+#string STR_CR_FAST_GO_STRING4              #language en-US "Option 4"
+#string STR_CR_FAST_GO_STRING5              #language en-US "Option 5"
+#string STR_CR_FAST_GO_AUTO                 #language en-US "Auto"
+#else
+#string STR_CR_FAST_GO_STRING0              #language en-US "Enable FastGo optimization"
+#string STR_CR_FAST_GO_STRING1              #language en-US "Disable FastGo optimization"
+#string STR_CR_FAST_GO_AUTO                 #language en-US "Auto"
+#endif
+
+#string STR_NVM_QOS_PROMPT                  #language en-US "PMem QoS"
+#string STR_NVM_QOS_HELP                    #language en-US "PMem QoS tuning recipes"
+
+#string STR_NVM_QOS_RECIPE1_STR             #language en-US "Recipe 1 - Enables tuning recipe 1 for PMem QoS knobs (recommended for 2-2-2 memory configuration in AD)"
+#string STR_NVM_QOS_RECIPE2_STR             #language en-US "Recipe 2 - Enables tuning recipe 2 for PMem QoS knobs (recommended for other memory configuration in AD)"
+#string STR_NVM_QOS_RECIPE3_STR             #language en-US "Recipe 3 - Enables tuning recipe 3 for PMem QoS knobs (recommended for 1 DIMM per channel config)"
+#string STR_NVM_QOS_DISABLE_STR             #language en-US "Disable - Disable PMem QoS feature"
+
+#string STR_DDRT_QOS_MODE_0                 #language en-US "Mode 0 - Disable the PMem QoS Feature"
+#string STR_DDRT_QOS_MODE_1                 #language en-US "Mode 1 - M2M QoS Enable;CHA QoS Disable"
+#string STR_DDRT_QOS_MODE_2                 #language en-US "Mode 2 - M2M QoS Enable;CHA QoS Enable"
+
+#string STR_SPD_CRC_CHECK_PROMPT            #language en-US "SPD CRC Check"
+#string STR_SPD_CRC_CHECK_HELP              #language en-US "Enable to turn on checking the SPD CRC"
+
+#string STR_SPD_PRINT_PROMPT                #language en-US "SPD Print"
+#string STR_SPD_PRINT_HELP                  #language en-US "Enable/Disable SPD Print"
+
+#string STR_SPD_PRINT_LENGTH_PROMPT         #language en-US "SPD Print Length"
+#string STR_SPD_PRINT_LENGTH_HELP           #language en-US "Length of SPD to print"
+#string STR_SPD_PRINT_AUTO                 #language en-US "Auto"
+#string STR_SPD_PRINT_256B                 #language en-US "256 Bytes"
+#string STR_SPD_PRINT_512B                 #language en-US "512 Bytes"
+
+#string STR_FORMID_CMI_INIT_TITLE           #language en-US "CMI Init Configuration"
+#string STR_FORMID_CMI_INIT_TITLE_HELP      #language en-US "Helps configure cmi init"
+#string STR_RESET_VALUE                     #language en-US "Register default Value"
+#string STR_CMI_INIT_OPTION                 #language en-US "CMI Init Option"
+#string STR_CMI_INIT_OPTION_HELP            #language en-US "Select Auto/Register default Value for spreadsheet value programming/normal register default value"
+
+#string STR_ELIMINATE_DIRECTORY_IN_FM_PROMPT #language en-US "Snoopy mode for 2LM"
+#string STR_ELIMINATE_DIRECTORY_IN_FM_HELP   #language en-US "enables new 2LM specific feature to avoid directory updates to far-memory from non-NUMA optimized workloads"
+
+#string STR_NVMDIMM_PERF_PROMOPT            #language en-US "PMem Performance Setting"
+#string STR_NVMDIMM_PERF_HELP               #language en-US "PMem baseline performance settings depending on the workload behavior"
+#string STR_BW_OPTIMIZED                    #language en-US "BW Optimized"
+#string STR_LATENCY_OPTIMIZED               #language en-US "Latency Optimized"
+#string STR_BALANCED                        #language en-US "Balanced Profile"
+
+#string STR_CR_PCP_SURPRISECLOCKSTOP_PROMPT  #language en-US "Power Cycle on PMem Surprise Clock Stop"
+#string STR_CR_PCP_SURPRISECLOCKSTOP_HELP    #language en-US "Enable/Disable power cycle policy when PMem receive surprise clock stop"
+
+#string STR_DIRECTORY_FOR_APP_DIRECT_PROMPT  #language en-US "Snoopy mode for AD"
+#string STR_DIRECTORY_FOR_APP_DIRECT_HELP    #language en-US "enables new AD specific feature to avoid directory updates to PMem memory from non-NUMA optimized workloads"
+
+#string STR_TRRDL_LATENCY                   #language en-US "tRRD_L"
+#string STR_TRRDL_LATENCY_HELP              #language en-US "0 = Auto else Desired tRRD_L"
+
+#string STR_PMEM_MEM_HOLE_PROMPT            #language en-US "App Direct Memory Hole"
+#string STR_PMEM_MEM_HOLE_HELP              #language en-US "Enable/Disable the App Direct Memory Hole"
+
+#string STR_EXTENDED_TYPE_17_PROMPT          #language en-US "Extended Type 17 Structure"
+#string STR_EXTENDED_TYPE_17_HELP            #language en-US "Use extended Type 17 SMBIOS Structures"
+
+#string STR_LSX_IMPLEMENTATION_PROMPT       #language en-US "LSx implementation"
+#string STR_LSX_IMPLEMENTATION_HELP         #language en-US "Select LSI/LSR/LSW ACPI method implementation"
+
+#string STR_NVDIMM_SMBUS_MAX_ACCESS_TIME_PROMPT #language en-US "SMBus Max Access Time"
+#string STR_NVDIMM_SMBUS_MAX_ACCESS_TIME_HELP   #language en-US "Maximum amount of time (ms) UEFI mgmt driver is allowed to use the SMBus"
+
+#string STR_NVDIMM_SMBUS_RELEASE_DELAY_PROMPT   #language en-US "SMBus Release Delay"
+#string STR_NVDIMM_SMBUS_RELEASE_DELAY_HELP     #language en-US "Delay time (ms) before releasing after UEFI mgmt driver requests SMBus release"
+
+#string STR_NFIT_MAILBOX_STRUCTS_PROMPT     #language en-US "NVDIMM Mailbox in NFIT"
+#string STR_NFIT_MAILBOX_STRUCTS_HELP       #language en-US "Enable/disable publishing NVDIMM mailbox registers in NFIT structures."
+
+#string STR_SWSMI                           #language en-US "SWSMI"
+#string STR_ASL                             #language en-US "ASL"
+
+//
+// End of file
+//

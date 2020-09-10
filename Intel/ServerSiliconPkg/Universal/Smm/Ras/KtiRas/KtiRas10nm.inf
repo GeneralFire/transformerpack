@@ -1,0 +1,123 @@
+## @file
+# Component description file for QPI RAS Support driver module
+# This is KtiRas driver for platform.
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2006 - 2019 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = KtiRas
+  FILE_GUID                      = 3E625104-1920-44b1-AE2C-1BDA57ED73EA
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = InitializeRasMpLink
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+
+[Sources]
+  KtiRas.c
+  10nm/KtiRasMain.c
+  KtiRasSupport.c
+  X64/KtiRasLib.nasm
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CpRcPkg/CpRcPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+  ServerRasPkg/RasPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses]
+  ProcMemInitLib
+  UncoreLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  SmmLib
+  BaseLib
+  DebugLib
+  PcdLib
+  IoLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  UefiLib
+  HobLib
+  CpuInitLib
+  SystemInfoLib
+  SysHostPointerLib
+  UpiHostDataLib
+  KtiApiLib
+  IoAccessLib
+  MemRcLib
+  CpuCsrAccessLib
+
+[Protocols]
+  gEfiSmmCpuProtocolGuid                        # PROTOCOL ALWAYS_CONSUMED
+  gEfiIioUdsProtocolGuid                        # PROTOCOL ALWAYS_CONSUMED
+  gEfiQuiesceProtocolGuid
+  gEfiRasMpLinkProtocolGuid
+  gEfiSmmCpuServiceProtocolGuid
+  gEfiSmmSxDispatch2ProtocolGuid
+  gEfiSmmSwDispatch2ProtocolGuid
+  gEfiHpIoxAccessGuid
+  gSpsRasNotifyProtocolGuid
+
+[Guids]
+  gEfiPlatformInfoGuid
+  gEfiQpiRcParmGuid
+  gEfiRasHostGuid
+  gEfiKtiEparamInfoGuid
+
+[Pcd]
+  gPlatformTokenSpaceGuid.PcdPlatformType
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+
+[PcdEx]
+  gReferenceCodePolicyTokenSpaceGuid.PcdEvMode
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid AND
+  gEfiSmmCpuProtocolGuid AND
+  gEfiSmmCpuServiceProtocolGuid AND
+  gEfiQuiesceProtocolGuid AND
+  gEfiHpIoxAccessGuid AND
+  gEfiSmmSxDispatch2ProtocolGuid AND
+  gSpsRasNotifyProtocolGuid
+
+
+
+[BuildOptions]
+  MSFT:*_*_X64_CC_FLAGS = /W4 /GF /wd4214 /wd4334 /wd4142 /wd4819 /DBUILDING_FOR_X64 /DEFIX64 /UIA32 $(DSC_GLOBAL_BUILD_OPTIONS)
+  GCC:*_*_X64_CC_FLAGS = -DBUILDING_FOR_X64 -DEFIX64 -UIA32 $(DSC_GLOBAL_BUILD_OPTIONS)

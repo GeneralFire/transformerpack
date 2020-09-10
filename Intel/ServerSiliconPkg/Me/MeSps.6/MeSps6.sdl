@@ -1,0 +1,27 @@
+TOKEN
+	Name  = "MeSps6_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable MeLbg support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+INFComponent
+    Name  = "ClientCore"
+    File  = "Client\ClientCore.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_WS_ENABLE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PtuLoader"
+    File  = "PtuLoader\PtuLoader.inf"
+    Package  = "ServerSiliconPkg"
+    Arch = "X64"    
+    ModuleTypes  = "UEFI_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_SPS_ENABLE" "=" "1"     
+End

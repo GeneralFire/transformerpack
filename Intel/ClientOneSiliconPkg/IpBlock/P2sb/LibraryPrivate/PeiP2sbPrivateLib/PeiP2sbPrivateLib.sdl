@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "PeiP2sbPrivateLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiP2sbPrivateLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiP2sbPrivateLib"
+    Instance  = "ClientOneSiliconPkg.PeiP2sbPrivateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiP2sbPrivateLib"
+    File  = "PeiP2sbPrivateLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+

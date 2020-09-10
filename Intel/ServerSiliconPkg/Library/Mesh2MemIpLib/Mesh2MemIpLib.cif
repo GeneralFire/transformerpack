@@ -1,0 +1,19 @@
+<component>
+    name = "Mesh2MemIpLib"
+    category = MODULEPART
+    LocalRoot = "Intel\ServerSiliconPkg\Library\Mesh2MemIpLib\"
+    RefName = "ServerSiliconPkg.Library.Mesh2MemIpLib"
+[INF]
+"Mesh2MemIpLib10nm.inf"
+"Mesh2MemIpLibSmm10nm.inf"
+"Mesh2MemIpLibSmmSpr.inf"
+"Mesh2MemIpLibSpr.inf"
+"Mesh2MemIpLibSprHbm.inf"
+[files]
+"Mesh2MemIpLib.sdl"	
+"Include\Mesh2MemIpLibInternal.h"
+"Include\Mesh2MemRegs.h"	
+"Spr\Hbm\Mesh2MemCmiPerformanceDataHbm.h"
+"Spr\Mesh2MemCmiCredits.h"
+"Spr\Mesh2MemCmiPerformanceData.h"
+<endComponent>

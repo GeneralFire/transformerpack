@@ -1,0 +1,13 @@
+<component>
+    name = "Ami IScsi Support"
+    category = ModulePart
+    LocalRoot = "AmiNetworkPkg\IScsiDxe\AmiIScsi\"
+    RefName = "AmiNetworkPkg.AmiIScsiSupport"
+[files]
+"AmiIScsiElinks.txt"	
+"AmiIScsiSupport.sdl"	
+[parts]
+"AmiNetworkPkg.AmiRsdIScsi"
+"AmiNetworkPkg.AmiRedFishIScsi"
+"AmiNetworkPkg.AmiIScsiOverRide"
+<endComponent>

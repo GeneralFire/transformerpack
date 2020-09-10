@@ -1,0 +1,11 @@
+<component>
+	name = "BiosGuardMeud"
+	category = ModulePart
+	LocalRoot = "AmiChipsetModulePkg/BiosGuard/BiosGuardMeud"
+	RefName = "BiosGuardMeud"
+[INF]
+"BiosGuardMeudVerifyMeCapsule.inf"
+
+[files]
+"BiosGuardMeud.sdl"
+<endComponent>

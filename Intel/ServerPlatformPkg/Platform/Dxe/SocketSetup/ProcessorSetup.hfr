@@ -1,0 +1,1377 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+  #include <SocketConfiguration.h>
+#if defined(ICX_HOST) || defined (ICXDE_HOST) || defined(SPR_HOST)
+  #include <Library/SecurityPolicyDefinitions.h>
+#endif
+
+  form formid = VFR_FORMID_PROCESSOR,
+
+    title         = STRING_TOKEN(STR_PROCESSOR_CONFIG_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_PROCESSOR_CONFIG_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+    goto VFR_FORMID_PER_SOCKET,
+    prompt  = STRING_TOKEN(STR_PERSOCKET_CONFIG_FORM_TITLE),
+    help    = STRING_TOKEN(STR_PERSOCKET_CONFIG_FORM_HELP);
+
+    //
+    //  Explicit definition of AcmType configured by BIOS at runtime.
+    //  If not explicitly declared vfr compiler will set RESET_REQUIRED flag,
+    //  potentially forcing reboot any time defaults are loaded.
+    //
+    suppressif TRUE;
+      numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.AcmType,
+        questionid = 0xDFF5,
+        prompt  = STRING_TOKEN(STR_ACM_TYPE_PROMPT),
+        help    = STRING_TOKEN(STR_ACM_TYPE_HELP),
+        flags     = INTERACTIVE,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default = 0, defaultstore = MyStandardDefault,
+        default = 0, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif;
+
+    //
+    // Processor Information
+    //
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_CPU_BSP_REVISION_PROMPT),
+        text  = STRING_TOKEN(STR_CPU_BSP_REVISION_VALUE),
+        flags = 0, key = 0;
+
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_SOCKET_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR0_1_SOCKET_VALUE),
+        flags = 0, key = 0;
+
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_ID_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_ID_VALUE),
+        flags = 0, key = 0;
+
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_FREQ_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_FREQ_VALUE),
+        flags = 0, key = 0;
+
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_MAX_RATIO_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_MAX_RATIO_VALUE),
+        flags = 0, key = 0;
+
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_MIN_RATIO_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_MIN_RATIO_VALUE),
+        flags = 0, key = 0;
+
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_MICROCODE_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_MICROCODE_VALUE),
+        flags = 0, key = 0;
+
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_L1_CACHE_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_L1_CACHE_VALUE),
+        flags = 0, key = 0;
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_TNR);
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L2_CACHE_PKG_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L2_CACHE_VALUE),
+          flags = 0, key = 0;
+    endif; //suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+               ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_TNR;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L2_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L2_CACHE_VALUE),
+          flags = 0, key = 0;
+    endif; //suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR;
+
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_L3_CACHE_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_L3_CACHE_VALUE),
+        flags = 0, key = 0;
+
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET0_STRING),
+        text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET0_VALUE),
+        flags = 0, key = 0;
+
+    disableif ideqval SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET1_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET1_VALUE),
+          flags = 0, key = 0;
+
+    endif; // disableif ideqval SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1;
+
+    disableif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_SOCKET_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR2_3_SOCKET_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_ID_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR2_3_ID_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_FREQ_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR2_3_FREQ_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_MAX_RATIO_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR2_3_MAX_RATIO_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_MIN_RATIO_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR2_3_MIN_RATIO_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_MICROCODE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR2_3_MICROCODE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L1_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR2_3_L1_CACHE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L2_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR2_3_L2_CACHE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L3_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR2_3_L3_CACHE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET2_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET2_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET3_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET3_VALUE),
+          flags = 0, key = 0;
+    endif; // disableif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+
+    disableif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 3 4;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_SOCKET_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR4_5_SOCKET_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_ID_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR4_5_ID_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_FREQ_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR4_5_FREQ_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_MAX_RATIO_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR4_5_MAX_RATIO_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_MIN_RATIO_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR4_5_MIN_RATIO_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_MICROCODE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR4_5_MICROCODE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L1_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR4_5_L1_CACHE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L2_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR4_5_L2_CACHE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L3_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR4_5_L3_CACHE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET4_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET4_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET5_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET5_VALUE),
+          flags = 0, key = 0;
+
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_SOCKET_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR6_7_SOCKET_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_ID_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR6_7_ID_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_FREQ_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR6_7_FREQ_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_MAX_RATIO_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR6_7_MAX_RATIO_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_MIN_RATIO_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR6_7_MIN_RATIO_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_MICROCODE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR6_7_MICROCODE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L1_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR6_7_L1_CACHE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L2_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR6_7_L2_CACHE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_L3_CACHE_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR6_7_L3_CACHE_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET6_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET6_VALUE),
+          flags = 0, key = 0;
+      text
+          help  = STRING_TOKEN(STR_NULL_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET7_STRING),
+          text  = STRING_TOKEN(STR_PROCESSOR_VERSION_SOCKET7_VALUE),
+          flags = 0, key = 0;
+    endif; // disableif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 3 4;
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    //
+    // Enable HT in Socket 0
+    //
+    //
+    // 5330889 SKX_TEMP_SKIP_EXT
+    // Defaulting to Disabled for A1 PO
+    //
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+               ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_TNR;
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorHyperThreadingDisable,
+          questionid  = KEY_HYPER_THREADING_DISABLE,
+          prompt      = STRING_TOKEN(STR_PROCESSOR0_HT),
+          help        = STRING_TOKEN(STR_PROCESSOR_HT_HELP),
+#ifdef SNR_HOST
+          option text = STRING_TOKEN(STR_DISABLE),   value = 1, flags = INTERACTIVE | RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),    value = 0, flags = INTERACTIVE | RESET_REQUIRED;
+#else
+          option text = STRING_TOKEN(STR_DISABLE),   value = 1, flags = INTERACTIVE | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),    value = 0, flags = INTERACTIVE | RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#endif // #ifdef SNR_HOST
+      endoneof;
+    endif;
+
+      //
+      // IED Trace support
+      //
+      oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.IedTraceSize,
+          prompt      = STRING_TOKEN(STR_PROCESSOR_IED_TRACE_PROMPT),
+          help        = STRING_TOKEN(STR_PROCESSOR_IED_TRACE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_4M),       value = 1,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8M),       value = 2,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16M),      value = 3,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_32M),      value = 4,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_64M),      value = 5,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_128M),     value = 6,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_256M),     value = 7,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_512M),     value = 8,  flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1G),       value = 9,  flags = RESET_REQUIRED;
+      endoneof;
+
+
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.AllowMixedPowerOnCpuRatio,
+          prompt      = STRING_TOKEN(STR_SKIP_FLEX_RATIO_OVERRIDE_PROMPT),
+          help        = STRING_TOKEN(STR_SKIP_FLEX_RATIO_OVERRIDE_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+//ASTDBG: disable the BIST during power on
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CheckCpuBist,
+          prompt      = STRING_TOKEN(STR_CHECK_BIST_RESULT_PROMPT),
+          help        = STRING_TOKEN(STR_CHECK_BIST_RESULT_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+    //
+    // Core failover support
+    //
+    suppressif NOT ((ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType        == CPU_ICXSP OR
+                     ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType        == CPU_SPRSP) AND
+                     (ideqval SOCKET_PROCESSORCORE_CONFIGURATION.CheckCpuBist  == 1));
+        oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CoreFailover,
+            prompt      = STRING_TOKEN(STR_CORE_FAILOVER_PROMPT),
+            help        = STRING_TOKEN(STR_CORE_FAILOVER_HELP),
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        endoneof;
+
+    endif;
+
+    //
+    // 3strike timer enable
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ThreeStrikeTimer,
+        prompt      = STRING_TOKEN(STR_THREESTRIKETIMER_DISABLE),
+        help        = STRING_TOKEN(STR_THREESTRIKETIMER_DISABLE_HELP),
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1,  flags = RESET_REQUIRED| MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLE),   value = 0,  flags = RESET_REQUIRED ;
+    endoneof;
+
+    //
+    // eXtreme Enable (XE)
+    // rrr: comment because Extreme is not assigned with value.
+    //
+//    grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.Extreme == 0x00;
+//        oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorXEEnable,
+//            prompt      = STRING_TOKEN(STR_PROCESSOR_XE),
+//            help        = STRING_TOKEN(STR_PROCESSOR_XE_HELP),
+//            option text = STRING_TOKEN(STR_DISABLE),  value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+//            option text = STRING_TOKEN(STR_ENABLE),   value = 1,  flags = RESET_REQUIRED;
+//        endoneof;
+//
+//        //
+//        // Turbo-XE Mode Processor TDC Limit Override Enable
+//        //
+//        oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorTDCLimitOverrideEnable,
+//            prompt      = STRING_TOKEN(STR_PROCESSOR_TDC_OVERRIDE),
+//            help        = STRING_TOKEN(STR_PROCESSOR_TDC_OVERRIDE_HELP),
+//            option text = STRING_TOKEN(STR_DISABLE),  value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+//            option text = STRING_TOKEN(STR_ENABLE),   value = 1,  flags = RESET_REQUIRED;
+//        endoneof;
+//
+//        //
+//        // Turbo-XE Mode Processor TDC Limit
+//        //
+//        numeric varid   = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorTDCLimit,
+//                prompt  = STRING_TOKEN(STR_PROCESSOR_TDC),
+//                help    = STRING_TOKEN(STR_PROCESSOR_TDC_HELP),
+//                flags   = 0 | RESET_REQUIRED,
+//                minimum = 0,
+//                maximum = 127,      // 1/8 A granularity. MAX value = 8000h - 1
+//                step    = 0,        // Stepping of 0 equates to a manual entering of a value,
+//                                    // otherwise it will auto-increment with a left/right arrow
+//                default = 0,
+//        endnumeric;
+//
+//        //
+//        // Turbo-XE Mode Processor TDP Limit Override Enable
+//        //
+//        oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorTDPLimitOverrideEnable,
+//            prompt      = STRING_TOKEN(STR_PROCESSOR_TDP_OVERRIDE),
+//            help        = STRING_TOKEN(STR_PROCESSOR_TDP_OVERRIDE_HELP),
+//            option text = STRING_TOKEN(STR_DISABLE),  value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+//            option text = STRING_TOKEN(STR_ENABLE),   value = 1,  flags = RESET_REQUIRED;
+//        endoneof;
+//
+//        //
+//        // Turbo-XE Mode Processor TDP Limit
+//        //
+//        numeric varid   = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorTDPLimit,
+//                prompt  = STRING_TOKEN(STR_PROCESSOR_TDP),
+//                help    = STRING_TOKEN(STR_PROCESSOR_TDP_HELP),
+//                flags   = 0 | RESET_REQUIRED,
+//                minimum = 0,
+//                maximum = 127,      // 1/8 W granularity. MAX value = 8000h - 1
+//                step    = 0,        // Stepping of 0 equates to a manual entering of a value,
+//                                    // otherwise it will auto-increment with a left/right arrow
+//                default = 0,
+//        endnumeric;
+//    endif;
+
+    //
+    // Fast String
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.FastStringEnable,
+        prompt      = STRING_TOKEN(STR_FAST_STR),
+        help        = STRING_TOKEN(STR_FAST_STR_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED  | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    //
+    // Machine Check
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.MachineCheckEnable,
+        prompt      = STRING_TOKEN(STR_MCH_STR),
+        help        = STRING_TOKEN(STR_MCH_STR_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED  | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    //
+    // CPUID Max
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CpuidMaxValue,
+        prompt      = STRING_TOKEN(STR_LIMIT_CPUID_PROMPT),
+        help        = STRING_TOKEN(STR_LIMIT_CPUID_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.DcuRtlWaEn == 0;
+      //
+      // MtoI WA
+      //
+      oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.CpuMtoIWa,
+        prompt  = STRING_TOKEN(STR_MTOI_WA),
+        help    = STRING_TOKEN(STR_MTOI_WA_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_OPTION1),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_OPTION2),  value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_AUTO_STRING),  value = 3, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    //
+    // Hardware Prefetcher
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.MlcStreamerPrefetcherEnable,
+        prompt      = STRING_TOKEN(STR_PROCESSOR_HARDWARE_PREFETCHER),
+        help        = STRING_TOKEN(STR_PROCESSOR_HARDWARE_PREFETCHER_HELP),
+        option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    //
+    // L2 RFO Prefetch
+    //
+    oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.L2RfoPrefetchDisable,
+        prompt  = STRING_TOKEN(STR_PROCESSOR_L2RFO_PREFETCH),
+        help    = STRING_TOKEN(STR_PROCESSOR_L2RFO_PREFETCH_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    //
+    // Adjacent Cache Line Prefetcher
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.MlcSpatialPrefetcherEnable,
+        prompt      = STRING_TOKEN(STR_PROCESSOR_ADJACENT_CACHE_PREFETCHER),
+        help        = STRING_TOKEN(STR_PROCESSOR_ADJACENT_CACHE_PREFETCHER_HELP),
+        option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    //
+    // DCU Streamer Prefetcher
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.DCUStreamerPrefetcherEnable,
+        prompt      = STRING_TOKEN(STR_PROCESSOR_DCU_STREAMER_PREFETCHER),
+        help        = STRING_TOKEN(STR_PROCESSOR_DCU_STREAMER_PREFETCHER_HELP),
+        option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    //
+    // DCU IP Prefetcher
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.DCUIPPrefetcherEnable,
+        prompt      = STRING_TOKEN(STR_PROCESSOR_DCU_IP_PREFETCHER),
+        help        = STRING_TOKEN(STR_PROCESSOR_DCU_IP_PREFETCHER_HELP),
+        option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    //
+    // LLC Prefetch
+    //
+    oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.LlcPrefetchEnable,
+        prompt  = STRING_TOKEN(STR_LLC_PREFETCH_PROMPT),
+        help    = STRING_TOKEN(STR_LLC_PREFETCH_HELP),
+#if defined (ICX_HOST) || defined (SPR_HOST)
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#else
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+#endif
+    endoneof;
+
+    //
+    // DCU Mode Selection
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.DCUModeSelection,
+        prompt      = STRING_TOKEN(STR_PROCESSOR_DCU_MODE),
+        help        = STRING_TOKEN(STR_PROCESSOR_DCU_MODE_HELP),
+        option text = STRING_TOKEN(STR_32K_8WAY_WITHOUT_ECC),   value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#if !defined(SKX_HOST)
+        option text = STRING_TOKEN(STR_16K_4WAY_WITH_ECC),      value = 1, flags = RESET_REQUIRED;
+#endif
+    endoneof;
+
+    //
+    // DCU Next Page Prefetcher
+    //
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_TNR);
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CpuL1NextPagePrefetcherDisable,
+          prompt      = STRING_TOKEN(STR_PROCESSOR_NEXT_PAGE_PREFETCHER),
+          help        = STRING_TOKEN(STR_PROCESSOR_NEXT_PAGE_PREFETCHER_HELP),
+          option text = STRING_TOKEN(STR_ENABLE),   value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_DISABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    //
+    // AMP Prefetch
+    //
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.AmpPrefetchEnable,
+          prompt      = STRING_TOKEN(STR_PROCESSOR_AMP_PREFETCH),
+          help        = STRING_TOKEN(STR_PROCESSOR_AMP_PREFETCH_HELP),
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      endoneof;
+    endif;
+
+    //
+    // BSP Selection
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.BspSelection,
+            prompt      = STRING_TOKEN(STR_BSP_SELECT),
+            help        = STRING_TOKEN(STR_BSP_SELECT_HELP),
+            option text = STRING_TOKEN(STR_SOCKET0),        value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_SOCKET1),        value = 1, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_SOCKET2),        value = 2, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_SOCKET3),        value = 3, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_SOCKET4),        value = 4, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_SOCKET5),        value = 5, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_SOCKET6),        value = 6, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_SOCKET7),        value = 7, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_AUTO),           value = 0xFF, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    //
+    // XAPIC support
+    //
+    grayoutif  ideqval SOCKET_COMMONRC_CONFIGURATION.X2ApicForceEn == 0x01;
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorX2apic,
+          questionid  = KEY_X2APIC_ENABLE,
+          prompt      = STRING_TOKEN(STR_PROCESSOR_X2APIC),
+          help        = STRING_TOKEN(STR_PROCESSOR_X2APIC_HELP),
+#if defined (SPR_HOST) && (MAX_SOCKET > 4)
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED ;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | INTERACTIVE | MANUFACTURING | DEFAULT;
+#else
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | INTERACTIVE ;
+#endif
+      endoneof;
+    endif; // grayoutif  ideqval SOCKET_COMMONRC_CONFIGURATION.X2ApicForceEn == 0x01;
+
+  //
+  // Physical Mode type
+  //
+  oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.ForcePhysicalModeEnable,
+      prompt  = STRING_TOKEN(STR_FORCE_PHYSICAL_MODE_PROMPT),
+      help    = STRING_TOKEN(STR_FORCE_PHYSICAL_MODE_HELP),
+      option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+  endoneof;
+
+  oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.PCIeDownStreamPECIWrite,
+      prompt      = STRING_TOKEN(STR_PECIDNSTREAM_PROMPT),
+      help        = STRING_TOKEN(STR_PECIDNSTREAM_HELP),
+      option text = STRING_TOKEN(STR_DISABLE),   value = 0, flags = RESET_REQUIRED | DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED | MANUFACTURING;
+  endoneof;
+
+  oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.PeciInTrustControlBit,
+      prompt      = STRING_TOKEN(STR_PECITRUST_PROMPT),
+      help        = STRING_TOKEN(STR_PECITRUST_HELP),
+      option text = STRING_TOKEN(STR_DISABLE),   value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+  endoneof;
+
+  suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR
+             ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX;
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CpuDbpEnable,
+          prompt      = STRING_TOKEN(STR_CPU_DBP),
+          help        = STRING_TOKEN(STR_CPU_DBP_HELP),
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1,  flags = RESET_REQUIRED ;
+          option text = STRING_TOKEN(STR_DISABLE), value = 0,  flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+  endif;
+
+      numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.IioLlcWaysMask,
+          prompt  = STRING_TOKEN(STR_IIO_LLC_WAYS_PROMPT),
+          help    = STRING_TOKEN(STR_IIO_LLC_WAYS_HELP),
+          flags   = DISPLAY_UINT_HEX | RESET_REQUIRED,
+          minimum = 0,
+#if defined (SKX_HOST)
+          maximum = 0x7fffff,
+#elif defined (SNR_HOST)
+          maximum = 0xffffffff,
+#else
+          maximum = 0xfffff,
+#endif // SKX_HOST
+          step    = 1,
+          default = 0, defaultstore = MyStandardDefault,
+          default = 0, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+#if defined (SKX_HOST)
+      numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.ExpandedIioLlcWaysMask,
+          prompt  = STRING_TOKEN(STR_EXPANDED_IIO_LLC_WAYS_PROMPT),
+          help    = STRING_TOKEN(STR_EXPANDED_IIO_LLC_WAYS_HELP),
+          flags   = DISPLAY_UINT_HEX | RESET_REQUIRED,
+          minimum = 0,
+          maximum = 0x7ff,
+          step    = 1,
+          default = 0, defaultstore = MyStandardDefault,
+          default = 0, defaultstore = MyManufactureDefault,
+      endnumeric;
+#endif // SKX_HOST
+
+      numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.RemoteWaysMask,
+          prompt  = STRING_TOKEN(STR_REMOTE_WAYS_PROMPT),
+          help    = STRING_TOKEN(STR_REMOTE_WAYS_HELP),
+          flags   = DISPLAY_UINT_HEX | RESET_REQUIRED,
+          minimum = 0,
+          maximum = 0x7ff,
+          step    = 1,
+          default = 0, defaultstore = MyStandardDefault,
+          default = 0, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.SmmBlockedDelayed,
+        prompt      = STRING_TOKEN(STR_SMM_BLOCKED_DELAYED),
+        help        = STRING_TOKEN(STR_SMM_BLOCKED_DELAYED_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.eSmmSaveState,
+        prompt      = STRING_TOKEN(STR_ESMM_SAVE_STATE),
+        help        = STRING_TOKEN(STR_ESMM_SAVE_STATE_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+       oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.SmbusErrorRecovery,
+        prompt      = STRING_TOKEN(STR_SMBUS_ERROR_RECOVERY),
+        help        = STRING_TOKEN(STR_SMBUS_ERROR_RECOVERY_HELP),
+#ifdef SPR_HOST
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+#else
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#endif // SPR_HOST
+      endoneof;
+
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorLtsxEnable,
+      prompt      = STRING_TOKEN(STR_LTSX),
+      help        = STRING_TOKEN(STR_LTSX_HELP),
+      option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+  grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorLtsxEnable == 0x01;
+    //
+    // VMX
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorVmxEnable,
+      prompt      = STRING_TOKEN(STR_PROCESSOR_VMX),
+      help        = STRING_TOKEN(STR_PROCESSOR_VMX_HELP),
+      option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING;
+      option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | DEFAULT;
+    endoneof;
+  endif;
+    //
+    // SMX
+    //
+  grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorLtsxEnable == 0x01;
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorSmxEnable,
+      prompt      = STRING_TOKEN(STR_LT),
+      help        = STRING_TOKEN(STR_LT_HELP),
+      option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    endif;
+
+
+    //
+    // Lock Chipset
+    //
+    grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorLtsxEnable == 0x01;
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.LockChipset,
+        prompt      = STRING_TOKEN(STR_LOCK_CHIPSET_PROMPT),
+        help        = STRING_TOKEN(STR_LOCK_CHIPSET_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      endoneof;
+    endif;
+
+    //
+    // When BIOS ACM error occurs, If this option is enabled, Disable LT-SX and reset system
+    // If this option is disabled, Ignore BIOS ACM errors and continue booting with no further BIOSACM being called
+    //
+    suppressif  ideqval SOCKET_PROCESSORCORE_CONFIGURATION.AcmType == 0x00;
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.BiosAcmErrorReset,
+      prompt      = STRING_TOKEN(STR_BIOS_ACM_ERROR_RESET_PROMPT),
+      help        = STRING_TOKEN(STR_BIOS_ACM_ERROR_RESET_HELP),
+      option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    endif;
+
+    //
+    // MSR Lock Bit Control
+    // Lock the MSR if LT is enabled.
+    //
+    //grayoutif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorSmxEnable == 0x01;
+        oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorMsrLockControl,
+          prompt      = STRING_TOKEN(STR_PROCESSOR_MSR_LOCK),
+          help        = STRING_TOKEN(STR_PROCESSOR_MSR_LOCK_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | DEFAULT;
+        endoneof;
+    //endif;
+
+    //
+    // MSR PKG_CST_CONFIG_CONTROL
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.ProcessorMsrPkgCstConfigControlLock,
+       prompt      = STRING_TOKEN(STR_PKG_CST_CONFIG_CONTROL_LOCK),
+       help        = STRING_TOKEN(STR_PKG_CST_CONFIG_CONTROL_LOCK_HELP),
+       option text = STRING_TOKEN(STR_DISABLED),  value = 0, flags = RESET_REQUIRED ;
+       option text = STRING_TOKEN(STR_ENABLED),   value = 1, flags = RESET_REQUIRED | DEFAULT| MANUFACTURING;
+    endoneof;
+
+    //
+    // PPIN
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.PpinControl,
+      prompt      = STRING_TOKEN(STR_PPIN_CONTROL_PROMPT),
+      help        = STRING_TOKEN(STR_PPIN_CONTROL_HELP),
+      option text = STRING_TOKEN(STR_LOCK_DISABLE),   value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_UNLOCK_ENABLE),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    //
+    // AES-NI support
+    //
+    oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.AesEnable,
+      prompt      = STRING_TOKEN(STR_PROCESSOR_AES),
+      help        = STRING_TOKEN(STR_PROCESSOR_AES_HELP),
+      option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP OR
+                     ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD OR
+                     ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+                     ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_TNR);
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.TscResetEnable,
+          prompt      = STRING_TOKEN(STR_TSC_RESET_ENABLE),
+          help        = STRING_TOKEN(STR_TSC_RESET_ENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),   value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),    value = 1, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD;
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.AcExceptionOnSplitLockEnable,
+          prompt      = STRING_TOKEN(STR_AC_SPLIT_LOCK_ENABLE),
+          help        = STRING_TOKEN(STR_AC_SPLIT_LOCK_ENABLE_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),   value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),    value = 1, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    //
+    // Security Setup
+    //
+#if defined (ICX_HOST) || defined (ICXDE_HOST)
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD);
+      #include "SecuritySetupIcx.hfr"
+    endif;
+#elif defined (SPR_HOST) || defined (GNRSRF_HOST)
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+      #include "SecuritySetupSpr.hfr"
+    endif;
+#endif
+
+
+    suppressif NOT ideqvallist SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP CPU_ICXD CPU_SPRSP;
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CpuPaLimit,
+          prompt      = STRING_TOKEN(STR_LIMIT_CPU_PA_TO_46),
+          help        = STRING_TOKEN(STR_LIMIT_CPU_PA_TO_46_HELP),
+#ifdef ICX_HOST
+          //
+          // VT-d is enabled by default for ICX-SP. To avoid BSOD in old OS without 5-level paging support limit address width.
+          //
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+#else
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+#endif
+      endoneof;
+    endif;
+
+    goto VFR_FORMID_PSMI,
+    prompt = STRING_TOKEN(STR_PSMI_FORM_TITLE),
+    help = STRING_TOKEN(STR_PSMI_FORM_HELP);
+
+
+    suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IotEn[0] == 1
+#if (MAX_SOCKET > 1)
+             OR ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IotEn[1] == 1
+#endif
+#if (MAX_SOCKET > 2)
+             OR ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IotEn[2] == 1
+#endif
+#if (MAX_SOCKET > 3)
+             OR ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IotEn[3] == 1
+#endif
+#if (MAX_SOCKET > 4)
+             OR ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IotEn[4] == 1
+#endif
+#if (MAX_SOCKET > 5)
+             OR ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IotEn[5] == 1
+#endif
+#if (MAX_SOCKET > 6)
+             OR ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IotEn[6] == 1
+#endif
+#if (MAX_SOCKET > 7)
+             OR ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IotEn[7] == 1
+#endif
+    ;
+      oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.RdtCatOpportunisticTuning,
+        prompt      = STRING_TOKEN(STR_RDT_CAT_OPPORTUNISTIC_TUNING),
+        help        = STRING_TOKEN(STR_RDT_CAT_OPPORTUNISTIC_TUNING_HELP),
+        option text = STRING_TOKEN(STR_RDT_CAT_OPPORTUNISTIC_DEFAULT_7FF), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_RDT_CAT_OPPORTUNISTIC_TUNED_600),   value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_RDT_CAT_OPPORTUNISTIC_TUNED_003),   value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_RDT_CAT_OPPORTUNISTIC_TUNED_700),   value = 3, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+#if FixedPcdGetBool (PcdBiosDfxKnobEnabled)
+  goto VFR_FORMID_PROCESSOR_DFX,
+    prompt = STRING_TOKEN(STR_PROCESSOR_DFX_CONFIG_FORM_TITLE),
+    help   = STRING_TOKEN(STR_PROCESSOR_DFX_CONFIG_FORM_HELP);
+#endif
+
+#ifdef SPR_HOST
+  goto VFR_FORMID_PROCESSOR_CFR,
+  prompt = STRING_TOKEN(STR_PROCESSOR_CFR_CONFIG_FORM_TITLE),
+  help = STRING_TOKEN(STR_PROCESSOR_CFR_CONFIG_FORM_HELP);
+#endif
+  endform; // VFR_FORMID_PROCESSOR
+
+  form formid = VFR_FORMID_PROCESSOR_CFR,
+    title = STRING_TOKEN(STR_PROCESSOR_CFR_CONFIG_FORM_TITLE);
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CFRS3mEnable,
+        prompt      = STRING_TOKEN(STR_CFR_S3M_FEATURE_PROMPT),
+        help        = STRING_TOKEN(STR_CFR_S3M_FEATURE_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.CFRS3mEnable == 0;
+        oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CFRS3mManualCommit,
+          prompt      = STRING_TOKEN(STR_CFR_S3M_MANUAL_COMMIT_PROMPT),
+          help        = STRING_TOKEN(STR_CFR_S3M_MANUAL_COMMIT_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+      oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CFRPucodeEnable,
+        prompt      = STRING_TOKEN(STR_CFR_PUCODE_FEATURE_PROMPT),
+        help        = STRING_TOKEN(STR_CFR_PUCODE_FEATURE_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.CFRPucodeEnable == 0;
+        oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.CFRPucodeManualCommit,
+          prompt      = STRING_TOKEN(STR_CFR_PUCODE_MANUAL_COMMIT_PROMPT),
+          help        = STRING_TOKEN(STR_CFR_PUCODE_MANUAL_COMMIT_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+  endform;
+
+  form formid = VFR_FORMID_PSMI,
+     title = STRING_TOKEN(STR_PSMI_FORM_TITLE);
+       oneof varid     = SOCKET_PROCESSORCORE_CONFIGURATION.GlobalPsmiEnable,
+          prompt      = STRING_TOKEN(STR_GLOBAL_PSMI_PROMPT),
+          help        = STRING_TOKEN(STR_GLOBAL_PSMI_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_FORCESETUP),   value = 2, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.GlobalPsmiEnable == 0;
+           goto VFR_FORMID_PSMI_SOCKET0,
+           prompt  = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_0),
+           help    = STRING_TOKEN(STR_NULL);
+
+    #if (MAX_SOCKET > 1)
+       suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1;
+           goto VFR_FORMID_PSMI_SOCKET1,
+           prompt  = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_1),
+           help    = STRING_TOKEN(STR_NULL);
+       endif; // suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1;
+    #endif
+    #if (MAX_SOCKET > 2)
+       suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+           goto VFR_FORMID_PSMI_SOCKET2,
+           prompt  = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_2),
+           help    = STRING_TOKEN(STR_NULL);
+       endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+    #endif
+    #if (MAX_SOCKET > 3)
+       suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+           goto VFR_FORMID_PSMI_SOCKET3,
+           prompt  = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_3),
+           help    = STRING_TOKEN(STR_NULL);
+       endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+    #endif
+    #if (MAX_SOCKET > 4)
+       suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4;
+           goto VFR_FORMID_PSMI_SOCKET4,
+           prompt  = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_4),
+           help    = STRING_TOKEN(STR_NULL);
+       endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4;
+#endif
+#if (MAX_SOCKET > 5)
+       suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4;
+           goto VFR_FORMID_PSMI_SOCKET5,
+           prompt  = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_5),
+           help    = STRING_TOKEN(STR_NULL);
+       endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4;
+#endif
+#if (MAX_SOCKET > 6)
+       suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4 6;
+           goto VFR_FORMID_PSMI_SOCKET6,
+           prompt  = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_6),
+           help    = STRING_TOKEN(STR_NULL);
+       endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4 6;
+#endif
+#if (MAX_SOCKET > 7)
+       suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4 6;
+           goto VFR_FORMID_PSMI_SOCKET7,
+           prompt  = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_7),
+           help    = STRING_TOKEN(STR_NULL);
+       endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4 6;
+#endif
+endif;
+
+  endform;
+
+  form formid = VFR_FORMID_PSMI_SOCKET0,
+     title = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_0);
+
+    subtitle text = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_0);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   0
+    #include "ProcessorPsmiSetup.hfr"
+
+  endform;
+
+  #if (MAX_SOCKET > 1)
+  form formid = VFR_FORMID_PSMI_SOCKET1,
+     title = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_1);
+
+    subtitle text = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_1);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   1
+    #include "ProcessorPsmiSetup.hfr"
+
+  endform;
+  #endif
+
+  #if (MAX_SOCKET > 2)
+  form formid = VFR_FORMID_PSMI_SOCKET2,
+     title = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_2);
+
+    subtitle text = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_2);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   2
+    #include "ProcessorPsmiSetup.hfr"
+
+  endform;
+  #endif
+
+  #if (MAX_SOCKET > 3)
+    form formid = VFR_FORMID_PSMI_SOCKET3,
+     title = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_3);
+
+    subtitle text = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_3);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   3
+    #include "ProcessorPsmiSetup.hfr"
+
+  endform;
+  #endif
+
+  #if (MAX_SOCKET > 4)
+    form formid = VFR_FORMID_PSMI_SOCKET4,
+     title = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_4);
+
+    subtitle text = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_4);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   4
+    #include "ProcessorPsmiSetup.hfr"
+
+  endform;
+  #endif
+
+  #if (MAX_SOCKET > 5)
+  form formid = VFR_FORMID_PSMI_SOCKET5,
+     title = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_5);
+
+    subtitle text = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_5);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   5
+    #include "ProcessorPsmiSetup.hfr"
+
+  endform;
+  #endif
+
+#if (MAX_SOCKET > 6)
+  form formid = VFR_FORMID_PSMI_SOCKET6,
+     title = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_6);
+
+    subtitle text = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_6);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   6
+    #include "ProcessorPsmiSetup.hfr"
+
+  endform;
+  #endif
+
+  #if (MAX_SOCKET > 7)
+  form formid = VFR_FORMID_PSMI_SOCKET7,
+     title = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_7);
+
+    subtitle text = STRING_TOKEN(STR_PSMI_CONFIG_FORM_TITLE_7);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   7
+    #include "ProcessorPsmiSetup.hfr"
+
+  endform;
+  #endif
+
+
+ //
+ //  Per-socket Config Form
+ //
+  form formid = VFR_FORMID_PER_SOCKET,
+    title = STRING_TOKEN(STR_PERSOCKET_CONFIG_FORM_TITLE);
+
+           goto VFR_FORMID_CPU_SOCKET0,
+           prompt  = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_0),
+           help    = STRING_TOKEN(STR_NULL);
+
+#if (MAX_SOCKET > 1)
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1;
+           goto VFR_FORMID_CPU_SOCKET1,
+           prompt  = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_1),
+           help    = STRING_TOKEN(STR_NULL);
+    endif; // suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1;
+#endif
+#if (MAX_SOCKET > 2)
+    suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+           goto VFR_FORMID_CPU_SOCKET2,
+           prompt  = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_2),
+           help    = STRING_TOKEN(STR_NULL);
+    endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+#endif
+#if (MAX_SOCKET > 3)
+    suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+           goto VFR_FORMID_CPU_SOCKET3,
+           prompt  = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_3),
+           help    = STRING_TOKEN(STR_NULL);
+    endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2;
+#endif
+#if (MAX_SOCKET > 4)
+    suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4;
+           goto VFR_FORMID_CPU_SOCKET4,
+           prompt  = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_4),
+           help    = STRING_TOKEN(STR_NULL);
+    endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4;
+#endif
+#if (MAX_SOCKET > 5)
+    suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4;
+           goto VFR_FORMID_CPU_SOCKET5,
+           prompt  = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_5),
+           help    = STRING_TOKEN(STR_NULL);
+    endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4;
+#endif
+#if (MAX_SOCKET > 6)
+    suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4 6;
+           goto VFR_FORMID_CPU_SOCKET6,
+           prompt  = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_6),
+           help    = STRING_TOKEN(STR_NULL);
+    endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4 6;
+#endif
+#if (MAX_SOCKET > 7)
+    suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4 6;
+           goto VFR_FORMID_CPU_SOCKET7,
+           prompt  = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_7),
+           help    = STRING_TOKEN(STR_NULL);
+    endif; // suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.NumCpus == 1 2 4 6;
+#endif
+  endform;
+
+
+  //
+  //  CPU Socket 0  Form
+  //
+  form formid = VFR_FORMID_CPU_SOCKET0,
+    title = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_0);
+
+    subtitle text = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_0);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   0
+    #include "ProcessorSocketSetup.hfr"
+
+  endform;
+
+#if (MAX_SOCKET > 1)
+  //
+  //  CPU Socket 1  Form
+  //
+  form formid = VFR_FORMID_CPU_SOCKET1,
+    title = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_1);
+
+    subtitle text = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_1);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   1
+    #include "ProcessorSocketSetup.hfr"
+
+  endform;
+#endif
+
+#if (MAX_SOCKET > 2)
+  //
+  //  CPU Socket 2  Form
+  //
+  form formid = VFR_FORMID_CPU_SOCKET2,
+    title = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_2);
+
+    subtitle text = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_2);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   2
+    #include "ProcessorSocketSetup.hfr"
+
+  endform;
+#endif
+
+#if (MAX_SOCKET > 3)
+  //
+  //  CPU Socket 3  Form
+  //
+  form formid = VFR_FORMID_CPU_SOCKET3,
+    title = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_3);
+
+    subtitle text = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_3);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   3
+    #include "ProcessorSocketSetup.hfr"
+
+  endform;
+#endif
+
+#if MAX_SOCKET > 4
+  //
+  //  CPU Socket 4  Form
+  //
+  form formid = VFR_FORMID_CPU_SOCKET4,
+    title = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_4);
+
+    subtitle text = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_4);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   4
+    #include "ProcessorSocketSetup.hfr"
+
+  endform;
+#endif
+
+#if (MAX_SOCKET > 5)
+  //
+  //  CPU Socket 5  Form
+  //
+  form formid = VFR_FORMID_CPU_SOCKET5,
+    title = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_5);
+
+    subtitle text = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_5);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   5
+    #include "ProcessorSocketSetup.hfr"
+
+  endform;
+#endif
+
+#if (MAX_SOCKET > 6)
+  //
+  //  CPU Socket 6  Form
+  //
+  form formid = VFR_FORMID_CPU_SOCKET6,
+    title = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_6);
+
+    subtitle text = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_6);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   6
+    #include "ProcessorSocketSetup.hfr"
+
+  endform;
+#endif
+
+#if (MAX_SOCKET > 7)
+  //
+  //  CPU Socket 7  Form
+  //
+  form formid = VFR_FORMID_CPU_SOCKET7,
+    title = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_7);
+
+    subtitle text = STRING_TOKEN(STR_SOCKET_CONFIG_FORM_TITLE_7);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    #undef  INDEX
+    #define INDEX   7
+    #include "ProcessorSocketSetup.hfr"
+
+  endform;
+
+#endif      //  MAX_SOCKET = 8

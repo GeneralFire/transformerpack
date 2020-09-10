@@ -1,0 +1,11 @@
+<component>
+    name = "PeiDxeSmmPchInfoLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\Library\PeiDxeSmmPchInfoLib\"
+    RefName = "ClientOneSiliconPkg.Pch.Library.PeiDxeSmmPchInfoLib"
+[INF]
+"PeiDxeSmmPchInfoLibEbg.inf"
+[files]
+"PchInfoLibPrivate.h"	
+"PeiDxeSmmPchInfoLib.sdl"	
+<endComponent>

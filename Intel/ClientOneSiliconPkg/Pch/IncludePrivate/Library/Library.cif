@@ -1,0 +1,13 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.Pch.IncludePrivate.Library"
+[files]
+"HsioSocLib.h"
+"PchInitLib.h"	
+"PchIoExpander.h"		
+"PeiCpuAndPchTraceHubLib.h"		
+"SiScheduleResetLib.h"	
+"SmmPchPrivateLib.h"	
+<endComponent>

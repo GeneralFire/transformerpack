@@ -1,0 +1,240 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+//
+// HSD 4168370 Add EVMode Support to the HSX EP BIOS
+//
+#string  STR_DFX_ENABLE_PROMPT            #language en-US "EV DFX Features"
+#string  STR_DFX_ENABLE_HELP              #language en-US "Expose IIO DFX devices and other CPU devices like PMON"
+
+#string  STR_DFX_BIOSDONE_PROMPT          #language en-US "Disable BIOS Done"
+#string  STR_DFX_BIOSDONE_HELP            #language en-US "When set suppresses notifying processor via MSR 151h that boot initialization is finished."
+
+#string STR_PCIE_LTSSM_LOG_PROMPT         #language en-US "LTSSM Logger"
+#string STR_PCIE_LTSSM_LOG_HELP           #language en-US "Enable/Disable LTSSM Logger for PCIe functionality"
+
+#string STR_LTSSM_LOG_STOP_PROMPT         #language en-US "  Stop"
+#string STR_LTSSM_LOG_STOP_HELP           #language en-US "Configure the Stop value for LTSSM Logger"
+#string STR_LTSSM_LOG_SPEED_PROMPT        #language en-US "  Speed"
+#string STR_LTSSM_LOG_SPEED_HELP          #language en-US "Configure Speed value for LTSSM Logger"
+#string STR_LTSSM_LOG_MASK_PROMPT         #language en-US "  Mask"
+#string STR_LTSSM_LOG_MASK_HELP           #language en-US "Configure Mask value for LTSSM Logger"
+
+#string STR_PCIE_JITTER_LOG_PROMPT        #language en-US "Jitter Logger"
+#string STR_PCIE_JITTER_LOG_HELP          #language en-US "Enable/Disable Jitter Logger for PCIE functionality"
+
+#string STR_DFX_IIO_RC_FLOW_PROMPT        #language en-US "IIO RC flow"
+#string STR_DFX_IIO_RC_FLOW_HELP          #language en-US "Enable/Disable IIO RC flow execution"
+
+#string STR_DFX_IIO_LNK_TRAIN_PROMPT      #language en-US "IIO PCIE link training"
+#string STR_DFX_IIO_LNK_TRAIN_HELP        #language en-US "Enable/Disable PCIE link training execution"
+
+#string STR_DFX_IIO_SKIP_LOCK_PROMPT      #language en-US "Skip Port Personality Lock"
+#string STR_DFX_IIO_SKIP_LOCK_HELP        #language en-US "When enabled leaves capability registers of PCI and DMI ports not locked."
+
+#string STR_DFX_IIO_CXL_HEADER_BYPASS_PROMPT      #language en-US "CXL Header Bypass"
+#string STR_DFX_IIO_CXL_HEADER_BYPASS_HELP        #language en-US "Enable/Disable the CXL header bypass."
+
+#string STR_DFX_BAD_TRANSACTION_PROMPT    #language en-US "Bad Transaction Type WA"
+#string STR_DFX_BAD_TRANSACTION_HELP      #language en-US "Enable/Disable M2IOSF bad transaction type workaround execution"
+
+#string STR_DFX_NPK_NON_ALLOC_PROMPT      #language en-US "Trace Hub Allocation Flow"
+#string STR_DFX_NPK_NON_ALLOC_HELP        #language en-US "Enable/Disable the allocating writes"
+
+#string STR_DFX_OTC_PIPE_HAZARD_THRESH_PROMPT      #language en-US "OTC Pipe Hazard Thresh"
+#string STR_DFX_OTC_PIPE_HAZARD_THRESH_HELP        #language en-US "Sets OTC Pipe Hazard Thresh value, 0 cycles as default and used to disable workaround for outbound parity errors"
+
+#string STR_IIO_DFX_CFG_FORM_TITLE        #language en-US "IIO DFX Configuration"
+#string STR_IIO_DFX_CFG_FORM_HELP         #language en-US "Enable/Disable DFX Configuration"
+
+#string STR_IIO_DFX_DEVHIDE_FORM_SKT0     #language en-US "Socket 0, Device Hide Menu"
+#string STR_IIO_DFX_DEVHIDE_FORM_SKT1     #language en-US "Socket 1, Device Hide Menu"
+#string STR_IIO_DFX_DEVHIDE_FORM_SKT2     #language en-US "Socket 2, Device Hide Menu"
+#string STR_IIO_DFX_DEVHIDE_FORM_SKT3     #language en-US "Socket 3, Device Hide Menu"
+#string STR_DEVHIDE_HELP                  #language en-US "If entire DEVHIDEx is 0, then register will not be modified. If any byte is non-zero, then the entire DEVHIDE register will be overridden with these values (thus overriding any other HIDE option in setup such as PCIe port hide questions)."
+
+#string STR_DEVHIDE0_0           #language en-US "IIO Stack0 Devhide0"
+#string STR_DEVHIDE1_0           #language en-US "IIO Stack0 Devhide1"
+#string STR_DEVHIDE2_0           #language en-US "IIO Stack0 Devhide2"
+#string STR_DEVHIDE3_0           #language en-US "IIO Stack0 Devhide3"
+#string STR_DEVHIDE4_0           #language en-US "IIO Stack0 Devhide4"
+#string STR_DEVHIDE5_0           #language en-US "IIO Stack0 Devhide5"
+#string STR_DEVHIDE6_0           #language en-US "IIO Stack0 Devhide6"
+#string STR_DEVHIDE7_0           #language en-US "IIO Stack0 Devhide7"
+#string STR_DEVHIDE0_1           #language en-US "IIO Stack1 Devhide0"
+#string STR_DEVHIDE1_1           #language en-US "IIO Stack1 Devhide1"
+#string STR_DEVHIDE2_1           #language en-US "IIO Stack1 Devhide2"
+#string STR_DEVHIDE3_1           #language en-US "IIO Stack1 Devhide3"
+#string STR_DEVHIDE4_1           #language en-US "IIO Stack1 Devhide4"
+#string STR_DEVHIDE5_1           #language en-US "IIO Stack1 Devhide5"
+#string STR_DEVHIDE6_1           #language en-US "IIO Stack1 Devhide6"
+#string STR_DEVHIDE7_1           #language en-US "IIO Stack1 Devhide7"
+#string STR_DEVHIDE0_2           #language en-US "IIO Stack2 Devhide0"
+#string STR_DEVHIDE1_2           #language en-US "IIO Stack2 Devhide1"
+#string STR_DEVHIDE2_2           #language en-US "IIO Stack2 Devhide2"
+#string STR_DEVHIDE3_2           #language en-US "IIO Stack2 Devhide3"
+#string STR_DEVHIDE4_2           #language en-US "IIO Stack2 Devhide4"
+#string STR_DEVHIDE5_2           #language en-US "IIO Stack2 Devhide5"
+#string STR_DEVHIDE6_2           #language en-US "IIO Stack2 Devhide6"
+#string STR_DEVHIDE7_2           #language en-US "IIO Stack2 Devhide7"
+#string STR_DEVHIDE0_3           #language en-US "IIO Stack3 Devhide0"
+#string STR_DEVHIDE1_3           #language en-US "IIO Stack3 Devhide1"
+#string STR_DEVHIDE2_3           #language en-US "IIO Stack3 Devhide2"
+#string STR_DEVHIDE3_3           #language en-US "IIO Stack3 Devhide3"
+#string STR_DEVHIDE4_3           #language en-US "IIO Stack3 Devhide4"
+#string STR_DEVHIDE5_3           #language en-US "IIO Stack3 Devhide5"
+#string STR_DEVHIDE6_3           #language en-US "IIO Stack3 Devhide6"
+#string STR_DEVHIDE7_3           #language en-US "IIO Stack3 Devhide7"
+#string STR_DEVHIDE0_4           #language en-US "IIO Stack4 Devhide0"
+#string STR_DEVHIDE1_4           #language en-US "IIO Stack4 Devhide1"
+#string STR_DEVHIDE2_4           #language en-US "IIO Stack4 Devhide2"
+#string STR_DEVHIDE3_4           #language en-US "IIO Stack4 Devhide3"
+#string STR_DEVHIDE4_4           #language en-US "IIO Stack4 Devhide4"
+#string STR_DEVHIDE5_4           #language en-US "IIO Stack4 Devhide5"
+#string STR_DEVHIDE6_4           #language en-US "IIO Stack4 Devhide6"
+#string STR_DEVHIDE7_4           #language en-US "IIO Stack4 Devhide7"
+#string STR_DEVHIDE0_5           #language en-US "IIO Stack5 Devhide0"
+#string STR_DEVHIDE1_5           #language en-US "IIO Stack5 Devhide1"
+#string STR_DEVHIDE2_5           #language en-US "IIO Stack5 Devhide2"
+#string STR_DEVHIDE3_5           #language en-US "IIO Stack5 Devhide3"
+#string STR_DEVHIDE4_5           #language en-US "IIO Stack5 Devhide4"
+#string STR_DEVHIDE5_5           #language en-US "IIO Stack5 Devhide5"
+#string STR_DEVHIDE6_5           #language en-US "IIO Stack5 Devhide6"
+#string STR_DEVHIDE7_5           #language en-US "IIO Stack5 Devhide7"
+
+#string STR_DEVHIDE0_6           #language en-US "Uncore Stack0 Devhide0"
+#string STR_DEVHIDE1_6           #language en-US "Uncore Stack0 Devhide1"
+#string STR_DEVHIDE2_6           #language en-US "Uncore Stack0 Devhide2"
+#string STR_DEVHIDE3_6           #language en-US "Uncore Stack0 Devhide3"
+#string STR_DEVHIDE4_6           #language en-US "Uncore Stack0 Devhide4"
+#string STR_DEVHIDE5_6           #language en-US "Uncore Stack0 Devhide5"
+#string STR_DEVHIDE6_6           #language en-US "Uncore Stack0 Devhide6"
+#string STR_DEVHIDE7_6           #language en-US "Uncore Stack0 Devhide7"
+#string STR_DEVHIDE0_7           #language en-US "Uncore Stack1 Devhide0"
+#string STR_DEVHIDE1_7           #language en-US "Uncore Stack1 Devhide1"
+#string STR_DEVHIDE2_7           #language en-US "Uncore Stack1 Devhide2"
+#string STR_DEVHIDE3_7           #language en-US "Uncore Stack1 Devhide3"
+#string STR_DEVHIDE4_7           #language en-US "Uncore Stack1 Devhide4"
+#string STR_DEVHIDE5_7           #language en-US "Uncore Stack1 Devhide5"
+#string STR_DEVHIDE6_7           #language en-US "Uncore Stack1 Devhide6"
+#string STR_DEVHIDE7_7           #language en-US "Uncore Stack1 Devhide7"
+
+
+#string STR_DFX_TXEQ_EQ_MODE                    #language en-US "Dfx Debug Mode"
+#string STR_DFX_TXEQ_TESTCARD_PROMPT            #language en-US "PCIe Test Card"
+#string STR_DFX_TXEQ_TESTCARD_HELP              #language en-US "Execute TxEq Phase2 for PCIe Test Cards"
+
+#string STR_DFX_TXEQ_NTB_TESTCARD_PROMPT        #language en-US "PCIe NTB Test Card"
+#string STR_DFX_TXEQ_NTB_TESTCARD_HELP          #language en-US "Execute TxEq Phase2 for NTB PCIe Test Cards"
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#string STR_DFX_PCIE_GEN3_OVERRIDE_PROMPT       #language en-US "Gen3 Override mode"
+#string STR_DFX_PCIE_GEN4_OVERRIDE_PROMPT       #language en-US "Gen4 Override mode"
+#string STR_DFX_PCIE_GEN5_OVERRIDE_PROMPT       #language en-US "Gen5 Override mode"
+
+#string STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL       #language en-US "Manual"
+#string STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH2   #language en-US "Manual Ph2"
+#string STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH3   #language en-US "Manual Ph3"
+#string STR_DFX_TXEQ_OVERRIDE_MODE_TEST_CARD    #language en-US "Test Card"
+#string STR_DFX_TXEQ_OVERRIDE_MODE_UNIPHY       #language en-US "UniPhy"
+#string STR_DFX_TXEQ_OVERRIDE_MODE_MGPHY        #language en-US "MgPhy"
+#string STR_DFX_TXEQ_OVERRIDE_MODE_MGPHYSHORTCH #language en-US "MgPhyShortCh"
+#string STR_DFX_TXEQ_OVERRIDE_MODE_HELP         #language en-US "Set specific TxEq overrides in PCIe features"
+
+#string STR_DFX_TXEQ_TEST_CARD_LAGUNA           #language en-US "LAGUNA"
+#string STR_DFX_TXEQ_TEST_CARD_NTB              #language en-US "NTB"
+
+#string STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP       #language en-US "Override Ph2 TXEQ register"
+#string STR_DFX_TXEQ_PH2_PRECURSOR              #language en-US "  Ph2 TxEq Precursor"
+#string STR_DFX_TXEQ_PH2_CURSOR                 #language en-US "  Ph2 TxEq Cursor"
+#string STR_DFX_TXEQ_PH2_POSTCURSOR             #language en-US "  Ph2 TxEq Postcursor"
+
+#string STR_DFX_TXEQ_MANUAL_PH3_FORM_HELP       #language en-US "Override Ph3 TXEQ register"
+#string STR_DFX_TXEQ_PH3_PRECURSOR              #language en-US "  Ph3 TxEq Precursor"
+#string STR_DFX_TXEQ_PH3_CURSOR                 #language en-US "  Ph3 TxEq Cursor"
+#string STR_DFX_TXEQ_PH3_POSTCURSOR             #language en-US "  Ph3 TxEq Postcursor"
+
+#string STR_PRESET_FORM_TITLE                   #language en-US "Preset Settings"
+
+#string STR_DN_TX_PRESET_HELP                   #language en-US "PCIe Downstream Tx Preset"
+#string STR_DN_TX_PRESET                        #language en-US "DN Tx Preset"
+
+#string STR_DN_TX_PRESET_GEN4_HELP              #language en-US "PCIe Downstream Tx Preset for Gen4"
+#string STR_DN_TX_PRESET_GEN4                   #language en-US "DN Tx Preset Gen4"
+
+#string STR_TX_PRESET_P0                       #language en-US "P0 (-6.0/0.0 dB)"
+#string STR_TX_PRESET_P1                       #language en-US "P1 (-3.5/0.0 dB)"
+#string STR_TX_PRESET_P2                       #language en-US "P2 (-4.5/0.0 dB)"
+#string STR_TX_PRESET_P3                       #language en-US "P3 (-2.5/0.0 dB)"
+#string STR_TX_PRESET_P4                       #language en-US "P4 ( 0.0/0.0 dB)"
+#string STR_TX_PRESET_P5                       #language en-US "P5 ( 0.0/2.0 dB)"
+#string STR_TX_PRESET_P6                       #language en-US "P6 ( 0.0/2.5 dB)"
+#string STR_TX_PRESET_P7                       #language en-US "P7 (-6.0/3.5 dB)"
+#string STR_TX_PRESET_P8                       #language en-US "P8 (-3.5/3.5 dB)"
+#string STR_TX_PRESET_P9                       #language en-US "P9 ( 0.0/3.5 dB)"
+
+#string STR_DN_RX_PRESET_HELP                  #language en-US "PCIe Downstream Rx Preset Hint"
+#string STR_DN_RX_PRESET_HINT                  #language en-US "DN Rx Preset Hint"
+
+#string STR_RX_PRESET_P0                       #language en-US "P0 ( -6.0 dB)"
+#string STR_RX_PRESET_P1                       #language en-US "P1 ( -7.0 dB)"
+#string STR_RX_PRESET_P2                       #language en-US "P2 ( -8.0 dB)"
+#string STR_RX_PRESET_P3                       #language en-US "P3 ( -9.0 dB)"
+#string STR_RX_PRESET_P4                       #language en-US "P4 (-10.0 dB)"
+#string STR_RX_PRESET_P5                       #language en-US "P5 (-11.0 dB)"
+#string STR_RX_PRESET_P6                       #language en-US "P6 (-12.0 dB)"
+
+#string STR_UP_TX_PRESET_HELP                  #language en-US "PCIe Upstream Tx Preset"
+#string STR_UP_TX_PRESET                       #language en-US "UP Tx Preset"
+#string STR_UP_TX_PRESET_GEN4_HELP             #language en-US "PCIe Upstream Tx Preset for Gen4"
+#string STR_UP_TX_PRESET_GEN4                  #language en-US "UP Tx Preset Gen4"
+
+#string STR_DFX_MISCCONFIGURATIONS_TITLE       #language en-US "Miscellaneous Configuration"
+#string STR_DFX_INBOUNDCONFIGURATION_PROMPT    #language en-US "Inbound Configuration"
+#string STR_DFX_INBOUNDCONFIGURATION_HELP      #language en-US "Enable Inbound configuration"
+
+#string STR_DFX_IIO_LINK_RETRAIN_PROMPT        #language en-US "Link Re-Train"
+#string STR_DFX_IIO_LINK_RETRAIN_HELP          #language en-US "Enable Link Re-Train if connected at degraded speed or width"
+
+// MMIO Poison control form
+#string STR_MMIO_POISON_CTRL_SOCKET_PROMPT        #language en-US "MMIO Poison control"
+#string STR_MMIO_POISON_CTRL_FORM_TITLE           #language en-US "MMIO Posion control"
+#string STR_MMIO_POISON_READ_CMPL_STRING_STACK0   #language en-US "Enable MMIO read cmpl poison for STACK_0"
+#string STR_MMIO_POISON_READ_CMPL_STRING_STACK1   #language en-US "Enable MMIO read cmpl poison for STACK_1"
+#string STR_MMIO_POISON_READ_CMPL_STRING_STACK2   #language en-US "Enable MMIO read cmpl poison for STACK_2"
+#string STR_MMIO_POISON_READ_CMPL_STRING_STACK3   #language en-US "Enable MMIO read cmpl poison for STACK_3"
+#string STR_MMIO_POISON_READ_CMPL_STRING_STACK4   #language en-US "Enable MMIO read cmpl poison for STACK_4"
+#string STR_MMIO_POISON_READ_CMPL_STRING_STACK5   #language en-US "Enable MMIO read cmpl poison for STACK_5"
+
+
+//
+// End of file
+//

@@ -1,0 +1,453 @@
+TOKEN
+    Name = "AmiBmcCommonAccess_SUPPORT"
+    Value = "1"
+    Help = "Switch to enable Ami BMC common interface library support in the project."
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name = "AmiBmcCommonInterfaceLib"
+    File = "AmiBmcCommonInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes AmiBmcCommonInterfaceLib.inf to project."
+    PreProcess = Yes
+End
+
+LibraryMapping
+    Class = "AmiBmcCommonInterfaceLib"
+    Instance = "AmiIpmi2Pkg.AmiBmcCommonInterfaceLib"
+    ModuleTypes = "PEIM DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER"
+    Help = "Library mapping of AmiBmcCommonInterfaceLib in Platform.dsc for PEIM & DXE drivers."
+End
+
+ELINK
+    Name = "AMI_INIT_INTERFACE_DATA_HOOK"
+    InvokeOrder = ReplaceParent
+    Help = "Elink to initialize different interfaces data."
+End
+
+ELINK
+    Name = "AMI_IPMI_SEND_COMMAND"
+    InvokeOrder = ReplaceParent
+    Help = "Elink to add Send Ipmi command for different interfaces."
+End
+
+ELINK
+    Name = "AMI_BMC_COMMON_ACCESS_INTERFACE_LIB"
+    InvokeOrder = ReplaceParent
+    Help = "Elink to link libraries into BmcCommonInterfaceLib.inf at build time."
+END
+
+TOKEN
+    Name = "AmiKcsInterface_SUPPORT"
+    Value = "1"
+    TokenType = Boolean
+    TargetH = Yes
+    Help = "Switch to enable Ami KCS interface library support in the project."
+End
+
+INFComponent
+    Name = "PeiAmiKcsInterfaceLib"
+    File = "AmiKcsInterfaceLib/PeiAmiKcsInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes PeiAmiKcsInterfaceLib.inf to project."
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiKcsInterfaceLib"
+    Instance = "AmiIpmi2Pkg.PeiAmiKcsInterfaceLib"
+    ModuleTypes = "PEIM"
+    Help = "Library mapping of AmiKcsInterfaceLib in Platform.dsc for PEIM."
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "DxeAmiKcsInterfaceLib"
+    File = "AmiKcsInterfaceLib/DxeAmiKcsInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes DxeAmiKcsInterfaceLib.inf to project."
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiKcsInterfaceLib"
+    Instance = "AmiIpmi2Pkg.DxeAmiKcsInterfaceLib"
+    ModuleTypes = "DXE_DRIVER DXE_RUNTIME_DRIVER UEFI_DRIVER UEFI_APPLICATION"
+    Help = "Library mapping of AmiKcsInterfaceLib in Platform.dsc for DXE & UEFI drivers."
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "SmmAmiKcsInterfaceLib"
+    File = "AmiKcsInterfaceLib/SmmAmiKcsInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes SmmAmiKcsInterfaceLib.inf to project."
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "AmiKcsInterfaceLib"
+    Instance  = "AmiIpmi2Pkg.SmmAmiKcsInterfaceLib"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Help = "Library mapping of AmiKcsInterfaceLib in Platform.dsc for DXE SMM driver."
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiInitKcsInterfaceData,"
+    Parent = "AMI_INIT_INTERFACE_DATA_HOOK"
+    InvokeOrder = AfterParent
+    Help = "Elink to initialize Ami KCS interface data."
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiIpmiKcsSendCommand,"
+    Parent = "AMI_IPMI_SEND_COMMAND"
+    InvokeOrder = AfterParent
+    Help = "Elink to link Send Ipmi command for KCS interface."
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AMI_OEM_INIT_KCS_INTERFACE_DATA_HOOK"
+    InvokeOrder = ReplaceParent
+    Help = "Elink to provide hooks for OEM initialization when Default Access type is MMIO."
+    Token = "IPMI_DEFAULT_ACCESS_TYPE" "=" "0"
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiKcsInterfaceLib"
+    Parent = "AMI_BMC_COMMON_ACCESS_INTERFACE_LIB"
+    InvokeOrder = AfterParent
+    Help = "Includes AmiKcsInterfaceLib into AmiBmcCommonInterfaceLib.inf at build time."
+    Token = "AmiKcsInterface_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "AmiBtInterface_SUPPORT"
+    Value = "1"
+    Help = "Switch for enable Ami BT interface library support in the project."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+INFComponent
+    Name = "AmiBtInterfaceLib"
+    File = "AmiBtInterfaceLib/AmiBtInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes AmiBtInterfaceLib.inf to project."
+    Token = "AmiBtInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiBtInterfaceLib"
+    Instance = "AmiIpmi2Pkg.AmiBtInterfaceLib"
+    Help = "Library mapping of AmiBtInterfaceLib in Platform.dsc."
+    Token = "AmiBtInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiInitBtInterfaceData,"
+    Parent = "AMI_INIT_INTERFACE_DATA_HOOK"
+    InvokeOrder = AfterParent
+    Help = "Elink to initialize Ami BT interface data."
+    Token = "AmiBtInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiIpmiBtSendCommand,"
+    Parent = "AMI_IPMI_SEND_COMMAND"
+    InvokeOrder = AfterParent
+    Help = "Elink to link Send Ipmi command for BT interface."
+    Token = "AmiBtInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AMI_OEM_INIT_BT_INTERFACE_DATA_HOOK"
+    InvokeOrder = ReplaceParent
+    Help = "Elink to provide hooks for OEM initialization when Default Access type is MMIO."
+    Token = "IPMI_DEFAULT_ACCESS_TYPE" "=" "0"
+    Token = "AmiBtInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiBtInterfaceLib"
+    Parent = "AMI_BMC_COMMON_ACCESS_INTERFACE_LIB"
+    Help = "Includes AmiBtInterfaceLib into AmiBmcCommonInterfaceLib.inf at build time."
+    InvokeOrder = AfterParent
+    Token = "AmiBtInterface_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "AmiSsifInterface_SUPPORT"
+    Value = "1"
+    Help = "Switch to enable Ami SSIF interface library support in the project."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+INFComponent
+    Name = "PeiAmiSsifInterfaceLib"
+    File = "AmiSsifInterfaceLib/PeiAmiSsifInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes PeiAmiSsifInterfaceLib.inf to project."
+    Token = "AmiSsifInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiSsifInterfaceLib"
+    Instance = "AmiIpmi2Pkg.PeiAmiSsifInterfaceLib"
+    ModuleTypes = "PEIM"
+    Help = "Library mapping of AmiSsifInterfaceLib in Platform.dsc for PEIM."
+    Token = "AmiSsifInterface_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "DxeAmiSsifInterfaceLib"
+    File = "AmiSsifInterfaceLib/DxeAmiSsifInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes DxeAmiSsifInterfaceLib.inf to project."
+    Token = "AmiSsifInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiSsifInterfaceLib"
+    Instance = "AmiIpmi2Pkg.DxeAmiSsifInterfaceLib"
+    ModuleTypes = "DXE_DRIVER DXE_RUNTIME_DRIVER UEFI_DRIVER UEFI_APPLICATION"
+    Help = "Library mapping of AmiSsifInterfaceLib in Platform.dsc for DXE & UEFI drivers."
+    Token = "AmiSsifInterface_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "SmmAmiSsifInterfaceLib"
+    File = "AmiSsifInterfaceLib/SmmAmiSsifInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes SmmAmiSsifInterfaceLib.inf to project."
+    Token = "AmiSsifInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiSsifInterfaceLib"
+    Instance = "AmiIpmi2Pkg.SmmAmiSsifInterfaceLib"
+    ModuleTypes = "DXE_SMM_DRIVER"
+    Help = "Library mapping of AmiSsifInterfaceLib in Platform.dsc for DXE SMM driver."
+    Token = "AmiSsifInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiInitSsifInterfaceData,"
+    Parent = "AMI_INIT_INTERFACE_DATA_HOOK"
+    InvokeOrder = AfterParent
+    Help = "Elink to initialize Ami SSIF interface data."
+    Token = "AmiSsifInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiIpmiSsifSendCommand,"
+    Parent = "AMI_IPMI_SEND_COMMAND"
+    InvokeOrder = AfterParent
+    Help = "Elink to link Send Ipmi command for SSIF interface."
+    Token = "AmiSsifInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiSsifInterfaceLib"
+    Parent = "AMI_BMC_COMMON_ACCESS_INTERFACE_LIB"
+    Help = "Includes AmiSsifInterfaceLib into AmiBmcCommonInterfaceLib.inf at build time."
+    InvokeOrder = AfterParent
+    Token = "AmiSsifInterface_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "AmiIpmbInterface_SUPPORT"
+    Value = "1"
+    Help = "Switch to enable Ami IPMB interface library support in the project."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+INFComponent
+    Name = "PeiAmiIpmbInterfaceLib"
+    File = "AmiIpmbInterfaceLib/PeiAmiIpmbInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes PeiAmiIpmbInterfaceLib.inf to project."
+    Token = "AmiIpmbInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiIpmbInterfaceLib"
+    Instance = "AmiIpmi2Pkg.PeiAmiIpmbInterfaceLib"
+    ModuleTypes = "PEIM"
+    Help = "Library mapping of AmiIpmbInterfaceLib in Platform.dsc for PEIM."
+    Token = "AmiIpmbInterface_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "DxeAmiIpmbInterfaceLib"
+    File = "AmiIpmbInterfaceLib/DxeAmiIpmbInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes DxeAmiIpmbInterfaceLib.inf to project."
+    Token = "AmiIpmbInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiIpmbInterfaceLib"
+    Instance = "AmiIpmi2Pkg.DxeAmiIpmbInterfaceLib"
+    ModuleTypes = "DXE_DRIVER DXE_RUNTIME_DRIVER UEFI_DRIVER UEFI_APPLICATION"
+    Help = "Library mapping of AmiIpmbInterfaceLib in Platform.dsc for DXE & UEFI drivers."
+    Token = "AmiIpmbInterface_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "SmmAmiIpmbInterfaceLib"
+    File = "AmiIpmbInterfaceLib/SmmAmiIpmbInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes SmmAmiIpmbInterfaceLib.inf to project."
+    Token = "AmiIpmbInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiIpmbInterfaceLib"
+    Instance = "AmiIpmi2Pkg.SmmAmiIpmbInterfaceLib"
+    ModuleTypes = "DXE_SMM_DRIVER"
+    Help = "Library mapping of AmiIpmbInterfaceLib in Platform.dsc for DXE SMM driver."
+    Token = "AmiIpmbInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiInitIpmbInterfaceData,"
+    Parent = "AMI_INIT_INTERFACE_DATA_HOOK"
+    InvokeOrder = AfterParent
+    Help = "Elink to initialize Ami IPMB interface data."
+    Token = "AmiIpmbInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiIpmiIpmbSendCommand,"
+    Parent = "AMI_IPMI_SEND_COMMAND"
+    InvokeOrder = AfterParent
+    Help = "Elink to link Send Ipmi command for IPMB interface."
+    Token = "AmiIpmbInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiIpmbInterfaceLib"
+    Parent = "AMI_BMC_COMMON_ACCESS_INTERFACE_LIB"
+    Help = "Includes AmiIpmbInterfaceLib into AmiBmcCommonInterfaceLib.inf at build time."
+    InvokeOrder = AfterParent
+    Token = "AmiIpmbInterface_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "AmiUsbInterface_SUPPORT"
+    Value = "1"
+    Help = "Switch to enable Ami USB interface library support in the project."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+INFComponent
+    Name = "PeiAmiUsbInterfaceLib"
+    File = "AmiUsbInterfaceLib/PeiAmiUsbInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes PeiAmiUsbInterfaceLib.inf to project."
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiUsbInterfaceLib"
+    Instance = "AmiIpmi2Pkg.PeiAmiUsbInterfaceLib"
+    ModuleTypes = "PEIM"
+    Help = "Library mapping of AmiUsbInterfaceLib in Platform.dsc for PEIM."
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "DxeAmiUsbInterfaceLib"
+    File = "AmiUsbInterfaceLib/DxeAmiUsbInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes DxeAmiUsbInterfaceLib.inf to project."
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiUsbInterfaceLib"
+    Instance = "AmiIpmi2Pkg.DxeAmiUsbInterfaceLib"
+    ModuleTypes = "DXE_DRIVER DXE_RUNTIME_DRIVER UEFI_DRIVER UEFI_APPLICATION"
+    Help = "Library mapping of AmiUsbInterfaceLib in Platform.dsc for DXE & UEFI drivers."
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "SmmAmiUsbInterfaceLib"
+    File = "AmiUsbInterfaceLib/SmmAmiUsbInterfaceLib.inf"
+    Package = "AmiIpmi2Pkg"
+    Help = "Includes SmmAmiUsbInterfaceLib.inf to project."
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "AmiUsbInterfaceLib"
+    Instance = "AmiIpmi2Pkg.SmmAmiUsbInterfaceLib"
+    ModuleTypes = "DXE_SMM_DRIVER"
+    Help = "Library mapping of AmiUsbInterfaceLib in Platform.dsc for DXE SMM driver."
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiInitUsbInterfaceData,"
+    Parent = "AMI_INIT_INTERFACE_DATA_HOOK"
+    InvokeOrder = AfterParent
+    Help = "Elink to initialize USB interface data."
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiIpmiUsbSendCommand,"
+    Parent = "AMI_IPMI_SEND_COMMAND"
+    InvokeOrder = AfterParent
+    Help = "Elink to link Send Ipmi command for USB interface."
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "AMI_VIRTUAL_BMC_USB_INTERFACE"
+    Value = "1"
+    Help = "Enable and Disable AMI BMC USB Interface at exit boot via IPMI command."
+    TokenType = Integer
+    TargetH = Yes
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+END
+
+ELINK
+    Name = "AMI_BMC_USB_INTERFACE_HOOK"
+    InvokeOrder = ReplaceParent
+    Help = "Elink to provide hooks to Enable and Disable BMC USB Interface."
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AmiBmcUsbInterface,"
+    Parent = "AMI_BMC_USB_INTERFACE_HOOK"
+    InvokeOrder = AfterParent
+    Help = "Elink to enable and disable BMC USB Interface."
+    Token = "AMI_VIRTUAL_BMC_USB_INTERFACE" "=" "1"
+End
+
+ELINK
+    Name = "AmiUsbInterfaceLib"
+    Parent = "AMI_BMC_COMMON_ACCESS_INTERFACE_LIB"
+    Help = "Includes AmiUsbInterfaceLib into AmiBmcCommonInterfaceLib.inf at build time."
+    InvokeOrder = AfterParent
+    Token = "AmiUsbInterface_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name = "AMI_OEM_INTERFACE_LIB"
+    Help = "Elink to link OEM libraries into BmcCommonInterfaceLib.inf at build time."
+    InvokeOrder = ReplaceParent
+END

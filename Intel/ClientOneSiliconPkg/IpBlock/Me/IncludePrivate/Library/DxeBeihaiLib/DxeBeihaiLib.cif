@@ -1,0 +1,20 @@
+<component>
+    name = "DxeBeihaiLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\IncludePrivate\Library\DxeBeihaiLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.IncludePrivate.Library.DxeBeihaiLib"
+[files]
+"BeihaiPlugin.h"	
+"BeihaiStatusHAL.h"	
+"bhp_exp.h"	
+"bhp_heci.h"	
+"bh_acp_exp.h"	
+"bh_acp_format.h"	
+"bh_acp_internal.h"	
+"bh_shared_conf.h"	
+"bh_shared_errcode.h"	
+"bh_shared_types.h"	
+"JhiPlugin.h"	
+"jhi_plugin_internal.h"	
+"Mei.h"	
+<endComponent>

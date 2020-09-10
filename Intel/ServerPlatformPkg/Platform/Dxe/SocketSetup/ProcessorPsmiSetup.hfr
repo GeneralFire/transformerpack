@@ -1,0 +1,241 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2018 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.GlobalPsmiEnable == 0;
+        oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTrace[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_PROMPT),
+          help    = STRING_TOKEN(STR_PSMI_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTrace[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiHandlerSize[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_HANDLER_SIZE),
+          help = STRING_TOKEN(STR_PSMI_HANDLER_SIZE_HELP),
+          option text = STRING_TOKEN(STR_256K),  value = 1, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_512K),   value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1M),   value = 3, flags = RESET_REQUIRED;
+         endoneof;
+      endif;
+
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTrace[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion0[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_REGION_0),
+          help = STRING_TOKEN(STR_PSMI_TRACE_REGION_0_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion0[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceBufferSizeRegion0[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE_HELP),
+          option text = STRING_TOKEN(STR_1M),  value = 1, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_2M),   value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4M),   value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8M),   value = 4, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16M),   value = 5, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_32M),   value = 6, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_64M),   value = 7, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_128M),   value = 8, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_256M),   value = 9, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_512M),   value = 10, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1G),   value = 11, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_2G),   value = 12, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4G),   value = 13, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8G),   value = 14, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16G),   value = 15, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceMemTypeRegion0[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_HELP),
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_ANY),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_UC),   value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_WC),   value = 2, flags = RESET_REQUIRED;
+         endoneof;
+       endif;
+      endif;
+
+ suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTrace[INDEX] == 0;
+        oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion1[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_REGION_1),
+          help = STRING_TOKEN(STR_PSMI_TRACE_REGION_1_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion1[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceBufferSizeRegion1[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE_HELP),
+          option text = STRING_TOKEN(STR_1M),  value = 1, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_2M),   value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4M),   value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8M),   value = 4, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16M),   value = 5, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_32M),   value = 6, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_64M),   value = 7, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_128M),   value = 8, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_256M),   value = 9, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_512M),   value = 10, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1G),   value = 11, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_2G),   value = 12, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4G),   value = 13, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8G),   value = 14, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16G),   value = 15, flags = RESET_REQUIRED;
+      endoneof;
+
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceMemTypeRegion1[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_HELP),
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_ANY),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_UC),   value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_WC),   value = 2, flags = RESET_REQUIRED;
+         endoneof;
+        endif;
+       endif;
+
+       suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTrace[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion2[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_REGION_2),
+          help = STRING_TOKEN(STR_PSMI_TRACE_REGION_2_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+       suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion2[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceBufferSizeRegion2[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE_HELP),
+          option text = STRING_TOKEN(STR_1M),  value = 1, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_2M),   value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4M),   value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8M),   value = 4, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16M),   value = 5, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_32M),   value = 6, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_64M),   value = 7, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_128M),   value = 8, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_256M),   value = 9, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_512M),   value = 10, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1G),   value = 11, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_2G),   value = 12, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4G),   value = 13, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8G),   value = 14, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16G),   value = 15, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceMemTypeRegion2[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_HELP),
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_ANY),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_UC),   value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_WC),   value = 2, flags = RESET_REQUIRED;
+         endoneof;
+        endif;
+      endif;
+
+      suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTrace[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion3[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_REGION_3),
+          help = STRING_TOKEN(STR_PSMI_TRACE_REGION_3_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion3[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceBufferSizeRegion3[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE_HELP),
+          option text = STRING_TOKEN(STR_1M),  value = 1, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_2M),   value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4M),   value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8M),   value = 4, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16M),   value = 5, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_32M),   value = 6, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_64M),   value = 7, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_128M),   value = 8, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_256M),   value = 9, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_512M),   value = 10, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1G),   value = 11, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_2G),   value = 12, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4G),   value = 13, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8G),   value = 14, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16G),   value = 15, flags = RESET_REQUIRED;
+      endoneof;
+
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceMemTypeRegion3[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_HELP),
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_ANY),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_UC),   value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_WC),   value = 2, flags = RESET_REQUIRED;
+         endoneof;
+        endif;
+       endif;
+
+       suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTrace[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion4[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_REGION_4),
+          help = STRING_TOKEN(STR_PSMI_TRACE_REGION_4_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+       suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceRegion4[INDEX] == 0;
+         oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceBufferSizeRegion4[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_BUFFER_SIZE_HELP),
+          option text = STRING_TOKEN(STR_1M),  value = 1, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_2M),   value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4M),   value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8M),   value = 4, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16M),   value = 5, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_32M),   value = 6, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_64M),   value = 7, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_128M),   value = 8, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_256M),   value = 9, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_512M),   value = 10, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_1G),   value = 11, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_2G),   value = 12, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_4G),   value = 13, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_8G),   value = 14, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_16G),   value = 15, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.PsmiTraceMemTypeRegion4[INDEX],
+          prompt  = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE),
+          help = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_HELP),
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_ANY),  value = 0, flags = RESET_REQUIRED | MANUFACTURING  | DEFAULT;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_UC),   value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PSMI_TRACE_MEMTYPE_WC),   value = 2, flags = RESET_REQUIRED;
+         endoneof;
+        endif;
+       endif;
+      endif;

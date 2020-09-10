@@ -1,0 +1,11 @@
+<component>
+    name = "PeiPchFiaLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Fia\LibraryPrivate\PeiPchFiaLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Fia.LibraryPrivate.PeiPchFiaLib"
+[INF]
+"PeiPchFiaLibVer3.inf"
+[files]
+"PchFia15.h"	
+"PchFiaLibInternal.h"	
+<endComponent>

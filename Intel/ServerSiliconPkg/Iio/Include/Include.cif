@@ -1,0 +1,13 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Iio\Include\"
+    RefName = "ServerSiliconPkg.Iio.Include"
+[files]
+"LibraryPrivate\IioDmiConf.h"
+[parts]
+"ServerSiliconPkg.Iio.Include.Guid"
+"ServerSiliconPkg.Iio.Include.Library"
+"ServerSiliconPkg.Iio.Include.LibraryPrivate"
+"ServerSiliconPkg.Iio.Include.Protocol"
+<endComponent>

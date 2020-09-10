@@ -1,0 +1,10 @@
+<component>
+	name = "PpmInitializeDxe"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\PowerManagement\PpmInitializeDxe\"
+	RefName = "ServerSiliconPkg.Cpu.PowerManagement.PpmInitializeDxe"
+[INF]
+"PpmInitializeDxe.inf"
+[files]
+"PpmInitializeDxe.sdl"	
+<endComponent>

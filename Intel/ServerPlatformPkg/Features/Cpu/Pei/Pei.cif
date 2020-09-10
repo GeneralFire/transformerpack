@@ -1,0 +1,10 @@
+<component>
+	name = "Pei"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Cpu\Pei\"
+	RefName = "ServerPlatformPkg.Features.Cpu.Pei"	
+[files]
+"CpuPei.sdl"
+[INF]
+"PlatformCpuPolicyPei\PlatformCpuPolicyPei.inf"
+<endComponent>

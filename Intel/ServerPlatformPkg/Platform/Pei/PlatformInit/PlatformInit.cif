@@ -1,0 +1,13 @@
+<component>
+	name = "PlatformInit"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Platform\Pei\PlatformInit\"
+	RefName = "ServerPlatformPkg.Platform.Pei.PlatformInit"
+[INF]
+"PlatformInit.inf"
+"PlatformInitPreMem.inf"
+[files]
+"FitAccess.h"
+"PlatformInitPreMem.h"
+"PlatformInit.sdl"	
+<endComponent>

@@ -1,0 +1,9 @@
+<component>
+	name = "Library"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Ie\v1\Policy\Include\Library\"
+	RefName = "ServerSiliconPkg.Ie.v1.Policy.Include.Library"
+[files]
+"IePeiPolicyLib.h"
+"IePeiPolicyAccessLib.h"	
+<endComponent>

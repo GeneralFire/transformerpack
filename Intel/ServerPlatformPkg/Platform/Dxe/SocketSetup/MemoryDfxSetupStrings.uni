@@ -1,0 +1,385 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+#string STR_MEMORY_DFX_CONFIG_FORM_TITLE                   #language en-US "Memory Dfx Configuration"
+#string STR_MEMORY_DFX_CONFIG_FORM_HELP                    #language en-US "Displays and provides option to change the Memory Dfx Settings"
+
+#string STR_PARTITION_DDRT_PROMPT  #language en-US "PMem Partitioning"
+#string STR_PARTITION_DDRT_HELP    #language en-US "Enable PMem partitioning."
+
+#string STR_PARTITION_RATIO_PROMPT #language en-US "Native AD-WB is introduced in 300 Series PMem AD-WB partition ratio is only valid in native AD-WB support and not in PMem versions lesser than 300 series."
+
+#string STR_S0MC0_PARTITION_RATIO_PROMPT   #language en-US "S0 MC0 Partition Ratio"
+#string STR_S0MC0_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket0 MC0"
+#string STR_S0MC1_PARTITION_RATIO_PROMPT   #language en-US "S0 MC1 Partition Ratio"
+#string STR_S0MC1_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket0 MC1"
+#string STR_S0MC2_PARTITION_RATIO_PROMPT   #language en-US "S0 MC2 Partition Ratio"
+#string STR_S0MC2_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket0 MC2"
+#string STR_S0MC3_PARTITION_RATIO_PROMPT   #language en-US "S0 MC3 Partition Ratio"
+#string STR_S0MC3_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket0 MC3"
+#string STR_S1MC0_PARTITION_RATIO_PROMPT   #language en-US "S1 MC0 Partition Ratio"
+#string STR_S1MC0_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket1 MC0"
+#string STR_S1MC1_PARTITION_RATIO_PROMPT   #language en-US "S1 MC1 Partition Ratio"
+#string STR_S1MC1_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket1 MC1"
+#string STR_S1MC2_PARTITION_RATIO_PROMPT   #language en-US "S1 MC2 Partition Ratio"
+#string STR_S1MC2_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket1 MC2"
+#string STR_S1MC3_PARTITION_RATIO_PROMPT   #language en-US "S1 MC3 Partition Ratio"
+#string STR_S1MC3_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket1 MC3"
+#string STR_S2MC0_PARTITION_RATIO_PROMPT   #language en-US "S2 MC0 Partition Ratio"
+#string STR_S2MC0_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket2 MC0"
+#string STR_S2MC1_PARTITION_RATIO_PROMPT   #language en-US "S2 MC1 Partition Ratio"
+#string STR_S2MC1_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket2 MC1"
+#string STR_S2MC2_PARTITION_RATIO_PROMPT   #language en-US "S2 MC2 Partition Ratio"
+#string STR_S2MC2_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket2 MC2"
+#string STR_S2MC3_PARTITION_RATIO_PROMPT   #language en-US "S2 MC3 Partition Ratio"
+#string STR_S2MC3_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket2 MC3"
+#string STR_S3MC0_PARTITION_RATIO_PROMPT   #language en-US "S3 MC0 Partition Ratio"
+#string STR_S3MC0_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket3 MC0"
+#string STR_S3MC1_PARTITION_RATIO_PROMPT   #language en-US "S3 MC1 Partition Ratio"
+#string STR_S3MC1_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket3 MC1"
+#string STR_S3MC2_PARTITION_RATIO_PROMPT   #language en-US "S3 MC2 Partition Ratio"
+#string STR_S3MC2_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket3 MC2"
+#string STR_S3MC3_PARTITION_RATIO_PROMPT   #language en-US "S3 MC3 Partition Ratio"
+#string STR_S3MC3_PARTITION_RATIO_HELP   #language en-US "Partition ratios of VOL, PMEM and AD-WB region for PMem in Socket3 MC3"
+
+#string STR_RATIO_50_50_0   #language en-US "VOL:50% PMEM:50% AD-WB:0%"
+#string STR_RATIO_50_0_50   #language en-US "VOL:50% PMEM:0% AD-WB:50%"
+#string STR_RATIO_0_50_50   #language en-US "VOL:0% PMEM:50% AD-WB:50%"
+#string STR_RATIO_100_0_0   #language en-US "VOL:100% PMEM:0% AD-WB:0%"
+#string STR_RATIO_0_100_0   #language en-US "VOL:0% PMEM:100% AD-WB:0%"
+#string STR_RATIO_0_0_100   #language en-US "VOL:0% PMEM:0% AD-WB:100%"
+
+#string STR_ENABLE_TAP_SWEEP                #language en-US "Enable Tap Sweep"
+#string STR_ENABLE_TAP_SWEEP_HELP           #language en-US "Enable/Disable Tap Sweep"
+#string STR_ENABLE_TAP                      #language en-US "Enable Tap Sweep"
+#string STR_DISABLE_TAP                     #language en-US "Disable Tap Sweep"
+
+
+#string STR_TAPN_HELP                       #language en-US "Tap Configuration"
+
+#string STR_DFE_GAIN_BIAS                   #language en-US "DfeGainBias"
+
+#string STR_TAP1_START                      #language en-US "Tap1Start"
+#string STR_TAP1_END                        #language en-US "Tap1End"
+#string STR_TAP1_STEPSIZE                   #language en-US "Tap1Step"
+
+#string STR_TAP2_START                      #language en-US "Tap2Start"
+#string STR_TAP2_END                        #language en-US "Tap2End"
+#string STR_TAP2_STEPSIZE                   #language en-US "Tap2Step"
+
+#string STR_TAP3_START                      #language en-US "Tap3Start"
+#string STR_TAP3_END                        #language en-US "Tap3End"
+#string STR_TAP3_STEPSIZE                   #language en-US "Tap3Step"
+
+#string STR_TAP4_START                      #language en-US "Tap4Start"
+#string STR_TAP4_END                        #language en-US "Tap4End"
+#string STR_TAP4_STEPSIZE                   #language en-US "Tap4Step"
+
+
+#string STR_MEM_INT_GRAN_DDRT               #language en-US "PMem Channel Interleave Granularity"
+#string STR_MEM_INT_GRAN_DDRT_HELP          #language en-US "Select the PMem channel interleave granularity"
+#string STR_CH_4KB_TGT_4KB                  #language en-US "4KB Target, 4KB Channel"
+#string STR_CH_256B_TGT_4KB                 #language en-US "4KB Target, 256B Channel"
+
+#string STR_DIMM_MGMT_PROMPT   #language en-US "DIMM Management"
+#string STR_DIMM_MGMT_HELP     #language en-US "Selects whether BIOS Setup or the PMem Management Driver will control the PMem."
+#string STR_BIOS_SETUP         #language en-US "BIOS Setup"
+#string STR_CR_MGMT_DRIVER     #language en-US "PMem Management Driver"
+
+#string STR_LOAD_DIMM_MGMT_DRV_PROMPT   #language en-US "Load PMem Management Drivers"
+#string STR_LOAD_DIMM_MGMT_DRV_HELP     #language en-US "Enable/Disable to load the PMem Management Drivers for PMem(install the gNfitBindingProtocolGuid)."
+
+#string STR_PEM_MEM_MODE                    #language en-US "AppDirect"
+#string STR_PER_MEM_MODE_HELP          #language en-US "Selects whether Persistent memory mode should be enabled."
+
+#string STR_CFG_MASK_2LM                    #language en-US "Configuration Mask for 2LM"
+#string STR_CFG_MASK_2LM_HELP               #language en-US "Selects the mask type to use for 2LM configurations"
+#string STR_NORMAL                          #language en-US "Normal"
+#string STR_AGGRESSIVE                      #language en-US "Aggressive"
+
+#string STR_ECC_CHECK_PROMPT                #language en-US "ECC Check"
+#string STR_ECC_CHECK_HELP                  #language en-US "Enable - Enables DDR ECC Check. Disable - Disables this feature. Current default is Enable."
+
+#string STR_FORCE_ODT_ON_PROMPT             #language en-US "Force ODT ON"
+#string STR_FORCE_ODT_ON_HELP               #language en-US "Enable - Forces ODT ON. Disable - Disables ODT ON."
+
+#string STR_ECC_ENABLE_PROMPT               #language en-US "ECC Enable"
+#string STR_ECC_ENABLE_HELP                 #language en-US "Enable - Enables DDR ECC. Disable - Disables this feature.Current default is Enable. When this is set to Disable, ECC Check will be set to Disable compulsorily."
+
+#string STR_TREF_PER_CHANNEL_PROMPT         #language en-US "Stagger TREFI Per Available Channel"
+#string STR_TREF_PER_CHANNEL_HELP           #language en-US "Enable\Disable Stagger TREFI Per Available Channel"
+
+#string STR_NUMRANK_PER_CHANNEL_PROMPT      #language en-US "The Number of Ranks for Stagger TREFI"
+#string STR_NUMRANK_PER_CHANNEL_HELP        #language en-US "Select number of rank to keep stagger host refresh apart"
+#string STR_ONE_RANK                        #language en-US "One Rank"
+#string STR_TWO_RANK                        #language en-US "Two Ranks"
+#string STR_FOUR_RANK                       #language en-US "Four Ranks"
+#string STR_TREFI_DELAY_PROMPT              #language en-US "Additional TREFI Delay"
+#string STR_TREFI_DELAY_HELP                #language en-US "Apply addition Trefi Delay when enable Host Refresh across different iMC Group"
+
+#string STR_BANK_GROUP_INTERLEAVING_MODE_PROMPT #language en-US "Bank Group Interleaving Mode"
+#string STR_BANK_GROUP_INTERLEAVING_MODE_HELP   #language en-US "Configures the DDR bank group interleaving mode to fine or coarse grained"
+
+#string STR_MEMMAP_LOWMEMCHANNEL_PROMPT     #language en-US "Low Mem Channel Config"
+#string STR_MEMMAP_LOWMEMCHANNEL_HELP       #language en-US "Select Channel for low memory, Auto - 0 (BIOS select)"
+
+#string STR_MEMMAP_LOWMEMCHANNEL_0_STRING   #language en-US "Channel 0"
+#string STR_MEMMAP_LOWMEMCHANNEL_1_STRING   #language en-US "Channel 1"
+
+#string STR_MEMMAP_HIGHADDRBIT_PROMPT       #language en-US "High Address Region"
+#string STR_MEMMAP_HIGHADDRBIT_HELP         #language en-US "High Address Region starting bit position. Auto - 0 (not enabled). Note that the actual start of the region is 2**N - 64MB, where N is the selected bit position."
+
+#string STR_MEMMAP_STRADDLE_HIGHADDRBIT_PROMPT       #language en-US "Straddle High Address Region"
+#string STR_MEMMAP_STRADDLE_HIGHADDRBIT_HELP         #language en-US "Enables memory to straddle the high address bit selected above"
+
+#string STR_MEMMAP_HIGHADDRBIT_33_STRING    #language en-US "Bit Position 33"
+#string STR_MEMMAP_HIGHADDRBIT_34_STRING    #language en-US "Bit Position 34"
+#string STR_MEMMAP_HIGHADDRBIT_35_STRING    #language en-US "Bit Position 35"
+#string STR_MEMMAP_HIGHADDRBIT_36_STRING    #language en-US "Bit Position 36"
+#string STR_MEMMAP_HIGHADDRBIT_37_STRING    #language en-US "Bit Position 37"
+#string STR_MEMMAP_HIGHADDRBIT_38_STRING    #language en-US "Bit Position 38"
+#string STR_MEMMAP_HIGHADDRBIT_39_STRING    #language en-US "Bit Position 39"
+#string STR_MEMMAP_HIGHADDRBIT_40_STRING    #language en-US "Bit Position 40"
+#string STR_MEMMAP_HIGHADDRBIT_41_STRING    #language en-US "Bit Position 41"
+#string STR_MEMMAP_HIGHADDRBIT_42_STRING    #language en-US "Bit Position 42"
+#string STR_MEMMAP_HIGHADDRBIT_43_STRING    #language en-US "Bit Position 43"
+#string STR_MEMMAP_HIGHADDRBIT_44_STRING    #language en-US "Bit Position 44"
+#string STR_MEMMAP_HIGHADDRBIT_45_STRING    #language en-US "Bit Position 45"
+#string STR_MEMMAP_HIGHADDRBIT_46_STRING    #language en-US "Bit Position 46"
+#string STR_MEMMAP_HIGHADDRBIT_47_STRING    #language en-US "Bit Position 47"
+#string STR_MEMMAP_HIGHADDRBIT_48_STRING    #language en-US "Bit Position 48"
+#string STR_MEMMAP_HIGHADDRBIT_49_STRING    #language en-US "Bit Position 49"
+#string STR_MEMMAP_HIGHADDRBIT_50_STRING    #language en-US "Bit Position 50"
+#string STR_MEMMAP_HIGHADDRBIT_51_STRING    #language en-US "Bit Position 51"
+
+#string STR_SHORT_STROKE_2GB_PROMPT          #language en-US "2GB Short Stroke Configuration"
+#string STR_SHORT_STROKE_2GB_HELP            #language en-US "Internal ONLY; short stroke testing with DIMMs configured with total capacity of 2GiB or less, disabled by default"
+#string STR_SHORT_STROKE_2GB_INTERLEAVED     #language en-US "Interleaved"
+#string STR_SHORT_STROKE_2GB_NON_INTERLEAVED #language en-US "Non-Interleaved"
+
+#string STR_DDRT_TRANSACTOR_PROMPT          #language en-US "PMem Transactor"
+#string STR_DDRT_TRANSACTOR_HELP            #language en-US "Select Enabled if running on PMem Transactor, select Disabled if running on CoEmulation."
+
+#string STR_DFX_TIMING_OVERRIDE_CTRL_PROMPT     #language en-US "Dfx Timing Override Control"
+#string STR_DFX_TIMING_OVERRIDE_CTRL_HELP     #language en-US "Dfx Timing Override Control"
+
+#string STR_INPUT_RT_PROMPT     #language en-US "Enter Round Trip Value"
+#string STR_INPUT_RT_HELP       #language en-US "Enter Round Trip Value"
+#string STR_INPUT_DDRT_RT_PROMPT     #language en-US "Enter PMem Round Trip Value"
+#string STR_INPUT_DDRT_RT_HELP       #language en-US "Enter PMem Round Trip Value"
+#string STR_INPUT_IOLAT_PROMPT     #language en-US "Enter IO Latency Value"
+#string STR_INPUT_IOLAT_HELP       #language en-US "Enter IO Latency Value"
+#string STR_INPUT_IOLATIOCOMP_PROMPT     #language en-US "Enter IO Latency IOCOMP Value"
+#string STR_INPUT_IOLATIOCOMP_HELP       #language en-US "Enter IO Latency IOCOMP Value"
+#string STR_INPUT_TXDQ_PROMPT     #language en-US "Enter TxDq Value"
+#string STR_INPUT_TXDQ_HELP       #language en-US "Enter TxDq Value"
+#string STR_INPUT_TXDQS_PROMPT     #language en-US "Enter TxDqs Value"
+#string STR_INPUT_TXDQS_HELP       #language en-US "Enter TxDqs Value"
+#string STR_INPUT_TXDQBIT_PROMPT     #language en-US "Enter TxDqBit Value"
+#string STR_INPUT_TXDQBIT_HELP       #language en-US "Enter TxDqBit Value"
+
+#string STR_INPUT_DDRT_TXDQS_PROMPT     #language en-US "Enter PMem TxDqs Value"
+#string STR_INPUT_DDRT_TXDQS_HELP       #language en-US "Enter PMem TxDqs Value"
+#string STR_INPUT_DDRT_TXDQBIT_PROMPT     #language en-US "Enter PMem TxDqBit Value"
+#string STR_INPUT_DDRT_TXDQBIT_HELP       #language en-US "Enter PMem TxDqBit Value"
+
+#string STR_INPUT_RXDQ_PROMPT     #language en-US "Enter RxDq Value"
+#string STR_INPUT_RXDQ_HELP       #language en-US "Enter RxDq Value"
+#string STR_INPUT_RXDQS_PROMPT     #language en-US "Enter RxDqs Value"
+#string STR_INPUT_RXDQS_HELP       #language en-US "Enter RxDqs Value"
+#string STR_INPUT_RXDQBIT_PROMPT     #language en-US "Enter RxDqBit Value"
+#string STR_INPUT_RXDQBIT_HELP       #language en-US "Enter RxDqBit Value"
+#string STR_INPUT_GNT2ERID_PROMPT     #language en-US "Enter Gnt2erid Value"
+#string STR_INPUT_GNT2ERID_HELP       #language en-US "Enter Gnt2erid Value"
+#string STR_INPUT_CWLADJPOS_PROMPT     #language en-US "Enter CwlAdjPos Value"
+#string STR_INPUT_CWLADJPOS_HELP       #language en-US "Enter CwlAdjPos Value"
+#string STR_INPUT_CWLADJNEG_PROMPT     #language en-US "Enter CwlAdjNeg Value"
+#string STR_INPUT_CWLADJNEG_HELP       #language en-US "Enter CwlAdjNeg Value"
+#string STR_INPUT_RCVENDEL_PROMPT     #language en-US "Enter RecEnDelay Value"
+#string STR_INPUT_RCVENDEL_HELP       #language en-US "Enter RecEnDelay Value"
+#string STR_INPUT_DDRT_RCVENDEL_PROMPT #language en-US "Enter PMem RecEnDelay Value"
+#string STR_INPUT_DDRT_RCVENDEL_HELP   #language en-US "Enter PMem RecEnDelay Value"
+
+#string STR_DRAM_RXEQ_PROMPT          #language en-US "DRAM RX EQ"
+#string STR_DRAM_RXEQ_HELP            #language en-US "DRAM RX EQ (DRAM CTLE) Training Step Control"
+
+#string STR_TME_CMI_CPL_FAB_CREDIT_WA_PROMPT        #language en-US "Workaround to reduce TME read completion fabric credits"
+#string STR_TME_CMI_CPL_FAB_CREDIT_WA_HELP          #language en-US "Select disable to disable the Workaround. Default enable workaround"
+
+#string STR_RX_CTLE_EXTND_RANGE_PROMPT #language en-US "RxCtle Ext Range"
+#string STR_RX_CTLE_EXTND_RANGE_HELP   #language en-US "RX CTLE Training Extended 4D sweep range select"
+
+#string STR_CR_ACPI_DEBUG_INTERFACE_PROMPT  #language en-US "Crystal Ridge ACPI Debug Interface"
+#string STR_CR_ACPI_DEBUG_INTERFACE_HELP    #language en-US "Selects ACPI Debug Interface for Crystal Ridge"
+#string STR_ACPI_DEBUG_OBJECT               #language en-US "ACPI Debug Object"
+#string STR_COM1                            #language en-US "COM1"
+
+#string STR_EADR_DBG_LOG_PROMPT             #language en-US "eADR Debug Logs"
+#string STR_EADR_DBG_LOG_HELP               #language en-US "Enable/disable eADR additional info to serial console. Auto follows system level of debug messages"
+
+#string STR_EADR_LOGS_DRIVER                #language en-US "eADR Driver Logs"
+#string STR_EADR_LOGS_FLOW                  #language en-US "eADR Flow Logs"
+#string STR_EADR_LOGS_ALL                   #language en-US "eADR All Logs"
+
+#string STR_EADR_PROTOCOL_DBG_LOG_PROMPT    #language en-US "eADR Protocol Logs"
+#string STR_EADR_PROTOCOL_DBG_LOG_HELP      #language en-US "Enable/disable eADR protocol additional info to serial console"
+
+#string STR_EADR_TIME_DBG_LOG_PROMPT        #language en-US "eADR Timing Logs"
+#string STR_EADR_TIME_DBG_LOG_HELP          #language en-US "Enable/disable eADR additional timing info to serial console"
+
+#string STR_FADR_DBG_LOG_PROMPT             #language en-US "fADR Debug Logs"
+#string STR_FADR_DBG_LOG_HELP               #language en-US "Enable/disable fADR additional info to serial console. Auto follows system level of debug messages"
+
+#string STR_FADR_LOGS_DRIVER                #language en-US "fADR Driver Logs"
+#string STR_FADR_LOGS_FLOW                  #language en-US "fADR Flow Logs"
+#string STR_FADR_LOGS_ALL                   #language en-US "fADR All Logs"
+
+#string STR_FADR_TIME_DBG_LOG_PROMPT        #language en-US "fADR Timing Logs"
+#string STR_FADR_TIME_DBG_LOG_HELP          #language en-US "Enable/disable fADR additional timing info to serial console"
+
+#string STR_NFIT_DBG_LOG_PROMPT             #language en-US "NFIT Debug Logs"
+#string STR_NFIT_DBG_LOG_HELP               #language en-US "Enable/disable logging NFIT structures to serial console."
+
+#string STR_NFIT_NVDIMM_SKUBASED_PROMPT     #language en-US "NFIT NVDIMM SKU Based"
+#string STR_NFIT_NVDIMM_SKUBASED_HELP       #language en-US "When enabled NFIT is built according to NVDIMM SKU, otherwise according to memory region (SAD) type."
+
+#string STR_NFIT_MAILBOX_WITH_PROPGUID_PROMPT   #language en-US "  Use Proprietary GUID"
+#string STR_NFIT_MAILBOX_WITH_PROPGUID_HELP     #language en-US "Enable/Disable using Intel proprietary GUID instead of ACPI GUID for NVDIMM mailbox related structures in NFIT."
+
+#string STR_DDRT_SCHEDULER_PROMPT    #language en-US "PMem Scheduler Logic"
+#string STR_DDRT_SCHEDULER_HELP      #language en-US "Enable/Disable debug features in the PMem scheduler logic"
+
+#string STR_MEM_POSTED_CSR_PROMPT    #language en-US "Memory Subsystem Posted Register Write Method"
+#string STR_MEM_POSTED_CSR_HELP      #language en-US "Enable/Disable ability to perform posted register writes for memory subsystem registers."
+
+#string STR_MEM_CPGC_REG_CACHE_PROMPT         #language en-US "CPGC Register Access Cache Method"
+#string STR_MEM_CPGC_REG_CACHE_HELP           #language en-US "Enable/Disable ability to perform cache access for CPGC registers."
+
+#string STR_CPGC_SYNC_CSR_PROMPT              #language en-US "Synchronized CPGC Test Start"
+#string STR_CPGC_SYNC_CSR_HELP                #language en-US "Enable/Disable capability to synchronize CPGC test starts between memory controllers."
+
+#string STR_DDR5_REFRESH_MODE_PROMPT          #language en-US "DDR5 Refresh Operation"
+#string STR_DDR5_REFRESH_MODE_HELP            #language en-US "Sets the mode of DDR5 refresh operation"
+#string STR_REFRESH_MODE_AB_NORMAL            #language en-US "All Bank Normal"
+#string STR_REFRESH_MODE_AB_FINE              #language en-US "All Bank Fine"
+#string STR_REFRESH_MODE_SB_FINE              #language en-US "Same Bank Fine"
+
+#string STR_DDR5_SSA_RXSAMPLER_SELECTION_PROMPT  #language en-US "DDR5 SSA RxSampler Margin Parameter Selection"
+#string STR_DDR5_SSA_RXSAMPLER_SELECTION_HELP    #language en-US "Selects DDR5 SSA margin parameter for RxSampler"
+#string STR_DDR5_SSA_RXSAMPLER_EVEN_ODD          #language en-US "RxSampler Even and Odd Offset"
+#string STR_DDR5_SSA_RXSAMPLER_EVEN_ONLY         #language en-US "RxSampler Even Offset"
+#string STR_DDR5_SSA_RXSAMPLER_ODD_ONLY          #language en-US "RxSampler Odd Offset"
+#string STR_DDR5_SSA_RXVREF                      #language en-US "RxVref"
+
+#string STR_RMT_RECV_ENABLE_DENORMALIZE       #language en-US "Denormalize RecvEn before SSA RMT"
+#string STR_RMT_RECV_ENABLE_DENORMALIZE_HELP  #language en-US "Applies DeNormalize/ReNormalize on RecvEn before/after SSA RMT"
+
+#string STR_INPUT_CMD_DELAY_PROMPT            #language en-US "CMD Delay"
+#string STR_INPUT_CMD_DELAY_HELP              #language en-US "PI delay value of CMD signals for all channels"
+
+#string STR_SMBUS_TRACE_PROMPT                #language en-US "SMBUS Register Trace"
+#string STR_SMBUS_TRACE_HELP                  #language en-US "Enable/Disable SMBUS register tracing in the FC Emulation log"
+
+#string STR_SMBUS_I3C_MODE_PROMPT             #language en-US "I3C Mode"
+#string STR_SMBUS_I3C_MODE_HELP               #language en-US "Enable/Disable I3C Mode"
+
+#string STR_DFX_PERIODIC_ZQCAL_PROMPT         #language en-US "Periodic ZQ Calibration"
+#string STR_DFX_PERIODIC_ZQCAL_HELP           #language en-US "Enable/Disable Periodic ZQ Calibration"
+
+#string STR_DFX_SENSE_AMP_PROMPT              #language en-US "Sense Amp Calibration Algorithm Selection"
+#string STR_DFX_SENSE_AMP_HELP                #language en-US "Select between HW FSM or SW based Sense Amp Calibration"
+#string STR_SENSE_AMP_HW_FSM                  #language en-US "HW FSM"
+#string STR_SENSE_AMP_SW                      #language en-US "SW"
+
+#string STR_DFX_SW_XOVER_PROMPT               #language en-US "SW Xover mode Selection"
+#string STR_DFX_SW_XOVER_HELP                 #language en-US "Select SW Xover running serial mode or parallel mode"
+#string STR_SW_XOVER_SERIAL                   #language en-US "Serial mode"
+#string STR_SW_XOVER_PARALLEL                 #language en-US "Parallel mode"
+
+#string STR_DRAM_TX_ECHO_PROMPT    #language en-US "DRAM Tx Echo Cancellation"
+#string STR_DRAM_TX_ECHO_HELP      #language en-US "Enable\Disable Tx Echo Cancellation"
+
+#string STR_LEGACY_RXDFE_PROMPT    #language en-US "Legacy RxDfe Training"
+#string STR_LEGACY_RXDFE_HELP      #language en-US "Enable\Disable Legacy RxDFE training"
+
+#string STR_DIMM_INTERLEAVING_PROMPT   #language en-US "DIMM Interleaving"
+#string STR_DIMM_INTERLEAVING_HELP     #language en-US "Enable:Allows interleaving to be performed at the highest possible MC * Channel interleaving ways. Disable:Enforces interleaving to only 1-way."
+
+#string STR_MOD3_SUPPORT_PROMPT        #language en-US "3-Way Channel Interleaving"
+#string STR_MOD3_SUPPORT_HELP          #language en-US ""Enable:Allows 3-way channel interleaving. Disable:Defaults to number of channels available per MC when DIMM interleaving is enable."
+
+#string STR_RANK_INTERLEAVING_PROMPT        #language en-US "Max Rank Interleaving in IMC"
+#string STR_RANK_INTERLEAVING_HELP          #language en-US "Select Rank Interleaving setting"
+
+#string STR_1WAY_STRING                     #language en-US "1-way Interleave"
+#string STR_2WAY_STRING                     #language en-US "2-way Interleave"
+#string STR_4WAY_STRING                     #language en-US "4-way Interleave"
+#string STR_8WAY_STRING                     #language en-US "8-way Interleave"
+
+#string STR_CR_SKIP_ARS_ON_BOOT_PROMPT      #language en-US "Skip ARS on Boot"
+#string STR_CR_SKIP_ARS_ON_BOOT_HELP        #language en-US "Enabled: prevent BIOS from starting system-wide ARS on boot"
+
+#string STR_CR_BACKGROUND_ARS_PROMPT        #language en-US "Background ARS"
+#string STR_CR_BACKGROUND_ARS_HELP          #language en-US "Auto: go background on initial short ARS sequence"
+
+#string STR_CR_SEAMLESS_OPT_IN_PROMPT   #language en-US "Seamless: Opt-in DIMMs"
+#string STR_CR_SEAMLESS_OPT_IN_HELP     #language en-US "Enabled: Opt-in DIMMs, if FW supports"
+
+#string STR_DFX_DDR_EARLY_CMP_PROMPT        #language en-US "DDR EarlyCmp"
+#string STR_DFX_DDR_EARLY_CMP_HELP          #language en-US "Enable or disable early completion for all DDR memory controllers"
+#string STR_DFX_HBM_EARLY_CMP_PROMPT        #language en-US "HBM EarlyCmp"
+#string STR_DFX_HBM_EARLY_CMP_HELP          #language en-US "Enable or disable early completion for all HBM memory controllers"
+
+#string STR_DFX_XOR_DECODER_UNIT_SUBTITLE   #language en-US "DDR XOR Decoder"
+#string STR_DFX_XOR_DECODER_UNIT_HELP       #language en-US "Enable or disable DDR XOR decoder for cluster, channel, rank, SID and bank"
+#string STR_DFX_CLUSTER_XOR_PROMPT          #language en-US "Cluster XOR"
+#string STR_DFX_CLUSTER_XOR_HELP            #language en-US "Enable or disable XOR for cluster"
+#string STR_DFX_CHANNEL_XOR_PROMPT          #language en-US "Channel XOR"
+#string STR_DFX_CHANNEL_XOR_HELP            #language en-US "Enable or disable XOR for channel"
+#string STR_DFX_PSEUDO_CHANNEL_XOR_PROMPT   #language en-US "Pseudo Channel XOR"
+#string STR_DFX_PSEUDO_CHANNEL_XOR_HELP     #language en-US "Enable or disable XOR for pseudo-channel"
+#string STR_DFX_DIMM_XOR_PROMPT             #language en-US "DIMM XOR"
+#string STR_DFX_DIMM_XOR_HELP               #language en-US "Enable or disable XOR for DIMM"
+#string STR_DFX_RANK_XOR_PROMPT             #language en-US "Rank XOR"
+#string STR_DFX_RANK_XOR_HELP               #language en-US "Enable or disable XOR for rank"
+#string STR_DFX_SID_XOR_PROMPT              #language en-US "SID XOR"
+#string STR_DFX_SID_XOR_HELP                #language en-US "Enable or disable XOR for subrank"
+#string STR_DFX_BANK_XOR_PROMPT             #language en-US "Bank XOR"
+#string STR_DFX_BANK_XOR_HELP               #language en-US "Enable or disable XOR for bank"
+
+#string STR_DFX_MC_DATA_PARITY_CHECK_PROMPT     #language en-US "MC Data Parity Check"
+#string STR_DFX_MC_DATA_PARITY_CHECK_HELP       #language en-US "Auto(2)/Enable(1)/Disable(0) MC Data Parity Check"
+
+#string STR_DDRT_SKIPMB2COMMAND_PROMPT      #language en-US "Break and Skip DDRT MB2 Command"
+#string STR_DDRT_SKIPMB2COMMAND_HELP        #language en-US "MRC stops at breakpoint 0xB60A and waiting for Sticky Scratchpad6 to set to 0x00010000 to Skip DDRT MB2 command, or 0x00000000 for continue run MB2 init"
+//
+// End of file
+//

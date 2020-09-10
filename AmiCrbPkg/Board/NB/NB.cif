@@ -1,0 +1,9 @@
+<component>
+    name = "Sapphire Rapids - Eagle Stream"
+    category = ModulePart
+    LocalRoot = "AmiCrbPkg\Board\NB\"
+    RefName = "Eagle Stream/Sapphire Rapids"
+[parts]
+"Eagle Stream/Sapphire Rapids - NB Board"
+"NB Chipset"
+<endComponent>

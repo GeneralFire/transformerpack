@@ -1,0 +1,16 @@
+<component>
+    name = "MemDdrioIpLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Mem\Library\MemDdrioIpLib\"
+    RefName = "ServerSiliconPkg.Mem.Library.MemDdrioIpLib"
+[INF]
+"MemDdrioIpLib10nm.inf"
+"MemDdrioIpLibSprDdr4.inf"
+"MemDdrioIpLibSprDdr5.inf"
+[files]
+"MemDdrioIpLib.sdl"
+"Common\Include\MemDdrioIpLibDefinitions.h"	
+[parts]
+"ServerSiliconPkg.Mem.Library.MemDdrioIpLib.10nm"
+"ServerSiliconPkg.Mem.Library.MemDdrioIpLib.Spr"
+<endComponent>

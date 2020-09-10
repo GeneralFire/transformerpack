@@ -1,0 +1,12 @@
+<component>
+    name = "AddressDecodeLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Ras\LibrarySpr\AddressDecodeLib\"
+    RefName = "ServerSiliconPkg.Ras.LibrarySpr.AddressDecodeLib"
+[INF]
+"AddressDecodeLib.inf"
+[files]
+"AddressDecodeInternal.h"		
+"AddressDecodeLib.sdl"	
+"Mirror.h"
+<endComponent>

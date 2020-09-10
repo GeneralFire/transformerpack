@@ -1,0 +1,15 @@
+<component>
+    name = "RasSmm"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Ras\Smm\"
+    RefName = "ServerPlatformPkg.Features.Ras.RasSmm"
+[INF]
+"HpIOXAccess\HpIOXAccess.inf"
+"HpIOXAccess\HpIOXAccessCdf.inf"
+#"EADR\EadrSmm.inf"
+"ExtendedAdr\Fadr\Fadr.inf"
+[files]
+"RasSmm.sdl"	
+[parts]
+"ServerPlatformPkg.Features.Ras.RasSmm.RasInit"
+<endComponent>

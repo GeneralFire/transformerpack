@@ -1,0 +1,10 @@
+<component>
+    name = "MeSpsLibrary"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Me\MeSps\Library"
+    RefName = "ServerPlatformPkg.Features.Me.MeSps.Library"
+[files]
+"MeSpsLibrary.sdl"
+[INF]
+"NmLib\NmLib.inf"
+<endComponent>

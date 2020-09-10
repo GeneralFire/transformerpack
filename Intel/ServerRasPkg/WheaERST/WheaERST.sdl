@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "WheaERST_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling WheaERST support in the project"
+	TokenType = Boolean
+	Master = Yes
+	Token = "WHEA_SUPPORT" "=" "1" 
+End
+
+TOKEN
+	Name  = "WheaERST_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable WheaERST support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "WheaERST"
+	File  = "WheaERST.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Token = "WheaERST_INF_SUPPORT" "=" "1"
+End
+# Using our ERST implementation as fatal error was not working with Intel WHEA
+TOKEN
+	Name  = "ELAR_SIZE"
+	Value  = "2000h"
+	Help  = "Size of Error Log Address Range."
+	TokenType = Integer
+	TargetH = Yes
+End
+

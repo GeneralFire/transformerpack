@@ -1,0 +1,23 @@
+TOKEN
+	Name  = "SmmCpuFeaturesLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling SmmCpuFeaturesLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "SmmCpuFeaturesLib"
+	File  = "SmmCpuFeaturesLib.inf"
+	Package  = "ServerSiliconPkg"
+	Arch  = "IA32 X64"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+	Class  = "SmmCpuFeaturesLib"
+	Instance  = "ServerSiliconPkg.SmmCpuFeaturesLib"
+	Arch  = "X64"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+

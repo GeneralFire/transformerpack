@@ -1,0 +1,23 @@
+TOKEN
+	Name  = "PpmInitializeDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling PpmInitializeDxe support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "PpmInitializeDxe"
+	File  = "PpmInitializeDxe.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "PpmInitializeDxe_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "BaseLib"
+    Instance  = "ServerSiliconPkg.BaseLib"
+    Override  = "ServerSiliconPkg.PpmInitializeDxe"
+    Token = "PpmInitializeDxe_SUPPORT" "=" "1"    
+End
+

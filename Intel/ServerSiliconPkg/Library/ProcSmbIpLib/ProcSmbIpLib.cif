@@ -1,0 +1,30 @@
+<component>
+    name = "ProcSmbIpLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Library\ProcSmbIpLib\"
+    RefName = "ServerSiliconPkg.Library.ProcSmbIpLib"
+[INF]
+"10nm\HwProcSmbIpTargetLib\HwProcSmbIpTargetLib10nm.inf"
+"ProcSmbIpLibDxe10nm.inf"
+"ProcSmbIpLibDxeSpr.inf"
+"ProcSmbIpLibPei10nm.inf"
+"ProcSmbIpLibPeiSpr.inf"
+"ProcSmbIpLibSmm10nm.inf"
+"ProcSmbIpLibSmmSpr.inf"
+"ProcSmbIpRasLibSmmSpr.inf"
+"Spr\HwProcSmbIpTargetLib\HwProcSmbIpTargetLibSpr.inf"
+[files]
+"ProcSmbIpLib.sdl"	
+"10nm\Include\ProcSmbEmulation.h"	
+"10nm\Include\ProcSmbRegs.h"	
+"10nm\ProcSmbChipCommon10nm.h"	
+"Spr\Include\ProcSmbEmulation.h"	
+"Spr\ProcSmbChipCommonSpr.h"	
+"Spr\Include\ProcSmbRegs.h"
+"Spr\Include\Registers\Spr\SB_I3C0.h"
+"Spr\Include\Registers\Spr\SB_I3C0_PVT.h"
+"Spr\Include\Registers\Spr\SB_I3C1.h"
+"Spr\Include\Registers\Spr\SB_I3C1_PVT.h"
+"Spr\Include\Registers\Spr\SmbIpRegisters.h"
+"Common\SpdPlatformData.h"
+<endComponent>

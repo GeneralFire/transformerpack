@@ -1,0 +1,18 @@
+<component>
+    name = "AmiIpmi2Pkg"
+    category = eModule
+    LocalRoot = "AmiIpmi2Pkg\"
+    RefName = "AmiIpmi2Pkg"
+[files]
+"AmiIpmi2Pkg.dec"	
+"AmiIpmi2Pkg.sdl"	
+[parts]
+"AmiIpmi2Pkg.Include"
+"AmiIpmi2Pkg.LibraryInstances"
+[dependency]
+AmiIpmi2Pkg.Ipmi2 >= "SS: AptioV;$/AptioV/Source/Modules/Ipmi2;Ipmi2_05"
+[dependency.optional]
+AmiPkg >= "SS: AptioV;$/AptioV/Source/Interfaces/AmiPkg;AmiPkg_25"
+MdePkg >= "SS: AptioV;$/AptioV/Source/Interfaces/MdePkg;MdePkg_19"
+AmiCompatibilityPkg >= "SS: AptioV;$/AptioV/Source/Interfaces/AmiCompatibilityPkg;AmiCompatibilityPkg_34"
+<endComponent>

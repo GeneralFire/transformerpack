@@ -1,0 +1,24 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+[Defines]
+    INF_VERSION     = 0x00010005
+    BASE_NAME       = PchSpiFlashPlatformLib
+    FILE_GUID       = 698F972E-1CB4-4FA6-95D0-A5189F5A760D
+    MODULE_TYPE     = BASE
+    VERSION_STRING  = 1.0
+    LIBRARY_CLASS   = AmiFlashPlatformLib
+
+[Sources]
+    PchSpiFlashPlatformLib.c
+
+[Packages]
+    MdePkg/MdePkg.dec
+    AmiModulePkg/AmiModulePkg.dec
+
+[LibraryClasses]
+    CspSpiFlashLib

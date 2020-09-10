@@ -1,0 +1,20 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiMcSmbLib"
+    Instance  = "ClientOneSiliconPkg.PeiMcSmbLib"
+End
+
+INFComponent
+    Name  = "PeiMcSmbLib"
+    File  = "PeiMcSmbLib/PeiMcSmbLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+

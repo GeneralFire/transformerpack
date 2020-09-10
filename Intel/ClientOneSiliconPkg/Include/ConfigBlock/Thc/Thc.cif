@@ -1,0 +1,8 @@
+<component>
+    name = "Thc"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Thc\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Thc"
+[files]
+"ThcConfig.h"	
+<endComponent>

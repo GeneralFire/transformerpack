@@ -1,0 +1,56 @@
+TOKEN
+    Name  = "RasSmm_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Smm support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "HpIOXAccess_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable HpIOXAccess support in Project"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "EadrSmm_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable EadrSmm support in Project"
+    TokenType = Boolean
+    Token = "RAS_SUPPORT" "=" "1"
+End
+
+#INFComponent
+#    Name  = "HpIOXAccess"
+#    File  = "HpIOXAccess/HpIOXAccess.inf"
+#    Package  = "ServerPlatformPkg"
+#    Arch = "X64"
+#    ModuleTypes  = "DXE_SMM_DRIVER"    
+#    Token = "HpIOXAccess_SUPPORT" "=" "1"
+#    Token = "RAS_CPU_ONLINE_OFFLINE_ENABLE" "=" "1"
+#End
+
+INFComponent
+    Name  = "HpIOXAccessCdf"
+    File  = "HpIOXAccess/HpIOXAccessCdf.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"     
+End
+
+#INFComponent
+#    Name  = "EadrSmm"
+#    File  = "Eadr/EadrSmm.inf"
+#    Package  = "ServerPlatformPkg"
+#    ModuleTypes  = "DXE_SMM_DRIVER"
+#    Token = "EadrSmm_INF_SUPPORT" "=" "1"
+#End
+
+INFComponent
+    Name  = "Fadr"
+    File  = "ExtendedAdr\Fadr\Fadr.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End

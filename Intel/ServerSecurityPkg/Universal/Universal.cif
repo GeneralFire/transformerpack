@@ -1,0 +1,17 @@
+<component>
+	name = "Universal"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSecurityPkg\Universal\"
+	RefName = "ServerSecurityPkg.Universal"
+[INF]
+"GetSec\Pei\TxtPei.inf"
+"GetSec\Dxe\TxtDxe.inf"
+[files]
+"Universal.sdl"	
+"GetSec\Pei\TxtPeiLib.h"	
+"GetSec\Common\x64\txt.inc"	
+"GetSec\Common\x64\mmx64.inc"	
+"GetSec\Common\ia32\txt.inc"	
+"GetSec\Common\ia32\stackless32.inc"	
+"GetSec\Common\LaunchBiosAcm.h"	
+<endComponent>

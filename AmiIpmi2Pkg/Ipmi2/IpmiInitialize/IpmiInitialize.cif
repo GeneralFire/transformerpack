@@ -1,0 +1,18 @@
+<component>
+    name = "IpmiInitialize"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\IpmiInitialize\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.IpmiInitialize"
+[INF]
+"PeiIpmiInitialize.inf"
+"DxeIpmiInitialize.inf"
+"SmmIpmiInitialize.inf"
+"AmiUsbInterface.inf"
+[files]
+"IpmiInitialize.sdl"
+"IpmiBt.asl"
+"IpmiKcs.asl"
+"IpmiSsif.asl"
+"BmcWarmReset.c"
+"BmcTimeZoneCallback.c"
+<endComponent>

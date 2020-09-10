@@ -1,0 +1,8 @@
+<component>
+    name = "Rtc"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Rtc\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Rtc"
+[files]
+"RtcConfig.h"	
+<endComponent>

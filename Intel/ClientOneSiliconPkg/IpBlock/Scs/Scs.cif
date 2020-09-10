@@ -1,0 +1,8 @@
+<component>
+    name = "Scs"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Scs\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Scs"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Scs.IncludePrivate"
+<endComponent>

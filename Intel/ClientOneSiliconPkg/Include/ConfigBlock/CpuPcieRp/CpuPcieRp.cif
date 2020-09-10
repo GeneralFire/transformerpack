@@ -1,0 +1,10 @@
+<component>
+    name = "CpuPcieRp"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\CpuPcieRp\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.CpuPcieRp"
+[files]
+"Gen3\CpuPcieConfigGen3.h"
+"Gen3\PciePeiConfig.h"
+"Gen4\CpuPcieConfig.h"
+<endComponent>

@@ -1,0 +1,30 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+[Defines]
+    INF_VERSION     = 0x00010005
+    BASE_NAME       = ICHxCspSpiFlashLib
+    FILE_GUID       = 9A5768AD-497B-406E-A8BA-4D838389A6A1
+    MODULE_TYPE     = DXE_DRIVER
+    VERSION_STRING  = 1.0
+    LIBRARY_CLASS   = CspSpiFlashLib
+
+[Sources]
+    ../SpiFlash.h
+    SPIFlash.c
+
+[Packages]
+    MdePkg/MdePkg.dec
+    AmiModulePkg/AmiModulePkg.dec
+
+[LibraryClasses]
+    BaseMemoryLib
+    CacheMaintenanceLib
+    PciLib
+    TimerLib
+    AmiCspFlashLib
+    BiosGuardFlashLib

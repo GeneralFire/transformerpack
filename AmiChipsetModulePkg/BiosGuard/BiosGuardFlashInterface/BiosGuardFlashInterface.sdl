@@ -1,0 +1,42 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name:	BiosGuardFlashInterface.sdl
+#
+# Description: SDL file for BiosGuardFlashInterface
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+     Name = "BIOS_GUARD_FLASH_INTERFACE_SUPPORT"
+     Value = "1"
+     TokenType = Boolean
+     TargetMAK = Yes
+     Master = Yes
+     Help = "Main switch to enable BIOS_GUARD_FLASH_INTERFACE_SUPPORT support in Project"
+End
+
+INFComponent
+    Name  = "BiosGuardSecSMIFlash"
+    File  = "BiosGuardSecSMIFlash/BiosGuardSecSMIFlash.inf"
+    Package  = "AmiModulePkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "SMM_SUPPORT" "=" "1"    
+End
+
+TOKEN
+    Name = "BIOS_GUARD_RECOVERY_ROM_SECTION"
+    Value = "7"
+    Help = "This GUID is used for BIOS Guard recovery rom section. BIT0: FV_BB, BIT1: FV_MAIN, BIT2: FV_NV."
+    TokenType = Expression
+    TargetH = Yes
+End
+

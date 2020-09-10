@@ -1,0 +1,5 @@
+UCODE_PCODE: 0x90010007 
+
+SVN: 0x02 
+
+HASH: 5c cf 90 25 a6 b1 80 fd 70 ce 93 5d f5 46 fb 4c 55 4f 33 b5 1e 0e 0d 87 a1 45 bc b4 28 54 09 77

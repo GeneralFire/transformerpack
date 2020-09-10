@@ -1,0 +1,25 @@
+<component>
+    name = "CrbLibrary"
+    category = ModulePart
+    LocalRoot = "AmiCrbPkg\Library\"
+    RefName = "CrbLibrary"
+[INF]
+"AmiPciBusSetupOverrideLibNull\AmiPciBusSetupOverrideLibNull.inf"
+"AmiPlatformAcpiLibNull\AmiPlatformAcpiLibNull.inf"
+"AmiPciAccessCspBaseLibOverride\AmiPciAccessCspBaseLibOverride.inf"
+"AmiPlatformAcpiLib.inf"
+"PeiBmcBoardLib\PeiBmcBoardLib.inf"
+"AmiPciBusSetupOverrideLib.inf"
+"AmiPlatformHooksLibNull\AmiPlatformHooksLibNull.inf"
+"AmiSetupVariableSyncLib\AmiSetupVariableSyncLib.inf"
+"AmiSmmCorePlatformHooksLib\AmiSmmCorePlatformHooksLib.inf"
+"SimicsSupportLib\SimicsSupportLib.inf"
+"AmiCmosLib\AmiCmosLib.inf"
+"AmiSmbiosLib\AmiSmbiosLib.inf"
+"AmiShadowLib\AmiShadowLib.inf"
+"CmosAccessLib\CmosAccessLib.inf"
+[files]
+"Library.sdl"	
+[parts]
+"AmiPcieSegBusLib"
+<endComponent>

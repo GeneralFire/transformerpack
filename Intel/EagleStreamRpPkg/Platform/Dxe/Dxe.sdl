@@ -1,0 +1,15 @@
+TOKEN
+    Name  = "Dxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Dxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "SmbiosRpTable"
+    File  = "SmbiosRpTable\SmbiosRpTable.inf"
+    Package  = "EagleStreamRpPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"     
+End

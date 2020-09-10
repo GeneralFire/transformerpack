@@ -1,0 +1,1272 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include <IioSetupDefinitions.h>
+#include "IioHfrUtils.hfr"
+
+  //
+  // Iio Dfx Setup Options
+  //
+
+form formid = VFR_FORMID_IIO_DFX_CONFIG,
+
+    title = STRING_TOKEN(STR_IIO_DFX_CFG_FORM_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_IIO_DFX_CFG_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+    //
+    // Jump to IIO Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.IioPresent[0] == 0;
+      goto VFR_FORMID_DFX_IIO0,
+          prompt  = STRING_TOKEN(STR_IIO0_CONFIG_FORM_TITLE),
+          help    = STRING_TOKEN(STR_NULL_STRING);
+       endif;
+#if MAX_SOCKET > 1
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.IioPresent[1] == 0;
+      goto VFR_FORMID_DFX_IIO1,
+          prompt  = STRING_TOKEN(STR_IIO1_CONFIG_FORM_TITLE),
+          help    = STRING_TOKEN(STR_NULL_STRING);
+     endif;
+#endif
+
+#if MAX_SOCKET > 2
+
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.IioPresent[2] == 0;
+      goto VFR_FORMID_DFX_IIO2,
+          prompt  = STRING_TOKEN(STR_IIO2_CONFIG_FORM_TITLE),
+          help    = STRING_TOKEN(STR_NULL_STRING);
+     endif;
+
+#endif
+
+#if MAX_SOCKET > 3
+
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.IioPresent[3] == 0;
+      goto VFR_FORMID_DFX_IIO3,
+          prompt  = STRING_TOKEN(STR_IIO3_CONFIG_FORM_TITLE),
+          help    = STRING_TOKEN(STR_NULL_STRING);
+     endif;
+#endif
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.DFXEnable,
+        prompt  = STRING_TOKEN(STR_DFX_ENABLE_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_ENABLE_HELP),
+        option text = STRING_TOKEN(STR_DISABLE),     value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),      value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqvallist SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX CPU_CLX CPU_CPX;
+      checkbox varid = SOCKET_IIO_CONFIGURATION.DfxDisableBiosDone,
+        prompt   = STRING_TOKEN(STR_DFX_BIOSDONE_PROMPT),
+        help     = STRING_TOKEN(STR_DFX_BIOSDONE_HELP),
+        // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value: 1 = ON, 0 = off
+        flags    = 0,
+      endcheckbox;
+    endif;
+  //
+  // 1404570044: ORCL\6000072799\SKX\IioSetup.hfr file shoud have consistency on STR_DISABLE/ENABLE values
+  //
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxLtssmLogger,
+        prompt  = STRING_TOKEN(STR_PCIE_LTSSM_LOG_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_LTSSM_LOG_HELP),
+        option text = STRING_TOKEN(STR_NO),   value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_YES),  value = 1, flags = RESET_REQUIRED ;
+    endoneof;
+
+    suppressif  ideqval SOCKET_IIO_CONFIGURATION.DfxLtssmLogger == 0;
+      numeric varid = SOCKET_IIO_CONFIGURATION.DfxLtssmLoggerStop,
+        prompt  = STRING_TOKEN(STR_LTSSM_LOG_STOP_PROMPT),
+        help    = STRING_TOKEN(STR_LTSSM_LOG_STOP_HELP),
+        flags        = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum      = 0,
+        maximum      = 0x99,
+        step         = 0,
+        default      = 0x99, defaultstore = MyStandardDefault,
+        default      = 0x99, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      oneof varid = SOCKET_IIO_CONFIGURATION.DfxLtssmLoggerSpeed,
+        prompt  = STRING_TOKEN(STR_LTSSM_LOG_SPEED_PROMPT),
+        help    = STRING_TOKEN(STR_LTSSM_LOG_SPEED_HELP),
+        option text     = STRING_TOKEN(STR_PCIE_GEN1),   value = PCIE_LINK_SPEED_GEN1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text     = STRING_TOKEN(STR_PCIE_GEN2),   value = PCIE_LINK_SPEED_GEN2, flags = RESET_REQUIRED;
+        option text     = STRING_TOKEN(STR_PCIE_GEN3),   value = PCIE_LINK_SPEED_GEN3, flags = RESET_REQUIRED;
+#ifdef ICX_HOST
+        option text     = STRING_TOKEN(STR_PCIE_GEN4),   value = PCIE_LINK_SPEED_GEN4, flags = RESET_REQUIRED;
+#endif // ICX_HOST
+      endoneof;
+
+      numeric varid = SOCKET_IIO_CONFIGURATION.DfxLtssmLoggerMask,
+        prompt  = STRING_TOKEN(STR_LTSSM_LOG_MASK_PROMPT),
+        help    = STRING_TOKEN(STR_LTSSM_LOG_MASK_HELP),
+        flags        = RESET_REQUIRED | DISPLAY_UINT_HEX,
+        minimum      = 0,
+        maximum      = 0xff,
+        step         = 0,
+        default      = 0xff, defaultstore = MyStandardDefault,
+        default      = 0xff, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+    endif;
+  //
+  // 1404570044: ORCL\6000072799\SKX\IioSetup.hfr file shoud have consistency on STR_DISABLE/ENABLE values
+  //
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxJitterLogger,
+        prompt  = STRING_TOKEN(STR_PCIE_JITTER_LOG_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_JITTER_LOG_HELP),
+        option text = STRING_TOKEN(STR_NO),   value = 0, flags = RESET_REQUIRED  | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_YES),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxIioRcFlow,
+        prompt  = STRING_TOKEN(STR_DFX_IIO_RC_FLOW_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_IIO_RC_FLOW_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_AUTO), value = 2, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    endoneof;
+
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.DfxIioRcFlow == 0;
+        oneof varid = SOCKET_IIO_CONFIGURATION.DfxIioLinkTraining,
+            prompt  = STRING_TOKEN(STR_DFX_IIO_LNK_TRAIN_PROMPT),
+            help    = STRING_TOKEN(STR_DFX_IIO_LNK_TRAIN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_AUTO), value = 2, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        endoneof;
+    endif;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.SkipPortPersonalityLock,
+        prompt  = STRING_TOKEN(STR_DFX_IIO_SKIP_LOCK_PROMPT),
+        help    = STRING_TOKEN(STR_DFX_IIO_SKIP_LOCK_HELP),
+        option text = STRING_TOKEN(STR_DISABLE), value = IIO_OPTION_DISABLE, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLE),  value = IIO_OPTION_ENABLE, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP);
+      numeric varid = SOCKET_IIO_CONFIGURATION.DfxOtcPipeHazardThresh,
+              prompt    = STRING_TOKEN(STR_DFX_OTC_PIPE_HAZARD_THRESH_PROMPT),
+              help      = STRING_TOKEN(STR_DFX_OTC_PIPE_HAZARD_THRESH_HELP),
+              flags     = RESET_REQUIRED | DISPLAY_UINT_HEX,
+              minimum   = 0,
+              maximum   = 0xf,
+              step      = 0,
+              default   = 4, defaultstore = MyStandardDefault,
+              default   = 4, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif;
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP);
+      oneof varid = SOCKET_IIO_CONFIGURATION.DfxBadTransactionTypeWa,
+          prompt  = STRING_TOKEN(STR_DFX_BAD_TRANSACTION_PROMPT),
+          help    = STRING_TOKEN(STR_DFX_BAD_TRANSACTION_HELP),
+          option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_AUTO), value = 2, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      endoneof;
+    endif;
+
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.IioPresent[0] == 0;
+       goto VFR_FORMID_IIO_DFX_DEVHIDE_SKT0,
+         prompt  = STRING_TOKEN(STR_IIO_DFX_DEVHIDE_FORM_SKT0),
+         help    = STRING_TOKEN(STR_IIO_DFX_DEVHIDE_FORM_SKT0);
+    endif;
+#if MAX_SOCKET > 1
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.IioPresent[1] == 0;
+       goto VFR_FORMID_IIO_DFX_DEVHIDE_SKT1,
+         prompt  = STRING_TOKEN(STR_IIO_DFX_DEVHIDE_FORM_SKT1),
+         help    = STRING_TOKEN(STR_IIO_DFX_DEVHIDE_FORM_SKT1);
+    endif;
+#endif
+#if MAX_SOCKET > 2
+     suppressif ideqval SOCKET_IIO_CONFIGURATION.IioPresent[2] == 0;
+       goto VFR_FORMID_IIO_DFX_DEVHIDE_SKT2,
+         prompt  = STRING_TOKEN(STR_IIO_DFX_DEVHIDE_FORM_SKT2),
+         help    = STRING_TOKEN(STR_IIO_DFX_DEVHIDE_FORM_SKT2);
+     endif;
+#endif
+#if MAX_SOCKET > 3
+     suppressif ideqval SOCKET_IIO_CONFIGURATION.IioPresent[3] == 0;
+       goto VFR_FORMID_IIO_DFX_DEVHIDE_SKT3,
+         prompt  = STRING_TOKEN(STR_IIO_DFX_DEVHIDE_FORM_SKT3),
+         help    = STRING_TOKEN(STR_IIO_DFX_DEVHIDE_FORM_SKT3);
+     endif;
+#endif
+endform;
+
+
+
+//
+// DevHide menu: foreach socket[0-3]; foreach stack[0-7]; foreach func[0-7]
+//
+//  Socket0: DfxSocketDevFuncHide 0-63:    IIO: 0-47    UNCORE: 48-64   (UNCORE only for ICX)
+//  Socket1: DfxSocketDevFuncHide 64-127:  IIO: 64-111  UNCORE: 112-127 (UNCORE only for ICX)
+//  Socket2: DfxSocketDevFuncHide 128-191: IIO: 128-175 UNCORE: 176-191 (UNCROE only for ICX)
+//  Socket3: DfxSocketDevFuncHide 192-255: IIO: 192-240 UNCORE: 241-255 (UNCORE only for ICX)
+//
+#define IIO_INDEX  0
+  #include "IioDfxDevHideSocketTpl.hfr"
+#undef IIO_INDEX
+
+#if MAX_SOCKET > 1
+  #define IIO_INDEX  1
+  #include "IioDfxDevHideSocketTpl.hfr"
+  #undef IIO_INDEX
+#endif
+
+#if MAX_SOCKET > 2
+  #define IIO_INDEX  2
+  #include "IioDfxDevHideSocketTpl.hfr"
+  #undef IIO_INDEX
+#endif
+
+#if MAX_SOCKET > 3
+  #define IIO_INDEX  3
+  #include "IioDfxDevHideSocketTpl.hfr"
+  #undef IIO_INDEX
+#endif
+
+//--------------------------------------------------
+// IIO0 Configuration
+//--------------------------------------------------
+form formid = VFR_FORMID_DFX_IIO0,
+    title   = STRING_TOKEN(STR_IIO0_TITLE);
+
+    goto VFR_FORMID_MMIO_POISON_CTRL_SOCKET0,
+      prompt  = STRING_TOKEN(STR_MMIO_POISON_CTRL_SOCKET_PROMPT),
+      help    = STRING_TOKEN(STR_NULL_STRING);
+
+    //
+    // Jump to PCI Express Port0 Configuration Form
+    //
+    suppressif TRUE;
+      checkbox varid    = SOCKET_IIO_CONFIGURATION.HidePEXPMenu[0],
+          prompt   = STRING_TOKEN(STR_PCIE_PORT_0_NULL_PROMPT),
+          help     = STRING_TOKEN(STR_NULL_STRING),
+          // Flags behavior for checkbox is overloaded so that it equals
+          // a DEFAULT value.  1 = ON, 0 = off
+          flags    = 0,
+      endcheckbox;
+    endif;
+    goto VFR_FORMID_DFX_PCIE_IIO0P0,
+#if defined (SNR_HOST) || defined (ICXDE_HOST)
+      prompt  = STRING_TOKEN(STR_PCIE_RLINK_PROMPT),
+#else
+      prompt  = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT),
+#endif
+      help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+
+    //
+    // Jump to PCI Express Port1 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[1]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO0P1,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port2 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[2]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO0P2,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port3 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[3]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO0P3,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port4 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[4]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO0P4,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SNR OR
+                (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD AND
+                ideqval SOCKET_COMMONRC_CONFIGURATION.CpuChop == CPU_CHOP_TYPE_LCC);
+      //
+      // Jump to PCI Express Port5 Configuration Form
+      //
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[5]==1;
+        goto VFR_FORMID_DFX_PCIE_IIO0P5,
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+      endif;
+
+      //
+      // Jump to PCI Express Port6 Configuration Form
+      //
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[6]==1;
+        goto VFR_FORMID_DFX_PCIE_IIO0P6,
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+      endif;
+
+      //
+      // Jump to PCI Express Port7 Configuration Form
+      //
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[7]==1;
+        goto VFR_FORMID_DFX_PCIE_IIO0P7,
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+      endif;
+
+      //
+      // Jump to PCI Express Port8 Configuration Form
+      //
+      suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[8]==1;
+        goto VFR_FORMID_DFX_PCIE_IIO0P8,
+          prompt  = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT),
+          help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+      endif;
+
+      suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD;
+        //
+        // Jump to PCI Express Port9 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[9]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P9,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port10 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[10]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P10,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port11 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[11]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P11,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port12 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[12]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P12,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port13 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[13]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P13,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port14 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[14]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P14,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port15 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[15]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P15,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port16 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[16]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P16,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port17 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[17]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P17,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port18 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[18]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P18,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port19 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[19]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P19,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+
+        //
+        // Jump to PCI Express Port20 Configuration Form
+        //
+        suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[20]==1;
+          goto VFR_FORMID_DFX_PCIE_IIO0P20,
+            prompt  = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT),
+            help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+        endif;
+      endif;
+    endif;
+endform;
+
+#if MAX_SOCKET > 1
+//--------------------------------------------------
+// IIO1 Configuration
+//--------------------------------------------------
+form formid = VFR_FORMID_DFX_IIO1,
+    title   = STRING_TOKEN(STR_IIO1_TITLE);
+
+    goto VFR_FORMID_MMIO_POISON_CTRL_SOCKET1,
+      prompt  = STRING_TOKEN(STR_MMIO_POISON_CTRL_SOCKET_PROMPT),
+      help    = STRING_TOKEN(STR_NULL_STRING);
+
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[21]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P0,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port1 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[22]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P1,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port2 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[23]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P2,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port3 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[24]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P3,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port4 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[25]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P4,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+    //
+    // Jump to PCI Express Port5 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[26]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P5,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port6 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[27]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P6,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port7 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[28]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P7,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port8 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[29]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P8,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port9 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[30]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P9,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port10 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[31]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P10,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port11 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[32]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P11,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port12 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[33]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P12,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port13 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[34]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P13,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port14 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[35]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P14,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port15 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[36]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P15,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port16 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[37]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P16,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port17 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[38]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P17,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port18 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[39]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P18,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port19 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[40]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P19,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port20 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[41]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO1P20,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+endform;
+#endif // MAX_SOCKET > 1
+
+#if MAX_SOCKET > 2
+//--------------------------------------------------
+// IIO2 Configuration
+//--------------------------------------------------
+form formid = VFR_FORMID_DFX_IIO2,
+    title   = STRING_TOKEN(STR_IIO2_TITLE);
+
+    goto VFR_FORMID_MMIO_POISON_CTRL_SOCKET2,
+      prompt  = STRING_TOKEN(STR_MMIO_POISON_CTRL_SOCKET_PROMPT),
+      help    = STRING_TOKEN(STR_NULL_STRING);
+
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[42]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P0,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port1 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[43]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P1,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port2 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[44]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P2,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port3 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[45]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P3,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port4 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[46]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P4,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port5 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[47]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P5,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port6 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[48]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P6,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port7 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[49]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P7,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port8 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[50]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P8,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+    //
+    // Jump to PCI Express Port9 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[51]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P9,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port10 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[52]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P10,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port11 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[53]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P11,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port12 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[54]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P12,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port13 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[55]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P13,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port14 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[56]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P14,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port15 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[57]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P15,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port16 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[58]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P16,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port17 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[59]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P17,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port18 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[60]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P18,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port19 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[61]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P19,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port20 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[62]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO2P20,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+endform;
+#endif // MAX_SOCKET > 2
+
+#if MAX_SOCKET > 3
+//--------------------------------------------------
+// IIO3 Configuration
+//--------------------------------------------------
+form formid = VFR_FORMID_DFX_IIO3,
+    title   = STRING_TOKEN(STR_IIO3_TITLE);
+
+    goto VFR_FORMID_MMIO_POISON_CTRL_SOCKET3,
+      prompt  = STRING_TOKEN(STR_MMIO_POISON_CTRL_SOCKET_PROMPT),
+      help    = STRING_TOKEN(STR_NULL_STRING);
+
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[63]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P0,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_0_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port1 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[64]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P1,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_1_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port2 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[65]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P2,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_2_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port3 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[66]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P3,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_3_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port4 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[67]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P4,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_4_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+    //
+    // Jump to PCI Express Port5 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[68]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P5,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_5_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port6 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[69]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P6,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_6_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+    //
+    // Jump to PCI Express Port7 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[70]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P7,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_7_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port8 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[71]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P8,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_8_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port9 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[72]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P9,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_9_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port10 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[73]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P10,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_10_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port11 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[74]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P11,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_11_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port12 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[75]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P12,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_12_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port13 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[76]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P13,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_13_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port14 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[77]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P14,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_14_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port15 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[78]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P15,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_15_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port16 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[79]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P16,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_16_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port17 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[80]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P17,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_17_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port18 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[81]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P18,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_18_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port19 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[82]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P19,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_19_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+    //
+    // Jump to PCI Express Port20 Configuration Form
+    //
+    suppressif ideqval SOCKET_IIO_CONFIGURATION.HidePEXPMenu[83]==1;
+      goto VFR_FORMID_DFX_PCIE_IIO3P20,
+        prompt  = STRING_TOKEN(STR_PCIE_PORT_20_PROMPT),
+        help    = STRING_TOKEN(STR_PCIE_PORT_PROMPT_HELP);
+    endif;
+
+endform;
+#endif // MAX_SOCKET > 3
+
+//
+// MMIO Poison control for socket 0 - MMIO read poison can be disabled for every stack
+//
+form formid = VFR_FORMID_MMIO_POISON_CTRL_SOCKET0,
+  title  = STRING_TOKEN(STR_MMIO_POISON_CTRL_FORM_TITLE);
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[0],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK0),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[1],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK1),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[2],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK2),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[3],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK3),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[4],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK4),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[5],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK5),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+endform;
+
+
+//
+// MMIO Poison control for socket 1 - MMIO read poison can be disabled for every stack
+//
+#if MAX_SOCKET > 1
+form formid = VFR_FORMID_MMIO_POISON_CTRL_SOCKET1,
+  title  = STRING_TOKEN(STR_MMIO_POISON_CTRL_FORM_TITLE);
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[6],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK0),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[7],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK1),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[8],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK2),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[9],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK3),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[10],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK4),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[11],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK5),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+endform;
+#endif // MAX_SOCKET > 1
+
+//
+// MMIO Poison control for socket 2 - MMIO read poison can be disabled for every stack
+//
+#if MAX_SOCKET > 2
+form formid = VFR_FORMID_MMIO_POISON_CTRL_SOCKET2,
+  title  = STRING_TOKEN(STR_MMIO_POISON_CTRL_FORM_TITLE);
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[12],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK0),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[13],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK1),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[14],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK2),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[15],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK3),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[16],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK4),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[17],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK5),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+endform;
+#endif // MAX_SOCKET > 2
+//
+// MMIO Poison control for socket 3 - MMIO read poison can be disabled for every stack
+//
+#if MAX_SOCKET > 3
+form formid = VFR_FORMID_MMIO_POISON_CTRL_SOCKET3,
+  title  = STRING_TOKEN(STR_MMIO_POISON_CTRL_FORM_TITLE);
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[18],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK0),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[19],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK1),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[20],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK2),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[21],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK3),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[22],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK4),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+
+  checkbox varid    = SOCKET_IIO_CONFIGURATION.PoisonMmioReadEn[23],
+           prompt   = STRING_TOKEN(STR_MMIO_POISON_READ_CMPL_STRING_STACK5),
+           help     = STRING_TOKEN(STR_NULL_STRING),
+           // Flags behavior for checkbox: DEFAULT value. 1 = ON, 0 = OFF
+           flags    = 0,
+  endcheckbox;
+endform;
+#endif // MAX_SOCKET > 3
+
+
+#include "IioDfxPcieSetup.hfr"

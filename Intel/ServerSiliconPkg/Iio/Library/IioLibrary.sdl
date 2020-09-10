@@ -1,0 +1,267 @@
+TOKEN
+    Name  = "IioLibrary_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling IIO Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+
+INFComponent
+    Name  = "IioInitLib"
+    File  = "PeiDxeCommonIioInitLib/IioInitLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PeiIioInitLib"
+    File  = "PeiIioInitLib/PeiIioInitLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IioInitDxeLib"
+    File  = "DxeIioInitLib/IioInitDxeLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IioAccessLib"
+    File  = "IioAccessLib/IioAccessLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IioDataHubLib"
+    File  = "IioDataHubLib/IioDataHubLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IioIoatLib"
+    File  = "IioIoatLib\IioIoatLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IioDmiLib"
+    File  = "IioDmiLib/IioDmiLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IioNpkInitLib"
+    File  = "IioNpkInit\IioNpkInitSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IioApiLib"
+    File  = "IioApiLib/IioApiLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "IioMs2iosfInitLib"
+    Instance  = "ServerSiliconPkg.IioMs2iosfInitLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "IioMs2iosfInitLib"
+    File  = "IioMs2IosfInit\IioMs2IosfInitGen2.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "IioApiLib"
+    Instance  = "ServerSiliconPkg.IioApiLib"
+End
+
+LibraryMapping
+    Class  = "IioInitLib"
+    Instance  = "ServerSiliconPkg.IioInitLib"
+#    ModuleTypes  = "PEIM DXE_DRIVER DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "PeiIioInitLib"
+    Instance  = "ServerSiliconPkg.PeiIioInitLib"
+    Arch  = "IA32"
+End
+
+LibraryMapping
+    Class  = "IioInitDxeLib"
+    Instance  = "ServerSiliconPkg.IioInitDxeLib"
+    Arch  = "X64"    
+End
+
+LibraryMapping
+    Class  = "IioAccessLib"
+    Instance  = "ServerSiliconPkg.IioAccessLib"
+End
+
+LibraryMapping
+    Class  = "IioDataHubLib"
+    Instance  = "ServerSiliconPkg.IioDataHubLib"
+End
+
+LibraryMapping
+    Class  = "IioIoatLib"
+    Instance  = "ServerSiliconPkg.IioIoatLib"
+    #ModuleTypes  = "PEIM DXE_DRIVER DXE_SMM_DRIVER DXE_RUNTIME_DRIVER"
+End
+
+LibraryMapping
+    Class  = "IioDmiLib"
+    Instance  = "ServerSiliconPkg.IioDmiLib"
+End
+
+LibraryMapping
+    Class  = "IioNpkInitLib"
+    Instance  = "ServerSiliconPkg.IioNpkInitLib"
+End
+
+INFComponent
+    Name  = "IioMs2iosfInitLib"
+    File  = "IioMs2IosfInit\IioMs2IosfInit.inf"
+    Package  = "ServerSiliconPkg"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "IioMs2iosfInitLib"
+    Instance  = "ServerSiliconPkg.IioMs2iosfInitLib"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "IioDfxInitLib"
+    File  = "IioDfxInit\IioDfxInitSpr.inf"
+    Package  = "ServerSiliconPkg"
+End
+
+LibraryMapping
+    Class  = "IioDfxInitLib"
+    Instance  = "ServerSiliconPkg.IioDfxInitLib"
+End
+
+INFComponent
+    Name  = "IioIoApicInitLib"
+    File  = "IioIoApicInitNull\IioIoApicInitNull.inf"
+    Package  = "ServerSiliconPkg"
+End
+
+LibraryMapping
+    Class  = "IioIoApicInitLib"
+    Instance  = "ServerSiliconPkg.IioIoApicInitLib"
+End
+
+INFComponent
+    Name  = "IioMiscFeatureLib"
+    File  = "IioMiscFeatureLib\IioMiscFeatureLib.inf"
+    Package  = "ServerSiliconPkg"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "IioMiscFeatureLib"
+    File  = "IioMiscFeatureLib\IioMiscFeatureLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "IioMiscFeatureLib"
+    Instance  = "ServerSiliconPkg.IioMiscFeatureLib"
+End
+
+INFComponent
+    Name  = "IioSpkInitLib"
+    File  = "IioSpkInit\IioSpkInitLib.inf"
+    Package  = "ServerSiliconPkg"
+End
+
+LibraryMapping
+    Class  = "IioSpkInitLib"
+    Instance  = "ServerSiliconPkg.IioSpkInitLib"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "IioNtbInit"
+    File  = "IioNtbInit\IioNtbInitSpr.inf"
+    Package  = "ServerSiliconPkg"
+End
+
+LibraryMapping
+    Class  = "IioNtbInit"
+    Instance  = "ServerSiliconPkg.IioNtbInit"
+End
+
+INFComponent
+    Name  = "IioPcieInit"
+    File  = "IioPcieInit\IioPcieInitSpr.inf"
+    Package  = "ServerSiliconPkg"
+End
+
+LibraryMapping
+    Class  = "IioPcieInit"
+    Instance  = "ServerSiliconPkg.IioPcieInit"
+End
+
+INFComponent
+    Name  = "IioSecurePlatformLib"
+    File  = "IioSecurePlatformLib\IioSecurePlatformLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+End
+
+LibraryMapping
+    Class  = "IioSecurePlatformLib"
+    Instance  = "ServerSiliconPkg.IioSecurePlatformLib"
+End
+
+INFComponent
+    Name  = "IioVmdInit"
+    File  = "IioVmdInit\IioVmdInit.inf"
+    Package  = "ServerSiliconPkg"
+
+End
+
+LibraryMapping
+    Class  = "IioVmdInit"
+    Instance  = "ServerSiliconPkg.IioVmdInit"
+End
+
+INFComponent
+    Name  = "IioVtdInit"
+    File  = "IioVtdInit\IioVtdInitSpr.inf"
+    Package  = "ServerSiliconPkg"
+End
+
+LibraryMapping
+    Class  = "IioVtdInit"
+    Instance  = "ServerSiliconPkg.IioVtdInit"
+End
+
+INFComponent
+    Name  = "IioCxlInitLib"
+    File  = "IioCxlInit\IioCxlInit.inf"
+    Package  = "ServerSiliconPkg"
+End
+
+LibraryMapping
+    Class  = "IioCxlInitLib"
+    Instance  = "ServerSiliconPkg.IioCxlInitLib"
+End

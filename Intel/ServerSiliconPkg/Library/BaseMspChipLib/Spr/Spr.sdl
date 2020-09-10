@@ -1,0 +1,20 @@
+TOKEN
+    Name  = "Spr_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Spr support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "MspChipLib"
+    Instance  = "ServerSiliconPkg.BaseMspChipLib"
+End
+
+INFComponent
+    Name  = "BaseMspChipLib"
+    File  = "BaseMspChipLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+

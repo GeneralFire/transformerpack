@@ -1,0 +1,11 @@
+<component>
+    name = "IioCfgUpdateDxe"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\IioCfgUpdateDxe\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Dxe.IioCfgUpdateDxe"
+[INF]
+"IioCfgUpdateDxe.inf"
+[files]
+"IioCfgUpdateDxe.h"	
+"IioCfgUpdateDxe.sdl"	
+<endComponent>

@@ -1,0 +1,8 @@
+<component>
+    name = "PchDmi"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\PchDmi\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.PchDmi"
+[files]
+"PchDmiConfig.h"	
+<endComponent>

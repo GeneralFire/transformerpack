@@ -1,0 +1,8 @@
+<component>
+    name = "Gbe"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Gbe\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Gbe"
+[files]
+"GbeConfig.h"	
+<endComponent>

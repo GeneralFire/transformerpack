@@ -1,0 +1,17 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\PcieRp\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.PcieRp.IncludePrivate.Library"
+[files]
+"PeiEnterprisePcieRpInitLib.h"
+"PchPcieRpDev.h"
+"PcieRpHandleLib.h"
+"DxePchPcieRpPolicyLib.h"	
+"PciExpressHelpersLib.h"
+"PcieRpLib.h"	
+"PeiPchPcieClocksLib.h"	
+"PeiPcieRpInitLib.h"	
+"PeiPcieRpPolicyLib.h"
+"PeiPcieSipInitLib.h"	
+<endComponent>

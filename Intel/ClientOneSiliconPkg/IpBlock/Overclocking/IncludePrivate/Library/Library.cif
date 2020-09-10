@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Overclocking\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Overclocking.IncludePrivate.Library"
+[files]
+"PeiOcLib.h"	
+"PeiOcPolicyLib.h"	
+<endComponent>

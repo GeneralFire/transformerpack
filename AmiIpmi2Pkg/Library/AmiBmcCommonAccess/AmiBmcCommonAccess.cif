@@ -1,0 +1,23 @@
+<component>
+    name = "AmiBmcCommonAccess"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Library\AmiBmcCommonAccess\"
+    RefName = "AmiIpmi2Pkg.LibraryInstances.AmiBmcCommonAccess"
+[INF]
+"AmiBmcCommonInterfaceLib.inf"
+"AmiKcsInterfaceLib\PeiAmiKcsInterfaceLib.inf"
+"AmiKcsInterfaceLib\DxeAmiKcsInterfaceLib.inf"
+"AmiKcsInterfaceLib\SmmAmiKcsInterfaceLib.inf"
+"AmiBtInterfaceLib\AmiBtInterfaceLib.inf"
+"AmiSsifInterfaceLib\PeiAmiSsifInterfaceLib.inf"
+"AmiSsifInterfaceLib\DxeAmiSsifInterfaceLib.inf"
+"AmiSsifInterfaceLib\SmmAmiSsifInterfaceLib.inf"
+"AmiIpmbInterfaceLib\PeiAmiIpmbInterfaceLib.inf"
+"AmiIpmbInterfaceLib\DxeAmiIpmbInterfaceLib.inf"
+"AmiIpmbInterfaceLib\SmmAmiIpmbInterfaceLib.inf"
+"AmiUsbInterfaceLib\PeiAmiUsbInterfaceLib.inf"
+"AmiUsbInterfaceLib\DxeAmiUsbInterfaceLib.inf"
+"AmiUsbInterfaceLib\SmmAmiUsbInterfaceLib.inf"
+[files]
+"AmiBmcCommonAccess.sdl"
+<endComponent>

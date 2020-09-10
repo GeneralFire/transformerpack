@@ -1,0 +1,83 @@
+TOKEN
+	Name  = "ProcMemInit_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling ProcMemInit support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "ProcMemInit10nm"
+	File  = "ProcMemInit10nm.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+#	Token = "DDR5_SUPPORT" "=" "0"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "ProcMemInitChip"
+    Instance  = "ServerSiliconPkg.ProcMemInit10nm"
+#    Token = "DDR5_SUPPORT" "=" "0"
+    Token = "CPU_SPR_SUPPORT" "=" "0"    
+End
+
+INFComponent
+	Name  = "ProcMemInitCommon"
+	File  = "ProcMemInitCommon.inf"
+	Package  = "ServerSiliconPkg"
+	Arch  = "IA32"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "ProcMemInitLib"
+    Instance  = "ServerSiliconPkg.ProcMemInitCommon"
+End
+
+INFComponent
+    Name  = "ProcMemInitSprDdr4"
+    File  = "ProcMemInitSprDdr4.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "DDR5_ENABLE" "=" "0"  
+End
+
+LibraryMapping
+    Class  = "ProcMemInitChip"
+    Instance  = "ServerSiliconPkg.ProcMemInitSprDdr4"
+    Token = "CPU_SPR_SUPPORT" "=" "1"  
+    Token = "DDR5_ENABLE" "=" "0"   
+End
+
+INFComponent
+    Name  = "ProcMemInitSprDdr5"
+    File  = "ProcMemInitSprDdr5.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1" 
+    Token = "DDR5_ENABLE" "=" "1"  
+End
+
+LibraryMapping
+    Class  = "ProcMemInitChip"
+    Instance  = "ServerSiliconPkg.ProcMemInitSprDdr5"
+    Token = "CPU_SPR_SUPPORT" "=" "1"  
+    Token = "DDR5_ENABLE" "=" "1"  
+End
+
+INFComponent
+	Name  = "ProcMemInitTargetLib"
+	File  = "ProcMemInitTargetLib\ProcMemInitTargetLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "ProcMemInit_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "ProcMemInitTargetLib"
+    Instance  = "ServerSiliconPkg.ProcMemInitTargetLib"
+End
+
+

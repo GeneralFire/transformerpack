@@ -1,0 +1,8 @@
+<component>
+	name = "Protocol"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Iio\Include\Protocol\"
+	RefName = "ServerSiliconPkg.Iio.Include.Protocol"
+[files]
+"IioSystem.h"	
+<endComponent>

@@ -1,0 +1,9 @@
+<component>
+    name = "SystemAgent"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\SystemAgent\"
+    RefName = "ClientOneSiliconPkg.SystemAgent"
+[parts]
+"ClientOneSiliconPkg.SystemAgent.Include"
+"ClientOneSiliconPkg.SystemAgent.IncludePrivate"
+<endComponent>

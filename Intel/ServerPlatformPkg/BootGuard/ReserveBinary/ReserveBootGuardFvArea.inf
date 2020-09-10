@@ -1,0 +1,16 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+[Defines]
+  INF_VERSION                = 0x00010005
+  BASE_NAME                  = ReserveBootGuardFvArea
+  FILE_GUID                  = e869e15d-9a95-433e-88aa-ecf0962d21d2
+  MODULE_TYPE                = USER_DEFINED
+
+[Binaries]
+  BIN|ReserveBootGuardFvArea.bin

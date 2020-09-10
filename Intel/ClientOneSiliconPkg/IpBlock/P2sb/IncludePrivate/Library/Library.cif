@@ -1,0 +1,11 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\P2sb\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.P2sb.IncludePrivate.Library"
+[files]
+"P2SbSidebandAccessLib.h"
+"PchSbiAccessLib.h"	
+"PeiP2sbPolicyLib.h"	
+"PeiP2sbPrivateLib.h"	
+<endComponent>

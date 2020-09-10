@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Fia\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Fia.Library"
+[INF]
+"PeiDxeSmmFiaAccessLib\PeiDxeSmmFiaAccessLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

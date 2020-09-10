@@ -1,0 +1,55 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiPcieRpLib"
+    Instance  = "ClientOneSiliconPkg.PeiPcieRpLib"
+End
+
+LibraryMapping
+    Class  = "PeiPchPcieLib"
+    Instance  = "ClientOneSiliconPkg.PeiPcieRpLib"
+End
+
+INFComponent
+    Name  = "PeiPcieRpLib"
+    File  = "PeiPcieRpLib/PeiPcieRpLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "BasePcieHelperLib"
+    Instance  = "ClientOneSiliconPkg.BasePcieHelperLib"
+End
+
+INFComponent
+    Name  = "BasePcieHelperLib"
+    File  = "BasePcieHelperLib\BasePcieHelperLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+#LibraryMapping
+#    Class  = "PchPcieRpLib"
+#    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPchPcieRpLib"
+#    Arch = "IA32"
+#End
+
+LibraryMapping
+    Class  = "PchPcieRpLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPchPcieRpLib"
+End
+
+
+INFComponent
+    Name  = "PeiDxeSmmPchPcieRpLib"
+    File  = "PeiDxeSmmPchPcieRpLib\PeiDxeSmmPchPcieRpLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End

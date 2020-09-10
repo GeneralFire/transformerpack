@@ -1,0 +1,60 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "SpiCommonLib"
+    Instance  = "ClientOneSiliconPkg.BaseSpiCommonLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+INFComponent
+    Name  = "BaseSpiCommonLib"
+    File  = "BaseSpiCommonLib/BaseSpiCommonLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+LibraryMapping
+    Class  = "SpiAccessPrivateLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmSpiAccessPrivateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "PeiSpiPolicyLib"
+    File  = "PeiSpiPolicyLib\PeiSpiPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"    
+End
+
+LibraryMapping
+    Class  = "PeiSpiPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiSpiPolicyLib" 
+End
+
+INFComponent
+    Name  = "PeiSpiExtendedDecodeLib"
+    File  = "PeiSpiExtendedDecodeLib\PeiSpiExtendedDecodeLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"    
+End
+
+LibraryMapping
+    Class  = "PeiSpiExtendedDecodeLib"
+    Instance  = "ClientOneSiliconPkg.PeiSpiExtendedDecodeLib" 
+End
+
+INFComponent
+    Name  = "PeiDxeSmmSpiAccessPrivateLib"
+    File  = "PeiDxeSmmSpiAccessPrivateLib/PeiDxeSmmSpiAccessPrivateLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+

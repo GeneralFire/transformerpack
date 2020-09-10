@@ -1,0 +1,16 @@
+<component>
+	name = "Universal"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Universal\"
+	RefName = "ServerPlatformPkg.Universal"
+[INF]
+"PeiExStatusCodeHandler\ExStatusCodeHandlerPei.inf"
+"PeiExStatusCodeRouter\ExReportStatusCodeRouterPei.inf"
+"PeiInterposerToSvidMap\PeiInterposerToSvidMap.inf"
+[files]
+"Universal.sdl"
+"PiAst2500\SioRegs.h"	
+"PiPilotIII\SioRegs.h"	
+[parts]
+"ServerPlatformPkg.Universal.TraceHubStatusCodeHandler"
+<endComponent>

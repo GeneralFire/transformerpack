@@ -1,0 +1,237 @@
+/** @file
+
+  Setup question for Memory Boot Health configuration
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2018 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+#include <Guid/MemBootHealthGuid.h>
+
+  form formid = VFR_FORMID_MEMORY_HEALTH_CHECK,
+    title = STRING_TOKEN (STR_MEMORY_HEALTH_CHECK_FORM_TITLE);
+
+  suppressif ideqval MEM_BOOT_HEALTH_CONFIG.MemBootHealthVisible == MEM_BOOT_HEALTH_DISABLE;
+    oneof varid  = MEM_BOOT_HEALTH_CONFIG.MemBootHealthCheck,
+      prompt   = STRING_TOKEN (STR_MEMORY_BOOT_HEALTH_CHECK),
+      help     = STRING_TOKEN (STR_MEMORY_BOOT_HEALTH_CHECK_HELP),
+      option text = STRING_TOKEN (STR_AUTO),  value = MEM_BOOT_HEALTH_CONFIG_AUTO,  flags = MEM_BOOT_HEALTH_CONFIG_AUTO_FLAGS;
+      option text = STRING_TOKEN (STR_MANUAL), value = MEM_BOOT_HEALTH_CONFIG_MANUAL, flags = MEM_BOOT_HEALTH_CONFIG_MANUAL_FLAGS;
+      option text = STRING_TOKEN (STR_DISABLE), value = MEM_BOOT_HEALTH_CONFIG_DISABLE, flags = MEM_BOOT_HEALTH_CONFIG_DISABLE_FLAGS;
+    endoneof;
+
+    suppressif (ideqval MEM_BOOT_HEALTH_CONFIG.MemBootHealthCheck == MEM_BOOT_HEALTH_CONFIG_DISABLE) OR (ideqval MEM_BOOT_HEALTH_CONFIG.MemBootHealthCheck == MEM_BOOT_HEALTH_CONFIG_AUTO);
+      oneof varid  = MEM_BOOT_HEALTH_CONFIG.ResetOnCriticalError,
+        prompt   = STRING_TOKEN (STR_RESET_ON_CRITICAL_ERROR),
+        help     = STRING_TOKEN (STR_RESET_ON_CRITICAL_ERROR_HELP),
+        option text = STRING_TOKEN (STR_DISABLE), value = 0,  flags = RESET_ON_CIRITICAL_ERROR_DISABLE_FLAGS;
+        option text = STRING_TOKEN (STR_ENABLE), value = 1, flags = RESET_ON_CIRITICAL_ERROR_ENABLE_FLAGS;
+      endoneof;
+
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+      subtitle text = STRING_TOKEN(STR_MEM_HEALTH_WARNING_STRING);
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.WarningTxDqDelayLeftEdge,
+        prompt    = STRING_TOKEN(STR_TX_DQ_DELAY_LEFT_EDGE),
+        help      = STRING_TOKEN(STR_TX_DQ_DELAY_LEFT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = WARNING_TXDQ_DELAY_LEFT_EDGE, defaultstore = MyStandardDefault,
+        default   = WARNING_TXDQ_DELAY_LEFT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.WarningTxDqDelayRightEdge,
+        prompt    = STRING_TOKEN(STR_TX_DQ_DELAY_RIGHT_EDGE),
+        help      = STRING_TOKEN(STR_TX_DQ_DELAY_RIGHT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = WARNING_TXDQ_DEALY_RIGHT_EDGE, defaultstore = MyStandardDefault,
+        default   = WARNING_TXDQ_DEALY_RIGHT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.WarningTxVrefLeftEdge,
+        prompt    = STRING_TOKEN(STR_TX_VREF_LEFT_EDGE),
+        help      = STRING_TOKEN(STR_TX_VREF_LEFT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = WARNING_TXVREF_LEFT_EDGE, defaultstore = MyStandardDefault,
+        default   = WARNING_TXVREF_LEFT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.WarningTxVrefRightEdge,
+        prompt    = STRING_TOKEN(STR_TX_VREF_RIGHT_EDGE),
+        help      = STRING_TOKEN(STR_TX_VREF_RIGHT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = WARNING_TXVREF_RIGHT_EDGE, defaultstore = MyStandardDefault,
+        default   = WARNING_TXVREF_RIGHT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.WarningRxDqsDelayLeftEdge,
+        prompt    = STRING_TOKEN(STR_RX_DQS_DELAY_LEFT_EDGE),
+        help      = STRING_TOKEN(STR_RX_DQS_DELAY_LEFT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = WARNING_RXDQS_DELAY_LEFT_EDGE, defaultstore = MyStandardDefault,
+        default   = WARNING_RXDQS_DELAY_LEFT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.WarningRxDqsDelayRightEdge,
+        prompt    = STRING_TOKEN(STR_RX_DQS_DELAY_RIGHT_EDGE),
+        help      = STRING_TOKEN(STR_RX_DQS_DELAY_RIGHT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = WARNING_RXDQS_DELAY_RIGHT_EDGE, defaultstore = MyStandardDefault,
+        default   = WARNING_RXDQS_DELAY_RIGHT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.WarningRxVrefLeftEdge,
+        prompt    = STRING_TOKEN(STR_RX_VREF_LEFT_EDGE),
+        help      = STRING_TOKEN(STR_RX_VREF_LEFT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = WARNING_RXVREF_LEFT_EDGE, defaultstore = MyStandardDefault,
+        default   = WARNING_RXVREF_LEFT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.WarningRxVrefRightEdge,
+        prompt    = STRING_TOKEN(STR_RX_VREF_RIGHT_EDGE),
+        help      = STRING_TOKEN(STR_RX_VREF_RIGHT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = WARNING_RXVREF_RIGHT_EDGE, defaultstore = MyStandardDefault,
+        default   = WARNING_RXVREF_RIGHT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      // Critical Offsets
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+      subtitle text = STRING_TOKEN(STR_MEM_HEALTH_CRITICAL_STRING);
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.CriticalTxDqDelayLeftEdge,
+        prompt    = STRING_TOKEN(STR_TX_DQ_DELAY_LEFT_EDGE),
+        help      = STRING_TOKEN(STR_TX_DQ_DELAY_LEFT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = CRITICAL_TXDQ_DELAY_LEFT_EDGE, defaultstore = MyStandardDefault,
+        default   = CRITICAL_TXDQ_DELAY_LEFT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.CriticalTxDqDelayRightEdge,
+        prompt    = STRING_TOKEN(STR_TX_DQ_DELAY_RIGHT_EDGE),
+        help      = STRING_TOKEN(STR_TX_DQ_DELAY_RIGHT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = CRITICAL_TXDQ_DEALY_RIGHT_EDGE, defaultstore = MyStandardDefault,
+        default   = CRITICAL_TXDQ_DEALY_RIGHT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.CriticalTxVrefLeftEdge,
+        prompt    = STRING_TOKEN(STR_TX_VREF_LEFT_EDGE),
+        help      = STRING_TOKEN(STR_TX_VREF_LEFT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = CRITICAL_TXVREF_LEFT_EDGE, defaultstore = MyStandardDefault,
+        default   = CRITICAL_TXVREF_LEFT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.CriticalTxVrefRightEdge,
+        prompt    = STRING_TOKEN(STR_TX_VREF_RIGHT_EDGE),
+        help      = STRING_TOKEN(STR_TX_VREF_RIGHT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = CRITICAL_TXVREF_RIGHT_EDGE, defaultstore = MyStandardDefault,
+        default   = CRITICAL_TXVREF_RIGHT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.CriticalRxDqsDelayLeftEdge,
+        prompt    = STRING_TOKEN(STR_RX_DQS_DELAY_LEFT_EDGE),
+        help      = STRING_TOKEN(STR_RX_DQS_DELAY_LEFT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = CRITICAL_RXDQS_DELAY_LEFT_EDGE, defaultstore = MyStandardDefault,
+        default   = CRITICAL_RXDQS_DELAY_LEFT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.CriticalRxDqsDelayRightEdge,
+        prompt    = STRING_TOKEN(STR_RX_DQS_DELAY_RIGHT_EDGE),
+        help      = STRING_TOKEN(STR_RX_DQS_DELAY_RIGHT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = CRITICAL_RXDQS_DELAY_RIGHT_EDGE, defaultstore = MyStandardDefault,
+        default   = CRITICAL_RXDQS_DELAY_RIGHT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.CriticalRxVrefLeftEdge,
+        prompt    = STRING_TOKEN(STR_RX_VREF_LEFT_EDGE),
+        help      = STRING_TOKEN(STR_RX_VREF_LEFT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = CRITICAL_RXVREF_LEFT_EDGE, defaultstore = MyStandardDefault,
+        default   = CRITICAL_RXVREF_LEFT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+      numeric varid = MEM_BOOT_HEALTH_CONFIG.CriticalRxVrefRightEdge,
+        prompt    = STRING_TOKEN(STR_RX_VREF_RIGHT_EDGE),
+        help      = STRING_TOKEN(STR_RX_VREF_RIGHT_EDGE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 255,
+        step      = 1,
+        default   = CRITICAL_RXVREF_RIGHT_EDGE, defaultstore = MyStandardDefault,
+        default   = CRITICAL_RXVREF_RIGHT_EDGE, defaultstore = MyManufactureDefault,
+      endnumeric;
+
+    endif; //suppressif - MemBootHealthCheck
+  endif; //suppressif - MemBootHealthVisible
+  endform; // VFR_FORMID_MEMORY_HEALTH_CHECK

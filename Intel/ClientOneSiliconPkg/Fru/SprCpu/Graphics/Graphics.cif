@@ -1,0 +1,8 @@
+<component>
+    name = "Graphics"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\SprCpu\Graphics\"
+    RefName = "ClientOneSiliconPkg.Fru.SprCpu.Graphics"
+[parts]
+"ClientOneSiliconPkg.Fru.SprCpu.Graphics.Library"
+<endComponent>

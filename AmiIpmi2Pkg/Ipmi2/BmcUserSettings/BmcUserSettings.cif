@@ -1,0 +1,12 @@
+<component>
+    name = "BmcUserSettings"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\BmcUserSettings\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.BmcUserSettings"
+[files]
+"BmcUserSettings.sdl"
+"BmcUserSettings.sd"
+"BmcUserSettings.uni"
+"BmcUserSettings.c"
+"BmcUserSettings.h"
+<endComponent>

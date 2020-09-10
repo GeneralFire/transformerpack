@@ -1,0 +1,10 @@
+<component>
+	name = "AmiOemRasLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Library\AmiOemRasLib\"
+	RefName = "ServerRasPkg.AmiOemRasLib"
+[INF]
+"AmiOemRasLib.inf"
+[files]
+"AmiOemRasLib.sdl"	
+<endComponent>

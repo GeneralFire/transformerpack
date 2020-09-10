@@ -1,0 +1,71 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "GraphicsInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiGraphicsDisableInitLib"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiGraphicsDisableInitLib"
+    File  = "PeiGraphicsDisableInitLib/PeiGraphicsDisableInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"         
+End
+
+LibraryMapping
+    Class  = "PeiGraphicsPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiGraphicsPolicyLib"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiGraphicsPolicyLib"
+    File  = "PeiGraphicsPolicyLibGen12/PeiGraphicsPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"          
+End
+
+LibraryMapping
+    Class  = "DisplayInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiDisplayInitLibNull"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiDisplayInitLibNull"
+    File  = "PeiDisplayInitLibNull/PeiDisplayInitLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"          
+End
+
+LibraryMapping
+    Class  = "DisplayLib"
+    Instance  = "ClientOneSiliconPkg.PeiDisplayLibNull"
+    Arch = "IA32"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiDisplayLibNull"
+    File  = "PeiDisplayLibNull\PeiDisplayLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"          
+End

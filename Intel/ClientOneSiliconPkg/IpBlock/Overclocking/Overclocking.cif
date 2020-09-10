@@ -1,0 +1,12 @@
+<component>
+    name = "Overclocking"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Overclocking\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Overclocking"
+[INF]    
+"LibraryPrivate\PeiOcPolicyLib\PeiOcPolicyLib.inf"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Overclocking.IncludePrivate"
+[files]
+"Overclocking.sdl"
+<endComponent>

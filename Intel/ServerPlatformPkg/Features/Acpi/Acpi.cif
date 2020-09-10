@@ -1,0 +1,10 @@
+<component>
+	name = "Acpi"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Acpi\"
+	RefName = "ServerPlatformPkg.Features.Acpi"
+[parts]
+"ServerPlatformPkg.Features.Acpi.Dxe"
+"ServerPlatformPkg.Features.Acpi.DxeSmm"
+"ServerPlatformPkg.Features.Acpi.AcpiTables"
+<endComponent>

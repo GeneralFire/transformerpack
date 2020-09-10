@@ -1,0 +1,10 @@
+<component>
+    name = "Usb"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Usb\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Usb"
+[files]
+"Usb2PhyConfig.h"	
+"Usb3HsioConfig.h"	
+"UsbConfig.h"	
+<endComponent>

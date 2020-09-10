@@ -1,0 +1,161 @@
+## @file
+# This Package provides all definitions(including functions, MACROs, structures and library classes)
+# and libraries instances, which are defined in MDE Specification.
+# It also provides the definitions(including PPIs/PROTOCOLs/GUIDs) of
+# EFI1.10/UEFI2.3/PI1.2 and some Industry Standards.
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2008 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = EagleStreamFspPkg
+  PACKAGE_GUID                   = AFEE9781-0DC2-4DF4-9387-50F3D30F2F72
+  PACKAGE_VERSION                = 1.02
+
+[Includes]
+  Include
+  Include/Library
+
+[Guids]
+  #
+  # GUID defined in package
+  #
+  gEagleStreamFspPkgTokenSpaceGuid  = { 0x2aef6cb8, 0x2fc4, 0x47ef, { 0x85, 0xc7, 0x16, 0xfb, 0xe2, 0xae, 0xe3, 0xbd }}
+
+  ## Include/Guid/SmramMemoryReserve.h
+  gEfiSmmPeiSmramMemoryReserveGuid = { 0x6dadf1d1, 0xd4cc, 0x4910, { 0xbb, 0x6e, 0x82, 0xb1, 0xfd, 0x80, 0xff, 0x3d }}
+
+  gSetupVariableGuid             = { 0xec87d643, 0xeba4, 0x4bb5, { 0xa1, 0xe5, 0x3f, 0x3e, 0x36, 0xb2, 0xd,  0xa9 }}
+
+  gPerformanceDataHobGuid = { 0xC1FF44B6, 0xC94E, 0x478B, { 0x9C, 0xFD, 0x12, 0x14, 0x85, 0x19, 0x42, 0x78 }}
+  gSaveHostToMemoryGuid       = { 0x9da19038, 0x2085, 0x486a, { 0xad, 0x53, 0xc4, 0x97, 0xda, 0xaa, 0x20, 0x48 } }
+
+
+[Ppis]
+  gFspGlobalDataInitPpiGuid     = { 0xa9b114c4, 0xc16e, 0x4b4b, { 0x8d, 0x25, 0xdc, 0x0a, 0x97, 0xb6, 0x44, 0x91 }} # To be moved to IntelFsp2Pkg.dec
+
+[Protocols]
+
+[PcdsFeatureFlag.common]
+
+##
+## Those PCDs are used to control build process.
+##
+
+  #
+  # SV Tools
+  #
+  gPlatformFeatureTokenSpaceGuid.PcdXmlCliEnable|TRUE|BOOLEAN|0xE0000000
+  gPlatformFeatureTokenSpaceGuid.PcdSvBiosEnable|TRUE|BOOLEAN|0xE000002E
+  #
+  #
+  #
+  gPlatformFeatureTokenSpaceGuid.PcdTestToolsEnable|TRUE|BOOLEAN|0xE0000001
+
+  gPlatformFeatureTokenSpaceGuid.PcdS3Enable|TRUE|BOOLEAN|0xE0000002
+
+  gPlatformFeatureTokenSpaceGuid.PcdLegacyEnable|TRUE|BOOLEAN|0xE0000003
+
+  gPlatformFeatureTokenSpaceGuid.PcdPerformanceEnable|TRUE|BOOLEAN|0xE0000004
+  #
+  # Secure Features
+  #
+  gPlatformFeatureTokenSpaceGuid.PcdBiosGuardEnable|TRUE|BOOLEAN|0xE0000005
+  gPlatformFeatureTokenSpaceGuid.PcdBiosGuardEcEnable|TRUE|BOOLEAN|0xE0000006
+  gPlatformFeatureTokenSpaceGuid.PcdTpmEnable|TRUE|BOOLEAN|0xE0000007
+  gPlatformFeatureTokenSpaceGuid.PcdTpm2Enable|TRUE|BOOLEAN|0xE0000008
+  gPlatformFeatureTokenSpaceGuid.PcdSecureBootEnable|TRUE|BOOLEAN|0xE0000009
+  gPlatformFeatureTokenSpaceGuid.PcdTxtEnable|TRUE|BOOLEAN|0xE000000A
+  gPlatformFeatureTokenSpaceGuid.PcdRasEnable|TRUE|BOOLEAN|0xE000000B
+
+  #
+  # Me features
+  #
+  gPlatformFeatureTokenSpaceGuid.PcdMeEnable|TRUE|BOOLEAN|0xE000000D
+  gPlatformFeatureTokenSpaceGuid.PcdMeTestMenuEnable|TRUE|BOOLEAN|0xE000000E
+  gPlatformFeatureTokenSpaceGuid.PcdMeSpsEnable|TRUE|BOOLEAN|0xE000000F
+  gPlatformFeatureTokenSpaceGuid.PcdMeWsEnable|TRUE|BOOLEAN|0xE0000010
+  gPlatformFeatureTokenSpaceGuid.PcdWsIccEnable|TRUE|BOOLEAN|0xE0000011
+  gPlatformFeatureTokenSpaceGuid.PcdAsfPeiEnable|TRUE|BOOLEAN|0xE0000012
+
+  #
+  # Trace Hub support
+  #
+  gPlatformFeatureTokenSpaceGuid.PcdTraceHubEnable|TRUE|BOOLEAN|0xE0000013
+  gPlatformFeatureTokenSpaceGuid.PcdTraceHubDebugEnable|FALSE|BOOLEAN|0xE0000014
+
+  gPlatformFeatureTokenSpaceGuid.PcdIeEnable|TRUE|BOOLEAN|0xE0000015
+
+  gPlatformFeatureTokenSpaceGuid.PcdCrystalRidgeEnable|TRUE|BOOLEAN|0xE0000016
+
+  #
+  # PCH Flags
+  #
+  gPlatformFeatureTokenSpaceGuid.PcdServerBiosEnable|TRUE|BOOLEAN|0xE0000017
+  gPlatformFeatureTokenSpaceGuid.PcdPchServerBiosEnable|TRUE|BOOLEAN|0xE0000018
+  gPlatformFeatureTokenSpaceGuid.PcdBtgEnable|TRUE|BOOLEAN|0xE000001A
+  #
+  # CDF Only
+  #
+  gPlatformFeatureTokenSpaceGuid.PcdCdfScEnable|TRUE|BOOLEAN|0xE000001C
+  gPlatformFeatureTokenSpaceGuid.PcdCnlEnable|TRUE|BOOLEAN|0xE000001D
+  gPlatformFeatureTokenSpaceGuid.PcdCdfEnable|TRUE|BOOLEAN|0xE000001E
+
+
+  #
+  # Platform Features
+  #
+  gPlatformFeatureTokenSpaceGuid.PcdSmBiosIDVEnable|FALSE|BOOLEAN|0xE0000021
+  gPlatformFeatureTokenSpaceGuid.PcdMouseEnable|TRUE|BOOLEAN|0xE00000022
+  gPlatformFeatureTokenSpaceGuid.PcdBmcEnable|TRUE|BOOLEAN|0xE00000023
+  gPlatformFeatureTokenSpaceGuid.PcdRsteEnable|TRUE|BOOLEAN|0xE00000024
+  gPlatformFeatureTokenSpaceGuid.PcdAspeedEnable|TRUE|BOOLEAN|0xE00000025
+  gPlatformFeatureTokenSpaceGuid.PcdMinShellEnable|FALSE|BOOLEAN|0xE00000026
+
+  gPlatformFeatureTokenSpaceGuid.PcdIpmiEnable|FALSE|BOOLEAN|0xE00000027
+
+  gRasPkgTokenSpaceGuid.PcdWheaEnable|FALSE|BOOLEAN|0xE00000028
+  gPlatformFeatureTokenSpaceGuid.PcdSignedCapsuleEnable|FALSE|BOOLEAN|0xE00000029
+  gPlatformFeatureTokenSpaceGuid.PcdOverClockingEnable|FALSE|BOOLEAN|0xE0000002A
+  gPlatformFeatureTokenSpaceGuid.PcdJpeEnable|FALSE|BOOLEAN|0xE0000002B
+
+  gPlatformFeatureTokenSpaceGuid.PcdDebugFlagEnable|FALSE|BOOLEAN|0xE0000002C
+  gPlatformFeatureTokenSpaceGuid.PcdDebugSymbolFlagEnable|FALSE|BOOLEAN|0xE0000002F
+
+[PcdsFixedAtBuild]
+#  gEagleStreamFspPkgTokenSpaceGuid.SerialPortEnable          | TRUE       | BOOLEAN  | 0x00000009
+  gEagleStreamFspPkgTokenSpaceGuid.PcdFspImageAttributes     | 0x00       | UINT32 | 0x0000000D
+  gEagleStreamFspPkgTokenSpaceGuid.PcdFspHeaderRevision      | 0x03       | UINT8  | 0x0000000E
+  gEagleStreamFspPkgTokenSpaceGuid.PcdFspImageRevision       | 0x00       | UINT32 | 0x0000000F
+  ##@note PcdFspImageIdString and PcdVpdRegionSign must be identical. Don't change one without the other.
+  gEagleStreamFspPkgTokenSpaceGuid.PcdFspImageIdString       | 0x00       | UINT64 | 0x00000010
+#  gEagleStreamFspPkgTokenSpaceGuid.PcdMrcDebugMsg            | 0x00                | UINT8  | 0x00000011
+
+[PcdsFeatureFlag]
+#  gEagleStreamFspPkgTokenSpaceGuid.PcdStatusCodeUseIsaSerial|TRUE|BOOLEAN|0x00000013
+#  gEagleStreamFspPkgTokenSpaceGuid.PcdSerialRegisterBase|0x3f8|UINT64|0x00000014
+
+[PcdsDynamic, PcdsDynamicEx]

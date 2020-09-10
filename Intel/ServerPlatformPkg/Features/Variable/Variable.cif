@@ -1,0 +1,9 @@
+<component>
+	name = "Variable"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Variable\"
+	RefName = "ServerPlatformPkg.Features.Variable"
+[parts]
+"ServerPlatformPkg.Features.Variable.PlatformVariable"
+"ServerPlatformPkg.Features.Variable.PlatformVariablePcd"
+<endComponent>

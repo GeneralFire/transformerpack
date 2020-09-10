@@ -1,0 +1,166 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include <KtiSetupDefinitions.h>
+
+// good comment about ## here
+
+#define PERLINK_DFX_CONFIG(SKT, PRT) \
+  form formid = VFR_FID_KTI_DFX_CPU ## SKT ## _LINK ## PRT , \
+      title   = STRING_TOKEN(STR_KTI_DFX_CPU ## SKT ## _LINK ## PRT ); \
+      subtitle text = STRING_TOKEN(STR_KTI_DFX_CPU ## SKT ## _LINK ## PRT ); \
+      subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE); \
+      suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX OR \
+                      ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CLX OR \
+                      ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_CPX);  \
+        oneof varid = SOCKET_MP_LINK_CONFIGURATION.Cpu ## SKT ## P ## PRT ## DfxCrcMode, \
+            prompt  = STRING_TOKEN(STR_DFX_KTI_CRC_MODE), \
+            help    = STRING_TOKEN(STR_DFX_KTI_CRC_MODE_HELP), \
+            option text = STRING_TOKEN(STR_DFX_KTI_16BIT_CRC),     value = CRC_MODE_16BIT,         flags = RESET_REQUIRED; \
+            option text = STRING_TOKEN(STR_DFX_KTI_32BIT_ROLLING), value = CRC_MODE_ROLLING_32BIT, flags = RESET_REQUIRED; \
+            option text = STRING_TOKEN(STR_KTI_AUTO),              value = CRC_MODE_AUTO,          flags = RESET_REQUIRED | MANUFACTURING | DEFAULT; \
+        endoneof; \
+      endif; \
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.Cpu ## SKT ## P ## PRT ## DfxL0pEnable, \
+          prompt  = STRING_TOKEN(STR_DFX_KTI_L0P), \
+          help    = STRING_TOKEN(STR_DFX_KTI_L0P_HELP), \
+          option text = STRING_TOKEN(STR_KTI_DISABLE),         value = KTI_DISABLE,  flags = RESET_REQUIRED; \
+          option text = STRING_TOKEN(STR_KTI_ENABLE),          value = KTI_ENABLE,   flags = RESET_REQUIRED; \
+          option text = STRING_TOKEN(STR_KTI_AUTO),            value = KTI_AUTO,     flags = RESET_REQUIRED | MANUFACTURING | DEFAULT; \
+      endoneof; \
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.Cpu ## SKT ## P ## PRT ## DfxL1Enable, \
+          prompt  = STRING_TOKEN(STR_DFX_KTI_L1), \
+          help    = STRING_TOKEN(STR_DFX_KTI_L1_HELP), \
+          option text = STRING_TOKEN(STR_KTI_DISABLE),         value = KTI_DISABLE,   flags = RESET_REQUIRED; \
+          option text = STRING_TOKEN(STR_KTI_ENABLE),          value = KTI_ENABLE,    flags = RESET_REQUIRED; \
+          option text = STRING_TOKEN(STR_KTI_AUTO),            value = KTI_AUTO,      flags = RESET_REQUIRED | MANUFACTURING | DEFAULT; \
+      endoneof; \
+      oneof varid = SOCKET_MP_LINK_CONFIGURATION.Cpu ## SKT ## P ## PRT ## DfxKtiFailoverEn, \
+          prompt  = STRING_TOKEN(STR_DFX_KTI_FAILOVER_ENABLE), \
+          help    = STRING_TOKEN(STR_DFX_KTI_FAILOVER_ENABLE_HELP), \
+          option text = STRING_TOKEN(STR_KTI_DISABLE), value = KTI_DISABLE, flags = RESET_REQUIRED; \
+          option text = STRING_TOKEN(STR_KTI_ENABLE),  value = KTI_ENABLE,  flags = RESET_REQUIRED; \
+          option text = STRING_TOKEN(STR_KTI_AUTO),    value = KTI_AUTO,    flags = RESET_REQUIRED | MANUFACTURING | DEFAULT; \
+      endoneof; \
+  endform;
+
+#if MAX_SOCKET > 1
+PERLINK_DFX_CONFIG (0, 0)
+PERLINK_DFX_CONFIG (0, 1)
+PERLINK_DFX_CONFIG (0, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_DFX_CONFIG (0, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_DFX_CONFIG (0, 4)
+PERLINK_DFX_CONFIG (0, 5)
+#endif
+#if MAX_SOCKET > 1
+PERLINK_DFX_CONFIG (1, 0)
+PERLINK_DFX_CONFIG (1, 1)
+PERLINK_DFX_CONFIG (1, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_DFX_CONFIG (1, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_DFX_CONFIG (1, 4)
+PERLINK_DFX_CONFIG (1, 5)
+#endif
+#endif
+#if MAX_SOCKET > 2
+PERLINK_DFX_CONFIG (2, 0)
+PERLINK_DFX_CONFIG (2, 1)
+PERLINK_DFX_CONFIG (2, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_DFX_CONFIG (2, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_DFX_CONFIG (2, 4)
+PERLINK_DFX_CONFIG (2, 5)
+#endif
+#endif
+#if MAX_SOCKET > 3
+PERLINK_DFX_CONFIG (3, 0)
+PERLINK_DFX_CONFIG (3, 1)
+PERLINK_DFX_CONFIG (3, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_DFX_CONFIG (3, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_DFX_CONFIG (3, 4)
+PERLINK_DFX_CONFIG (3, 5)
+#endif
+#endif
+#if MAX_SOCKET > 4
+PERLINK_DFX_CONFIG (4, 0)
+PERLINK_DFX_CONFIG (4, 1)
+PERLINK_DFX_CONFIG (4, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_DFX_CONFIG (4, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_DFX_CONFIG (4, 4)
+PERLINK_DFX_CONFIG (4, 5)
+#endif
+#endif
+#if MAX_SOCKET > 5
+PERLINK_DFX_CONFIG (5, 0)
+PERLINK_DFX_CONFIG (5, 1)
+PERLINK_DFX_CONFIG (5, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_DFX_CONFIG (5, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_DFX_CONFIG (5, 4)
+PERLINK_DFX_CONFIG (5, 5)
+#endif
+#endif
+#if MAX_SOCKET > 6
+PERLINK_DFX_CONFIG (6, 0)
+PERLINK_DFX_CONFIG (6, 1)
+PERLINK_DFX_CONFIG (6, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_DFX_CONFIG (6, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_DFX_CONFIG (6, 4)
+PERLINK_DFX_CONFIG (6, 5)
+#endif
+#endif
+#if MAX_SOCKET > 7
+PERLINK_DFX_CONFIG (7, 0)
+PERLINK_DFX_CONFIG (7, 1)
+PERLINK_DFX_CONFIG (7, 2)
+#if MAX_KTI_PORTS > 3
+PERLINK_DFX_CONFIG (7, 3)
+#endif
+#if MAX_KTI_PORTS > 5
+PERLINK_DFX_CONFIG (7, 4)
+PERLINK_DFX_CONFIG (7, 5)
+#endif
+#endif
+#endif//NOT SNR OR ICXD

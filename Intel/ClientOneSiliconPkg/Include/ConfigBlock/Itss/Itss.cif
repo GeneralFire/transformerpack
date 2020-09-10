@@ -1,0 +1,9 @@
+<component>
+    name = "Itss"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Itss\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Itss"
+[files]
+"InterruptConfig.h"	
+"IoApicConfig.h"	
+<endComponent>

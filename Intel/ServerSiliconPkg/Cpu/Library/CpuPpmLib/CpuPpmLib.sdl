@@ -1,0 +1,37 @@
+TOKEN
+	Name  = "CpuPpmLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling CpuPpmLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "CpuPpmLibSprPei"
+	File  = "CpuPpmLibSprPei.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+	Class  = "CpuPpmLib"
+	Instance  = "ServerSiliconPkg.CpuPpmLibSprPei"
+    Arch  = "IA32"	
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "CpuPpmLibSprDxe"
+    File  = "CpuPpmLibSprDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "CpuPpmLib"
+    Instance  = "ServerSiliconPkg.CpuPpmLibSprDxe"
+    Arch  = "X64"  
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End

@@ -1,0 +1,1351 @@
+TOKEN
+    Name  = "SocketPkg_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "ProcMemInit_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling ProcMemInit support in the project"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "USRATraceLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling USRATraceLib support in the project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "MemoryEvContentLib"
+    File  = "MemoryEvContent\MemoryEvContentAllGen2Spr.inf"           
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "SmmScriptLib"
+    File  = "SmmScriptLib/SmmScriptLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "SmmCpuPlatformHookLib"
+    File  = "SmmCpuPlatformHookLib/SmmCpuPlatformHookLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"    
+End
+
+INFComponent
+    Name  = "UsraQuiesceLib"
+    File  = "UsraQuiesceLib/UsraQuiesceLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "OemIioInitLibPpi"
+    File  = "OemIioInitLibPpi/OemIioInitLibPpi.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+
+INFComponent
+    Name  = "BaseLib"
+    File  = "BaseLibFcCrb/BaseLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "CommonTraceHubLib"
+    File  = "BaseTraceHubLib\BaseTraceHubLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "USRATraceLib"
+    File  = "USRATraceLib/USRATraceLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"    
+    Token = "ProcMemInit_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "BaseConfigBlockLib"
+    File  = "BaseConfigBlockLib/BaseConfigBlockLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+
+INFComponent
+    Name  = "ReferenceCodePolicyLibDxe"
+    File  = "DxeReferenceCodePolicyLib/ReferenceCodePolicyLibDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+    Name  = "IioSysInfoLib"
+    File  = "IioSysInfoLib/IioSysInfoLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PeiIioSiPolicyLib"
+    File  = "PeiIioSiPolicyLib/PeiIioSiPolicyLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "ReferenceCodePolicyLibPEI"
+    File  = "PeiReferenceCodePolicyLib/ReferenceCodePolicyLibPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PeiSiPolicyLib"
+    File  = "PeiSiPolicyLib/PeiSiPolicyLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"    
+End
+
+INFComponent
+    Name  = "ReferenceCodePolicyLibSmm"
+    File  = "SmmReferenceCodePolicyLib/ReferenceCodePolicyLibSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "PeiUpiPolicyLib"
+    File  = "PeiUpiPolicyLib/PeiUpiPolicyLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PipeSyncLib"
+    File  = "PipeSyncLib\PipeSyncLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "SimulationThreadLibNull"
+    File  = "SimulationThreadLib\SimulationThreadLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "SiliconWorkaroundLibSpr"
+    File  = "SiliconWorkaroundLibSpr/SiliconWorkaroundLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "SiliconWorkaroundHelperLib"
+    File  = "SiliconWorkaroundHelperLib/SiliconWorkaroundHelperLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "SimulationServicesLibNull"
+    File  = "SimulationServicesLib/SimulationServicesLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "CsrPseudoOffsetConvertLibPei"
+    File  = "CsrPseudoOffsetConvertLibPei/CsrPseudoOffsetConvertLibPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"    
+    Arch  = "IA32"
+End
+
+INFComponent
+    Name  = "CsrPseudoOffsetConvertLibDxe"
+    File  = "CsrPseudoOffsetConvertLibDxe/CsrPseudoOffsetConvertLibDxe.inf"
+    Package  = "ServerSiliconPkg"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "CsrPseudoOffsetConvertLibDxeRuntime"
+    File  = "CsrPseudoOffsetConvertLibDxeRuntime\CsrPseudoOffsetConvertLibDxeRuntime.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+    Name  = "CsrPseudoOffsetConvertLibSmm"
+    File  = "CsrPseudoOffsetConvertLibSmm/CsrPseudoOffsetConvertLibSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "SmmPeriodicTimerLib"
+    File  = "SmmPeriodicTimerLib/SmmPeriodicTimerLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "RAS_SUPPORT" "=" "1"    
+End
+
+INFComponent
+    Name  = "BaseTimerLibInvariantTsc"
+    File  = "BaseTimerLibInvariantTsc/BaseTimerLibInvariantTsc.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "CsrSbPortIdLibBase"
+    File  = "CsrSbPortIdLib/Spr/CsrSbPortIdLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "DxeAslUpdateLib"
+    File  = "DxeAslUpdateLib/DxeAslUpdateLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+INFComponent
+    Name  = "DxeCrystalRidgeFlushNearMemoryLib"
+    File  = "DxeCrystalRidgeFlushNearMemoryLib/DxeCrystalRidgeFlushNearMemoryLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+    Name  = "SmmCrystalRidgeFlushNearMemoryLib"
+    File  = "SmmCrystalRidgeFlushNearMemoryLib/SmmCrystalRidgeFlushNearMemoryLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "PsmiPolicyLib"
+    File  = "PsmiLib/PsmiPolicyLib/PsmiPolicyLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "RcrbAccessLib"
+    File  = "RcrbAccessLib/RcrbAccessLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "SecurityEarlyPeiLib"
+    File  = "SecurityEarlyPeiLib\SPR\SecurityEarlyPeiLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "ChaIpLib"
+    File  = "ChaIpLib/ChaIpLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "ChaIpLib"
+    File  = "ChaIpLib/ChaIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "UboxIpLib10nm"
+    File  = "UboxIpLib/UboxIpLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "UboxIpLibSpr"
+    File  = "UboxIpLib/UboxIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "BaseCsrAccessLib10nm"
+    File  = "BaseCsrAccessLib/BaseCsrAccessLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "HardwareSemaphoreLibDxe"
+    File  = "HardwareSemaphoreLib/10nm/HardwareSemaphoreLibDxe10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "HardwareSemaphoreLibPei"
+    File  = "HardwareSemaphoreLib/10nm/HardwareSemaphoreLibPei10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "HwHardwareSemaphoreLib"
+    File  = "HardwareSemaphoreLib/HwHardwareSemaphoreTargetLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"    
+End
+
+INFComponent
+    Name  = "Ms2IdiLib10nm"
+    File  = "Ms2IdiLib10nm/Ms2IdiLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"    
+End
+
+INFComponent
+    Name  = "Ms2IdiLibSpr"
+    File  = "Ms2IdiIpLib/Ms2IdiLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"        
+End
+
+INFComponent
+    Name  = "OobIpLib10nm"
+    File  = "OobIpLib/OobIpLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"       
+End
+
+INFComponent
+    Name  = "OobIpLibSpr"
+    File  = "OobIpLib/OobIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"       
+End
+
+INFComponent
+    Name  = "VcuMailBoxLib10nm"
+    File  = "VcuMailBoxLib10nm/VcuMailBoxLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PeiMemoryPolicyLib"
+    File  = "PeiMemoryPolicyLib/PeiMemoryPolicyLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PeiCpuPowerMgmtLib"
+    File  = "PeiCpuPowerMgmtLib/PeiCpuPowerMgmtLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PcuIpLib10nm"
+    File  = "PcuIpLib/PcuIpLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "PcuIpLibSpr"
+    File  = "PcuIpLib/PcuIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "M2IalIpLibSpr"
+    File  = "M2IalIpLib/M2IalIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+#INFComponent
+#    Name  = "M2UPcieIpLib10nm"
+#    File  = "M2UPcieIpLib/M2UPcieIpLib10nm.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "BASE"
+#    Token = "CPU_SPR_SUPPORT" "=" "0"
+#End
+
+INFComponent
+    Name  = "MdfisIpLibSpr"
+    File  = "MdfisIpLib\MdfisIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "NvdimmCommonLib"
+    File  = "NvdimmCommonLib\NvdimmCommonLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PmcSetStrapMessageLibNull"
+    File  = "PmcSetStrapMessageLibNull/PmcSetStrapMessageLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IioIpLib10nm"
+    File  = "IioIpLib/IioIpLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "IioIpLibSpr"
+    File  = "IioIpLib/IioIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+#INFComponent
+#    Name  = "KtiIpLib"
+#    File  = "KtiIpLib/KtiIpLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "BASE"
+#    Token = "CPU_SPR_SUPPORT" "=" "0"
+#End
+
+INFComponent
+    Name  = "KtiIpLib"
+    File  = "KtiIpLib/KtiIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "KtiIpLib"
+    Instance  = "ServerSiliconPkg.KtiIpLib"
+End
+
+INFComponent
+    Name  = "CallTablePolicyLib"
+    File  = "CallTablePolicyLib/CallTablePolicyLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PeiCpuAndPchTraceHubLib"
+    File  = "Private/PeiCpuAndPchTraceHubLib/PeiCpuAndPchTraceHubLibCdf.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "DxeTraceHubLib"
+    File  = "Private/DxeTraceHubLib/DxeTraceHubLibEbg.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "DxeTraceHubLib"
+    Instance  = "ServerSiliconPkg.DxeTraceHubLib"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "PeiDxeUsbInitLib"
+    File  = "Private/PeiDxeUsbInitLib/PeiDxeUsbInitLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"      
+End
+
+LibraryMapping
+    Class  = "UboxIpInterface"
+    Instance  = "ServerSiliconPkg.UboxIpLib10nm"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "UboxIpInterface"
+    Instance  = "ServerSiliconPkg.UboxIpLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+# Needed only for CLX soft sku
+#INFComponent
+#    Name  = "UsraRegisterFilterLibSmm"
+#    File  = "UsraRegisterFilterLibSmm/UsraRegisterFilterLibSmm.inf"
+#    Package  = "ServerSiliconPkg"
+#End
+
+INFComponent
+    Name  = "MemBootHealthLibNull"
+    File  = "MemBootHealthLibNull/MemBootHealthLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"     
+End
+
+INFComponent
+    Name  = "PsmiInitLib"
+    File  = "PsmiLib/PsmiInitLib/PsmiInitLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"       
+End
+
+INFComponent
+    Name  = "FpgaIpLib"
+    File  = "FpgaIpLib\FpgaIpLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"     
+End
+
+INFComponent
+    Name  = "FpgaConfigurationLib"
+    File  = "FpgaConfigurationLibNull\FpgaConfigurationPeiLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"   
+    Arch = "IA32"  
+End
+
+INFComponent
+    Name  = "FpgaConfigurationLibDxe"
+    File  = "FpgaConfigurationLibNull\FpgaConfigurationDxeLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "DXE_DRIVER"
+    Arch = "X64"     
+End
+
+INFComponent
+    Name  = "FpgaConfigurationLibSmm"
+    File  = "FpgaConfigurationLibNull\FpgaConfigurationSmmLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"     
+End
+
+INFComponent
+    Name  = "MsmIpLib"
+    File  = "MsmIpLib\MsmIpLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"     
+End
+
+INFComponent
+    Name  = "PeiPciMmio32AssignLib"
+    File  = "PeiDxePciMmio32AssignLib\PeiPciMmio32AssignLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"     
+End
+
+INFComponent
+    Name  = "DxePciMmio32AssignLib"
+    File  = "PeiDxePciMmio32AssignLib\DxePciMmio32AssignLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"     
+End
+
+INFComponent
+    Name  = "MemMapDataLib"
+    File  = "MemMapDataLib\MemMapDataLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"     
+End
+
+INFComponent
+    Name  = "BasePreSiliconEnvDetectLib"
+    File  = "BasePreSiliconEnvDetectLib\BasePreSiliconEnvDetectLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"     
+End
+
+LibraryMapping
+    Class  = "PreSiliconEnvDetectLib"
+    Instance  = "ServerSiliconPkg.BasePreSiliconEnvDetectLib"
+End
+
+INFComponent
+    Name  = "NumaAcpiTableLib"
+    File  = "NumaAcpiTableLib\NumaAcpiTableLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"     
+End
+
+LibraryMapping
+    Class  = "NumaAcpiTableLib"
+    Instance  = "ServerSiliconPkg.NumaAcpiTableLib"
+End
+
+INFComponent
+    Name  = "UpimdfIpAccessLib"
+    File  = "UpimdfIpAccessLib\UpimdfIpAccessLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"     
+End
+
+LibraryMapping
+    Class  = "UpimdfIpAccessLib"
+    Instance  = "ServerSiliconPkg.UpimdfIpAccessLib"
+End
+
+INFComponent
+    Name  = "BaseSiConfigBlockLib"
+    File  = "BaseSiConfigBlockLib\BaseSiConfigBlockLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"    
+End
+
+INFComponent
+    Name  = "CxlIpLib"
+    File  = "CxlIpLib\CxlIpLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"     
+   Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "CxlIpLib"
+    File  = "CxlIpLibNull\CxlIpLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"     
+   Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "BasicIpBlockServicesLibDxe"
+    File  = "BasicIpBlockServicesLib/BasicIpBlockServicesLibDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"     
+End
+
+LibraryMapping
+	Class  = "BasicIpBlockServicesLib"
+	Instance  = "ServerSiliconPkg.BasicIpBlockServicesLibDxe"
+	Arch = "X64"
+End
+
+INFComponent
+    Name  = "BasicIpBlockServicesLibPei"
+    File  = "BasicIpBlockServicesLib/BasicIpBlockServicesLibPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"     
+End
+
+LibraryMapping
+	Class  = "BasicIpBlockServicesLib"
+	Instance  = "ServerSiliconPkg.BasicIpBlockServicesLibPei"
+	Arch = "IA32"
+End
+
+INFComponent
+    Name  = "BasicIpBlockServicesLibSmm"
+    File  = "BasicIpBlockServicesLib\BasicIpBlockServicesLibSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"     
+End
+
+LibraryMapping
+	Class  = "BasicIpBlockServicesLib"
+	Instance  = "ServerSiliconPkg.BasicIpBlockServicesLibSmm"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Arch = "X64"
+End
+
+INFComponent
+    Name  = "CpuAndRevisionLib"
+    File  = "CpuAndRevisionLib/CpuAndRevisionLib.inf"
+    Package  = "ServerSiliconPkg" 
+End
+
+LibraryMapping
+	Class  = "CpuAndRevisionLib"
+	Instance  = "ServerSiliconPkg.CpuAndRevisionLib"
+End
+
+INFComponent
+    Name  = "MemPwrTempTableLib"
+    File  = "MemPwrTempTableLib/MemPwrTempTableLibWave1.inf"
+    Package  = "ServerSiliconPkg" 
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+
+INFComponent
+    Name  = "MemPwrTempTableLib"
+    File  = "MemPwrTempTableLib/MemPwrTempTableLibWave3.inf"
+    Package  = "ServerSiliconPkg" 
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MemPwrTempTableLib"
+    Instance  = "ServerSiliconPkg.MemPwrTempTableLib"
+End
+
+INFComponent
+    Name  = "S3mIpLibHwTarget"
+    File  = "S3mIpLib/S3mIpLibHwTarget.inf"
+    Package  = "ServerSiliconPkg" 
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+	Class  = "S3mIpLib"
+	Instance  = "ServerSiliconPkg.S3mIpLibHwTarget"
+	Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+#INFComponent
+#    Name  = "SgxPreMemInitLib"
+#    File  = "SgxPreMemInitLibNull\SgxPreMemInitLibNull.inf"
+#    Package  = "ServerSiliconPkg" 
+#   ModuleTypes  = "BASE"
+#    Token = "CPUTARGET" "!=" "ICX"
+#    Token = "CPUTARGET" "!=" "ICXD"    
+#End
+
+#LibraryMapping
+#    Class  = "SgxPreMemInitLib"
+#    Instance  = "ServerSiliconPkg.SgxPreMemInitLib"
+#    Token = "CPUTARGET" "!=" "ICX"
+#    Token = "CPUTARGET" "!=" "ICXD"   
+#End
+
+INFComponent
+    Name  = "SgxPreMemInitLibSPR"
+    File  = "SgxPreMemInitLib/SPR/SgxPreMemInitLib.inf"
+    Package  = "ServerSiliconPkg" 
+End
+
+LibraryMapping
+    Class  = "SgxPreMemInitLib"
+    Instance  = "ServerSiliconPkg.SgxPreMemInitLibSPR"
+End
+
+INFComponent
+    Name  = "SpkIpLib"
+    File  = "SpkIpLib\SpkIp10nmWave1Lib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "SpkIpLib"
+    File  = "SpkIpLib\SpkIp10nmWave3Lib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SpkIpLib"
+    Instance  = "ServerSiliconPkg.SpkIpLib"
+End
+
+INFComponent
+	Name  = "X2ApicIdDetectLib"
+	File  = "X2ApicIdDetectLib\X2ApicIdDetectLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "X2ApicIdDetectLib"
+	Instance  = "ServerSiliconPkg.X2ApicIdDetectLib"
+End
+
+INFComponent
+    Name  = "HsphyIpLib"
+    File  = "HsphyIpLib/HsphyIpLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HsphyIpLib"
+    Instance  = "ServerSiliconPkg.HsphyIpLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "EvAutoRecipeLib"
+    File  = "EvAutoRecipeLib\EvAutoRecipeLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "EvAutoRecipeLib"
+    Instance  = "ServerSiliconPkg.EvAutoRecipeLib"
+End
+
+
+LibraryMapping
+    Class  = "UsraQuiesceLib"
+    Instance  = "ServerSiliconPkg.UsraQuiesceLib"
+    Arch = "X64"    
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "SmmScriptLib"
+    Instance  = "ServerSiliconPkg.SmmScriptLib"
+End
+
+LibraryMapping
+    Class  = "MemoryEvContentLib"
+    Instance  = "ServerSiliconPkg.MemoryEvContentLib"
+End
+
+LibraryMapping
+    Class  = "SmmCpuPlatformHookLib"
+    Instance  = "ServerSiliconPkg.SmmCpuPlatformHookLib"
+End
+
+LibraryMapping
+    Class  = "CommonTraceHubLib"
+    Instance  = "ServerSiliconPkg.CommonTraceHubLib"
+End
+
+LibraryMapping
+    Class  = "USRATraceLib"
+    Instance  = "ServerSiliconPkg.USRATraceLib"
+End
+
+LibraryMapping
+    Class  = "OemIioInitLib"
+    Instance  = "ServerSiliconPkg.OemIioInitLibPpi"
+    Arch  = "IA32"
+End
+
+LibraryMapping
+    Class  = "ConfigBlockLib"
+    Instance  = "ServerSiliconPkg.BaseConfigBlockLib"       
+End
+
+
+LibraryMapping
+    Class  = "ReferenceCodePolicyLib"
+    Instance  = "ServerSiliconPkg.ReferenceCodePolicyLibDxe"
+    Arch  = "X64"
+End
+
+LibraryMapping
+    Class  = "IioSysInfoLib"
+    Instance  = "ServerSiliconPkg.IioSysInfoLib"
+End
+
+LibraryMapping
+    Class  = "PeiIioSiPolicyLib"
+    Instance  = "ServerSiliconPkg.PeiIioSiPolicyLib"
+End
+
+LibraryMapping
+    Class  = "ReferenceCodePolicyLib"
+    Instance  = "ServerSiliconPkg.ReferenceCodePolicyLibPEI"
+    Arch  = "IA32"
+End
+
+LibraryMapping
+    Class  = "SiPolicyLib"
+    Instance  = "ServerSiliconPkg.PeiSiPolicyLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "PeiUpiPolicyLib"
+    Instance  = "ServerSiliconPkg.PeiUpiPolicyLib"
+End
+
+LibraryMapping
+    Class  = "SiliconWorkaroundHelperLib"
+    Instance  = "ServerSiliconPkg.SiliconWorkaroundHelperLib"
+End
+
+LibraryMapping
+    Class  = "SimulationServicesLib"
+    Instance  = "ServerSiliconPkg.SimulationServicesLibNull"
+End
+
+LibraryMapping
+    Class  = "PipeSyncLib"
+    Instance  = "ServerSiliconPkg.PipeSyncLib"
+End
+
+LibraryMapping
+    Class  = "SimulationThreadLib"
+    Instance  = "ServerSiliconPkg.SimulationThreadLibNull"
+End
+
+LibraryMapping
+    Class  = "SiliconWorkaroundLib"
+    Instance  = "ServerSiliconPkg.SiliconWorkaroundLibSpr"
+End
+
+LibraryMapping
+    Class  = "SmmPeriodicTimerLib"
+    Instance  = "ServerSiliconPkg.SmmPeriodicTimerLib"
+    Token = "RAS_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "ReferenceCodePolicyLib"
+    Instance  = "ServerSiliconPkg.ReferenceCodePolicyLibSmm"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "CsrPseudoOffsetConvertLib"
+    Instance  = "ServerSiliconPkg.CsrPseudoOffsetConvertLibPei"
+    Arch  = "IA32"
+End
+
+LibraryMapping
+    Class  = "CsrPseudoOffsetConvertLib"
+    Instance  = "ServerSiliconPkg.CsrPseudoOffsetConvertLibDxe"
+    Arch  = "X64"
+End
+
+LibraryMapping
+    Class  = "CsrPseudoOffsetConvertLib"
+    Instance  = "ServerSiliconPkg.CsrPseudoOffsetConvertLibSmm"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "CsrSbPortIdLib"
+    Instance  = "ServerSiliconPkg.CsrSbPortIdLibBase"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "AslUpdateLib"
+    Instance  = "ServerSiliconPkg.DxeAslUpdateLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "DxeCrystalRidgeFlushNearMemoryLib"
+    Instance  = "ServerSiliconPkg.DxeCrystalRidgeFlushNearMemoryLib"
+End
+
+LibraryMapping
+    Class  = "SmmCrystalRidgeFlushNearMemoryLib"
+    Instance  = "ServerSiliconPkg.SmmCrystalRidgeFlushNearMemoryLib"
+End
+
+LibraryMapping
+    Class  = "PsmiPolicyLib"
+    Instance  = "ServerSiliconPkg.PsmiPolicyLib"
+End
+
+LibraryMapping
+    Class  = "RcrbAccessLib"
+    Instance  = "ServerSiliconPkg.RcrbAccessLib"
+End
+
+LibraryMapping
+    Class  = "SecurityEarlyPeiLib"
+    Instance  = "ServerSiliconPkg.SecurityEarlyPeiLib"
+End
+
+LibraryMapping
+    Class  = "ChaIpLib"
+    Instance  = "ServerSiliconPkg.ChaIpLib"
+End
+
+LibraryMapping
+    Class  = "CsrAccessLib"
+    Instance  = "ServerSiliconPkg.BaseCsrAccessLib10nm"
+End
+
+LibraryMapping
+    Class  = "SemaphoreLib"
+    Instance  = "ServerSiliconPkg.HardwareSemaphoreLibDxe"
+    Arch  = "X64"
+End
+
+LibraryMapping
+    Class  = "SemaphoreLib"
+    Instance  = "ServerSiliconPkg.HardwareSemaphoreLibDxe"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "SemaphoreLib"
+    Instance  = "ServerSiliconPkg.HardwareSemaphoreLibPei"
+    Arch  = "IA32"
+End
+
+LibraryMapping
+    Class  = "HardwareSemaphoreTargetLib"
+    Instance  = "ServerSiliconPkg.HwHardwareSemaphoreLib"
+End
+
+LibraryMapping
+    Class  = "Ms2IdiLib"
+    Instance  = "ServerSiliconPkg.Ms2IdiLib10nm"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "Ms2IdiLib"
+    Instance  = "ServerSiliconPkg.Ms2IdiLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "OobIpLib"
+    Instance  = "ServerSiliconPkg.OobIpLib10nm"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "OobIpLib"
+    Instance  = "ServerSiliconPkg.OobIpLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "VcuMailBoxLib"
+    Instance  = "ServerSiliconPkg.VcuMailBoxLib10nm"
+End
+
+LibraryMapping
+    Class  = "MemoryPolicyLib"
+    Instance  = "ServerSiliconPkg.PeiMemoryPolicyLib"
+End
+
+LibraryMapping
+    Class  = "CpuPowerMgmtLib"
+    Instance  = "ServerSiliconPkg.PeiCpuPowerMgmtLib"
+End
+
+LibraryMapping
+    Class  = "PcuIpLib"
+    Instance  = "ServerSiliconPkg.PcuIpLib10nm"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PcuIpLib"
+    Instance  = "ServerSiliconPkg.PcuIpLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "M2IalIpLib"
+    Instance  = "ServerSiliconPkg.M2IalIpLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "M2UPcieIpLib"
+    Instance  = "ServerSiliconPkg.M2UPcieIpLib10nm"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MdfisIpLib"
+    Instance  = "ServerSiliconPkg.MdfisIpLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NvdimmCommonLib"
+    Instance  = "ServerSiliconPkg.NvdimmCommonLib"
+End
+
+LibraryMapping
+    Class  = "PmcSetStrapMessageLib"
+    Instance  = "ServerSiliconPkg.PmcSetStrapMessageLibNull"
+End
+
+LibraryMapping
+    Class  = "IioIpLib"
+    Instance  = "ServerSiliconPkg.IioIpLib10nm"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "IioIpLib"
+    Instance  = "ServerSiliconPkg.IioIpLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+#library mapping needed only for UncoreInit.inf
+#LibraryMapping
+#    Class  = "UsraRegisterFilterLib"
+#    Instance  = "ServerSiliconPkg.UsraRegisterFilterLibPei"
+#    ModuleTypes  = "PEIM"
+#End
+
+LibraryMapping
+    Class  = "CallTablePolicyLib"
+    Instance  = "ServerSiliconPkg.CallTablePolicyLib"
+End
+
+# Needed only for CLX soft sku
+#LibraryMapping
+#    Class  = "UsraRegisterFilterLib"
+#    Instance  = "ServerSiliconPkg.UsraRegisterFilterLibSmm"
+#    Arch  = "X64"
+#    ModuleTypes  = "DXE_SMM_DRIVER"
+#End
+
+LibraryMapping
+    Class  = "MemBootHealthLib"
+    Instance  = "ServerSiliconPkg.MemBootHealthLibNull"
+End
+
+LibraryMapping
+    Class  = "PsmiInitLib"
+    Instance  = "ServerSiliconPkg.PsmiInitLib"
+End
+
+LibraryMapping
+    Class  = "PeiCpuAndPchTraceHubLib"
+    Instance  = "ServerSiliconPkg.PeiCpuAndPchTraceHubLib"
+End
+
+LibraryMapping
+    Class  = "UsbInitLib"
+    Instance  = "ServerSiliconPkg.PeiDxeUsbInitLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"  
+End
+
+LibraryMapping
+    Class  = "CsrPseudoOffsetConvertLib"
+    Instance  = "ServerSiliconPkg.CsrPseudoOffsetConvertLibDxeRuntime"
+    Arch = "X64"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+LibraryMapping
+    Class  = "FpgaIpLib"
+    Instance  = "ServerSiliconPkg.FpgaIpLib"
+End
+
+LibraryMapping
+    Class  = "FpgaConfigurationLib"
+    Instance  = "ServerSiliconPkg.FpgaConfigurationLib"
+    Arch = "IA32" 
+End
+
+LibraryMapping
+    Class  = "FpgaConfigurationLib"
+    Instance  = "ServerSiliconPkg.FpgaConfigurationLibDxe"
+    Arch = "X64" 
+End
+
+LibraryMapping
+    Class  = "FpgaConfigurationLib"
+    Instance  = "ServerSiliconPkg.FpgaConfigurationLibSmm"
+    Arch = "X64" 
+    ModuleTypes = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "MsmIpLib"
+    Instance  = "ServerSiliconPkg.MsmIpLib"
+End
+
+LibraryMapping
+    Class  = "PeiPciMmio32AssignLib"
+    Instance  = "ServerSiliconPkg.PeiPciMmio32AssignLib"
+    Arch = "IA32"
+End
+
+LibraryMapping
+    Class  = "DxePciMmio32AssignLib"
+    Instance  = "ServerSiliconPkg.DxePciMmio32AssignLib"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "MemMapDataLib"
+    Instance  = "ServerSiliconPkg.MemMapDataLib"
+End
+
+LibraryMapping
+    Class  = "SiConfigBlockLib"
+    Instance  = "ServerSiliconPkg.BaseSiConfigBlockLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "CxlIpLib"
+    Instance  = "ServerSiliconPkg.CxlIpLib"
+End
+
+INFComponent
+    Name  = "MemAccessLib"
+    File  = "MemAccessLib/MemAccessLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "BASE"
+    Token = "HBM_ENABLE" "=" "0"        
+End
+
+LibraryMapping
+    Class  = "MemAccessLib"
+    Instance  = "ServerSiliconPkg.MemAccessLib"
+    Token = "HBM_ENABLE" "=" "0"      
+End
+
+INFComponent
+    Name  = "MemAccessLibHbm"
+    File  = "MemAccessLib/MemAccessLibHbm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "BASE"
+    Token = "HBM_ENABLE" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "MemAccessLib"
+    Instance  = "ServerSiliconPkg.MemAccessLibHbm"
+    Token = "HBM_ENABLE" "=" "1"      
+End
+
+INFComponent
+    Name  = "UsraRegisterLogLibUBios"
+    File  = "UsraRegisterLogLib\UsraRegisterLogLibUBios.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "PEIM"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterLogLib"
+    Instance  = "ServerSiliconPkg.UsraRegisterLogLibUBios"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "UsraRegisterLogLibUncore"
+    File  = "UsraRegisterLogLib\UsraRegisterLogLibUncore.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "PEIM"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterLogLib"
+    Instance  = "ServerSiliconPkg.UsraRegisterLogLibUncore"
+End
+
+INFComponent
+    Name  = "UsraRegisterLogSkipLib10nm"
+    File  = "UsraRegisterLogSkipLib\UsraRegisterLogSkipLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "BASE"
+    Token = "CPU_SKX_ONLY_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterLogSkipLib"
+    Instance  = "ServerSiliconPkg.UsraRegisterLogSkipLib10nm"
+    Token = "CPU_SKX_ONLY_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "BaseHbmInstBoundaryLib"
+    File  = "BaseHbmInstBoundaryLib\BaseHbmInstBoundaryLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "BaseHbmInstBoundaryLib"
+    Instance  = "ServerSiliconPkg.BaseHbmInstBoundaryLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "HbmCsrTranslateLib"
+    File  = "HbmCsrTranslateLib\HbmCsrTranslateLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "BASE"
+    Token = "HBM_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HbmCsrTranslateLib"
+    Instance  = "ServerSiliconPkg.HbmCsrTranslateLib"
+    Token = "HBM_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HbmCsrTranslateLibNull"
+    File  = "HbmCsrTranslateLibNull\HbmCsrTranslateLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "BASE"
+    Token = "HBM_ENABLE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "HbmCsrTranslateLib"
+    Instance  = "ServerSiliconPkg.HbmCsrTranslateLibNull"
+    Token = "HBM_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "SiliconWorkaroundLibCwv"
+    File  = "SiliconWorkaroundPMemLib\SiliconWorkaroundPMemLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "BASE"
+End
+
+LibraryMapping
+    Class  = "SiliconWorkaroundPMemLib"
+    Instance  = "ServerSiliconPkg.SiliconWorkaroundLibCwv"
+End

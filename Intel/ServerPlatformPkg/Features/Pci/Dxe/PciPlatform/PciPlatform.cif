@@ -1,0 +1,11 @@
+<component>
+	name = "PciPlatform"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Pci\Dxe\PciPlatform\"
+	RefName = "ServerPlatformPkg.Features.Pci.Dxe.PciPlatform"
+[INF]
+"PciPlatform.inf"
+[files]
+"PciSupportLib.h"	
+"PciPlatform.sdl"	
+<endComponent>

@@ -1,0 +1,15 @@
+TOKEN
+	Name  = "HwpLvtSmm_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling HwpLvtSmm support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "HwpLvtSmm"
+	File  = "HwpLvtSmm.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Token = "HwpLvtSmm_SUPPORT" "=" "1"
+End

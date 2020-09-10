@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiDxeSmmSataLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "SataLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPchSataLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchSataLib"
+    File  = "PeiDxeSmmSataLib\PeiDxeSmmSataLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+

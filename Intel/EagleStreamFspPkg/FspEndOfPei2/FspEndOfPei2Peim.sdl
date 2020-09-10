@@ -1,0 +1,16 @@
+TOKEN
+    Name = "FspEndOfPei2Peim_SUPPORT"
+    Value = "1"
+    Help  = "Main switch to enable FspDebugInit support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+INFComponent
+    Name  = "FspEndOfPei2Peim"
+    File  = "FspEndOfPei2Peim.inf"
+    Package  = "EagleStreamFspPkg"
+    ModuleTypes  = "PEIM"
+End

@@ -1,0 +1,70 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2004 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef en-US "English"
+#langdef fr-FR "Français"
+
+#string ENTER_STRING                   #language en-US  "<Enter>=Select Entry"
+                                       #language fr-FR  "<Enter>=Choisir l'Entrée"
+#string ENTER_COMMIT_STRING            #language en-US  "<Enter>=Complete Entry"
+                                       #language fr-FR  "<Enter>=Compléter l'Entrée"
+#string ENTER_ESCAPE_STRING            #language en-US  "Esc=Exit Entry"
+                                       #language fr-FR  "Esc=Sortir l'Entrée"
+#string ESCAPE_STRING                  #language en-US  "Esc=Exit"
+                                       #language fr-FR  "Esc=Sortir"
+#string ADJUST_NUMBER                  #language en-US  "+/- =Adjust Value"
+                                       #language fr-FR  "+/- =Ajuster la valeur"
+#string PLUS_STRING                    #language en-US  "+ =Move Selection Up"
+                                       #language fr-FR  "+ =Relever le choix"
+#string MINUS_STRING                   #language en-US  "- =Move Selection Down"
+                                       #language fr-FR  "- =Abaisser le choix"
+#string MOVE_HIGHLIGHT                 #language en-US  "=Move Highlight"
+                                       #language fr-FR  "=Essentiel de mouvement"
+#string DEC_NUMERIC_INPUT              #language en-US  "0123456789 are valid inputs"
+                                       #language fr-FR  "0123456789 sont des données valides"
+#string HEX_NUMERIC_INPUT              #language en-US  "0-9 a-f are valid inputs"
+                                       #language fr-FR  "0-9 a-f sont des données valides"
+#string TOGGLE_CHECK_BOX               #language en-US  "<Spacebar>Toggle Checkbox"
+                                       #language fr-FR  "<Spacebar>Bascule la Case de pointage"
+#string NV_UPDATE_MESSAGE              #language en-US  "Configuration changed"
+                                       #language fr-FR  "Configuration changed"
+#string INPUT_ERROR_MESSAGE            #language en-US  "!!"
+                                       #language fr-FR  "!!"
+#string EMPTY_STRING                   #language en-US  ""
+                                       #language fr-FR  ""
+#string ARE_YOU_SURE_YES               #language en-US  "Y"
+                                       #language fr-FR  "Y"
+#string ARE_YOU_SURE_NO                #language en-US  "N"
+                                       #language fr-FR  "N"
+#string SAVE_CHANGES                   #language en-US  "Changes have not saved. Save Changes and exit?"
+                                       #language fr-FR  "Enregistrer les modifications et quitter?"
+#string ARE_YOU_SURE                   #language en-US  "Press 'Y' to save and exit, 'N' to discard and exit, 'ESC' to cancel."
+                                       #language fr-FR  "Pressez 'Y' pour sauvegarder et quitter, 'N' de se défaire et de sortie"
+#string COPYRIGHT_STRING               #language en-US  "Copyright (c) 2006-2020, Intel Corporation"
+                                       #language fr-FR  "Copyright (c) 2006-2020, Intel Corporation"

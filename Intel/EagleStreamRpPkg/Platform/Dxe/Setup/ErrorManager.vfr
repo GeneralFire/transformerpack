@@ -1,0 +1,77 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include "Configuration.h"
+#include "PlatformStrDefs.h"
+#include <Guid/SetupVariable.h>
+#include "Common.hfr"
+
+
+formset 
+  guid  = SYSTEM_CONFIGURATION_GUID,
+  title = STRING_TOKEN(STR_ERROR_MANAGER_TITLE),
+  help = STRING_TOKEN(STR_NULL_STRING),
+  class = ERROR_MANAGER_KEY_ID,
+  subclass = 0,
+  
+  varstore ERROR_MANAGER,
+    key = ERROR_MANAGER_KEY_ID,
+    name = ErrorManager,
+    guid = ERROR_MANAGER_GUID;
+
+  form formid = 1,
+
+    title = STRING_TOKEN(STR_ERROR_MANAGER_TITLE);
+
+    //
+    //  Explicit definition of ErrorCount configured by BIOS at runtime.
+    //  If not explicitly declared vfr compiler will set RESET_REQUIRED flag,
+    //  potentially forcing reboot any time defaults are loaded.
+    //   
+    suppressif TRUE;
+      numeric varid = ERROR_MANAGER.ErrorCount,
+        prompt  = STRING_TOKEN(STR_ERROR_COUNT_PROMPT),
+        help    = STRING_TOKEN(STR_ERROR_COUNT_HELP),
+        flags     = 0,
+        minimum   = 0,
+        maximum   = 65535,
+        step      = 1,
+        default = 0, defaultstore = MyStandardDefault,
+        default = 0, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif;
+
+    suppressif ideqvallist ERROR_MANAGER.ErrorCount == 0xFFFF;
+      goto 1,
+        prompt = STRING_TOKEN(STR_NULL_ERRCNT_STRING),
+        help = STRING_TOKEN(STR_NULL_STRING);
+    endif;
+
+  endform;
+
+endformset;
+

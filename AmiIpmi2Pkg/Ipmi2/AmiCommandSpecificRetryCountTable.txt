@@ -1,0 +1,39 @@
+//***********************************************************************
+//*                                                                     *
+//*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+//*                                                                     *
+//*      All rights reserved. Subject to AMI licensing agreement.       *
+//*                                                                     *
+//***********************************************************************
+
+
+/** @file AmiCommandSpecificRetryCountTable.h
+    Ipmi Command Specific Retry Count Table.
+
+**/
+
+#ifndef __AMI_COMMAND_SPECIFIC_RETRY_COUNT_TABLE_H__
+#define __AMI_COMMAND_SPECIFIC_RETRY_COUNT_TABLE_H__
+
+//---------------------------------------------------------------------------
+
+
+#pragma pack(1)
+typedef struct{
+    UINT8     NetFunction;
+    UINT8     Command;
+  union{
+    UINT32    BtDelay;
+    UINT16    RetryCounter;
+  } Data32;
+} AMI_COMMAND_SPECIFIC_RETRY_COUNT;
+#pragma pack()
+
+#define END_OF_AMI_COMMAND_SPECIFIC_RETRY_COUNT_TABLE {0xFF, 0xFF, 0xFFFFFFFF}
+AMI_COMMAND_SPECIFIC_RETRY_COUNT gCommandSpecificRetryCountTable[] = {
+@elink (COMMAND_SPECIFIC_RETRY_COUNT_TABLE, "@Child", " ", "") 
+END_OF_AMI_COMMAND_SPECIFIC_RETRY_COUNT_TABLE };
+
+//---------------------------------------------------------------------------
+
+#endif  // #ifndef __AMI_COMMAND_SPECIFIC_RETRY_COUNT_TABLE_H__

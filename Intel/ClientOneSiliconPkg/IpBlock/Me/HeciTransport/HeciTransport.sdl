@@ -1,0 +1,100 @@
+TOKEN
+    Name  = "HeciTransport_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling HeciTransport support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "HeciCommonLib"
+    Instance  = "ClientOneSiliconPkg.HeciCommonLib"
+    Arch  = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciCommonLib"
+    Instance  = "ClientOneSiliconPkg.HeciCommonLib"
+    Arch  = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciCommonLib"
+    Instance  = "ClientOneSiliconPkg.HeciCommonLib"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"       
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciCommonLib"
+    File  = "HeciCommonLib/HeciCommonLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+#INFComponent
+#    Name  = "HeciCommonLib"
+#    File  = "HeciCommonLib/HeciCommonLib.inf"
+#    Package  = "ClientOneSiliconPkg"
+#    ModuleTypes  = "DXE_SMM_DRIVER"
+#    Token = "ME_ENABLE" "=" "1"
+#End
+
+LibraryMapping
+    Class  = "HeciTraceLib"
+    Instance  = "ClientOneSiliconPkg.HeciTraceLib"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciTraceLib"
+    Instance  = "ClientOneSiliconPkg.HeciTraceLib"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciTraceLib"
+    Instance  = "ClientOneSiliconPkg.HeciTraceLib"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"    
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciTraceLib"
+    File  = "HeciTraceLib/HeciTraceLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciTransportPei"
+    File  = "Pei\HeciTransportPei.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciTransportDxe"
+    File  = "DxeSmm\HeciTransportDxe.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciTransportSmm"
+    File  = "DxeSmm\HeciTransportSmm.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_SPS_ENABLE" "=" "1"
+End

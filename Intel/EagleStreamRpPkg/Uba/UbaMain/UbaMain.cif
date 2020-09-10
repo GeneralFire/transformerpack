@@ -1,0 +1,13 @@
+<component>
+    name = "UbaMain"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain"
+[parts]
+"EagleStreamRpPkg.Uba.UbaMain.Common"
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP"
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityModular"
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityEVB"
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityXPV"
+"EagleStreamRpPkg.Uba.UbaMain.TypeBigPineKey"
+<endComponent>

@@ -1,0 +1,9 @@
+<component>
+    name = "Me"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Me\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Me"
+[files]
+"MeDxeConfig.h"	
+"MePeiConfig.h"	
+<endComponent>

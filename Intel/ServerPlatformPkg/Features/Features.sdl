@@ -1,0 +1,17 @@
+TOKEN
+	Name  = "Features_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Features support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+    Name  = "PlatformPassword"
+    File  = "PlatformPassword\PlatformPasswordDxe.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Arch = "X64"
+End
+
+

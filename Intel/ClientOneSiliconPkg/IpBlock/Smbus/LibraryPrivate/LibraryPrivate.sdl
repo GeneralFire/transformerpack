@@ -1,0 +1,52 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "SmbusLib"
+    Instance  = "ClientOneSiliconPkg.BaseSmbusLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "BaseSmbusLib"
+    File  = "BaseSmbusLib/BaseSmbusLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "SmbusCommonLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmSmbusCommonLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "PeiDxeSmmSmbusCommonLib"
+    File  = "PeiDxeSmmSmbusCommonLib/PeiDxeSmmSmbusCommonLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+LibraryMapping
+    Class  = "PeiSmbusPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiSmbusPolicyLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+INFComponent
+    Name  = "PeiSmbusPolicyLib"
+    File  = "PeiSmbusPolicyLib/PeiSmbusPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"   
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"           
+End
+

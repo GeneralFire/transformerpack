@@ -1,0 +1,16 @@
+<component>
+    name = "Eagle Stream/Sapphire Rapids - NB Board"
+    category = ModulePart
+    LocalRoot = "AmiCrbPkg\Board\NB\"
+    RefName = "Eagle Stream/Sapphire Rapids - NB Board"
+[files]
+"Nb.sd"	
+"Nb.uni"	
+"NbSetup.c"	
+"Nb.h"	
+"Nb.mak"	
+"NB.sdl"	
+[parts]
+"4S"
+"8S"
+<endComponent>

@@ -1,0 +1,8 @@
+<component>
+    name = "Ieh"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Ieh\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Ieh"
+[files]
+"IehConfig.h"	
+<endComponent>

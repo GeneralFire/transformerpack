@@ -1,0 +1,8 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\HybridGraphics\Include\"
+    RefName = "ClientOneSiliconPkg.IpBlock.HybridGraphics.Include"
+[files]
+"HybridGraphicsInfo.h"	
+<endComponent>

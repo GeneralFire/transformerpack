@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\SystemAgent\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.SystemAgent.IncludePrivate.Library"
+[files]	
+"SaInitLib.h"	
+"SmbiosMemoryLib.h"	
+<endComponent>

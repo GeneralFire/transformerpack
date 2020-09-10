@@ -1,0 +1,567 @@
+<!--
+INTEL CONFIDENTIAL
+Copyright 2017-2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+
+<container>
+    <configuration version="0.5">
+        <group name="FlashSettings" ui_params="{'gui_tab': 'Flash Components'}">
+            <number name="NumberOfSpiComponents" value="0" params="{'value_list':{'1 component':'0','2 components':'1'}}"
+            ui_params="{'description':'If this setting is set to 1 component Flash Component 2 Size will be ignored and
+            register FLCOMP.C1DEN will be overriden with 0xF', 'quick_option': 'true'}" label="Number Of SPI Components"/>
+            <number name="FlashComponent1Size" value="0x4000000" params="{'value_list':
+                {'512 kB':'0x80000', '1 MB':'0x100000', '2 MB':'0x200000', '4 MB':'0x400000',
+                '8 MB':'0x800000', '16 MB':'0x1000000', '32 MB':'0x2000000', '64 MB':'0x4000000'}}"
+                label="Flash Component 1 Size"  ui_params="{'quick_option': 'true'}"/>
+            <number name="FlashComponent2Size" value="0x800000" params="{'value_list':
+                {'512 kB':'0x80000', '1 MB':'0x100000', '2 MB':'0x200000', '4 MB':'0x400000',
+                '8 MB':'0x800000', '16 MB':'0x1000000', '32 MB':'0x2000000', '64 MB':'0x4000000'}}"
+                label="Flash Component 2 Size"  ui_params="{'quick_option': 'true'}"/>
+        </group>
+        <group name="VSCC_list" >
+            <iterable name="vscc" max_entry_count="25" >
+                <entry map_name="Redfort0" label="Redfort0">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0x1F"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x47"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x00"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20152015"/>
+                </entry>
+                <entry map_name="Redfort1" label="Redfort1">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x30"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x16"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20052005"/>
+                </entry>
+                <entry map_name="Redfort2" label="Redfort2">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xBF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x25"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x41"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20092009"/>
+                </entry>
+                <entry map_name="Atmel 26DF321" label="Atmel 26DF321">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0x1F"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x47"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x00"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20152015"/>
+                </entry>
+                <entry map_name="Atmel 26DF0801" label="Atmel 26DF0801">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0x1F"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x45"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x01"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20152015"/>
+                </entry>
+                <entry map_name="Atmel 26DF1601" label="Atmel 26DF1601">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0x1F"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x46"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x00"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20152015"/>
+                </entry>
+                <entry map_name="Macronix MX25L8005" label="Macronix MX25L8005">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xC2"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x20"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x14"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20052005"/>
+                </entry>
+                <entry map_name="Macronix MX25L1605A" label="Macronix MX25L1605A">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xC2"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x20"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x15"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20052005"/>
+                </entry>
+                <entry map_name="Macronix MX25L3205D" label="Macronix MX25L3205D">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xC2"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x20"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x16"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20052005"/>
+                </entry>
+                <entry map_name="Macronix MX25L6405D" label="Macronix MX25L6405D">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xC2"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x20"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x17"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20052005"/>
+                </entry>
+                <entry map_name="Macronix MX25L12805D" label="Macronix MX25L12805D">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xC2"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x20"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x18"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20452045"/>
+                </entry>
+                <entry map_name="Macronix MX25L51237G" label="Macronix MX25L51237G">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xC2"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x20"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x1A"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20452045"/>
+                </entry>
+                <entry map_name="PMC PM25LV080" label="PMC PM25LV080">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0x9D"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x7F"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x7A"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0xD705D705"/>
+                </entry>
+                <entry map_name="SST 25VF080B" label="SST 25VF080B">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xBF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x25"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x8E"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20092009"/>
+                </entry>
+                <entry map_name="SST 25VF016B" label="SST 25VF016B">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xBF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x25"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x41"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20092009"/>
+                </entry>
+                <entry map_name="ST Micro M25PE80" label="ST Micro M25PE80">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0x20"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x80"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x15"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20052005"/>
+                </entry>
+                <entry map_name="Winbond W25X80" label="Winbond W25X80">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x30"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x14"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20052005"/>
+                </entry>
+                <entry map_name="Winbond W25X16" label="Winbond W25X16">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x30"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x16"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20052005"/>
+                </entry>
+                <entry map_name="Winbond W25X64" label="Winbond W25X64">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x30"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x17"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20052005"/>
+                </entry>
+                <entry map_name="Winbond W25Q64" label="Winbond W25Q64">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x40"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x17"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20252025"/>
+                </entry>
+                <entry map_name="Winbond W25Q128" label="Winbond W25Q128">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x40"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x18"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20252025"/>
+                </entry>
+                <entry map_name="Winbond W25Q256" label="Winbond W25Q256">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x40"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x19"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20252025"/>
+                </entry>
+                <entry map_name="Winbond W25Q64FV" label="Winbond W25Q64FV">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x60"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x17"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20252025"/>
+                </entry>
+                <entry map_name="Winbond W25Q128FV" label="Winbond W25Q128FV">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x60"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x18"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20252025"/>
+                </entry>
+                <entry map_name="Winbond W25M512JV" label="Winbond W25M512JV">
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0xEF"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x71"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x19"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x20252025"/>
+                </entry>
+                <default>
+                    <number label="Vendor Id"    name="vendor_id" size="1" value="0x0"/>
+                    <number label="Device Id0"   name="device_id0" size="1" value="0x0"/>
+                    <number label="Device Id1"   name="device_id1" size="1" value="0x00"/>
+                    <number label="reserved"     name="reserved" size="1" value="0x00" ui_params="{'visible': 'false'}"/>
+                    <number label="Device Value" name="device_value" size="4" value="0x0"/>
+                </default>
+            </iterable>
+            </group>
+        <group name="FlashConfiguration">
+            <number name="DualOutFastReadSupport"  value="0"/>
+            <number name="FastReadClockFreq" value="6"/>
+            <number name="FastReadSupport"  value="1"/>
+            <number name="InvalidInstruction0" value="0x0"/>
+            <number name="InvalidInstruction1" value="0x0"/>
+            <number name="InvalidInstruction2" value="0x0"/>
+            <number name="InvalidInstruction3" value="0x0"/>
+            <number name="InvalidInstruction4" value="0x0"/>
+            <number name="InvalidInstruction5" value="0x0"/>
+            <number name="InvalidInstruction6" value="0x0"/>
+            <number name="InvalidInstruction7" value="0x0"/>
+            <number name="ReadIdAndReadStatClkFreq" value="6"/>
+            <number name="WriteEraseClockFreq"  value="6"/>
+        </group>
+        <group name="AccessRights" ui_params="{'gui_tab': 'Master Access Section', 'tree_view': 'true'}">
+            <group name="HostAccessRights" label="Host">
+                <number name="HostCpuWriteAccess" label="Host CPU Write Access" value="0x005A" size="2"/>
+                <number name="HostCpuReadAccess" label="Host CPU Read Access" value="0x00DB" size="2"/>
+            </group>
+            <group name="MeAccessRights" label="ME">
+                <number name="MeWriteAccess" label="ME Write Access" value="0x800C" size="2"/>
+                <number name="MeReadAccess" label="ME Read Access" value="0x802D" size="2"/>
+            </group>
+            <group name="GBEAccessRights" label="GBE">
+                <number name="GbeWriteAccess" label="GBE Write Access" value="0x0008" size="2"/>
+                <number name="GbeReadAccess" label="GBE Read Access" value="0x0008" size="2"/>
+            </group>
+            <group name="DeviceExpansion1AccessRights" label="Device Expansion">
+                <number name="DeviceExpansion1WriteAccess" label="Device Expansion1 Write Access" value="0x0A20" size="2"/>
+                <number name="DeviceExpansion1ReadAccess" label="Device Expansion1 Read Access" value="0x0A20" size="2"/>
+            </group>
+            <group name="BmcAccessRights" label="BMC">
+                <number name="BmcWriteAccess" label="BMC Write Access" value="0x0100" size="2"/>
+                <number name="BmcReadAccess" label="BMC Read Access" value="0x0100" size="2"/>
+            </group>
+        </group>
+        <group name="security_FD0V" ui_params="{'gui_tab': 'Platform Security', 'tree_view': 'true'}">
+            <group name="FD0V" label="Flash Descriptor Verification">
+                <number name="OfflineSigning" label="Offline Signing" value="0" params="{'value_list': {'Disabled': '0', 'Enabled': '1'}}"  ui_params="{'option_type':'combobox'}"/>
+                <rsa_key name="FdSigningKey" label="FD Signing Key" value=""/>
+                <string name="FdHashPath" label="FD Hash Path" value="$PluginDir/fd_hash.bin" ui_params="{'visible': 'false'}" />
+                <file name="FdManifest" label="FD Manifest" size="0x3DC" required="false" value="" ui_params="{'visible': 'false'}"/>
+                <group name="hash_excl_range_entries_list" label="Hash Exclude Range Entries">
+                    <iterable name="hash_excl_range_entries" max_entry_count="8" >
+                        <entry>
+                            <number name="exclude_base" value="0x800" size="2" params="{'value_min':'0', 'value_max':'0xFFF'}" />
+                            <number name="exclude_limit" value="0xC00" size="2" params="{'value_min':'0', 'value_max':'0x1000'}" />
+                        </entry>
+                        <default>
+                            <number name="exclude_base" value="0x0" size="2" params="{'value_min':'0', 'value_max':'0xFFF'}" />
+                            <number name="exclude_limit" value="0x0" size="2" params="{'value_min':'0', 'value_max':'0x1000'}" />
+                        </default>
+                    </iterable>
+                </group>
+            </group>
+        </group>
+        <file name="Straps" calculate="/required_containers/pch_straps.value"/>
+        <file name="PmcStraps" calculate="/required_containers/pmc_straps.value"/>
+        <group name="CSMEStrapsView"  ui_params="{'gui_tab': 'Straps', 'tree_view': 'true'}" >
+            <group name="CSMEStraps" label="CSME Straps">
+                    <group name="IntelMEStrap0_gui_group" label="Intel ME Strap 0">
+                      <bit_register name="IntelMEStrap0" label="Intel ME Strap 0" size="4" value="0x0">
+                        <bit bit_low="0" bit_high="31" name="IntelMEStrap0_reserved_0x0_31_0" label="reserved_0x0_31_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                      </bit_register>
+                    </group>
+                    <group name="IntelMEStrap1_gui_group" label="Intel ME Strap 1">
+                      <bit_register name="IntelMEStrap1" label="Intel ME Strap 1" size="4" value="0xffff">
+                        <bit bit_low="0" bit_high="7" name="IntelMEStrap1_USB2DbCportenable" label="USB2 DbC port enable" ui_params="{'read_only': 'false', 'description':'This setting dedicates USB2 STD-A port for USB2 DbC exclusively. It blocks functional traffic on this port and USB.DbC traffic on all other ports, including USB Type-C ports. Note: These fields do not apply to USB Type-C ports.'}" params="{'value_list':{'USB2 Port 1 DbC enabled':'0x0','USB2 Port 2 DbC enabled':'0x1','USB2 Port 3 DbC enabled':'0x2','USB2 Port 4 DbC enabled':'0x3','USB2 Port 5 DbC enabled':'0x4','USB2 Port 6 DbC enabled':'0x5','USB2 Port 7 DbC enabled':'0x6','USB2 Port 8 DbC enabled':'0x7','USB2 Port 9 DbC enabled':'0x8','USB2 Port 10 DbC enabled':'0x9','USB2 Port 11 DbC enabled':'0xA','USB2 Port 12 DbC enabled':'0xB','USB2 Port 13 DbC enabled':'0xC','USB2 Port 14 DbC enabled':'0xD','No USB2 ports are assigned to DbC':'0xFF'} }" value="0xff" />
+                        <bit bit_low="8" bit_high="15" name="IntelMEStrap1_USB3DbCportenable" label="USB3 DbC port enable" ui_params="{'read_only': 'false', 'description':'This setting determines which USB3 port goes to the target USB2 ports connector for Early DbC debugging.'}" params="{'value_list':{'USB3 Port 1 DbC enabled':'0x0','USB3 Port 2 DbC enabled':'0x1','USB3 Port 3 DbC enabled':'0x2','USB3 Port 4 DbC enabled':'0x3','USB3 Port 5 DbC enabled':'0x4','USB3 Port 6 DbC enabled':'0x5','USB3 Port 7 DbC enabled':'0x6','USB3 Port 8 DbC enabled':'0x7','USB3 Port 9 DbC enabled':'0x8','USB3 Port 10 DbC enabled':'0x9','No USB3 ports are assigned to DbC':'0xFF'} }" value="0xff" />
+                        <bit bit_low="16" bit_high="23" name="IntelMEStrap1_reserved_0x4_23_16" label="reserved_0x4_23_16" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                        <bit bit_low="24" bit_high="31" name="IntelMEStrap1_reserved_0x4_31_24" label="reserved_0x4_31_24" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                      </bit_register>
+                    </group>
+              </group>
+        </group>
+        <file name="OemBinary" label="OEM Section Binary" value="" required="false" ui_params="{'region_option':'descriptor'}"/>
+        <group name="ValhallaGPIO" ui_params="{'visible':'false'}">
+            <number name="VlnFeatureEnabled" value="0x0" size="1" ui_params="{'visible': 'false'}"/>
+            <number name="CSMEGPIOnumberusedforGPIO_CSME_VLN_FAIL_GroupNumber" value="0x1f" size="1" ui_params="{'visible': 'false'}" />
+            <number name="CSMEGPIOnumberusedforGPIO_CSME_VLN_FAIL_PadNumber" value="0x1f" size="1" ui_params="{'visible': 'false'}" />
+            <number name="CSMEGPIOnumberusedforGPIO_ME_TMR_CTRL_GroupNumber" value="0x1f" size="1" ui_params="{'visible': 'false'}" />
+            <number name="CSMEGPIOnumberusedforGPIO_ME_TMR_CTRL_PadNumber" value="0x1f" size="1" ui_params="{'visible': 'false'}" />
+        </group>    
+    </configuration>
+    <layout>
+        <fdbar>
+            <number name="pad0" size="4" value="0xFFFFFFFF"/>
+            <number name="pad1" size="4" value="0xFFFFFFFF"/>
+            <number name="pad2" size="4" value="0xFFFFFFFF"/>
+            <number name="pad3" size="4" value="0xFFFFFFFF"/>
+            <number name="flvalsig" map_name="FLVALSIG : 0x0FF0A55A" size="4" value="0x0FF0A55A"/>
+            <bit_field name="flmap0" map_name="FLMAP0 - Flash Map 0 Register" size="4">
+                <bit name="DescFlashComponentBaseAddress" bit_high="7" bit_low="0" value="0x03"/>
+                <bit name="DescNumberOfComponents" bit_high="9" bit_low="8" calculate="/configuration/NumberOfSpiComponents.value"/>
+                <bit name="DescTouchOnSharedFlash" bit_high="10" bit_low="10" value="0"/>
+                <bit name="DescTouchOnDedicatedSpiBus" bit_high="11" bit_low="11" value="0"/>
+                <bit name="DescFingerprintOnSharedFlashSpiBus" bit_high="12" bit_low="12" value="0"/>
+                <bit name="reserved" bit_high="15" bit_low="13" value="0"/>
+                <bit name="DescFlashRegionBaseAddress" bit_high="23" bit_low="16" value="0x04"/>
+                <bit name="DescReserved" bit_high="31" bit_low="24" value="0"/>
+            </bit_field>
+            <bit_field name="flmap1" map_name="FLMAP1 - Flash Map 1 Register" size="4">
+                <bit name="DescFlashMasterBaseAddress" bit_high="7" bit_low="0" value="0x08"/>
+                <bit name="DescNumberOfMasters" bit_high="10" bit_low="8" value="0x06"/>
+                <bit name="reserved" bit_high="15" bit_low="11" value="0x00"/>
+                <bit name="DescFlashPchStrapBaseAddress" bit_high="23" bit_low="16" value="0x10"/>
+                <bit name="DescPchStrapLength" bit_high="31" bit_low="24" value="0x50"/>
+            </bit_field>
+            <bit_field name="flmap2" map_name="FLMAP2 - Flash Map 2 Register" size="4">
+                <bit name="DescFlashCpuStrapBaseAddress" bit_high="7" bit_low="0" value="0x30"/>
+                <bit name="DescCpuStrapLength" bit_high="15" bit_low="8" value="0x2"/>
+                <bit name="reserved" bit_high="23" bit_low="16" value="0"/>
+                <bit name="DescRegInitLength" bit_high="31" bit_low="24" value="0"/>
+            </bit_field>
+            <number name="flmap3" size="4" value="0xFFFFFFFF"/>
+            <number name="flmap4" size="4" value="0xFFFFFFFF"/>
+        </fdbar>
+        <fcba align="0x30" map_name="FCBA - Flash Component Registers">
+            <bit_field name="flcomp" map_name="FLCOMP - Flash Components Record" size="4">
+                <bit name="DescComponent0Density"  bit_high="3" bit_low="0"  calculate="
+                     /configuration/FlashComponent1Size.value == 0x80000 ? 0 :
+                     /configuration/FlashComponent1Size.value == 0x100000 ? 1 :
+                     /configuration/FlashComponent1Size.value == 0x200000 ? 2 :
+                     /configuration/FlashComponent1Size.value == 0x400000 ? 3 :
+                     /configuration/FlashComponent1Size.value == 0x800000 ? 4 :
+                     /configuration/FlashComponent1Size.value == 0x1000000 ? 5 :
+                     /configuration/FlashComponent1Size.value == 0x2000000 ? 6 :
+                     /configuration/FlashComponent1Size.value == 0x4000000 ? 7 : 0xF"
+                />
+                <bit name="DescComponent1Density"  bit_high="7" bit_low="4"  calculate="
+                     /configuration/NumberOfSpiComponents.value == 0 ? 0xF :
+                     /configuration/FlashComponent2Size.value == 0x80000 ? 0 :
+                     /configuration/FlashComponent2Size.value == 0x100000 ? 1 :
+                     /configuration/FlashComponent2Size.value == 0x200000 ? 2 :
+                     /configuration/FlashComponent2Size.value == 0x400000 ? 3 :
+                     /configuration/FlashComponent2Size.value == 0x800000 ? 4 :
+                     /configuration/FlashComponent2Size.value == 0x1000000 ? 5 :
+                     /configuration/FlashComponent2Size.value == 0x2000000 ? 6 :
+                     /configuration/FlashComponent2Size.value == 0x4000000 ? 7 : 0xF"
+                />
+                <bit name="reserved_flcomp_8"      bit_high="16" bit_low="8" value="0x0"/>
+                <bit name="DescReadClockFrequency" bit_high="19" bit_low="17" value="0x0"/>
+                <bit name="DescFastReadSupport"  bit_high="20" bit_low="20"  calculate="/configuration/FastReadSupport.value"/>
+                <bit name="DescFastReadClockFrequency" bit_high="23" bit_low="21"  calculate="/configuration/FastReadClockFreq.value"/>
+                <bit name="DescWriteAndEraseClockFrequency"  bit_high="26" bit_low="24" value="6" calculate="/configuration/WriteEraseClockFreq.value"/>
+                <bit name="DescReadIdAndReadStatusClockFrequency"  bit_high="29" bit_low="27" calculate="/configuration/ReadIdAndReadStatClkFreq.value"/>
+                <bit name="DescDualOutputFastReadSupport" bit_high="30" bit_low="30" calculate="/configuration/DualOutFastReadSupport.value"/>
+                <bit name="reserved_flcomp_1"      bit_high="31" bit_low="31" value="0"/>
+            </bit_field>
+            <bit_field name="FLILL" map_name="FLILL - Flash Invalid Instructions Record" size="4">
+                <bit name="DescInvalidInstruction3"   bit_high="31" bit_low="24" calculate="/configuration/InvalidInstruction3.value"/>
+                <bit name="DescInvalidInstruction2"   bit_high="23" bit_low="16" calculate="/configuration/InvalidInstruction2.value"/>
+                <bit name="DescInvalidInstruction1"   bit_high="15" bit_low="8" calculate="/configuration/InvalidInstruction1.value"/>
+                <bit name="DescInvalidInstruction0"   bit_high="7"  bit_low="0" calculate="/configuration/InvalidInstruction0.value"/>
+            </bit_field>
+            <bit_field name="FLILL1" map_name="FLILL - Flash Invalid Instructions Record 1" size="4">
+                <bit name="DescInvalidInstruction7"    bit_high="31" bit_low="24" calculate="/configuration/InvalidInstruction7.value"/>
+                <bit name="DescInvalidInstruction6"    bit_high="23" bit_low="16" calculate="/configuration/InvalidInstruction6.value"/>
+                <bit name="DescInvalidInstruction5"    bit_high="15" bit_low="8" calculate="/configuration/InvalidInstruction5.value"/>
+                <bit name="DescInvalidInstruction4"    bit_high="7"  bit_low="0" calculate="/configuration/InvalidInstruction4.value"/>
+            </bit_field>
+        </fcba>
+        <number name="DescReserved" size="4" value="0xFFFFFFFF"/>
+        <frba> <!-- offset 0x40-->
+            <bit_field name="flreg0" map_name="FLREG0 - Flash Region 0 (Flash Descriptor) Register" offset="0x40" size="4" region_name="descriptor">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  value="0" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   value="0"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg1" map_name="FLREG1 - Flash Region 1 (BIOS) Register" offset="0x44" size="4" region_name="bios">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/bios/enabled.value ? /image_data/bios/offset.value + /image_data/bios/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/bios/enabled.value ? /image_data/bios/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg2" map_name="FLREG2 - Flash Region 2 (Intel (R) ME) Register" offset="0x48" size="4" region_name="me">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/me/enabled.value ? /image_data/me/offset.value + /image_data/me/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/me/enabled.value ? /image_data/me/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg3" map_name="FLREG3 - Flash Region 3 (GBE) Register" offset="0x4C" size="4" region_name="gbe">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/gbe/enabled.value ? /image_data/gbe/offset.value + /image_data/gbe/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/gbe/enabled.value ? /image_data/gbe/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg4" map_name="FLREG4 - Flash Region 4 (Platform Data) Register" offset="0x50" size="4" region_name="pdr">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/pdr/enabled.value ? /image_data/pdr/offset.value + /image_data/pdr/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/pdr/enabled.value ? /image_data/pdr/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg5" map_name="FLREG5 - Flash Region 5 (DER #1) Register" offset="0x54" size="4" region_name="der1">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/der1/enabled.value ? /image_data/der1/offset.value + /image_data/der1/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/der1/enabled.value ? /image_data/der1/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg6" map_name="FLREG6 - Flash Region 6 (Secondary Bios) Register" offset="0x58" size="4" region_name="sec_bios">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/sec_bios/enabled.value ? /image_data/sec_bios/offset.value + /image_data/sec_bios/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/sec_bios/enabled.value ? /image_data/sec_bios/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg7" offset="0x5C" size="4">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  value="0" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   value="0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg8" map_name="FLREG8 - Flash Region 8 (Baseboard Management Controller) Register" offset="0x60" size="4" region_name="bmc">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/bmc/enabled.value ? /image_data/bmc/offset.value + /image_data/bmc/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/bmc/enabled.value ? /image_data/bmc/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg9" map_name="FLREG9 - Flash Region 9 (DER #2) Register" offset="0x64" size="4" region_name="der2">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/der2/enabled.value ? /image_data/der2/offset.value + /image_data/der2/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/der2/enabled.value ? /image_data/der2/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg10" offset="0x68" size="4">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  value="0" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   value="0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg11" offset="0x6C" size="4">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  value="0" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   value="0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg12" offset="0x70" size="4">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  value="0" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   value="0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg13" map_name="FLREG13 - Flash Region 13 (Spare 1) Register" offset="0x74" size="4" region_name="spare1">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/spare1/enabled.value ? /image_data/spare1/offset.value + /image_data/spare1/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/spare1/enabled.value ? /image_data/spare1/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg14" map_name="FLREG14 - Flash Region 14 (PFR) Register" offset="0x78" size="4" region_name="pfr">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/pfr/enabled.value ? /image_data/pfr/offset.value + /image_data/pfr/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/pfr/enabled.value ? /image_data/pfr/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+            <bit_field name="flreg15" map_name="FLREG15 - Flash Region 15 (PTT) Register" offset="0x7C" size="4" region_name="ptt">
+                <bit name="reserved"              value="0"  bit_high="31" bit_low="31" />
+                <bit name="DescFlashRegionLimit"  calculate="/image_data/ptt/enabled.value ? /image_data/ptt/offset.value + /image_data/ptt/size.value - 1 >> 0xC &amp; 0x7FFF : 0x0000" bit_high="30" bit_low="16" />
+                <bit name="reserved1"             value="0"  bit_high="15" bit_low="15" />
+                <bit name="DescFlashRegionBase"   calculate="/image_data/ptt/enabled.value ? /image_data/ptt/offset.value >> 0xC &amp; 0x7FFF : 0x7FFF"   bit_high="14" bit_low="0"  />
+            </bit_field>
+        </frba>
+        <fmba align="0x80">
+            <bit_field name="FLMSTR1" map_name="FLMSTR1 - Flash Master 1 (Host CPU/ BIOS)" size="4" >
+                <bit name="DescMasterRegionWriteAccess1"        bit_high="31" bit_low="20" calculate="/configuration/HostCpuWriteAccess.value &amp; 0xFFF"/>
+                <bit name="DescMasterRegionReadAccess1"         bit_high="19" bit_low="8"  calculate="/configuration/HostCpuReadAccess.value &amp; 0xfFF"/>
+                <bit name="DescExtendedRegionWriteAccess1"    bit_high="7" bit_low="4"   calculate="/configuration/HostCpuWriteAccess.value >> 12 &amp; 0xF"/>
+                <bit name="DescExtendedRegionReadAccess1"     bit_high="3" bit_low="0"   calculate="/configuration/HostCpuReadAccess.value >> 12 &amp; 0xF"/>
+            </bit_field>
+            <bit_field name="FLMSTR2" map_name="FLMSTR2 - Flash Master 2 (Intel (R) ME)" size="4" >
+                <bit name="DescMasterRegionWriteAccess2"            bit_high="31" bit_low="20" calculate="/configuration/MeWriteAccess.value &amp; 0xFFF"/>
+                <bit name="DescMasterRegionReadAccess2"             bit_high="19" bit_low="8"  calculate="/configuration/MeReadAccess.value &amp; 0xFFF"/>
+                <bit name="DescExtendedRegionWriteAccess2"        bit_high="7" bit_low="4"   calculate="/configuration/MeWriteAccess.value >> 12 &amp; 0xF"/>
+                <bit name="DescExtendedRegionReadAccess2"         bit_high="3" bit_low="0"   calculate="/configuration/MeReadAccess.value >> 12 &amp; 0xF"/>
+            </bit_field>
+            <bit_field name="FLMSTR3" map_name="FLMSTR3 - Flash Master 3 (GbE)" size="4" >
+                <bit name="DescMasterRegionWriteAccess3"            bit_high="31" bit_low="20" calculate="/configuration/GbeWriteAccess.value &amp; 0xFFF"/>
+                <bit name="DescMasterRegionReadAccess3"             bit_high="19" bit_low="8"  calculate="/configuration/GbeReadAccess.value &amp; 0xFFF"/>
+                <bit name="DescExtendedRegionWriteAccess3"        bit_high="7" bit_low="4"   calculate="/configuration/GbeWriteAccess.value >> 12 &amp; 0xF"/>
+                <bit name="DescExtendedRegionReadAccess3"         bit_high="3" bit_low="0"   calculate="/configuration/GbeReadAccess.value >> 12 &amp; 0xF"/>
+            </bit_field>
+            <bit_field name="FLMSTR4" map_name="FLMSTR4 - Flash Master 4 (Device Expansion 1)" size="4" >
+                <bit name="DescMasterRegionWriteAccess4"            bit_high="31" bit_low="20" calculate="/configuration/DeviceExpansion1WriteAccess.value &amp; 0xFFF"/>
+                <bit name="DescMasterRegionReadAccess4"             bit_high="19" bit_low="8"  calculate="/configuration/DeviceExpansion1ReadAccess.value &amp; 0xFFF"/>
+                <bit name="DescExtendedRegionWriteAccess4"        bit_high="7" bit_low="4"   calculate="/configuration/DeviceExpansion1WriteAccess.value >> 12 &amp; 0xF"/>
+                <bit name="DescExtendedRegionReadAccess4"         bit_high="3" bit_low="0"   calculate="/configuration/DeviceExpansion1ReadAccess.value >> 12 &amp; 0xF"/>
+            </bit_field>
+            <bit_field name="FLMSTR5" map_name="FLMSTR5 - Flash Master 5 (BMC)" size="4" >
+                <bit name="DescMasterRegionWriteAccess5"            bit_high="31" bit_low="20" calculate="/configuration/BmcWriteAccess.value &amp; 0xFFF"/>
+                <bit name="DescMasterRegionReadAccess5"             bit_high="19" bit_low="8"  calculate="/configuration/BmcReadAccess.value &amp; 0xFFF"/>
+                <bit name="DescExtendedRegionWriteAccess5"        bit_high="7" bit_low="4"   calculate="/configuration/BmcWriteAccess.value >> 12 &amp; 0xF"/>
+                <bit name="DescExtendedRegionReadAccess5"         bit_high="3" bit_low="0"   calculate="/configuration/BmcReadAccess.value >> 12 &amp; 0xF"/>
+            </bit_field>
+            <number name="reserved" size="4" value="0x00000000"/>
+            <number name="reserved" size="4" value="0xFFFFFFFF"/>
+        </fmba>
+        <fpsba_and_fmsba align="0x100" map_name="Pch Straps" calculate="/configuration/Straps.data"/>
+        <bit_field name="valhallaGPIO" map_name="Valhalla GPIO" size="4" offset="0x440 + parent/fdbar/flmap2/DescRegInitLength.value * 8">
+            <bit name="VlnFeatureEnabled" bit_high="31" bit_low="31" calculate="/configuration/VlnFeatureEnabled.value"/>
+            <bit name="Reserved1" bit_high="30" bit_low="30" value="0x0"/>
+            <bit name="Reserved2" bit_high="29" bit_low="20" value="0x3ff"/>
+            <bit name="GPIO_CSME_VLN_FAIL_GroupNumber" bit_high="14" bit_low="10" calculate="/configuration/CSMEGPIOnumberusedforGPIO_CSME_VLN_FAIL_GroupNumber.value"/>
+            <bit name="GPIO_CSME_VLN_FAIL_PadNumber" bit_high="19" bit_low="15" calculate="/configuration/CSMEGPIOnumberusedforGPIO_CSME_VLN_FAIL_PadNumber.value"/>
+            <bit name="GPIO_ME_TMR_CTRL_GroupNumber" bit_high="4" bit_low="0" calculate="/configuration/CSMEGPIOnumberusedforGPIO_ME_TMR_CTRL_GroupNumber.value"/>
+            <bit name="GPIO_ME_TMR_CTRL_PadNumber" bit_high="9" bit_low="5" calculate="/configuration/CSMEGPIOnumberusedforGPIO_ME_TMR_CTRL_PadNumber.value"/>
+        </bit_field>
+        <FD0V_manifest offset="0x800" enabled="/configuration/OfflineSigning.value == 1" calculate="/configuration/FdManifest.data" />
+        <mip offset="0xc00">
+            <mip_descriptor >
+              <number name="NumberOfEntries" size="2" calculate="parent/parent/mip_table.child_count"/>
+              <number name="SizeOfMip" size="2" calculate="parent/parent.size"/>
+              <number name="BlockType0" size="2" value="1"/>
+              <number name="BlockOffset0" size="2" calculate="parent/parent/mip_table/block0.offset - parent.offset"/>
+              <number name="BlockLength0" size="2" calculate="parent/parent/mip_table/block0.size"/>
+              <number name="BlockReserved0" size="2" value="0"/>
+              <number name="BlockType1" size="2" value="0"/>
+              <number name="BlockOffset1" size="2" calculate="parent/parent/mip_table/block1.offset - parent.offset"/>
+              <number name="BlockLength1" size="2" calculate="parent/parent/mip_table/block1.size"/>
+              <number name="BlockReserved1" size="2" value="0"/>
+            </mip_descriptor>
+            <mip_table map_name="Pmc Straps and Cpu Straps">
+                <block0  calculate="/configuration/PmcStraps.data"/>
+                <block1>
+                    <number name="IntelMEStrap0" size="4" calculate="/configuration/IntelMEStrap0.value"/>
+                    <number name="IntelMEStrap1" size="4" calculate="/configuration/IntelMEStrap1.value"/>
+                </block1>
+            </mip_table>
+        </mip>
+        <hashed_data_wrapper>
+            <vtbax name="vtbax" map_name="VSCC Table" align="0xDF0">
+                <table name="vscc" count="/configuration/vscc.size">
+                    <vscc_entry map_name="/configuration/vscc/entry{index}.map_name">
+                        <number name="vendor_id" size="1"    calculate="/configuration/vscc/entry{index}/vendor_id.value"/>
+                        <number name="device_id0" size="1"   calculate="/configuration/vscc/entry{index}/device_id0.value"/>
+                        <number name="device_id1" size="1"   calculate="/configuration/vscc/entry{index}/device_id1.value"/>
+                        <number name="reserved" size="1"     calculate="/configuration/vscc/entry{index}/reserved.value"/>
+                        <number name="device_value" size="4" calculate="/configuration/vscc/entry{index}/device_value.value"/>
+                    </vscc_entry>
+                </table>
+                <number name="VTBA" align="parent.offset + 0x10C" size="1" value="0xDF"/>
+                <number name="VTL" size="1" calculate="parent/vscc.size / 4"/> <!-- number of DWORDs in VSCC Table -->
+                <number name="PmcStrapLength" size="1" value="0xFF"/>
+                <number name="PmcStrapStart" size="1" value="0xC0"/>
+            </vtbax>
+            <byte_array name="oem" map_name="OEM Data" align="0xF00" size="0x100" value=""/>
+            <function_update_value name="update_oem_data" enabled="/configuration/OemBinary.size > 0">
+                <node calculate="parent/oem"/>
+                <new_value calculate="/configuration/OemBinary.data"/>
+            </function_update_value>
+            <byte_array name="padding" align="0x1000" size="0" value=""/>
+        </hashed_data_wrapper>
+    </layout>
+</container>

@@ -1,0 +1,11 @@
+<component>
+	name = "Intel Emmitsburg SB Board"
+	category = ModulePart
+	LocalRoot = "AmiCrbPkg\Board\SB\"
+	RefName = "Intel-Emmitsburg SB Board"
+[files]
+"SB.sdl"	
+"SB.mak"	
+"SB.h"	
+"BusOverrideGuidsforUefiRaid.txt"
+<endComponent>

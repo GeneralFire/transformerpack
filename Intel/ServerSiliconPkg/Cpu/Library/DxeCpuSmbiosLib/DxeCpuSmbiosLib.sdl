@@ -1,0 +1,21 @@
+TOKEN
+	Name  = "DxeCpuSmbiosLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling DxeCpuSmbiosLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "DxeCpuSmbiosLib"
+	File  = "DxeCpuSmbiosLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+	Class  = "CpuSmbiosLib"
+	Instance  = "ServerSiliconPkg.DxeCpuSmbiosLib"
+	Arch = "X64"
+End
+

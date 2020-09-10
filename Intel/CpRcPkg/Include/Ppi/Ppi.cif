@@ -1,0 +1,20 @@
+<component>
+	name = "Ppi"
+	category = ModulePart
+	LocalRoot = "Intel\CpRcPkg\Include\Ppi\"
+	RefName = "CpRcPkg.Include.Ppi"
+[files]
+"SiliconRegAccess.h"	
+"MrcHooksServicesPpi.h"	
+"MrcHooksChipServicesPpi.h"	
+"SsaBiosServicesPpi.h"
+"SsaCommonConfig.h"
+"SsaMemoryClientConfig.h"
+"SsaMemoryConfig.h"
+"SsaMemoryDdrtConfig.h"
+"SsaMemoryHbmConfig.h"
+"SsaMemoryServerConfig.h"
+"SsaResultsConfig.h"
+"MemoryPolicyPpi.h"
+"UpiPlatformHooksPpi.h"
+<endComponent>

@@ -1,0 +1,15 @@
+TOKEN
+    Name  = "Hsio_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Hsio support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "Hsio"
+    TokenType = Expression
+    TargetDSC = Yes
+End
+

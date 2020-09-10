@@ -1,0 +1,46 @@
+## @file
+# Instance of PCI Segment Library based on USRA Library.
+#
+# PCI Segment Library that layers on top of the USRA Library which can
+#  support multiple segment PCI configuration access.
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright (c) 2017 - 2018, Intel Corporation. All rights reserved.<BR>
+#
+#  This program and the accompanying materials
+#  are licensed and made available under the terms and conditions of the BSD License
+#  which accompanies this distribution. The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php.
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PciSegmentLib
+  MODULE_UNI_FILE                = PciSegmentLib.uni
+  FILE_GUID                      = 639e8016-bf62-4d19-9095-97a105a164ce
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PciSegmentLib
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PciSegmentLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CpRcPkg/CpRcPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  UsraLib

@@ -1,0 +1,32 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "BiosGuardLib"
+    Instance  = "ClientOneSiliconPkg.PeiBiosGuardLib"
+End
+
+INFComponent
+    Name  = "PeiBiosGuardLib"
+    File  = "PeiBiosGuardLib/PeiBiosGuardLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "BiosGuardLib"
+    Instance  = "ClientOneSiliconPkg.PeiBiosGuardLibNull"
+End
+
+INFComponent
+    Name  = "PeiBiosGuardLibNull"
+    File  = "PeiBiosGuardLibNull/PeiBiosGuardLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+

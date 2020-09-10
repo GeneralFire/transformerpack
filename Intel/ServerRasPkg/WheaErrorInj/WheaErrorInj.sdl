@@ -1,0 +1,30 @@
+TOKEN
+	Name  = "WheaErrorInj_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling WheaErrorInj support in the project"
+	TokenType = Boolean
+	Master = Yes
+	Token = "WHEA_SUPPORT" "=" "1" 
+End
+
+TOKEN
+	Name  = "WheaErrorInj2_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable WheaErrorInj2 support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "WheaErrorInj2"
+	File  = "WheaErrorInj.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Token = "WheaErrorInj2_INF_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "RankSpareAddressTranslationLib"
+    Instance  = "ServerSiliconPkg.RankSpareAddressTranslationLib"
+    Override  = "ServerRasPkg.WheaErrorInj2"
+    Token = "WheaErrorInj2_INF_SUPPORT" "=" "1"
+End

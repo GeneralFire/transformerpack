@@ -1,0 +1,12 @@
+<component>
+	name = "Library"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\Heci\Library\"
+	RefName = "ServerSiliconPkg.Me.MeSps6.Heci.Library"
+[INF]
+"DxeMeLib\ServerDxeMeLib.inf"
+"MeTypeGetLib\MeTypeGetHeciPeiLib.inf"
+[files]
+"HeciLibrary.sdl"
+
+<endComponent>

@@ -1,0 +1,45 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "IpuInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiIpuInitLibNull"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+INFComponent
+    Name  = "PeiIpuInitLibNull"
+    File  = "PeiIpuInitPrivateLibNull/PeiIpuInitLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"  
+    Token = "ME_ENABLE" "=" "1"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"              
+End
+
+
+LibraryMapping
+    Class  = "PeiIpuPolicyPrivateLib"
+    Instance  = "ClientOneSiliconPkg.PeiIpuPolicyPrivateLibNull"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"         
+End
+
+INFComponent
+#Name changed to map the correct instance
+    Name  = "PeiIpuPolicyPrivateLibNull"
+#Name changed to map the correct instance    
+    File  = "PeiIpuPolicyPrivateLibNull/PeiIpuPolicyPrivateLibNull.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM" 
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"                  
+End
+

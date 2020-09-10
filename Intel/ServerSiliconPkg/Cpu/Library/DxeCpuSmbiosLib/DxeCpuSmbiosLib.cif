@@ -1,0 +1,11 @@
+<component>
+	name = "DxeCpuSmbiosLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\Library\DxeCpuSmbiosLib\"
+	RefName = "ServerSiliconPkg.Cpu.Library.DxeCpuSmbiosLib"
+[INF]
+"DxeCpuSmbiosLib.inf"
+[files]
+"DxeCpuSmbiosLib.sdl"	
+"CpuSmbios.h"
+<endComponent>

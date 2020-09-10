@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\P2sb\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.P2sb.Library"
+[INF]
+"PeiDxeSmmPchPcrLib\PeiDxeSmmPchPcrLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

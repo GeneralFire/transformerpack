@@ -1,0 +1,60 @@
+TOKEN
+    Name  = "Dxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Dxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "IioCfgUpdateDxeEVB"
+    File  = "IioCfgUpdateDxe/IioCfgUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+
+INFComponent
+    Name  = "OpromUpdateDxeEVB"
+    File  = "OpromUpdateDxe/OpromUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+
+INFComponent
+    Name  = "SetupConfigUpdateDxeEVB"
+    File  = "SetupCfgUpdateDxe/SetupCfgUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "SlotDataUpdateDxeEVB"
+    File  = "SlotDataUpdateDxe/SlotDataUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "SmbiosDataUpdateDxeEVB"
+    File  = "SmbiosDataUpdateDxe/SmbiosDataUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "StaticSkuDataDxeEVB"
+    File  = "StaticSkuDataDxe/StaticSkuDataDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+
+INFComponent
+    Name  = "UsbOcUpdateDxeEVB"
+    File  = "UsbOcUpdateDxe/UsbOcUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+

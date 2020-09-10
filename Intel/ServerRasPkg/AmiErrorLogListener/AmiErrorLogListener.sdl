@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "AmiErrorLogListener_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling AmiErrorLogListener support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "AmiErrorLogListener"
+    File  = "AmiErrorLogListener.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+TOKEN
+    Name  = "ENABLE_ERROR_INJECTOR_SUPPORT"
+    Value  = "1"
+    Help  = "To support software methods(Like ITP C-scripts) to inject Memory Errors"
+    TokenType = Boolean
+    TargetH = Yes
+End

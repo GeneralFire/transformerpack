@@ -1,0 +1,11 @@
+<component>
+	name = "Tools"
+	category = ModulePart
+	LocalRoot = "IntelFsp2Pkg\Tools\"
+	RefName = "IntelFsp2Pkg.Tools"
+[files]
+"Tools.sdl"
+"GenCfgOpt.py"	
+"PatchFv.py"	
+"SplitFspBin.py"
+<endComponent>

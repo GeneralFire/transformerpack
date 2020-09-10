@@ -1,0 +1,22 @@
+TOKEN
+	Name  = "CsrAddressTranslationLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling CsrAddressTranslationLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "CsrAddressTranslationLib"
+	File  = "Spr\CsrAddressTranslationLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "CsrAddressTranslationLib"
+    Instance  = "ServerSiliconPkg.CsrAddressTranslationLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+

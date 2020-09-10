@@ -1,0 +1,14 @@
+<component>
+    name = "Me"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Me\"
+    RefName = "ServerPlatformPkg.Features.Me"
+[files]
+"MePkg.sdl"
+[INF]
+"Client\MeSmbiosUpdateConfigDxe\MeSmbiosUpdateConfigDxe.inf"	
+[parts]
+"ServerPlatformPkg.Features.Me.MeSps"
+"ServerPlatformPkg.Features.Me.MeSps6"
+"ServerPlatformPkg.Features.Me.Client.Amt"
+<endComponent>

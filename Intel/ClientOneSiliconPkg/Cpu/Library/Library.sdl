@@ -1,0 +1,36 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "BootGuardLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmBootGuardLib"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmBootGuardLib"
+    File  = "PeiDxeSmmBootGuardLib\PeiDxeSmmBootGuardLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "TxtLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeTxtLib"
+	Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"  	
+End
+
+INFComponent
+    Name  = "PeiDxeTxtLib"
+    File  = "PeiDxeTxtLib/PeiDxeTxtLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "BASE"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+

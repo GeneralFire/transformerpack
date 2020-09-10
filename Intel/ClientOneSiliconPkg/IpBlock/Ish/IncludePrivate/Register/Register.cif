@@ -1,0 +1,9 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Ish\IncludePrivate\Register\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Ish.IncludePrivate.Register"
+[files]
+"IshRegsVer1.h"	
+"IshRegsVer2.h"	
+<endComponent>

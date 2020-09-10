@@ -1,0 +1,9 @@
+<component>
+    name = "Dxe"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\Common\Dxe\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.Common.Dxe"
+[parts]
+"EagleStreamRpPkg.Uba.UbaMain.Common.Dxe.SystemBoardInfoDxe"
+"EagleStreamRpPkg.Uba.UbaMain.Common.Dxe.SystemConfigUpdateDxe"
+<endComponent>

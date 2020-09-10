@@ -1,0 +1,8 @@
+<component>
+    name = "Ws"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\Ws\"
+    RefName = "ServerSiliconPkg.Me.MeSps6.Ws"
+[files]
+"Ws.sdl"	
+<endComponent>

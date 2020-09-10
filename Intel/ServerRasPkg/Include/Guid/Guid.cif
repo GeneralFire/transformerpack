@@ -1,0 +1,11 @@
+<component>
+	name = "Guid"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Include\Guid\"
+	RefName = "ServerRasPkg.Include.Guid"
+[files]
+"CrashLog.h"
+"ErrorReportLibListener.h"	
+"RasGlobalDataVariable.h"	
+"RasNonStandardErrorSection.h"
+<endComponent>

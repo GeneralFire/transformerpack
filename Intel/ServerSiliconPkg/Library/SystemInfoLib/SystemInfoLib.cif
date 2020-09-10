@@ -1,0 +1,13 @@
+<component>
+    name = "SystemInfoLib"
+    category = MODULEPART
+    LocalRoot = "Intel\ServerSiliconPkg\Library\SystemInfoLib\"
+    RefName = "ServerSiliconPkg.Library.SystemInfoLib"
+[INF]
+"SystemInfoLibDxe.inf"
+"SystemInfoLibDxeRuntime.inf"
+"SystemInfoLibPei.inf"
+"SystemInfoLibSmm.inf"
+[files]
+"SystemInfoLib.sdl"	
+<endComponent>

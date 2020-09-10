@@ -1,0 +1,2077 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2019 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include "SetupPreProcTools.hfr"
+#include "DebugSetup.hfr"
+#include "TestMenu.hfr"
+
+
+#define PLATFORM_POR        0
+#define FORCE_ENABLE        1
+#define FORCE_DISABLE       2
+
+    // Define forms
+    form formid = AUTO_ID(SB_FORM_ID),
+    title       = STRING_TOKEN(STR_SB_FORM);
+
+    SUBTITLE(STRING_TOKEN(STR_SB_FORM))
+    SEPARATOR
+#ifdef PCH_PO_FLAG
+    goto PCH_PWRON_OPTIONS_FORM_ID,
+         prompt = STRING_TOKEN(STR_PCH_PWRON_OPTIONS_FORM_TITLE),
+         help = STRING_TOKEN(STR_PCH_PWRON_OPTIONS_FORM_HELP);
+    SEPARATOR
+#endif // PCH_PO_FLAG
+
+    goto PCIE_DEVICE_OPTIONS_FORM_ID,
+         prompt = STRING_TOKEN(STR_PCIE_OPTIONS_FORM_TITLE),
+         help = STRING_TOKEN(STR_PCIE_OPTIONS_FORM_HELP);
+
+    suppressif TRUE;
+      // Set FiaMuxSupported default value
+      numeric varid   = PCH_SETUP.FiaMuxSupported,
+        prompt  = STRING_TOKEN(STR_FIA_CONFIG_TITLE),
+        help    = STRING_TOKEN(STR_NULL_STRING),
+        flags   = DISPLAY_UINT_HEX | RESET_REQUIRED,
+        minimum = 0,
+        maximum = 0x1,
+        step    = 1,
+        default = 0, defaultstore = MyStandardDefault,
+        default = 0, defaultstore = MyManufactureDefault,
+      endnumeric;
+    endif; // suppressif TRUE
+
+    grayoutif ideqval PCH_SETUP.FiaMuxSupported == 0;
+      goto FIAMUX_CONFIG_FORM_ID,
+        prompt = STRING_TOKEN(STR_FIA_CONFIG_TITLE),
+        help   = STRING_TOKEN(STR_FIA_CONFIG_TITLE_HELP);
+    endif;
+
+    goto SATA_DEVICE_OPTIONS_FORM_ID,
+         prompt = STRING_TOKEN(STR_SATA_DEVICE_OPTIONS_FORM_TITLE),
+         help = STRING_TOKEN(STR_SATA_DEVICE_OPTIONS_FORM_HELP);
+
+    goto USB_OPTIONS_FORM_ID,
+         prompt = STRING_TOKEN(STR_USB_OPTIONS_FORM_TITLE),
+         help = STRING_TOKEN(STR_USB_OPTIONS_FORM_HELP);
+
+    goto PCH_HDAUDIO_OPTIONS_FORM_ID,
+         prompt = STRING_TOKEN(STR_HDAUDIO_OPTIONS_FORM_TITLE),
+         help = STRING_TOKEN(STR_HDAUDIO_OPTIONS_FORM_HELP);
+
+    goto DEBUG_FORM_ID,
+         prompt = STRING_TOKEN(STR_DEBUG_FORM),
+         help = STRING_TOKEN(STR_DEBUG_FORM_HELP);
+
+    goto TEST_MENU_FORM_ID,
+         prompt = STRING_TOKEN(STR_TEST_MENU_FORM_SET_TITLE),
+         help = STRING_TOKEN(STR_TEST_MENU_FORM_SET_HELP);
+
+    goto SECURITY_OPTIONS_FORM_ID,
+         prompt = STRING_TOKEN(STR_SECURITY_OPTIONS_FORM_TITLE),
+         help = STRING_TOKEN(STR_SECURITY_OPTIONS_FORM_HELP);
+
+    goto PCH_THERMAL_THROTTLING_OPTIONS_FORM_ID,
+        prompt   = STRING_TOKEN(STR_PCH_THERMAL_THROTTLING),
+        help     = STRING_TOKEN(STR_PCH_THERMAL_THROTTLING),
+        flags   = 0,
+        key     = 0;
+
+    goto PCH_GLOBAL_RESET_MASK_FORM_ID,
+        prompt = STRING_TOKEN(STR_GLOBAL_RESET_FORM_TITLE),
+        help = STRING_TOKEN(STR_GLOBAL_RESET_FORM_HELP);
+
+    SEPARATOR
+
+    //
+    // GbE Region present
+    //
+
+    oneof varid = PCH_SETUP.PchLan,
+      prompt   = STRING_TOKEN(STR_PCH_LAN_CONTROLLER),
+      help     = STRING_TOKEN(STR_PCH_LAN_CONTROLLER_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = PCH_SETUP.DeepSxMode,
+      prompt   = STRING_TOKEN(STR_DEEP_SX_POWER_POLICIES_PROMPT),
+      help     = STRING_TOKEN(STR_DEEP_SX_POWER_POLICIES_HELP),
+      option text = STRING_TOKEN(STR_DISABLED),                    value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DEEPSX_S5_STRING),            value = 2, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DEEPSX_S4_S5_STRING),         value = 4, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DEEPSX_S3_S4_S5_STRING),      value = 6, flags = RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval PCH_SETUP.DeepSxMode == 0;
+      oneof varid = SYSTEM_CONFIGURATION.PlatformDeepS5,
+        prompt   = STRING_TOKEN(STR_PLATFORM_DEEP_S5),
+        help     = STRING_TOKEN(STR_PLATFORM_DEEP_S5_HELP),
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING |RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = SYSTEM_CONFIGURATION.DeepS5DelayTime,
+        prompt   = STRING_TOKEN(STR_DEEP_S5_DELAY_TIME),
+        help     = STRING_TOKEN(STR_DEEP_S5_DELAY_TIME_HELP),
+        option text = STRING_TOKEN(STR_DEEP_S5_DELAY_VALUE_0),  value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DEEP_S5_DELAY_VALUE_3),  value = 3, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DEEP_S5_DELAY_VALUE_6),  value = 6, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DEEP_S5_DELAY_VALUE_10), value = 10, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif ideqval PCH_SETUP.PchLan == 0;
+      oneof varid = PCH_SETUP.PchWakeOnLan,
+        prompt   = STRING_TOKEN(STR_PCH_LAN_WOL_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_LAN_WOL_HELP),
+        //
+        // The default setup option has been changed from Disabled to Enabled to sync with Greens Glacier and to fix the
+        // SelfTest error LPC Controller (Bus 0 Dev 31 Fun 0) 0A4[8]
+        //
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = PCH_SETUP.LanWakeFromDeepSx,
+        prompt   = STRING_TOKEN(STR_PCH_LAN_WAKE_WFDSX_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_LAN_WAKE_WFDSX_HELP),
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = PCH_SETUP.SlpLanLowDc,
+        prompt   = STRING_TOKEN(STR_PCH_SLP_LAN_LOW_DC_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_SLP_LAN_LOW_DC_HELP),
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    oneof varid = PCH_SETUP.PchWakeOnWlan,
+      prompt   = STRING_TOKEN(STR_PCH_WOWLAN_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_WOWLAN_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING |RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval PCH_SETUP.PchWakeOnWlan == 0;
+      oneof varid = PCH_SETUP.PchWakeOnWlanDeepSx,
+        prompt   = STRING_TOKEN(STR_PCH_WOWLANDEEPSX_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_WOWLANDEEPSX_HELP),
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING |RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    oneof varid = PCH_SETUP.DisableDsxAcPresentPulldown,
+        prompt   = STRING_TOKEN(STR_DISABLE_DSX_ACPRESENT_PD_PROMPT),
+        help     = STRING_TOKEN(STR_DISABLE_DSX_ACPRESENT_PD_HELP),
+        default     = 0, defaultstore = MyStandardDefault,
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+    endoneof;
+    oneof varid  = PCH_SETUP.PchSirqMode,
+      prompt   = STRING_TOKEN(STR_PCH_SIRQ_MODE),
+      help     = STRING_TOKEN(STR_PCH_SIRQ_MODE_HELP),
+      default     = 0, defaultstore = MyStandardDefault,
+      option text = STRING_TOKEN(STR_SIRQ_MODE_QUIET), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_SIRQ_MODE_CONTINUOUS), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    oneof varid  = PCH_SETUP.StateAfterG3,
+      prompt   = STRING_TOKEN(STR_STATE_AFTER_G3),
+      help     = STRING_TOKEN(STR_STATE_AFTER_G3_HELP),
+      option text   = STRING_TOKEN(STR_S0_AFTER_G3_STRING), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text   = STRING_TOKEN(STR_S5_AFTER_G3_STRING), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = PCH_SETUP.IchPort80Route,
+      prompt   = STRING_TOKEN(PORT_80_REDIRECT),
+      help     = STRING_TOKEN(PORT_80_REDIRECT_HELP),
+      option text = STRING_TOKEN(STR_LPC_BUS), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCIE_BUS), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    grayoutif NOT ideqval PCH_SETUP.IchPort80Route == 0;
+      oneof varid = PCH_SETUP.EnhancePort8xhDecoding,
+        prompt   = STRING_TOKEN(ENHANCE_PORT_80_DECODING),
+        help     = STRING_TOKEN(ENHANCE_PORT_80_DECODING_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+    endif;
+    grayoutif ideqval PCH_SETUP.PchCridSupport == 0;
+        oneof varid  = PCH_SETUP.PchCrid,
+            prompt   = STRING_TOKEN(STR_PCH_CRID_PROMPT),
+            help     = STRING_TOKEN(STR_PCH_CRID_HELP),
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+    endif;
+
+    oneof varid     = PCH_SETUP.PchIoApic24119Entries,
+        prompt      = STRING_TOKEN(STR_IOAPIC_24_119_ENTRIES),
+        help        = STRING_TOKEN(STR_IOAPIC_24_119_ENTRIES_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_STRING), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED_STRING), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PCH_SETUP.PchCrossThrottling,
+      prompt   = STRING_TOKEN(STR_PCH_CROSS_THROTTLING_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_CROSS_THROTTLING_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PCH_SETUP.PchEnergyReport,
+      prompt   = STRING_TOKEN(STR_PCH_ENERGY_REPORTING_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_ENERGY_REPORTING_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PCH_SETUP.IehMode,
+      prompt   = STRING_TOKEN(STR_PCH_IEH_MODE_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_IEH_MODE_HELP),
+      option text = STRING_TOKEN(STR_BYPASS_MODE), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.EnableTcoTimer,
+      prompt      = STRING_TOKEN(STR_ENABLE_TCO_TIMER),
+      help        = STRING_TOKEN(STR_ENABLE_TCO_TIMER_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.EnableTimedGpio0,
+      prompt      = STRING_TOKEN(STR_ENABLE_TIMED_GPIO0),
+      help        = STRING_TOKEN(STR_ENABLE_TIMED_GPIO0_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.EnableTimedGpio1,
+      prompt      = STRING_TOKEN(STR_ENABLE_TIMED_GPIO1),
+      help        = STRING_TOKEN(STR_ENABLE_TIMED_GPIO1_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = PCH_SETUP.PciePllSsc,
+      prompt   = STRING_TOKEN(STR_PCIE_PLL_SSC_PROMPT),
+      help     = STRING_TOKEN(STR_PCIE_PLL_SSC_HELP),
+      option text = STRING_TOKEN(STR_AUTO_STRING), value = 0xFF, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PERCENT), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PT_1_PERCENT), value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PT_2_PERCENT), value = 2, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PT_3_PERCENT), value = 3, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PT_4_PERCENT), value = 4, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PT_5_PERCENT), value = 5, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PT_6_PERCENT), value = 6, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PT_7_PERCENT), value = 7, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PT_8_PERCENT), value = 8, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ZERO_PT_9_PERCENT), value = 9, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_0_PERCENT), value = 10, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_1_PERCENT), value = 11, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_2_PERCENT), value = 12, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_3_PERCENT), value = 13, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_4_PERCENT), value = 14, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_5_PERCENT), value = 15, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_6_PERCENT), value = 16, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_7_PERCENT), value = 17, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_8_PERCENT), value = 18, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ONE_PT_9_PERCENT), value = 19, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_TWO_PT_0_PERCENT), value = 20, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PCH_SETUP.PchSidebandLock,
+      prompt      = STRING_TOKEN(STR_PCH_SB_LOCK),
+      help        = STRING_TOKEN(STR_PCH_SB_LOCK_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | RESET_REQUIRED;
+    endoneof;
+    //  APTIOV_SERVER_OVERRIDE_RC_START: AMI Porting 
+    // EIP 555091
+    oneof varid   = PCH_SETUP.FprrEnable,
+      prompt      = STRING_TOKEN(STR_FPRR_ENABLE),
+      help        = STRING_TOKEN(STR_FPRR_ENABLE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    //  APTIOV_SERVER_OVERRIDE_RC_START: AMI Porting 
+
+    oneof varid   = PCH_SETUP.SmbusSpdWriteDisable,
+      prompt      = STRING_TOKEN(STR_SMBUS_SPDWDIS),
+      help        = STRING_TOKEN(STR_SMBUS_SPDWDIS_HELP),
+      option text = STRING_TOKEN(STR_TRUE), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_FALSE), value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    checkbox varid    = PCH_SETUP.ChipsetInitMessage,
+      prompt   = STRING_TOKEN(STR_CHIPSETINIT_MESSAGE_PROMPT),
+      help     = STRING_TOKEN(STR_CHIPSETINIT_MESSAGE_HELP),
+      // Flags behavior for checkbox is overloaded so that it equals
+      // a DEFAULT value.  CHECKBOX_DEFAULT = ON, 0 = off
+      flags    = RESET_REQUIRED,
+      key      = 0,
+    endcheckbox;
+
+    oneof varid    = PCH_SETUP.BypassPhySyncReset,
+      prompt   = STRING_TOKEN(STR_BYPASS_SYNC_RESET_PROMPT),
+      help     = STRING_TOKEN(STR_BYPASS_SYNC_RESET_HELP),
+      default  = 0, defaultstore = MyStandardDefault,
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.PchEspiLgmrEnable,
+      prompt      = STRING_TOKEN(STR_PCH_ESPI_LGMR_PROMPT),
+      help        = STRING_TOKEN(STR_PCH_ESPI_LGMR_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.WdtEnable,
+      prompt      = STRING_TOKEN(STR_WDT_ENABLE),
+      help        = STRING_TOKEN(STR_WDT_ENABLE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    //
+    // GPIO
+    //
+    oneof varid  = PCH_SETUP.PchGpioIrqRoute,
+      prompt   = STRING_TOKEN(STR_PCH_GPIO_IRQ_ROUTE),
+      help     = STRING_TOKEN(STR_PCH_GPIO_IRQ_ROUTE_HELP),
+      option text = STRING_TOKEN(STR_PCH_GPIO_ROUTE_IRQ14), value = 14, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCH_GPIO_ROUTE_IRQ15), value = 15, flags = RESET_REQUIRED;
+    endoneof;
+
+    // Serial IO UART0
+
+    oneof varid  = PCH_SETUP.PchSerialIoUart[0],
+      prompt   = STRING_TOKEN(STR_PCH_SERIAL_IO_UART0),
+      help     = STRING_TOKEN(STR_PCH_SERIAL_IO_DEVICE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_COM), value = 3, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval PCH_SETUP.PchSerialIoUart[0] == 0;
+      goto PCH_SERIAL_IO_UART0_OPTIONS_FORM_ID,
+        prompt = STRING_TOKEN(STR_SERIAL_IO_UART0_FORM_TITLE),
+        help = STRING_TOKEN(STR_SERIAL_IO_CTRL_FORM_HELP);
+    endif;
+
+    // Serial IO UART1
+
+    oneof varid  = PCH_SETUP.PchSerialIoUart[1],
+        prompt   = STRING_TOKEN(STR_PCH_SERIAL_IO_UART1),
+        help     = STRING_TOKEN(STR_PCH_SERIAL_IO_DEVICE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_COM), value = 3, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval PCH_SETUP.PchSerialIoUart[1] == 0;
+      goto PCH_SERIAL_IO_UART1_OPTIONS_FORM_ID,
+        prompt = STRING_TOKEN(STR_SERIAL_IO_UART1_FORM_TITLE),
+        help = STRING_TOKEN(STR_SERIAL_IO_CTRL_FORM_HELP);
+    endif;
+
+    suppressif ideqval SOCKET_MEMORY_CONFIGURATION.EadrSupport == EADR_ENABLED;
+      oneof varid     = PCH_SETUP.PchAdrEn,
+          prompt       = STRING_TOKEN(STR_ADR_PROMPT),
+          help         = STRING_TOKEN(STR_ADR_HELP),
+          option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED_STRING), value = 2, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+    suppressif (ideqvallist PCH_SETUP.PchAdrEn == 2) AND (NOT ideqval SOCKET_MEMORY_CONFIGURATION.EadrSupport == EADR_ENABLED);
+      oneof varid     = PCH_SETUP.PchAdrTimerEn,
+        prompt       = STRING_TOKEN(STR_ADR_TIMER_PROMPT),
+        help         = STRING_TOKEN(STR_ADR_TIMER_HELP),
+        option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 2, flags = RESET_REQUIRED;
+      endoneof;
+
+     oneof varid     = PCH_SETUP.AdrHostPartitionReset,
+         prompt      = STRING_TOKEN(STR_ADR_HOST_PARTITION_RESET_PROMPT),
+         help        = STRING_TOKEN(STR_ADR_HOST_PARTITION_RESET_HELP),
+         option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_DISABLED_STRING), value = 2, flags = RESET_REQUIRED;
+     endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchAdrTimerEn == 2;
+        numeric
+          varid     = PCH_SETUP.PchAdrTimer1Val,
+          prompt      = STRING_TOKEN(STR_ADR_TIMER1_VALUE_PROMPT),
+          help        = STRING_TOKEN(STR_ADR_TIMER_VALUE_HELP),
+          minimum     = 1,
+          maximum     = 0xff,
+          default     = 1,
+        endnumeric;
+
+        oneof varid     = PCH_SETUP.PchAdrMultiplier1Val,
+          prompt      = STRING_TOKEN(STR_ADR_TIME1_UNIT_VALUE_PROMPT),
+          help        = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_HELP),
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_1US),  value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_10US),  value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_100US), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_1MS), value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_10MS), value = 4, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_100MS), value = 5, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_1S), value = 6, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_10S), value = 7, flags = RESET_REQUIRED;
+        endoneof;
+
+        numeric
+          varid     = PCH_SETUP.PchAdrTimer2Val,
+          prompt      = STRING_TOKEN(STR_ADR_TIMER2_VALUE_PROMPT),
+          help        = STRING_TOKEN(STR_ADR_TIMER_VALUE_HELP),
+          minimum     = 1,
+          maximum     = 0xff,
+          default     = 1,
+        endnumeric;
+
+        oneof varid     = PCH_SETUP.PchAdrMultiplier2Val,
+          prompt      = STRING_TOKEN(STR_ADR_TIME2_UNIT_VALUE_PROMPT),
+          help        = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_HELP),
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_1US),  value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_10US),  value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_100US), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_1MS), value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_10MS), value = 4, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_100MS), value = 5, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_1S), value = 6, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ADR_TIME_UNIT_VALUE_10S), value = 7, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+    endif;
+  endform;
+
+  form formid = AUTO_ID(PCH_HDAUDIO_OPTIONS_FORM_ID),
+    title     = STRING_TOKEN(STR_HDAUDIO_OPTIONS_FORM_TITLE);
+
+    SUBTITLE(STRING_TOKEN(STR_HDAUDIO_OPTIONS_FORM_HELP))
+    SEPARATOR
+
+    oneof varid  = PCH_SETUP.PchHdAudio,
+      prompt   = STRING_TOKEN(STR_PCH_HDA_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_HDA_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval PCH_SETUP.PchHdAudio == 0x0;
+      oneof varid  = PCH_SETUP.PchHdAudioDsp,
+        prompt   = STRING_TOKEN(STR_PCH_HDA_ADSP_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_HDA_ADSP_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval PCH_SETUP.PchHdAudioDsp == 0x0;
+        oneof varid  = PCH_SETUP.PchHdAudioDspUaaCompliance,
+          prompt   = STRING_TOKEN(STR_PCH_HDA_ADSP_UAA_COMP_PROMPT),
+          help     = STRING_TOKEN(STR_PCH_HDA_ADSP_UAA_COMP_HELP),
+          option text = STRING_TOKEN(STR_PCH_HDA_NON_UAA), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_HDA_UAA), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+      endif; // PCH_SETUP.PchHdAudioDsp == 0x0;
+
+      goto PCH_HDAUDIO_ADVANCED_OPTIONS_FORM_ID,
+        prompt = STRING_TOKEN(STR_HDAUDIO_ADVANCED_OPTIONS_FORM_TITLE),
+        help = STRING_TOKEN(STR_HDAUDIO_ADVANCED_OPTIONS_FORM_HELP);
+
+    endif; // PCH_SETUP.PchHdAudio == 0x0;
+  endform; //End of PCH_HDAUDIO_OPTIONS_FORM_ID
+
+  form formid = AUTO_ID(PCH_HDAUDIO_ADVANCED_OPTIONS_FORM_ID),
+    title     = STRING_TOKEN(STR_HDAUDIO_ADVANCED_OPTIONS_FORM_TITLE);
+
+    SUBTITLE(STRING_TOKEN(STR_HDAUDIO_ADVANCED_OPTIONS_FORM_HELP))
+    SEPARATOR
+
+    oneof varid  = PCH_SETUP.PchHdAudioCodecSxWakeCapability,
+      prompt   = STRING_TOKEN(STR_PCH_HDA_CODEC_SX_WAKE_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_HDA_CODEC_SX_WAKE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PCH_SETUP.PchHdAudioPme,
+      prompt   = STRING_TOKEN(STR_PCH_HDA_PME_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_HDA_PME_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    text
+       help   = STRING_TOKEN(STR_PCH_HDA_LINK_CONTROL_TITLE),
+       text   = STRING_TOKEN(STR_PCH_HDA_LINK_CONTROL_TITLE),
+       flags  = 0,
+       key    = 0;
+
+    oneof varid        = PCH_SETUP.PchHdaHdAudioLinkFreq,
+           prompt      = STRING_TOKEN(STR_PCH_HDA_HDAUDIO_LINK_FREQ),
+           help        = STRING_TOKEN(STR_PCH_HDA_HDAUDIO_LINK_FREQ_HELP),
+           option text = STRING_TOKEN(STR_6MHZ),  value = 0, flags = RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_12MHZ), value = 1, flags = RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_24MHZ), value = 2, flags = DEFAULT | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid        = PCH_SETUP.PchHdaAudioVcType,
+           prompt      = STRING_TOKEN(STR_PCH_HDA_HDAUDIO_VC_TYPE),
+           help        = STRING_TOKEN(STR_PCH_HDA_HDAUDIO_VC_TYPE_HELP),
+           option text = STRING_TOKEN(STR_PCH_HDA_HDAUDIO_VC_TYPE_0),  value = 0, flags = DEFAULT | RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_PCH_HDA_HDAUDIO_VC_TYPE_1), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid        = PCH_SETUP.TestHdaPowerClockGating,
+           prompt      = STRING_TOKEN(STR_HDA_PG_CG),
+           help        = STRING_TOKEN(STR_HDA_PG_CG_HELP),
+           option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = DEFAULT | RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_DISABLED), value = 2, flags = RESET_REQUIRED;
+    endoneof;
+    oneof varid        = PCH_SETUP.TestHdaConfigLockdown,
+           prompt      = STRING_TOKEN(STR_HDA_CONFIG_LOCKDOWN),
+           help        = STRING_TOKEN(STR_HDA_CONFIG_LOCKDOWN_HELP),
+           option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = DEFAULT | RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_DISABLED), value = 2, flags = RESET_REQUIRED;
+    endoneof;
+    oneof varid        = PCH_SETUP.TestHdaLowFreqLinkClockSource,
+           prompt      = STRING_TOKEN(STR_HDA_LFLCS),
+           help        = STRING_TOKEN(STR_HDA_LFLCS_HELP),
+           option text = STRING_TOKEN(STR_PLATFORM_POR), value = 0, flags = DEFAULT | RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+           option text = STRING_TOKEN(STR_DISABLED), value = 2, flags = RESET_REQUIRED;
+    endoneof;
+
+  endform; //End of STR_HDAUDIO_ADVANCED_OPTIONS_FORM_ID
+  form formid = AUTO_ID(SECURITY_OPTIONS_FORM_ID),
+    title     = STRING_TOKEN(STR_SECURITY_OPTIONS_FORM_TITLE);
+
+    SUBTITLE(STRING_TOKEN(STR_SECURITY_OPTIONS_FORM_TITLE))
+    SEPARATOR
+
+    oneof varid  = PCH_SETUP.PchRtcMemoryLock,
+      prompt   = STRING_TOKEN(STR_PCH_RTC_MEMORY_LOCK_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_RTC_MEMORY_LOCK_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+//    suppressif ideqvallist CPU_SETUP.BiosGuard == 1;
+      oneof varid  = PCH_SETUP.PchBiosLock,
+        prompt   = STRING_TOKEN(STR_PCH_BLE_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_BLE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+//    endif;
+
+    oneof varid  = PCH_SETUP.UnlockGpioPads,
+      prompt   = STRING_TOKEN(STR_PCH_UNLOCK_GPIO_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_UNLOCK_GPIO_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+  endform; //End of SECURITY_OPTIONS_FORM_ID
+
+  form formid = PCH_SERIAL_IO_UART0_OPTIONS_FORM_ID,
+    title     = STRING_TOKEN(STR_SERIAL_IO_UART0_FORM_TITLE);
+    SUBTITLE(STRING_TOKEN(STR_SERIAL_IO_UART0_FORM_TITLE))
+
+    oneof varid  = PCH_SETUP.PchUartHwFlowCtrl[0],
+      prompt   = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_HW_FLOW_CTRL_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_HW_FLOW_CTRL_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+   suppressif NOT ideqval PCH_SETUP.PchUartDmaEnable[0] == 1;
+      oneof varid  = PCH_SETUP.PchUartDmaEnable[0],
+        prompt   = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_DMA_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_DMA_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif NOT ideqval PCH_SETUP.PchSerialIoUart[0] == 3;
+      oneof varid  = PCH_SETUP.PchUartPowerGating[0],
+        prompt   = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_PG_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_PG_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_AUTO),     value = 2, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+    endif;
+  endform;
+
+
+
+  form formid = PCH_SERIAL_IO_UART1_OPTIONS_FORM_ID,
+    title     = STRING_TOKEN(STR_SERIAL_IO_UART0_FORM_TITLE);
+    SUBTITLE(STRING_TOKEN(STR_SERIAL_IO_UART0_FORM_TITLE))
+
+    oneof varid  = PCH_SETUP.PchUartHwFlowCtrl[1],
+      prompt   = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_HW_FLOW_CTRL_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_HW_FLOW_CTRL_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    suppressif NOT ideqval PCH_SETUP.PchUartDmaEnable[1] == 1;
+      oneof varid  = PCH_SETUP.PchUartDmaEnable[1],
+        prompt   = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_DMA_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_DMA_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif NOT ideqval PCH_SETUP.PchSerialIoUart[1] == 3;
+      oneof varid  = PCH_SETUP.PchUartPowerGating[1],
+        prompt   = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_PG_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_SERIAL_IO_UART_PG_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_AUTO),     value = 2, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+    endif;
+  endform;
+
+
+
+#ifdef PCH_PO_FLAG
+
+  form formid   = AUTO_ID(PCH_PWRON_OPTIONS_FORM_ID),
+    title       = STRING_TOKEN(STR_PCH_PWRON_OPTIONS_FORM_TITLE);
+
+    oneof varid  = PCH_SETUP.PchPwrOnConfigEnable,
+      prompt   = STRING_TOKEN(STR_PCH_PWRON_CONFIG_ENABLE),
+      help     = STRING_TOKEN(STR_PCH_PWRON_CONFIG_ENABLE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | RESET_REQUIRED;
+    endoneof;
+
+    SEPARATOR
+
+    suppressif ideqval PCH_SETUP.PchPwrOnConfigEnable == 0;
+      oneof varid  = PCH_SETUP.PchNvmSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_NVM_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_NVM_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchGpioSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_GPIO_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_GPIO_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchDmiSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_DMI_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_DMI_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchSmbusSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_SMBUS_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_SMBUS_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchRtcSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_RTC_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_RTC_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchItssSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_ITSS_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_ITSS_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+//ASTDBG: Enable the P2SB
+
+      oneof varid  = PCH_SETUP.PchP2sbSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_P2SB_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_P2SB_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchPsthSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_PSTH_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_PSTH_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchHostPmSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_HOSTPM_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_HOSTPM_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchScsSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_SCS_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_SCS_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchThermalSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_THERMAL_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_THERMAL_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchPcieSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_PCIE_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_PCIE_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchPsfSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_PSF_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_PSF_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchXhciSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_XHCI_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_XHCI_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchSataSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_SATA_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_SATA_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchFiaSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_FIA_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_FIA_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchLpcSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_LPC_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_LPC_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchIshSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_ISH_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_ISH_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchDciSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_DCI_SAFEMODE),
+        help     = STRING_TOKEN(STR_PCH_PWRON_DCI_SAFEMODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchSpiSafeMode,
+        prompt   = STRING_TOKEN(STR_PCH_PWRON_SPI_SAFEMODE),
+        help     = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+  endform;
+
+#endif // PCH_PO_FLAG
+
+
+  form formid     = AUTO_ID(PCIE_DEVICE_OPTIONS_FORM_ID),
+    title         = STRING_TOKEN(STR_PCIE_OPTIONS_FORM_TITLE);
+
+    SUBTITLE(STRING_TOKEN(STR_PCIE_OPTIONS_FORM_TITLE))
+    SEPARATOR
+
+    oneof varid   = PCH_SETUP.PchDmiAspm,
+      prompt      = STRING_TOKEN(STR_PCH_DMI_ASPM_PROMPT),
+      help        = STRING_TOKEN(STR_PCH_DMI_ASPM_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCIE_ASPM_L1_STRING), value = 2, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.PchRlinkClockGating,
+      prompt      = STRING_TOKEN(STR_PCH_RLINK_CLOCK_GATING),
+      help        = STRING_TOKEN(STR_PCH_RLINK_CLOCK_GATING_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.PcieRootPort8xhDecode,
+      prompt      = STRING_TOKEN(STR_PCH_PCIE_PORT8XH_PROMPT),
+      help        = STRING_TOKEN(STR_PCH_PCIE_PORT8XH_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval PCH_SETUP.PcieRootPort8xhDecode == 0;
+      numeric varid = PCH_SETUP.Pcie8xhDecodePortIndex,
+        prompt      = STRING_TOKEN (STR_PCH_PCIE_PORT8XH_PORT_PROMPT),
+        help        = STRING_TOKEN (STR_PCH_PCIE_PORT8XH_PORT_HELP),
+        flags       = RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 11,
+        step        = 1,    // Stepping of 0 equates to a manual entering of a value, otherwise it will auto-increment with a left/right arrow
+        default     = 0,    // PCIe Port0 as default
+      endnumeric;
+    endif;
+
+    oneof varid   = PCH_SETUP.PcieRootPortPeerMemoryWriteEnable,
+      prompt      = STRING_TOKEN(STR_PCH_PCIE_PEERMEMORYWRITE_PROMPT),
+      help        = STRING_TOKEN(STR_PCH_PCIE_PEERMEMORYWRITE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.PcieComplianceTestMode,
+      prompt      = STRING_TOKEN(STR_PCH_PCIE_COMPLIANCETEST_PROMPT),
+      help        = STRING_TOKEN(STR_PCH_PCIE_COMPLIANCETEST_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+
+    SEPARATOR
+
+//
+// All strings used for PCIE are given as C preprocessor macros that concatenate string name and rootport number
+// Tool that gathers string usage info from hfr files doesn't run preprocessor and can't find the new representation of strings
+// To work around this problem, all such problematics strings are included in PchPcieStringPool file
+//
+#include "PchPcieStringPool.hfr"
+
+#define PORT_INDEX 0
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 1
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 2
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 3
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 4
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 5
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 6
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 7
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 8
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 9
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 10
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 11
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 12
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 13
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 14
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+#define PORT_INDEX 15
+#include "PchPcieSetupSinglePortMenu.hfr"
+#undef PORT_INDEX
+
+  endform; //End of PCIE_DEVICE_OPTIONS_FORM_ID
+
+  form formid = AUTO_ID(USB_OPTIONS_FORM_ID),
+    title     = STRING_TOKEN(STR_USB_OPTIONS_FORM_TITLE);
+
+    SUBTITLE(STRING_TOKEN(STR_USB_OPTIONS_FORM_TITLE))
+    SEPARATOR
+
+    oneof varid   = PCH_SETUP.PchUsbPdoProgramming,
+      prompt      = STRING_TOKEN(STR_USB_PDO_PROGRAMMING),
+      help        = STRING_TOKEN(STR_USB_PDO_PROGRAMMING_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.PchUsbOverCurrentEnable,
+      prompt      = STRING_TOKEN(STR_USB_OVERCURRENT),
+      help        = STRING_TOKEN(STR_USB_OVERCURRENT_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.PchXhciOcLock,
+      prompt      = STRING_TOKEN(STR_USB_OC_LOCK),
+      help        = STRING_TOKEN(STR_USB_OC_LOCK_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+
+    SEPARATOR
+
+    //
+    // Usb ports per-port disable control enable
+    //
+    oneof varid  = PCH_SETUP.PchUsbPortDisable,
+      prompt   = STRING_TOKEN(STR_PCH_USB_PORT_TERM_PROMPT),
+      help     = STRING_TOKEN(STR_PCH_USB_PORT_TERM_HELP),
+      default     = 0, defaultstore = MyStandardDefault,
+      option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PCH_USB_PORT_TERM_PER_PORT), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    SEPARATOR
+
+    //
+    // USB Port Disable Override fields
+    //
+    suppressif ideqval PCH_SETUP.PchUsbPortDisable == 0x0;
+
+      //
+      // Super Speed ports disabling
+      //
+      oneof varid  = PCH_SETUP.PchUsbSsPort[0],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT0_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbSsPort[1],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT1_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+      oneof varid  = PCH_SETUP.PchUsbSsPort[2],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT2_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbSsPort[3],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT3_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbSsPort[4],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT4_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbSsPort[5],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT5_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbSsPort[6],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT6_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbSsPort[7],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT7_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbSsPort[8],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT8_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbSsPort[9],
+        prompt   = STRING_TOKEN(STR_PCH_USB_SS_PORT9_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      //
+      // High Speed ports disabling
+      //
+      oneof varid  = PCH_SETUP.PchUsbHsPort[0],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT0_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[1],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT1_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[2],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT2_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[3],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT3_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[4],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT4_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[5],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT5_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[6],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT6_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[7],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT7_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[8],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT8_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[9],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT9_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[10],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT10_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[11],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT11_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[12],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT12_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      oneof varid  = PCH_SETUP.PchUsbHsPort[13],
+        prompt   = STRING_TOKEN(STR_PCH_USB_HS_PORT13_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_USB_PORT_DIS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+    endif;  // PCH_SETUP.PchUsbPortDisable == 0x0;
+
+  endform; //end of USB_OPTIONS_FORM_ID
+
+  form formid   = AUTO_ID(SATA_DEVICE_OPTIONS_FORM_ID),
+    title         = STRING_TOKEN(STR_SATA_DEVICE_OPTIONS_FORM_TITLE);
+
+      goto SATA0_DEVICE_OPTIONS_FORM_ID,
+        prompt = STRING_TOKEN(STR_SATA0_DEVICE_OPTIONS_FORM_TITLE),
+        help = STRING_TOKEN(STR_SATA0_DEVICE_OPTIONS_FORM_HELP);
+
+      goto SATA1_DEVICE_OPTIONS_FORM_ID,
+        prompt = STRING_TOKEN(STR_SATA1_DEVICE_OPTIONS_FORM_TITLE),
+        help = STRING_TOKEN(STR_SATA1_DEVICE_OPTIONS_FORM_HELP);
+
+      goto SATA2_DEVICE_OPTIONS_FORM_ID,
+        prompt = STRING_TOKEN(STR_SATA2_DEVICE_OPTIONS_FORM_TITLE),
+        help = STRING_TOKEN(STR_SATA2_DEVICE_OPTIONS_FORM_HELP);
+
+      goto PCH_SATA0_SFMS_OPTIONS_FORM_ID,
+        prompt = STRING_TOKEN(STR_SATA0_SFMS_OPTIONS_FORM_TITLE),
+        help = STRING_TOKEN(STR_SATA0_SFMS_OPTIONS_FORM_HELP);
+      goto PCH_SATA1_SFMS_OPTIONS_FORM_ID,
+          prompt = STRING_TOKEN(STR_SATA1_SFMS_OPTIONS_FORM_TITLE),
+          help = STRING_TOKEN(STR_SATA1_SFMS_OPTIONS_FORM_HELP);
+      goto PCH_SATA2_SFMS_OPTIONS_FORM_ID,
+          prompt = STRING_TOKEN(STR_SATA2_SFMS_OPTIONS_FORM_TITLE),
+          help = STRING_TOKEN(STR_SATA2_SFMS_OPTIONS_FORM_HELP);
+
+  endform;
+
+
+#define CONTROLLER_INDEX 0
+#include "PchSataSetupSingleController.hfr"
+#undef CONTROLLER_INDEX
+#define CONTROLLER_INDEX 1
+#include "PchSataSetupSingleController.hfr"
+#undef CONTROLLER_INDEX
+#define CONTROLLER_INDEX 2
+#include "PchSataSetupSingleController.hfr"
+#undef CONTROLLER_INDEX
+
+
+
+#define CONTROLLER_INDEX 0
+#include "PchSataSetupSfmsSingleController.hfr"
+#undef CONTROLLER_INDEX
+#define CONTROLLER_INDEX 1
+#include "PchSataSetupSfmsSingleController.hfr"
+#undef CONTROLLER_INDEX
+#define CONTROLLER_INDEX 2
+#include "PchSataSetupSfmsSingleController.hfr"
+#undef CONTROLLER_INDEX
+
+
+//
+// All strings used for PCIE are given as C preprocessor macros that concatenate string name and rootport number
+// Tool that gathers string usage info from hfr files doesn't run preprocessor and can't find the new representation of strings
+// To work around this problem, all such problematics strings are included in PchPcieStringPool file
+//
+
+#define PORT_INDEX 0
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 1
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 2
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 3
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 4
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 5
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 6
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 7
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 8
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 9
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 10
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 11
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 12
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 13
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 14
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+#define PORT_INDEX 15
+#include "PchPcieSetupSinglePort.hfr"
+#undef PORT_INDEX
+
+
+
+  form formid = AUTO_ID(PCH_THERMAL_THROTTLING_OPTIONS_FORM_ID),
+    title = STRING_TOKEN(STR_PCH_THERMAL_THROTTLING);
+      oneof varid  = PCH_SETUP.PchTtLevelSuggestSet,
+        prompt   = STRING_TOKEN(STR_PCH_THRM_TTLVL_SET_PROMPT),
+        help     = STRING_TOKEN(STR_PCH_THRM_TTLVL_SET_HELP),
+        option text = STRING_TOKEN(STR_SUGGEST_SETTING), value = 1, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MANUAL), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval PCH_SETUP.PchTtLevelSuggestSet == 1;
+        checkbox varid  = PCH_SETUP.PchThrmTtEnable,
+         prompt   = STRING_TOKEN(STR_PCH_THRM_TT_PROMPT),
+         help     = STRING_TOKEN(STR_PCH_THRM_TT_HELP),
+         // Flags behavior for checkbox is overloaded so that it equals
+         // a DEFAULT value.  1 = ON, 0 = off
+         flags    = 0 | RESET_REQUIRED,
+         key      = 0,
+        endcheckbox;
+
+        checkbox varid  = PCH_SETUP.PchThrmTtState13Enable,
+         prompt   = STRING_TOKEN(STR_PCH_THRM_TT13_PROMPT),
+         help     = STRING_TOKEN(STR_PCH_THRM_TT13_HELP),
+         // Flags behavior for checkbox is overloaded so that it equals
+         // a DEFAULT value.  1 = ON, 0 = off
+         flags    = 0 | RESET_REQUIRED,
+         key      = 0,
+        endcheckbox;
+
+        checkbox varid  = PCH_SETUP.PchThrmTtLock,
+         prompt   = STRING_TOKEN(STR_PCH_THRM_TT_LOCK_PROMPT),
+         help     = STRING_TOKEN(STR_PCH_THRM_TT_LOCK_HELP),
+         // Flags behavior for checkbox is overloaded so that it equals
+         // a DEFAULT value.  1 = ON, 0 = off
+         flags    = 0 | RESET_REQUIRED,
+         key      = 0,
+        endcheckbox;
+
+        numeric varid = PCH_SETUP.PchThrmT0Level,
+         prompt    = STRING_TOKEN(STR_PCH_THRM_T0_LVL_PROMPT),
+         help      = STRING_TOKEN(STR_PCH_THRM_T0_LVL_HELP),
+         flags     = RESET_REQUIRED,
+         minimum   = 0,
+         maximum   = 205,
+         step      = 1,
+         default   = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchThrmT1Level,
+         prompt    = STRING_TOKEN(STR_PCH_THRM_T1_LVL_PROMPT),
+         help      = STRING_TOKEN(STR_PCH_THRM_T1_LVL_HELP),
+         flags     = RESET_REQUIRED,
+         minimum   = 0,
+         maximum   = 205,
+         step      = 1,
+         default   = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchThrmT2Level,
+         prompt    = STRING_TOKEN(STR_PCH_THRM_T2_LVL_PROMPT),
+         help      = STRING_TOKEN(STR_PCH_THRM_T2_LVL_HELP),
+         flags     = RESET_REQUIRED,
+         minimum   = 0,
+         maximum   = 205,
+         step      = 1,
+         default   = 0,
+        endnumeric;
+      endif;
+
+      oneof varid  = PCH_SETUP.PchDmiTsSuggestSet,
+         prompt   = STRING_TOKEN(STR_PCH_THRM_DMI_SET_PROMPT),
+         help     = STRING_TOKEN(STR_PCH_THRM_DMI_SET_HELP),
+         option text = STRING_TOKEN(STR_SUGGEST_SETTING), value = 1, flags = DEFAULT | RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_MANUAL), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval PCH_SETUP.PchDmiTsSuggestSet == 1;
+        checkbox varid  = PCH_SETUP.PchDmiTsawEn,
+         prompt   = STRING_TOKEN(STR_PCH_THRM_DMI_TSW_PROMPT),
+         help     = STRING_TOKEN(STR_PCH_THRM_DMI_TSW_HELP),
+         // Flags behavior for checkbox is overloaded so that it equals
+         // a DEFAULT value.  1 = ON, 0 = off
+         flags    = 0 | RESET_REQUIRED,
+         key      = 0,
+        endcheckbox;
+
+        oneof varid  = PCH_SETUP.PchTs0Width,
+         prompt   = STRING_TOKEN(STR_PCH_THRM_TS0W_PROMPT),
+         help     = STRING_TOKEN(STR_PCH_THRM_TS0W_HELP),
+         option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 0, flags = RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 1, flags = RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 2, flags = RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X8), value = 3, flags = DEFAULT | RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X16), value = 4, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchTs1Width,
+          prompt   = STRING_TOKEN(STR_PCH_THRM_TS1W_PROMPT),
+          help     = STRING_TOKEN(STR_PCH_THRM_TS1W_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 2, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X8), value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X16), value = 4, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchTs2Width,
+          prompt   = STRING_TOKEN(STR_PCH_THRM_TS2W_PROMPT),
+          help     = STRING_TOKEN(STR_PCH_THRM_TS2W_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 1, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X8), value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X16), value = 4, flags = RESET_REQUIRED;
+        endoneof;
+
+        oneof varid  = PCH_SETUP.PchTs3Width,
+          prompt   = STRING_TOKEN(STR_PCH_THRM_TS3W_PROMPT),
+          help     = STRING_TOKEN(STR_PCH_THRM_TS3W_HELP),
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X1), value = 0, flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X2), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X4), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X8), value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_THRM_TS_WIDTH_X16), value = 4, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+#define CONTROLLER_INDEX 0
+#include "PchSataSetupThermalThrottlingSingleController.hfr"
+#undef CONTROLLER_INDEX
+
+#define CONTROLLER_INDEX 1
+#include "PchSataSetupThermalThrottlingSingleController.hfr"
+#undef CONTROLLER_INDEX
+
+#define CONTROLLER_INDEX 2
+#include "PchSataSetupThermalThrottlingSingleController.hfr"
+#undef CONTROLLER_INDEX
+
+    endform; // End of PCH_THERMAL_THROTTLING_OPTIONS_FORM_ID
+
+  form formid = AUTO_ID(PCH_GLOBAL_RESET_MASK_FORM_ID),
+      title     = STRING_TOKEN(STR_GLOBAL_RESET_FORM_TITLE);
+
+      oneof varid  = PCH_SETUP.GlobalResetMasksOverride,
+        prompt   = STRING_TOKEN(STR_GLOBAL_RESET_MASK_OVERRIDE_PROMPT),
+        help     = STRING_TOKEN(STR_GLOBAL_RESET_MASK_OVERRIDE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval PCH_SETUP.GlobalResetMasksOverride == 0;
+        numeric
+          varid   = PCH_SETUP.GlobalResetEventMask,
+          prompt  = STRING_TOKEN(STR_GLOBAL_RESET_EVENT_MASK_PROMPT),
+          help    = STRING_TOKEN(STR_GLOBAL_RESET_EVENT_MASK_HELP),
+          flags   = DISPLAY_UINT_HEX,
+          minimum = 0,
+          maximum = 0xFFFFFFFF,
+          default = 0,
+        endnumeric;
+
+        numeric
+          varid   = PCH_SETUP.GlobalResetTriggerMask,
+          prompt  = STRING_TOKEN(STR_GLOBAL_RESET_TRIGGER_MASK_PROMPT),
+          help    = STRING_TOKEN(STR_GLOBAL_RESET_TRIGGER_MASK_HELP),
+          flags   = DISPLAY_UINT_HEX,
+          minimum = 0,
+          maximum = 0xFFFFFFFF,
+          default = 0,
+        endnumeric;
+      endif;
+
+  endform; // End of PCH_GLOBAL_RESET_MASK_FORM_ID
+
+  form formid = FIAMUX_CONFIG_FORM_ID,
+    title = STRING_TOKEN(STR_FIA_CONFIG_FORM_TITLE);
+    checkbox varid = PCH_SETUP.FiaMuxOverride,
+      prompt     = STRING_TOKEN(STR_FIA_CONFIG_OVERRIDE),
+      help       = STRING_TOKEN(STR_FIA_CONFIG_OVERRIDE_HELP),
+      // Flags behavior for checkbox is overloaded so that it equals
+      // a DEFAULT value.  CHECKBOX_DEFAULT = ON, 0 = off
+      flags    = RESET_REQUIRED,
+      key      = 0,
+    endcheckbox;
+    grayoutif ideqval PCH_SETUP.FiaMuxOverride == 0;
+      oneof varid   = PCH_SETUP.FiaMuxCfgInvalidate,
+        prompt      = STRING_TOKEN(STR_FIA_CONFIG_IS_VALID_PROMPT),
+        help        = STRING_TOKEN(STR_FIA_CONFIG_IS_VALID_HELP),
+        option text = STRING_TOKEN(STR_FIA_MUX_CONFIG_VALID_STRING), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FIA_MUX_CONFIG_INVALID_STRING), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+      suppressif ideqval PCH_SETUP.HideFiaLane[0] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[0],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE0_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[0] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[0],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_0_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[1] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[1],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE1_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[1] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[1],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_1_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[2] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[2],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE2_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[2] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[2],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_2_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[3] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[3],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE3_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[3] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[3],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_3_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[4] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[4],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE4_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[4] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[4],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_4_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[5] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[5],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE5_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[5] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[5],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_5_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[6] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[6],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE6_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[6] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[6],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_6_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[7] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[7],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE7_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[7] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[7],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_7_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[8] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[8],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE8_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[8] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[8],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_8_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[9] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[9],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE9_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[9] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[9],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_9_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[10] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[10],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE10_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[10] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[10],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_10_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[11] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[11],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE11_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[11] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[11],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_11_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[12] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[12],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE12_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[12] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[12],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_12_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[13] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[13],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE13_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[13] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[13],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_13_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[14] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[14],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE14_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[14] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[14],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_14_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[15] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[15],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE15_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_PCIE), value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[15] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[15],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_15_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[16] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[16],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE16_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_SATA_XHCI),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_XHCI), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[16] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[16],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_16_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[17] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[17],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE17_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_XHCI), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[17] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[17],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_17_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[18] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[18],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE18_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_XHCI), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[18] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[18],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_18_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[19] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[19],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE19_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_XHCI), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[19] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[19],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_19_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[20] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[20],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE20_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_XHCI), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[20] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[20],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_20_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[21] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[21],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE21_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_XHCI), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[21] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[21],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_21_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[22] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[22],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE22_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_XHCI), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[22] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[22],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_22_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+      suppressif ideqval PCH_SETUP.HideFiaLane[23] == 1;
+        oneof varid = PCH_SETUP.FiaLaneConfig[23],
+          prompt = STRING_TOKEN (STR_FIA_CONFIG_LANE23_PROMPT),
+          help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_SATA),
+          option text = STRING_TOKEN (STR_FIA_LANE_OVERRIDE_DISABLED), value = 255, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (STR_FIA_LANE_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_SATA), value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN (STR_FIA_LANE_XHCI), value = 3, flags = RESET_REQUIRED;
+        endoneof;
+        suppressif NOT ideqval PCH_SETUP.FiaLaneConfig[23] == 1;
+          oneof varid = PCH_SETUP.FiaLaneLinkWidth[23],
+            prompt = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_PROMPT),
+            help = STRING_TOKEN (STR_FIA_CONFIG_PCIE_ROOT_PORT_LINK_WIDTH_HELP),
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_SET_BY_BICTRL), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+            option text = STRING_TOKEN (STR_FIA_LANE_PCIE_ROOT_PORT_LINK_WIDTH_X1), value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+        grayoutif TRUE;
+          text
+            help  = STRING_TOKEN(STR_FIA_STATUS_HELP),
+            text  = STRING_TOKEN(STR_FIA_STATUS_LABEL),
+            text  = STRING_TOKEN(STR_FIA_LANE_23_STATUS_VALUE),
+            flags = 0,
+            key   = 0;
+        endif;
+      endif;
+    endif; // PCH_SETUP.FiaMuxOverride == 0
+  endform; // End of FIAMUX_CONFIG_FORM_ID

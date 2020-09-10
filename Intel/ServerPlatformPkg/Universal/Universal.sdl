@@ -1,0 +1,31 @@
+TOKEN
+	Name  = "Universal_SUPPORT"
+	Value  = "1"
+	Help  = "Main token to enable/disable Universal support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+    Name  = "PeiExStatusCodeHandler_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable ExStatusCodeHandlerPei support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+   Name  = "ExStatusCodeHandlerPei"
+   File  = "PeiExStatusCodeHandler\ExStatusCodeHandlerPei.inf"
+   Package  = "ServerPlatformPkg"
+   Arch = "IA32"
+   ModuleTypes  = "PEIM"
+   Token = "PeiExStatusCodeHandler_SUPPORT" "=" "1" 
+End
+
+INFComponent
+   Name  = "PeiInterposerToSvidMap"
+   File  = "PeiInterposerToSvidMap\PeiInterposerToSvidMap.inf"
+   Package  = "ServerPlatformPkg"
+   Arch = "IA32"
+   ModuleTypes  = "PEIM"    
+End

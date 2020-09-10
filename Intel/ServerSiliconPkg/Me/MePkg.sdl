@@ -1,0 +1,337 @@
+TOKEN
+    Name  = "SILICON_MEPKG_SUPPORT" 
+    Value  = "1"
+    Help  = "Switch for Enabling Silicon MePkg support in the project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+
+#LibraryMapping
+#    Class  = "ResetSystemLib"
+#    Instance  = "ServerSiliconPkg.DxeRuntimeResetSystemLib"
+#    Override = "ServerSiliconPkg.MePlatformReset"
+#End
+
+INFComponent
+    Name  = "HeciLegacyDxe"
+    File  = "Heci\HeciLegacyDxe\HeciLegacyDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciControlFilterLib"
+    Instance  = "ServerSiliconPkg.HeciControlFilterPeiLib"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciControlFilterPeiLib"
+    File  = "Heci\HeciControl\HeciControlFilterLib\HeciControlFilterPeiLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciAccessDeviceConfig"
+    Instance  = "ServerSiliconPkg.HeciAccessDeviceConfig"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciAccessDeviceConfig"
+    File  = "Heci\HeciAccess\HeciAccessDeviceConfigLib\HeciAccessDeviceConfig.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciAccessDeviceConfig"
+    Instance  = "ServerSiliconPkg.HeciAccessDeviceConfig"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"    
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciAccessDeviceConfig"
+    File  = "Heci\HeciAccess\HeciAccessDeviceConfigLib\HeciAccessDeviceConfig.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciAccessDeviceConfig"
+    Instance  = "ServerSiliconPkg.HeciAccessDeviceConfigEbg"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciAccessDeviceConfigEbg"
+    File  = "Heci\HeciAccess\HeciAccessDeviceConfigLib\HeciAccessDeviceConfigEbg.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciAccessCoreLib"
+    Instance  = "ServerSiliconPkg.HeciAccessCoreLib"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciAccessCoreLib"
+    Instance  = "ServerSiliconPkg.HeciAccessCoreLib"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciAccessCoreLib"
+    Instance  = "ServerSiliconPkg.HeciAccessCoreLib"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"    
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciAccessCoreLib"
+    File  = "Heci\HeciAccess\HeciAccessCoreLib\HeciAccessCoreLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MeFiaMuxLib"
+    Instance  = "ServerSiliconPkg.MeFiaMuxLib"
+        Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "MeFiaMuxLib"
+    Instance  = "ServerSiliconPkg.MeFiaMuxLib"
+        Arch = "IA32"
+End
+
+INFComponent
+    Name  = "MeFiaMuxLib"
+    File  = "MeSps\Library\MeFiaMuxLib\MeFiaMuxLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+
+INFComponent
+    Name  = "SpsIgnitionPreMem"
+    File  = "MeSps\SpsIgnition\SpsIgnitionPreMem.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_SPS_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciConfigureLib"
+    File  = "Heci\Library\HeciConfigureLib\HeciConfigureLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciConfigureLib"
+    Instance  = "ServerSiliconPkg.HeciConfigureLib"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciConfigureLib"
+    Instance  = "ServerSiliconPkg.HeciConfigureLib"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciConfigureLib"
+    Instance  = "ServerSiliconPkg.HeciConfigureLib"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+#INFComponent
+#    Name  = "HeciAccessCoreLib"
+#    File  = "Heci\HeciAccess\HeciAccessCoreLib\HeciAccessCoreLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "DXE_SMM_DRIVER"
+#    Token = "ME_ENABLE" "=" "1"
+#End
+
+LibraryMapping
+    Class  = "HeciControlCoreLib"
+    Instance  = "ServerSiliconPkg.HeciControlCoreLib"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciControlCoreLib"
+    Instance  = "ServerSiliconPkg.HeciControlCoreLib"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciControlCoreLib"
+    Instance  = "ServerSiliconPkg.HeciControlCoreLib"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"        
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciControlCoreLib"
+    File  = "Heci\HeciControl\HeciControlCoreLib\HeciControlCoreLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+#INFComponent
+#    Name  = "HeciControlCoreLib"
+#    File  = "Heci\HeciControl\HeciControlCoreLib\HeciControlCoreLib.inf"
+#    Package  = "ServerSiliconPkg"
+#    ModuleTypes  = "DXE_SMM_DRIVER"
+#    Token = "ME_ENABLE" "=" "1"
+#End
+
+LibraryMapping
+    Class  = "HeciControlFilterLib"
+    Instance  = "ServerSiliconPkg.HeciControlFilterDxeLib"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciControlFilterDxeLib"
+    File  = "Heci\HeciControl\HeciControlFilterLib\HeciControlFilterDxeLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciControlFilterLib"
+    Instance  = "ServerSiliconPkg.HeciControlFilterSmmLib"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"    
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciControlFilterSmmLib"
+    File  = "Heci\HeciControl\HeciControlFilterLib\HeciControlFilterSmmEbgLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciAccessPei"
+    File  = "Heci\HeciAccess\Pei\HeciAccessPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciControlPei"
+    File  = "Heci\HeciControl\Pei\HeciControlPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "ServerSiliconPkg.HeciAccessPei"
+    Override = "ServerSiliconPkg.HeciControlPei"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "ClientOneSiliconPkg.HeciTransportPei"
+    Override = "ServerSiliconPkg.HeciControlPei"
+End
+
+INFComponent
+    Name  = "HeciAccessDxe"
+    File  = "Heci\HeciAccess\DxeSmm\HeciAccessDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciAccessSmm"
+    File  = "Heci\HeciAccess\DxeSmm\HeciAccessSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_SPS_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciControlDxe"
+    File  = "Heci\HeciControl\DxeSmm\HeciControlDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciControlSmm"
+    File  = "Heci\HeciControl\DxeSmm\HeciControlSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_SPS_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "SpsIgnitionPostMem"
+    File  = "MeSps\SpsIgnition\SpsIgnitionPostMem.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_SPS_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "SpsIgnitionDxe"
+    File  = "MeSps\SpsIgnition\SpsIgnitionDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_SPS_ENABLE" "=" "1"
+End

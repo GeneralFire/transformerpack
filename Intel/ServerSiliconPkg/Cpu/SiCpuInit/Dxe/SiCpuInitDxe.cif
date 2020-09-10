@@ -1,0 +1,10 @@
+<component>
+	name = "SiCpuInitDxe"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\SiCpuInit\Dxe\"
+	RefName = "ServerSiliconPkg.Cpu.SiCpuInit.SiCpuInitDxe"
+[INF]
+"SiCpuInitDxe.inf"
+[files]
+"SiCpuInitDxe.sdl"	
+<endComponent>

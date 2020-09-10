@@ -1,0 +1,10 @@
+<component>
+    name = "MeSmbiosDxe"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\MeSmbiosDxe\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.MeSmbiosDxe"
+[INF]
+"MeSmbiosDxe.inf"
+[files]
+"MeSmbiosDxe.sdl"	
+<endComponent>

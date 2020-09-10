@@ -1,0 +1,23 @@
+<component>
+    name = "SerialIo"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\SerialIo\"
+    RefName = "ClientOneSiliconPkg.IpBlock.SerialIo"
+[parts]
+"ClientOneSiliconPkg.IpBlock.SerialIo.Uart"
+"ClientOneSiliconPkg.IpBlock.SerialIo.LibraryPrivate"
+"ClientOneSiliconPkg.IpBlock.SerialIo.Library"
+[files]
+"IncludePrivate\Register\SerialIoRegsVer3.h"
+"IncludePrivate\Library\SerialIoPrivateLib.h"
+"IncludePrivate\Library\PeiSerialIoPolicyLib.h"
+"IncludePrivate\Library\PeiSerialIoInitLib.h"
+"AcpiTables\SerialIoCommon.asl"
+"AcpiTables\SerialIoI2cCommon.asl"
+"AcpiTables\SerialIoI2cController.asl"
+"AcpiTables\SerialIoSpiCommon.asl"
+"AcpiTables\SerialIoSpiController.asl"
+"AcpiTables\SerialIoUartCommon.asl"
+"AcpiTables\SerialIoUartHiddenController.asl"
+"AcpiTables\SerialIoUartPciController.asl"
+<endComponent>

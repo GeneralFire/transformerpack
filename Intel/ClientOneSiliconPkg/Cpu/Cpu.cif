@@ -1,0 +1,11 @@
+<component>
+    name = "Cpu"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\"
+    RefName = "ClientOneSiliconPkg.Cpu"
+[parts]
+"ClientOneSiliconPkg.Cpu.Include"
+"ClientOneSiliconPkg.Cpu.IncludePrivate"
+"ClientOneSiliconPkg.Cpu.Library"
+"ClientOneSiliconPkg.Cpu.LibraryPrivate"
+<endComponent>

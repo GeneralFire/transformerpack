@@ -1,0 +1,10 @@
+<component>
+    name = "TraceHub"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\SprCpu\TraceHub\"
+    RefName = "ClientOneSiliconPkg.Fru.SprCpu.TraceHub"
+[files]
+"TraceHub.sdl"	
+[parts]
+"ClientOneSiliconPkg.Fru.SprCpu.TraceHub.LibraryPrivate"
+<endComponent>

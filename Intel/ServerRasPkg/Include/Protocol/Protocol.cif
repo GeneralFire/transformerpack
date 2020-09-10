@@ -1,0 +1,11 @@
+<component>
+	name = "Protocol"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Include\Protocol\"
+	RefName = "ServerRasPkg.Include.Protocol"
+[files]
+"RasPolicy.h"	
+"MemoryAddressTranslation.h"
+"SvSmmProtocol.h"
+"AmiRasPolicy.h"
+<endComponent>

@@ -1,0 +1,8 @@
+<component>
+    name = "Hda"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Hda\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Hda"
+[files]
+"HdAudioConfig.h"	
+<endComponent>

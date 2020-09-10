@@ -1,0 +1,8 @@
+<component>
+    name = "Vmd"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Vmd\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Vmd"
+[files]
+"VmdPeiConfig.h"	
+<endComponent>

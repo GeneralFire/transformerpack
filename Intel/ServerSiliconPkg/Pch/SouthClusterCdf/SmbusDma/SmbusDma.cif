@@ -1,0 +1,10 @@
+<component>
+    name = "SmbusDma"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\SmbusDma\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.SmbusDma"
+[INF]
+"Dxe\PchSmbusDmaDxeCdf.inf"
+[files]
+"SmbusDma.sdl"	
+<endComponent>

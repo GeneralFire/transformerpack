@@ -1,0 +1,34 @@
+<component>
+    name = "Me"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Me\"
+    RefName = "ServerSiliconPkg.Me"
+[INF]
+"MeSps\Library\MeFiaMuxLib\MeFiaMuxLib.inf"
+"MeSps\SpsIgnition\SpsIgnitionPreMem.inf"
+"MeSps\SpsIgnition\SpsIgnitionPostMem.inf"
+"MeSps\SpsIgnition\SpsIgnitionDxe.inf"
+"Heci\HeciLegacyDxe\HeciLegacyDxe.inf"
+"Heci\HeciControl\HeciControlFilterLib\HeciControlFilterPeiLib.inf"
+"Heci\HeciAccess\Pei\HeciAccessPei.inf"
+"Heci\HeciAccess\DxeSmm\HeciAccessDxe.inf"
+"Heci\HeciAccess\DxeSmm\HeciAccessSmm.inf"
+"Heci\HeciControl\Pei\HeciControlPei.inf"
+"Heci\HeciControl\DxeSmm\HeciControlDxe.inf"
+"Heci\HeciControl\DxeSmm\HeciControlSmm.inf"
+"Heci\HeciControl\HeciControlFilterLib\HeciControlFilterSmmEbgLib.inf"
+"Heci\HeciControl\HeciControlFilterLib\HeciControlFilterDxeLib.inf"
+"Heci\HeciAccess\HeciAccessDeviceConfigLib\HeciAccessDeviceConfig.inf"
+"Heci\HeciAccess\HeciAccessDeviceConfigLib\HeciAccessDeviceConfigEbg.inf"
+"Heci\HeciAccess\HeciAccessCoreLib\HeciAccessCoreLib.inf"
+"Heci\HeciControl\HeciControlCoreLib\HeciControlCoreLib.inf"
+"Heci\Library\HeciConfigureLib\HeciConfigureLib.inf"
+[files]
+"MePkg.sdl"	
+"Heci\HeciLegacyDxe\HeciLegacyCore.h"	
+"Heci\HeciControl\HeciControlFilterLib\HeciControlFilter.h"
+"MeSps\SpsIgnition\SpsIgnition.h"
+[parts]
+"ServerSiliconPkg.Me.MeSps6"
+"ServerSiliconPkg.Me.Library"
+<endComponent>

@@ -1,0 +1,213 @@
+## @file
+# OemProcMemInitLib PEIM
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2009 - 2019 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = OemProcMemInitLib
+  FILE_GUID                      = FBC62E13-365E-43cb-AE4E-EA56107F8F0E
+  MODULE_TYPE                    = BASE
+  LIBRARY_CLASS                  = OemProcMemInitLib | PEIM DXE_DRIVER DXE_SMM_DRIVER DXE_RUNTIME_DRIVER
+
+[Sources.Ia32]
+  OemProcMemInit.c
+
+[Sources.X64]
+  OemProcMemInitX64.c
+
+[Sources]
+  CommonHooks.c
+  MemHooks.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+# APTIOV_SERVER_OVERRIDE_RC_START
+#  SecurityPkg/SecurityPkg.dec
+# APTIOV_SERVER_OVERRIDE_RC_END
+  CpRcPkg/CpRcPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  ServerRasPkg/RasPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+  ServerSecurityPkg/ServerSecurityPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+# APTIOV_SERVER_OVERRIDE_RC_START
+  AmiModulePkg/AmiModulePkg.dec
+# APTIOV_SERVER_OVERRIDE_RC_END
+  UefiCpuPkg/UefiCpuPkg.dec
+  CryptoPkg/CryptoPkg.dec
+  # APTIOV_SERVER_OVERRIDE_START : Remove missing package reference
+  #IntelFsp2Pkg/IntelFsp2Pkg.dec
+  # APTIOV_SERVER_OVERRIDE_END : Remove missing package reference
+  ClientOneSiliconPkg/SiPkg.dec
+
+[LibraryClasses.Ia32]
+  PeiServicesLib
+  PeimEntryPoint
+  UbaPlatLib
+  SystemInfoLib
+  # APTIOV_SERVER_OVERRIDE_RC_START
+  SysHostPointerLib
+  # APTIOV_SERVER_OVERRIDE_RC_END
+  # APTIOV_SERVER_OVERRIDE_RC_START: File Not used in source
+  #Tpm12CommandLib
+  #Tpm2CommandLib
+  # APTIOV_SERVER_OVERRIDE_RC_END: File Not used in source
+
+[LibraryClasses]
+  DebugLib
+  RcDebugLib
+  HobLib
+  IoLib
+  MeTypeLib
+  BiosGuardInitLib
+  PreSiliconEnvDetectLib
+  RcMemAllocLib
+  BaseLib
+  SetupLib
+# APTIOV_SERVER_OVERRIDE_RC_START
+# BeepLib
+# APTIOV_SERVER_OVERRIDE_RC_END
+  FpgaConfigurationLib
+# APTIOV_SERVER_OVERRIDE_RC_START
+  AmiBeepLib  # Using AmiBeepLib
+  ReportStatusCodeLib
+  AmiMrcHooksWrapperLib # Added to Resolve build error
+# APTIOV_SERVER_OVERRIDE_RC_END
+  IioInitLib
+  CrcLib
+  PsmiPolicyLib
+  SecurityPolicyLib
+  CpuEarlyDataLib
+  SysHostPointerLib
+  BaseMemoryLib
+  MemMapDataLib
+  SystemInfoLib
+  UbaPlatLib
+  UpiHostDataLib
+  MemRcLib
+  EmulationConfigurationLib
+  MemTypeLib
+  # APTIOV_SERVER_OVERRIDE_RC_START: File Not used in source
+  #TpmCommLib
+  # APTIOV_SERVER_OVERRIDE_RC_END: File Not used in source
+  OemPlatformCheckpointLib
+  PmcLib
+  OemProcMemInitHookLib
+  PcuIpLib
+  NmLib
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel
+  gPlatformTokenSpaceGuid.PcdDfxAdvDebugJumper
+  gEfiCpRcPkgTokenSpaceGuid.PcdDprMemSize
+  gEfiCpRcPkgTokenSpaceGuid.PcdSyshostMemoryAddress
+  gEfiCpRcPkgTokenSpaceGuid.PcdMemMapHostMemoryAddress
+  gPlatformTokenSpaceGuid.PcdPlatformType
+  gOemSkuTokenSpaceGuid.PcdOemSkuSubBoardID
+# APTIOV_SERVER_OVERRIDE_RC_START: Fall Back to default Memory Map once Memory Limit is reached.
+  gOemSkuTokenSpaceGuid.PcdAvailableMemoryBelow4G
+# APTIOV_SERVER_OVERRIDE_RC_END: Fall Back to default Memory Map once Memory Limit is reached.
+  gEfiCpRcPkgTokenSpaceGuid.EnableBacksideRmt
+  gEfiCpRcPkgTokenSpaceGuid.EnableBacksideCmdRmt
+  gEfiCpRcPkgTokenSpaceGuid.RmtPatternLengthCmd
+  gEfiCpRcPkgTokenSpaceGuid.RmtPatternLengthExtCmdCtlVref
+  gEfiCpRcPkgTokenSpaceGuid.PcdEnableNgnBcomMargining
+  gEfiCpRcPkgTokenSpaceGuid.PerBitMargin
+  # APTIOV_SERVER_OVERRIDE_RC_START: Guids in SecurityPkg not available in source
+  #gEfiSecurityPkgTokenSpaceGuid.PcdTpmInstanceGuid    
+  # APTIOV_SERVER_OVERRIDE_RC_END: Guids in SecurityPkg not available in source
+  gPlatformModuleTokenSpaceGuid.PcdProcessorLtsxEnable
+  gEfiCpRcPkgTokenSpaceGuid.PcdDprSizeFeatureSupport
+  gEfiCpRcPkgTokenSpaceGuid.PcdLtMemSize
+  gEfiCpRcPkgTokenSpaceGuid.PcdNvDimmEn
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuThreadCount
+
+[PcdEx]
+  gReferenceCodePolicyTokenSpaceGuid.PcdEvMode
+  gReferenceCodePolicyTokenSpaceGuid.PcdDfxRstCplBitsEn
+
+[Guids]
+  gEfiAcpiVariableGuid
+  gEfiMemoryConfigDataGuid
+  gEfiSetupVariableGuid
+  gEfiMemoryConfigDataHobGuid
+  gEfiMemoryOverwriteControlDataGuid
+  gEfiSocketPciResourceDataGuid
+  gEfiSocketProcessorCoreVarGuid
+  gEfiOcDataGuid
+  gEfiRasHostGuid
+  gAddressBasedMirrorGuid
+  gEfiPprVariableGuid
+  gEfiPlatformTxtDeviceMemoryGuid
+  gEfiSmmPeiSmramMemoryReserveGuid
+  gEfiMemoryTypeInformationGuid
+  gPlatformKtiEparamUpdateDataGuid
+  gEfiKtiEparamInfoGuid
+  gEfiKtiHostNvramDataHobGuid
+  gEfiSysInfoVarNvramDataGuid
+  gSystemInfoVarHobGuid
+  # APTIOV_SERVER_OVERRIDE_RC_START: Guid in ServerRas
+  #gMemRasS3DataVariableGuid
+  # APTIOV_SERVER_OVERRIDE_RC_END: Guid in ServerRas
+  # APTIOV_SERVER_OVERRIDE_RC_START: Guids in SecurityPkg not available in source
+ # gEfiTpmDeviceInstanceTpm12Guid
+ # gEfiTpmDeviceInstanceTpm20DtpmGuid
+ # gTcgEventEntryHobGuid
+ # gTcgEvent2EntryHobGuid
+ # APTIOV_SERVER_OVERRIDE_RC_END: Guids in SecurityPkg not available in source
+  gEfiPlatformInfoGuid
+  gPlatformModuleTokenSpaceGuid
+  gEfiReservedMemoryDataGuid
+  # APTIOV_SERVER_OVERRIDE_RC_START: Guids not available in source declaration files
+  #gFspReservedMemoryResourceHobGuid
+  # APTIOV_SERVER_OVERRIDE_RC_START: Guids not available in source declaration files
+
+[Ppis]
+  gEfiPeiStallPpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gEfiPeiMpServicesPpiGuid
+  gEfiSiliconRcHobsReadyPpi
+  gPeiBaseMemoryTestPpiGuid
+  gPeiPlatformMemorySizePpiGuid
+  gPchResetPpiGuid
+  gUpiSiPolicyPpiGuid
+  gMemoryPolicyPpiGuid
+  # APTIOV_SERVER_OVERRIDE_RC_START:
+  #gPeiTpmInitializedPpiGuid
+  # APTIOV_SERVER_OVERRIDE_RC_END:
+
+[BuildOptions.Ia32]
+  MSFT:*_*_*_CC_FLAGS     = /GF
+
+[BuildOptions.X64]
+  MSFT:*_*_X64_CC_FLAGS   = /Gs32768

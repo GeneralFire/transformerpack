@@ -1,0 +1,8 @@
+<component>
+    name = "Amt"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Amt\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Amt"
+[files]
+"AmtConfig.h"	
+<endComponent>

@@ -1,0 +1,17 @@
+TOKEN
+	Name  = "MemorySubClass_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling MemorySubClass support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "MemorySubClass"
+	File  = "MemorySubClass.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER" 	
+	Token = "MemorySubClass_SUPPORT" "=" "1"
+End
+

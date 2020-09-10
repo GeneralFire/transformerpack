@@ -1,0 +1,17 @@
+<component>
+    name = "PeiDxeSmmPchDmiLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\Private\PeiDxeSmmPchDmiLib\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.Library.Private.PeiDxeSmmPchDmiLib"
+[INF]
+"PeiDxeSmmPchDmiLib.inf"
+"PeiDxeSmmPchDmiLibCdf.inf"
+"PeiDxeSmmPchDmiWithS3Lib.inf"
+"PeiDxeSmmPchDmiWithS3LibCdf.inf"
+"PeiPchDmiLib.inf"
+"PeiPchDmiLibCdf.inf"
+[files]
+"PchDmi14.h"	
+"PchDmi15.h"	
+"PeiDxeSmmPchDmiLib.sdl"	
+<endComponent>

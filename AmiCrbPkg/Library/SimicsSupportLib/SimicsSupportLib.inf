@@ -1,0 +1,41 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+#
+# @file SimicsSupportLib.inf
+#
+# INF description file for SimicsSupportLib library.
+#
+
+[Defines]
+  INF_VERSION             = 0x00010015
+  VERSION_STRING          = 1.0
+  BASE_NAME               = SimicsSupportLib
+  MODULE_TYPE             = DXE_DRIVER
+  LIBRARY_CLASS           = NULL
+  CONSTRUCTOR             = DxeIsSmicsIpmiConstructor
+  FILE_GUID               = 86F0C6C3-2FC0-49f3-8172-2067B13029C9
+
+
+[Sources]
+ SimicsSupportLib.c
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  PreSiliconEnvDetectLib
+  AmiDxeLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+
+[Pcd]
+

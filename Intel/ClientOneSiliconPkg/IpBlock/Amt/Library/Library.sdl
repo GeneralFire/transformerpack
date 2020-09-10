@@ -1,0 +1,49 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "DxeAmtHeciLib"
+    Instance  = "ClientOneSiliconPkg.DxeAmtHeciLib"
+    Arch = "X64"
+    Token = "AMT_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "DxeAmtHeciLib"
+    File  = "DxeAmtHeciLib/DxeAmtHeciLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "AMT_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "DxeAmtPolicyLib"
+    Instance  = "ClientOneSiliconPkg.DxeAmtPolicyLib"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "DxeAmtPolicyLib"
+    File  = "DxeAmtPolicyLib/DxeAmtPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+    Class  = "PeiAmtPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiAmtPolicyLib"
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "PeiAmtPolicyLib"
+    File  = "PeiAmtPolicyLib/PeiAmtPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+

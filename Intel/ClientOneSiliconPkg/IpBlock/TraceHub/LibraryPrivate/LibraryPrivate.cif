@@ -1,0 +1,12 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\TraceHub\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.TraceHub.LibraryPrivate"
+[INF]
+"PeiCpuTraceHubLibNull\PeiCpuTraceHubLibNull.inf"
+"PeiCpuTraceHubPolicyLib\PeiCpuTraceHubPolicyLib.inf"
+"PeiPchTraceHubPolicyLib\PeiPchTraceHubPolicyLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

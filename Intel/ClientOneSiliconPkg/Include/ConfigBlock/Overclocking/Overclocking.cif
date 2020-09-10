@@ -1,0 +1,8 @@
+<component>
+    name = "Overclocking"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Overclocking\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Overclocking"
+[files]
+"OverclockingConfig.h"	
+<endComponent>

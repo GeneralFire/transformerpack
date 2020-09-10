@@ -1,0 +1,181 @@
+TOKEN
+    Name  = "NbBoard_support"
+    Value  = "1"
+    Help  = "Main Switch for Enabling Sapphire Rapied NB Board in the Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+
+PATH
+    Name  = "NB_CHIPSET_DIR"
+    Path  = "AmiCrbPkg/Chipset/NB"
+End
+
+PATH
+    Name  = "NB_BOARD_DIR"
+    Path  = "AmiCrbPkg/Board/NB"
+End
+
+MODULE
+    Help  = "Includes Nb.mak to Project"
+    File  = "Nb.mak"
+End
+
+TOKEN
+    Name  = "NB_DEVICE_REGS_RC_DEFINITION_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "NB_DEVICE_REGS_RC_DEFINITION_HEADER"
+    Value  = "<CpRcPkg\Library\BaseMemoryCoreLib\Chip\Skx\Include\Iio\IioRegs.h>"
+    TokenType = Expression
+    TargetH = Yes
+    Lock = Yes
+    Token = "NB_DEVICE_REGS_RC_DEFINITION_SUPPORT" "=" "1"
+End
+
+# Dynamic mmcfg base address change
+TOKEN
+    Name  = "PCIEX_BASE_ADDRESS"
+    Value  = "0x80000000"
+    Help  = "Contains the base address programmed for PCI Express. \Set this value to 0 if PCI Express support is not present. \Enables/disables PCI configuration access through memory. \Make sure PCIEX_BASE_ADDRESS is set appropriately. \If PCI is accessed through PCI \config mechanism then the maximum register offset that can be accessed is 256."
+    TokenType = Integer
+    TargetH = Yes
+    Token = "DYNAMIC_MMCFG_BASE_SUPPORT" "=" "0"
+End
+
+TOKEN
+    Name  = "PCIEX_LENGTH"
+    Value  = "0x10000000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+
+ELINK
+    Name  = "$(NB_BOARD_DIR)/NbSetup.c"
+    Parent  = "SetupCallbackFiles"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "AmiCrbPkg/AmiCrbPkg.dec"
+    Parent  = "AdditionalSetupPackages"
+    InvokeOrder = AfterParent
+End
+
+ELINK 
+   Name  = "ClientOneSiliconPkg/SiPkg.dec"
+   Parent  = "AdditionalSetupPackages"
+   InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "ServerSiliconPkg/SiliconPkg.dec"
+    Parent  = "AdditionalSetupPackages"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "ServerPlatformPkg/PlatformPkg.dec"
+    Parent  = "AdditionalSetupPackages"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "CpRcPkg/CpRcPkg.dec"
+    Parent  = "AdditionalSetupPackages"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "UefiCpuPkg/UefiCpuPkg.dec"
+    Parent  = "AdditionalSetupPackages"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "MdePkg/MdePkg.dec"
+    Parent  = "AdditionalSetupPackages"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "HobLib"
+    Parent  = "AdditionalSetupLibraryClasses"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiFirmwareVolume2ProtocolGuid"
+    Parent  = "AdditionalSetupProtocols"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiMemoryMapGuid"
+    Parent  = "AdditionalSetupGuids"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiIioUdsProtocolGuid"
+    Parent  = "AdditionalSetupProtocols"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiPlatformTypeProtocolGuid"
+    Parent  = "AdditionalSetupProtocols"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "PchInfoLib"
+    Parent  = "AdditionalSetupLibraryClasses"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "MmPciLib"
+    Parent  = "AdditionalSetupLibraryClasses"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "MemTypeLib"
+    Parent  = "AdditionalSetupLibraryClasses"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "InitNbStrings,"
+    Parent  = "SetupStringInit"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(NB_BOARD_DIR)/Nb.sd"
+    Parent  = "SETUP_DEFINITIONS"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(NB_BOARD_DIR)/Nb.uni"
+    Parent  = "SetupStringFiles"
+    InvokeOrder = AfterParent
+End
+
+
+RSVCHIPSET
+    Name  = "PCI Config Space Index Data"
+    BASEADDR  = "0xCF8"
+    LENGTH  = "0x8"
+    TYPE  = "EfiGcdIoTypeIo"
+    ATTRIBUTES  = "0xffffffffffffffff"
+End
+

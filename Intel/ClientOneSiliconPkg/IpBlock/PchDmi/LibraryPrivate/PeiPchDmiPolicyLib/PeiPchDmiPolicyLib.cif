@@ -1,0 +1,10 @@
+<component>
+    name = "PeiPchDmiPolicyLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\PchDmi\LibraryPrivate\PeiPchDmiPolicyLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.PchDmi.LibraryPrivate.PeiPchDmiPolicyLib"
+[INF]
+"PeiPchDmiPolicyLib.inf"
+[files]
+"PeiPchDmiPreMemPolicyLib.c"	
+<endComponent>

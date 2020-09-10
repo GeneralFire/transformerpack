@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Pmc\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Pmc.Library"
+[INF]
+"PeiDxeSmmPmcLib\PeiDxeSmmPmcLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

@@ -1,0 +1,54 @@
+TOKEN
+    Name  = "Smbus_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Smbus support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PchSmbusDxe_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PchSmbusDxe support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "PchSmbusDxe"
+    File  = "Dxe/PchSmbusDxe.inf"
+    Package  = "ServerSiliconPkg"
+    Arch = "X64"      
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "PchSmbusDxe_INF_SUPPORT" "=" "1"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.PchSmbusDxe"
+    Override  = "ServerSiliconPkg.PchSmbusSmm"
+End
+
+TOKEN
+    Name  = "PchSmbusSmm_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PchSmbusSmm support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "PchSmbusSmm"
+    File  = "Smm/PchSmbusSmm.inf"
+    Package  = "ServerSiliconPkg"
+    Arch = "X64"    
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "PchSmbusSmm_INF_SUPPORT" "=" "1"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.DxePcdLib"
+    Override  = "ServerSiliconPkg.PchSmbusSmm"
+End
+

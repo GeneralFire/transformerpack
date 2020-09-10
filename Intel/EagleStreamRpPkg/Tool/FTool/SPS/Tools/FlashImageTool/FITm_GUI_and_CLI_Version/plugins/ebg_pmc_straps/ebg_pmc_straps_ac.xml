@@ -1,0 +1,469 @@
+<?xml version="1.0"?>
+<!--
+INTEL CONFIDENTIAL
+Copyright 2017-2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+<container>
+  <configuration version="0.5">
+    <!-- PMC Straps configuration start -->
+    <!--EBG_SoftStraps_0v95.xlsx L - -->
+        <group name="mip_group" ui_params="{'gui_tab': 'Straps', 'tree_view': 'true'}">
+            <group name="mip_table" label="PMC Straps by order (0v95)">
+                <group name="PmcStrap0_gui_group" label="PMC Strap 0">
+                  <bit_register name="PmcStrap0" label="PMC Strap 0" size="4" value="0x8b000473">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap0_CPUPWRGDStretchingWDTimerEnabled" label="CPUPWRGD Stretching WD Timer Enabled" ui_params="{'read_only': 'false', 'description':'The WD Timer is enabled by setting this strap to \'0\'. Timer runs while all of the following conditions are satisfied: SLP_S3# = 1, PCH_PWROK = 1, CPUPWRGD = 0. Typically, the timer stops once CPUPWRGD asserts.'}" params="{'value_list':{'CPUPWRGD Stretching watchdog timer is enabled':'0x0','CPUPWRGD Stretching watchdog timer is disabled':'0x1'} }" value="0x1" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap0_reserved_0x0_1_1" label="reserved_0x0_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap0_SYS_PWROKSyncPoint" label="SYS_PWROK Sync Point" ui_params="{'read_only': 'false', 'description':'Select whether SYS_PWROK is required prior to CPUPWRGD high or SUS_STAT# high.'}" params="{'value_list':{'Wait for SYS_PWROK before driving CPUPWRGD high':'0x0','Wait for SYS_PWROK before driving SUS_STAT# high':'0x1'} }" value="0x0" />
+                    <bit bit_low="3" bit_high="3" name="PmcStrap0_reserved_0x0_3_3" label="reserved_0x0_3_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="4" bit_high="4" name="PmcStrap0_reserved_0x0_4_4" label="reserved_0x0_4_4" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="5" bit_high="5" name="PmcStrap0_StartMonitoringTHRMTRIPValidPoint" label="Start Monitoring THRMTRIP# Valid Point" ui_params="{'read_only': 'false', 'description':'Select whether THRMTRIP# is monitored at PLT_RST# deassertion or at CPUPWRGD assertion.'}" params="{'value_list':{'Start monitoring THRMTRIP# at PLTRST# deassertion':'0x0','Start monitoring THRMTRIP# at CPUPWRGD assertion':'0x1'} }" value="0x1" />
+                    <bit bit_low="6" bit_high="6" name="PmcStrap0_reserved_0x0_6_6" label="reserved_0x0_6_6" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="7" bit_high="7" name="PmcStrap0_IOE_RST_SYNC_EN" label="IOE_RST_SYNC_EN" ui_params="{'read_only': 'false'}" params="{'value_list':{'Legacy PCH doesn’t need to sync with IO Expander (default)':'0x0','Legacy PCH needs to sync with IO Expander for boot/rst/sx flows':'0x1'} }" value="0x0" />
+                    <bit bit_low="8" bit_high="9" name="PmcStrap0_t573Timing" label="t573 Timing" ui_params="{'read_only': 'false', 'description':'t573 is the min timing from XCK_PLL locked to CPUPWRGD high'}" params="{'value_list':{'100 ms (default)':'0x0','50 ms':'0x1','5 ms':'0x2','1 ms':'0x3'} }" value="0x0" />
+                    <bit bit_low="10" bit_high="11" name="PmcStrap0_t1001Timing" label="t1001 Timing" ui_params="{'read_only': 'false', 'description':'t1001 is the min timing from either CPUPWRGD or SYS_PWROK(Depend on SYS_PWROK Sync point strap setting) assertion to SUS_STAT# deassertion\n\nSYS_PWROK Sync point strap setting and start point logic as below:\nSTRAP119 Bit [2]:\n1 = SYS_PWROK\n0 = CPUPWRGD'}" params="{'value_list':{'1 ms':'0x0','10 ms':'0x1','5 ms':'0x2','2 ms':'0x3'} }" value="0x1" />
+                    <bit bit_low="12" bit_high="12" name="PmcStrap0_reserved_0x0_12_12" label="reserved_0x0_12_12" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="13" bit_high="13" name="PmcStrap0_SYS_PWROKFailureDetectionEnabled" label="SYS_PWROK Failure Detection Enabled" ui_params="{'read_only': 'false', 'description':'This bit indicates whether detection of SYS_PWROK failure should be detected'}" params="{'value_list':{'Enable detection of SYS_PWROK failures,initiating a global reset if detected':'0x0','Disable detection of SYS_PWROK failures':'0x1'} }" value="0x0" />
+                    <bit bit_low="14" bit_high="14" name="PmcStrap0_reserved_0x0_14_14" label="reserved_0x0_14_14" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="15" bit_high="15" name="PmcStrap0_reserved_0x0_15_15" label="reserved_0x0_15_15" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="16" bit_high="18" name="PmcStrap0_reserved_0x0_18_16" label="reserved_0x0_18_16" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="19" name="PmcStrap0_LANPHYPowerUpTime" label="LAN PHY Power Up Time" ui_params="{'read_only': 'false', 'description':'This bit determines how long PCH will wait for the LAN PHY to power up after de-assertion of SLP_LAN#'}" params="{'value_list':{'100ms':'0x0','50ms':'0x1'} }" value="0x0" />
+                    <bit bit_low="20" bit_high="20" name="PmcStrap0_DeepSxPlatformConfigurationDEEPSX_PLT_CFG_SS" label="DeepSx Platform Configuration(DEEPSX_PLT_CFG_SS)" ui_params="{'read_only': 'false', 'description':'Indicates if the platform supports Deep Sx'}" params="{'value_list':{'The platform does not support DeepSx':'0x0','The platform supports DeepSx':'0x1'} }" value="0x0" />
+                    <bit bit_low="21" bit_high="22" name="PmcStrap0_APWROKTiming" label="APWROK Timing" ui_params="{'read_only': 'false', 'description':'This soft strap determines the time between the SLP_A# pin deasserting and the APWROK timer expiration.\nOnce this counter expires, the PCH assumes that the on-board ASW power is stable'}" params="{'value_list':{'2ms':'0x0','4ms':'0x1','8ms':'0x2','16ms':'0x3'} }" value="0x0" />
+                    <bit bit_low="23" bit_high="23" name="PmcStrap0_reserved_0x0_23_23" label="reserved_0x0_23_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="24" bit_high="24" name="PmcStrap0_t36Enabled" label="t36 Enabled" ui_params="{'read_only': 'false', 'description':'This strap is used to enable PCH to count t36 when booting to S0. This timing starts at PCH_PWROK assertion.'}" params="{'value_list':{'t36 counter is Disabled':'0x0','t36 counter is Enabled':'0x1'} }" value="0x1" />
+                    <bit bit_low="25" bit_high="25" name="PmcStrap0_reserved_0x0_25_25" label="reserved_0x0_25_25" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="26" bit_high="26" name="PmcStrap0_reserved_0x0_26_26" label="reserved_0x0_26_26" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap0_reserved_0x0_27_27" label="reserved_0x0_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap0_reserved_0x0_28_28" label="reserved_0x0_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="29" name="PmcStrap0_PM_SYNCPM_DOWNClockingControl" label="PM_SYNC/PM_DOWN Clocking Control" ui_params="{'read_only': 'false', 'description':'This setting configures the PCH to transmit / receive 1 bit of data per XTAL clock or per four XTAL on either the rising or falling edge of the clock.'}" params="{'value_list':{'PMC Tx/Rx 1 bit of data per XTAL clock on the falling edge of the clock':'0x0','PMC Tx/Rx 1 bit of data per four XTAL clock on the rising edge of the clock':'0x1'} }" value="0x0" />
+                    <bit bit_low="30" bit_high="30" name="PmcStrap0_reserved_0x0_30_30" label="reserved_0x0_30_30" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="31" bit_high="31" name="PmcStrap0_reserved_0x0_31_31" label="reserved_0x0_31_31" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap1_gui_group" label="PMC Strap 1">
+                  <bit_register name="PmcStrap1" label="PMC Strap 1" size="4" value="0x8000088">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap1_USBDisabled" label="USB Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if USB is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap1_reserved_0x4_1_1" label="reserved_0x4_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap1_reserved_0x4_2_2" label="reserved_0x4_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="3" name="PmcStrap1_reserved_0x4_3_3" label="reserved_0x4_3_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="4" bit_high="4" name="PmcStrap1_reserved_0x4_4_4" label="reserved_0x4_4_4" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="5" bit_high="5" name="PmcStrap1_UARTDisabled" label="UART Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if UART is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="6" bit_high="6" name="PmcStrap1_reserved_0x4_6_6" label="reserved_0x4_6_6" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="7" bit_high="7" name="PmcStrap1_reserved_0x4_7_7" label="reserved_0x4_7_7" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="8" bit_high="8" name="PmcStrap1_reserved_0x4_8_8" label="reserved_0x4_8_8" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="9" bit_high="9" name="PmcStrap1_reserved_0x4_9_9" label="reserved_0x4_9_9" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="10" bit_high="10" name="PmcStrap1_reserved_0x4_10_10" label="reserved_0x4_10_10" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="11" name="PmcStrap1_reserved_0x4_11_11" label="reserved_0x4_11_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="12" bit_high="12" name="PmcStrap1_reserved_0x4_12_12" label="reserved_0x4_12_12" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="13" bit_high="13" name="PmcStrap1_reserved_0x4_13_13" label="reserved_0x4_13_13" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="14" bit_high="14" name="PmcStrap1_reserved_0x4_14_14" label="reserved_0x4_14_14" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="15" bit_high="15" name="PmcStrap1_reserved_0x4_15_15" label="reserved_0x4_15_15" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="16" bit_high="16" name="PmcStrap1_reserved_0x4_16_16" label="reserved_0x4_16_16" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="17" bit_high="17" name="PmcStrap1_reserved_0x4_17_17" label="reserved_0x4_17_17" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="18" bit_high="18" name="PmcStrap1_reserved_0x4_18_18" label="reserved_0x4_18_18" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="19" name="PmcStrap1_reserved_0x4_19_19" label="reserved_0x4_19_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="20" bit_high="20" name="PmcStrap1_reserved_0x4_20_20" label="reserved_0x4_20_20" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="21" bit_high="21" name="PmcStrap1_reserved_0x4_21_21" label="reserved_0x4_21_21" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="22" bit_high="22" name="PmcStrap1_reserved_0x4_22_22" label="reserved_0x4_22_22" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="23" name="PmcStrap1_reserved_0x4_23_23" label="reserved_0x4_23_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="24" bit_high="24" name="PmcStrap1_reserved_0x4_24_24" label="reserved_0x4_24_24" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="25" bit_high="25" name="PmcStrap1_reserved_0x4_25_25" label="reserved_0x4_25_25" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="26" bit_high="26" name="PmcStrap1_reserved_0x4_26_26" label="reserved_0x4_26_26" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap1_reserved_0x4_27_27" label="reserved_0x4_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap1_reserved_0x4_28_28" label="reserved_0x4_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="29" name="PmcStrap1_reserved_0x4_29_29" label="reserved_0x4_29_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="30" bit_high="30" name="PmcStrap1_reserved_0x4_30_30" label="reserved_0x4_30_30" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="31" bit_high="31" name="PmcStrap1_reserved_0x4_31_31" label="reserved_0x4_31_31" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap2_gui_group" label="PMC Strap 2">
+                  <bit_register name="PmcStrap2" label="PMC Strap 2" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap2_SATA1Disabled" label="SATA1 Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if SATA1 is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap2_SATA2Disabled" label="SATA2 Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if SATA2 is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap2_reserved_0x8_2_2" label="reserved_0x8_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="3" name="PmcStrap2_SMB_MCDisabled" label="SMB_MC Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if SMB_MC is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="4" bit_high="4" name="PmcStrap2_SATADisabled" label="SATA Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if SATA is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="5" bit_high="5" name="PmcStrap2_GBEDisabled" label="GBE Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if GBE is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="6" bit_high="6" name="PmcStrap2_reserved_0x8_6_6" label="reserved_0x8_6_6" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="7" bit_high="7" name="PmcStrap2_SPADisabled" label="SPA Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if SPA is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="8" bit_high="8" name="PmcStrap2_SPBDisabled" label="SPB Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if SPB is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="9" bit_high="9" name="PmcStrap2_SPCDisabled" label="SPC Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if SPC is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="10" bit_high="10" name="PmcStrap2_SPDDisabled" label="SPD Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if SPD is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="11" bit_high="11" name="PmcStrap2_XHCIDisabled" label="XHCI Disabled" ui_params="{'read_only': 'false', 'description':'This strap indicates if XHCI is disabled or not.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="12" bit_high="12" name="PmcStrap2_reserved_0x8_12_12" label="reserved_0x8_12_12" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="13" bit_high="13" name="PmcStrap2_reserved_0x8_13_13" label="reserved_0x8_13_13" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="14" bit_high="14" name="PmcStrap2_reserved_0x8_14_14" label="reserved_0x8_14_14" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="15" bit_high="15" name="PmcStrap2_reserved_0x8_15_15" label="reserved_0x8_15_15" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="16" bit_high="31" name="PmcStrap2_reserved_0x8_31_16" label="reserved_0x8_31_16" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap3_gui_group" label="PMC Strap 3">
+                  <bit_register name="PmcStrap3" label="PMC Strap 3" size="4" value="0x1840">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap3_reserved_0xc_0_0" label="reserved_0xc_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap3_reserved_0xc_1_1" label="reserved_0xc_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap3_reserved_0xc_2_2" label="reserved_0xc_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="3" name="PmcStrap3_reserved_0xc_3_3" label="reserved_0xc_3_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="4" bit_high="4" name="PmcStrap3_reserved_0xc_4_4" label="reserved_0xc_4_4" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="5" bit_high="5" name="PmcStrap3_reserved_0xc_5_5" label="reserved_0xc_5_5" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="6" bit_high="6" name="PmcStrap3_reserved_0xc_6_6" label="reserved_0xc_6_6" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="7" bit_high="7" name="PmcStrap3_SMT1Disabled" label="SMT1 Disabled" ui_params="{'read_only': 'false'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="8" bit_high="8" name="PmcStrap3_SMT2Disabled" label="SMT2 Disabled" ui_params="{'read_only': 'false'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="9" bit_high="9" name="PmcStrap3_SMT3Disabled" label="SMT3 Disabled" ui_params="{'read_only': 'false'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="10" bit_high="10" name="PmcStrap3_SMT4Disabled" label="SMT4 Disabled" ui_params="{'read_only': 'false'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="11" bit_high="11" name="PmcStrap3_SMT5Disabled" label="SMT5 Disabled" ui_params="{'read_only': 'false'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x1" />
+                    <bit bit_low="12" bit_high="12" name="PmcStrap3_SMT6Disabled" label="SMT6 Disabled" ui_params="{'read_only': 'false'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x1" />
+                    <bit bit_low="13" bit_high="13" name="PmcStrap3_reserved_0xc_13_13" label="reserved_0xc_13_13" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="14" bit_high="14" name="PmcStrap3_PECIDisabled" label="PECI Disabled" ui_params="{'read_only': 'false'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="15" bit_high="15" name="PmcStrap3_reserved_0xc_15_15" label="reserved_0xc_15_15" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="16" bit_high="16" name="PmcStrap3_reserved_0xc_16_16" label="reserved_0xc_16_16" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="17" bit_high="17" name="PmcStrap3_reserved_0xc_17_17" label="reserved_0xc_17_17" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="18" bit_high="18" name="PmcStrap3_reserved_0xc_18_18" label="reserved_0xc_18_18" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="19" name="PmcStrap3_reserved_0xc_19_19" label="reserved_0xc_19_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="20" bit_high="20" name="PmcStrap3_reserved_0xc_20_20" label="reserved_0xc_20_20" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="21" bit_high="21" name="PmcStrap3_reserved_0xc_21_21" label="reserved_0xc_21_21" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="22" bit_high="22" name="PmcStrap3_reserved_0xc_22_22" label="reserved_0xc_22_22" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="23" name="PmcStrap3_reserved_0xc_23_23" label="reserved_0xc_23_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="24" bit_high="24" name="PmcStrap3_reserved_0xc_24_24" label="reserved_0xc_24_24" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="25" bit_high="25" name="PmcStrap3_reserved_0xc_25_25" label="reserved_0xc_25_25" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="26" bit_high="26" name="PmcStrap3_reserved_0xc_26_26" label="reserved_0xc_26_26" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap3_reserved_0xc_27_27" label="reserved_0xc_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="31" name="PmcStrap3_reserved_0xc_31_28" label="reserved_0xc_31_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap4_gui_group" label="PMC Strap 4">
+                  <bit_register name="PmcStrap4" label="PMC Strap 4" size="4" value="0x80020000">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap4_reserved_0x10_0_0" label="reserved_0x10_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap4_reserved_0x10_1_1" label="reserved_0x10_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap4_reserved_0x10_2_2" label="reserved_0x10_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="6" name="PmcStrap4_reserved_0x10_6_3" label="reserved_0x10_6_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="7" bit_high="7" name="PmcStrap4_reserved_0x10_7_7" label="reserved_0x10_7_7" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="8" bit_high="15" name="PmcStrap4_reserved_0x10_15_8" label="reserved_0x10_15_8" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="16" bit_high="16" name="PmcStrap4_SYS_RESETDebounceDisable" label="SYS_RESET# Debounce Disable" ui_params="{'read_only': 'false'}" params="{'value_list':{'16ms debounce logic on SYS_RESET#pin input is Enabled (default)':'0x0','16ms debounce logic on SYS_RESET#pin input is Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="17" bit_high="17" name="PmcStrap4_reserved_0x10_17_17" label="reserved_0x10_17_17" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="18" bit_high="18" name="PmcStrap4_AG3E_1ST_BOOT_VALUE" label="AG3E_1ST_BOOT_VALUE" ui_params="{'read_only': 'false', 'description':'When set \'0\', System will return to an S0 state (boot) after power is re-applied;\nWhen set \'1\', System will return to the S5 state (except if it was in S4, in which case it will return to S4-like state).  In the S5 state, the only enabled wake-up event is the Power Button or any enabled wake event that was preserved through the power failure.'}" params="{'value_list':{'System will return to an S0 state (boot) after power is re-applied':'0x0','System will return to the S5 state (except if it was in S4, in which case it will return to S4-like state)':'0x1'} }" value="0x0" />
+                    <bit bit_low="19" bit_high="19" name="PmcStrap4_reserved_0x10_19_19" label="reserved_0x10_19_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="20" bit_high="20" name="PmcStrap4_reserved_0x10_20_20" label="reserved_0x10_20_20" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="21" bit_high="21" name="PmcStrap4_reserved_0x10_21_21" label="reserved_0x10_21_21" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="22" bit_high="22" name="PmcStrap4_reserved_0x10_22_22" label="reserved_0x10_22_22" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="23" name="PmcStrap4_reserved_0x10_23_23" label="reserved_0x10_23_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="24" bit_high="24" name="PmcStrap4_reserved_0x10_24_24" label="reserved_0x10_24_24" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="25" bit_high="25" name="PmcStrap4_reserved_0x10_25_25" label="reserved_0x10_25_25" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="26" bit_high="26" name="PmcStrap4_reserved_0x10_26_26" label="reserved_0x10_26_26" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap4_reserved_0x10_27_27" label="reserved_0x10_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap4_reserved_0x10_28_28" label="reserved_0x10_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="29" name="PmcStrap4_reserved_0x10_29_29" label="reserved_0x10_29_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="30" bit_high="30" name="PmcStrap4_reserved_0x10_30_30" label="reserved_0x10_30_30" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="31" bit_high="31" name="PmcStrap4_reserved_0x10_31_31" label="reserved_0x10_31_31" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap5_gui_group" label="PMC Strap 5">
+                  <bit_register name="PmcStrap5" label="PMC Strap 5" size="4" value="0xf9540006">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap5_reserved_0x14_0_0" label="reserved_0x14_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap5_reserved_0x14_1_1" label="reserved_0x14_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap5_reserved_0x14_2_2" label="reserved_0x14_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="3" bit_high="3" name="PmcStrap5_reserved_0x14_3_3" label="reserved_0x14_3_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="4" bit_high="7" name="PmcStrap5_reserved_0x14_7_4" label="reserved_0x14_7_4" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="8" bit_high="8" name="PmcStrap5_reserved_0x14_8_8" label="reserved_0x14_8_8" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="9" bit_high="9" name="PmcStrap5_reserved_0x14_9_9" label="reserved_0x14_9_9" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="10" bit_high="10" name="PmcStrap5_reserved_0x14_10_10" label="reserved_0x14_10_10" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="11" name="PmcStrap5_reserved_0x14_11_11" label="reserved_0x14_11_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="12" bit_high="12" name="PmcStrap5_reserved_0x14_12_12" label="reserved_0x14_12_12" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="13" bit_high="13" name="PmcStrap5_reserved_0x14_13_13" label="reserved_0x14_13_13" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="14" bit_high="14" name="PmcStrap5_reserved_0x14_14_14" label="reserved_0x14_14_14" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="15" bit_high="15" name="PmcStrap5_reserved_0x14_15_15" label="reserved_0x14_15_15" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="16" bit_high="19" name="PmcStrap5_reserved_0x14_19_16" label="reserved_0x14_19_16" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x4" />
+                    <bit bit_low="20" bit_high="20" name="PmcStrap5_reserved_0x14_20_20" label="reserved_0x14_20_20" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="21" bit_high="21" name="PmcStrap5_ThermalManagementFeatureDisabled" label="Thermal Management Feature Disabled" ui_params="{'read_only': 'false', 'description':'Strap to Enable/Disable the Thermal Management Feature.'}" params="{'value_list':{'Enabled.':'0x0','Disabled.':'0x1'} }" value="0x0" />
+                    <bit bit_low="22" bit_high="22" name="PmcStrap5_reserved_0x14_22_22" label="reserved_0x14_22_22" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="23" bit_high="23" name="PmcStrap5_reserved_0x14_23_23" label="reserved_0x14_23_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="24" bit_high="24" name="PmcStrap5_reserved_0x14_24_24" label="reserved_0x14_24_24" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="25" bit_high="25" name="PmcStrap5_reserved_0x14_25_25" label="reserved_0x14_25_25" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="26" bit_high="26" name="PmcStrap5_reserved_0x14_26_26" label="reserved_0x14_26_26" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap5_reserved_0x14_27_27" label="reserved_0x14_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap5_reserved_0x14_28_28" label="reserved_0x14_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="29" bit_high="29" name="PmcStrap5_reserved_0x14_29_29" label="reserved_0x14_29_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="30" bit_high="30" name="PmcStrap5_reserved_0x14_30_30" label="reserved_0x14_30_30" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="31" bit_high="31" name="PmcStrap5_reserved_0x14_31_31" label="reserved_0x14_31_31" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap6_gui_group" label="PMC Strap 6">
+                  <bit_register name="PmcStrap6" label="PMC Strap 6" size="4" value="0x40000000">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap6_reserved_0x18_0_0" label="reserved_0x18_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="27" name="PmcStrap6_reserved_0x18_27_1" label="reserved_0x18_27_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap6_reserved_0x18_28_28" label="reserved_0x18_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="29" name="PmcStrap6_reserved_0x18_29_29" label="reserved_0x18_29_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="30" bit_high="30" name="PmcStrap6_reserved_0x18_30_30" label="reserved_0x18_30_30" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="31" bit_high="31" name="PmcStrap6_reserved_0x18_31_31" label="reserved_0x18_31_31" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap7_gui_group" label="PMC Strap 7">
+                  <bit_register name="PmcStrap7" label="PMC Strap 7" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="13" name="PmcStrap7_reserved_0x1c_13_0" label="reserved_0x1c_13_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="14" bit_high="15" name="PmcStrap7_reserved_0x1c_15_14" label="reserved_0x1c_15_14" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="16" bit_high="31" name="PmcStrap7_reserved_0x1c_31_16" label="reserved_0x1c_31_16" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap8_gui_group" label="PMC Strap 8">
+                  <bit_register name="PmcStrap8" label="PMC Strap 8" size="4" value="0x6400">
+                    <bit bit_low="0" bit_high="3" name="PmcStrap8_PHY_VID" label="PHY_VID" ui_params="{'read_only': 'false', 'description':'GBE PHY Vendor ID'}" value="0x0" />
+                    <bit bit_low="4" bit_high="4" name="PmcStrap8_ASSIGN_GBEPHY_ADDR" label="ASSIGN_GBEPHY_ADDR" ui_params="{'read_only': 'false', 'description':'Assign GBE PHY Address'}" params="{'value_list':{'Disable':'0x0','Enable':'0x1'} }" value="0x0" />
+                    <bit bit_low="5" bit_high="7" name="PmcStrap8_reserved_0x20_7_5" label="reserved_0x20_7_5" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="8" bit_high="14" name="PmcStrap8_GBEPHY_SMBUS_ADDR" label="GBEPHY_SMBUS_ADDR" ui_params="{'read_only': 'false', 'description':'GBE PHY SMBUS Address'}" value="0x64" />
+                    <bit bit_low="15" bit_high="31" name="PmcStrap8_reserved_0x20_31_15" label="reserved_0x20_31_15" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap9_gui_group" label="PMC Strap 9">
+                  <bit_register name="PmcStrap9" label="PMC Strap 9" size="4" value="0x4">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap9_reserved_0x24_0_0" label="reserved_0x24_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap9_Re_timer_Power_Gating_Enabled" label="Re_timer_Power_Gating_Enabled" ui_params="{'read_only': 'false', 'description':'Indicates whether platform Re-timer power gating is enabled.'}" params="{'value_list':{'Disabled':'0x0','Enabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap9_reserved_0x24_2_2" label="reserved_0x24_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="3" bit_high="3" name="PmcStrap9_reserved_0x24_3_3" label="reserved_0x24_3_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="4" bit_high="31" name="PmcStrap9_reserved_0x24_31_4" label="reserved_0x24_31_4" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap10_gui_group" label="PMC Strap 10">
+                  <bit_register name="PmcStrap10" label="PMC Strap 10" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap10_reserved_0x28_0_0" label="reserved_0x28_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap10_reserved_0x28_1_1" label="reserved_0x28_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap10_reserved_0x28_2_2" label="reserved_0x28_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap10_reserved_0x28_10_3" label="reserved_0x28_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap10_reserved_0x28_18_11" label="reserved_0x28_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap10_reserved_0x28_22_19" label="reserved_0x28_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap10_reserved_0x28_26_23" label="reserved_0x28_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap10_reserved_0x28_27_27" label="reserved_0x28_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap10_reserved_0x28_28_28" label="reserved_0x28_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap10_reserved_0x28_31_29" label="reserved_0x28_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap11_gui_group" label="PMC Strap 11">
+                  <bit_register name="PmcStrap11" label="PMC Strap 11" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap11_reserved_0x2c_0_0" label="reserved_0x2c_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap11_reserved_0x2c_1_1" label="reserved_0x2c_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap11_reserved_0x2c_2_2" label="reserved_0x2c_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap11_reserved_0x2c_10_3" label="reserved_0x2c_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap11_reserved_0x2c_18_11" label="reserved_0x2c_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap11_reserved_0x2c_22_19" label="reserved_0x2c_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap11_reserved_0x2c_26_23" label="reserved_0x2c_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap11_reserved_0x2c_27_27" label="reserved_0x2c_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap11_reserved_0x2c_28_28" label="reserved_0x2c_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap11_reserved_0x2c_31_29" label="reserved_0x2c_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap12_gui_group" label="PMC Strap 12">
+                  <bit_register name="PmcStrap12" label="PMC Strap 12" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap12_reserved_0x30_0_0" label="reserved_0x30_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap12_reserved_0x30_1_1" label="reserved_0x30_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap12_reserved_0x30_2_2" label="reserved_0x30_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap12_reserved_0x30_10_3" label="reserved_0x30_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap12_reserved_0x30_18_11" label="reserved_0x30_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap12_reserved_0x30_22_19" label="reserved_0x30_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap12_reserved_0x30_26_23" label="reserved_0x30_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap12_reserved_0x30_27_27" label="reserved_0x30_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap12_reserved_0x30_28_28" label="reserved_0x30_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap12_reserved_0x30_31_29" label="reserved_0x30_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap13_gui_group" label="PMC Strap 13">
+                  <bit_register name="PmcStrap13" label="PMC Strap 13" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap13_reserved_0x34_0_0" label="reserved_0x34_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap13_reserved_0x34_1_1" label="reserved_0x34_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap13_reserved_0x34_2_2" label="reserved_0x34_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap13_reserved_0x34_10_3" label="reserved_0x34_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap13_reserved_0x34_18_11" label="reserved_0x34_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap13_reserved_0x34_22_19" label="reserved_0x34_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap13_reserved_0x34_26_23" label="reserved_0x34_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap13_reserved_0x34_27_27" label="reserved_0x34_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap13_reserved_0x34_28_28" label="reserved_0x34_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap13_reserved_0x34_31_29" label="reserved_0x34_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap14_gui_group" label="PMC Strap 14">
+                  <bit_register name="PmcStrap14" label="PMC Strap 14" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap14_reserved_0x38_0_0" label="reserved_0x38_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap14_reserved_0x38_1_1" label="reserved_0x38_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap14_reserved_0x38_2_2" label="reserved_0x38_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap14_reserved_0x38_10_3" label="reserved_0x38_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap14_reserved_0x38_18_11" label="reserved_0x38_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap14_reserved_0x38_22_19" label="reserved_0x38_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap14_reserved_0x38_26_23" label="reserved_0x38_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap14_reserved_0x38_27_27" label="reserved_0x38_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap14_reserved_0x38_28_28" label="reserved_0x38_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap14_reserved_0x38_31_29" label="reserved_0x38_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap15_gui_group" label="PMC Strap 15">
+                  <bit_register name="PmcStrap15" label="PMC Strap 15" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap15_reserved_0x3c_0_0" label="reserved_0x3c_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap15_reserved_0x3c_1_1" label="reserved_0x3c_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap15_reserved_0x3c_2_2" label="reserved_0x3c_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap15_reserved_0x3c_10_3" label="reserved_0x3c_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap15_reserved_0x3c_18_11" label="reserved_0x3c_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap15_reserved_0x3c_22_19" label="reserved_0x3c_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap15_reserved_0x3c_26_23" label="reserved_0x3c_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap15_reserved_0x3c_27_27" label="reserved_0x3c_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap15_reserved_0x3c_28_28" label="reserved_0x3c_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap15_reserved_0x3c_31_29" label="reserved_0x3c_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap16_gui_group" label="PMC Strap 16">
+                  <bit_register name="PmcStrap16" label="PMC Strap 16" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap16_reserved_0x40_0_0" label="reserved_0x40_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap16_reserved_0x40_1_1" label="reserved_0x40_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap16_reserved_0x40_2_2" label="reserved_0x40_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap16_reserved_0x40_10_3" label="reserved_0x40_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap16_reserved_0x40_18_11" label="reserved_0x40_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap16_reserved_0x40_22_19" label="reserved_0x40_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap16_reserved_0x40_26_23" label="reserved_0x40_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap16_reserved_0x40_27_27" label="reserved_0x40_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap16_reserved_0x40_28_28" label="reserved_0x40_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap16_reserved_0x40_31_29" label="reserved_0x40_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap17_gui_group" label="PMC Strap 17">
+                  <bit_register name="PmcStrap17" label="PMC Strap 17" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap17_reserved_0x44_0_0" label="reserved_0x44_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap17_reserved_0x44_1_1" label="reserved_0x44_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap17_reserved_0x44_2_2" label="reserved_0x44_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap17_reserved_0x44_10_3" label="reserved_0x44_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap17_reserved_0x44_18_11" label="reserved_0x44_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap17_reserved_0x44_22_19" label="reserved_0x44_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap17_reserved_0x44_26_23" label="reserved_0x44_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap17_reserved_0x44_27_27" label="reserved_0x44_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap17_reserved_0x44_28_28" label="reserved_0x44_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap17_reserved_0x44_31_29" label="reserved_0x44_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap18_gui_group" label="PMC Strap 18">
+                  <bit_register name="PmcStrap18" label="PMC Strap 18" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap18_reserved_0x48_0_0" label="reserved_0x48_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap18_reserved_0x48_1_1" label="reserved_0x48_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap18_reserved_0x48_2_2" label="reserved_0x48_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap18_reserved_0x48_10_3" label="reserved_0x48_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap18_reserved_0x48_18_11" label="reserved_0x48_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap18_reserved_0x48_22_19" label="reserved_0x48_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap18_reserved_0x48_26_23" label="reserved_0x48_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap18_reserved_0x48_27_27" label="reserved_0x48_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap18_reserved_0x48_28_28" label="reserved_0x48_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap18_reserved_0x48_31_29" label="reserved_0x48_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap19_gui_group" label="PMC Strap 19">
+                  <bit_register name="PmcStrap19" label="PMC Strap 19" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap19_reserved_0x4c_0_0" label="reserved_0x4c_0_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap19_reserved_0x4c_1_1" label="reserved_0x4c_1_1" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap19_reserved_0x4c_2_2" label="reserved_0x4c_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="3" bit_high="10" name="PmcStrap19_reserved_0x4c_10_3" label="reserved_0x4c_10_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="11" bit_high="18" name="PmcStrap19_reserved_0x4c_18_11" label="reserved_0x4c_18_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="19" bit_high="22" name="PmcStrap19_reserved_0x4c_22_19" label="reserved_0x4c_22_19" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="23" bit_high="26" name="PmcStrap19_reserved_0x4c_26_23" label="reserved_0x4c_26_23" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="27" bit_high="27" name="PmcStrap19_reserved_0x4c_27_27" label="reserved_0x4c_27_27" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="28" bit_high="28" name="PmcStrap19_reserved_0x4c_28_28" label="reserved_0x4c_28_28" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="29" bit_high="31" name="PmcStrap19_reserved_0x4c_31_29" label="reserved_0x4c_31_29" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap20_gui_group" label="PMC Strap 20">
+                  <bit_register name="PmcStrap20" label="PMC Strap 20" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="31" name="PmcStrap20_reserved_0x50_31_0" label="reserved_0x50_31_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap21_gui_group" label="PMC Strap 21">
+                  <bit_register name="PmcStrap21" label="PMC Strap 21" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="31" name="PmcStrap21_reserved_0x54_31_0" label="reserved_0x54_31_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap22_gui_group" label="PMC Strap 22">
+                  <bit_register name="PmcStrap22" label="PMC Strap 22" size="4" value="0x4">
+                    <bit bit_low="0" bit_high="0" name="PmcStrap22_SATA1DisableinIOExpanderMode" label="SATA1 Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if SATA1 is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="1" bit_high="1" name="PmcStrap22_SATA2DisableinIOExpanderMode" label="SATA2 Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if SATA2 is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="2" bit_high="2" name="PmcStrap22_reserved_0x58_2_2" label="reserved_0x58_2_2" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="3" bit_high="3" name="PmcStrap22_SMB_MCDisableinIOExpanderMode" label="SMB_MC Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if SMB_MC is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="4" bit_high="4" name="PmcStrap22_SATADisableinIOExpanderMode" label="SATA Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if SATA is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="5" bit_high="5" name="PmcStrap22_GBEDisableinIOExpanderMode" label="GBE Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if GBE is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="6" bit_high="6" name="PmcStrap22_reserved_0x58_6_6" label="reserved_0x58_6_6" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="7" bit_high="7" name="PmcStrap22_SPADisableinIOExpanderMode" label="SPA Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if SPA is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="8" bit_high="8" name="PmcStrap22_SPBDisableinIOExpanderMode" label="SPB Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if SPB is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="9" bit_high="9" name="PmcStrap22_SPCDisableinIOExpanderMode" label="SPC Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if SPC is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="10" bit_high="10" name="PmcStrap22_SPDDisableinIOExpanderMode" label="SPD Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if SPD is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="11" bit_high="11" name="PmcStrap22_XHCIDisableinIOExpanderMode" label="XHCI Disable in IO Expander Mode" ui_params="{'read_only': 'false', 'description':'This strap indicates if XHCI is disabled or not in IO Expander mode.'}" params="{'value_list':{'Enabled':'0x0','Disabled':'0x1'} }" value="0x0" />
+                    <bit bit_low="12" bit_high="12" name="PmcStrap22_reserved_0x58_12_12" label="reserved_0x58_12_12" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="13" bit_high="13" name="PmcStrap22_reserved_0x58_13_13" label="reserved_0x58_13_13" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="14" bit_high="14" name="PmcStrap22_reserved_0x58_14_14" label="reserved_0x58_14_14" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="15" bit_high="15" name="PmcStrap22_reserved_0x58_15_15" label="reserved_0x58_15_15" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="16" bit_high="31" name="PmcStrap22_reserved_0x58_31_16" label="reserved_0x58_31_16" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+                <group name="PmcStrap23_gui_group" label="PMC Strap 23">
+                  <bit_register name="PmcStrap23" label="PMC Strap 23" size="4" value="0x0">
+                    <bit bit_low="0" bit_high="31" name="PmcStrap23_reserved_0x5c_31_0" label="reserved_0x5c_31_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+          </group>
+    <!-- PMC Straps configuration end -->
+    <!-- CPU Straps configuration start -->
+          <group name="CpuStraps" label="CPU Straps by order (0v95)" ui_params="{'visible': 'false'}" >
+                <group name="CpuStrap0_gui_group" label="CPU Strap 0">
+                  <bit_register name="CpuStrap0" label="CPU Strap 0" size="4" value="0x1520800">
+                    <bit bit_low="0" bit_high="15" name="CpuStrap0_reserved_0x000_15_0" label="reserved_0x000_15_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x800" />
+                    <bit bit_low="16" bit_high="16" name="CpuStrap0_reserved_0x000_16_16" label="reserved_0x000_16_16" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="17" bit_high="23" name="CpuStrap0_reserved_0x000_23_17" label="reserved_0x000_23_17" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x29" />
+                    <bit bit_low="24" bit_high="31" name="CpuStrap0_reserved_0x000_31_24" label="reserved_0x000_31_24" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                  </bit_register>
+                </group>
+                <group name="CpuStrap1_gui_group" label="CPU Strap 1">
+                  <bit_register name="CpuStrap1" label="CPU Strap 1" size="4" value="0x505">
+                    <bit bit_low="0" bit_high="2" name="CpuStrap1_reserved_0x004_2_0" label="reserved_0x004_2_0" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x5" />
+                    <bit bit_low="3" bit_high="7" name="CpuStrap1_reserved_0x004_7_3" label="reserved_0x004_7_3" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="8" bit_high="8" name="CpuStrap1_reserved_0x004_8_8" label="reserved_0x004_8_8" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="9" bit_high="9" name="CpuStrap1_reserved_0x004_9_9" label="reserved_0x004_9_9" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                    <bit bit_low="10" bit_high="10" name="CpuStrap1_reserved_0x004_10_10" label="reserved_0x004_10_10" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x1" />
+                    <bit bit_low="11" bit_high="31" name="CpuStrap1_reserved_0x004_31_11" label="reserved_0x004_31_11" ui_params="{'read_only': 'true', 'visible': 'false'}" value="0x0" />
+                  </bit_register>
+                </group>
+          </group>
+        </group>
+    <!-- CPU Straps configuration end -->
+  </configuration>
+  <layout>
+    <!-- PMC Straps layout Start -->
+    <mip_table>
+      <!--EBG_SoftStraps_0v95.xlsx-->
+      <number calculate="/configuration/PmcStrap0.value" name="PmcStrap0" size="4" />
+      <number calculate="/configuration/PmcStrap1.value" name="PmcStrap1" size="4" />
+      <number calculate="/configuration/PmcStrap2.value" name="PmcStrap2" size="4" />
+      <number calculate="/configuration/PmcStrap3.value" name="PmcStrap3" size="4" />
+      <number calculate="/configuration/PmcStrap4.value" name="PmcStrap4" size="4" />
+      <number calculate="/configuration/PmcStrap5.value" name="PmcStrap5" size="4" />
+      <number calculate="/configuration/PmcStrap6.value" name="PmcStrap6" size="4" />
+      <number calculate="/configuration/PmcStrap7.value" name="PmcStrap7" size="4" />
+      <number calculate="/configuration/PmcStrap8.value" name="PmcStrap8" size="4" />
+      <number calculate="/configuration/PmcStrap9.value" name="PmcStrap9" size="4" />
+      <number calculate="/configuration/PmcStrap10.value" name="PmcStrap10" size="4" />
+      <number calculate="/configuration/PmcStrap11.value" name="PmcStrap11" size="4" />
+      <number calculate="/configuration/PmcStrap12.value" name="PmcStrap12" size="4" />
+      <number calculate="/configuration/PmcStrap13.value" name="PmcStrap13" size="4" />
+      <number calculate="/configuration/PmcStrap14.value" name="PmcStrap14" size="4" />
+      <number calculate="/configuration/PmcStrap15.value" name="PmcStrap15" size="4" />
+      <number calculate="/configuration/PmcStrap16.value" name="PmcStrap16" size="4" />
+      <number calculate="/configuration/PmcStrap17.value" name="PmcStrap17" size="4" />
+      <number calculate="/configuration/PmcStrap18.value" name="PmcStrap18" size="4" />
+      <number calculate="/configuration/PmcStrap19.value" name="PmcStrap19" size="4" />
+      <number calculate="/configuration/PmcStrap20.value" name="PmcStrap20" size="4" />
+      <number calculate="/configuration/PmcStrap21.value" name="PmcStrap21" size="4" />
+      <number calculate="/configuration/PmcStrap22.value" name="PmcStrap22" size="4" />
+      <number calculate="/configuration/PmcStrap23.value" name="PmcStrap23" size="4" />
+    <!-- PMC Straps layout End -->
+    <!-- CPU Straps layout Start -->
+      <number calculate="/configuration/CpuStrap0.value" name="CpuStrap0" size="4" />
+      <number calculate="/configuration/CpuStrap1.value" name="CpuStrap1" size="4" />
+    </mip_table>
+    <!-- CPU Straps layout End -->
+  </layout>
+</container>

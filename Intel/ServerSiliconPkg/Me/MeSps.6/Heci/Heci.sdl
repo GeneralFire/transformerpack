@@ -1,0 +1,23 @@
+TOKEN
+	Name  = "Heci_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Heci support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "MeUmaPreMemEntry"
+	File  = "MeUma\MeUmaPreMem.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+	Token = "ME_ENABLE" "=" "1"	
+End
+
+INFComponent
+    Name  = "MeUmaPostMemEntry"
+    File  = "MeUma\MeUmaPostMem.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "ME_ENABLE" "=" "1" 
+End

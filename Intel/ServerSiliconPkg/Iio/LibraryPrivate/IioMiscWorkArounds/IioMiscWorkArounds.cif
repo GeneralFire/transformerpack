@@ -1,0 +1,12 @@
+<component>
+    name = "IioMiscWorkArounds"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Iio\LibraryPrivate\IioMiscWorkArounds\"
+    RefName = "ServerSiliconPkg.Iio.LibraryPrivate.IioMiscWorkArounds"
+[INF]
+"IioMiscWorkAroundsLibSpr.inf"
+[files]
+"common10nm\IioCommon10nmMiscWAs.c"	
+"common10nm\IioCommon10nmMiscWAs.h"	
+"IioMiscWorkArounds.sdl"	
+<endComponent>

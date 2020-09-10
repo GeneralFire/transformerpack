@@ -1,0 +1,11 @@
+<component>
+	name = "McBankErrorInjection"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\McBankErrorInjection\"
+	RefName = "ServerRasPkg.McBankErrorInjection"
+[INF]
+"McBankErrorInjection.inf"
+[files]
+"McBankErrorInjection.h"	
+"McBankErrorInjection.sdl"	
+<endComponent>

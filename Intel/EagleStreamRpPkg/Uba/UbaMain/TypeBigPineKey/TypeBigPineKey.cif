@@ -1,0 +1,13 @@
+<component>
+    name = "TypeBigPineKey"
+    category = MODULEPART
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\TypeBigPineKey\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.TypeBigPineKey"
+[INF]
+"Pei\PeiBoardInitLib.inf"
+"Pei\PeiBoardInitPostMemLib.inf"
+[files]
+"TypeBigPineKey.sdl"	
+[parts]
+"EagleStreamRpPkg.Uba.UbaMain.TypeBigPineKey.Dxe"
+<endComponent>

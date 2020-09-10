@@ -1,0 +1,114 @@
+TOKEN
+    Name  = "Library10nm_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library10nm support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "RasWorkaroundLibIcx"
+    File  = "RasWorkaroundLib/RasWorkaroundLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "SmmRasSiliconLibSpr"
+    File  = "SmmRasSiliconLib10nm/SmmRasSiliconLibSpr.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"  
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "CrashLogCpuLibSpr"
+    File  = "CrashLogCpuLib\CrashLogCpuLibSpr.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"  
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "CrashLogCpuLib"
+    Instance  = "ServerRasPkg.CrashLogCpuLibSpr"
+End
+
+INFComponent
+    Name  = "CrashLogPchLibEbg"
+    File  = "CrashLogPchLib\CrashLogPchLibEbg.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"  
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "CrashLogPchLib"
+    Instance  = "ServerRasPkg.CrashLogPchLibEbg"
+End
+
+INFComponent
+    Name  = "IioRasInitSiLib"
+    File  = "IioRasInitSiLib/IioRasInitSiLibSpr.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"  
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "IioRasInitSiLib"
+    Instance  = "ServerRasPkg.IioRasInitSiLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+
+LibraryMapping
+    Class  = "RasWorkaroundLib"
+    Instance  = "ServerRasPkg.RasWorkaroundLibIcx"
+End
+
+LibraryMapping
+    Class  = "RasSiliconLib"
+    Instance  = "ServerRasPkg.SmmRasSiliconLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "ErrorInjectionLib"
+    File  = "ErrorInjectionLib/ErrorInjectionLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "ErrorInjectionLib"
+    Instance  = "ServerRasPkg.ErrorInjectionLib"
+End
+
+INFComponent
+    Name  = "SmbRecLibSpr"
+    File  = "SmbRecLib/SmbRecLibSpr.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SmbRecLib"
+    Instance  = "ServerRasPkg.SmbRecLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "CpuSbiAccessLibSpr"
+    File  = "CpuSbiAccessLib/CpuSbiAccessLibSpr.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "CpuSbiAccessLib"
+    Instance  = "ServerRasPkg.CpuSbiAccessLibSpr"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End

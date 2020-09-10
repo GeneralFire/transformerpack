@@ -1,0 +1,99 @@
+## @file
+# CPU SMBIOS Library.
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2006 - 2019 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeCpuSmbiosLib
+  FILE_GUID                      = 46EF7121-04AE-4B21-A662-992BBAE297EB
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CpuSmbiosLib |DXE_DRIVER UEFI_DRIVER
+  CONSTRUCTOR                    = CpuSmbiosLibConstructor
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           =  X64
+#
+
+[Sources]
+  DxeCpuSmbiosLib.c
+  ProcessorSubClass.c
+  ProcessorData.c
+  Processor.h
+  CpuSmbios.c
+  CacheSubClass.c
+  Cache.h
+  Strings.uni
+  CpuSmbios.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+
+[LibraryClasses]
+  CpuConfigLib
+  PcdLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  HiiLib
+  UefiLib
+  DebugLib
+  BaseLib
+  UefiCpuLib
+
+[Protocols]
+  gEfiSmbiosProtocolGuid                        ## CONSUMES
+  gEfiMpServiceProtocolGuid                     ## PRODUCES
+  gEfiCpuArchProtocolGuid                       ## CONSUMES
+  gEfiCpuPolicyProtocolGuid
+  gEfiMpServiceProtocolGuid
+
+[FeaturePcd]
+  gCpuPkgTokenSpaceGuid.PcdCpuSkylakeFamilyFlag               ## CONSUMES
+  gCpuPkgTokenSpaceGuid.PcdCpuIcelakeFamilyFlag               ## CONSUMES
+  gCpuPkgTokenSpaceGuid.PcdCpuSapphireRapidsFamilyFlag        ## CONSUMES
+  gCpuPkgTokenSpaceGuid.PcdCpuSnowridgeFamilyFlag             ## CONSUMES
+
+[Pcd]
+  gCpuPkgTokenSpaceGuid.PcdPlatformType                                ## CONSUMES
+  gCpuPkgTokenSpaceGuid.PcdPlatformCpuSocketCount                      ## CONSUMES
+  gCpuPkgTokenSpaceGuid.PcdPlatformCpuMaxCoreFrequency                 ## CONSUMES
+
+[Depex]
+  gEfiSmbiosProtocolGuid AND
+  gEfiCpuPolicyProtocolGuid
+
+[BuildOptions]
+  # Append new linker alignment option (= is Append, == is Replace)
+  MSFT:*_*_*_DLINK_FLAGS = /ALIGN:128
+

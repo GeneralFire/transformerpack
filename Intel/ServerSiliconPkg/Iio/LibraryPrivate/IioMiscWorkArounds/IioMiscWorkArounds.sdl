@@ -1,0 +1,8 @@
+TOKEN
+    Name  = "IioMiscWorkArounds_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling IioMiscWorkArounds support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+

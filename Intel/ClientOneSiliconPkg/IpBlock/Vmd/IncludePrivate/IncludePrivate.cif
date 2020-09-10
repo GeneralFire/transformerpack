@@ -1,0 +1,8 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Vmd\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Vmd.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Vmd.IncludePrivate.Library"
+<endComponent>

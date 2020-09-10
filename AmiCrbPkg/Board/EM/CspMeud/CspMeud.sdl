@@ -1,0 +1,541 @@
+TOKEN
+    Name  = "CRB_MEUD_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+    Token = "MEUD_SUPPORT" "=" "1"
+    Help  = "Main switch to enable ME Firmware Update Chipset function in Project"
+End
+
+#APIOV_SERVER_OVERRIDE_START
+
+TOKEN
+    Name  = "CSP_MEUD_SUPPORT"
+    Value  = "0"
+    TokenType = Boolean
+    TargetMAK = Yes
+End
+
+PATH
+    Name = "CRB_OFBD_MEUP_DIR"
+End
+
+#APIOV_SERVER_OVERRIDE_END
+
+TOKEN
+    Name  = "RETRY_OPR_COUNT"
+    Value  = "0"
+    TokenType = Integer
+    TargetH = Yes
+    Help  = "Retry Times, if the return status of HMRFPO LOCK is not valid when Update OPRx,0 = No Retry"
+End
+
+TOKEN
+    Name  = "NonBIOS_Validation"
+    Value  = "0"
+    TokenType = Boolean
+    TargetH = Yes
+    TargetMAK = Yes
+    Help  = "Validate non-BIOS Region's correctness before flashing."
+    Token = "SecSMIFlash_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "CHECK_FPTR_IN_OPR"
+    Value  = "1"    
+    TokenType = BOOLEAN
+    TargetH = Yes
+    Help  = "Send Lock Message after updating FPTR to OPR"
+End
+
+TOKEN
+    Name  = "CSP_MEUD_SPS5_PLATFORM"
+    Value  = "0"
+    TokenType = Integer
+    TargetH = Yes
+    Help  = "Select platform 0: Mehlow"
+End
+
+TOKEN
+    Name  = "SPS_MODULE_SUPPORT_ME"
+    Value  = "0"
+    TokenType = BOOLEAN
+    TargetH = Yes
+    Help  = "Please enable this token if your project is workstation with ME firmware"
+End
+
+#FPT partion
+
+TOKEN
+    Name  = "FPT_START"
+    Value  = "0x2000"
+    Help  = "Fpt partition start address from whole flash part"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FPT_OFFSET"
+    Value  = "0x1000"
+    Help  = "Fpt partition offset from ME region base"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FPT_LENGTH"
+    Value  = "0x1000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#FPTB partion
+
+TOKEN
+    Name  = "FPTB_START"
+    Value  = "$(FPT_START) + $(FPT_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FPTB_OFFSET"
+    Value  = "$(FPT_OFFSET) + $(FPT_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FPTB_LENGTH"
+    Value  = "0x1000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#MFSB partion
+
+TOKEN
+    Name  = "MFSB_START"
+    Value  = "$(FPTB_START) + $(FPTB_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "MFSB_OFFSET"
+    Value  = "$(FPTB_OFFSET) + $(FPTB_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "MFSB_LENGTH"
+    Value  = "0x20000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#MFS partion
+
+TOKEN
+    Name  = "MFS_START"
+    Value  = "$(MFSB_START) + $(MFSB_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "MFS_OFFSET"
+    Value  = "$(MFSB_OFFSET) + $(MFSB_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "MFS_LENGTH"
+    Value  = "0x64000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#IVB1 partion
+
+TOKEN
+    Name  = "IVB1_START"
+    Value  = "$(MFS_START) + $(MFS_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IVB1_OFFSET"
+    Value  = "$(MFS_OFFSET) + $(MFS_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IVB1_LENGTH"
+    Value  = "0x4000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#IVB2 partion
+
+TOKEN
+    Name  = "IVB2_START"
+    Value  = "$(IVB1_START) + $(IVB1_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IVB2_OFFSET"
+    Value  = "$(IVB1_OFFSET) + $(IVB1_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IVB2_LENGTH"
+    Value  = "0x4000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#BIS partion
+
+TOKEN
+    Name  = "BIS_START"
+    Value  = "$(IVB2_START) + $(IVB2_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "BIS_OFFSET"
+    Value  = "$(IVB2_OFFSET) + $(IVB2_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "BIS_LENGTH"
+    Value  = "0x1000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#FLOG partion
+
+TOKEN
+    Name  = "FLOG_START"
+    Value  = "$(BIS_START) + $(BIS_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FLOG_OFFSET"
+    Value  = "$(BIS_OFFSET) + $(BIS_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FLOG_LENGTH"
+    Value  = "0x1000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#UTOK partion
+
+TOKEN
+    Name  = "UTOK_START"
+    Value  = "$(FLOG_START) + $(FLOG_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "UTOK_OFFSET"
+    Value  = "$(FLOG_OFFSET) + $(FLOG_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "UTOK_LENGTH"
+    Value  = "0x2000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#UEP partion
+
+TOKEN
+    Name  = "UEP_START"
+    Value  = "$(UTOK_START) + $(UTOK_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "UEP_OFFSET"
+    Value  = "$(UTOK_OFFSET) + $(UTOK_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "UEP_LENGTH"
+    Value  = "0x2000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#Boot Partition 1
+
+TOKEN
+    Name  = "FTPR_START"
+    Value  = "$(UEP_START) + $(UEP_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FTPR_OFFSET"
+    Value  = "$(UEP_OFFSET) + $(UEP_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FTPR_LENGTH"
+    Value  = "0x8F000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#Boot Partition 2
+
+TOKEN
+    Name  = "OPR1_START"
+    Value  = "$(FTPR_START) + $(FTPR_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "OPR1_OFFSET"
+    Value  = "$(FTPR_OFFSET) + $(FTPR_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "OPR1_LENGTH"
+    Value  = "0x27B000"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#Boot Partition 3
+
+TOKEN
+    Name  = "OPR2_START"
+    Value  = "0"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "OPR2_LENGTH"
+    Value  = "0"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+#APIOV_SERVER_OVERRIDE_START
+TOKEN
+    Name  = "FTUP_START"
+    Value  = "$(FTPR_START) + $(FTPR_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FTUP_LENGTH"
+    Value  = "0x25A000"
+    TokenType = Integer
+    TargetH = Yes
+End
+#APIOV_SERVER_OVERRIDE_END
+
+TOKEN
+    Name  = "OPR_BUFFER_LENGTH"
+    Value  = "$(OPR1_LENGTH) + $(OPR2_LENGTH)"
+    TokenType = Integer
+    TargetH = Yes
+    Help  = "Pre-allocate memory for OPR partition, if OPR2 exists, enlarge this token"
+End
+
+ELINK
+#APIOV_SERVER_OVERRIDE_START
+    Name  = "$(CRB_OFBD_MEUP_DIR)/CspMeud.c"
+#APIOV_SERVER_OVERRIDE_END
+    Parent  = "OFBD_FUNC_SOURCES_FILES"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+#APIOV_SERVER_OVERRIDE_START
+    Name  = "$(CRB_OFBD_MEUP_DIR)/CspMeud10Gbe.c"
+#APIOV_SERVER_OVERRIDE_END
+    Parent  = "OFBD_FUNC_SOURCES_FILES"
+    InvokeOrder = AfterParent
+End
+
+#APIOV_SERVER_OVERRIDE_START
+ELINK
+    Name  = "ServerSiliconPkg/SiliconPkg.dec"
+    Parent  = "AMI_OFBD_PACKAGES"
+    InvokeOrder = AfterParent
+End
+
+ELINK 
+   Name  = "ServerPlatformPkg/PlatformPkg.dec"
+   Parent  = "AMI_OFBD_PACKAGES"
+   InvokeOrder = AfterParent
+End
+
+ELINK 
+   Name  = "ClientOneSiliconPkg/SiPkg.dec"
+   Parent  = "AMI_OFBD_PACKAGES"
+   InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "PchPcrLib"
+    Parent  = "AMI_OFBD_LIBRARIES"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "TimerLib"
+    Parent  = "AMI_OFBD_LIBRARIES"
+    InvokeOrder = AfterParent
+End
+#APIOV_SERVER_OVERRIDE_END
+
+ELINK
+    Name  = "gSmmHeciProtocolGuid"
+    Parent  = "AMI_OFBD_PROTOCOLS"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gSpsSmmHmrfpoProtocolGuid"
+    Parent  = "AMI_OFBD_PROTOCOLS"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "MdePkg/MdePkg.dec"
+    Parent  = "AMI_OFBD_PACKAGES"
+    InvokeOrder = AfterParent
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+ELINK
+    Name  = "gAmiSmmDigitalSignatureProtocolGuid"
+    Parent  = "AMI_OFBD_PROTOCOLS"
+    InvokeOrder = AfterParent
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+ELINK
+    Name  = "gEfiCertPkcs7Guid"
+    Parent  = "AMI_OFBD_GUIDS"
+    InvokeOrder = AfterParent
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+ELINK
+    Name  = "gEfiCertX509Guid"
+    Parent  = "AMI_OFBD_GUIDS"
+    InvokeOrder = AfterParent
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+ELINK
+    Name  = "gEfiCertSha256Guid"
+    Parent  = "AMI_OFBD_GUIDS"
+    InvokeOrder = AfterParent
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+ELINK
+    Name  = "gEfiHashAlgorithmSha256Guid"
+    Parent  = "AMI_OFBD_GUIDS"
+    InvokeOrder = AfterParent
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+ELINK
+    Name  = "gEfiHashAlgorithmSha384Guid"
+    Parent  = "AMI_OFBD_GUIDS"
+    InvokeOrder = AfterParent
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+ELINK
+    Name  = "gEfiHashAlgorithmSha512Guid"
+    Parent  = "AMI_OFBD_GUIDS"
+    InvokeOrder = AfterParent
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+ELINK
+    Name  = "gEfiCertRsa2048Guid"
+    Parent  = "AMI_OFBD_GUIDS"
+    InvokeOrder = AfterParent
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+MODULE
+    Help  = "Includes CspMeud.mak to Project"
+    File  = "CspMeud.mak"
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+TOKEN
+    Name  = "MEFWCAPSULE_CERT_FORMAT"
+    Value  = "$(FWCAPSULE_CERT_FORMAT)"
+    Help  = "1 - PKCS#7 Certificate. Require access to 3rd party sign tools(MS signtool.exe or openSSL)\0 - FwCapsule Hdr includes UEFI RSA2048_SHA256 Certificates"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+TOKEN
+    Name  = "BIOS_MEFW_SIGNED"
+    Value  = "$(BUILD_DIR)$(PATH_SLASH)AmiCrbMeRoms$(PATH_SLASH)MossBeachServer_spsfull_BX.bin"
+    Help  = "File of the BIOS + ME FW image to be signed."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "NonBIOS_Validation" "=" "1"
+End
+
+TOKEN
+    Name  = "BIOS_MEFW_SIGNED_FILE"
+    Value  = "$(BUILD_DIR)$(PATH_SLASH)AmiCrbMeRoms$(PATH_SLASH)NonBIOSValidate$(PATH_SLASH)BIOSMESIGN.BIN"
+    Help  = "File name of the signed BIOS + ME FW image."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "NonBIOS_Validation" "=" "1"
+End

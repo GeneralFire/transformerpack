@@ -1,0 +1,10 @@
+<component>
+	name = "FspEndOfPei2Peim"
+	category = ModulePart
+	LocalRoot = "Intel\EagleStreamFspPkg\FspEndOfPei2\"
+	RefName = "EagleStreamFspPkg.FspEndOfPei2Peim"
+[INF]
+"FspEndOfPei2Peim.inf"
+[files]
+"FspEndOfPei2Peim.sdl"	
+<endComponent>

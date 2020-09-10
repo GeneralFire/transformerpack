@@ -1,0 +1,9 @@
+<component>
+    name = "TypeArcherCityRP"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP"
+[parts]
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Dxe"
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Pei"
+<endComponent>

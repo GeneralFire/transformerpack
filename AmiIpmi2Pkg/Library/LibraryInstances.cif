@@ -1,0 +1,12 @@
+<component>
+	name = "LibraryInstances"
+	category = ModulePart
+	LocalRoot = "AmiIpmi2Pkg\Library\"
+	RefName = "AmiIpmi2Pkg.LibraryInstances"
+[INF]
+"AmiSelLib\AmiSelLib.inf"
+"AmiIpmiLib\AmiIpmiLib.inf"
+"AmiIpmiBootLib\AmiIpmiBootLib.inf"
+[parts]
+"AmiIpmi2Pkg.LibraryInstances.AmiBmcCommonAccess"
+<endComponent>

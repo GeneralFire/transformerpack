@@ -1,0 +1,21 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\Library\"
+    RefName = "ClientOneSiliconPkg.Pch.Library"
+[INF]
+"BaseResetSystemLib\BaseResetSystemLib.inf"
+"BasePchPciBdfLib\BasePchPciBdfLib.inf"
+"DxePchPolicyLib\DxePchPolicyLib.inf"
+"DxeSmmPchRasLib\DxeSmmPchRasLib.inf"
+"SecPchLib\SecPchLibEbg.inf"
+"PeiDxeSmmPchCycleDecodingLib\PeiDxeSmmPchCycleDecodingLib.inf"
+"PeiDxeSmmPchInfoLib\PeiDxeSmmPchInfoLibEbg.inf"
+"PeiPchPolicyLib\PeiPchPolicyLibVer3.inf"
+"PeiPchSmmControlLib\PeiPchSmmControlLib.inf"
+[files]
+"Library.sdl"	
+[parts]
+"ClientOneSiliconPkg.Pch.Library.PeiDxeSmmPchInfoLib"
+"ClientOneSiliconPkg.Pch.Library.SecPchLib"
+<endComponent>

@@ -1,0 +1,507 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "BaseRasDebugLibSerialPort"
+    File  = "BaseRasDebugLibSerialPort/BaseRasDebugLibSerialPort.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "EmcaRecoveryLib"
+    File  = "EmcaRecoveryLib/EmcaRecoveryLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IioRasInitLib"
+    File  = "IioRasInitLib\IioRasInitLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"  
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "IioRasInitLib"
+    Instance  = "ServerRasPkg.IioRasInitLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "IioSiliconLibGen4"
+    File  = "IioSiliconLibGen4/IioSiliconLibGen4.inf"
+    Package  = "ServerRasPkg"
+    Token = "CPUTARGET" "=" "ICX"
+End
+
+INFComponent
+    Name  = "IioSiliconLibGen5"
+    File  = "IioSiliconLibGen5/IioSiliconLibGen5.inf"
+    Package  = "ServerRasPkg"
+    Arch  = "IA32 X64"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "IioTopologyLib"
+    File  = "IioTopologyLib/IioTopologyLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "LastBootErrorDxeLib"
+    File  = "LastBootErrorDxeLib/LastBootErrorDxeLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "MemRasS3SaveLib"
+    File  = "MemRasS3SaveLib/MemRasS3SaveLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "CPUTARGET" "=" "ICX"
+End
+
+INFComponent
+    Name  = "MemRasS3SaveLibW3"
+    File  = "MemRasS3SaveLibW3/MemRasS3SaveLibW3.inf"
+    Package  = "ServerRasPkg"
+    Arch  = "IA32 X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"     
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "MmPciExtLib"
+    File  = "MmPciExtLib/MmPciExtLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PlatMemErrorDataLib"
+    File  = "PlatMemErrorDataLib/PlatMemErrorDataLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "BaseProcessorRasLib"
+    File  = "ProcessorRasLib/ProcessorRasLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "RasMailBoxLib"
+    File  = "RasMailBoxLib/RasMailBoxLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "SmmMpExtensionLib"
+    File  = "SmmMpExtensionLib/SmmMpExtensionLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "SmmPclsLib"
+    File  = "SmmPclsLib/SmmPclsLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "SmmPlatPolicyLib"
+    File  = "SmmPlatPolicyLib/SmmPlatPolicyLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "ViralPoisonLib"
+    File  = "ViralPoisonLib/ViralPoisonLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "WheaSciLib"
+    File  = "WheaSciLib/WheaSciLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "SmmWheaSupportLib"
+    File  = "WheaSupportLib/WheaSupportLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "CsrRegTableLib"
+    File  = "CsrRegTableLib/CsrRegTableLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "MemFuncLib"
+    File  = "MemFuncLib/MemFuncLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"    
+End
+
+INFComponent
+    Name  = "ErrorControlLib"
+    File  = "ErrorControlLib/ErrorControlLib.inf"
+    Package  = "ServerRasPkg"
+    Token = "CPUTARGET" "=" "SKX"
+End
+
+INFComponent
+    Name  = "ErrorControlLib10nmSp"
+    File  = "ErrorControlLib10nmSp/ErrorControlLib10nmSp.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"      
+    Token = "CPUTARGET" "=" "ICX"
+End
+
+INFComponent
+    Name  = "ErrorControlLibSpr"
+    File  = "ErrorControlLib10nmSp/ErrorControlLibSpr.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"      
+    Token = "CPUTARGET" "=" "SPR"
+End
+
+INFComponent
+    Name  = "BaseMpExtensionLibNull"
+    File  = "BaseMpExtensionLibNull/BaseMpExtensionLibNull.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "IehSiliconLibW12"
+    File  = "IehSiliconLibW12/IehSiliconLibW12.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPUTARGET" "=" "ICX"    
+End
+
+INFComponent
+    Name  = "IehSiliconLibW3"
+    File  = "IehSiliconLibW3/IehSiliconLibW3.inf"
+    Package  = "ServerRasPkg"
+    Arch  = "IA32 X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"      
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiPlatMemTopoLib"
+    File  = "PlatMemTopoLib/PeiPlatMemTopologyLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "DxePlatMemTopoLib"
+    File  = "PlatMemTopoLib/DxePlatMemTopologyLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_DRIVER"      
+End
+
+INFComponent
+    Name  = "DxeRuntimePlatMemTopoLib"
+    File  = "PlatMemTopoLib/RuntimePlatMemTopologyLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+    Name  = "SmmPlatMemTopoLib"
+    File  = "PlatMemTopoLib/SmmPlatMemTopologyLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"      
+End
+
+INFComponent
+    Name  = "RasMcpLib"
+    File  = "RasMcpLib/RasMcpLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+INFComponent
+    Name  = "RuntimeRasDebugLibSerialPort"
+    File  = "RuntimeRasDebugLibSerialPort/RuntimeRasDebugLibSerialPort.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+INFComponent
+    Name  = "PcieRasLib"
+    File  = "PcieRasLib/PcieRasLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"      
+End
+
+INFComponent
+    Name  = "PcieStdLib"
+    File  = "PcieStdLib/PcieStdLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"      
+End
+
+INFComponent
+    Name  = "IehRasLib"
+    File  = "IehRasLib\IehRasLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"      
+End
+
+INFComponent
+    Name  = "OscRasLib"
+    File  = "OscRasLib\OscRasLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"      
+End
+
+INFComponent
+    Name  = "RasAcpiLib"
+    File  = "RasAcpiLib\RasAcpiLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"      
+End
+
+LibraryMapping
+    Class  = "RasDebugLib"
+    Instance  = "ServerRasPkg.BaseRasDebugLibSerialPort"
+End
+
+LibraryMapping
+    Class  = "EmcaRecoveryLib"
+    Instance  = "ServerRasPkg.EmcaRecoveryLib"
+End
+
+LibraryMapping
+    Class  = "IioSiliconLib"
+    Instance  = "ServerRasPkg.IioSiliconLibGen4"
+    Token = "CPUTARGET" "=" "ICX"
+End
+
+LibraryMapping
+    Class  = "IioSiliconLib"
+    Instance  = "ServerRasPkg.IioSiliconLibGen5"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "IioTopologyLib"
+    Instance  = "ServerRasPkg.IioTopologyLib"
+End
+
+LibraryMapping
+    Class  = "LastBootErrorDxeLib"
+    Instance  = "ServerRasPkg.LastBootErrorDxeLib"
+End
+
+LibraryMapping
+    Class  = "MemRasS3SaveLib"
+    Instance  = "ServerRasPkg.MemRasS3SaveLib"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MemRasS3SaveLib"
+    Instance  = "ServerRasPkg.MemRasS3SaveLibW3"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MmPciExtLib"
+    Instance  = "ServerRasPkg.MmPciExtLib"
+End
+
+LibraryMapping
+    Class  = "PlatMemErrorDataLib"
+    Instance  = "ServerRasPkg.PlatMemErrorDataLib"
+End
+
+LibraryMapping
+    Class  = "ProcessorRasLib"
+    Instance  = "ServerRasPkg.BaseProcessorRasLib"
+End
+
+LibraryMapping
+    Class  = "RasMailBoxLib"
+    Instance  = "ServerRasPkg.RasMailBoxLib"
+End
+
+LibraryMapping
+    Class  = "MpExtensionLib"
+    Instance  = "ServerRasPkg.SmmMpExtensionLib"
+    Arch  = "common"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "PclsLib"
+    Instance  = "ServerRasPkg.SmmPclsLib"
+End
+
+LibraryMapping
+    Class  = "PlatPolicyLib"
+    Instance  = "ServerRasPkg.SmmPlatPolicyLib"
+End
+
+LibraryMapping
+    Class  = "ViralPoisonLib"
+    Instance  = "ServerRasPkg.ViralPoisonLib"
+End
+
+LibraryMapping
+    Class  = "WheaSciLib"
+    Instance  = "ServerRasPkg.WheaSciLib"
+End
+
+LibraryMapping
+    Class  = "WheaSupportLib"
+    Instance  = "ServerRasPkg.SmmWheaSupportLib"
+End
+
+LibraryMapping
+    Class  = "CsrRegTableLib"
+    Instance  = "ServerRasPkg.CsrRegTableLib"
+End
+
+LibraryMapping
+    Class  = "MemFuncLib"
+    Instance  = "ServerRasPkg.MemFuncLib"
+End
+
+LibraryMapping
+   Class  = "ErrorControlLib"
+    Instance  = "ServerRasPkg.ErrorControlLib"
+    Token = "CPUTARGET" "=" "SKX"
+End
+
+LibraryMapping
+    Class  = "ErrorControlLib"
+    Instance  = "ServerRasPkg.ErrorControlLibSpr"
+    Token = "CPUTARGET" "=" "SPR"
+End
+
+LibraryMapping
+    Class  = "ErrorControlLib"
+    Instance  = "ServerRasPkg.ErrorControlLib10nmSp"
+    Token = "CPUTARGET" "=" "ICX"
+End
+
+LibraryMapping
+    Class  = "MpExtensionLib"
+    Instance  = "ServerRasPkg.BaseMpExtensionLibNull"
+End
+
+LibraryMapping
+    Class  = "IehSiliconLib"
+    Instance  = "ServerRasPkg.IehSiliconLibW12"
+    Token = "CPUTARGET" "=" "ICX"
+End
+
+LibraryMapping
+    Class  = "IehSiliconLib"
+    Instance  = "ServerRasPkg.IehSiliconLibW3"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PlatMemTopologyLib"
+    Instance  = "ServerRasPkg.PeiPlatMemTopoLib"
+    Arch  = "common"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "PlatMemTopologyLib"
+    Instance  = "ServerRasPkg.DxePlatMemTopoLib"
+    Arch  = "common"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+    Class  = "PlatMemTopologyLib"
+    Instance  = "ServerRasPkg.DxeRuntimePlatMemTopoLib"
+    Arch  = "common"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+LibraryMapping
+    Class  = "PlatMemTopologyLib"
+    Instance  = "ServerRasPkg.SmmPlatMemTopoLib"
+    Arch  = "common"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "RasDebugLib"
+    Instance  = "ServerRasPkg.RuntimeRasDebugLibSerialPort"
+    Arch  = "common"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+LibraryMapping
+    Class  = "RasMcpLib"
+    Instance  = "ServerRasPkg.RasMcpLib"
+End
+
+LibraryMapping
+    Class  = "PcieRasLib"
+    Instance  = "ServerRasPkg.PcieRasLib"
+End
+
+LibraryMapping
+    Class  = "PcieStdLib"
+    Instance  = "ServerRasPkg.PcieStdLib"
+End
+
+LibraryMapping
+    Class  = "IehRasLib"
+    Instance  = "ServerRasPkg.IehRasLib"
+End
+
+LibraryMapping
+    Class  = "OscRasLib"
+    Instance  = "ServerRasPkg.OscRasLib"
+End
+
+LibraryMapping
+    Class  = "RasAcpiLib"
+    Instance  = "ServerRasPkg.RasAcpiLib"
+End
+
+INFComponent
+    Name  = "CxlRasLib"
+    File  = "CxlRasLib\CxlRasLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "BASE"      
+End
+
+LibraryMapping
+    Class  = "CxlRasLib"
+    Instance  = "ServerRasPkg.CxlRasLib"
+End

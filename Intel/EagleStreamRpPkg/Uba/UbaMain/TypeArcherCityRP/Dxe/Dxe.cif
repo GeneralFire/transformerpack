@@ -1,0 +1,17 @@
+<component>
+    name = "Dxe"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Dxe"
+[INF]
+"SmbiosDataUpdateDxe\SmbiosDataUpdateDxe.inf"
+"StaticSkuDataDxe\StaticSkuDataDxe.inf"
+"UsbOcUpdateDxe\UsbOcUpdateDxe.inf"
+[files]
+"Dxe.sdl"	
+[parts]
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Dxe.IioCfgUpdateDxe"
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Dxe.OpromUpdateDxe"
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Dxe.SetupCfgUpdateDxe"
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Dxe.SlotDataUpdateDxe"
+<endComponent>

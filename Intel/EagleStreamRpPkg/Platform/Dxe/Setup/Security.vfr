@@ -1,0 +1,164 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2018 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include "Configuration.h"
+#include "PlatformStrDefs.h"
+#include <Guid/SetupVariable.h>
+#include "Common.hfr"
+
+
+#include <Guid/ServerMgmtSetupVariable.h>
+
+
+
+
+formset
+  guid     = SYSTEM_CONFIGURATION_GUID,
+  title    = STRING_TOKEN(STR_SECURITY_TITLE),
+  help     = STRING_TOKEN(STR_SECURITY_HELP),
+  class    = 1,
+  subclass = 0,
+
+  VFR_VARSTORE_SETUP
+
+
+  efivarstore UINT8,
+  attribute = EFI_VARIABLE_BOOTSERVICE_ACCESS,
+  name = AdminName,
+  guid = SYSTEM_CONFIGURATION_GUID;
+
+  efivarstore UINT8,
+  attribute = EFI_VARIABLE_BOOTSERVICE_ACCESS,
+  name = UserName,
+  guid = SYSTEM_CONFIGURATION_GUID;
+
+#define SYSTEM_CONFIGURATION  Setup
+
+  form formid = 1,
+
+    title    = STRING_TOKEN(STR_SECURITY_TITLE);
+
+     suppressif TRUE;
+      checkbox varid = AdminName,
+      prompt = STRING_TOKEN(STR_NULL_VAREQADMINNAME_STRING),
+      help   = STRING_TOKEN(STR_NULL_STRING),
+      endcheckbox;
+    endif;
+
+    suppressif TRUE;
+      checkbox varid = UserName,
+      prompt = STRING_TOKEN(STR_NULL_VAREQUSERNAME_STRING),
+      help   = STRING_TOKEN(STR_NULL_STRING),
+      endcheckbox;
+    endif;
+
+    suppressif TRUE;
+      checkbox varid    = SYSTEM_CONFIGURATION.Access,
+      prompt   = STRING_TOKEN(STR_NULL_SECACCESS_STRING),
+      help     = STRING_TOKEN(STR_NULL_STRING),
+      flags    = 0,
+      endcheckbox;
+    endif;
+
+// UNLOCK control option
+//       password  varid    = SYSTEM_CONFIGURATION.AdminPassword,
+//              prompt   = STRING_TOKEN(STR_ENTER_PASSWORD_TEXT),
+//             help     = STRING_TOKEN(STR_ENTER_PASSWORD_HELP),
+//              flags    = INTERACTIVE,
+//              key      = 0x1003,
+//              minsize  = 0,
+//              maxsize  = PASSWORD_MAX_SIZE,
+//              encoding = 1,
+//      endpassword;
+
+
+     //
+     // Administrator Password options
+     //
+     grayoutif  ideqval SYSTEM_CONFIGURATION.Access == SYSTEM_PASSWORD_USER;
+      suppressif  ideqval AdminName == 0x1;
+        text
+            help     = STRING_TOKEN(STR_ADMIN_PASSWORD_STATUS),
+            text   = STRING_TOKEN(STR_ADMIN_PASSWORD_STATUS),
+            text   = STRING_TOKEN(STR_NOTINSTALLED);
+       endif;
+
+      suppressif  ideqval AdminName == 0x00;
+        text
+            help     = STRING_TOKEN(STR_ADMIN_PASSWORD_STATUS),
+            text   = STRING_TOKEN(STR_ADMIN_PASSWORD_STATUS),
+            text   = STRING_TOKEN(STR_INSTALLED);
+      endif;
+
+      password  varid    = SYSTEM_CONFIGURATION.AdminPassword,
+        prompt   = STRING_TOKEN(STR_ADMIN_PASSWORD_PROMPT),
+        help     = STRING_TOKEN(STR_ADMIN_PASSWORD_HELP),
+              flags    = INTERACTIVE,
+        key      = 0x1000,
+        minsize  = 0,
+        maxsize  = PASSWORD_MAX_SIZE,
+              encoding = 1,
+      endpassword;
+    endif;
+    //
+    // User Password options
+    //
+   // Grayout Uset Password option if Admin password is not set
+
+    grayoutif NOT ideqval AdminName == 0x1;
+     suppressif  ideqval UserName == 0x0;
+       text
+           help     = STRING_TOKEN(STR_USER_PASSWORD_STATUS),
+           text   = STRING_TOKEN(STR_USER_PASSWORD_STATUS),
+           text   = STRING_TOKEN(STR_INSTALLED);
+     endif;
+
+     suppressif  ideqval UserName == 0x1;
+       text
+           help     = STRING_TOKEN(STR_USER_PASSWORD_STATUS),
+           text   = STRING_TOKEN(STR_USER_PASSWORD_STATUS),
+           text   = STRING_TOKEN(STR_NOTINSTALLED);
+     endif;
+
+    password  varid    = SYSTEM_CONFIGURATION.UserPassword,
+              prompt   = STRING_TOKEN(STR_USER_PASSWORD_PROMPT),
+              help     = STRING_TOKEN(STR_USER_PASSWORD_HELP),
+              flags    = INTERACTIVE,
+              key      = 0x1001,
+      minsize  = 0,
+      maxsize  = PASSWORD_MAX_SIZE,
+              encoding = 1,
+    endpassword;
+
+   endif;
+
+
+  endform;
+
+endformset;
+
+

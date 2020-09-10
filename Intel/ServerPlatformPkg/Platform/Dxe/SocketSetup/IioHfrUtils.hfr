@@ -1,0 +1,654 @@
+/** @file
+  HFR function useful for templates construction
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+#ifndef _IIO_HFR_UTILS_
+#define _IIO_HFR_UTILS_
+
+//
+// !!! ATTENTION:
+//
+// All strings folded from parts by HFR_CONCAT* MUST be also added to IIoDynamiSetupStrings.hfr
+// without that compiler filter them out as not used - BLAH! - what fails the compilation !!!
+//
+
+#include "IioDynamicSetupStrings.hfr"
+
+//
+// CONCAT2 allow to concat two tokens
+// for example to build label with index
+//
+#define HFR_CONCAT2_(X, Y) X##Y
+#define HFR_CONCAT2(X, Y) HFR_CONCAT2_(X, Y)
+
+// Concat3 is ready for future use
+// #define HFR_CONCAT3_(X, Y, Z) X##Y##Z
+// #define HFR_CONCAT3(X, Y, Z) HFR_CONCAT3_(X, Y, Z)
+
+//
+// INC just increment given token
+// This is ready for SPR ports number: 8 sockets * 6 PCI stacks * 8 ports
+//
+#define HFR_INC(Argument) HFR_CONCAT2(HFR_INC_, Argument)
+  #define HFR_INC_0  1
+  #define HFR_INC_1  2
+  #define HFR_INC_2  3
+  #define HFR_INC_3  4
+  #define HFR_INC_4  5
+  #define HFR_INC_5  6
+  #define HFR_INC_6  7
+  #define HFR_INC_7  8
+  #define HFR_INC_8  9
+  #define HFR_INC_9  10
+  #define HFR_INC_10  11
+  #define HFR_INC_11  12
+  #define HFR_INC_12  13
+  #define HFR_INC_13  14
+  #define HFR_INC_14  15
+  #define HFR_INC_15  16
+  #define HFR_INC_16  17
+  #define HFR_INC_17  18
+  #define HFR_INC_18  19
+  #define HFR_INC_19  20
+  #define HFR_INC_20  21
+  #define HFR_INC_21  22
+  #define HFR_INC_22  23
+  #define HFR_INC_23  24
+  #define HFR_INC_24  25
+  #define HFR_INC_25  26
+  #define HFR_INC_26  27
+  #define HFR_INC_27  28
+  #define HFR_INC_28  29
+  #define HFR_INC_29  30
+  #define HFR_INC_30  31
+  #define HFR_INC_31  32
+  #define HFR_INC_32  33
+  #define HFR_INC_33  34
+  #define HFR_INC_34  35
+  #define HFR_INC_35  36
+  #define HFR_INC_36  37
+  #define HFR_INC_37  38
+  #define HFR_INC_38  39
+  #define HFR_INC_39  40
+  #define HFR_INC_40  41
+  #define HFR_INC_41  42
+  #define HFR_INC_42  43
+  #define HFR_INC_43  44
+  #define HFR_INC_44  45
+  #define HFR_INC_45  46
+  #define HFR_INC_46  47
+  #define HFR_INC_47  48
+  #define HFR_INC_48  49
+  #define HFR_INC_49  50
+  #define HFR_INC_50  51
+  #define HFR_INC_51  52
+  #define HFR_INC_52  53
+  #define HFR_INC_53  54
+  #define HFR_INC_54  55
+  #define HFR_INC_55  56
+  #define HFR_INC_56  57
+  #define HFR_INC_57  58
+  #define HFR_INC_58  59
+  #define HFR_INC_59  60
+  #define HFR_INC_60  61
+  #define HFR_INC_61  62
+  #define HFR_INC_62  63
+  #define HFR_INC_63  64
+  #define HFR_INC_64  65
+  #define HFR_INC_65  66
+  #define HFR_INC_66  67
+  #define HFR_INC_67  68
+  #define HFR_INC_68  69
+  #define HFR_INC_69  70
+  #define HFR_INC_70  71
+  #define HFR_INC_71  72
+  #define HFR_INC_72  73
+  #define HFR_INC_73  74
+  #define HFR_INC_74  75
+  #define HFR_INC_75  76
+  #define HFR_INC_76  77
+  #define HFR_INC_77  78
+  #define HFR_INC_78  79
+  #define HFR_INC_79  80
+  #define HFR_INC_80  81
+  #define HFR_INC_81  82
+  #define HFR_INC_82  83
+  #define HFR_INC_83  84
+  #define HFR_INC_84  85
+  #define HFR_INC_85  86
+  #define HFR_INC_86  87
+  #define HFR_INC_87  88
+  #define HFR_INC_88  89
+  #define HFR_INC_89  90
+  #define HFR_INC_90  91
+  #define HFR_INC_91  92
+  #define HFR_INC_92  93
+  #define HFR_INC_93  94
+  #define HFR_INC_94  95
+  #define HFR_INC_95  96
+  #define HFR_INC_96  97
+  #define HFR_INC_97  98
+  #define HFR_INC_98  99
+  #define HFR_INC_99  100
+  #define HFR_INC_100  101
+  #define HFR_INC_101  102
+  #define HFR_INC_102  103
+  #define HFR_INC_103  104
+  #define HFR_INC_104  105
+  #define HFR_INC_105  106
+  #define HFR_INC_106  107
+  #define HFR_INC_107  108
+  #define HFR_INC_108  109
+  #define HFR_INC_109  110
+  #define HFR_INC_110  111
+  #define HFR_INC_111  112
+  #define HFR_INC_112  113
+  #define HFR_INC_113  114
+  #define HFR_INC_114  115
+  #define HFR_INC_115  116
+  #define HFR_INC_116  117
+  #define HFR_INC_117  118
+  #define HFR_INC_118  119
+  #define HFR_INC_119  120
+  #define HFR_INC_120  121
+  #define HFR_INC_121  122
+  #define HFR_INC_122  123
+  #define HFR_INC_123  124
+  #define HFR_INC_124  125
+  #define HFR_INC_125  126
+  #define HFR_INC_126  127
+  #define HFR_INC_127  128
+  #define HFR_INC_128  129
+  #define HFR_INC_129  130
+  #define HFR_INC_130  131
+  #define HFR_INC_131  132
+  #define HFR_INC_132  133
+  #define HFR_INC_133  134
+  #define HFR_INC_134  135
+  #define HFR_INC_135  136
+  #define HFR_INC_136  137
+  #define HFR_INC_137  138
+  #define HFR_INC_138  139
+  #define HFR_INC_139  140
+  #define HFR_INC_140  141
+  #define HFR_INC_141  142
+  #define HFR_INC_142  143
+  #define HFR_INC_143  144
+  #define HFR_INC_144  145
+  #define HFR_INC_145  146
+  #define HFR_INC_146  147
+  #define HFR_INC_147  148
+  #define HFR_INC_148  149
+  #define HFR_INC_149  150
+  #define HFR_INC_150  151
+  #define HFR_INC_151  152
+  #define HFR_INC_152  153
+  #define HFR_INC_153  154
+  #define HFR_INC_154  155
+  #define HFR_INC_155  156
+  #define HFR_INC_156  157
+  #define HFR_INC_157  158
+  #define HFR_INC_158  159
+  #define HFR_INC_159  160
+  #define HFR_INC_160  161
+  #define HFR_INC_161  162
+  #define HFR_INC_162  163
+  #define HFR_INC_163  164
+  #define HFR_INC_164  165
+  #define HFR_INC_165  166
+  #define HFR_INC_166  167
+  #define HFR_INC_167  168
+  #define HFR_INC_168  169
+  #define HFR_INC_169  170
+  #define HFR_INC_170  171
+  #define HFR_INC_171  172
+  #define HFR_INC_172  173
+  #define HFR_INC_173  174
+  #define HFR_INC_174  175
+  #define HFR_INC_175  176
+  #define HFR_INC_176  177
+  #define HFR_INC_177  178
+  #define HFR_INC_178  179
+  #define HFR_INC_179  180
+  #define HFR_INC_180  181
+  #define HFR_INC_181  182
+  #define HFR_INC_182  183
+  #define HFR_INC_183  184
+  #define HFR_INC_184  185
+  #define HFR_INC_185  186
+  #define HFR_INC_186  187
+  #define HFR_INC_187  188
+  #define HFR_INC_188  189
+  #define HFR_INC_189  190
+  #define HFR_INC_190  191
+  #define HFR_INC_191  192
+  #define HFR_INC_192  193
+  #define HFR_INC_193  194
+  #define HFR_INC_194  195
+  #define HFR_INC_195  196
+  #define HFR_INC_196  197
+  #define HFR_INC_197  198
+  #define HFR_INC_198  199
+  #define HFR_INC_199  200
+  #define HFR_INC_200  201
+  #define HFR_INC_201  202
+  #define HFR_INC_202  203
+  #define HFR_INC_203  204
+  #define HFR_INC_204  205
+  #define HFR_INC_205  206
+  #define HFR_INC_206  207
+  #define HFR_INC_207  208
+  #define HFR_INC_208  209
+  #define HFR_INC_209  210
+  #define HFR_INC_210  211
+  #define HFR_INC_211  212
+  #define HFR_INC_212  213
+  #define HFR_INC_213  214
+  #define HFR_INC_214  215
+  #define HFR_INC_215  216
+  #define HFR_INC_216  217
+  #define HFR_INC_217  218
+  #define HFR_INC_218  219
+  #define HFR_INC_219  220
+  #define HFR_INC_220  221
+  #define HFR_INC_221  222
+  #define HFR_INC_222  223
+  #define HFR_INC_223  224
+  #define HFR_INC_224  225
+  #define HFR_INC_225  226
+  #define HFR_INC_226  227
+  #define HFR_INC_227  228
+  #define HFR_INC_228  229
+  #define HFR_INC_229  230
+  #define HFR_INC_230  231
+  #define HFR_INC_231  232
+  #define HFR_INC_232  233
+  #define HFR_INC_233  234
+  #define HFR_INC_234  235
+  #define HFR_INC_235  236
+  #define HFR_INC_236  237
+  #define HFR_INC_237  238
+  #define HFR_INC_238  239
+  #define HFR_INC_239  240
+  #define HFR_INC_240  241
+  #define HFR_INC_241  242
+  #define HFR_INC_242  243
+  #define HFR_INC_243  244
+  #define HFR_INC_244  245
+  #define HFR_INC_245  246
+  #define HFR_INC_246  247
+  #define HFR_INC_247  248
+  #define HFR_INC_248  249
+  #define HFR_INC_249  250
+  #define HFR_INC_250  251
+  #define HFR_INC_251  252
+  #define HFR_INC_252  253
+  #define HFR_INC_253  254
+  #define HFR_INC_254  255
+  #define HFR_INC_255  256
+  #define HFR_INC_256  257
+  #define HFR_INC_257  258
+  #define HFR_INC_258  259
+  #define HFR_INC_259  260
+  #define HFR_INC_260  261
+  #define HFR_INC_261  262
+  #define HFR_INC_262  263
+  #define HFR_INC_263  264
+  #define HFR_INC_264  265
+  #define HFR_INC_265  266
+  #define HFR_INC_266  267
+  #define HFR_INC_267  268
+  #define HFR_INC_268  269
+  #define HFR_INC_269  270
+  #define HFR_INC_270  271
+  #define HFR_INC_271  272
+  #define HFR_INC_272  273
+  #define HFR_INC_273  274
+  #define HFR_INC_274  275
+  #define HFR_INC_275  276
+  #define HFR_INC_276  277
+  #define HFR_INC_277  278
+  #define HFR_INC_278  279
+  #define HFR_INC_279  280
+  #define HFR_INC_280  281
+  #define HFR_INC_281  282
+  #define HFR_INC_282  283
+  #define HFR_INC_283  284
+  #define HFR_INC_284  285
+  #define HFR_INC_285  286
+  #define HFR_INC_286  287
+  #define HFR_INC_287  288
+  #define HFR_INC_288  289
+  #define HFR_INC_289  290
+  #define HFR_INC_290  291
+  #define HFR_INC_291  292
+  #define HFR_INC_292  293
+  #define HFR_INC_293  294
+  #define HFR_INC_294  295
+  #define HFR_INC_295  296
+  #define HFR_INC_296  297
+  #define HFR_INC_297  298
+  #define HFR_INC_298  299
+  #define HFR_INC_299  300
+  #define HFR_INC_300  301
+  #define HFR_INC_301  302
+  #define HFR_INC_302  303
+  #define HFR_INC_303  304
+  #define HFR_INC_304  305
+  #define HFR_INC_305  306
+  #define HFR_INC_306  307
+  #define HFR_INC_307  308
+  #define HFR_INC_308  309
+  #define HFR_INC_309  310
+  #define HFR_INC_310  311
+  #define HFR_INC_311  312
+  #define HFR_INC_312  313
+  #define HFR_INC_313  314
+  #define HFR_INC_314  315
+  #define HFR_INC_315  316
+  #define HFR_INC_316  317
+  #define HFR_INC_317  318
+  #define HFR_INC_318  319
+  #define HFR_INC_319  320
+  #define HFR_INC_320  321
+  #define HFR_INC_321  322
+  #define HFR_INC_322  323
+  #define HFR_INC_323  324
+  #define HFR_INC_324  325
+  #define HFR_INC_325  326
+  #define HFR_INC_326  327
+  #define HFR_INC_327  328
+  #define HFR_INC_328  329
+  #define HFR_INC_329  330
+  #define HFR_INC_330  331
+  #define HFR_INC_331  332
+  #define HFR_INC_332  333
+  #define HFR_INC_333  334
+  #define HFR_INC_334  335
+  #define HFR_INC_335  336
+  #define HFR_INC_336  337
+  #define HFR_INC_337  338
+  #define HFR_INC_338  339
+  #define HFR_INC_339  340
+  #define HFR_INC_340  341
+  #define HFR_INC_341  342
+  #define HFR_INC_342  343
+  #define HFR_INC_343  344
+  #define HFR_INC_344  345
+  #define HFR_INC_345  346
+  #define HFR_INC_346  347
+  #define HFR_INC_347  348
+  #define HFR_INC_348  349
+  #define HFR_INC_349  350
+  #define HFR_INC_350  351
+  #define HFR_INC_351  352
+  #define HFR_INC_352  353
+  #define HFR_INC_353  354
+  #define HFR_INC_354  355
+  #define HFR_INC_355  356
+  #define HFR_INC_356  357
+  #define HFR_INC_357  358
+  #define HFR_INC_358  359
+  #define HFR_INC_359  360
+  #define HFR_INC_360  361
+  #define HFR_INC_361  362
+  #define HFR_INC_362  363
+  #define HFR_INC_363  364
+  #define HFR_INC_364  365
+  #define HFR_INC_365  366
+  #define HFR_INC_366  367
+  #define HFR_INC_367  368
+  #define HFR_INC_368  369
+  #define HFR_INC_369  370
+  #define HFR_INC_370  371
+  #define HFR_INC_371  372
+  #define HFR_INC_372  373
+  #define HFR_INC_373  374
+  #define HFR_INC_374  375
+  #define HFR_INC_375  376
+  #define HFR_INC_376  377
+  #define HFR_INC_377  378
+  #define HFR_INC_378  379
+  #define HFR_INC_379  380
+  #define HFR_INC_380  381
+  #define HFR_INC_381  382
+  #define HFR_INC_382  383
+  #define HFR_INC_383  384
+  #define HFR_INC_384  385
+
+//
+// DEC just decrement given token
+// used for stack -> IIO index calculation
+//
+#define HFR_DEC(Argument) HFR_CONCAT2(HFR_DEC_, Argument)
+  #define HFR_DEC_1   0
+  #define HFR_DEC_2   1
+  #define HFR_DEC_3   2
+  #define HFR_DEC_4   3
+  #define HFR_DEC_5   4
+  #define HFR_DEC_6   5
+  #define HFR_DEC_7   6
+  #define HFR_DEC_8   7
+  #define HFR_DEC_9   8
+  #define HFR_DEC_10  9
+  #define HFR_DEC_11  10
+
+//
+// MUL_20 allows to multiplicate token by 20
+// used for PCH port index calc.: 8 sockets * 20 PCH ports
+//
+#define HFR_MUL_20(Argument) HFR_CONCAT2(HFR_MUL_20_, Argument)
+  #define HFR_MUL_20_0  0
+  #define HFR_MUL_20_1  20
+  #define HFR_MUL_20_2  40
+  #define HFR_MUL_20_3  60
+  #define HFR_MUL_20_4  80
+  #define HFR_MUL_20_5  100
+  #define HFR_MUL_20_6  120
+  #define HFR_MUL_20_7  140
+
+//
+// MUL_6 allows to multiplicate token by 6
+// used for stack index calc.: 6 stacks / 8 sockets
+//
+#define HFR_MUL_6(Argument) HFR_CONCAT2(HFR_MUL_6_, Argument)
+  #define HFR_MUL_6_0  0
+  #define HFR_MUL_6_1  6
+  #define HFR_MUL_6_2  12
+  #define HFR_MUL_6_3  18
+  #define HFR_MUL_6_4  24
+  #define HFR_MUL_6_5  30
+  #define HFR_MUL_6_6  36
+  #define HFR_MUL_6_7  42
+  #define HFR_MUL_6_8  48
+  #define HFR_MUL_6_9  54
+  #define HFR_MUL_6_10  60
+  #define HFR_MUL_6_11  66
+  #define HFR_MUL_6_12  72
+  #define HFR_MUL_6_13  78
+  #define HFR_MUL_6_14  84
+  #define HFR_MUL_6_15  90
+  #define HFR_MUL_6_16  96
+  #define HFR_MUL_6_17  102
+  #define HFR_MUL_6_18  108
+  #define HFR_MUL_6_19  114
+  #define HFR_MUL_6_20  120
+  #define HFR_MUL_6_21  126
+  #define HFR_MUL_6_22  132
+  #define HFR_MUL_6_23  138
+  #define HFR_MUL_6_24  144
+  #define HFR_MUL_6_25  150
+  #define HFR_MUL_6_26  156
+  #define HFR_MUL_6_27  162
+  #define HFR_MUL_6_28  168
+  #define HFR_MUL_6_29  174
+  #define HFR_MUL_6_30  180
+  #define HFR_MUL_6_31  186
+  #define HFR_MUL_6_32  192
+  #define HFR_MUL_6_33  198
+  #define HFR_MUL_6_34  204
+  #define HFR_MUL_6_35  210
+  #define HFR_MUL_6_36  216
+  #define HFR_MUL_6_37  222
+  #define HFR_MUL_6_38  228
+  #define HFR_MUL_6_39  234
+  #define HFR_MUL_6_40  240
+  #define HFR_MUL_6_41  246
+  #define HFR_MUL_6_42  252
+  #define HFR_MUL_6_43  258
+  #define HFR_MUL_6_44  264
+  #define HFR_MUL_6_45  270
+  #define HFR_MUL_6_46  276
+  #define HFR_MUL_6_47  282
+  #define HFR_MUL_6_48  288
+
+//
+// MUL_4 allows to multiplicate token by 4
+// used for port index calc.: 4 ports / 6 stacks / 8 sockets
+//
+#define HFR_MUL_4(Argument) HFR_CONCAT2(HFR_MUL_4_, Argument)
+  #define HFR_MUL_4_0  0
+  #define HFR_MUL_4_1  4
+  #define HFR_MUL_4_2  8
+  #define HFR_MUL_4_3  12
+  #define HFR_MUL_4_4  16
+  #define HFR_MUL_4_5  20
+  #define HFR_MUL_4_6  24
+  #define HFR_MUL_4_7  28
+  #define HFR_MUL_4_8  32
+  #define HFR_MUL_4_9  36
+  #define HFR_MUL_4_10  40
+  #define HFR_MUL_4_11  44
+  #define HFR_MUL_4_12  48
+  #define HFR_MUL_4_13  52
+  #define HFR_MUL_4_14  56
+  #define HFR_MUL_4_15  60
+  #define HFR_MUL_4_16  64
+  #define HFR_MUL_4_17  68
+  #define HFR_MUL_4_18  72
+  #define HFR_MUL_4_19  76
+  #define HFR_MUL_4_20  80
+  #define HFR_MUL_4_21  84
+  #define HFR_MUL_4_22  88
+  #define HFR_MUL_4_23  92
+  #define HFR_MUL_4_24  96
+  #define HFR_MUL_4_25  100
+  #define HFR_MUL_4_26  104
+  #define HFR_MUL_4_27  108
+  #define HFR_MUL_4_28  112
+  #define HFR_MUL_4_29  116
+  #define HFR_MUL_4_30  120
+  #define HFR_MUL_4_31  124
+  #define HFR_MUL_4_32  128
+  #define HFR_MUL_4_33  132
+  #define HFR_MUL_4_34  136
+  #define HFR_MUL_4_35  140
+  #define HFR_MUL_4_36  144
+  #define HFR_MUL_4_37  148
+  #define HFR_MUL_4_38  152
+  #define HFR_MUL_4_39  156
+  #define HFR_MUL_4_40  160
+  #define HFR_MUL_4_41  164
+  #define HFR_MUL_4_42  168
+  #define HFR_MUL_4_43  172
+  #define HFR_MUL_4_44  176
+  #define HFR_MUL_4_45  180
+  #define HFR_MUL_4_46  184
+  #define HFR_MUL_4_47  188
+  #define HFR_MUL_4_48  192
+
+//
+// MUL_8 allows to multiplicate token by 8
+// used for port index calc. on SPR: 8 ports / 6 PCI stacks / 8 sockets
+//
+#define HFR_MUL_8(Argument) HFR_CONCAT2(HFR_MUL_8_, Argument)
+  #define HFR_MUL_8_0  0
+  #define HFR_MUL_8_1  8
+  #define HFR_MUL_8_2  16
+  #define HFR_MUL_8_3  24
+  #define HFR_MUL_8_4  32
+  #define HFR_MUL_8_5  40
+  #define HFR_MUL_8_6  48
+  #define HFR_MUL_8_7  56
+  #define HFR_MUL_8_8  64
+  #define HFR_MUL_8_9  72
+  #define HFR_MUL_8_10  80
+  #define HFR_MUL_8_11  88
+  #define HFR_MUL_8_12  96
+  #define HFR_MUL_8_13  104
+  #define HFR_MUL_8_14  112
+  #define HFR_MUL_8_15  120
+  #define HFR_MUL_8_16  128
+  #define HFR_MUL_8_17  136
+  #define HFR_MUL_8_18  144
+  #define HFR_MUL_8_19  152
+  #define HFR_MUL_8_20  160
+  #define HFR_MUL_8_21  168
+  #define HFR_MUL_8_22  176
+  #define HFR_MUL_8_23  184
+  #define HFR_MUL_8_24  192
+  #define HFR_MUL_8_25  200
+  #define HFR_MUL_8_26  208
+  #define HFR_MUL_8_27  216
+  #define HFR_MUL_8_28  224
+  #define HFR_MUL_8_29  232
+  #define HFR_MUL_8_30  240
+  #define HFR_MUL_8_31  248
+  #define HFR_MUL_8_32  256
+  #define HFR_MUL_8_33  264
+  #define HFR_MUL_8_34  272
+  #define HFR_MUL_8_35  280
+  #define HFR_MUL_8_36  288
+  #define HFR_MUL_8_37  296
+  #define HFR_MUL_8_38  304
+  #define HFR_MUL_8_39  312
+  #define HFR_MUL_8_40  320
+  #define HFR_MUL_8_41  328
+  #define HFR_MUL_8_42  336
+  #define HFR_MUL_8_43  344
+  #define HFR_MUL_8_44  352
+  #define HFR_MUL_8_45  360
+  #define HFR_MUL_8_46  368
+  #define HFR_MUL_8_47  376
+  #define HFR_MUL_8_48  384
+  #define HFR_MUL_8_49  392
+  #define HFR_MUL_8_50  400
+  #define HFR_MUL_8_51  408
+  #define HFR_MUL_8_52  416
+  #define HFR_MUL_8_53  424
+  #define HFR_MUL_8_54  432
+  #define HFR_MUL_8_55  440
+  #define HFR_MUL_8_56  448
+  #define HFR_MUL_8_57  456
+  #define HFR_MUL_8_58  464
+  #define HFR_MUL_8_59  472
+  #define HFR_MUL_8_60  480
+  #define HFR_MUL_8_61  488
+  #define HFR_MUL_8_62  496
+  #define HFR_MUL_8_63  504
+  #define HFR_MUL_8_64  512
+
+#endif //_IIO_HFR_UTILS_

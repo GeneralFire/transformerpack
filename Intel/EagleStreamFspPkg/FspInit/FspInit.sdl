@@ -1,0 +1,30 @@
+TOKEN
+    Name = "FspInit_SUPPORT"
+    Value = "1"
+    Help  = "Main switch to enable FspInit support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+INFComponent
+    Name  = "FspInit"
+    File  = "Pei/FspInit.inf"
+    Package  = "EagleStreamFspPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "FspInitPreMem"
+    File  = "Pei/FspInitPreMem.inf"
+    Package  = "EagleStreamFspPkg"
+    ModuleTypes  = "PEIM"
+End
+
+#INFComponent
+#    Name  = "FspS3Notify"
+#    File  = "Pei/FspS3Notify.inf"
+#    Package  = "EagleStreamFspPkg"
+#    ModuleTypes  = "PEIM"
+#End

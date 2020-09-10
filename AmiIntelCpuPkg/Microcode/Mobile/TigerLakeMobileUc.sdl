@@ -1,0 +1,45 @@
+TOKEN
+	Name  = "MOBILE_806CX_TIGERLAKE"
+	Value  = "0"
+    Help = "Intel(R) TigerLake"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+    Name  = "MOBILE_M80806C0_TIGERLAKE"
+    Value  = "1"
+    Help  = "Intel(R) Tiger Lake U A-0 Stepping(806C0)"
+    TokenType = Boolean    
+End
+
+TOKEN
+    Name  = "MOBILE_M80806C1_TIGERLAKE"
+    Value  = "1"
+    Help  = "Intel(R) Tiger Lake 4+2 UP3 B-0 Stepping(806C1)"
+    TokenType = Boolean    
+End
+
+ELINK
+    Name  = "$(MICROCODE_MOBILE_DIR)/M80806C0_00000068.pdb"
+    Parent  = "MICROCODE_FILES"
+    Help  = "Intel(R) Tiger Lake UP3 A-0 Stepping(806C0)"
+    Token = "MOBILE_M80806C0_TIGERLAKE" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(MICROCODE_MOBILE_DIR)/M80806C0_00000068.pdb"
+    Parent  = "MICROCODE_FILES"
+    Help  = "Intel(R) Tiger Lake UP4 A-0 Stepping(806C0)"
+    Token = "MOBILE_M80806C0_TIGERLAKE" "=" "2"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(MICROCODE_MOBILE_DIR)/M80806C1_00000022.pdb"
+    Parent  = "MICROCODE_FILES"
+    Help  = "Intel(R) Tiger Lake UP3 B-0 Stepping(806C1)"
+    Token = "MOBILE_M80806C1_TIGERLAKE" "=" "1"
+    InvokeOrder = AfterParent
+End

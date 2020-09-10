@@ -1,0 +1,8 @@
+<component>
+    name = "Product"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Product\"
+    RefName = "ClientOneSiliconPkg.Product"
+[parts]
+"ClientOneSiliconPkg.Product.EagleStream"
+<endComponent>

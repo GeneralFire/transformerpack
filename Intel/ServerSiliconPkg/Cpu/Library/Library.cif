@@ -1,0 +1,25 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Cpu\Library\"
+    RefName = "ServerSiliconPkg.Cpu.Library"
+[INF]
+"CpuConfigLib\CpuConfigLib.inf"
+"CpuPlatformLib\CpuPlatformLib.inf"
+"CpuEarlyDataLib\CpuEarlyDataLib.inf"
+"CpuPreMemPolicyLib\CpuPreMemPolicyLib.inf"
+"CpuSpecificFeaturesLib\CpuSpecificFeaturesLibDxe.inf"
+"CpuSpecificFeaturesLib\CpuSpecificFeaturesLibPei.inf"
+"PeiCpuLatePolicyLib\PeiCpuLatePolicyLib.inf"
+"PeiPpmPolicyLib\PeiPpmPolicyLib.inf"
+[files]
+"Library.sdl"	
+"SmmCpuFeaturesLib\SmmCpuFeaturesLib.h"	
+"CpuIpLib\CpuInternal.h"	
+[parts]
+"ServerSiliconPkg.Cpu.Library.CpuInitLib"
+"ServerSiliconPkg.Cpu.Library.CpuPpmLib"
+"ServerSiliconPkg.Cpu.Library.DxeCpuSmbiosLib"
+"ServerSiliconPkg.Cpu.Library.SmmCpuFeaturesLib"
+"ServerSiliconPkg.Cpu.Library.CpuIpLib"
+<endComponent>

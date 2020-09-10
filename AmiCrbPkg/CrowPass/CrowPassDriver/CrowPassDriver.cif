@@ -1,0 +1,10 @@
+<component>
+    name = "CrowPassDriver"
+    category = ModulePart
+    LocalRoot = "AmiCrbPkg\CrowPass\CrowPassDriver\"
+    RefName = "CrowPassDriver"
+[files]
+"IntelDCPersistentMemoryDriver.depex"	
+"CrowPassDriverFdfFileStatement.txt"	
+"IntelOptanePMemDriver.efi"	
+<endComponent>

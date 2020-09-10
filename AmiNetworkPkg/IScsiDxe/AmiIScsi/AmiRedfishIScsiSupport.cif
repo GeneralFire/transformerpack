@@ -1,0 +1,9 @@
+<component>
+    name = "Ami RedFish IScsi Support"
+    category = ModulePart
+    LocalRoot = "AmiNetworkPkg\IScsiDxe\AmiIScsi\"
+    RefName = "AmiNetworkPkg.AmiRedFishIScsi"
+[files]
+"AmiRedfishIScsi.c"
+"AmiRedfishIScsi.h"
+<endComponent>

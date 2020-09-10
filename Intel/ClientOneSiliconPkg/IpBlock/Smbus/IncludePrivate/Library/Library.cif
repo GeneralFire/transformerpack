@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Smbus\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Smbus.IncludePrivate.Library"
+[files]
+"PeiSmbusLib.h"	
+"PeiSmbusPolicyLib.h"	
+"SmbusCommonLib.h"	
+<endComponent>

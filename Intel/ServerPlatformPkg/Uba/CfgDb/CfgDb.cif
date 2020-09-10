@@ -1,0 +1,11 @@
+<component>
+	name = "CfgDb"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Uba\CfgDb\"
+	RefName = "ServerPlatformPkg.Uba.CfgDb"
+[INF]
+"Dxe\CfgDbDxe.inf"
+"Pei\CfgDbPei.inf"
+[files]
+"CfgDb.sdl"	
+<endComponent>

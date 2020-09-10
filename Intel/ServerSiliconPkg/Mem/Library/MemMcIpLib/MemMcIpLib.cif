@@ -1,0 +1,30 @@
+<component>
+    name = "MemMcIpLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Mem\Library\MemMcIpLib\"
+    RefName = "ServerSiliconPkg.Mem.Library.MemMcIpLib"
+[INF]
+"HwMemMcIpTargetLib.inf"
+"MemMcIpLibSpr.inf"
+"MemMcIpLibSprHbm.inf"
+"MemMcIpRasLibSpr.inf"
+[files]
+"Ras\MemRasConfigRetryRegisterIcx.c"
+"Common\MemMcCmiCredits.c"	
+"Common\MemPowerManagement.c"	
+"Include\CmiMcRegStruct.h"	
+"Include\MemMcChip.h"	
+"Include\MemMcCmiCredits.h"	
+"Include\MemMcIpLibInternal.h"	
+"Include\MemMcRegs.h"	
+"Include\MemPerformanceValueTables.h"	
+"Include\Registers\Spr\McIpRegisters.h"	
+"Include\Registers\Spr\Soc\MCDDC_CTL.h"	
+"Include\Registers\Spr\Soc\MCDDC_DP.h"	
+"Include\Registers\Spr\Soc\MC_2LM.h"	
+"Include\Registers\Spr\Soc\MC_GLOBAL.h"	
+"Include\Registers\Spr\Soc\MC_MAIN.h"	
+"MemMcIpLib.sdl"	
+"Spr\MemMcCmiPerformanceData.h"
+"Spr\Hbm\MemMcCmiPerformanceDataHbm.h"
+<endComponent>

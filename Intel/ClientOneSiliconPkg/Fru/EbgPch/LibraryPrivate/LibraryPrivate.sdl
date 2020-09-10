@@ -1,0 +1,115 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PmcSocLib"
+    Instance  = "ClientOneSiliconPkg.PeiPmcSocLib"    
+End
+
+INFComponent
+    Name  = "PeiPmcSocLib"
+    File  = "PeiDxeSmmPmcSocLib\PeiDxeSmmPmcSocLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM" 
+End
+
+LibraryMapping
+    Class  = "GbeSocLib"
+    Instance  = "ClientOneSiliconPkg.GbeSocLib"    
+End
+
+INFComponent
+    Name  = "GbeSocLib"
+    File  = "GbeSocLib\GbeSocLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE" 
+End
+
+INFComponent
+    Name  = "PeiUsbTypeCMapSupportLib"
+    File  = "PeiUsbTypeCMapSupportLib\PeiUsbTypeCMapSupportLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"   
+End
+
+LibraryMapping
+    Class  = "PeiUsbTypeCMapSupportLib"
+    Instance  = "ClientOneSiliconPkg.PeiUsbTypeCMapSupportLib"
+End
+
+INFComponent
+    Name  = "HsioSocLibEbg"
+    File  = "HsioSocLib\HsioSocLibEbg.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"   
+End
+
+LibraryMapping
+    Class  = "HsioSocLib"
+    Instance  = "ClientOneSiliconPkg.HsioSocLibEbg"
+End
+
+INFComponent
+    Name  = "HdaSocLib"
+    File  = "HdaSocLib\HdaSocLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"   
+End
+
+LibraryMapping
+    Class  = "HdaSocLib"
+    Instance  = "ClientOneSiliconPkg.HdaSocLib"
+End
+
+INFComponent
+    Name  = "BaseIoExpanderLib"
+    File  = "BaseIoExpanderLib\BaseIoExpanderLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"   
+End
+
+LibraryMapping
+    Class  = "MultiPchLib"
+    Instance  = "ClientOneSiliconPkg.BaseIoExpanderLib"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmIoExpanderPciBdfLib"
+    File  = "BaseIoExpanderPciBdfLib\BaseIoExpanderPciBdfLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"   
+End
+
+LibraryMapping
+    Class  = "IoExpanderPciBdfLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmIoExpanderPciBdfLib"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPsfSocLib"
+    File  = "PeiDxeSmmPsfSocLib/PeiDxeSmmPsfSocLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"   
+End
+
+LibraryMapping
+    Class  = "PsfSocLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPsfSocLib"
+End
+
+INFComponent
+    Name  = "PcieRpSocLibEbg"
+    File  = "PcieRpSocLib\PcieRpSocLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"   
+End
+
+LibraryMapping
+    Class  = "PcieRpSocLib"
+    Instance  = "ClientOneSiliconPkg.PcieRpSocLibEbg"
+End

@@ -1,0 +1,57 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+## @file
+#  INF description file for PlatformPeiSystemInformation driver
+##
+[defines]
+  INF_VERSION          = 0x00010005
+  BASE_NAME            = PlatformPeiSystemInformation
+  FILE_GUID            = 442BE18B-CA6E-4a23-9A99-9AFE8A213A32
+  MODULE_TYPE          = PEIM
+  VERSION_STRING       = 1.0
+  ENTRY_POINT          = PeiSystemInformationEntryPoint
+  
+[Sources]
+  PlatformPeiSystemInformation.c
+  PlatformPeiSystemInformation.h
+  PlatformPeiSystemInfoCpu.c
+  PlatformPeiSystemInfoDimm.c
+
+[Packages]  
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmiModulePkg/AmiModulePkg.dec   
+  AmiCrbPkg/AmiCrbPkg.dec 
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  CpRcPkg/CpRcPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  AmiModulePkg/EarlyConsoleOut/AmiEarlyConsoleOutPkg.dec   
+  AmiCryptoPkg/AmiCryptoPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  BaseLib
+  PrintLib
+  MemMapDataLib
+  CpuEarlyDataLib
+  CpuAndRevisionLib
+  AmiCryptIntrinsicLib
+
+[Ppis]
+  gAmiPeiTextOutPpiGuid
+  gAmiPeiConsplitterTextOutPpiGuid
+  gEfiSiliconRcHobsReadyPpi
+  
+[Guids]
+  gEfiMemoryMapGuid
+  gAmiVideoTextOutHobGuid
+
+[Depex]
+  gVideoInitDoneSentGuid

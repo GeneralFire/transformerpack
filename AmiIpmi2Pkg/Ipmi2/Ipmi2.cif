@@ -1,0 +1,36 @@
+<component>
+    name = "Ipmi2"
+    category = eModule
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\"
+    RefName = "AmiIpmi2Pkg.Ipmi2"
+[files]
+"Ipmi2.sdl"	
+"Ipmi2.chm"	
+"AmiSpmiAslScope.txt"	
+"AmiOemStatusCodeTable.txt"	
+"AmiIpmiInitHooks.txt"	
+"AmiCommandSpecificRetryCountTable.txt"	
+[parts]
+"AmiIpmi2Pkg.Ipmi2.IpmiInitialize"
+"AmiIpmi2Pkg.Ipmi2.Frb"
+"AmiIpmi2Pkg.Ipmi2.SelStatusCode"
+"AmiIpmi2Pkg.Ipmi2.BmcElog"
+"AmiIpmi2Pkg.Ipmi2.IpmiBoot"
+"AmiIpmi2Pkg.Ipmi2.IpmiSdrReader"
+"AmiIpmi2Pkg.Ipmi2.IpmiRedirFru"
+"AmiIpmi2Pkg.Ipmi2.FruSetupScreen"
+"AmiIpmi2Pkg.Ipmi2.BmcAcpi"
+"AmiIpmi2Pkg.Ipmi2.BmcSelfTestLog"
+"AmiIpmi2Pkg.Ipmi2.SerialMuxControl"
+"AmiIpmi2Pkg.Ipmi2.BmcLanConfig"
+"AmiIpmi2Pkg.Ipmi2.ServerMgmtSetup"
+"AmiIpmi2Pkg.Ipmi2.ViewSelLog"
+"AmiIpmi2Pkg.Ipmi2.BmcUserSettings"
+"AmiIpmi2Pkg.Ipmi2.PeiIpmiCmosClear"
+"AmiIpmi2Pkg.Ipmi2.PowerControlPolicy"
+[dependency]
+AMITSE >= "SS: AptioV;$/AptioV/Binary/Modules/AMITSE;AMITSE_2_20_1274"
+AmiModulePkg.Usb >= "SS: AptioV;$/AptioV/Source/Modules/Usb;AmiUsb_21"
+AmiModulePkg.AmiStatusCode >= "SS: AptioV;$/AptioV/Source/Modules/AmiStatusCode;StatusCodeAmi_10"
+AmiIpmi2Pkg >= "SS: AptioV;$/AptioV/Source/Interfaces/AmiIpmi2Pkg;AmiIpmi2Pkg_05"
+<endComponent>

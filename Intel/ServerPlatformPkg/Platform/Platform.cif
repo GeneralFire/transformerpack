@@ -1,0 +1,10 @@
+<component>
+	name = "Platform"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Platform\"
+	RefName = "ServerPlatformPkg.Platform"
+[parts]
+"ServerPlatformPkg.Platform.Dxe"
+"ServerPlatformPkg.Platform.DxeSmm"
+"ServerPlatformPkg.Platform.Pei"
+<endComponent>

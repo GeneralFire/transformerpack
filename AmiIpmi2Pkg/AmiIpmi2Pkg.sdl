@@ -1,0 +1,61 @@
+TOKEN
+    Name  = "AmiIpmi2Pkg_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable AmiIpmiPkg support in Project."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "AMI_IPMI2_PKG_VERSION"
+    Value  = "01"
+    Help  = "AmiRsdPkg version"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+End
+
+INFComponent
+    Name  = "AmiSelLib"
+    File  = "Library/AmiSelLib/AmiSelLib.inf"
+    Package  = "AmiIpmi2Pkg"
+    Help  = "Includes AmiSelLib.inf to Project."
+End
+
+LibraryMapping
+    Class  = "AmiSelLib"
+    Instance  = "AmiIpmi2Pkg.AmiSelLib"
+    ModuleTypes  = "PEIM DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER"
+    Help  = "Library mapping to include AmiSelLib."
+End
+
+INFComponent
+    Name  = "AmiIpmiLib"
+    File  = "Library/AmiIpmiLib/AmiIpmiLib.inf"
+    Package  = "AmiIpmi2Pkg"
+    Help  = "Includes AmiIpmiInitLib.inf to Project."
+End
+
+LibraryMapping
+    Class  = "AmiIpmiLib"
+    Instance  = "AmiIpmi2Pkg.AmiIpmiLib"
+    ModuleTypes  = "PEIM DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER"
+    Help  = "Library mapping to include AmiIpmiLib."
+End
+
+INFComponent
+    Name  = "AmiIpmiBootLib"
+    File  = "Library/AmiIpmiBootLib/AmiIpmiBootLib.inf"
+    Package  = "AmiIpmi2Pkg"
+    Help  = "Includes AmiIpmiBootLib.inf to Project."
+End
+
+LibraryMapping
+    Class  = "AmiIpmiBootLib"
+    Instance  = "AmiIpmi2Pkg.AmiIpmiBootLib"
+    ModuleTypes  = "DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER"
+    Help  = "Library mapping to include AmiIpmiBootLib."
+End

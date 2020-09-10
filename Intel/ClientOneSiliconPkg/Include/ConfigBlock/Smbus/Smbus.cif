@@ -1,0 +1,8 @@
+<component>
+    name = "Smbus"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Smbus\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Smbus"
+[files]
+"SmbusConfig.h"	
+<endComponent>

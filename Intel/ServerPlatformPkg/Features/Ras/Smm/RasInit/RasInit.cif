@@ -1,0 +1,12 @@
+<component>
+	name = "RasInit"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Ras\Smm\RasInit\"
+	RefName = "ServerPlatformPkg.Features.Ras.RasSmm.RasInit"
+[INF]
+"RasInit.inf"
+[files]
+"MemoryRas.h"	
+"RasInit.h"	
+"RasInit.sdl"	
+<endComponent>

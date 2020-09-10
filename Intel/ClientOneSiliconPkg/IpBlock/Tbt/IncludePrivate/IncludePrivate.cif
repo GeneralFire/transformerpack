@@ -1,0 +1,11 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Tbt\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Tbt.IncludePrivate"
+[files]
+"ITbtNvsAreaDef.h"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Tbt.IncludePrivate.Library"
+"ClientOneSiliconPkg.IpBlock.Tbt.IncludePrivate.Protocol"
+<endComponent>

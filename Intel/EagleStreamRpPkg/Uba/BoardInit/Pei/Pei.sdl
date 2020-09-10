@@ -1,0 +1,134 @@
+TOKEN
+    Name  = "Pei_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Pei support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "BoardInitPeim"
+    File  = "BoardInitPei.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeArcherCityRPPeiBoardInitLib"
+    ModuleTypes  = "PEIM"
+    Override  = "EagleStreamRpPkg.BoardInitPeim"    
+    Token = "PCHTARGET" "!=" "LBG"
+    Token = "PPO_FLAG" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeArcherCityModularPeiBoardInitLib"
+    ModuleTypes  = "PEIM"
+    Override  = "EagleStreamRpPkg.BoardInitPeim"    
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeBigPineKeyPeiBoardInitLib"
+    ModuleTypes  = "PEIM"
+    Override  = "EagleStreamRpPkg.BoardInitPeim"    
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "CryptoPkg.BaseIntrinsicLib"
+    Override  = "EagleStreamRpPkg.BoardInitPeim"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeArcherCityXPVPeiBoardInitLib"
+    ModuleTypes  = "PEIM"
+    Override  = "EagleStreamRpPkg.BoardInitPeim"    
+    Token = "TOOL_CHAIN_TAG" "!=" "GCC5"
+    Token = "MAX_SOCKET" "<" "8"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeArcherCityEVBPeiBoardInitLib"
+    ModuleTypes  = "PEIM"
+    Override  = "EagleStreamRpPkg.BoardInitPeim"    
+    Token = "TOOL_CHAIN_TAG" "!=" "GCC5"
+    Token = "MAX_SOCKET" "<" "8"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeArcherCityRPPeiBoardInitLib"
+    ModuleTypes  = "PEIM"
+    Override  = "EagleStreamRpPkg.BoardInitPeim"       
+    Token = "PPO_FLAG" "=" "0"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeNeonCityEPRPPeiBoardInitLib"
+    ModuleTypes  = "PEIM"
+    Override  = "EagleStreamRpPkg.BoardInitPeim"      
+    Token = "PCHTARGET" "=" "LBG"
+    Token = "PPO_FLAG" "=" "1"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.CommonPeiBoardInitLib"
+    ModuleTypes  = "PEIM"
+    Override  = "EagleStreamRpPkg.BoardInitPeim"    
+End
+
+INFComponent
+    Name  = "BoardInitPostMemPeim"
+    File  = "BoardInitPostMemPei.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "CryptoPkg.BaseIntrinsicLib"
+    Override  = "EagleStreamRpPkg.BoardInitPostMemPeim"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeArcherCityEVBPeiBoardInitPostMemLib"
+    Override  = "EagleStreamRpPkg.BoardInitPostMemPeim"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeArcherCityModularPeiBoardInitPostMemLib"
+    Override  = "EagleStreamRpPkg.BoardInitPostMemPeim"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeArcherCityRPPeiBoardInitPostMemLib"
+    Override  = "EagleStreamRpPkg.BoardInitPostMemPeim"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeArcherCityXPVPeiBoardInitPostMemLib"
+    Override  = "EagleStreamRpPkg.BoardInitPostMemPeim"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.TypeBigPineKeyPeiBoardInitPostMemLib"
+    Override  = "EagleStreamRpPkg.BoardInitPostMemPeim"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "EagleStreamRpPkg.CommonPeiBoardInitPostMemLib"
+    Override  = "EagleStreamRpPkg.BoardInitPostMemPeim"
+End

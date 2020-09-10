@@ -1,0 +1,9 @@
+<component>
+    name = "Psf"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Psf\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Psf"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Psf.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Psf.LibraryPrivate"
+<endComponent>

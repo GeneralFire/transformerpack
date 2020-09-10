@@ -1,0 +1,38 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+
+## @file AmiSelLib.inf
+#
+#  INF description file for AmiSelLib Library.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = AmiSelLib
+  FILE_GUID         = 3D6C4478-B4BE-47E8-A823-9DBDAD950532
+  MODULE_TYPE       = BASE
+  VERSION_STRING    = 1.1
+  LIBRARY_CLASS     = AmiSelLib | PEIM DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER
+
+[Sources]
+  AmiSelLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  PcdLib
+  DebugLib
+
+[Pcd]
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdSelFullBehaviour
+

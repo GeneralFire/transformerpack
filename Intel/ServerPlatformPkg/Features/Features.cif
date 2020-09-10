@@ -1,0 +1,18 @@
+<component>
+    name = "Features"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\"
+    RefName = "ServerPlatformPkg.Features"
+[INF]
+"PlatformPassword\PlatformPasswordDxe.inf"
+[files]
+"Features.sdl"	
+[parts]
+"ServerPlatformPkg.Features.Ras"
+"ServerPlatformPkg.Features.Sata"
+"ServerPlatformPkg.Features.Variable"
+"ServerPlatformPkg.Features.Acpi"
+"ServerPlatformPkg.Features.Cpu"
+"ServerPlatformPkg.Features.Me"
+"ServerPlatformPkg.Features.Pci"
+<endComponent>

@@ -1,0 +1,18 @@
+<component>
+    name = "Smm"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Universal\Smm\"
+    RefName = "ServerSiliconPkg.Universal.Smm"
+[INF]
+"Access\SmmAccess.inf"
+"SmmAccessPei\SmmAccessPei.inf"
+"SiliconDataInit\SiliconDataInitSmm.inf"
+"CsrPseudoOffsetInit\CsrPseudoOffsetInitSmm.inf"
+"SpdPlatformInfoSmm\SpdPlatformInfoSmm.inf"
+[files]
+"SocketPkgSmm.sdl"	
+"SiliconDataInit\SiliconDataInitSmmInternal.h"	
+"CsrPseudoOffsetInit\CsrPseudoOffsetInitSmmInternal.h"	
+[parts]
+"ServerSiliconPkg.Universal.Smm.SktPkgRas"
+<endComponent>

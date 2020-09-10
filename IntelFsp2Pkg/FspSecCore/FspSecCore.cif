@@ -1,0 +1,18 @@
+<component>
+    name = "FspSecCore"
+    category = modulepart
+    LocalRoot = "IntelFsp2Pkg\FspSecCore"
+    RefName = "IntelFsp2Pkg.FspSecCore"
+[INF]
+"FspSecCoreM.inf"
+"FspSecCoreS.inf"
+"FspSecCoreT.inf"
+[files]
+"FspSecCore.sdl"
+"Ia32\MicrocodeLoadNasm.inc"
+"Ia32\SaveRestoreSseNasm.inc"
+"Vtf0\Ia16\ResetVec.asm16"
+"Vtf0\Tools\FixupForRawSection.py"
+"Vtf0\Build.py"
+"Vtf0\ResetVectorCode.asm"
+<endComponent>

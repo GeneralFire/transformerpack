@@ -1,0 +1,157 @@
+## @file
+# Module Information file for PEI DxePolicyUpdateLib Library
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2011 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION = 0x00010017
+  BASE_NAME = PeiPolicyUpdateLibEbg
+  FILE_GUID = 1AB1B0EE-2072-41FC-8011-5BE62D8FBB1B
+  VERSION_STRING = 1.0
+  MODULE_TYPE = PEIM
+  LIBRARY_CLASS = PeiPolicyUpdateLib|PEIM PEI_CORE SEC
+
+
+[LibraryClasses]
+  HobLib
+  BaseCryptLib
+  IoLib
+  ConfigBlockLib
+  GbeLib
+  PchInfoLib
+  PchPcieRpLib
+  MemoryAllocationLib
+  PeiServicesTablePointerLib
+  PcdLib
+  PmcLib
+  SataLib
+  PchInfoLib
+  PciSegmentLib
+  UbaPlatLib
+  MeConfigLib                                 ## SERVER_BIOS
+  SetupLib                                    ## SERVER_BIOS
+  MeGetConfigBlock                            ## SERVER_BIOS
+  MeServerPolicyHelperLib                     ## SERVER_BIOS
+  HeciConfigureLib                            ## SERVER_BIOS
+  PreSiliconEnvDetectLib
+  CpuAndRevisionLib
+  UbaPlatLib
+  MeFiaMuxLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ClientOneSiliconPkg/SiPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  CpRcPkg/CpRcPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+
+[FixedPcd]
+  gCpPlatFlashTokenSpaceGuid.PcdFlashFvMainBase
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gCpPlatFlashTokenSpaceGuid.PcdFlashFvMainSize
+  gCpPlatFlashTokenSpaceGuid.PcdFlashFdMainBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize
+  gCpPlatFlashTokenSpaceGuid.PcdFlashFvNvStorageEventLogSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+  gCpPlatFlashTokenSpaceGuid.PcdFlashFvWheaBase
+  gCpPlatFlashTokenSpaceGuid.PcdFlashFvWheaSize
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision
+  gSiPkgTokenSpaceGuid.PcdSmbusBaseAddress
+
+  gPlatformModuleTokenSpaceGuid.PcdPchThermalHotEnable
+
+  # HSIO
+
+  # HDA Verb Table
+  gPlatformModuleTokenSpaceGuid.PcdHdaVerbTable                   ## CONSUMES
+  gPlatformModuleTokenSpaceGuid.PcdHdaVerbTable2                  ## CONSUMES
+  gPlatformModuleTokenSpaceGuid.PcdCommonHdaVerbTable1            ## CONSUMES
+  gPlatformModuleTokenSpaceGuid.PcdCommonHdaVerbTable2            ## CONSUMES
+  gPlatformModuleTokenSpaceGuid.PcdCommonHdaVerbTable3            ## CONSUMES
+
+[Sources]
+  PeiPchPolicyUpdatePreMemEbg.c
+  PeiPchPolicyUpdateEbg.c
+  PeiSiPolicyUpdateEbg.c
+  PeiMePolicyUpdatePreMem.c
+  PeiMePolicyUpdate.c
+  PeiAmtPolicyUpdate.c
+  PeiSpsPolicyUpdate.c
+  PeiMePolicyUpdate.h
+  PeiSpsPolicyUpdate.h
+  PeiAmtPolicyUpdate.h
+  PeiPchPolicyUpdateCdf.h
+  PeiSiPolicyUpdateEbg.h
+  PeiFiaMuxPolicyUpdate.c
+
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid               ## CONSUMES
+  gWdtPpiGuid                                   ## CONSUMES
+  gPchHdaVerbTablePpiGuid
+  gPchSpiPpiGuid
+  gSiPolicyPpiGuid                              ## CONSUMES
+  gSiPreMemPolicyPpiGuid                        ## CONSUMES
+
+[Guids]
+  gMeBiosExtensionSetupGuid                     ## SERVER_BIOS
+  gAmtForcePushPetPolicyGuid
+  gEfiGlobalVariableGuid
+  gEfiAcpiVariableGuid
+  gEfiSetupVariableGuid
+  gEfiMeRcVariableGuid                          ## SERVER_BIOS
+  gSiConfigGuid                                 ## CONSUMES
+  gAdrConfigGuid                                ## CONSUMES
+
+  gDciPreMemConfigGuid                          ## CONSUMES
+  gUsbConfigGuid
+  gEspiConfigGuid
+  gLanConfigGuid
+  gIoApicConfigGuid
+  gPmConfigGuid
+  gUsb2PhyConfigGuid
+  gP2sbConfigGuid
+  gDmiConfigGuid
+  gHsuartConfigGuid
+  gPchPcieConfigGuid
+  gEmmcConfigGuid
+  gHsioPreMemConfigGuid
+  gHdAudioPreMemConfigGuid
+  gHdAudioConfigGuid
+  gPchGeneralConfigGuid
+  gAdrConfigGuid                                ## CONSUMES
+  gFiaMuxPreMemConfigGuid                       ## CONSUMES

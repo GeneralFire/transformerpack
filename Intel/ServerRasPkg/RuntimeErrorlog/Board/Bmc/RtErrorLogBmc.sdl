@@ -1,0 +1,79 @@
+TOKEN
+	Name  = "RuntimeErrorLogBmc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RuntimeErrorLogBmc support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+	Token = "IPMI2_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "LogMemErrorToSel,"
+	Parent  = "MemErrorHandlers"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "LogPciErrorToSel,"
+	Parent  = "PciErrorHandlers"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+  	Name  = "LogProcErrorToSel,"
+   	Parent  = "ProcessorErrorHandlers"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "LogUpiErrorToSel,"
+	Parent  = "UpiErrorHandlers"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "LogIehErrorToSel,"
+	Parent  = "IehErrorHandlers"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "LogIioXpErrorToSel,"
+	Parent  = "IioXpErrorHandlers"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "LogLeakyBucketErrorToSel,"
+    Parent  = "LeakyBucketErrorHandlers"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "LogSpareCoreErrorToSel,"
+    Parent  = "SpareCoreErrorHandlers"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "LogIioInternalErrorToSel,"
+	Parent  = "IioInternalErrorHandlers"
+	InvokeOrder = AfterParent
+End
+
+INFComponent
+	Name  = "RtErrorLogBmcLib"
+	File  = "RtErrorLogBmc.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "RuntimeErrorLogBmc_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+	Class  = "RtErrorLogBmcLib"
+	Instance  = "ServerRasPkg.RtErrorLogBmcLib"
+	Arch  = "common"
+	ModuleTypes  = "DXE_DRIVER DXE_SMM_DRIVER"
+	Token = "RuntimeErrorLogBmc_SUPPORT" "=" "1"
+End

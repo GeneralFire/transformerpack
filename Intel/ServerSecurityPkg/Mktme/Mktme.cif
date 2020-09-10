@@ -1,0 +1,13 @@
+<component>
+	name = "Mktme"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSecurityPkg\Mktme\"
+	RefName = "ServerSecurityPkg.Mktme"
+[INF]
+"MktmeCoreInit\MktmeCoreInit.inf"
+"MktmeLateInit\MktmeLateInit.inf"
+[files]
+"Mktme.sdl"
+"MktmeCoreInit\MktmeCoreInit.h"
+"MktmeLateInit\MktmeLateInit.h"	
+<endComponent>

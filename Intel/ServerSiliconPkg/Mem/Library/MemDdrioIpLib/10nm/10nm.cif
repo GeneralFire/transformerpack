@@ -1,0 +1,18 @@
+<component>
+    name = "10nm"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Mem\Library\MemDdrioIpLib\10nm\"
+    RefName = "ServerSiliconPkg.Mem.Library.MemDdrioIpLib.10nm"
+[INF]
+"HwMemDdrioIpTargetLib.inf"
+[files]
+"Include\MemCmdControl.h"	
+"Include\MemDdrioPrivate.h"	
+"Include\MemDdrioRegs.h"	
+"Include\MemIoControl.h"	
+"Include\MemPxc.h"	
+"Include\MemXoverCalib.h"	
+"Include\MemXoverCalibOffsets.h"	
+"MemCmdControlDdr5.c"	
+"10nm.sdl"	
+<endComponent>

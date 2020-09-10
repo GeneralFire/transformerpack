@@ -1,0 +1,148 @@
+TOKEN
+    Name  = "AmiTrustedFv_Support"
+    Value  = "1"
+    Help  = "Main switch to enable TrustedFvDxe support. Module build may fail unless FV signing method and validation keys are provisioned at time of build"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+    Token = "AmiCryptoPkg_SUPPORT" "=" "1"
+    Token = "AMI_CRYPTOPACKAGE_MODULE_REVISION" ">=" "36"
+End
+
+TOKEN
+    Name  = "AMI_TRUSTED_FV_MODULE_REVISION"
+    Value  = "4"
+    Help  = "Version of exposed module interfaces"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Lock = Yes
+End
+
+TOKEN
+    Name  = "FVDXE_SIGNED_AT_BUILD"
+    Value  = "1"
+    Help  = "1 - FVs are signed at build time using shared settings with Secure Flash.\0 - Skip build time signing, but FVs must be signed before deploying BIOS image"
+    TokenType = Boolean
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "FWCAPSULE_CERT_FORMAT"
+    Value  = "0"
+    Help  = "0 - Signature prepared in UEFI RSA2048_SHA256 Certificate\1 - PKCS#7 Certificate. Require access to a 3rd party sign tools(MS signtool.exe or openSSL)"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "0-1"
+    Token = "SecureMod_SUPPORT" "=" "0"
+End
+
+TOKEN
+    Name  = "FWCAPSULE_MAX_HDR_SIZE"
+    Value  = "4096"
+    Help  = "The size in bytes of an embedded FvSig Header buffer"
+    TokenType = Integer
+    TargetH = Yes
+    Range  = "2kb < size < 16kb"
+    Token = "SecureMod_SUPPORT" "=" "0"
+End
+
+TOKEN
+    Name  = "FVDXE_FWSIG_PADDING"
+    Value  = "0"
+    Help  = "RSA2048_SHA256 Signature padding scheme.0-PKCS1v1.5, 1-PSS, 2-xx reserved"
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "FVDXE_FWKEY_FILE_REPLACE"
+    Value  = "1"
+    Help  = "Directive to Cryptocon to replace existing FW Key inside BIOS RTU (FV_BB) with the public portion of FwCapsule sign key"
+    TokenType = Integer
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "UNSIGNED_BIOS_ROM"
+    Value  = "$(subst /,$(PATH_SLASH),$(OUTPUT_DIRECTORY))$(PATH_SLASH)$(TARGET)_$(TOOL_CHAIN_TAG)$(PATH_SLASH)FV$(PATH_SLASH)AMIROM.fd"
+    Help  = "File name of the BIOS image to be signed."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "SecureMod_SUPPORT" "=" "0" 
+End
+
+TOKEN
+    Name  = "ROM_LAYOUT_EX"
+    Value  = "$(BUILD_DIR)$(PATH_SLASH)RomLayoutEx.bin"
+    Help  = "Name of the extended rom map file. Used by a Cryptocon utility to select the sections of the BIOS to be signed"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "SecureMod_SUPPORT" "=" "0"
+End
+
+PATH
+    Name  = "AmiTrustedFvPkg_Dir"
+End
+
+MODULE
+    Help  = "Includes TrustedDxe.mak to Project"
+    File  = "AmiTrustedFvPkg.mak"
+End
+
+ELINK
+    Name  = "FVDXE_SIG_CMDLINE"
+    Help  = "Final Cryptocon command line to sign FvDxe"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "FVDXE_CRYPTOCON_CMDLINE_SIG"
+    Help  = "Default Cryptocon command line to sign FvDxe\'ReplaceParent' for this name to make custom cryptocon sign command line"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "$(FVDXE_CRYPTOCON_CMDLINE_SIG)"
+    Parent  = "FVDXE_SIG_CMDLINE"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "-t -y -r $(ROM_LAYOUT_EX) -g $(FvDxeSig_SectionGUID)"
+    Parent  = "FVDXE_CRYPTOCON_CMDLINE_SIG"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "-c2 -x $(FWpriv),$(FW_PFX_Password) -k $(FWpub)"
+    Parent  = "FVDXE_CRYPTOCON_CMDLINE_SIG"
+    Help  = "Select hash algorithm option for signed digest. Supported types: -h2 for sha256(default), -h3 for sha384 and -h5 for sha512"
+    Token = "FWCAPSULE_CERT_FORMAT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "-c $(FWrootKey) -k $(FWpriv)"
+    Parent  = "FVDXE_CRYPTOCON_CMDLINE_SIG"
+    Help  = "Extended FwCapsule Hdr Signature Calculation scheme"
+    Token = "FWCAPSULE_CERT_FORMAT" "=" "0"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "-p"
+    Parent  = "FVDXE_CRYPTOCON_CMDLINE_SIG"
+    Help  = "RSSA-PSS Signature padding scheme. (Default - RSSA-PKCS#1v1.5)"
+    Token = "FVDXE_FWSIG_PADDING" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "-n"
+    Parent  = "FVDXE_CRYPTOCON_CMDLINE_SIG"
+    Help  = "directive to replace default Platform Key inside BIOS.ROM with the public portion of the Sign key -k"
+    Token = "FVDXE_FWKEY_FILE_REPLACE" "=" "1"
+    InvokeOrder = AfterParent
+End

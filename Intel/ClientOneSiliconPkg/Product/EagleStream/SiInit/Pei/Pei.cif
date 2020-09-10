@@ -1,0 +1,13 @@
+<component>
+    name = "Pei"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Product\EagleStream\SiInit\Pei\"
+    RefName = "ClientOneSiliconPkg.Product.EagleStream.SiInit.Pei"
+[INF]
+"SiInit.inf"
+"SiInitPreMem.inf"
+[files]
+"SiInit.h"	
+"SiInitPreMem.h"	
+"Pei.sdl"	
+<endComponent>

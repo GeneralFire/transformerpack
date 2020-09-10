@@ -1,0 +1,156 @@
+/** @file
+  ASL implementation for PCIe handshake between OS and firmware.
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+    //
+    // check OS native AER handshake. Assume OS has AER capability.
+    // Arg0: PCIe segment number
+    // Arg1: PCIe base number
+    // Arg2: Support DWORD from _OSC Method
+    // Arg3: Control DWORD from _OSC Method
+    // return: 1 -- OS take AER control; 0 -- BIOS take AER control.
+    //
+    Method(OSNC, 4) {
+      //
+      // Only SETUP knob and OS pass-in AER capability support, BIOS could give control to OS.
+      //
+      if (LEqual(OSNP, 1)) {
+        //disable trigger SMI
+        PESW (Arg0, Arg1, Arg2, Arg3)
+        return (1)
+      } else {
+        //check if OS support Error inject, if it doesn't, then disable eDPC
+        PESW (Arg0, Arg1, Arg2, Arg3)
+        return (0)
+      }
+    }
+
+    //
+    // disable corresponding root part SMI interrupt by disabling root control register
+    // Arg0:  PCIe segment number
+    // Arg1:  PCIe base number
+    // Arg2: Support DWORD from _OSC Method
+    // Arg3: Control DWORD from _OSC Method
+    //
+    Method(PESW, 4) {
+
+      Name (BUFF, Buffer(3200){0}) //3200 bytes = 25600 bits.
+      Store (RPSX, BUFF)
+      Store (0, Local0)
+
+      //
+      //Number 400 should be updated if platform root port counter is bigger than this one.
+      //
+      while (LLess(Local0, 400)) {
+        Multiply(Local0, 8, Local1)
+        Add (Local1, 5, Local2)  //segment
+
+        //
+        //exit due to no PCIe seg is 0xff.
+        //
+        If (LEqual(Derefof(Index(BUFF, Local2)), 0xff)) {
+          break;
+        }
+
+        Add (Local1, 4, Local3)  //PCIe base bus number
+
+        If (LAnd(LEqual(Derefof(Index(BUFF, Local2)), Arg0), LEqual(Derefof(Index(BUFF, Local3)), Arg1))) {
+          //the 4th byte
+          Add (Local1, 3, Local4)
+          Store (Derefof(Index(BUFF, Local4)), Local5)
+          ShiftLeft (Local5, 8, Local5)
+
+          //the 3rd byte
+          Decrement (Local4)
+          Add (Derefof(Index(BUFF, Local4)), Local5, Local5)
+          ShiftLeft (Local5, 8, Local5)
+
+          //the 2nd byte
+          Decrement (Local4)
+          Add (Derefof(Index(BUFF, Local4)), Local5, Local5)
+          ShiftLeft (Local5, 8, Local5)
+
+          //the 1st byte
+          Decrement (Local4)
+          Add (Derefof(Index(BUFF, Local4)), Local5, Local5)
+
+          //
+          // if OS Native AER support enabled, clear ROOTCTL BIT0-2
+          //
+          if (LEqual(OSNP, 1)) {
+            AERH(Local5)
+            //
+            // if OS asked control for eDPC, do the eDPC handshake
+            //
+            If (LEqual ( And(Arg3, 0x80), 0x80)) {
+              DPCH(Local5)
+            }
+          }
+          //
+          // if OS dosn't support Error Inject, no befenit to enable eDPC.
+          // Disable eDPC once OS dosn't support Error Inject.
+          //
+          If (LNotEqual ( And(Arg2, 0x80), 0x80)) {
+            DPCD(Local5)
+          }
+        }
+
+        Increment(Local0);
+      }
+    }
+
+    //
+    // AER Handshake
+    // Disable corresponding root port SMI interrupt by disabling root control register per each root port.
+    // Arg0:  root port MMIO address
+    //
+    Method(AERH, 1, Serialized) {
+      Store (Arg0, Local0)
+      //
+      // Find the PCIe capability.
+      //
+      Store (PERB(Add (Local0, 0x34)), Local2)  //cap ptr
+      While (LAnd (LNotEqual (Local2, 0), LNotEqual (Local2, 0xff)) ) {
+        Add (Local0, Local2, Local3)
+        Store (PERB(Local3), Local4)
+        If (LEqual (Local4, 0x10)) {
+          Store (PERB(Add (Local3, 2)), Local4)
+          And (Local4, 0xf0, Local5)  //dev type
+          If (Lor (LEqual(Local5, 0x40), LEqual(Local5, 0xA0))) {
+            Store (PERB(Add (Local3, 0x1C)), Local4)
+            And (Local4, 0xf8, Local1) //clear the least 3 bits
+            PEWB(Add (Local3, 0x1C), Local1)  // clear root contrl status bit 0~2
+          }
+          //exit
+          Store (0, Local2)
+        } else {
+          //next cycle
+          Store (PERB(Add (Local3, 1)), Local2)
+        }
+      }
+    }
+

@@ -1,0 +1,14 @@
+<component>
+    name = "PcuMailBoxLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Library\PcuMailBoxLib\"
+    RefName = "ServerSiliconPkg.Library.PcuMailBoxLib"
+[INF]
+"PcuMailBoxRasLib.inf"
+"10nmWave1\HwTargetLib\HwPcuMailBoxTargetLib.inf"
+"10nmWave3\HwTargetLib\HwPcuMailBoxTargetLib.inf"
+"PcuMailBoxLib10nmWave1.inf"
+"PcuMailBoxLib10nmWave3.inf"
+[files]
+"PcuMailBoxLib.sdl"	
+<endComponent>

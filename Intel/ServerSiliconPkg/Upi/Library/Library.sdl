@@ -1,0 +1,211 @@
+TOKEN
+	Name  = "Library_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Library support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+
+INFComponent
+	Name  = "CxlLibNull"
+	File  = "CxlLibNull/CxlLibNull.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"	
+End
+
+INFComponent
+    Name  = "CxlLib"
+    File  = "CxlLib/CxlLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+   Token = "CPU_SPR_SUPPORT" "=" "1"        
+End
+
+
+INFComponent
+	Name  = "EightSocketLib"
+	File  = "EightSocketLib/EightSocketLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "MAX_SOCKET" ">" "4"
+End
+
+INFComponent
+	Name  = "EightSocketLibNull"
+	File  = "EightSocketLibNull/EightSocketLibNull.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+INFComponent
+	Name  = "MultiSocketLib"
+	File  = "MultiSocketLib/MultiSocketLib10nm.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "0"
+    Token = "MAX_SOCKET" "!=" "1"	
+End
+
+INFComponent
+    Name  = "MultiSocketLib"
+    File  = "MultiSocketLib/MultiSocketLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "MAX_SOCKET" "!=" "1"
+End
+
+INFComponent
+	Name  = "MultiSocketLibNull"
+	File  = "MultiSocketLibNull/MultiSocketLibNull.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+    Token = "MAX_SOCKET" "=" "1"	
+End
+
+INFComponent
+	Name  = "UncoreLib"
+	File  = "UncoreLib/UncoreLib10nm.inf"
+	Package  = "ServerSiliconPkg"
+	Arch  = "IA32"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "UncoreLib"
+    File  = "UncoreLib/UncoreLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+	Class  = "CxlLib"
+	Instance  = "ServerSiliconPkg.CxlLibNull"
+    Token = "CPU_SPR_SUPPORT" "=" "0"	
+End
+
+LibraryMapping
+    Class  = "CxlLib"
+    Instance  = "ServerSiliconPkg.CxlLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"   
+End
+
+LibraryMapping
+	Class  = "EightSocketLib"
+	Instance  = "ServerSiliconPkg.EightSocketLib"
+	Token = "MAX_SOCKET" ">" "4"
+End
+
+LibraryMapping
+	Class  = "EightSocketLib"
+	Instance  = "ServerSiliconPkg.EightSocketLibNull"
+	Token = "MAX_SOCKET" "<=" "4"
+End
+
+LibraryMapping
+	Class  = "MultiSocketLib"
+	Instance  = "ServerSiliconPkg.MultiSocketLib"
+	Token = "MAX_SOCKET" "!=" "1"
+End
+
+LibraryMapping
+	Class  = "MultiSocketLib"
+	Instance  = "ServerSiliconPkg.MultiSocketLibNull"
+	Token = "MAX_SOCKET" "=" "1"
+End
+
+LibraryMapping
+	Class  = "UncoreLib"
+	Instance  = "ServerSiliconPkg.UncoreLib"
+	Token = "CPU_SPR_SUPPORT" "=" "0"  
+End
+
+LibraryMapping
+    Class  = "UncoreLib"
+    Instance  = "ServerSiliconPkg.UncoreLib"
+    Token = "CPU_SPR_SUPPORT" "=" "1"   
+End
+
+INFComponent
+	Name  = "KtiApiLib"
+	File  = "KtiApiLib/KtiApiLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "KtiApiLib"
+	Instance  = "ServerSiliconPkg.KtiApiLib"
+End
+
+INFComponent
+	Name  = "S3mLib"
+	File  = "S3mLib/S3mLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+	Class  = "S3mLib"
+	Instance  = "ServerSiliconPkg.S3mLib"
+	Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "S3mLibNull"
+	File  = "S3mLibNull/S3mLibNull.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+	Class  = "S3mLib"
+	Instance  = "ServerSiliconPkg.S3mLibNull"
+	Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+	Name  = "SncPrefetchLib"
+	File  = "SncPrefetchLib\SncPrefetchMultiSktLibSpr.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "SncPrefetchLib"
+	File  = "SncPrefetchLib\SncPrefetchMultiSktLib10nm.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+	Name  = "SncPrefetchLib"
+	File  = "SncPrefetchLib/SncPrefetchSingleSktLibSpr.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "1"
+	Token = "MAX_SOCKET" "=" "1"
+End
+
+INFComponent
+	Name  = "SncPrefetchLib"
+	File  = "SncPrefetchLib/SncPrefetchSingleSktLib10nm.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+	Token = "CPU_SPR_SUPPORT" "=" "0"
+	Token = "MAX_SOCKET" "=" "1"
+End
+
+LibraryMapping
+	Class  = "SncPrefetchLib"
+	Instance  = "ServerSiliconPkg.SncPrefetchLib"
+End

@@ -1,0 +1,14 @@
+<component>
+	name = "ReserveBinary"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\BootGuard\ReserveBinary\"
+	RefName = "ServerPlatformPkg.BootGuard.ReserveBinary"
+[INF]    
+"ReserveBootGuardFvMainHashKey.inf"
+"ReserveBootGuardFvArea.inf"
+[files]
+"ReserveBinary.sdl"
+"Reserve.bin"
+"BpmTableFdfFileStatement.txt"	
+"KmTableFdfFileStatement.txt"
+<endComponent>

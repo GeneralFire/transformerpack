@@ -1,0 +1,14 @@
+<component>
+    name = "Pins"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\Pins\"
+    RefName = "ClientOneSiliconPkg.Include.Pins"
+[files]
+"GpioPinsVer1H.h"	
+"GpioPinsVer1Lp.h"	
+"GpioPinsVer1N.h"	
+"GpioPinsVer2H.h"	
+"GpioPinsVer2Lp.h"	
+"GpioPinsVer3.h"
+"GpioPinsVer4S.h"	
+<endComponent>

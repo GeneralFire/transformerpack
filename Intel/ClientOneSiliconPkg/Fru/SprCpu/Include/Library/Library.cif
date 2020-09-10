@@ -1,0 +1,8 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\SprCpu\Include\Library\"
+    RefName = "ClientOneSiliconPkg.Fru.SprCpu.Include.Library"
+[files]
+"CpuPcieInfoFruLib.h"
+<endComponent>

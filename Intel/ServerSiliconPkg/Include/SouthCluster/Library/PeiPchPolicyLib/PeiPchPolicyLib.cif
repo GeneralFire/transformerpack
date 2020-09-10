@@ -1,0 +1,8 @@
+<component>
+	name = "PeiPchPolicyLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\SouthCluster\Library\PeiPchPolicyLib\"
+	RefName = "ServerSiliconPkg.Include.SouthCluster.Library.PeiPchPolicyLib"
+[files]
+"PeiPchPolicyLibrary.h"	
+<endComponent>

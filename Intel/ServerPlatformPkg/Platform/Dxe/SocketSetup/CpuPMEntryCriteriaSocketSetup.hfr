@@ -1,0 +1,302 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2015 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+      // PKG_CST_ENTRY_CRITERIA_MASK.kti_in_l1
+      oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.Kti0In[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_KTI_0_IN_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_KTI_0_IN_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_KTI_0_IN_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_KTI_0_IN_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_KTI_0_IN_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_KTI_0_IN_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_KTI_0_IN_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_KTI_0_IN_S7),
+        #endif // INDEX == 7
+            help        = STRING_TOKEN(STR_KTI_0_IN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IN_L1),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+        // PKG_CST_ENTRY_CRITERIA_MASK - KTI_1_IN 
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.Kti1In[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_KTI_1_IN_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_KTI_1_IN_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_KTI_1_IN_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_KTI_1_IN_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_KTI_1_IN_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_KTI_1_IN_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_KTI_1_IN_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_KTI_1_IN_S7),
+        #endif // INDEX == 7
+            help        = STRING_TOKEN(STR_KTI_1_IN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IN_L1),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+        // PKG_CST_ENTRY_CRITERIA_MASK - KTI_2_IN L0S/L1
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.Kti2In[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_KTI_2_IN_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_KTI_2_IN_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_KTI_2_IN_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_KTI_2_IN_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_KTI_2_IN_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_KTI_2_IN_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_KTI_2_IN_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_KTI_2_IN_S7),
+        #endif // INDEX == 7
+            help        = STRING_TOKEN(STR_KTI_2_IN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IN_L1),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+        // PKG_CST_ENTRY_CRITERIA_MASK -  PCIE0
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.PcieIio0In[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_PCIE0_IN_LX_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_PCIE0_IN_LX_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_PCIE0_IN_LX_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_PCIE0_IN_LX_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_PCIE0_IN_LX_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_PCIE0_IN_LX_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_PCIE0_IN_LX_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_PCIE0_IN_LX_S7),
+        #endif // INDEX == 7
+            help        = STRING_TOKEN(STR_PCIE_IN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IN_L1),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+       endoneof;
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.PcieIio1In[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_PCIE1_IN_LX_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_PCIE1_IN_LX_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_PCIE1_IN_LX_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_PCIE1_IN_LX_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_PCIE1_IN_LX_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_PCIE1_IN_LX_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_PCIE1_IN_LX_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_PCIE1_IN_LX_S7),
+        #endif // INDEX == 7
+            help        = STRING_TOKEN(STR_PCIE_IN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IN_L1),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.PcieIio2In[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_PCIE2_IN_LX_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_PCIE2_IN_LX_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_PCIE2_IN_LX_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_PCIE2_IN_LX_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_PCIE2_IN_LX_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_PCIE2_IN_LX_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_PCIE2_IN_LX_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_PCIE2_IN_LX_S7),
+        #endif // INDEX == 7
+            help        = STRING_TOKEN(STR_PCIE_IN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IN_L1),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.PcieIio3In[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_PCIE3_IN_LX_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_PCIE3_IN_LX_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_PCIE3_IN_LX_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_PCIE3_IN_LX_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_PCIE3_IN_LX_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_PCIE3_IN_LX_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_PCIE3_IN_LX_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_PCIE3_IN_LX_S7),
+        #endif // INDEX == 7
+            help        = STRING_TOKEN(STR_PCIE_IN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IN_L1),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.PcieIio4In[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_PCIE4_IN_LX_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_PCIE4_IN_LX_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_PCIE4_IN_LX_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_PCIE4_IN_LX_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_PCIE4_IN_LX_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_PCIE4_IN_LX_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_PCIE4_IN_LX_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_PCIE4_IN_LX_S7),
+        #endif // INDEX == 7
+            help        = STRING_TOKEN(STR_PCIE_IN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IN_L1),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.PcieIio5In[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_PCIE5_IN_LX_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_PCIE5_IN_LX_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_PCIE5_IN_LX_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_PCIE5_IN_LX_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_PCIE5_IN_LX_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_PCIE5_IN_LX_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_PCIE5_IN_LX_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_PCIE5_IN_LX_S7),
+        #endif // INDEX == 7
+            help        = STRING_TOKEN(STR_PCIE_IN_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_IN_L1),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+

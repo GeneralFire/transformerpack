@@ -1,0 +1,10 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.IncludePrivate"
+[files]
+"JhiInternal.h"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Me.IncludePrivate.Library"
+<endComponent>

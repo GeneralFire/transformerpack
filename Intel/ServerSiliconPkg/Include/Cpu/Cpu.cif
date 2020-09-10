@@ -1,0 +1,12 @@
+<component>
+	name = "Cpu"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\Cpu\"
+	RefName = "ServerSiliconPkg.Include.Cpu"
+[files]	
+"CpuCoreRegs.h"	
+"CpuIds.h"	
+"CpuPpmB2p.h"	
+[parts]
+"ServerSiliconPkg.Include.Cpu.Msr"
+<endComponent>

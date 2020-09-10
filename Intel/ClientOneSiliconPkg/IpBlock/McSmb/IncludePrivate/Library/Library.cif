@@ -1,0 +1,8 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\McSmb\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.McSmb.IncludePrivate.Library"
+[files]
+"PeiMcSmbLib.h"	
+<endComponent>

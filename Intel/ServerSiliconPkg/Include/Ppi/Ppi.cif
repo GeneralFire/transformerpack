@@ -1,0 +1,15 @@
+<component>
+	name = "Ppi"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\Ppi\"
+	RefName = "ServerSiliconPkg.Include.Ppi"
+[files]
+"BaseMemoryTest.h"	
+"IioSiPolicyPpi.h"	
+"PlatformMemoryRange.h"	
+"PlatformMemorySize.h"	
+"OemIioHooksPpi.h"
+"SiPolicy.h"	
+"UpiPolicyPpi.h"
+"RasRcPolicy.h"	
+<endComponent>

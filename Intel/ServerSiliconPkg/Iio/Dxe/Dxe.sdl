@@ -1,0 +1,29 @@
+TOKEN
+	Name  = "Dxe_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Dxe support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "IioInit_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable IioInit support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "IioInit"
+	File  = "IioInit/IioInit.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "IioInit_INF_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "BaseLib"
+    Instance  = "ServerSiliconPkg.BaseLib"
+    Override  = "ServerSiliconPkg.IioInit"
+End
+

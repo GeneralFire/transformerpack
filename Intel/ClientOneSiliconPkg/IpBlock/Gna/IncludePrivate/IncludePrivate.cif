@@ -1,0 +1,8 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Gna\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Gna.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Gna.IncludePrivate.Library"
+<endComponent>

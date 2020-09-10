@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Cnvi\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Cnvi.IncludePrivate.Library"
+[files]
+"PeiCnviLib.h"	
+"PeiCnviPolicyLib.h"	
+<endComponent>

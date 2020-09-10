@@ -1,0 +1,33 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiPchFiaLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PchFiaLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchFiaLibVer3"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiPchFiaLibVer3"
+    File  = "PeiPchFiaLib\PeiPchFiaLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+LibraryMapping
+    Class  = "PeiFiaPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiFiaPolicyLib"    
+End
+
+INFComponent
+    Name  = "PeiFiaPolicyLib"
+    File  = "PeiPchFiaPolicyLib\PeiFiaPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"    
+End

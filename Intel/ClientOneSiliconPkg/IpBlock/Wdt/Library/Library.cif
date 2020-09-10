@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Wdt\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Wdt.Library"
+[INF]
+"PeiOcWdtLib\PeiOcWdtLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

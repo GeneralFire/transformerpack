@@ -1,0 +1,42 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+## @file
+#   INF component for SMM Core platform hooks library 
+##
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmiSmmCorePlatformHooksLib
+  FILE_GUID                      = 949CF840-174C-41e5-B9E9-C385DB9D9936
+  MODULE_TYPE                    = SMM_CORE
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  LIBRARY_CLASS                  = AmiSmmCorePlatformHooksLib|SMM_CORE
+
+[Sources]
+  AmiSmmCorePlatformHooksLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmiCrbPkg/AmiCrbPkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  CpRcPkg/CpRcPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  BaseLib
+  DebugLib
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+#  gEfiPlatformRasPolicyProtocolGuid
+  gEfiCpuCsrAccessGuid
+

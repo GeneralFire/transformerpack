@@ -1,0 +1,10 @@
+<component>
+	name = "PeiPolicyUpdateLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Library\PeiPolicyUpdateLib\"
+	RefName = "ServerPlatformPkg.Library.PeiPolicyUpdateLib"
+
+[files]
+"PeiSiPolicyUpdateEbg.h"		
+"PeiPolicyUpdateLib.sdl"	
+<endComponent>

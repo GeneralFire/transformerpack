@@ -1,0 +1,14 @@
+<component>
+    name = "Wdt"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Wdt\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Wdt"
+[INF]
+"Dxe\WdtDxe.inf"
+[files]
+"Wdt.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Wdt.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Wdt.Library"
+"ClientOneSiliconPkg.IpBlock.Wdt.LibraryPrivate"
+<endComponent>

@@ -1,0 +1,18 @@
+<component>
+    name = "MeSps.6"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\"
+    RefName = "ServerSiliconPkg.Me.MeSps6"
+[INF]
+"Client\ClientCore.inf"
+"PtuLoader\PtuLoader.inf"
+[files]
+"MeSps6.sdl"	
+"Client\ClientCoreInternal.h"	
+[parts]
+"ServerSiliconPkg.Me.MeSps6.Heci"
+"ServerSiliconPkg.Me.MeSps6.Include"
+"ServerSiliconPkg.Me.MeSps6.Library"
+"ServerSiliconPkg.Me.MeSps6.Sps"
+"ServerSiliconPkg.Me.MeSps6.Ws"
+<endComponent>

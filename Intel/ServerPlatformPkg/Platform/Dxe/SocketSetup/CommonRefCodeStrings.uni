@@ -1,0 +1,72 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+#string STR_RC_COMMON_FORM_TITLE               #language en-US "Common RefCode Configuration"
+#string STR_RC_COMMON_FORM_HELP                #language en-US "Displays and provides option to change the Common RefCode Settings"
+
+#string STR_UPI_MMCFG_BASE                     #language en-US "MMCFG Base"
+#string STR_UPI_MMCFG_BASE_HELP                #language en-US "Select MMCFG Base"
+#string STR_UPI_MMCFG_SIZE                     #language en-US "MMCFG Size"
+#string STR_UPI_MMCFG_SIZE_HELP                #language en-US "Select MMCFG Size"
+
+#string STR_1G                                 #language en-US "1G"
+#string STR_1_5G                               #language en-US "1.5G"
+#string STR_1_75G                              #language en-US "1.75G"
+#string STR_2G                                 #language en-US "2G"
+#string STR_2_25G                              #language en-US "2.25G"
+#string STR_3G                                 #language en-US "3G"
+
+#string STR_UPI_MMIOH_BASE                     #language en-US "MMIO High Base"
+#string STR_UPI_MMIOH_BASE_HELP                #language en-US "Select MMIO High Base"
+#string STR_UPI_MMIOH_SIZE                     #language en-US "MMIO High Granularity Size"
+#string STR_UPI_MMIOH_SIZE_HELP                #language en-US "Selects the allocation size used to assign mmioh resources.\nTotal mmioh space can be up to 32xgranularity.\nPer stack mmioh resource assignments are multiples of the granularity where 1 unit per stack is the default allocation."
+
+#string STR_ISOCEN                             #language en-US "Isoc Mode"
+#string STR_ISOCEN_HELP                        #language en-US "Isoc: Disable,Enable"
+#string STR_MESEGEN                            #language en-US "MeSeg Mode"
+#string STR_MESEGEN_HELP                       #language en-US "MeSeg: Disable,Enable"
+#string STR_NUMAEN                             #language en-US "Numa"
+#string STR_NUMAEN_HELP                        #language en-US "Enable or Disable Non uniform Memory Access (NUMA)."
+
+#string STR_UMABASEDCLUSTERING_PROMPT          #language en-US "UMA-Based Clustering"
+#string STR_UMABASEDCLUSTERING_HELP            #language en-US "UMA Based Clustering options include Disable (ALL2ALL), Hemisphere (2 cluster), and Quadrant (4 cluster, not supported on ICX). These option are only valid when SNC is disabled. If SNC is enabled, UMA-Based Clustering is automatically disabled by BIOS."
+#string STR_UMABASEDCLUSTERING_DISABLE         #language en-US "Disable   (All2All)"
+#string STR_UMABASEDCLUSTERING_HEMISPHERE      #language en-US "Hemisphere (2-clusters)"
+#string STR_UMABASEDCLUSTERING_QUADRANT        #language en-US "Quadrant   (4-clusters)"
+
+#string STR_SRAT_PROMPT                        #language en-US "Publish SRAT"
+#string STR_SRAT_HELP                          #language en-US "Publish the SRAT ACPI table to the OS."
+
+#string STR_SRAT_MEM_HOT_PLUG_PROMPT           #language en-US "SRAT Memory Hot Plug"
+#string STR_SRAT_MEM_HOT_PLUG_HELP             #language en-US "Fix for OS that does not support memory hot plug.\nEx: SuSE SLES10 SP2. \n \nEnable by default. \nDisable will clear all hot plug bits and remove the hot plug entries in SRAT table."
+
+#string STR_SRAT_CPU_HOT_PLUG_PROMPT           #language en-US "SRAT CPU Hot Plug"
+#string STR_SRAT_CPU_HOT_PLUG_HELP             #language en-US "Set Processor Flag to Enabled for all processor entries in SRAT."

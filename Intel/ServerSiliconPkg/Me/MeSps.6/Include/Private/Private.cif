@@ -1,0 +1,8 @@
+<component>
+    name = "Private"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\Include\Private\"
+    RefName = "ServerSiliconPkg.Me.MeSps6.Include.Private"
+[files]
+"MeStorageLibInternal.h"	
+<endComponent>

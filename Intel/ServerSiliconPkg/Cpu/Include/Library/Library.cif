@@ -1,0 +1,18 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Cpu\Include\Library\"
+    RefName = "ServerSiliconPkg.Cpu.Include.Library"
+[files]
+"CpuInitLib.h"	
+"CpuEarlyDataLib.h"	
+"CpuIpLib.h"		
+"CpuPpmLib.h"	
+"CpuS3MsrLib.h"	
+"CpuConfigLib.h"	
+"CpuSmbiosLib.h"
+"CpuPreMemPolicyLib.h"
+"PeiCpuLatePolicyLib.h"
+"PeiPpmPolicyLib.h"	
+"SmmCpuPlatformHookLib.h"	
+<endComponent>

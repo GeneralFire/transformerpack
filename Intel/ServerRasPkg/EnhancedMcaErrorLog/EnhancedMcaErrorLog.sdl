@@ -1,0 +1,23 @@
+TOKEN
+	Name  = "EnhancedMcaErrorLog_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling EnhancedMcaErrorLog support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EnhancedMcaErrorLog_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EnhancedMcaErrorLog support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "EnhancedMcaErrorLog"
+	File  = "EnhancedMcaErrorLog.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+	Token = "EnhancedMcaErrorLog_INF_SUPPORT" "=" "1"
+End
+

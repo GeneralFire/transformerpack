@@ -1,0 +1,13 @@
+<component>
+    name = "Ami Rsd IScsi Support"
+    category = ModulePart
+    LocalRoot = "AmiNetworkPkg\IScsiDxe\AmiIScsi\"
+    RefName = "AmiNetworkPkg.AmiRsdIScsi"
+[files]
+"RsdIScsiSupport.c"	
+"RsdIScsiSupport.h"	
+"RsdIScsiBmcParser.c"	
+"RsdIScsiConfig.c"	
+"RsdIScsiConfig.h"	
+"RsdIScsiConfig.uni"	
+<endComponent>

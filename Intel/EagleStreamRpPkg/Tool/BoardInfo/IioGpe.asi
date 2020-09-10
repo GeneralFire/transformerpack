@@ -1,0 +1,91 @@
+/** @file
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+
+  Module Name:
+
+    IioGpe.asi
+
+**/
+
+#define  IIO_IOU_GPE(socket, stack)                                         \
+    Notify (\_SB.PC##socket##stack.BRPA, 0x02)                              \
+    Notify (\_SB.PC##socket##stack.BRPB, 0x02)                              \
+    Notify (\_SB.PC##socket##stack.BRPC, 0x02)                              \
+    Notify (\_SB.PC##socket##stack.BRPD, 0x02)                              \
+    Notify (\_SB.PC##socket##stack.BRPE, 0x02)                              \
+    Notify (\_SB.PC##socket##stack.BRPF, 0x02)                              \
+    Notify (\_SB.PC##socket##stack.BRPG, 0x02)                              \
+    Notify (\_SB.PC##socket##stack.BRPH, 0x02)
+
+#define  IIO_GPE(socket)                                                    \
+    IIO_IOU_GPE(socket, 1)                                                  \
+    IIO_IOU_GPE(socket, 2)                                                  \
+    IIO_IOU_GPE(socket, 3)                                                  \
+    IIO_IOU_GPE(socket, 4)                                                  \
+    IIO_IOU_GPE(socket, 5)
+
+
+Scope (\_GPE) {
+    // [BRPA]: PCI Express Port A on PC##socket##stack
+    // [BRPB]: PCI Express Port B on PC##socket##stack
+    // [BRPC]: PCI Express Port C on PC##socket##stack
+    // [BRPE]: PCI Express Port E on PC##socket##stack
+    // [BRPE]: PCI Express Port E on PC##socket##stack
+    // [BRPF]: PCI Express Port F on PC##socket##stack
+    // [BRPG]: PCI Express Port G on PC##socket##stack
+    // [BRPH]: PCI Express Port H on PC##socket##stack
+    Method (_L09, 0x0, NotSerialized) {
+        #include "Gpe.asi"
+        IIO_GPE(0)
+
+#if MAX_SOCKET > 1
+        IIO_GPE(1)
+#endif
+
+#if MAX_SOCKET > 2
+        IIO_GPE(2)
+#endif
+
+#if MAX_SOCKET > 3
+        IIO_GPE(3)
+#endif
+
+#if MAX_SOCKET > 4
+        IIO_GPE(4)
+#endif
+
+#if MAX_SOCKET > 5
+        IIO_GPE(5)
+#endif
+
+#if MAX_SOCKET > 6
+        IIO_GPE(6)
+#endif
+
+#if MAX_SOCKET > 7
+        IIO_GPE(7)
+#endif
+    }
+}

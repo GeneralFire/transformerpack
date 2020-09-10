@@ -1,0 +1,197 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include "MaxSocket.h"
+External(\_SB.WERR, DeviceObj)
+
+//  General Purpose Event
+
+Scope (\_GPE) {
+/* This below is required by WHQL but somehow SVOS breaks when we add this
+  Method (_L21, 0x0, NotSerialized) {
+    Store (0x21, IO80)
+  }
+  Method (_L22, 0x0, NotSerialized) {
+    Store (0x22, IO80)
+  }
+  Method (_L23, 0x0, NotSerialized) {
+    Store (0x23, IO80)
+  }
+  Method (_L24, 0x0, NotSerialized) {
+    Store (0x24, IO80)
+  }
+  Method (_L26, 0x0, NotSerialized) {
+    Store (0x26, IO80)
+  }
+  Method (_L27, 0x0, NotSerialized) {
+    Store (0x27, IO80)
+  }
+  Method (_L28, 0x0, NotSerialized) {
+    Store (0x28, IO80)
+  }
+  Method (_L29, 0x0, NotSerialized) {
+    Store (0x29, IO80)
+  }
+  Method (_L2A, 0x0, NotSerialized) {
+    Store (0x2A, IO80)
+  }
+  Method (_L2B, 0x0, NotSerialized) {
+    Store (0x2B, IO80)
+  }
+  Method (_L2C, 0x0, NotSerialized) {
+    Store (0x2C, IO80)
+  }
+  Method (_L2D, 0x0, NotSerialized) {
+    Store (0x2D, IO80)
+  }
+  Method (_L2E, 0x0, NotSerialized) {
+    Store (0x2E, IO80)
+  }
+  Method (_L2F, 0x0, NotSerialized) {
+    Store (0x2F, IO80)
+  }
+  Method (_L30, 0x0, NotSerialized) {
+    Store (0x30, IO80)
+  }
+  Method (_L31, 0x0, NotSerialized) {
+    Store (0x31, IO80)
+  }
+  Method (_L32, 0x0, NotSerialized) {
+    Store (0x32, IO80)
+  }
+  Method (_L33, 0x0, NotSerialized) {
+    Store (0x33, IO80)
+  }
+  Method (_L34, 0x0, NotSerialized) {
+    Store (0x34, IO80)
+  }
+  Method (_L35, 0x0, NotSerialized) {
+    Store (0x35, IO80)
+  }
+  Method (_L36, 0x0, NotSerialized) {
+    Store (0x36, IO80)
+  }
+  Method (_L37, 0x0, NotSerialized) {
+    Store (0x37, IO80)
+  }
+  Method (_L38, 0x0, NotSerialized) {
+    Store (0x38, IO80)
+  }
+  Method (_L39, 0x0, NotSerialized) {
+    Store (0x39, IO80)
+  }
+  Method (_L3A, 0x0, NotSerialized) {
+    Store (0x3A, IO80)
+  }
+  Method (_L3B, 0x0, NotSerialized) {
+    Store (0x3B, IO80)
+  }
+  Method (_L3C, 0x0, NotSerialized) {
+    Store (0x3C, IO80)
+  }
+  Method (_L3D, 0x0, NotSerialized) {
+    Store (0x3D, IO80)
+  }
+  Method (_L3E, 0x0, NotSerialized) {
+    Store (0x3E, IO80)
+  }
+  Method (_L3F, 0x0, NotSerialized) {
+    Store (0x3F, IO80)
+  }
+*/
+
+  // Based on Socket ID to be notified, evaluate appropriate devices.
+  Method(NTFC, 2){
+    If(And(Arg0, 0x01)){
+      Notify(\_SB.SCK0, Arg1)
+    }
+
+  } //End Method NTFC
+#if 0
+  Method(NTFM, 2){
+
+    // Based on Memory Board ID to be notified, evaluate appropriate devices.
+    If(And(Arg0, 0x01)){
+      Notify(\_SB.SCK0.M000, Arg1)
+    }
+    If(And(Arg0, 0x02)){
+      Notify(\_SB.SCK0.M001, Arg1)
+    }
+  } // End Method NTFM
+#endif
+
+  Method(NTFI, 2){
+  } //End Method NTFI
+
+  // Tell OS to run thru the new status of this device (Software SCI generated from SMM for all Hot plug events)
+  Method (_L62, 0x0, NotSerialized) {
+    if(LEqual(SCI0, 3)) { // Device ejection (Invoked with _EJ0 method called)
+      //NTFM  (SCI1, 3)
+      NTFC  (SCI2, 3)
+      Store (0, SCI0)
+    } else {              // Device check (OS can still reject online request based on resources and capability)
+      NTFC (CPHP, 0)
+      NTFI (IIOP, 0)
+      Store (0, CPHP)
+      Store (0, IIOP)
+    }
+    Store (0, SGPC)
+    Store (1, SGPS)
+
+    Store (0, GPEC)
+
+    if(LEqual(WSCI, 0x1)) {
+      Store(0, WSCI)
+      if(LEqual(DBGM, 0x01)){
+        Store (0x4A, IO80)
+      }
+      If (CondRefOf (\_SB.WERR)) {
+        Notify (\_SB.WERR, 0x80)
+      }
+    }
+
+    ///
+    /// Handle HWP SCI event
+    ///
+    #include "HwpLvt.asi"
+    //
+    //  Handle eDPC SWGPE event
+    //
+    #include "IioPcieEdpcGpe.asi"
+  }
+
+  // PME supported for Slots, use GPE 9 for PME
+  // Hot plug on all slots for now, change later.
+  // Slot numbers on silk screen might be different than the port number, currently use port numbers.
+  //
+  // IIO PCI_E Slot Hotplug GPE Event
+  //
+  Method (_L61, 0, NotSerialized) {
+    #include "IioPcieHotPlugGpeHandler10nmSpr.asl"
+  }// end of _L61 GPE Method
+
+}// end of _GPE scope.

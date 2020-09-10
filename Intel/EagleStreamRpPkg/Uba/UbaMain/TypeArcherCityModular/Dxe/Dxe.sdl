@@ -1,0 +1,58 @@
+TOKEN
+    Name  = "Dxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Dxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+
+INFComponent
+    Name  = "IioCfgUpdateDxeArcherCityModular"
+    File  = "IioCfgUpdateDxe/IioCfgUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "OpromUpdateDxeArcherCityModular"
+    File  = "OpromUpdateDxe/OpromUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "SetupConfigUpdateDxeArcherCityModular"
+    File  = "SetupCfgUpdateDxe/SetupCfgUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "SlotDataUpdateDxeArcherCityModular"
+    File  = "SlotDataUpdateDxe/SlotDataUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "SmbiosDataUpdateDxeArcherCityModular"
+    File  = "SmbiosDataUpdateDxe/SmbiosDataUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "StaticSkuDataDxeArcherCityModular"
+    File  = "StaticSkuDataDxe/StaticSkuDataDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "UsbOcUpdateDxeArcherCityModular"
+    File  = "UsbOcUpdateDxe/UsbOcUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+

@@ -1,0 +1,8 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\SprCpu\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.Fru.SprCpu.IncludePrivate"
+[parts]
+"ClientOneSiliconPkg.Fru.SprCpu.IncludePrivate.Register"
+<endComponent>

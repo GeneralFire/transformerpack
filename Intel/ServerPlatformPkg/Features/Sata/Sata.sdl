@@ -1,0 +1,28 @@
+TOKEN
+	Name  = "Sata_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Sata support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SataController_INF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SataController support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "SataController"
+	File  = "SataController/SataController.inf"
+	Package  = "ServerPlatformPkg"
+	ModuleTypes  = "UEFI_DRIVER"
+	Token = "SataController_INF_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PcdLib"
+    Instance  = "MdePkg.DxePcdLib"
+    Override  = "ServerPlatformPkg.SataController"
+End

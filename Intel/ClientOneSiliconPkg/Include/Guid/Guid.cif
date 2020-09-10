@@ -1,0 +1,12 @@
+<component>
+    name = "Guid"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\Guid\"
+    RefName = "ClientOneSiliconPkg.Include.Guid"
+[files]
+"FspErrorInfo.h"
+"AcpiS3Context.h"	
+"ConsoleOutDevice.h"	
+"MemoryTypeInformation.h"
+"MeFirmwareVersionInfoHobGuid.h"	
+<endComponent>

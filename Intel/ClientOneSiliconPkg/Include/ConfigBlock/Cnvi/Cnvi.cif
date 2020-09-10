@@ -1,0 +1,8 @@
+<component>
+    name = "Cnvi"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Cnvi\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Cnvi"
+[files]
+"CnviConfig.h"	
+<endComponent>

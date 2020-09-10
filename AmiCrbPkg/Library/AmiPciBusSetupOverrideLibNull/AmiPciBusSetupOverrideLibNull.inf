@@ -1,0 +1,28 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#
+# @file AmiPciBusSetupOverrideLibNull.inf
+#
+# INF description file for AmiPciBusSetupOverrideLib Null Library driver.
+#
+
+[Defines]
+  INF_VERSION             = 0x00010015
+  VERSION_STRING          = 1.0
+  BASE_NAME               = AmiPciBusSetupOverrideLibNull 
+  MODULE_TYPE             = BASE
+  LIBRARY_CLASS           = AmiPciBusSetupOverrideLib
+  FILE_GUID               = D4A8CBBA-8AC6-40EB-9E72-2BB003CD2050
+
+[Sources]
+  AmiPciBusSetupOverrideLibNull.c
+
+[Packages]
+MdePkg/MdePkg.dec
+AmiCrbPkg/AmiCrbPkg.dec
+AmiModulePkg/AmiModulePkg.dec

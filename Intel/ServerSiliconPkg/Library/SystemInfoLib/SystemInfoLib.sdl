@@ -1,0 +1,77 @@
+TOKEN
+    Name  = "SystemInfoLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling SystemInfoLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "Build_SystemInfoLib"
+    Value  = "1"
+    Help  = "Switch for building SystemInfoLib Package"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "SystemInfoLib"
+    TokenType = Expression
+    TargetDSC = Yes
+    Token = "Build_SystemInfoLib" "=" "1"
+End
+
+INFComponent
+    Name  = "SystemInfoLibDxe"
+    File  = "SystemInfoLibDxe.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "DXE_DRIVER"    
+End
+
+INFComponent
+    Name  = "SystemInfoLibDxeRuntime"
+    File  = "SystemInfoLibDxeRuntime.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "DXE_RUNTIME_DRIVER"     
+End
+
+INFComponent
+    Name  = "SystemInfoLibPei"
+    File  = "SystemInfoLibPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "PEIM"     
+End
+
+INFComponent
+    Name  = "SystemInfoLibSmm"
+    File  = "SystemInfoLibSmm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes = "DXE_SMM_DRIVER"     
+End
+
+LibraryMapping
+    Class  = "SystemInfoLib"
+    Instance  = "ServerSiliconPkg.SystemInfoLibDxe"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "SystemInfoLib"
+    Instance  = "ServerSiliconPkg.SystemInfoLibDxeRuntime"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "SystemInfoLib"
+    Instance  = "ServerSiliconPkg.SystemInfoLibPei"
+    Arch = "IA32"
+End
+
+LibraryMapping
+    Class  = "SystemInfoLib"
+    Instance  = "ServerSiliconPkg.SystemInfoLibSmm"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch = "X64"
+End
+

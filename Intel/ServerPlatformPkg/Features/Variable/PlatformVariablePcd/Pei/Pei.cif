@@ -1,0 +1,11 @@
+<component>
+	name = "Pei"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Variable\PlatformVariablePcd\Pei\"
+	RefName = "ServerPlatformPkg.Features.Variable.PlatformVariablePcd.Pei
+[INF]
+"PlatformVariableInitPei.inf"
+[files]
+"PlatformVariableInitPei.h"	
+"Pei.sdl"	
+<endComponent>

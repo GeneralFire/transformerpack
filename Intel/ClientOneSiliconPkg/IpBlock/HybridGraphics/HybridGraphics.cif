@@ -1,0 +1,9 @@
+<component>
+    name = "HybridGraphics"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\HybridGraphics\"
+    RefName = "ClientOneSiliconPkg.IpBlock.HybridGraphics"
+[parts]
+"ClientOneSiliconPkg.IpBlock.HybridGraphics.Include"
+"ClientOneSiliconPkg.IpBlock.HybridGraphics.IncludePrivate"
+<endComponent>

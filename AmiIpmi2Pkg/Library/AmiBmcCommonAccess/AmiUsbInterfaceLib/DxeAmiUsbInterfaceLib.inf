@@ -1,0 +1,67 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2019, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file DxeAmiUsbInterfaceLib.inf
+#
+#  INF description file for AmiUsbInterfaceLib Library for DXE and SMM drivers.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = DxeAmiUsbInterfaceLib
+  FILE_GUID         = B73FFFA6-B027-40E0-B2A6-1CEC5DEEA633
+  MODULE_TYPE       = DXE_DRIVER
+  VERSION_STRING    = 1.1
+  LIBRARY_CLASS     = AmiUsbInterfaceLib | DXE_DRIVER DXE_RUNTIME_DRIVER UEFI_DRIVER UEFI_APPLICATION
+
+[Sources]
+  DxeAmiUsbInterfaceLib.c
+  AmiUsbInterfaceLibCommon.c
+  AmiBmcVirtualUsb.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+
+[LibraryClasses]
+  PcdLib
+  UefiLib
+  TimerLib
+  DebugLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+
+[Pcd]
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBulkDataTransferTimeout
+
+[Protocols]
+  gEfiDxeIpmiTransportProtocolGuid    #CONSUMES
+  gEfiUsbIoProtocolGuid               #CONSUMES
+  gAmiIpmiUsbExitBootNotifyProtocolGuid
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2019, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

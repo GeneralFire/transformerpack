@@ -1,0 +1,13 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Tcss\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Tcss.IncludePrivate.Library"
+[files]
+"PeiDpInPolicyLib.h"
+"PeiDpInInitLib.h"
+"DxeTcssInit.h"	
+"PeiTcssPolicyLib.h"	
+"TcssInitLib.h"	
+"TcssPmcLib.h"	
+<endComponent>

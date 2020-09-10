@@ -1,0 +1,97 @@
+TOKEN
+	Name  = "MeSps6_Library_Support"
+	Value  = "1"
+	Help  = "Main switch to enable MeSps6.Library support in Project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "MeCosignLib"
+	File  = "MeCosignLib\MeCosignLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+	Class  = "MeCosignLib"
+	Instance  = "ServerSiliconPkg.MeCosignLib"
+	Arch = "IA32"
+End
+
+LibraryMapping
+    Class  = "MeCosignLib"
+    Instance  = "ServerSiliconPkg.MeCosignLib"
+    Arch = "X64"
+End
+
+INFComponent
+	Name  = "MeEwlLib"
+	File  = "MeEwlLib/MeEwlLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "MeEwlLib"
+	Instance  = "ServerSiliconPkg.MeEwlLib"
+	Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"  	
+End
+
+LibraryMapping
+    Class  = "MeEwlLib"
+    Instance  = "ServerSiliconPkg.MeEwlLib"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "0"     
+End
+
+LibraryMapping
+    Class  = "MeEwlLib"
+    Instance  = "ServerSiliconPkg.MeEwlLib"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"     
+End
+
+LibraryMapping
+	Class  = "MeEwlLib"
+	Instance  = "ServerSiliconPkg.MeEwlLib"
+	Arch = "X64"
+    Token = "ME_ENABLE" "=" "0"    	
+End
+
+INFComponent
+	Name  = "DxePttHeciLib"
+	File  = "DxePttHeciLib\DxePttHeciLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "PttHeciLib"
+	Instance  = "ServerSiliconPkg.DxePttHeciLib"
+    Arch = "X64"
+End
+
+
+INFComponent
+	Name  = "MeWatchdogControlLib"
+	File  = "MeWatchdogControlLib\MeWatchdogControlLib.inf"
+	Package  = "ServerSiliconPkg"
+	Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+	Class  = "MeWatchdogControlLib"
+	Instance  = "ServerSiliconPkg.MeWatchdogControlLib"
+	Arch = "IA32"
+	Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+	Class  = "MeWatchdogControlLib"
+	Instance  = "ServerSiliconPkg.MeWatchdogControlLib"
+	Arch = "X64"
+	Token = "ME_ENABLE" "=" "1"
+End
+

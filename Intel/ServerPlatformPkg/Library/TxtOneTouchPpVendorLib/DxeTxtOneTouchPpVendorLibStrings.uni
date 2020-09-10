@@ -1,0 +1,67 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2015 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#langdef en-US "English"
+
+#string VENDOR_TPM_PPI_HEAD_STR                                       #language en-US    "A configuration change was requested to allow the Operating System to \n%s.\n\n"
+
+#string VENDOR_TPM_ACCEPT_KEY                                         #language en-US    "Press F10 "
+#string VENDOR_TPM_CAUTION_KEY                                        #language en-US    "Press F12 "
+#string VENDOR_TPM_REJECT_KEY                                         #language en-US    "to accept this change request\nPress ESC to reject this change request and continue\n"
+
+#string VENDOR_SET_NO_TXT_MAINTENANCE_FALSE                           #language en-US    "Set No TXT Maintenance to FALSE"
+#string VENDOR_SET_NO_TXT_MAINTENANCE_TRUE                            #language en-US    "Set No TXT Maintenance to TRUE"
+#string VENDOR_TPM_X__VMXINSMX_1__VMXOUTSMX_1__VTD_X__TXT_X__STM_X    #language en-US    "Enable VT"
+#string VENDOR_TPM_X__VMXINSMX_0__VMXOUTSMX_0__VTD_X__TXT_0__STM_0    #language en-US    "Disable VT, Disable TXT, Disable STM"
+#string VENDOR_TPM_X__VMXINSMX_X__VMXOUTSMX_X__VTD_1__TXT_X__STM_X    #language en-US    "Enable VTD"
+#string VENDOR_TPM_X__VMXINSMX_X__VMXOUTSMX_X__VTD_0__TXT_0__STM_0    #language en-US    "Disable VTD, Disable TXT, Disable STM"
+#string VENDOR_TPM_X__VMXINSMX_1__VMXOUTSMX_1__VTD_1__TXT_X__STM_X    #language en-US    "Enable VT, Enable VTD"
+#string VENDOR_TPM_X__VMXINSMX_0__VMXOUTSMX_0__VTD_0__TXT_0__STM_0    #language en-US    "Disable VT, Disable VTD, Disable TXT, Disable STM"
+#string VENDOR_TPM_1__VMXINSMX_1__VMXOUTSMX_0__VTD_1__TXT_1__STM_0    #language en-US    "Enable TPM, Enable VT in SMX only, Enable VTD, Enable TXT, Disable STM"
+#string VENDOR_TPM_1__VMXINSMX_1__VMXOUTSMX_1__VTD_1__TXT_1__STM_0    #language en-US    "Enable TPM, Enable VT, Enable VTD, Enable TXT, Disable STM"
+#string VENDOR_TPM_1__VMXINSMX_1__VMXOUTSMX_1__VTD_1__TXT_1__STM_1    #language en-US    "Enable TPM, Enable VT, Enable VTD, Enable TXT, Enable STM"
+#string VENDOR_TPM_X__VMXINSMX_X__VMXOUTSMX_X__VTD_X__TXT_X__STM_0    #language en-US    "Disable STM"
+#string VENDOR_TPM_X__VMXINSMX_X__VMXOUTSMX_X__VTD_X__TXT_0__STM_0    #language en-US    "Disable TXT, Disable STM"
+#string VENDOR_SENTER_0__VMXINSMX_0__VMXOUTSMX_0                      #language en-US    "Disable SENTER, Disable VMX"
+#string VENDOR_SENTER_0__VMXINSMX_1__VMXOUTSMX_0                      #language en-US    "Enable VMX in SMX only"
+#string VENDOR_SENTER_0__VMXINSMX_0__VMXOUTSMX_1                      #language en-US    "Enable VMX out SMX only"
+#string VENDOR_SENTER_0__VMXINSMX_1__VMXOUTSMX_1                      #language en-US    "Enable VMX only"
+#string VENDOR_SENTER_1__VMXINSMX_0__VMXOUTSMX_0                      #language en-US    "Enable SENTER only"
+#string VENDOR_SENTER_1__VMXINSMX_1__VMXOUTSMX_0                      #language en-US    "Enable SENTER, Enable VMX in SMX"
+#string VENDOR_SENTER_1__VMXINSMX_0__VMXOUTSMX_1                      #language en-US    "Enable SENTER, Enable VMX out SMX"
+#string VENDOR_SENTER_1__VMXINSMX_1__VMXOUTSMX_1                      #language en-US    "Enable SENTER, Enable VMX"
+#string VENDOR_SET_NO_TXT_REFURBISHING_FALSE                          #language en-US    "Set No TXT Refurbishing to FALSE"
+#string VENDOR_SET_NO_TXT_REFURBISHING_TRUE                           #language en-US    "Set No TXT Refurbishing to TRUE"
+#string VENDOR_EXEC_BIOSAC_RESET_ESTABLISHMENT_BIT                    #language en-US    "Execute BIOSAC Reset Establishment bit"
+#string VENDOR_EXEC_BIOSAC_RESET_AUX_INDEX                            #language en-US    "Execute BIOSAC Reset Aux Index"
+
+#string VENDOR_GET_SYSTEM_FEATURES                                    #language en-US    "Get System Features"
+#string VENDOR_ACTIVATE_SYSTEM_FEATURES                               #language en-US    "Activate System Features: TXT and/or TPM"
+#string VENDOR_DEACTIVATE_SYSTEM_FEATURES                             #language en-US    "Deactivate System Features: TXT and/or TPM"
+
+
+

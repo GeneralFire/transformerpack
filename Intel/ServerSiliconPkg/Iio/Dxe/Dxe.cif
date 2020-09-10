@@ -1,0 +1,10 @@
+<component>
+	name = "Dxe"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Iio\Dxe\"
+	RefName = "ServerSiliconPkg.Iio.Dxe"
+[INF]
+"IioInit\IioInit.inf"
+[files]
+"Dxe.sdl"	
+<endComponent>

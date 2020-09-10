@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\TraceHub\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.TraceHub.Library"
+[INF]
+"PeiDxeSmmPchTraceHubInfoLib\PeiDxeSmmPchTraceHubInfoLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

@@ -1,0 +1,10 @@
+<component>
+	name = "Protocol"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\Include\Protocol\"
+	RefName = "ServerSiliconPkg.Cpu.Include.Protocol"
+[files]
+"CpuPpmProtocol.h"
+"CpuPolicyProtocol.h"	
+"PpmPolicyProtocol.h"	
+<endComponent>

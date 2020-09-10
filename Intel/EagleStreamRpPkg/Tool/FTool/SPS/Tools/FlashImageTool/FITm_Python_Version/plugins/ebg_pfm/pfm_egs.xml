@@ -1,0 +1,301 @@
+<!--
+INTEL CONFIDENTIAL
+Copyright 2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+
+<container>
+  <configuration version="0.5">
+    <!-- dependent containers list -->
+    <file name="DescriptorBinary" calculate="/required_containers/descriptor.value" ui_params="{'visible':'false'}"/>
+    <file name="MeBinary" calculate="/required_containers/me.value" ui_params="{'visible':'false'}"/>
+    <file name="GbeBinary" calculate="/required_containers/gbe.value" ui_params="{'visible':'false'}"/>
+    <file name="BiosBinary" calculate="/required_containers/bios.value" ui_params="{'visible':'false'}"/>
+    <file name="PdrBinary" calculate="/required_containers/pdr.value" ui_params="{'visible':'false'}"/>     
+    <file name="Der1Binary" calculate="/required_containers/der1.value" ui_params="{'visible':'false'}"/>       
+    <file name="Sec_biosBinary" calculate="/required_containers/sec_bios.value" ui_params="{'visible':'false'}"/>       
+    <file name="BmcBinary" calculate="/required_containers/bmc.value" ui_params="{'visible':'false'}"/>
+    <file name="Der2Binary" calculate="/required_containers/der2.value" ui_params="{'visible':'false'}"/>       
+    <file name="Spare1Binary" calculate="/required_containers/spare1.value" ui_params="{'visible':'false'}"/>
+    <file name="PttBinary" calculate="/required_containers/ptt.value" ui_params="{'visible':'false'}"/>
+    
+    <number name="image_size" dependency='[{"get": "descriptor/FlashComponent1Size" }]' ui_params="{'visible': 'false', 'read_only': 'true'}"/>
+    
+    <group name="PFR" ui_params="{'gui_tab': 'PFR', 'tree_view': 'true'}">
+        <group name="pfm_configuration" label="PFM configuration">
+            <number name="svn" label="SVN" value="1" size="1" />
+            <number name="bkc_version" label="BKC version" value="1" size="1" />
+            <number name="major_pfm_revision" label="Major PFM revision" value="1" size="1" />
+            <number name="minor_pfm_revision" label="Minor PFM revision" value="1" size="1" />
+            <file name="OEM_specific_data" label="OEM Specific data" size="16" value="" />
+        </group>
+        <group name="pfm_entries_list" label="PFM Entries">
+            <iterable name="pfm_entries" max_entry_count="20">
+              <entry index="0">
+                  <string name="name" label="Region" value="Descriptor" params="{'value_list': {'0':'Descriptor', '1': 'Bios', '2': 'Me', '3': 'Gbe', '4': 'Pdr', '5': 'Der1', '6': 'Sec_bios', '7': 'Ucode', '8': 'Embed_ctrl', '9': 'Der2', 'A': 'Ie', 'B': 'GbeA', 'C': 'GbeB', 'D':'Spare1','E':'Pfr','F':'Ptt'}}"/>
+                  <number name="start_offset" label="Start offset" value="0" />
+                  <number name="end_offset" label="End offset" value="0" />
+                  <number name="read" label="Read allowed" value="1" />
+                  <number name="write" label="Write allowed" value="0" />
+                  <number name="during_1" label="Erase on 1st recovery" value="1" />
+                  <number name="during_2" label="Erase on 2nd recovery" value="1" />
+                  <number name="during_3" label="Erase on 3rd recovery" value="1" />
+                  <number name="hash_info_256" value="0x1" />
+                  <number name="include" label="Include to Update Caspule" value="1" params="{ 'value_list': {'true': '1', 'false': '0'}}"/>
+              </entry>
+              <entry index="1">
+                  <string name="name" label="Region" value="Me" params="{'value_list': {'0':'Descriptor', '1': 'Bios', '2': 'Me', '3': 'Gbe', '4': 'Pdr', '5': 'Der1', '6': 'Sec_bios', '7': 'Ucode', '8': 'Embed_ctrl', '9': 'Der2', 'A': 'Ie', 'B': 'GbeA', 'C': 'GbeB', 'D':'Spare1','E':'Pfr','F':'Ptt'}}"/>
+                  <number name="start_offset" label="Start offset" value="0" />
+                  <number name="end_offset" label="End offset" value="0x25000" />
+                  <number name="read" label="Read allowed" value="1" />
+                  <number name="write" label="Write allowed" value="0" />
+                  <number name="during_1" label="Erase on 1st recovery" value="1" />
+                  <number name="during_2" label="Erase on 2nd recovery" value="1" />
+                  <number name="during_3" label="Erase on 3rd recovery" value="1" />
+                  <number name="hash_info_256" value="0x1" />
+                  <number name="include" label="Include to Update Caspule" value="1" params="{ 'value_list': {'true': '1', 'false': '0'}}"/>
+              </entry>
+              <entry index="2">
+                  <string name="name" label="Region" value="Me" params="{'value_list': {'0':'Descriptor', '1': 'Bios', '2': 'Me', '3': 'Gbe', '4': 'Pdr', '5': 'Der1', '6': 'Sec_bios', '7': 'Ucode', '8': 'Embed_ctrl', '9': 'Der2', 'A': 'Ie', 'B': 'GbeA', 'C': 'GbeB', 'D':'Spare1','E':'Pfr','F':'Ptt'}}"/>
+                  <number name="start_offset" label="Start offset" value="0x25000" />
+                  <number name="end_offset" label="End offset" value="0xA6000" />
+                  <number name="read" label="Read allowed" value="1" />
+                  <number name="write" label="Write allowed" value="1" />
+                  <number name="during_1" label="Erase on 1st recovery" value="1" />
+                  <number name="during_2" label="Erase on 2nd recovery" value="1" />
+                  <number name="during_3" label="Erase on 3rd recovery" value="1" />
+                  <number name="hash_info_256" value="0x0" />
+                  <number name="include" label="Include to Update Caspule" value="1" params="{ 'value_list': {'true': '1', 'false': '0'}}"/>
+              </entry>
+              <entry index="3">
+                  <string name="name" label="Region" value="Me" params="{'value_list': {'0':'Descriptor', '1': 'Bios', '2': 'Me', '3': 'Gbe', '4': 'Pdr', '5': 'Der1', '6': 'Sec_bios', '7': 'Ucode', '8': 'Embed_ctrl', '9': 'Der2', 'A': 'Ie', 'B': 'GbeA', 'C': 'GbeB', 'D':'Spare1','E':'Pfr','F':'Ptt'}}"/>
+                  <number name="start_offset" label="Start offset" value="0xA6000" />
+                  <number name="end_offset" label="End offset" value="0x0" />
+                  <number name="read" label="Read allowed" value="1" />
+                  <number name="write" label="Write allowed" value="0" />
+                  <number name="during_1" label="Erase on 1st recovery" value="1" />
+                  <number name="during_2" label="Erase on 2nd recovery" value="1" />
+                  <number name="during_3" label="Erase on 3rd recovery" value="1" />
+                  <number name="hash_info_256" value="0x1" />
+                  <number name="include" label="Include to Update Caspule" value="1" params="{ 'value_list': {'true': '1', 'false': '0'}}"/>
+              </entry>
+              <entry index="4">
+                  <string name="name" label="Region" value="Pfr" params="{'value_list': {'0':'Descriptor', '1': 'Bios', '2': 'Me', '3': 'Gbe', '4': 'Pdr', '5': 'Der1', '6': 'Sec_bios', '7': 'Ucode', '8': 'Embed_ctrl', '9': 'Der2', 'A': 'Ie', 'B': 'GbeA', 'C': 'GbeB', 'D':'Spare1','E':'Pfr','F':'Ptt'}}"/>
+                  <number name="start_offset" label="Start offset" value="0x0" />
+                  <number name="end_offset" label="End offset" value="0x0" />
+                  <number name="read" label="Read allowed" value="0" />
+                  <number name="write" label="Write allowed" value="0" />
+                  <number name="during_1" label="Erase on 1st recovery" value="0" />
+                  <number name="during_2" label="Erase on 2nd recovery" value="0" />
+                  <number name="during_3" label="Erase on 3rd recovery" value="0" />
+                  <number name="hash_info_256" value="0" />
+                  <number name="include" label="Include to Update Caspule" value="0" params="{ 'value_list': {'true': '1', 'false': '0'}}"/>
+              </entry>
+              <entry index="5">
+                  <string name="name" label="Region" value="Ptt" params="{'value_list': {'0':'Descriptor', '1': 'Bios', '2': 'Me', '3': 'Gbe', '4': 'Pdr', '5': 'Der1', '6': 'Sec_bios', '7': 'Ucode', '8': 'Embed_ctrl', '9': 'Der2', 'A': 'Ie', 'B': 'GbeA', 'C': 'GbeB', 'D':'Spare1','E':'Pfr','F':'Ptt'}}"/>
+                  <number name="start_offset" label="Start offset" value="0x0" />
+                  <number name="end_offset" label="End offset" value="0x0" />
+                  <number name="read" label="Read allowed" value="1" />
+                  <number name="write" label="Write allowed" value="0" />
+                  <number name="during_1" label="Erase on 1st recovery" value="1" />
+                  <number name="during_2" label="Erase on 2nd recovery" value="1" />
+                  <number name="during_3" label="Erase on 3rd recovery" value="1" />
+                  <number name="hash_info_256" value="1" />
+                  <number name="include" label="Include to Update Caspule" value="1" params="{ 'value_list': {'true': '1', 'false': '0'}}"/>
+              </entry>
+              <default>
+                  <string name="name" label="Region" value="Me" params="{'value_list': {'0':'Descriptor', '1': 'Bios', '2': 'Me', '3': 'Gbe', '4': 'Pdr', '5': 'Der1', '6': 'Sec_bios', '7': 'Ucode', '8': 'Embed_ctrl', '9': 'Der2', 'A': 'Ie', 'B': 'GbeA', 'C': 'GbeB', 'D':'Spare1','E':'Pfr','F':'Ptt'}}"/>
+                  <number name="start_offset" label="Start offset" value="0" />
+                  <number name="end_offset" label="End offset" value="0" />
+                  <number name="read" label="Read allowed" value="0" />
+                  <number name="write" label="Write allowed" value="0" />
+                  <number name="during_1" label="Erase on 1st recovery" value="0" />
+                  <number name="during_2" label="Erase on 2nd recovery" value="0" />
+                  <number name="during_3" label="Erase on 3rd recovery" value="0" />
+                  <number name="hash_info_256" value="0x0" />
+                  <number name="include" label="Include to Update Caspule" value="1" params="{ 'value_list': {'true': '1', 'false': '0'}}"/>
+              </default>
+          </iterable>
+      </group>
+        <group name="smbus_entries" label="SMBus rules entries">
+            <iterable name="pfm_smbus" max_entry_count="20">
+                <default>
+                    <number name="definition_type" label="PFM definition type" value="0x2" />
+                    <number name="bus_id" label="Bus ID" value="0x1" />
+                    <number name="rule_id" label="Rule ID" value="0x1" />
+                    <number name="device_address" label="SMBus Device Address" value="0x0" />
+                    <number name="command_whitelist" label="SMBus Command Whitelist" value="0x0" />
+                </default>
+            </iterable>
+        </group>
+    </group>
+  </configuration>
+  <layout>
+    <pfm>
+        <number name="tag" size="4" value="0x02b3ce1d"/>
+        <number name="svn" size="1" calculate="/configuration/svn.value"/>
+        <number name="version" size="1" calculate="/configuration/bkc_version.value" />
+        <number name="major_revision" size="1" calculate="/configuration/major_pfm_revision.value" />
+        <number name="minor_revision" size="1" calculate="/configuration/minor_pfm_revision.value" />
+        <byte_array name="reserved" size="4" />
+        <byte_array name="OEM_specific_data" size="16" calculate="/configuration/OEM_specific_data.data" />
+        <number name="length" size="4" calculate="parent.size" />
+        <table name="pfm_spi_body" count="/configuration/pfm_entries.size" indices="/configuration/pfm_entries.indices">
+            <pfm_entry>
+                <number name="definition_type" size="1" value="1" />
+                <bit_field name="region_protection_level" size="1">
+                    <bit name="read_allowed" bit_low="0" bit_high="0" calculate="/configuration/pfm_entries/entry{index}/read.value" />
+                    <bit name="write_allowed" bit_low="1" bit_high="1" calculate="/configuration/pfm_entries/entry{index}/write.value" />
+                    <bit name="erase_on_first_recovery" bit_low="2" bit_high="2" calculate="/configuration/pfm_entries/entry{index}/during_1.value" />
+                    <bit name="erase_on_second_recovery" bit_low="3" bit_high="3" calculate="/configuration/pfm_entries/entry{index}/during_2.value" />
+                    <bit name="erase_on_third_recovery" bit_low="4" bit_high="4" calculate="/configuration/pfm_entries/entry{index}/during_3.value" />
+                    <bit name="reserved" bit_low="5" bit_high="7" value="0" />
+                </bit_field>
+                <number name="hash_algorithm_info" size="2" calculate="/configuration/pfm_entries/entry{index}/hash_info_256.value"/>
+                <byte_array name="reserved" size="4"/>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Me'">
+                    <number name="region_start_address" size="4" calculate="/image_data/me/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/me/offset.value + /image_data/me/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/me/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/MeBinary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/me/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Descriptor'">
+                    <number name="region_start_address" size="4" calculate="/image_data/descriptor/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/descriptor/offset.value + /image_data/descriptor/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/descriptor/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/DescriptorBinary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/descriptor/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Bios'">
+                    <number name="region_start_address" size="4" calculate="/image_data/bios/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/bios/offset.value + /image_data/bios/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/bios/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/BiosBinary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/bios/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Gbe'">
+                    <number name="region_start_address" size="4" calculate="/image_data/gbe/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/gbe/offset.value + /image_data/gbe/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/gbe/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/GbeBinary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/gbe/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Pdr'">
+                    <number name="region_start_address" size="4" calculate="/image_data/pdr/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+					<number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/pdr/offset.value + /image_data/pdr/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/pdr/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/PdrBinary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/pdr/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Der1'">
+                    <number name="region_start_address" size="4" calculate="/image_data/der1/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/der1/offset.value + /image_data/der1/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/der1/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/Der1Binary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/der1/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Sec_bios'">
+                    <number name="region_start_address" size="4" calculate="/image_data/sec_bios/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/sec_bios/offset.value + /image_data/sec_bios/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/sec_bios/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/Sec_biosBinary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/sec_bios/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'bmc'">
+                    <number name="region_start_address" size="4" calculate="/image_data/bmc/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/bmc/offset.value + /image_data/bmc/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/bmc/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/BmcBinary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/bmc/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Der2'">
+                    <number name="region_start_address" size="4" calculate="/image_data/der2/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/der2/offset.value + /image_data/der2/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/der2/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/Der2Binary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/der2/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Spare1'">
+                    <number name="region_start_address" size="4" calculate="/image_data/spare1/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/spare1/offset.value + /image_data/spare1/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/spare1/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/Spare1Binary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/spare1/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Ptt'">
+                    <number name="region_start_address" size="4" calculate="/image_data/ptt/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/ptt/offset.value + /image_data/ptt/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/ptt/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                    <function_hash name="region_hash" legacy="true" enabled="/configuration/pfm_entries/entry{index}/hash_info_256.value == 1">
+                        <sha value="256" />
+                        <input>
+                            <data value="/configuration/PttBinary.data" start_index="/configuration/pfm_entries/entry{index}/start_offset.value" end_index="/configuration/pfm_entries/entry{index}/end_offset.value == 0 ? /image_data/ptt/size.value : /configuration/pfm_entries/entry{index}/end_offset.value"/>
+                        </input>
+                    </function_hash>
+                </region_data>
+                <region_data enabled="/configuration/pfm_entries/entry{index}/name.value == 'Pfr'">
+                    <number name="region_start_address" size="4" calculate="/image_data/pfr/offset.value + /configuration/pfm_entries/entry{index}/start_offset.value" />
+                    <number name="region_image_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value == 0"  calculate="/image_data/pfr/offset.value + /image_data/pfr/size.value" />
+                    <number name="region_end_address" size="4" enabled=" /configuration/pfm_entries/entry{index}/end_offset.value != 0" calculate="/image_data/pfr/offset.value + /configuration/pfm_entries/entry{index}/end_offset.value" />
+                </region_data>
+            </pfm_entry>
+        </table>
+        <table name="pfm_smbus_body" count="/configuration/pfm_smbus.size" indices="/configuration/pfm_smbus.indices">
+            <number name="definition_type" size="1" calculate="/configuration/pfm_smbus/entry{index}/definition_type.value" />
+            <number name="reserved" size="4" value="0" />
+            <number name="bus_id" size="1" calculate="/configuration/pfm_smbus/entry{index}/bus_id.value" />
+            <number name="rule_id" size="1" calculate="/configuration/pfm_smbus/entry{index}/rule_id.value" />
+            <number name="device_address" size="1" calculate="/configuration/pfm_smbus/entry{index}/device_address.value" />
+            <number name="command_whitelist" size="32" calculate="/configuration/pfm_smbus/entry{index}/command_whitelist.value" />
+        </table>
+   </pfm>
+  </layout>
+</container>

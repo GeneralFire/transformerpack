@@ -1,0 +1,19 @@
+<component>
+    name = "ProcMemInit"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Library\ProcMemInit\"
+    RefName = "ServerSiliconPkg.Library.ProcMemInit"
+[INF]
+"ProcMemInit10nm.inf"
+"ProcMemInitCommon.inf"
+"ProcMemInitSprDdr4.inf"
+"ProcMemInitSprDdr5.inf"
+"HeadlessProcMemInitTargetLib\HeadlessProcMemInitTargetLib.inf"
+"ProcMemInitTargetLib\ProcMemInitTargetLib.inf"
+[files]	
+"Include\ProcMemInitLibInternal.h"	
+"ProcMemInit.sdl"	
+[parts]
+"ServerSiliconPkg.Library.ProcMemInit.Chip"
+"ServerSiliconPkg.Library.ProcMemInit.Chip10nm"
+<endComponent>

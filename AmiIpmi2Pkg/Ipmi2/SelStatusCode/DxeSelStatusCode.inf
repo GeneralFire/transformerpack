@@ -1,0 +1,71 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file  DxeSelStatusCode.inf
+#
+#  INF description file for DxeSelStatusCode driver.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = DxeSelStatusCode
+  FILE_GUID         = AE587172-CC15-48e1-8BE0-29DDF05C6A1F
+  MODULE_TYPE       = DXE_RUNTIME_DRIVER
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = InitializeDxeSel
+
+[Sources]
+  DxeSelStatusCode.c
+
+[Packages]
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+  UefiLib
+  ReportStatusCodeLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  AmiSelLib
+
+[Protocols]
+  gEfiDxeIpmiTransportProtocolGuid      #CONSUMES
+  gEfiRscHandlerProtocolGuid            #CONSUMES
+  gEfiSelStatusCodeProtocolGuid         #PRODUCES
+
+[Guids]
+  gEfiServerMgmtSetupVariableGuid
+  gEfiEventVirtualAddressChangeGuid
+
+[Depex]
+  gEfiDxeIpmiTransportProtocolGuid AND
+  gEfiRscHandlerProtocolGuid
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

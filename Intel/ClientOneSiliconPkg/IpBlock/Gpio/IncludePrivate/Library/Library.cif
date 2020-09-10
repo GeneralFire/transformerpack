@@ -1,0 +1,13 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Gpio\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Gpio.IncludePrivate.Library"
+[files]
+"DxeGpioPolicyLib.h"	
+"GpioCheckConflictLib.h"	
+"GpioHelpersLib.h"	
+"GpioNameBufferLib.h"	
+"GpioNativePads.h"	
+"GpioPrivateLib.h"	
+<endComponent>

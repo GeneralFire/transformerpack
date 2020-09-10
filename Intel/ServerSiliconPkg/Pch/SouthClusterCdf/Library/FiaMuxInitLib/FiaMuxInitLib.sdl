@@ -1,0 +1,22 @@
+TOKEN
+    Name  = "FiaMuxInitLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling FiaMuxInitLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiFiaMuxConfigInitLib"
+    Instance  = "ServerSiliconPkg.PeiFiaMuxConfigInitLib"
+    Arch = "IA32" 
+End
+
+INFComponent
+    Name  = "PeiFiaMuxConfigInitLib"
+    File  = "PeiFiaMuxConfigInitLib/PeiFiaMuxConfigInitLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+

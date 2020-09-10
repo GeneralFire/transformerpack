@@ -1,0 +1,23 @@
+TOKEN
+    Name  = "SystemConfigUpdateDxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling SystemConfigUpdateDxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SystemConfigUpdate_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SystemConfigUpdate support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "SystemConfigUpdate"
+    File  = "SystemConfigUpdateDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "SystemConfigUpdate_INF_SUPPORT" "=" "1"
+End
+

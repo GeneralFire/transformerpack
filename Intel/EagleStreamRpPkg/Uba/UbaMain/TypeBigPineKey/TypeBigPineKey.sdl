@@ -1,0 +1,35 @@
+TOKEN
+    Name  = "TypeBigPineKey_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling TypeBigPineKey support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "TypeBigPineKey"
+    TokenType = Expression
+    TargetDSC = Yes
+End
+
+#LibraryMapping
+#    Class  = "NULL"
+#    Instance  = "EagleStreamRpPkg.TypeBigPineKeyPeiBoardInitLib"
+#    ModuleTypes  = "PEIM"
+#End
+
+INFComponent
+    Name  = "TypeBigPineKeyPeiBoardInitLib"
+    File  = "Pei/PeiBoardInitLib.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "TypeBigPineKeyPeiBoardInitPostMemLib"
+    File  = "Pei\PeiBoardInitPostMemLib.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM"
+End
+

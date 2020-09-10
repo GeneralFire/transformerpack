@@ -1,0 +1,11 @@
+<component>
+	name = "Include"
+	category = ModulePart
+	LocalRoot = "AmiCrbPkg\Include\"
+	RefName = "Include"
+[files]
+"Guid\AmiBusResourceMap.h"	
+[parts]
+"Library"
+"Protocol"
+<endComponent>

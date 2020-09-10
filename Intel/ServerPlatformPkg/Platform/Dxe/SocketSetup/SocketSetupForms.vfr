@@ -1,0 +1,120 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include "SocketSetupStrDefs.h"
+#include <Guid/SocketVariable.h>
+#include <SocketConfiguration.h>
+#include <Memory/MemDefaults.h>
+#include "VariableCommon.hfr"
+#include <Upi/RasTypes.h>
+#include <CpuAndRevisionDefines.h>
+#include <ProcessorPpmSetup.h>
+
+
+formset
+  guid     = SOCKET_FORMSET_GUID,
+  title    = STRING_TOKEN(STR_SOCKET_FORM),
+  help     = STRING_TOKEN(STR_SOCKET_FORM_HELP),
+  class    = SOCKET_CONFIG_CLASS_ID,
+  subclass = SOCKET_CONFIG_SUBCLASS_ID,
+
+  VFR_VARSTORE_SOCKET
+
+
+      form formid = VFR_FORMID_SOCKET,
+
+        title = STRING_TOKEN(STR_SOCKET_FORM);
+        //
+        // Jump to Processor Configuration Form
+        //
+        goto VFR_FORMID_PROCESSOR,
+            prompt = STRING_TOKEN(STR_PROCESSOR_CONFIG_FORM_TITLE),
+            help   = STRING_TOKEN(STR_PROCESSOR_CONFIG_FORM_HELP);
+
+        //
+        // Jump to CommonRc Configuration Form
+        //
+        goto VFR_FORMID_COMMONRC,
+            prompt = STRING_TOKEN(STR_RC_COMMON_FORM_TITLE),
+            help   = STRING_TOKEN(STR_RC_COMMON_FORM_HELP);
+
+        //
+        // Jump to MpLink Configuration Form
+        //
+        goto VFR_FORMID_KTI,
+            prompt = STRING_TOKEN(STR_KTI_CONFIG_FORM_TITLE),
+            help   = STRING_TOKEN(STR_KTI_CONFIG_FORM_HELP);
+
+        //
+        // Jump to MRC Configuration Form
+        //
+        goto VFR_FORMID_MEMORY,
+            prompt = STRING_TOKEN(STR_MEMORY_CONFIG_FORM_TITLE),
+            help   = STRING_TOKEN(STR_MEMORY_CONFIG_FORM_HELP);
+
+        //
+        // Jump to IIO Configuration Form
+        //
+        goto VFR_FORMID_IIO,
+            prompt = STRING_TOKEN(STR_IIO_CONFIG_FORM_TITLE),
+            help   = STRING_TOKEN(STR_IIO_CONFIG_FORM_HELP);
+
+        // Jump to Power Management Configuration Form
+        //
+        goto VFR_FORMID_PWRMGT,
+            prompt = STRING_TOKEN(STR_POWER_MGT_CONFIG_FORM_TITLE),
+            help   = STRING_TOKEN(STR_POWER_MGT_CONFIG_FORM_HELP);
+      endform;
+
+
+  #include "CommonRefCode.hfr"
+  #include "KtiSetup.hfr"
+  #include "KtiPerSocketConfig.hfr"
+  #include "KtiPerLinkSetup.hfr"
+#ifdef SPR_HOST
+  #include "IioSetupSpr.hfr"
+#else
+  #include "IioSetup.hfr"
+#endif
+ #include "MemorySetup.hfr"
+ #include "MemorySetupRas.hfr"
+ #include "ProcessorSetup.hfr"
+ #include "PowerManagementSetup.hfr"
+ #include "MemBootHealthSetup.hfr"
+
+#if FixedPcdGetBool (PcdBiosDfxKnobEnabled)
+  #include "CommonRefCodeDfx.hfr"
+  #include "ProcessorDfxSetup.hfr"
+  #include "KtiDfxSetup.hfr"
+  #include "KtiDfxPerSocketConfig.hfr"
+  #include "KtiPerLinkDfxSetup.hfr"
+  #include "MemoryDfxSetup.hfr"
+#endif
+// APTIOV_SERVER_OVERRIDE_RC_START: Defines dummy control and update value from NVRAM or HOB in order to avoid load defaults issue.
+ #include "SocketSetupDummyControls.hfr"
+// APTIOV_SERVER_OVERRIDE_RC_END: Defines dummy control and update value from NVRAM or HOB in order to avoid load defaults issue.
+ endformset;

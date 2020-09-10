@@ -1,0 +1,12 @@
+<component>
+    name = "Dxe"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Platform\Dxe\"
+    RefName = "EagleStreamRpPkg.Platform.Dxe"
+[files]
+"Dxe.sdl"	
+[parts]
+"EagleStreamRpPkg.Platform.Dxe.Setup"
+[INF]
+"SmbiosRpTable\SmbiosRpTable.inf"
+<endComponent>

@@ -1,0 +1,54 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+#string STR_HORIZONTAL_LINE               #language en-US "--------------------------------------------------"
+#string STR_DOUBLE_LINE                   #language en-US "========================================"
+#string STR_NULL_STRING                   #language en-US ""
+
+
+#string STR_EMULATION_FORM                #language en-US "Emulation Configuration"
+#string STR_EMULATION_FORM_HELP           #language en-US "Displays and provides options to change the DFx Emulation Settings"
+
+#string STR_UBIOS_GENERATION_PROMPT       #language en-US "uBIOS Generation"
+#string STR_UBIOS_GENERATION_HELP         #language en-US "Enable/Disable uBIOS Generation"
+#string STR_HYBRID_SLE_PROMPT             #language en-US "Hybrid SLE Mode"
+#string STR_HYBRID_SLE_HELP               #language en-US "Enable/Disable Hybrid System Level Emulation Mode"
+
+#string STR_AUTO                          #language en-US "Auto"
+#string STR_DISABLE                       #language en-US "Disable"
+#string STR_ENABLE                        #language en-US "Enable"
+
+#string STR_STANDARD_DEFAULT_PROMPT       #language en-US "Standard Default"
+#string STR_MANUFACTURE_DEFAULT_PROMPT    #language en-US "Manufacture Default"
+
+#string STR_PM_MSR_TRACE_EN               #language en-US  "MSR Trace for PM"
+#string STR_PM_MSR_TRACE_EN_HELP          #language en-US  "Enable/Disable MSR Trace for Power management in uBIOS"
+

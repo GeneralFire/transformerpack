@@ -1,0 +1,12 @@
+/IBuild\
+/IIntel/ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt
+/IIntel/ServerPlatformPkg/Features/Acpi/AcpiTables/Ssdt
+/IIntel/ServerPlatformPkg/Features/Acpi/AcpiTables
+/IIntel/ClientOneSiliconPkg
+/IIntel/ClientOneSiliconPkg/Include
+/IIntel/ClientOneSiliconPkg/Pch/Include
+/IIntel/ClientOneSiliconPkg/Fru/EbgPch/AcpiTables/Dsdt
+/IIntel/ClientOneSiliconPkg/Fru/EbgPch/Include 
+/IIntel/EagleStreamRpPkg/Tool/BoardInfo
+/IMdePkg/Include
+/IMdePkg/Include/Ia32

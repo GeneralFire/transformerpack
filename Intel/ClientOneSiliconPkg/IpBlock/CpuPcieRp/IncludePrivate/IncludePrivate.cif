@@ -1,0 +1,10 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\CpuPcieRp\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.CpuPcieRp.IncludePrivate"
+[parts]
+#"ClientOneSiliconPkg.IpBlock.CpuPcieRp.IncludePrivate.Library"
+[files]
+"Library\PeiCpuPciePolicyLib.h"
+<endComponent>

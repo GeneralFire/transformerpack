@@ -1,0 +1,385 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2016 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#include "Strings.uni"
+
+//---------------------------------------------------------------------------
+// FW Configuration definitions
+//---------------------------------------------------------------------------
+
+#string STR_NO                                                 #language en-US "No"
+#string STR_YES                                                #language en-US "Yes"
+
+#string STR_SPS_FORM                                           #language en-US "Server ME Configuration"
+#string STR_SPS_FORM_HELP                                      #language en-US "Configure Server ME Technology Parameters"
+#string STR_SPS_FORM_TITLE                                     #language en-US "Server ME Configuration"
+#string STR_SPS_FORM_SUBTITLE                                  #language en-US "General ME Configuration"
+
+#string STR_WS_FORM                                            #language en-US "Workstation ME Configuration"
+#string STR_WS_FORM_HELP                                       #language en-US "Configure Workstation ME Technology Parameters"
+#string STR_WS_FORM_TITLE                                      #language en-US "Workstation ME Configuration"
+#string STR_WS_FORM_SUBTITLE                                   #language en-US "General ME Configuration"
+
+#string STR_ME_RCVCAUSE_HELP                                   #language en-US "Server ME firmware recovery cause, bits [10:8] in MEFS2."
+#string STR_ME_RCVCAUSE_PROMPT                                 #language en-US "  Recovery Cause"
+#string STR_ME_RCVCAUSE_VALUE                                  #language en-US "N/A"
+
+#string STR_SPS_FEATURES_TITLE                                 #language en-US "Server ME firmware features list"
+
+#string STR_ME_FW_TYPE_PROMPT                                  #language en-US "ME Firmware Type"
+#string STR_ME_FW_TYPE_HELP                                    #language en-US "ME Firmware Type"
+#string STR_ME_FW_TYPE_VALUE                                   #language en-US "N/A" //dynamically updated
+#string STR_ME_FW_TYPE_SPS                                     #language en-US "SPS"
+#string STR_ME_FW_TYPE_WS                                      #language en-US "Workstation/HEDT"
+#string STR_ME_FW_TYPE_UNKNOWN                                 #language en-US "Unknown"
+#string STR_ME_FWVER_OPERATIONAL_PROMPT                        #language en-US "Oper. Firmware Version"
+#string STR_ME_FWVER_OPERATIONAL_VALUE                         #language en-US "N/A"
+#string STR_ME_FWVER_OPERATIONAL_HELP                          #language en-US "Version of operational firmware selected to run."
+#string STR_ME_FWVER_BACKUP_PROMPT                             #language en-US "Backup Firmware Version"
+#string STR_ME_FWVER_BACKUP_VALUE                              #language en-US "N/A"
+#string STR_ME_FWVER_BACKUP_HELP                               #language en-US "Version of backup operational firmware if present (optional)."
+#string STR_ME_FWVER_RECOVERY_PROMPT                           #language en-US "Recovery Firmware Version"
+#string STR_ME_FWVER_RECOVERY_VALUE                            #language en-US "N/A"
+#string STR_ME_FWVER_RECOVERY_HELP                             #language en-US "Version of recovery firmware - runs when ME is in recovery mode."
+#string STR_ME_FWSTS1_PROMPT                                   #language en-US "ME Firmware Status #1"
+#string STR_ME_FWSTS1_VALUE                                    #language en-US "N/A"
+#string STR_ME_FWSTS1_HELP                                     #language en-US "ME Firmware Status #1 register in HECI-1 configuration space."
+#string STR_ME_FWSTS2_PROMPT                                   #language en-US "ME Firmware Status #2"
+#string STR_ME_FWSTS2_VALUE                                    #language en-US "N/A"
+#string STR_ME_FWSTS2_HELP                                     #language en-US "ME Firmware Status #2 register in HECI-1 configuration space."
+#string STR_ME_FWCURSTE_PROMPT                                 #language en-US "  Current State"
+#string STR_ME_FWCURSTE_VALUE                                  #language en-US "N/A"
+#string STR_ME_FWCURSTE_HELP                                   #language en-US "ME firmware Current State, bits [3:0] in MEFS1."
+#string STR_ME_FWCURSTE_VALUE                                  #language en-US "N/A"
+#string STR_ME_FWERRCODE_PROMPT                                #language en-US "  Error Code"
+#string STR_ME_FWERRCODE_VALUE                                 #language en-US "N/A"
+#string STR_ME_FWERRCODE_HELP                                  #language en-US "ME firmware Error Code, bits [15:12] in MEFS1."
+#string STR_ME_TIMEOUT_PROMPT                                  #language en-US "ME Initialization Complete Timeout"
+#string STR_ME_TIMEOUT_HELP                                    #language en-US "This option defines how long BIOS waits for ME to initialize."
+#string STR_ME_HSIO_ENABLE_PROMPT                              #language en-US  "Enable HSIO Messaging"
+#string STR_ME_HSIO_ENABLE_HELP                                #language en-US  "Enable/Disable HSIO messaging"
+
+#string STR_ME_DID_ENABLE_PROMPT                               #language en-US  "DRAM Init Done Enable"
+#string STR_ME_DID_ENABLE_HELP                                 #language en-US  "Enable/Disable notifying ME about DRAM initialization. (It Enables/Disables UMA functionality.)"
+
+#string STR_ME_DID_INIT_STAT_SPS_PROMPT                        #language en-US  "  DRAM Initialization Status"
+#string STR_ME_DID_INIT_STAT_SPS_HELP                          #language en-US  "Override the DRAM initialization status value."
+#string STR_ME_DID_INIT_STAT_AUTO                              #language en-US  "Auto - true status"
+
+#string STR_ME_HRW_ENABLE_PROMPT                               #language en-US  "Host Reset Warning"
+#string STR_ME_HRW_ENABLE_HELP                                 #language en-US  "Enable/Disable sending Host Reset Warning to ME"
+
+#string STR_ME_ICC_OVERRIDE_FORM                               #language en-US "Override ICC Clock Settings"
+#string STR_ME_ICC_OVERRIDE_FORM_HELP                          #language en-US "Override the default ICC Set Clock Settings."
+#string STR_ME_ICC_OVERRIDE_FORM_TITLE                         #language en-US "Override ICC Clock Settings"
+
+#string STR_ME_HMRFPOLOCK_PROMPT                               #language en-US "HMRFPO_LOCK Message"
+#string STR_ME_HMRFPOLOCK_HELP                                 #language en-US "Enable/Disable sending HMRFPO_LOCK message to ME"
+
+#string STR_ME_HMRFPOENABLE_PROMPT                             #language en-US "HMRFPO_ENABLE Message"
+#string STR_ME_HMRFPOENABLE_HELP                               #language en-US "Enable/Disable sending HMRFPO_ENABLE message to ME"
+
+#string STR_ME_HMRFPOENABLE_REGION_PROMPT                      #language en-US "  Region selector"
+#string STR_ME_HMRFPOENABLE_REGION_HELP                        #language en-US "Choose which region will be enabled"
+#string STR_ME_HMRFPOENABLE_INTEL_ME                           #language en-US "Intel ME region"
+#string STR_ME_HMRFPOENABLE_REGION_13                          #language en-US "Region 13"
+
+#string STR_ME_ENDOFPOST_PROMPT                                #language en-US  "END_OF_POST Message"
+#string STR_ME_ENDOFPOST_HELP                                  #language en-US  "Enable/Disable sending END_OF_POST message to ME"
+
+#string STR_ME_GRPROMOTION_PROMPT                              #language en-US "CF9 global reset promotion"
+#string STR_ME_GRPROMOTION_HELP                                #language en-US "Enable/Disable promoting CF9 reset to global"
+
+#string STR_ME_REGIONSELECT_PROMPT                             #language en-US "REGION_SELECT Message"
+#string STR_ME_REGIONSELECT_HELP                               #language en-US "Enable/Disable sending REGION_SELECT message to ME"
+
+#string STR_ME_WATCHDOGCTRL_PROMPT                             #language en-US "WATCHDOG_CONTROL Message"
+#string STR_ME_WATCHDOGCTRL_HELP                               #language en-US "Enable/Disable sending WATCHDOG_CONTROL messages to ME"
+#string STR_ME_WATCHDOGDISABLE_PROMPT                          #language en-US "Disable WATCHDOG in SPS"
+#string STR_ME_WATCHDOGDISABLE_HELP                            #language en-US "When set to Enable, disable WATCHDOG in SPS unconditionally"
+
+#string STR_ARB_SVN_COMMIT_PROMPT                              #language en-US "ARB SVN Commit Message"
+#string STR_ARB_SVN_COMMIT_HELP                                #language en-US "Enable hardware-enforced Anti-Rollback mechanism for current ARB-SVN value. FW with lower ARB-SVN will be blocked from execution."
+
+#string STR_ME_GRLOCK_PROMPT                                   #language en-US "Global Reset Lock"
+#string STR_ME_GRLOCK_HELP                                     #language en-US "Enable/Disable locking the joint ME and host reset capability"
+
+#string STR_ME_HECI1ENABLE_PROMPT                              #language en-US "HECI-1 Enable"
+#string STR_ME_HECI1ENABLE_HELP                                #language en-US "Override HECI-1 status on PCI, or let firmware decide based on ME type (auto)"
+#string STR_ME_HECI2ENABLE_PROMPT                              #language en-US "HECI-2 Enable"
+#string STR_ME_HECI2ENABLE_HELP                                #language en-US "Override HECI-2 status on PCI, or let firmware decide based on ME type (auto)"
+#string STR_ME_HECI3ENABLE_PROMPT                              #language en-US "HECI-3 Enable"
+#string STR_ME_HECI3ENABLE_HELP                                #language en-US "Override HECI-3 status on PCI, or let firmware decide based on ME type (auto)"
+#string STR_ME_HECI4ENABLE_PROMPT                              #language en-US "HECI-4 Enable"
+#string STR_ME_HECI4ENABLE_HELP                                #language en-US "Override HECI-4 status on PCI, or let firmware decide based on ME type (auto)"
+#string STR_ME_IDERENABLE_PROMPT                               #language en-US "IDEr Enable"
+#string STR_ME_IDERENABLE_HELP                                 #language en-US "Override IDEr status on PCI, or let firmware decide based on ME type (auto)"
+#string STR_ME_KTENABLE_PROMPT                                 #language en-US "KT Enable"
+#string STR_ME_KTENABLE_HELP                                   #language en-US "Override KT status on PCI, or let firmware decide based on ME type (auto)"
+
+#string STR_ME_HECI1HIDEINME_PROMPT                            #language en-US "HECI-1 Hide in ME"
+#string STR_ME_HECI1HIDEINME_HELP                              #language en-US "Enables sending request to ME to hide or disable HECI-1 on host PCI"
+#string STR_ME_HECI2HIDEINME_PROMPT                            #language en-US "HECI-2 Hide in ME"
+#string STR_ME_HECI2HIDEINME_HELP                              #language en-US "Enables sending request to ME to hide or disable HECI-2 on host PCI"
+#string STR_ME_HECI3HIDEINME_PROMPT                            #language en-US "HECI-3 Hide in ME"
+#string STR_ME_HECI3HIDEINME_HELP                              #language en-US "Enables sending request to ME to hide or disable HECI-3 on host PCI"
+#string STR_ME_HECI4HIDEINME_PROMPT                            #language en-US "HECI-4 Hide in ME"
+#string STR_ME_HECI4HIDEINME_HELP                              #language en-US "Enables sending request to ME to hide or disable HECI-4 on host PCI"
+
+#string STR_ME_ICC_OVERRIDE_FORM                               #language en-US "Override ICC Clock Settings"
+#string STR_ME_ICC_OVERRIDE_FORM_HELP                          #language en-US "Override the default ICC Set Clock Settings."
+#string STR_ME_ICC_OVERRIDE_FORM_TITLE                         #language en-US "Override ICC Clock Settings"
+
+#string STR_SPS_PTT_ENABLED_HELP                               #language en-US  "Enable/disable Platform Trusted Technology (PTT) support"
+#string STR_SPS_PTT_ENABLED_PROMPT                             #language en-US  "PTT Support"
+
+#string STR_SPS_PTT_SUPPRESS_COMMAND_PROMPT                    #language en-US  "Suppress PTT Commands"
+#string STR_SPS_PTT_SUPPRESS_COMMAND_HELP                      #language en-US  "Bypass TPM2 commands submitting to PTT FW"
+
+#string STR_SPS_ALTITUDE_HELP                                  #language en-US "The altitude of the platform location above the sea level, expressed in meters. The hex number is decoded as 2's complement signed integer.\nProvide the 8000h value if the altitude is unknown."
+#string STR_SPS_ALTITUDE_PROMPT                                #language en-US "Altitude"
+
+#string STR_SPS_MCTP_BUS_OWNER_HELP                            #language en-US "MCTP bus owner location on PCIe: [15:8] bus, [7:3] device, [2:0] function. If all zeros sending bus owner is disabled."
+#string STR_SPS_MCTP_BUS_OWNER_PROMPT                          #language en-US "MCTP Bus Owner"
+
+#string STR_SPS_PSU_STATUS_SUBTITLE                            #language en-US "Power Supply Units Status"
+#string STR_SPS_PSU_ADDRESS_SUBTITLE                           #language en-US "Power Supply Units Configuration"
+
+#string STR_SPS_PSU1_STATUS_HELP                               #language en-US "Status of PSU #1"
+#string STR_SPS_PSU1_STATUS_PROMPT                             #language en-US "  PSU #1"
+#string STR_SPS_PSU1_STATUS_VALUE                              #language en-US "N/A"
+
+#string STR_SPS_PSU1_ADDRESS_HELP                              #language en-US "PMBus address (7-bit) that will be used to retrieve the status of PSU #1, use zero to disable query"
+#string STR_SPS_PSU1_ADDRESS_PROMPT                            #language en-US "  PSU #1"
+
+#string STR_SPS_PSU2_STATUS_HELP                               #language en-US "Status of PSU #2"
+#string STR_SPS_PSU2_STATUS_PROMPT                             #language en-US "  PSU #2"
+#string STR_SPS_PSU2_STATUS_VALUE                              #language en-US "N/A"
+
+#string STR_SPS_PSU2_ADDRESS_HELP                              #language en-US "PMBus address (7-bit) that will be used to retrieve the status of PSU #2, use zero to disable query"
+#string STR_SPS_PSU2_ADDRESS_PROMPT                            #language en-US "  PSU #2"
+
+#string STR_SPS_PSU3_STATUS_HELP                               #language en-US "Status of PSU #3"
+#string STR_SPS_PSU3_STATUS_PROMPT                             #language en-US "  PSU #3"
+#string STR_SPS_PSU3_STATUS_VALUE                              #language en-US "N/A"
+
+#string STR_SPS_PSU3_ADDRESS_HELP                              #language en-US "PMBus address (7-bit) that will be used to retrieve the status of PSU #3, use zero to disable query"
+#string STR_SPS_PSU3_ADDRESS_PROMPT                            #language en-US "  PSU #3"
+
+#string STR_SPS_PSU4_STATUS_HELP                               #language en-US "Status of PSU #4"
+#string STR_SPS_PSU4_STATUS_PROMPT                             #language en-US "  PSU #4"
+#string STR_SPS_PSU4_STATUS_VALUE                              #language en-US "N/A"
+
+#string STR_SPS_PSU4_ADDRESS_HELP                              #language en-US "PMBus address (7-bit) that will be used to retrieve the status of PSU #4, use zero to disable query"
+#string STR_SPS_PSU4_ADDRESS_PROMPT                            #language en-US "  PSU #4"
+
+//---------------------------------------------------------------------------
+// FW Debug Configuration Forms definitions
+//---------------------------------------------------------------------------
+
+#if ME_TESTMENU_FLAG
+
+#string STR_SPS_FWDEBUG_FORM                                   #language en-US "Server ME Debug Configuration"
+#string STR_SPS_FWDEBUG_FORM_HELP                              #language en-US "Server ME firmware debug parameters configuration"
+#string STR_SPS_FWDEBUG_FORM_TITLE                             #language en-US "Server ME Debug Configuration"
+
+#string STR_SPS_FWDEBUG_GEN_FORM                               #language en-US "Server ME General Configuration"
+#string STR_SPS_FWDEBUG_GEN_FORM_HELP                          #language en-US "Server ME basic features configuration"
+#string STR_SPS_FWDEBUG_GEN_FORM_TITLE                         #language en-US "Server ME General Configuration"
+
+#string STR_SPS_FWDEBUG_NM_FORM                                #language en-US "NM Configuration"
+#string STR_SPS_FWDEBUG_NM_FORM_HELP                           #language en-US "Options to configure NM features"
+#string STR_SPS_FWDEBUG_NM_FORM_TITLE                          #language en-US "NM Configuration"
+
+#string STR_SPS_FWDEBUG_ME_UEFI_FW_HS                          #language en-US "ME UEFI FW Health Status"
+#string STR_SPS_FWDEBUG_ME_UEFI_FW_HS_HELP                     #language en-US "Information about ME UEFI FW Health Status"
+#string STR_SPS_FWDEBUG_ME_UEFI_FW_HS_TITLE                    #language en-US "ME UEFI FW Health Status"
+
+#string STR_SPS_POWERMSMT_OVERRIDE_PROMPT                      #language en-US  "Power Measurement Override"
+#string STR_SPS_POWERMSMT_OVERRIDE_HELP                        #language en-US  "Override power measurement support status reported to ME"
+#string STR_SPS_POWERMSMT_SUPPORT_PROMPT                       #language en-US  "  Power Measurement"
+#string STR_SPS_POWERMSMT_SUPPORT_HELP                         #language en-US  "Override power measurement support status reported to ME"
+
+#string STR_SPS_PTULOAD_OVERRIDE_PROMPT                        #language en-US  "PTU Load Override"
+#string STR_SPS_PTULOAD_OVERRIDE_HELP                          #language en-US  "In MROM-less system force loading PTU regardless of ME request"
+
+#string STR_SPS_HWCHANGE_OVERRIDE_PROMPT                       #language en-US  "Hardware Change Override"
+#string STR_SPS_HWCHANGE_OVERRIDE_HELP                         #language en-US  "Override hardware change detection status reported to ME"
+#string STR_SPS_HWCHANGE_STATUS_PROMPT                         #language en-US  "  Hardware Changed"
+#string STR_SPS_HWCHANGE_STATUS_HELP                           #language en-US  "Override hardware change detection status reported to ME"
+
+#string STR_SPS_ICC_CLK_SSC_SETTING_PROMPT                     #language en-US "ICC Clock Spread Spectrum"
+#string STR_SPS_ICC_CLK_SSC_SETTING_HELP                       #language en-US "Turn on / off Spread Spectrum Setting for IsCLK"
+
+#string STR_SPS_GRLOCK_PROMPT                                  #language en-US "Global Reset Lock"
+#string STR_SPS_GRLOCK_HELP                                    #language en-US "Enable/Disable locking the joint ME and host reset capability"
+
+#string STR_SPS_GRPROMOTION_PROMPT                             #language en-US "CF9 global reset promotion"
+#string STR_SPS_GRPROMOTION_HELP                               #language en-US "Enable/Disable promoting CF9 reset to global"
+
+#string STR_SPS_HECI1HIDEINME_PROMPT                           #language en-US "HECI-1 Hide in ME"
+#string STR_SPS_HECI1HIDEINME_HELP                             #language en-US "Enables sending request to ME to hide or disable HECI-1 on host PCI"
+#string STR_SPS_HECI2HIDEINME_PROMPT                           #language en-US "HECI-2 Hide in ME"
+#string STR_SPS_HECI2HIDEINME_HELP                             #language en-US "Enables sending request to ME to hide or disable HECI-2 on host PCI"
+#string STR_SPS_HECI3HIDEINME_PROMPT                           #language en-US "HECI-3 Hide in ME"
+#string STR_SPS_HECI3HIDEINME_HELP                             #language en-US "Enables sending request to ME to hide or disable HECI-3 on host PCI"
+#string STR_SPS_HECI4HIDEINME_PROMPT                           #language en-US "HECI-4 Hide in ME"
+#string STR_SPS_HECI4HIDEINME_HELP                             #language en-US "Enables sending request to ME to hide or disable HECI-4 on host PCI"
+
+#string STR_SPS_BREAK_RTC_ENABLE_PROMPT                        #language en-US "Break RTC Configuration"
+#string STR_SPS_BREAK_RTC_ENABLE_HELP                          #language en-US "This is a test option which breaks RTC configuration"
+
+#string STR_SPS_PRE_DID_ME_RESET_PROMPT                        #language en-US  "Pre-DramInitDone ME Reset"
+#string STR_SPS_PRE_DID_ME_RESET_HELP                          #language en-US  "When ME is in recovery because of internal error try to reset it."
+
+#string STR_HMRFPO_VIA_HECI_PROMPT                             #language en-US  "HMRFPO via HECI-3"
+#string STR_HMRFPO_VIA_HECI_HELP                               #language en-US  "Enables sending HMRFPO and other SMM communication with ME via HECI-3 interface instead of HECI-1."
+
+#string STR_DAM_ENABLE_PROMPT                                  #language en-US "Delayed Authentication Mode (DAM)"
+#string STR_DAM_ENABLE_HELP                                    #language en-US "Enable/disable Delayed Authentication Mode (DAM)"
+
+#string STR_ME_FIA_MUX_ENABLE_PROMPT                           #language en-US  "Enable FIA MUX Message"
+#string STR_ME_FIA_MUX_ENABLE_HELP                             #language en-US  "Enable/Disable FIA Mux Configuration messaging"
+
+#string STR_HECI1_PPI_STATUS_PROMPT                            #language en-US  "HECI1 Ppi Driver"
+#string STR_HECI1_PPI_STATUS_HELP                              #language en-US  "HECI1 Ppi Driver Status"
+#string STR_HECI1_PPI_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI2_PPI_STATUS_PROMPT                            #language en-US  "HECI2 Ppi Driver"
+#string STR_HECI2_PPI_STATUS_HELP                              #language en-US  "HECI2 Ppi Driver Status"
+#string STR_HECI2_PPI_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI3_PPI_STATUS_PROMPT                            #language en-US  "HECI3 Ppi Driver"
+#string STR_HECI3_PPI_STATUS_HELP                              #language en-US  "HECI3 Ppi Driver Status"
+#string STR_HECI3_PPI_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI4_PPI_STATUS_PROMPT                            #language en-US  "HECI4 Ppi Driver"
+#string STR_HECI4_PPI_STATUS_HELP                              #language en-US  "HECI4 Ppi Driver Status"
+#string STR_HECI4_PPI_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI1_DXE_STATUS_PROMPT                            #language en-US  "HECI1 Dxe Driver"
+#string STR_HECI1_DXE_STATUS_HELP                              #language en-US  "HECI1 Dxe Driver Status"
+#string STR_HECI1_DXE_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI2_DXE_STATUS_PROMPT                            #language en-US  "HECI2 Dxe Driver"
+#string STR_HECI2_DXE_STATUS_HELP                              #language en-US  "HECI2 Dxe Driver Status"
+#string STR_HECI2_DXE_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI3_DXE_STATUS_PROMPT                            #language en-US  "HECI3 Dxe Driver"
+#string STR_HECI3_DXE_STATUS_HELP                              #language en-US  "HECI3 Dxe Driver Status"
+#string STR_HECI3_DXE_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI4_DXE_STATUS_PROMPT                            #language en-US  "HECI4 Dxe Driver"
+#string STR_HECI4_DXE_STATUS_HELP                              #language en-US  "HECI4 Dxe Driver Status"
+#string STR_HECI4_DXE_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI1_SMM_STATUS_PROMPT                            #language en-US  "HECI1 Smm Driver"
+#string STR_HECI1_SMM_STATUS_HELP                              #language en-US  "HECI1 Smm Driver Status"
+#string STR_HECI1_SMM_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI2_SMM_STATUS_PROMPT                            #language en-US  "HECI2 Smm Driver"
+#string STR_HECI2_SMM_STATUS_HELP                              #language en-US  "HECI2 Smm Driver Status"
+#string STR_HECI2_SMM_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI3_SMM_STATUS_PROMPT                            #language en-US  "HECI3 Smm Driver"
+#string STR_HECI3_SMM_STATUS_HELP                              #language en-US  "HECI3 Smm Driver Status"
+#string STR_HECI3_SMM_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_HECI4_SMM_STATUS_PROMPT                            #language en-US  "HECI4 Smm Driver"
+#string STR_HECI4_SMM_STATUS_HELP                              #language en-US  "HECI4 Smm Driver Status"
+#string STR_HECI4_SMM_STATUS_VALUE                             #language en-US  "Not Triggered"
+
+#string STR_DID_SENDING_STATUS_PROMPT                          #language en-US  "DID Status"
+#string STR_DID_SENDING_STATUS_HELP                            #language en-US  "DID Send Status"
+#string STR_DID_SENDING_STATUS_VALUE                           #language en-US  "Not sent - not triggered"
+
+#string STR_CORE_BIOS_DONE_SENDING_STATUS_PROMPT               #language en-US  "CoreBiosDone Status"
+#string STR_CORE_BIOS_DONE_SENDING_STATUS_HELP                 #language en-US  "CoreBiosDone Send Status"
+#string STR_CORE_BIOS_DONE_SENDING_STATUS_VALUE                #language en-US  "Not sent - not triggered"
+
+#string STR_END_OF_POST_SENDING_STATUS_PROMPT                  #language en-US  "EoP Status"
+#string STR_END_OF_POST_SENDING_STATUS_HELP                    #language en-US  "End of Post Send Status"
+#string STR_END_OF_POST_SENDING_STATUS_VALUE                   #language en-US  "Not sent - not triggered"
+
+#string STR_ME_UMA_RECEIVING_STATUS_PROMPT                     #language en-US  "ME UMA Size"
+#string STR_ME_UMA_RECEIVING_STATUS_HELP                       #language en-US  "ME UMA Size Receive Status"
+#string STR_ME_UMA_RECEIVING_STATUS_VALUE                      #language en-US  "Not received - not triggered"
+
+#string STR_BIOS_PAYLOAD_RECEIVING_STATUS_PROMPT               #language en-US  "BIOS Payload for WS"
+#string STR_BIOS_PAYLOAD_RECEIVING_STATUS_HELP                 #language en-US  "BIOS Payload for WS Receive Status"
+#string STR_BIOS_PAYLOAD_RECEIVING_STATUS_VALUE                #language en-US  "Not received - not triggered"
+
+#string STR_ME_HECI1_STATE_PROMPT                              #language en-US  "HECI-1 State"
+#string STR_ME_HECI1_STATE_HELP                                #language en-US  "HECI-1 State"
+#string STR_ME_HECI1_STATE_VALUE                               #language en-US  "Disabled"
+
+#string STR_ME_HECI2_STATE_PROMPT                              #language en-US  "HECI-2 State"
+#string STR_ME_HECI2_STATE_HELP                                #language en-US  "HECI-2 State"
+#string STR_ME_HECI2_STATE_VALUE                               #language en-US  "Disabled"
+
+#string STR_ME_HECI3_STATE_PROMPT                              #language en-US  "HECI-3 State"
+#string STR_ME_HECI3_STATE_HELP                                #language en-US  "HECI-3 State"
+#string STR_ME_HECI3_STATE_VALUE                               #language en-US  "Disabled"
+
+#string STR_ME_HECI4_STATE_PROMPT                              #language en-US  "HECI-4 State"
+#string STR_ME_HECI4_STATE_HELP                                #language en-US  "HECI-4 State"
+#string STR_ME_HECI4_STATE_VALUE                               #language en-US  "Disabled"
+
+#string STR_ME_IDER_STATE_PROMPT                               #language en-US  "Ide-R State"
+#string STR_ME_IDER_STATE_HELP                                 #language en-US  "Ide-R State"
+#string STR_ME_IDER_STATE_VALUE                                #language en-US  "Disabled"
+
+#string STR_ME_KT_STATE_PROMPT                                 #language en-US  "KT State"
+#string STR_ME_KT_STATE_HELP                                   #language en-US  "KT State"
+#string STR_ME_KT_STATE_VALUE                                  #language en-US  "Disabled"
+
+#string STR_ME_ACPI_STATUS_PROMPT                              #language en-US  "SPS ACPI Status"
+#string STR_ME_ACPI_STATUS_HELP                                #language en-US  "SPS ACPI loads AML files"
+#string STR_ME_ACPI_STATUS_VALUE                               #language en-US  "Not Triggered"
+
+#string STR_ME_HECI1_HIDE_STATE_PROMPT                         #language en-US  "HECI-1 Hidden in ME"
+#string STR_ME_HECI1_HIDE_STATE_HELP                           #language en-US  "HECI-1 Hidden in ME"
+#string STR_ME_HECI1_HIDE_STATE_VALUE                          #language en-US  "False"
+
+#string STR_ME_HECI2_HIDE_STATE_PROMPT                         #language en-US  "HECI-2 Hidden in ME"
+#string STR_ME_HECI2_HIDE_STATE_HELP                           #language en-US  "HECI-2 Hidden in ME"
+#string STR_ME_HECI2_HIDE_STATE_VALUE                          #language en-US  "False"
+
+#string STR_ME_HECI3_HIDE_STATE_PROMPT                         #language en-US  "HECI-3 Hidden in ME"
+#string STR_ME_HECI3_HIDE_STATE_HELP                           #language en-US  "HECI-3 Hidden in ME"
+#string STR_ME_HECI3_HIDE_STATE_VALUE                          #language en-US  "False"
+
+#string STR_ME_HECI4_HIDE_STATE_PROMPT                         #language en-US  "HECI-4 Hidden in ME"
+#string STR_ME_HECI4_HIDE_STATE_HELP                           #language en-US  "HECI-4 Hidden in ME"
+#string STR_ME_HECI4_HIDE_STATE_VALUE                          #language en-US  "False"
+
+#string STR_ME_HECI_TRACES_ENABLE_PROMPT                       #language en-US  "Enable HECI Dump"
+#string STR_ME_HECI_TRACES_ENABLE_HELP                         #language en-US  "Enable full HECI dumps in debug output"
+
+#endif // ME_TESTMENU_FLAG

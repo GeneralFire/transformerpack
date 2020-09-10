@@ -1,0 +1,13 @@
+<component>
+	name = "BaseMemoryCoreLib"
+	category = ModulePart
+	LocalRoot = "Intel\CpRcPkg\Library\BaseMemoryCoreLib\"
+	RefName = "CpRcPkg.Library.BaseMemoryCoreLib"
+[INF]
+"BaseMemoryCoreLib10nm.inf"
+"BaseMemoryCoreTargetLib\BaseMemoryCoreTargetLib.inf"
+[files]
+"Core\Include\MemHostChipCommon.h"
+"Core\Include\SysHostChipCommon.h"
+"Include\BaseMemoryCoreInternal.h"
+<endComponent>

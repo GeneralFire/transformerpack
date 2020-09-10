@@ -1,0 +1,139 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+/=#
+
+#langdef   en-US "English"
+
+#string STR_RC_DFX_COMMON_FORM_TITLE           #language en-US "Common RefCode Dfx Configuration"
+#string STR_RC_DFX_COMMON_FORM_HELP            #language en-US "Displays and provides option to change the Common RefCode Dfx Settings"
+
+#string STR_RST_CPL_BITS_EN                    #language en-US  "RST_CPL Bits Programming"
+#string STR_RST_CPL_BITS_EN_HELP               #language en-US  "Enable/disable rst_cpl bits programming.\n\nThis is a 4-bit bitmask, each bit maps to rst_cpl1,2,3,4 (bit-0 maps to rst_cpl1).\n\nWhen the bit is zero, BIOS skips setting the respective cpl bit."
+
+#string STR_B2P_MAILBOX_CMD_FORM_TITLE         #language en-US  "B2P Mailbox Commands"
+#string STR_B2P_MAILBOX_CMD_FORM_HELP          #language en-US  "Displays and provides options to enable/disable BIOS-to-Pcode mailbox commands"
+#string STR_B2P_MAILBOX_CMD_FORM_SUBTITLE      #language en-US  "BIOS-to-Pcode Mailbox Commands"
+
+#string STR_B2P_MAILBOX_MASK_0                 #language en-US  "B2P Mailbox CMD 0x0-0x7"
+#string STR_B2P_MAILBOX_MASK_0_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x0-0x7.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x0,..., bit-7 maps to CMD 0x7.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_1                 #language en-US  "B2P Mailbox CMD 0x8-0xF"
+#string STR_B2P_MAILBOX_MASK_1_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x8-0xF.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x8,..., bit-7 maps to CMD 0xF.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_2                 #language en-US  "B2P Mailbox CMD 0x10-0x17"
+#string STR_B2P_MAILBOX_MASK_2_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x10-0x17.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x10,..., bit-7 maps to CMD 0x17.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_3                 #language en-US  "B2P Mailbox CMD 0x18-0x1F"
+#string STR_B2P_MAILBOX_MASK_3_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x18-0x1F.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x18,..., bit-7 maps to CMD 0x1F.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_4                 #language en-US  "B2P Mailbox CMD 0x20-0x27"
+#string STR_B2P_MAILBOX_MASK_4_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x20-0x27.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x20,..., bit-7 maps to CMD 0x27.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_5                 #language en-US  "B2P Mailbox CMD 0x28-0x2F"
+#string STR_B2P_MAILBOX_MASK_5_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x28-0x2F.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x28,..., bit-7 maps to CMD 0x2F.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_6                 #language en-US  "B2P Mailbox CMD 0x30-0x37"
+#string STR_B2P_MAILBOX_MASK_6_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x30-0x37.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x30,..., bit-7 maps to CMD 0x37.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_7                 #language en-US  "B2P Mailbox CMD 0x38-0x3F"
+#string STR_B2P_MAILBOX_MASK_7_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x38-0x3F.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x38,..., bit-7 maps to CMD 0x3F.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_8                 #language en-US  "B2P Mailbox CMD 0x40-0x47"
+#string STR_B2P_MAILBOX_MASK_8_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x40-0x47.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x40,..., bit-7 maps to CMD 0x47.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_9                 #language en-US  "B2P Mailbox CMD 0x48-0x4F"
+#string STR_B2P_MAILBOX_MASK_9_HELP            #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x48-0x4F.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x48,..., bit-7 maps to CMD 0x4F.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_10                #language en-US  "B2P Mailbox CMD 0x50-0x57"
+#string STR_B2P_MAILBOX_MASK_10_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x50-0x57.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x50,..., bit-7 maps to CMD 0x57.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_11                #language en-US  "B2P Mailbox CMD 0x58-0x5F"
+#string STR_B2P_MAILBOX_MASK_11_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x58-0x5F.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x58,..., bit-7 maps to CMD 0x5F.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_12                #language en-US  "B2P Mailbox CMD 0x60-0x67"
+#string STR_B2P_MAILBOX_MASK_12_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x60-0x67.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x60,..., bit-7 maps to CMD 0x67\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_13                #language en-US  "B2P Mailbox CMD 0x68-0x6F"
+#string STR_B2P_MAILBOX_MASK_13_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x68-0x6F.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x68,..., bit-7 maps to CMD 0x6F.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_14                #language en-US  "B2P Mailbox CMD 0x70-0x77"
+#string STR_B2P_MAILBOX_MASK_14_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x70-0x77.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x70,..., bit-7 maps to CMD 0x77.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_15                #language en-US  "B2P Mailbox CMD 0x78-0x7F"
+#string STR_B2P_MAILBOX_MASK_15_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x78-0x7F.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x78,..., bit-7 maps to CMD 0x7F.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_16                #language en-US  "B2P Mailbox CMD 0x80-0x87"
+#string STR_B2P_MAILBOX_MASK_16_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x80-0x87.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x80,..., bit-7 maps to CMD 0x87.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_17                #language en-US  "B2P Mailbox CMD 0x88-0x8F"
+#string STR_B2P_MAILBOX_MASK_17_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x88-0x8F.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x88,..., bit-7 maps to CMD 0x8F.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_18                #language en-US  "B2P Mailbox CMD 0x90-0x97"
+#string STR_B2P_MAILBOX_MASK_18_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x90-0x97.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x90,..., bit-7 maps to CMD 0x97.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_19                #language en-US  "B2P Mailbox CMD 0x98-0x9F"
+#string STR_B2P_MAILBOX_MASK_19_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0x98-0x9F.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0x98,..., bit-7 maps to CMD 0x9F.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_20                #language en-US  "B2P Mailbox CMD 0xA0-0xA7"
+#string STR_B2P_MAILBOX_MASK_20_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xA0-0xA7.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xA0,..., bit-7 maps to CMD 0xA7.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_21                #language en-US  "B2P Mailbox CMD 0xA8-0xAF"
+#string STR_B2P_MAILBOX_MASK_21_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xA8-0xAF.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xA8,..., bit-7 maps to CMD 0xAF.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_22                #language en-US  "B2P Mailbox CMD 0xB0-0xB7"
+#string STR_B2P_MAILBOX_MASK_22_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xB0-0xB7.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xB0,..., bit-7 maps to CMD 0xB7.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_23                #language en-US  "B2P Mailbox CMD 0xB8-0xBF"
+#string STR_B2P_MAILBOX_MASK_23_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xB8-0xBF.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xB8,..., bit-7 maps to CMD 0xBF.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_24                #language en-US  "B2P Mailbox CMD 0xC0-0xC7"
+#string STR_B2P_MAILBOX_MASK_24_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xC0-0xC7.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xC0,..., bit-7 maps to CMD 0xC7.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_25                #language en-US  "B2P Mailbox CMD 0xC8-0xCF"
+#string STR_B2P_MAILBOX_MASK_25_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xC8-0xCF.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xC8,..., bit-7 maps to CMD 0xCF.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_26                #language en-US  "B2P Mailbox CMD 0xD0-0xD7"
+#string STR_B2P_MAILBOX_MASK_26_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xD0-0xD7.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xD0,..., bit-7 maps to CMD 0xD7.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_27                #language en-US  "B2P Mailbox CMD 0xD8-0xDF"
+#string STR_B2P_MAILBOX_MASK_27_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xD8-0xDF.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xD8,..., bit-7 maps to CMD 0xDF.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_28                #language en-US  "B2P Mailbox CMD 0xE0-0xE7"
+#string STR_B2P_MAILBOX_MASK_28_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xE0-0xE7.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xE0,..., bit-7 maps to CMD 0xE7.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_29                #language en-US  "B2P Mailbox CMD 0xE8-0xEF"
+#string STR_B2P_MAILBOX_MASK_29_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xE8-0xEF.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xE8,..., bit-7 maps to CMD 0xEF.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_30                #language en-US  "B2P Mailbox CMD 0xF0-0xF7"
+#string STR_B2P_MAILBOX_MASK_30_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xF0-0xF7.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xF0,..., bit-7 maps to CMD 0xF7.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_MAILBOX_MASK_31                #language en-US  "B2P Mailbox CMD 0xF8-0xFF"
+#string STR_B2P_MAILBOX_MASK_31_HELP           #language en-US  "Enable/disable BIOS-to-Pcode Mailbox Commands 0xF8-0xFF.\n\nThis is a 8-bit bitmask, bit-0 maps to CMD 0xF8,..., bit-7 maps to CMD 0xFF.\n\nWhen the bit is zero, BIOS skips issuing the respective command to Pcode."
+
+#string STR_B2P_ERROR_ASSERT_ONCOMMAND_PROMPT  #language en-US "B2P Error Assert"
+#string STR_B2P_ERROR_ASSERT_ONCOMMAND_HELP    #language en-US "Enter the command value to assert on if there is an error returned from B2P command.  Value 0xFF will assert on all errors."

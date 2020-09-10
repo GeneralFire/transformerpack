@@ -1,0 +1,833 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2014 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+  form formid = CONCATENATE3(PCH_PCIERP,PORT_INDEX,_OPTIONS_FORM_ID),
+    title     = STRING_TOKEN(CONCATENATE3(STR_PCIERP,PORT_INDEX,_OPTIONS_FORM_TITLE));
+
+    oneof varid   = PCH_SETUP.PcieRootPortEn[PORT_INDEX],
+      prompt      = STRING_TOKEN(CONCATENATE2(STR_PCH_PCIE_PROMPT,PORT_INDEX)),
+      help        = STRING_TOKEN(STR_PCH_PCIERP_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval PCH_SETUP.PcieRootPortEn[PORT_INDEX] == 0x0;
+
+      grayoutif ideqval PCH_SETUP.PcieRootPortHPE[PORT_INDEX] == 1;
+        oneof varid   = PCH_SETUP.PcieRootPortSI[PORT_INDEX],
+          prompt      = STRING_TOKEN(CONCATENATE2(STR_PCIE_SI_PROMPT,PORT_INDEX)),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_IMPLEMENTED_HELP),
+          option text = STRING_TOKEN(STR_PCIE_BUILT_IN), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCIE_SLOT), value = 1, flags = DEFAULT | RESET_REQUIRED;
+        endoneof;
+      endif;
+//ASTDBG: Disable the PCH PCIe ASPM
+      oneof varid   = PCH_SETUP.PcieRootPortAspm[PORT_INDEX],
+        prompt      = STRING_TOKEN(CONCATENATE2(STR_PCH_PCIE_ASPM_PROMPT,PORT_INDEX)),
+        help        = STRING_TOKEN(STR_PCIE_ASPM_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PCIE_ASPM_L1_STRING), value = 2, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.PcieRootPortL1SubStates[PORT_INDEX],
+        prompt      = STRING_TOKEN(CONCATENATE2(STR_PCIE_L1SUB_PROMPT,PORT_INDEX)),
+        help        = STRING_TOKEN(STR_PCIE_L1SUB_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PCIE_L1SUB_1_STRING), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PCIE_L1SUB_2_STRING), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PCIE_L1SUB_1_2_STRING), value = 3, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.PcieRootPortACS[PORT_INDEX],
+        prompt      = STRING_TOKEN(CONCATENATE2(STR_PCIE_ACS_PROMPT,PORT_INDEX)),
+        help        = STRING_TOKEN(STR_PCIE_ACS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.PcieRootPortMVC[PORT_INDEX],
+        prompt      = STRING_TOKEN(CONCATENATE2(STR_PCIE_MVC_PROMPT,PORT_INDEX)),
+        help        = STRING_TOKEN(STR_PCIE_MVC_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.PcieRootPortPTM[PORT_INDEX],
+        prompt      = STRING_TOKEN(CONCATENATE2(STR_PCIE_PTM_PROMPT,PORT_INDEX)),
+        help        = STRING_TOKEN(STR_PCIE_PTM_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.PcieRootPortDPC[PORT_INDEX],
+        prompt      = STRING_TOKEN(CONCATENATE2(STR_PCIE_DPC_PROMPT,PORT_INDEX)),
+        help        = STRING_TOKEN(STR_PCIE_DPC_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.PcieRootPortEDPC[PORT_INDEX],
+        prompt      = STRING_TOKEN(CONCATENATE2(STR_PCIE_EDPC_PROMPT,PORT_INDEX)),
+        help        = STRING_TOKEN(STR_PCIE_EDPC_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.PcieRootPortPMCE[PORT_INDEX],
+        prompt      = STRING_TOKEN(CONCATENATE2(STR_PCH_PCIE_PMCE_PROMPT,PORT_INDEX)),
+        help        = STRING_TOKEN(STR_PCH_PCIE_PMCE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      grayoutif ideqval PCH_SETUP.PcieRootPortSI[PORT_INDEX] == 0;
+        oneof varid   = PCH_SETUP.PcieRootPortHPE[PORT_INDEX],
+          prompt      = STRING_TOKEN(CONCATENATE2(STR_PCH_PCIE_HPE_PROMPT,PORT_INDEX)),
+          help        = STRING_TOKEN(STR_PCH_PCIE_HPE_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      oneof varid   = PCH_SETUP.PcieRootPortMPS[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCIE_MPS_PROMPT),
+        help        = STRING_TOKEN(STR_PCIE_MPS_HELP),
+        option text = STRING_TOKEN(STR_PCH_PCIE_MPS_128), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PCH_PCIE_MPS_256), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.PcieRootPortRO[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_RO_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_RO_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.PcieRootPortNS[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_NS_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_NS_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval PCH_SETUP.PcieRootPortHPE[PORT_INDEX] == 0;
+        oneof varid = PCH_SETUP.PcieRootPortMrls[PORT_INDEX],
+          prompt    = STRING_TOKEN(STR_PCH_PCIE_MRLS_PROMPT),
+          help      = STRING_TOKEN(STR_PCH_PCIE_MRLS_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      //
+      // AER is always enabled in CDF
+      //
+      suppressif TRUE;
+        oneof varid   = PCH_SETUP.PcieRootPortAER[PORT_INDEX],
+          prompt      = STRING_TOKEN(CONCATENATE2(STR_PCH_PCIE_AER_PROMPT,PORT_INDEX)),
+          help        = STRING_TOKEN(STR_PCH_PCIE_AER_HELP),
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      oneof varid   = PCH_SETUP.PcieRootPortSpeed[PORT_INDEX],
+        prompt   = STRING_TOKEN (CONCATENATE2(STR_PCIE_SPEED_PROMPT,PORT_INDEX)),
+        help     = STRING_TOKEN (STR_PCIE_SPEED_HELP),
+        option text = STRING_TOKEN (STR_AUTO), value = 0, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (STR_GEN1), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_GEN2), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_GEN3), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = PCH_SETUP.PcieRootPortCompletionTimeout[PORT_INDEX],
+          prompt  = STRING_TOKEN(CONCATENATE2(STR_PCH_PCIE_CTD_PROMPT,PORT_INDEX)),
+          help    = STRING_TOKEN(STR_PCH_PCIE_CTD_HELP),
+          option text = STRING_TOKEN(STR_PCH_PCIE_CTD_DEFAULT),      value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+          option text = STRING_TOKEN(STR_PCH_PCIE_CTD_50_100US),     value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_PCIE_CTD_1_10MS),       value = 2, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_PCIE_CTD_16_55MS),      value = 3, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_PCIE_CTD_65_210MS),     value = 4, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_PCIE_CTD_260_900MS),    value = 5, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_PCIE_CTD_1_3P5S),       value = 6, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_PCIE_CTD_4_13S),        value = 7, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_PCH_PCIE_CTD_17_64S),       value = 8, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLE),      value = 9, flags = RESET_REQUIRED;
+      endoneof;
+
+      numeric varid = PCH_SETUP.PcieDetectTimeoutMs[PORT_INDEX],
+        prompt      = STRING_TOKEN (CONCATENATE2(STR_PCH_PCIE_DETECT_TIMEOUT_PROMPT,PORT_INDEX)),
+        help        = STRING_TOKEN (STR_PCH_PCIE_DETECT_TIMEOUT_HELP),
+        minimum     = 0,
+        maximum     = 65535,
+        step        = 1,
+        default     = 0,
+      endnumeric;
+
+
+      SEPARATOR
+
+      subtitle text = STRING_TOKEN(STR_PCH_PCIE_LTR_CONFIG);
+      oneof varid   = PCH_SETUP.PchPcieLtrEnable[PORT_INDEX],
+        prompt   = STRING_TOKEN (CONCATENATE2(STR_PCH_PCIE_LTR_PROMPT,PORT_INDEX)),
+        help     = STRING_TOKEN (STR_PCH_PCIE_LTR_HELP),
+        option text = STRING_TOKEN(STR_DISABLED),  value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      SEPARATOR
+
+      goto CONCATENATE3(PCH_PCIE_RP,PORT_INDEX,_LANE_GEN3_EQ_FORM_ID),
+        prompt = STRING_TOKEN(STR_PCIE_RP_LANE_GEN3_EQ_FORM_TITLE),
+        help   = STRING_TOKEN(STR_PCIE_RP_LANE_GEN3_EQ_FORM_HELP);
+
+    endif;
+  endform; //End of CONCATENATE3(PCH_PCIERP,PORT_INDEX,_OPTIONS_FORM_ID)
+
+
+  form formid = CONCATENATE3(PCH_PCIE_RP,PORT_INDEX,_LANE_GEN3_EQ_FORM_ID),
+    title     = STRING_TOKEN (CONCATENATE3(STR_PCIE_RP,PORT_INDEX,_LANE_GEN3_EQ_FORM_TITLE));
+
+    oneof varid = PCH_SETUP.PchPcieEqOverrideDefaultSettings[PORT_INDEX],
+      prompt    = STRING_TOKEN(STR_PCH_PCIE_OVERRIDE_LANE_EQ_SETTINGS_PROMPT),
+      help      = STRING_TOKEN(STR_PCH_PCIE_OVERRIDE_LANE_EQ_SETTINGS_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval PCH_SETUP.PchPcieEqOverrideDefaultSettings[PORT_INDEX] == 0;
+
+      numeric varid = PCH_SETUP.PchPcieEqPh1DownstreamPortTransmitterPreset[PORT_INDEX],
+        prompt      = STRING_TOKEN (STR_PCH_PCIE_LANEEQCTL_DPTP_PROMPT),
+        help        = STRING_TOKEN (STR_PCH_PCIE_LANEEQCTL_DPTP_HELP),
+        minimum     = 0,
+        maximum     = 10,
+        step        = 1,
+        default     = 7,
+      endnumeric;
+
+      numeric varid = PCH_SETUP.PchPcieEqPh1UpstreamPortTransmitterPreset[PORT_INDEX],
+        prompt      = STRING_TOKEN (STR_PCH_PCIE_LANEEQCTL_UPTP_PROMPT),
+        help        = STRING_TOKEN (STR_PCH_PCIE_LANEEQCTL_UPTP_HELP),
+        minimum     = 0,
+        maximum     = 10,
+        step        = 1,
+        default     = 5,
+      endnumeric;
+
+      oneof varid   = PCH_SETUP.Ph2LocalTransmitterOverrideEnable[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_TX_COEFF_PRESET_EN_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_TX_COEFF_PRESET_EN_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval PCH_SETUP.Ph2LocalTransmitterOverrideEnable[PORT_INDEX] == 0x0;
+
+        numeric varid = PCH_SETUP.LocalTransmitterOverridePrecursorCoeff[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_TX_COEFF_PRESET_PRECUR_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_TX_COEFF_PRESET_PRECUR_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.LocalTransmitterOverrideCursorCoeff[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_TX_COEFF_PRESET_MAINCUR_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_TX_COEFF_PRESET_MAINCUR_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.LocalTransmitterOverridePostCursorCoeff[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_TX_COEFF_PRESET_POSTCUR_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_TX_COEFF_PRESET_POSTCUR_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqval PCH_SETUP.Ph2LocalTransmitterOverrideEnable[PORT_INDEX] == 0x0;
+
+      // FOM HintTable Entry 1
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry1[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY1_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry1[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry1[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry1[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry1[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry1[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 31,
+          step        = 1,
+          default     = 6,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry1[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 31,
+          step        = 1,
+          default     = 8,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry1[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 2
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry2[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY2_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry2[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry2[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry2[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry2[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry2[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 8,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry2[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 2,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry2[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 3
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry3[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY3_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry3[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry3[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry3[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry3[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry3[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 10,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry3[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 6,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry3[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 4
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry4[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY4_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry4[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry4[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry4[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry4[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry4[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 12,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry4[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 12,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry4[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 5
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry5[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY5_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry5[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry5[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry5[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry5[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry5[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 14,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry5[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 2,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry5[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 6
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry6[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY6_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry6[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry6[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry6[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry6[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry6[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry6[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry6[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 7
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry7[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY7_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry7[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry7[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry7[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry7[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry7[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry7[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry7[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 8
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry8[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY8_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry8[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry8[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry8[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry8[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry8[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry8[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry8[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 9
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry9[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY9_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry9[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry9[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry9[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry9[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry9[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry9[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry9[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 10
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry10[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY10_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry10[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry10[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry10[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry10[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry10[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry10[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry10[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 11
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry11[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY11_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry11[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry11[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry11[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry11[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry11[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry11[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry11[PORT_INDEX] == 0 0xff;
+
+      // FOM HintTable Entry 12
+      oneof varid   = PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry12[PORT_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_ENTRY12_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_PCIE_FOM_HINT_TABLE_FORMAT_HELP),
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_DISABLED), value = 0xff, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_PRESET), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_COEFFICIENT), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_MAX_BOOST_LINE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_FOM_HINT_TABLE_FORMAT_NEXT_STAGE), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry12[PORT_INDEX] == 1 2 3 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTablePresetEntry12[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_PRESET_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry12[PORT_INDEX] == 1 2 3 0xff; // Only Preset
+
+      suppressif ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry12[PORT_INDEX] == 0 0xff;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD1Entry12[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D1_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+        numeric varid = PCH_SETUP.PchPcieEqPh3FomHintTableD2Entry12[PORT_INDEX],
+          prompt      = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D2_VALUE_PROMPT),
+          help        = STRING_TOKEN (STR_PCH_PCIE_FOM_HINT_TABLE_D12_HELP),
+          minimum     = 0,
+          maximum     = 63,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+
+      endif; // End of ideqvallist PCH_SETUP.PchPcieEqPh3FomHintTableFormatEntry12[PORT_INDEX] == 0 0xff;
+
+    endif; // End of grayout ideqval PCH_SETUP.PchPcieEqOverrideDefaultSettings[PORT_INDEX] == 0;
+  endform; //End of CONCATENATE2(PCH_PCIE_RP_LANE_GEN3_EQ_FORM_ID,PORT_INDEX)

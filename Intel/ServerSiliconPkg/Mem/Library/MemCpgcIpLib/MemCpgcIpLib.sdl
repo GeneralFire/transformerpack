@@ -1,0 +1,50 @@
+TOKEN
+    Name  = "MemCpgcIpLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling MemCpgcIpLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "HwMemCpgcIpTargetLib"
+    File  = "10nm/HwMemCpgcIpTargetLib/HwMemCpgcIpTargetLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "HwMemCpgcIpTargetLib"
+    File  = "Spr/HwMemCpgcIpTargetLib/HwMemCpgcIpTargetLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "MemCpgcIpLib"
+    File  = "MemCpgcIpLib10nm.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "MemCpgcIpLib"
+    File  = "MemCpgcIpLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "MemCpgcIpTargetLib"
+    Instance  = "ServerSiliconPkg.HwMemCpgcIpTargetLib"
+End
+
+LibraryMapping
+    Class  = "MemCpgcIpLib"
+    Instance  = "ServerSiliconPkg.MemCpgcIpLib"
+End
+

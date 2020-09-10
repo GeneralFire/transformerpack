@@ -1,0 +1,13 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.Cpu.IncludePrivate"
+[files]
+"CpuInitDataHob.h"	
+"CpuNvsAreaDef.h"	
+"PowerMgmtNvsStruct.h"	
+[parts]
+"ClientOneSiliconPkg.Cpu.IncludePrivate.Library"
+"ClientOneSiliconPkg.Cpu.IncludePrivate.Protocol"
+<endComponent>

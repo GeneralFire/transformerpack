@@ -1,0 +1,51 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+## @file AmiIpmiBootLib.inf
+#
+#  INF description file for AmiIpmiBootLib Library.
+##
+
+[Defines]
+  INF_VERSION        = 0x00010005
+  BASE_NAME          = AmiIpmiBootLib
+  FILE_GUID          = E70390F3-9A6F-4E6E-9DBD-E0BE10DBAF2D
+  MODULE_TYPE        = DXE_DRIVER
+  VERSION_STRING     = 1.1
+  LIBRARY_CLASS      = AmiIpmiBootLib | DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER
+
+[Sources]
+  AmiIpmiBootLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+  DebugLib
+  UefiBootServicesTableLib
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2018, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

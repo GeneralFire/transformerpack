@@ -1,0 +1,11 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Ipu\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Ipu.LibraryPrivate"
+[INF]
+"PeiIpuInitPrivateLibNull\PeiIpuInitLibNull.inf"
+"PeiIpuPolicyPrivateLibNull\PeiIpuPolicyPrivateLibNull.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

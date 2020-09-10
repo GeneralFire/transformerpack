@@ -1,0 +1,10 @@
+<component>
+    name = "FiaMuxInitLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\FiaMuxInitLib\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.Library.FiaMuxInitLib"
+[INF]
+"PeiFiaMuxConfigInitLib\PeiFiaMuxConfigInitLib.inf"
+[files]
+"FiaMuxInitLib.sdl"	
+<endComponent>

@@ -1,0 +1,82 @@
+TOKEN
+    Name  = "EagleStreamFspPkg_Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for EagleStreamFspPkg Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "PeiPchResetLib"
+    File  = "PeiPchResetLib/PeiPchResetLib.inf"
+    Package  = "EagleStreamFspPkg"
+End
+
+INFComponent
+    Name  = "CacheAsRamLib"
+    File  = "CacheAsRamLib/CacheAsRamLib.inf"
+    Package  = "EagleStreamFspPkg"
+End
+
+LibraryMapping
+    Class  = "CacheAsRamLib"
+    Instance  = "EagleStreamFspPkg.CacheAsRamLib"
+End
+
+#LibraryMapping
+#    Class  = "PchResetLib"
+#    Instance  = "EagleStreamFspPkg.PeiPchResetLib"
+#End
+
+INFComponent
+    Name  = "SerialPortLib"
+    File  = "SerialPortLib/SerialPortLib.inf"
+    Package  = "EagleStreamFspPkg"
+#    Token = "DEBUG_MODE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "SerialPortLib"
+    Instance  = "EagleStreamFspPkg.SerialPortLib"       
+#    Token = "DEBUG_MODE" "=" "1"
+End
+
+#Use SetupLib from WhitleyRpPkg
+#INFComponent
+#    Name  = "PeiSetupLib"
+#    File  = "SetupLib/PeiSetupLib.inf"
+#    Package  = "EagleStreamFspPkg"
+#End
+
+#LibraryMapping
+#    Class  = "SetupLib"
+#    Instance  = "EagleStreamFspPkg.PeiSetupLib"
+#End
+
+INFComponent
+    Name  = "PeiPolicyUpdatePreMemLib"
+    File  = "PeiPolicyUpdatePreMemLib/PeiPolicyUpdatePreMemLib.inf"
+    Package  = "EagleStreamFspPkg"
+End
+
+LibraryMapping
+    Class  = "PeiPolicyUpdatePreMemLib"
+    Instance  = "EagleStreamFspPkg.PeiPolicyUpdatePreMemLib"
+End
+
+INFComponent
+    Name  = "FspEmptyLib"
+    File  = "FspEmptyLib/FspEmptyLib.inf"
+    Package  = "EagleStreamFspPkg"
+End
+
+INFComponent
+    Name  = "PlatformHobBuildLib"
+    File  = "PlatformHobBuildLib/PlatformHobBuildLib.inf"
+    Package  = "EagleStreamFspPkg"
+End
+
+LibraryMapping
+    Class  = "PlatformHobBuildLib"
+    Instance  = "EagleStreamFspPkg.PlatformHobBuildLib"
+End

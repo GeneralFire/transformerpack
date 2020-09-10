@@ -1,0 +1,22 @@
+<component>
+    name = "SouthClusterCdf"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf"
+[INF]
+"I2cMaster\Dxe\I2cMasterDxe.inf"
+"Wdt\Dxe\WdtDxe.inf"
+"SmmControl\RuntimeDxe\SmmControl.inf"
+[files]
+"SouthClusterCdf.sdl"	
+"Spi\RuntimeDxe\PchSpi.h"	
+[parts]
+"ServerSiliconPkg.Pch.SouthClusterCdf.Include"
+"ServerSiliconPkg.Pch.SouthClusterCdf.Library"
+"ServerSiliconPkg.Pch.SouthClusterCdf.AcpiTables"
+"ServerSiliconPkg.Pch.SouthClusterCdf.PchInit"
+"ServerSiliconPkg.Pch.SouthClusterCdf.PchSmiDispatcher"
+"ServerSiliconPkg.Pch.SouthClusterCdf.Smbus"
+"ServerSiliconPkg.Pch.SouthClusterCdf.SmbusDma"
+"ServerSiliconPkg.Pch.SouthClusterCdf.Spi"
+<endComponent>

@@ -1,0 +1,12 @@
+<component>
+    name = "PchInit"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\PchInit\"
+    RefName = "ClientOneSiliconPkg.Pch.PchInit"
+[INF]
+[files]
+"PchInit.sdl"	
+[parts]
+"ClientOneSiliconPkg.Pch.PchInit.Dxe"
+"ClientOneSiliconPkg.Pch.PchInit.Smm"
+<endComponent>

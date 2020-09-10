@@ -1,0 +1,12 @@
+<component>
+	name = "Sgx"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSecurityPkg\Sgx\"
+	RefName = "ServerSecurityPkg.Sgx"
+[INF]
+"SgxEarlyInit\SPR\SgxEarlyInit.inf"
+"SgxLateInit\SPR\SgxLateInit.inf"
+[files]
+"Sgx.sdl"
+"SgxEarlyInit\SPR\SgxEarlyInit.h"
+<endComponent>

@@ -1,0 +1,21 @@
+<component>
+    name = "Ast2600"
+    category = IO
+    LocalRoot = "AmiModulePkg\IO\Ast2600\"
+    RefName = "Ast2600"
+[INF]
+"Ast2600DxeInit.inf"
+"Ast2600PeiInit.inf"
+"Ast2600PlatformHookSerialPortLib.inf"
+"Ast2600InitDataLib.inf"
+[files]
+"Ast2600.sdl"	
+"Ast2600.mak"	
+"Ast2600InitDataTableFile.txt"	
+"Ast2600.chm"	
+[parts]
+"Ast2600Includes"
+"Ast2600Asl"
+"Ast2600Setup"
+"Ast2600AmiSioCommonLib"
+<endComponent>

@@ -1,0 +1,10 @@
+<component>
+    name = "PeiRstPolicyLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Rst\LibraryPrivate\PeiRstPolicyLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Rst.LibraryPrivate.PeiRstPolicyLib"
+[INF]
+"PeiRstPolicyLibVer1.inf"
+[files]
+"PeiRstPolicyLib.sdl"	
+<endComponent>

@@ -1,0 +1,5 @@
+FILE FREEFORM = 8bd816b2-655f-4c71-9032-c90d72c07c03 {
+            SECTION $(COMPRESSION_SECTION) {
+                SECTION RAW = AmiCrbPkg/EGS_SPS_SINIT_v0_5_4_20200728_EBG_TR_debug_signed.bin
+            }
+}

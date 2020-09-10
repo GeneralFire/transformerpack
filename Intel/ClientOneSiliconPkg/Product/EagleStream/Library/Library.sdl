@@ -1,0 +1,23 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "SiPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiSiPolicyLibEbg"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+INFComponent
+    Name  = "PeiSiPolicyLibEbg"
+    File  = "PeiSiPolicyLib/PeiSiPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+	Token = "ClientOneSiliconPkg_SUPPORT" "=" "1"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"   	
+End
+

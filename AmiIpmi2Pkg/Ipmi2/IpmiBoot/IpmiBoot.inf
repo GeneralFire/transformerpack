@@ -1,0 +1,52 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+
+## @file  IpmiBoot.inf
+#
+#  INF description file for IpmiBoot library.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = IpmiBoot
+  FILE_GUID         = 5B02E5E0-C169-49f9-879A-CE1806F0357A
+  MODULE_TYPE       = DXE_DRIVER
+  VERSION_STRING    = 1.0
+  LIBRARY_CLASS     = NULL
+
+[Sources]
+  IpmiBoot.c
+  IpmiBootBoard.c
+  IpmiBoot.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+  $(ADDITIONAL_IPMI_BOOT_PACKAGES)
+
+[LibraryClasses]
+  DebugLib
+  UefiLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  AmiIpmiBootLib
+
+[Protocols]
+  gEfiDxeIpmiTransportProtocolGuid  #CONSUMES
+  $(ADDITIONAL_IPMI_BOOT_PROTOCOL_GUIDS)
+[Guids]
+  gEfiServerMgmtSetupVariableGuid
+  gEfiIpmiBootGuid
+
+
+

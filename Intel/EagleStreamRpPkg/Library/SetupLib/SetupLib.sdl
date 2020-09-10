@@ -1,0 +1,37 @@
+TOKEN
+    Name  = "SetupLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling SetupLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+	Name  = "DxeSetupLib"
+	File  = "DxeSetupLib.inf"
+	Package  = "SetupLib"
+	ModuleTypes  = "BASE"
+End
+
+INFComponent
+	Name  = "PeiSetupLib"
+	File  = "PeiSetupLib.inf"
+	Package  = "PlatformPkg"
+    ModuleTypes  = "PEIM"	
+    Arch = "IA32"
+End
+
+
+LibraryMapping
+	Class  = "SetupLib"
+	Instance  = "SetupLib.DxeSetupLib"
+End
+
+
+LibraryMapping
+	Class  = "SetupLib"
+	Instance  = "PlatformPkg.PeiSetupLib"
+        Arch = "IA32"
+End
+
+

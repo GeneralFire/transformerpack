@@ -1,0 +1,8 @@
+<component>
+    name = "PchPcieRp"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\PcieRp\PchPcieRp\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.PcieRp.PchPcieRp"
+[files]
+"PchPcieRpConfig.h"	
+<endComponent>

@@ -1,0 +1,14 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.LibraryPrivate"
+[INF]
+"PeiDxeHeciInitLib\PeiDxeHeciInitLibVer3.inf"
+"PeiMeInitLib\PeiMeInitLibVer3.inf"
+"PeiMeEnhancedDebugLibNull\PeiMeEnhancedDebugLibNull.inf"
+[files]
+"LibraryPrivate.sdl"	
+"PeiDxeHeciInitLib\HeciCore.h"
+"PeiDxeHeciInitLib\HeciHpet.h"
+<endComponent>

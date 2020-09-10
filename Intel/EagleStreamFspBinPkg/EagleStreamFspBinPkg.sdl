@@ -1,0 +1,75 @@
+TOKEN
+    Name  = "EagleStreamFspBinPkg_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable EagleStreamFspBinPkg in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes    
+End
+
+PATH
+    Name  = "FSP_BIN_PKG_DIR"
+End
+
+TOKEN
+    Name = "FSP_BINARY_NAME"
+    Value = "Release$(PATH_SLASH)Fsp.fd"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "DEBUG_MODE" "=" "0"
+End
+
+TOKEN
+    Name = "FSP_BINARY_NAME"
+    Value = "Debug$(PATH_SLASH)Fsp.fd"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "DEBUG_MODE" "=" "1"
+End
+
+TOKEN
+    Name = "FSP_BUILD_TYPE"
+    Value = "0x0001"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "DEBUG_MODE" "=" "0"    
+End
+
+TOKEN
+    Name = "FSP_RELEASE_TYPE"
+    Value = "0x0002"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "DEBUG_MODE" "=" "0"    
+End
+
+TOKEN
+    Name = "FSP_BUILD_TYPE"
+    Value = "0x0000"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "DEBUG_MODE" "=" "1"    
+End
+
+TOKEN
+    Name = "FSP_RELEASE_TYPE"
+    Value = "0x0000"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "DEBUG_MODE" "=" "1"    
+End
+
+TOKEN
+    Name = "FSP_IMG_REV"
+    Value = "0x100"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name = "FSP_IMG_REV_BUILD_NUM"
+    Value = "0x77"
+    TokenType = Expression
+    TargetMAK = Yes
+End

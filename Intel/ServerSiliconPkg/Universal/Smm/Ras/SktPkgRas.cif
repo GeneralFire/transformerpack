@@ -1,0 +1,22 @@
+<component>
+	name = "SktPkgRas"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Universal\Smm\Ras\"
+	RefName = "ServerSiliconPkg.Universal.Smm.SktPkgRas"
+[INF]
+"IioRas\IioRas.inf"
+"KtiRas\KtiRas10nm.inf"
+"CpuRas\CpuRas.inf"
+"CpuHotAdd\CpuHotAdd.inf"
+"QuiesceSupport\QuiesceSupport.inf"
+[files]
+"SktPkgRas.sdl"
+"QuiesceSupport\QuiesceSupport.h"
+"QuiesceSupport\QuiesceMain.h"
+"CpuRas\PlatformHooks.h"
+"CpuRas\CpuRas.h"
+"CpuHotAdd\X64\ArchSpecificDef.h"
+"KtiRas\10nm\KtiRasMain.h"
+"KtiRas\KtiRas.h"
+"KtiRas\KtiRasSupport.h"
+<endComponent>

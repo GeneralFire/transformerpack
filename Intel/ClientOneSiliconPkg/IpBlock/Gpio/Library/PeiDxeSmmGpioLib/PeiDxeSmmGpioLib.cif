@@ -1,0 +1,11 @@
+<component>
+    name = "PeiDxeSmmGpioLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Gpio\Library\PeiDxeSmmGpioLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Gpio.Library.PeiDxeSmmGpioLib"
+[INF]
+"PeiDxeSmmGpioLib.inf"
+[files]
+"GpioLibrary.h"	
+"PeiDxeSmmGpioLib.sdl"	
+<endComponent>

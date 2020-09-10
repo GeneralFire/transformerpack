@@ -1,0 +1,16 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\Include\"
+    RefName = "ServerSiliconPkg.Me.MeSps6.Include"
+[files]
+"DualBiosMsgs.h"	
+"MeAccess.h"			
+"Sps.h"	
+[parts]
+"ServerSiliconPkg.Me.MeSps6.Include.Guid"
+"ServerSiliconPkg.Me.MeSps6.Include.Library"
+"ServerSiliconPkg.Me.MeSps6.Include.Ppi"
+"ServerSiliconPkg.Me.MeSps6.Include.Private"
+"ServerSiliconPkg.Me.MeSps6.Include.Protocol"
+<endComponent>

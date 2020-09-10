@@ -1,0 +1,189 @@
+## @file
+# ProcMemInit LIBRARY
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2009 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ProcMemInitCommon
+  FILE_GUID                      = 11777581-2B67-4075-8EB4-F691A47ECEC7
+  MODULE_TYPE                    = BASE
+  LIBRARY_CLASS                  = ProcMemInitLib | PEIM DXE_DRIVER DXE_SMM_DRIVER
+
+[Sources.ia32]
+  Chip/Common/PublishHobs.c
+  Chip/Common/MrcThermalHob.c
+
+[Sources.x64]
+  Chip/Common/ProcMemInitServicesX64.c
+
+[Sources]
+## Chip/Common
+  Chip/Common/MrcHooksChipServicesPpiInstall.c
+  Chip/Common/PrintfChip.c
+  Chip/Common/ScratchPadReg.c
+  Chip/Common/PostMemoryInit.c
+  Chip/Common/InitializeMemoryData.c
+
+## Chip/Mem
+
+  Chip/Mem/MrcSsaServicesChip.c
+
+## Platform/Setup
+  Chip/Include/CpuPciAccess.h
+
+[Packages]
+  CpRcPkg/CpRcPkg.dec
+  MdePkg/MdePkg.dec
+  IntelFsp2Pkg/IntelFsp2Pkg.dec
+  # APTIOV_SERVER_OVERRIDE_RC_START : Added for AmiMrcWrapperHooksLib
+  ServerPlatformPkg/PlatformPkg.dec
+  # APTIOV_SERVER_OVERRIDE_RC_END : Added for AmiMrcWrapperHooksLib
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses.Ia32]
+  PeimEntryPoint
+  PeiIioInitLib
+  CpuInitLib
+  SystemInfoLib
+  PeiServicesLib
+  MemoryInstallLib
+  FpgaConfigurationLib
+
+[LibraryClasses]
+  MemRcLib
+  BaseMemoryCoreLib
+  ProcMemInitChip
+  DebugLib
+  HobLib
+  TimerLib
+  IoLib
+  PciLib
+  UsraLib
+  MemoryEvContentLib
+  RcMemAllocLib
+  MemFmcIpLib
+  MemMcIpLib
+  ChaIpLib
+  Mesh2MemIpLib
+  ProcSmbIpLib
+  SysHostPointerLib
+  EmulationConfigurationLib
+  SystemInfoLib
+  UncoreLib
+  UsraCsrLib
+  KtiApiLib
+  UpiHostDataLib
+  PcuMailBoxLib
+  IoAccessLib
+  MspChipLib
+  CteNetLib
+  DebugPrintErrorLevelLib
+  CsrSbPortIdLib
+  SiliconWorkaroundLib
+  PreSiliconEnvDetectLib
+  CsrAccessLib
+  # APTIOV_SERVER_OVERRIDE_RC_START
+  AmiMrcHooksWrapperLib
+  # APTIOV_SERVER_OVERRIDE_RC_END
+  MemTypeLib
+  MemMapDataLib
+  CpuAndRevisionLib
+  MemPopulationPorLib
+  MemDecodeLib
+  SpdDecodeLib
+  BasicIpBlockServicesLib
+  MeUmaLib
+
+[LibraryClasses.X64]
+  UefiLib
+
+[Guids]
+  gEfiMemoryConfigDataGuid
+  gEfiMemoryConfigDataHobGuid
+  gEfiMemoryMapGuid
+  gEfiMemoryTypeInformationGuid
+  gEfiPlatformTxtDeviceMemoryGuid
+  gEfiHobListGuid
+  gBiosSsaVariablesGuid
+  gBiosSsaResultsGuid
+  gEfiPlatformInfoGuid
+  gEfiRasHostGuid
+  gSystemInfoVarHobGuid
+  gIioSiPolicyHobGuid
+  gMrcThermalHobGuid
+
+[Ppis]
+  gPeiBaseMemoryTestPpiGuid
+  gPeiPlatformMemorySizePpiGuid
+  gPeiTxtScleanPpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gSsaBiosServicesPpiGuid
+  gMrcHooksChipServicesPpiGuid    ## PRODUCES
+  gEfiSiliconRcHobsReadyPpi
+  gMrcPlatformHooksInterfaceGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+
+[Pcd]
+  gIntelFsp2PkgTokenSpaceGuid.PcdTemporaryRamBase
+  gIntelFsp2PkgTokenSpaceGuid.PcdTemporaryRamSize
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel
+  gEfiCpRcPkgTokenSpaceGuid.PcdCteBuild
+  gSiPkgTokenSpaceGuid.PcdUseNvdimmFwInterface
+  gEfiCpRcPkgTokenSpaceGuid.EnableBacksideRmt
+  gEfiCpRcPkgTokenSpaceGuid.EnableBacksideCmdRmt
+  gEfiCpRcPkgTokenSpaceGuid.RmtPatternLengthCmd
+  gEfiCpRcPkgTokenSpaceGuid.RmtPatternLengthExtCmdCtlVref
+  gEfiCpRcPkgTokenSpaceGuid.PcdEnableNgnBcomMargining
+  gEfiCpRcPkgTokenSpaceGuid.PerBitMargin
+  gEfiCpRcPkgTokenSpaceGuid.PcdNvDimmEn
+  gEfiCpRcPkgTokenSpaceGuid.PcdDisableSimSlaveThread
+  gEfiCpRcPkgTokenSpaceGuid.PcdDprSizeFeatureSupport
+  gEfiCpRcPkgTokenSpaceGuid.PcdDprMemSize
+  gEfiCpRcPkgTokenSpaceGuid.PcdLtMemSize
+  gEfiCpRcPkgTokenSpaceGuid.PcdSyshostMemoryAddress
+  gEfiCpRcPkgTokenSpaceGuid.PcdMemMapHostMemoryAddress
+  gPlatformTokenSpaceGuid.PcdPlatformType
+  gPlatformTokenSpaceGuid.PcdDfxAdvDebugJumper
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuThreadCount
+  gEfiCpRcPkgTokenSpaceGuid.SaveBuiltInRmtResultToBdat
+  gEfiCpRcPkgTokenSpaceGuid.PcdMemBootSignalsToTest
+  gEfiCpRcPkgTokenSpaceGuid.PcdRoundTripBufferDelayDclk
+
+[PcdEx]
+  gReferenceCodePolicyTokenSpaceGuid.PcdDfxRstCplBitsEn
+  gReferenceCodePolicyTokenSpaceGuid.PcdEvMode
+
+[BuildOptions.Ia32]
+  MSFT:*_*_*_CC_FLAGS     = /GF

@@ -1,0 +1,10 @@
+<component>
+	name = "Upi"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Upi\"
+	RefName = "ServerSiliconPkg.Upi"
+[files]
+"Upi.sdl"	
+[parts]
+"ServerSiliconPkg.Upi.Library"
+<endComponent>

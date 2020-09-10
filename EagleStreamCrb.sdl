@@ -1,0 +1,1218 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#***********************************************************************
+#<AMI_FHDR_START>
+#
+# Name:  <EagleStreamCrb.sdl>
+#
+# Description:     
+#
+#<AMI_FHDR_END>
+#***********************************************************************
+
+MODULE
+    File  = "EagleStreamCrb.mak"
+End
+
+TOKEN
+    Name  = "PROJECT_MAJOR_VERSION"
+    Value  = "0"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "PROJECT_MINOR_VERSION"
+    Value  = "10"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "PLATFORM_TYPE"
+    Value  = "0"
+    Help  = "Select EagleStream platform type. 2S:0 (ArcherCity) 4S:1() "
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    TargetFDF = Yes
+End
+
+TOKEN
+    Name  = "RC_REVISION_VALUE"
+    Value  = 'L"40.D08"'
+    Help  = "Intel RC Version for the Project"
+    TokenType = Expression
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "OUTPUT_DIRECTORY"
+    Value  = "Build\$(PLATFORM_NAME)"
+    TokenType = Expression
+    TargetMAK = Yes
+    TargetDSC = Yes
+End
+
+TOKEN
+    Name  = "BIOS_TAG"
+    Value  = "$(PROJECT_TAG)$(PROJECT_MAJOR_VERSION)$(PROJECT_MINOR_VERSION)"
+    Help  = "BIOS Tag inserted into Firmware ID structure.\9 characters. \5 characters of project tag followed by 3 characters of project version and terminating zero"
+    TokenType = Expression
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "DEBUG_MODE"
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "LZMA_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetFDF = Yes
+End
+
+TOKEN
+    Name  = "OPTIMIZATION"
+    Value  = "1"
+    Help  = "Enables/disables C compiler optimization."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "DEBUG_MODE" "=" "1"
+End
+
+#This is not defined clearly in Intel source but will given through build options.
+#Set default value of Max Socket to 4 
+TOKEN
+    Name  = "MAX_SOCKET"
+    Value  = "4"
+    Help  = "MAX_SOCKET_CHOICE = 1;4;8"
+    TokenType = Integer
+    TargetMAK = Yes
+End
+
+#library mapping for multiple instances - start
+LibraryMapping
+    Class  = "PeiPchDmiLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchDmiLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1" 
+End
+#library mapping for multiple instances - start
+
+#library mapping needed for both FSP & Non_FSP- start
+LibraryMapping
+    Class  = "PciLib"
+    Instance  = "MdePkg.BasePciLibCf8"
+    Override  = "AmiModulePkg.StatusCodePei"
+End
+
+LibraryMapping
+    Class  = "PciLib"
+    Instance  = "MdePkg.BasePciLibCf8"
+    Override  = "MdeModulePkg.PeiMain"
+End
+
+INFComponent
+    Name  = "PeiMpInitLib"
+    File  = "Library/MpInitLib/PeiMpInitLib.inf"
+    Package  = "UefiCpuPkg"
+    ModuleTypes  = "PEIM"
+    Path  = "UEFI_CPU_PKG_DIR"
+End
+
+LibraryMapping
+    Class  = "MpInitLib"
+    Instance  = "UefiCpuPkg.PeiMpInitLib"
+    Arch  = "IA32 X64"
+    ModuleTypes  = "PEI_CORE PEIM"
+End
+
+INFComponent
+    Name  = "BaseDebugLibNull"
+    File  = "Library\BaseDebugLibNull\BaseDebugLibNull.inf"
+    Package  = "MdePkg"
+    Path  = "MDEPKG_DIR"           
+End
+
+INFComponent
+    Name  = "BaseUefiTianoDecompressLib"
+    File  = "IntelFrameworkModulePkg\Library\BaseUefiTianoCustomDecompressLib\BaseUefiTianoCustomDecompressLib.inf"
+    Package  = "IntelFrameworkModulePkg"
+End
+
+LibraryMapping
+    Class  = "UefiDecompressLib"
+    Instance  = "IntelFrameworkModulePkg.BaseUefiTianoDecompressLib"
+End
+
+LibraryMapping
+    Class  = "DebugLib"
+    Instance  = "MdePkg.BaseDebugLibNull"
+    Override  = "MdeModulePkg.DxeIpl"
+End
+
+# Add support for CpuFeaturesPei
+INFComponent
+    Name  = "PeiRegisterCpuFeaturesLib"
+    File  = "Library/RegisterCpuFeaturesLib/PeiRegisterCpuFeaturesLib.inf"
+    Package  = "UefiCpuPkg"
+    ModuleTypes  = "PEIM"
+    Path  = "UEFI_CPU_PKG_DIR"
+End
+
+LibraryMapping
+    Class  = "RegisterCpuFeaturesLib"
+    Instance  = "UefiCpuPkg.PeiRegisterCpuFeaturesLib"
+    Override = "UefiCpuPkg.CpuFeaturesPei"
+End
+
+INFComponent
+    Name  = "CpuCommonFeaturesLib"
+    File  = "Library/CpuCommonFeaturesLib/CpuCommonFeaturesLib.inf"
+    Package  = "UefiCpuPkg"
+    ModuleTypes  = "BASE"
+    Path  = "UEFI_CPU_PKG_DIR"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "UefiCpuPkg.CpuCommonFeaturesLib"
+    Override  = "UefiCpuPkg.CpuFeaturesPei"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "ServerSiliconPkg.CpuSpecificFeaturesLibPei"
+    Override  = "UefiCpuPkg.CpuFeaturesPei"
+End
+
+LibraryMapping
+    Class  = "DebugLib"
+    Instance  = "MdePkg.BaseDebugLibSerialPort"
+    Override  = "UefiCpuPkg.CpuFeaturesPei"
+End
+
+INFComponent
+    Name  = "CmosAccessLib"
+    File  = "AmiCrbPkg/Library/CmosAccessLib/CmosAccessLib.inf"
+    Package  = "AmiCrbPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "CmosAccessLib"
+    Instance  = "AmiCrbPkg.CmosAccessLib"
+End
+#library mapping needed for both FSP & Non_FSP- End
+
+INFComponent
+    Name  = "PcatSingleSegmentPciCfg2Pei"
+    File  = "PcatSingleSegmentPciCfg2Pei.inf"
+    Package  = "MdeModulePkg"
+    ModuleTypes  = "PEIM"
+    Disable = Yes    
+    Token = "PCI_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "FSP_SUPPORT_IN_BIOS"
+    Value = "0"
+    Help = "Main switch to enable FSP SUPPORT in bios"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "EagleStreamFspPkg_SUPPORT" "=" "0"
+End
+
+TOKEN
+    Name = "FSP_SUPPORT_IN_BIOS"
+    Value = "1"
+    Help = "Main switch to enable FSP SUPPORT in bios"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "EagleStreamFspPkg_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "FSP_SUPPORT_IN_BIOS"
+    Value  = "0"
+    Help  = "Main switch to enable FSP_SUPPORT in bios. Disable it for FSP source Build"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "BUILD_FSP_BINARY" "=" "1"    
+End
+
+TOKEN
+    Name  = "PCI_ENUMERATION_LIGHT"
+    Value  = "0"
+    Help  = "A switch to enable PciBus Driver boot in Light weight(No SDL Data) Mode when using third party PCI Host Bridge drivers. Recommended to use this token during Platform Power-On time frame"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+
+PcdMapping 
+    Name = "AmiPcdRuntimeServicesCodePages"
+    GuidSpace = "gAmiModulePkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    DataType = "UINT32"
+    Value = "0x1F0"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping 
+    Name = "AmiPcdRuntimeServicesDataPages"
+    GuidSpace = "gAmiModulePkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    DataType = "UINT32"
+    Value = "0x2300"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping 
+    Name = "AmiPcdAcpiMemoryNvsPages"
+    GuidSpace = "gAmiModulePkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    DataType = "UINT32"
+    Value = "0xA30"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+    Help  = "EFI_RESET_TYPE when TSE issues reset"
+End
+
+PcdMapping 
+    Name = "AmiPcdAcpiReclaimMemoryPages"
+    GuidSpace = "gAmiModulePkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    DataType = "UINT32"
+    Value = "0x900"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping 
+    Name = "AmiPcdReservedMemoryTypePages"
+    GuidSpace = "gAmiModulePkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    DataType = "UINT32"
+    Value = "0x2100"
+    Arch  = "X64"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping 
+    Name = "AmiPcdBootServicesCodePages"
+    GuidSpace = "gAmiModulePkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    DataType = "UINT32"
+    Value = "0xC00"
+    Arch  = "X64"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping 
+    Name = "AmiPcdBootServicesDataPages"
+    GuidSpace = "gAmiModulePkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    DataType = "UINT32"
+    Value = "0x9000"
+    Arch  = "X64"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+End
+
+
+
+#LOG_MISMATCH
+ELINK
+    Name  = "SerialOutput,"
+    Parent  = "PeiReportStringStatus"
+    Help  = "Serial port string status code"
+    Token = "SERIAL_STATUS_SUPPORT" "=" "1"
+    Token = "PeiExStatusCodeHandler_SUPPORT" "=" "1"
+    Disable = "Yes"
+    InvokeOrder = AfterParent
+End
+
+FFS_FILE
+    Name  = "StatusCodePei"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "AmiModulePkg.StatusCodePei"
+    Apriori_Index  = "0"
+    Token = "PeiExStatusCodeHandler_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "ExStatusCodeHandlerPei"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "ServerPlatformPkg.ExStatusCodeHandlerPei"
+    Apriori_Index  = "0"
+    Token = "PeiExStatusCodeHandler_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "AST2600PeiInit"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "AmiModulePkg.AST2600PeiInit"
+    Apriori_Index  = "0"
+    Token = "PeiExStatusCodeHandler_SUPPORT" "=" "1"
+    Token = "AST2600_SUPPORT" "=" "1"
+End
+#LOG_MISMATCH
+
+TOKEN
+    Name  = "CrowPass_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable CrowPass support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+End
+
+#Filename: EGSAC_Full_TRANSFORMERS_Boot_With_SPR_CPU_PCIe_ALL_Simple.xml
+TOKEN
+    Name  = "FITC_NM_FILE_NAME"
+    Value  = "EGSAC_Full_TRANSFORMERS_Boot_With_SPR_CPU"
+    Help  = "This token describes the input filename for Node Manager to SPSfitc.exe if Platform Type is Wilsoncity. Do not fill any value if Node Manager support is not Present"
+    TokenType = Expression
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "PLATFORM_TYPE" "=" "0"
+End
+
+##ACPI
+TOKEN
+        Name  = "A_S3"
+        Value  = "0"
+        Help  = "S3 supported"
+        TokenType = Boolean
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+    Name  = "S3SaveDxe_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable Edk2S3SaveDxe support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Token = "A_S3" "=" "0"
+End
+
+PcdMapping
+    Name  = "PcdAcpiS3Enable"
+    GuidSpace  = "gEfiMdeModulePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "TRUE"
+    Arch  = "X64"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+    Token = "A_S3" "=" "1"
+End
+
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiS3Enable|FALSE|BOOLEAN|0x01100000
+PcdMapping
+    Name  = "PcdAcpiS3Enable"
+    GuidSpace  = "gEfiMdeModulePkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "FALSE"
+    Arch  = "X64"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+    Token = "A_S3" "=" "0"
+End
+
+##PCI DEVICE
+PCIDEVICE
+    Title  = "Video Bridge"
+    Parent  = "PCIE PCH Root Port #6"
+    Attribute  = "0x0"
+    Dev_type  = "Pci2PciBridge"
+    Dev  = 00h
+    Fun  = 00h
+    ASLdeviceName  = "VB00"
+    IntA =  LNKB; 17
+    IntB =  LNKC; 18
+    IntC =  LNKD; 19
+    IntD =  LNKA; 16
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+End
+
+PCIDEVICE
+    Title  = "PCIe x1 M.2 On PCIE PCH Root Port #8"
+    Parent  = "PCIE PCH Root Port #8"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 07h
+    SleepNum  = 00h
+    ASLdeviceName  = "PCM2"
+    IntA =     LNKC; 18
+    IntB =     LNKD; 19
+    IntC =     LNKA; 16
+    IntD =     LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+End
+
+PCIDEVICE
+    Title  = "On Board Video"
+    Parent  = "Video Bridge"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName = "OVDL"
+    ROMFile  = "AmiCrbPkg\ASTVBIOS_18.ROM"
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    OptionROM = Yes
+    ROMMain = No
+    PCIExpress = Yes
+    LegacyRom = Yes
+    FFSFileName  = "ROM Storage"
+    ROMSectionGuid  = "577dc59e-5260-4783-bf52-7301ec9d6be5"
+    Token = "AST2600_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+    Title  = "UEFI Video"
+    Parent  = "Video Bridge"
+    Attribute  = "0x0"
+    Dev_type  = "Container"
+    Dev  = 00h
+    Fun  = 00h
+    SleepNum  = 01h
+    ASLdeviceName = "OVDU"
+    ROMFile  = "AmiCrbPkg\ASPEEDGraphicsDxe_v8.efi"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    OptionROM = Yes
+    ROMMain = No
+    Virtual = Yes
+    UefiRom = Yes
+    FFSFileName  = "ROM Storage"
+    ROMSectionGuid  = "794e15d9-bf1b-4568-99ac-dce207c022e4"
+    Token = "AST2600_SUPPORT" "=" "1"
+End
+
+#Transformers_JK006+++>>
+PCIDEVICE
+    Title  = "PCIe x16 OCP3.0 Mezz On PCI Express Port A on PC01"
+    Parent  = "PCI Express Port A on PC01"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 01h
+    ASLdeviceName  = "SL01"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+End
+
+PCIDEVICE
+    Title  = "PCIe x16 PCIe Adapter Riser 2 On PCI Express Port A on PC02"
+    Parent  = "PCI Express Port A on PC02"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 02h
+    ASLdeviceName  = "SL02"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+End
+
+PCIDEVICE
+    Title  = "PCIe x16 PCIe Adapter Riser 1 On PCI Express Port A on PC03"
+    Parent  = "PCI Express Port A on PC03"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 03h
+    ASLdeviceName  = "SL03"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+End
+
+PCIDEVICE
+    Title  = "PCIe x8 CPU0 Slimline 1 On PCI Express Port A on PC04"
+    Parent  = "PCI Express Port A on PC04"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 04h
+    ASLdeviceName  = "SL04"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+End
+
+PCIDEVICE
+    Title  = "PCIe x8 CPU0 Slimline 2 On PCI Express Port E on PC04" #Transformers_JK008***
+    Parent  = "PCI Express Port E on PC04" #Transformers_JK008***
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 05h
+    ASLdeviceName  = "SL05"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+End
+
+PCIDEVICE
+    Title  = "PCIe x4 EDSFF 1 On PCI Express Port A on PC11"
+    Parent  = "PCI Express Port A on PC11"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 06h
+    ASLdeviceName  = "SL06"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCIe x4 EDSFF 2 On PCI Express Port C on PC11" #Transformers_JK008***
+    Parent  = "PCI Express Port C on PC11" #Transformers_JK008***
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 07h
+    ASLdeviceName  = "SL07"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCIe x4 EDSFF 3 On PCI Express Port E on PC11" #Transformers_JK008***
+    Parent  = "PCI Express Port E on PC11" #Transformers_JK008***
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 08h
+    ASLdeviceName  = "SL08"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCIe x4 EDSFF 4 On PCI Express Port G on PC11" #Transformers_JK008***
+    Parent  = "PCI Express Port G on PC11" #Transformers_JK008***
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 09h
+    ASLdeviceName  = "SL09"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCIe x32 PCIe Adapter Riser 3-1 On PCI Express Port A on PC12"
+    Parent  = "PCI Express Port A on PC12"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Ah
+    ASLdeviceName  = "SL10"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCIe x32 PCIe Adapter Riser 3-2 On PCI Express Port A on PC13"
+    Parent  = "PCI Express Port A on PC13"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Bh
+    ASLdeviceName  = "SL11"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCIe x8 CPU1 Slimline 1 On PCI Express Port A on PC15"
+    Parent  = "PCI Express Port A on PC15"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Ch
+    ASLdeviceName  = "SL12"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCIe x8 CPU1 Slimline 2 On PCI Express Port E on PC15" #Transformers_JK008***
+    Parent  = "PCI Express Port E on PC15" #Transformers_JK008***
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Dh
+    ASLdeviceName  = "SL13"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+#Transformers_JK006+++<<
+#Transformers_JK002+++<<
+
+
+##DISABLE NON USED PCI DEVICE TITLE FROM ARCHERCITY.SDL
+#Transformers_JK006+++>>
+PCIDEVICE
+    Title  = "PCI Express Slot 1 on 1A on PC01"
+    Parent  = "PCI Express Port A on PC01"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 01h
+    ASLdeviceName  = "SL01"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 2 on A on PC02"
+    Parent  = "PCI Express Port A on PC02"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 02h
+    ASLdeviceName  = "SL02"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 3 on A on PC03"
+    Parent  = "PCI Express Port A on PC03"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 03h
+    ASLdeviceName  = "SL03"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 4 on A on PC04"
+    Parent  = "PCI Express Port A on PC04"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 04h
+    ASLdeviceName  = "SL04"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 5 on C on PC04"
+    Parent  = "PCI Express Port C on PC04"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 05h
+    ASLdeviceName  = "SL05"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 6 on E on PC04"
+    Parent  = "PCI Express Port E on PC04"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 06h
+    ASLdeviceName  = "SL06"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 7 on G on PC04"
+    Parent  = "PCI Express Port G on PC04"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 07h
+    ASLdeviceName  = "SL07"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 8 on A on PC05"
+    Parent  = "PCI Express Port A on PC05"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 08h
+    ASLdeviceName  = "SL08"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 9 on C on PC05"
+    Parent  = "PCI Express Port C on PC05"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 09h
+    ASLdeviceName  = "SL09"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 10 on E on PC05"
+    Parent  = "PCI Express Port E on PC05"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Ah
+    ASLdeviceName  = "SL10"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 11 on G on PC05"
+    Parent  = "PCI Express Port G on PC05"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Bh
+    ASLdeviceName  = "SL11"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+End
+
+## SOCKET 1 IIO - IOU PCIe Slots
+PCIDEVICE
+    Title  = "PCI Express Slot 12 on 1A on PC11"
+    Parent  = "PCI Express Port A on PC11"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Ch
+    ASLdeviceName  = "SL12"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 13 on A on PC12"
+    Parent  = "PCI Express Port A on PC12"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Dh
+    ASLdeviceName  = "SL13"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 14 on A on PC13"
+    Parent  = "PCI Express Port A on PC13"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Eh
+    ASLdeviceName  = "SL14"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+
+PCIDEVICE
+    Title  = "PCI Express Slot 15 on A on PC14"
+    Parent  = "PCI Express Port A on PC14"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 0Fh
+    ASLdeviceName  = "SL15"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 16 on C on PC14"
+    Parent  = "PCI Express Port C on PC14"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 10h
+    ASLdeviceName  = "SL16"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 17 on E on PC14"
+    Parent  = "PCI Express Port E on PC14"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 11h
+    ASLdeviceName  = "SL17"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 18 on G on PC14"
+    Parent  = "PCI Express Port G on PC14"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 012h
+    ASLdeviceName  = "SL18"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 19 on A on PC15"
+    Parent  = "PCI Express Port A on PC15"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 13h
+    ASLdeviceName  = "SL19"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 20 on C on PC15"
+    Parent  = "PCI Express Port C on PC15"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 14h
+    ASLdeviceName  = "SL20"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 21 on E on PC15"
+    Parent  = "PCI Express Port E on PC15"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 15h
+    ASLdeviceName  = "SL21"
+    SleepNum  = 00h
+    IntA =  LNKA; 16
+    IntB =  LNKB; 17
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+PCIDEVICE
+    Title  = "PCI Express Slot 22 on G on PC15"
+    Parent  = "PCI Express Port G on PC15"
+    Attribute  = "0x0"
+    Dev_type  = "PciDevice"
+    Dev  = 00h
+    Slot  = 16h
+    ASLdeviceName  = "SL22"
+    SleepNum  = 00h
+    IntC =  LNKC; 18
+    IntD =  LNKD; 19
+    DeviceType = Slot
+    PCIBusSize = 32bit
+    ROMMain = No
+    PCIExpress = Yes
+    Disable = Yes
+    Token = "MAX_SOCKET" ">" "1"
+End
+
+TOKEN
+    Name  = "LOAD_DEFAULTS_ON_CMOS_CLEAR"
+    Value  = "1"
+    Help  = "Project level control to enable or disable loading setup defaults when CMOS is cleared."
+    TokenType = Boolean
+    TargetH = Yes
+End

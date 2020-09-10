@@ -1,0 +1,57 @@
+TOKEN
+    Name  = "SpsTool_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling SpsTool support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Token = "WORKSTATION_SUPPORT" "=" "0"
+End
+
+PATH
+    Name = "FTOOL_DIR"
+    Path = "Intel/EagleStreamRpPkg/Tool/FTool/SPS"
+End
+
+PATH
+    Name = "FITC_XML_DIR"
+    Path = "Intel/EagleStreamRpPkg/Tool/FTool/SPS/Config"
+End
+
+#PATH
+#    Name = "FITC_PTU_DIR"
+#    Path = "Intel/EagleStreamRpPkg/Tool/FTool/SPS/PTU"
+#End
+
+TOKEN
+    Name  = "FITC_FILE_NAME"
+    Value  = "EGSAC_SiEn"
+    Help  = "This token describes the input filename for SPSfitc.exe if Platform Type is Wilsoncity"
+    TokenType = Expression
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "PLATFORM_TYPE" "=" "0"
+End
+
+TOKEN
+    Name  = "FITC_NM_FILE_NAME"
+    Value  = "EGSAC_Full"
+    Help  = "This token describes the input filename for Node Manager to SPSfitc.exe if Platform Type is Wilsoncity. Do not fill any value if Node Manager support is not Present"
+    TokenType = Expression
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "PLATFORM_TYPE" "=" "0"
+End
+
+TOKEN
+    Name  = "GBE_NVM_BIN"
+    Value  = "GBE$(PATH_SLASH)n9_ebg_lp_lm_non_lan_sw_0.1.bin"
+    Help  = "GBE NVM Binary "
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+#ELINK
+#    Name  = "$(OemCert_DIR)$(PATH_SLASH)Whitley_SpsNMPTU_root.cer"
+#    Parent = "CertList_db"
+#    InvokeOrder = AfterParent
+#End

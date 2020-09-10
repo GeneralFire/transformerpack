@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Gbe\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Gbe.Library"
+[INF]
+"PeiDxeSmmGbeLib\PeiDxeSmmGbeLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

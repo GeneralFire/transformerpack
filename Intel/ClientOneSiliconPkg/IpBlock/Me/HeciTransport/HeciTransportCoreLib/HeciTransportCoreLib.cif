@@ -1,0 +1,11 @@
+<component>
+    name = "HeciTransportCoreLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\HeciTransport\HeciTransportCoreLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.HeciTransport.HeciTransportCoreLib"
+[INF]
+"HeciTransportCoreLib.inf"
+[files]
+"HeciTransportCore.h"	
+"HeciTransportCoreLib.sdl"	
+<endComponent>

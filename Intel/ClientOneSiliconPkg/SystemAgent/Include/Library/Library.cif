@@ -1,0 +1,11 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\SystemAgent\Include\Library\"
+    RefName = "ClientOneSiliconPkg.SystemAgent.Include.Library"
+[files]
+"DxeSaPolicyLib.h"		
+"PeiMemPolicyLib.h"	
+"PeiSaPolicyLib.h"	
+"SaPlatformLib.h"	
+<endComponent>

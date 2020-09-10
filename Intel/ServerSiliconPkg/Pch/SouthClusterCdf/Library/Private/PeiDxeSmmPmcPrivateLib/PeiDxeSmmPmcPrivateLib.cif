@@ -1,0 +1,13 @@
+<component>
+    name = "PeiDxeSmmPmcPrivateLib"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Pch\SouthClusterCdf\Library\Private\PeiDxeSmmPmcPrivateLib\"
+    RefName = "ServerSiliconPkg.Pch.SouthClusterCdf.Library.Private.PeiDxeSmmPmcPrivateLib"
+[INF]
+"PeiDxeSmmPmcPrivateLibCdf.inf"
+"PeiDxeSmmPmcPrivateLibWithS3.inf"
+"PeiPmcPrivateLibCdf.inf"
+[files]
+"PmcPrivateLibInternal.h"	
+"PeiDxeSmmPmcPrivateLib.sdl"	
+<endComponent>

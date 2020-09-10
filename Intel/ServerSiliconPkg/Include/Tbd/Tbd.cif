@@ -1,0 +1,8 @@
+<component>
+	name = "Tbd"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\Tbd\"
+	RefName = "ServerSiliconPkg.Include.Tbd"
+[files]
+"EfiBootScript.h"	
+<endComponent>

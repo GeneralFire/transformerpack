@@ -1,0 +1,26 @@
+<component>
+	name = "SocketSetup"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Platform\Dxe\SocketSetup\"
+	RefName = "ServerPlatformPkg.Platform.Dxe.SocketSetup"
+[INF]
+"SocketSetup.inf"
+[files]
+"IioDfxSetupSpr.hfr"
+"IioDfxPcieSetupSpr.hfr"
+"IioDfxPciePortSetupSpr.hfr"
+"VariableCommon.hfr"
+"Common.hfr"	
+"SocketSetup.h"	
+"SocketSetup.sdl"	
+"SocketSetup.txt"
+"KtiSetupStringsXAmi.uni"
+"IioSetupStringsXAmi.uni"
+"MemorySetupStringsXAmi.uni"
+"MemoryDfxSetupStringsXAmi.uni"
+"CommonRefCodeStringsXAmi.uni"
+"ProcessorSetupStringsXAmi.uni"
+"PowerManagmentSetupStringsXAmi.uni"
+"MemorySetup.h"
+"HbmSetup.h"	
+<endComponent>

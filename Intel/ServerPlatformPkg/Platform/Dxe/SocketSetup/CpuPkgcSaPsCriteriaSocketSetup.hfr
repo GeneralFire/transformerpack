@@ -1,0 +1,717 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include <ProcessorPpmSetup.h>
+
+      // B2P WRITE_PKGC_SA_PS_CRITERIA Command [19:12] Logical_ip_type
+      oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX],
+        #if ( INDEX == 0)
+          prompt  = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_S0),
+        #endif // INDEX == 0
+        #if ( INDEX == 1)
+          prompt  = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_S1),
+        #endif // INDEX == 1
+        #if ( INDEX == 2)
+          prompt  = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_S2),
+        #endif // INDEX == 2
+        #if ( INDEX == 3)
+          prompt  = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_S3),
+        #endif // INDEX == 3
+        #if ( INDEX == 4)
+          prompt  = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_S4),
+        #endif // INDEX == 4
+        #if ( INDEX == 5)
+          prompt  = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_S5),
+        #endif // INDEX == 5
+        #if ( INDEX == 6)
+          prompt  = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_S6),
+        #endif // INDEX == 6
+        #if ( INDEX == 7)
+          prompt  = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_S7),
+        #endif // INDEX == 7
+          help        = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_HELP),
+        option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_KTI),    value = IP_TYPE_KTI, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_RLINK),  value = IP_TYPE_RLINK, flags = RESET_REQUIRED;
+        //option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_FXR),    value = IP_TYPE_FXR, flags = RESET_REQUIRED;
+        suppressif ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP;
+        option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_MCDDR),  value = IP_TYPE_MCDDR, flags = RESET_REQUIRED;
+        endif;
+        suppressif  ideqval SOCKET_COMMONRC_CONFIGURATION.HbmSku == 0;
+        option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_HBM),    value = IP_TYPE_HBM, flags = RESET_REQUIRED;
+        endif
+        option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_IIO),    value = IP_TYPE_IIO, flags = RESET_REQUIRED;
+        //option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_HQM),    value = IP_TYPE_HQM, flags = RESET_REQUIRED;
+        //option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_NAC),    value = IP_TYPE_NAC, flags = RESET_REQUIRED;
+        //option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_TIP),    value = IP_TYPE_TIP, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_MDFS),   value = IP_TYPE_MDFS, flags = RESET_REQUIRED;
+        //option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_HCX),    value = IP_TYPE_HCX, flags = RESET_REQUIRED;
+        //option text = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_OPTION_DINO),   value = IP_TYPE_DINO, flags = RESET_REQUIRED;
+      endoneof;
+
+      //
+      // Logical_ip_type:  KTI
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_KTI;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaKti[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_KTI),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaKti[INDEX] == IP_DISABLE;
+
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_KTI);
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for KTI
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoKti[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnableLinkInL1Kti[INDEX],
+            prompt      = STRING_TOKEN(STR_LINK_IN_L1),
+            help        = STRING_TOKEN(STR_LINK_IN_L1_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+          endoneof;
+
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  Rlink
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_RLINK;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaRlink[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_RLINK),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaRlink[INDEX] == IP_DISABLE;
+
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_RLINK);
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for Rlink
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoRlink[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnableLinkInL1Rlink[INDEX],
+            prompt      = STRING_TOKEN(STR_LINK_IN_L1),
+            help        = STRING_TOKEN(STR_LINK_IN_L1_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  FXR
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_FXR;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaFxr[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_FXR),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaFxr[INDEX] == IP_DISABLE;
+
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_FXR);
+
+           // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for FXR
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoFxr[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [15:8] BIOS_PKGC_CRITERIA_PS_MASK for FXR
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgcCriteraPsMaskFxr[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [7:0] BIOS_PKGC_ALLOWED_PS_MASK for FXR
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaAllowedPsMaskFxr[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  MCDDR0, 1...
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_MCDDR;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaMcddr[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_MCDDR),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_AUTO),     value = PPM_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaMcddr[INDEX] == IP_DISABLE;
+
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_MCDDR);
+
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpTypeMcddr[INDEX],
+            prompt      = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_MCDDR),
+            help        = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_MCDDR_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = IP_TYPE_MCDDR,
+            maximum  = IP_TYPE_MCDDR_MAX,     // NOTE: 10h-17h: MCDDR0, 1....
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                             // otherwise it will auto-increment with a left/right arrow
+            default = IP_TYPE_MCDDR, defaultstore = MyStandardDefault,
+            default = IP_TYPE_MCDDR, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for MCDDRx
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoMcddr[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgcCriteriaPsOptionMcddr[INDEX],
+            prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_MCDDR_OPTION),
+            help        = STRING_TOKEN(STR_PKGC_CRITERIAL_MCDDR_OPTION_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),   value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_OPTION_1),  value = OPTION_1, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_OPTION_2),  value = OPTION_2, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_OPTION_3),  value = OPTION_3, flags = RESET_REQUIRED;
+          endoneof;
+
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  HBM0, 1...
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_HBM;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaHbm[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_HBM),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaHbm[INDEX] == IP_DISABLE;
+
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_HBM);
+
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpTypeHbm[INDEX],
+            prompt      = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_HBM),
+            help        = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_HBM_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = IP_TYPE_HBM,
+            maximum  = IP_TYPE_HBM_MAX,     // NOTE: 18h-1Fh: HBM0, 1....
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                             // otherwise it will auto-increment with a left/right arrow
+            default = IP_TYPE_HBM, defaultstore = MyStandardDefault,
+            default = IP_TYPE_HBM, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for HBMx
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoHbm[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgcCriteriaPsOptionHbm[INDEX],
+            prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_HBM_OPTION),
+            help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HBM_OPTION_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),   value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_OPTION_1),  value = OPTION_1, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_OPTION_2),  value = OPTION_2, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_OPTION_3),  value = OPTION_3, flags = RESET_REQUIRED;
+          endoneof;
+
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  IIO0, 1...
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_IIO;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaIio[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_IIO),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaIio[INDEX] == IP_DISABLE;
+
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_IIO);
+
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpTypeIio[INDEX],
+            prompt      = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_IIO),
+            help        = STRING_TOKEN(STR_PKGC_LOGICAL_IP_TYPE_IIO_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = IP_TYPE_IIO,
+            maximum  = IP_TYPE_IIO_MAX,     // NOTE: 20h-27h: IIO0, 1....
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                             // otherwise it will auto-increment with a left/right arrow
+            default = IP_TYPE_IIO, defaultstore = MyStandardDefault,
+            default = IP_TYPE_IIO, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for IIOx
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoIio[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnableLinkInL1Iio[INDEX],
+            prompt      = STRING_TOKEN(STR_LINK_IN_L1),
+            help        = STRING_TOKEN(STR_LINK_IN_L1_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+          endoneof;
+
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  HQM
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_HQM;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaHqm[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_HQM),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaHqm[INDEX] == IP_DISABLE;
+
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_HQM);
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for HQM
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoHqm[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [15:8] BIOS_PKGC_CRITERIA_PS_MASK for HQM
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgcCriteraPsMaskHqm[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [7:0] BIOS_PKGC_ALLOWED_PS_MASK for HQM
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaAllowedPsMaskHqm[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  NAC
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_NAC;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaNac[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_NAC),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaNac[INDEX] == IP_DISABLE;
+
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_NAC);
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for NAC
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoNac[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [15:8] BIOS_PKGC_CRITERIA_PS_MASK for NAC
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgcCriteraPsMaskNac[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [7:0] BIOS_PKGC_ALLOWED_PS_MASK for NAC
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaAllowedPsMaskNac[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  TIP
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_TIP;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaTip[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_TIP),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaTip[INDEX] == IP_DISABLE;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for TIP
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_TIP);
+
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoTip[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [15:8] BIOS_PKGC_CRITERIA_PS_MASK for TIP
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgcCriteraPsMaskTip[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [7:0] BIOS_PKGC_ALLOWED_PS_MASK for TIP
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaAllowedPsMaskTip[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  MDFS
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_MDFS;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaMdfs[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_MDFS),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaMdfs[INDEX] == IP_DISABLE;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for MDFS
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_MDFS);
+
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoMdfs[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.AllowLpStateMdfs[INDEX],
+            prompt      = STRING_TOKEN(STR_ALLOW_LP_STATE),
+            help        = STRING_TOKEN(STR_ALLOW_LP_STATE_HELP),
+            option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+          endoneof;
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  HCX
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_HCX;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaHcx[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_HCX),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaHcx[INDEX] == IP_DISABLE;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for HCX
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_HCX);
+
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoHcx[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [15:8] BIOS_PKGC_CRITERIA_PS_MASK for HCX
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgcCriteraPsMaskHcx[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [7:0] BIOS_PKGC_ALLOWED_PS_MASK for HCX
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaAllowedPsMaskHcx[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+        endif;
+      endif;
+
+      //
+      // Logical_ip_type:  DINO
+      //
+      suppressif NOT ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaLogicalIpType[INDEX] == IP_TYPE_DINO;
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        oneof varid     = SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaDino[INDEX],
+          prompt      = STRING_TOKEN(STR_PKGC_CRITERIAL_DINO),
+          help        = STRING_TOKEN(STR_PKGC_CRITERIAL_HELP),
+          option text = STRING_TOKEN(STR_DISABLE),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_ENABLE),   value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+        suppressif ideqval SOCKET_POWERMANAGEMENT_CONFIGURATION.EnablePkgCCriteriaDino[INDEX] == IP_DISABLE;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Command [11:8] instance type for DINO
+          subtitle text = STRING_TOKEN(STR_NULL_STRING);
+          subtitle text = STRING_TOKEN(STR_PKGC_CRITERIAL_DINO);
+
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaInstanceNoDino[INDEX],
+            prompt  = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE),
+            help        = STRING_TOKEN(STR_PKGC_INSTANCE_TYPE_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xF,      //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [15:8] BIOS_PKGC_CRITERIA_PS_MASK for DINO
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgcCriteraPsMaskDino[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_CRITERIA_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+          // B2P WRITE_PKGC_SA_PS_CRITERIA Data  [7:0] BIOS_PKGC_ALLOWED_PS_MASK for DINO
+          numeric varid   = SOCKET_POWERMANAGEMENT_CONFIGURATION.PkgCCriteriaAllowedPsMaskDino[INDEX],
+            prompt  = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK),
+            help    = STRING_TOKEN(STR_BIOS_PKGC_ALLOWED_PS_MASK_HELP),
+            flags    = DISPLAY_UINT_HEX | RESET_REQUIRED,
+            minimum  = 0,
+            maximum  = 0xFF,     //
+            step     = 1,        // Stepping of 0 equates to a manual entering of a value,
+                                 // otherwise it will auto-increment with a left/right arrow
+            default = 0, defaultstore = MyStandardDefault,
+            default = 0, defaultstore = MyManufactureDefault,
+          endnumeric;
+
+        endif;
+      endif;

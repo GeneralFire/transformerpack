@@ -1,0 +1,9 @@
+<component>
+    name = "Platform"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Platform\"
+    RefName = "EagleStreamRpPkg.Platform"
+[parts]
+"EagleStreamRpPkg.Platform.Dxe"
+"EagleStreamRpPkg.Platform.Pei"
+<endComponent>

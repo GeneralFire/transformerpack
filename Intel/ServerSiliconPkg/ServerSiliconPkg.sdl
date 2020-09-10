@@ -1,0 +1,349 @@
+TOKEN
+	Name  = "ServerSiliconPkg_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling ServerSiliconPkg support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+    Name  = "PpmInitializePei"
+    File  = "Cpu\PowerManagement\PpmInitializePei\PpmInitializePei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "IoExpander"
+    File  = "Product\EagleStream\SiInit\Pei\IoExpanderPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "SecurityPolicyLib"
+    File  = "Security/Library/SecurityPolicy/SecurityPolicyLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "SecurityPolicyLib"
+    Instance  = "ServerSiliconPkg.SecurityPolicyLib"
+End
+
+INFComponent
+    Name  = "SipCore3v0"
+    File  = "Security\Ppi\SipCore3v0\SipCore3v0.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "FruCpuFeatureSgx3v0"
+    File  = "Security\Ppi\FruCpuFeatureSgx3v0\FruCpuFeatureSgx3v0.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "SgxDebugLib"
+    File  = "Security\Library\SgxDebugLib\SgxDebugLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "SgxDebugLib"
+    Instance  = "ServerSiliconPkg.SgxDebugLib"
+End
+
+#AMIDEBUG
+#PcdMapping
+#    Name  = "PcdEfiGcdAllocateType"
+#    GuidSpace  = "gSiPkgTokenSpaceGuid"
+#    PcdType  = "PcdsFixedAtBuild"
+#    Value  = "0x04"
+#    Arch  = "common"
+#    Offset  = 00h
+#    Length  = 00h
+#    TargetDSC = Yes
+#End
+
+############## Build Options from MrcCommonConfig.dsc start #################################
+TOKEN
+    Name  = "HBM_ENABLE"
+    Value  = "1"
+    Help  = "Switch for Enabling HBM support in the project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "CPUTARGET" "=" "SPR"
+End
+
+#
+# MRC Debug configuration options
+#
+PcdMapping
+    Name  = "PcdMrcDebugTurnarounds"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcDebugPerformanceStats"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "1"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcDebugSenseAmp"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcDisplayPerformanceValues"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcDebugLateCmdClk"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcDebugPowerTraining"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcDebugLrdimmExtraMessages"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcBeginEndDebugHooks"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "1"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcDebugSwizzleInspection"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+#
+# Dimm support
+#
+
+PcdMapping
+    Name  = "PcdMrcQrDimmSupport"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "1"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcSoDimmSupport"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "1"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+#
+# Miscellaneous MRC options
+#
+
+PcdMapping
+    Name  = "PcdMrcPurleyBiosHeaderOverride"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "1"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMrcXmpSupport"
+    GuidSpace  = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "1"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name = "PcdMrcSsaOemHook"
+    GuidSpace = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    Value = "0"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+End
+
+#
+# SSA options
+#
+
+PcdMapping
+    Name = "PcdMrcSsaOemHook"
+    GuidSpace = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    Value = "0"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name = "PcdMrcSsaOemHook"
+    GuidSpace = "gEfiCpRcPkgTokenSpaceGuid"
+    PcdType = "PcdsFixedAtBuild"
+    Value = "1"
+    Arch = "IA32"
+    Offset = 00h
+    Length = 00h
+    TargetDSC = Yes
+End
+
+#BuildOptions
+
+#NUMBER_OF_SUB_CHANNELS defined in EagleStreamCrb.mak
+
+ELINK
+    Name  = "*_*_IA32_CC_FLAGS"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+    OutDSC = Yes
+End
+
+ELINK
+    Name  = "-D IA32"
+    Parent  = "*_*_IA32_CC_FLAGS"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "*_*_X64_CC_FLAGS"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+    OutDSC = Yes
+End
+
+ELINK
+    Name  = "-U IA32"
+    Parent  = "*_*_X64_CC_FLAGS"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "*_*_*_CC_FLAGS"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+    OutDSC = Yes
+End
+
+ELINK
+    Name  = "$(NUMBER_OF_SUB_CHANNELS)"
+    Parent  = "*_*_*_CC_FLAGS"
+    Type  = "BuildOptions"
+    InvokeOrder = AfterParent
+End
+
+############## Build Options from MrcCommonConfig.dsc end #################################
+
+############## Build Options from SiliconPkgSpr.dsc start #################################
+PcdMapping
+    Name  = "PcdPostedCsrAccessAllowedDefault"
+    GuidSpace  = "gSiPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "TRUE" 
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMaxDdrioIpChannels"
+    GuidSpace  = "gSiPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x02" 
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdMaxMcIpChannels"
+    GuidSpace  = "gSiPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0x02" 
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+
+PcdMapping
+    Name  = "PcdSenseAmpCalibHwFsmSupported"
+    GuidSpace  = "gSiPkgTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "TRUE" 
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End
+############## Build Options from SiliconPkgSpr.dsc end #################################

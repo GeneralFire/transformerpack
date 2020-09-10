@@ -1,0 +1,70 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name:	BiosGuardMeud.sdl
+#
+# Description: SDL file for BiosGuardMeud
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+     Name = "BIOS_GUARD_MEUD_SUPPORT"
+     Value = "1"
+     TokenType = Boolean
+     TargetMAK = Yes
+     TargetH = Yes
+     Master = Yes
+     Help = "Main switch to enable BiosGuard ME update support in Project"
+     Token = "MEUD_SUPPORT" "=" "1"
+     Token = "AUTO_ME_UPDATE_POLICY" "=" "2"
+End
+
+TOKEN
+        Name = "BIOSGUARD_MEUD_BIOS_SIZE"
+        Value = "$(FLASH_SIZE) + $(BIOS_GUARD_RESERVE_SIZE)"
+        Help = "ROM size for Bios Guard recovery"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name = "BIOSGUARD_ME_ALIGNMENT_SIZE"
+        Value = "$(FV_MEFW_CAPSULE_SIZE) + 0x10000"
+        Help = "Alignment for MEFWSIGN.CAP"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name = "BIOSGUARD_ME_ALIGNMENT_SIZE"
+        Value = "$(FV_MEFW_CAPSULE_SIZE) + 0x20000"
+        Help = "Alignment for MEFWSIGN.CAP"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "FWCAPSULE_FILE_FORMAT" "=" "1"
+End
+
+INFComponent
+     Name = "BiosGuardMeudVerifyMeCapsule"
+     File = "BiosGuardMeudVerifyMeCapsule.inf"
+     Package = "AmiChipsetModulePkg"     
+     ModuleTypes = "PEIM"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "AmiModulePkg.VerifyFwCapsulePeiLib"
+    Override  = "AmiChipsetModulePkg.BiosGuardMeudVerifyMeCapsule"
+End
+

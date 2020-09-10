@@ -1,0 +1,100 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "ResetSystemLib"
+    Instance  = "ClientOneSiliconPkg.BaseResetSystemLib"
+End
+
+INFComponent
+    Name  = "BaseResetSystemLib"
+    File  = "BaseResetSystemLib/BaseResetSystemLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+
+LibraryMapping
+    Class  = "PchPciBdfLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPchPciBdfLib"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchPciBdfLib"
+    File  = "BasePchPciBdfLib/BasePchPciBdfLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "DxePchPolicyLib"
+    Instance  = "ClientOneSiliconPkg.DxePchPolicyLib"
+    Arch = "X64"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+INFComponent
+    Name  = "DxePchPolicyLib"
+    File  = "DxePchPolicyLib/DxePchPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+LibraryMapping
+    Class  = "PchRasLib"
+    Instance  = "ClientOneSiliconPkg.PchRasLib"
+    Arch = "X64"     
+End
+
+INFComponent
+    Name  = "PchRasLib"
+    File  = "DxeSmmPchRasLib\DxeSmmPchRasLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "PchCycleDecodingLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPchCycleDecodingLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchCycleDecodingLib"
+    File  = "PeiDxeSmmPchCycleDecodingLib/PeiDxeSmmPchCycleDecodingLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "PchPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchPolicyLibTgl"  
+End
+
+INFComponent
+    Name  = "PeiPchPolicyLibTgl"
+    File  = "PeiPchPolicyLib/PeiPchPolicyLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"  
+End
+
+LibraryMapping
+    Class  = "PchSmmControlLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchSmmControlLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiPchSmmControlLib"
+    File  = "PeiPchSmmControlLib/PeiPchSmmControlLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End

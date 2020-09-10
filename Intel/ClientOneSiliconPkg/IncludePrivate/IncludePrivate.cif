@@ -1,0 +1,13 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IncludePrivate"
+[files]
+"BiosGuardNvsAreaDef.h"
+"RegisterAccess.h"
+"Protocol\BiosGuardNvsArea.h"
+[parts]
+"ClientOneSiliconPkg.IncludePrivate.Library"
+"ClientOneSiliconPkg.IncludePrivate.Register"
+<endComponent>

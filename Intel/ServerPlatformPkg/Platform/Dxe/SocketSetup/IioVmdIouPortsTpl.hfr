@@ -1,0 +1,129 @@
+/** @file
+
+  HFR template of VMD configuration for PCIe ports of given stack
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+//
+//
+// INPUT:
+//   - STACK_TOTAL_IDX - index of the current stac in global array of stacks
+
+//
+// Calculate total IOU index for Stack 1
+//
+
+//
+// Calculate indexes for IIO ports on this stack
+//
+
+#if !defined(SPR_HOST)
+  #define PORT_A_INDEX   HFR_MUL_4(STACK_TOTAL_IDX)   // Every IOU has 4 ports on every stack
+#else // !defined(SPR_HOST)
+  #define PORT_A_INDEX   HFR_MUL_8(STACK_TOTAL_IDX)   // Every IOU has 8 ports on every stack
+#endif // !defined(SPR_HOST)
+
+#define PORT_B_INDEX   HFR_INC(PORT_A_INDEX)
+#define PORT_C_INDEX   HFR_INC(PORT_B_INDEX)
+#define PORT_D_INDEX   HFR_INC(PORT_C_INDEX)
+#if defined(SPR_HOST)
+  #define PORT_E_INDEX   HFR_INC(PORT_D_INDEX)
+  #define PORT_F_INDEX   HFR_INC(PORT_E_INDEX)
+  #define PORT_G_INDEX   HFR_INC(PORT_F_INDEX)
+  #define PORT_H_INDEX   HFR_INC(PORT_G_INDEX)
+#endif //defined(SPR_HOST)
+
+oneof varid = SOCKET_IIO_CONFIGURATION.VMDPortEnable[PORT_A_INDEX],
+  prompt  = STRING_TOKEN(STR_VMD_PORT_A),
+  help    = STRING_TOKEN(STR_VMD_PORT_HELP),
+  option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+  option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+endoneof;
+
+oneof varid = SOCKET_IIO_CONFIGURATION.VMDPortEnable[PORT_B_INDEX],
+  prompt  = STRING_TOKEN(STR_VMD_PORT_B),
+  help    = STRING_TOKEN(STR_VMD_PORT_HELP),
+  option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+  option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+endoneof;
+
+oneof varid = SOCKET_IIO_CONFIGURATION.VMDPortEnable[PORT_C_INDEX],
+  prompt  = STRING_TOKEN(STR_VMD_PORT_C),
+  help    = STRING_TOKEN(STR_VMD_PORT_HELP),
+  option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+  option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+endoneof;
+
+oneof varid = SOCKET_IIO_CONFIGURATION.VMDPortEnable[PORT_D_INDEX],
+  prompt  = STRING_TOKEN(STR_VMD_PORT_D),
+  help    = STRING_TOKEN(STR_VMD_PORT_HELP),
+  option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+  option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+endoneof;
+
+#if defined(SPR_HOST)
+  oneof varid = SOCKET_IIO_CONFIGURATION.VMDPortEnable[PORT_E_INDEX],
+    prompt  = STRING_TOKEN(STR_VMD_PORT_E),
+    help    = STRING_TOKEN(STR_VMD_PORT_HELP),
+    option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+  endoneof;
+
+  oneof varid = SOCKET_IIO_CONFIGURATION.VMDPortEnable[PORT_F_INDEX],
+    prompt  = STRING_TOKEN(STR_VMD_PORT_F),
+    help    = STRING_TOKEN(STR_VMD_PORT_HELP),
+    option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+  endoneof;
+
+  oneof varid = SOCKET_IIO_CONFIGURATION.VMDPortEnable[PORT_G_INDEX],
+    prompt  = STRING_TOKEN(STR_VMD_PORT_G),
+    help    = STRING_TOKEN(STR_VMD_PORT_HELP),
+    option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+  endoneof;
+
+  oneof varid = SOCKET_IIO_CONFIGURATION.VMDPortEnable[PORT_H_INDEX],
+    prompt  = STRING_TOKEN(STR_VMD_PORT_H),
+    help    = STRING_TOKEN(STR_VMD_PORT_HELP),
+    option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+    option text = STRING_TOKEN(STR_ENABLE), value = 1, flags = RESET_REQUIRED;
+  endoneof;
+#endif // defined(SPR_HOST)
+
+//
+// Cleanup
+//
+#undef PORT_A_INDEX
+#undef PORT_B_INDEX
+#undef PORT_C_INDEX
+#undef PORT_D_INDEX
+#if defined(SPR_HOST)
+  #undef PORT_E_INDEX
+  #undef PORT_F_INDEX
+  #undef PORT_G_INDEX
+  #undef PORT_H_INDEX
+#endif // defined(SPR_HOST)

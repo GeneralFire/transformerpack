@@ -1,0 +1,12 @@
+<component>
+    name = "SerialMuxControl"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\SerialMuxControl\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.SerialMuxControl"
+[INF]
+"SerialMuxControl.inf"
+[files]
+"SerialMuxControl.sdl"
+"SerialMux.sd"
+"SerialMux.uni"
+<endComponent>

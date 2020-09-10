@@ -1,0 +1,9 @@
+<component>
+    name = "Thermal"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Thermal\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Thermal"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Thermal.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Thermal.LibraryPrivate"
+<endComponent>

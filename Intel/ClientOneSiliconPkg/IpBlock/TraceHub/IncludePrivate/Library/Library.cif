@@ -1,0 +1,13 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\TraceHub\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.TraceHub.IncludePrivate.Library"
+[files]
+"DxeTraceHubInit.h"	
+"PchTraceHubLib.h"	
+"PeiCpuTraceHubLib.h"	
+"PeiCpuTraceHubPolicyLib.h"	
+"PeiPchTraceHubPolicyLib.h"	
+"PeiTraceHubLib.h"	
+<endComponent>

@@ -1,0 +1,66 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiDxeSmmPchDmiLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PchDmiLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPchDmiLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchDmiLib"
+    File  = "PeiDxeSmmPchDmiLib/PeiDxeSmmPchDmiLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+LibraryMapping
+    Class  = "PchDmiWithS3Lib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmPchDmiWithS3Lib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+INFComponent
+    Name  = "PeiDxeSmmPchDmiWithS3Lib"
+    File  = "PeiDxeSmmPchDmiLib/PeiDxeSmmPchDmiWithS3Lib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+LibraryMapping
+    Class  = "PeiPchDmiLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchDmiLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1" 
+End
+
+INFComponent
+    Name  = "PeiPchDmiLib"
+    File  = "PeiDxeSmmPchDmiLib/PeiPchDmiLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End
+
+LibraryMapping
+    Class  = "PeiPchDmiPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiPchDmiPolicyLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiPchDmiPolicyLib"
+    File  = "PeiPchDmiPolicyLib/PeiPchDmiPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+

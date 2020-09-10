@@ -1,0 +1,20 @@
+<component>
+    name = "ClientOneSiliconPkg"
+    category = eChipset
+    LocalRoot = "Intel\ClientOneSiliconPkg\"
+    RefName = "ClientOneSiliconPkg"
+[files]
+"ClientOneSiliconPkg.sdl"	
+"SiPkg.dec"	
+[parts]
+"ClientOneSiliconPkg.Cpu"
+"ClientOneSiliconPkg.Fru"
+"ClientOneSiliconPkg.Include"
+"ClientOneSiliconPkg.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock"
+"ClientOneSiliconPkg.Library"
+"ClientOneSiliconPkg.LibraryPrivate"
+"ClientOneSiliconPkg.Pch"
+"ClientOneSiliconPkg.Product"
+"ClientOneSiliconPkg.SystemAgent"
+<endComponent>

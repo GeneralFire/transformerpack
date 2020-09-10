@@ -1,0 +1,229 @@
+/** @file
+  String definitions for Test Menu.
+
+@copyright
+  INTEL CONFIDENTIAL
+  Copyright 2006 - 2019 Intel Corporation.
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+
+  This file contains a 'Sample Driver' and is licensed as such under the terms
+  of your license agreement with Intel or your vendor. This file may be modified
+  by the user, subject to the additional terms of the license agreement.
+
+@par Specification Reference:
+**/
+//
+// Name:	TestMenu.uni
+//
+// Description:	TestMenu Form String Definitions.
+//
+//**********************************************************************
+/=#
+#include "VFR.uni"
+
+#string STR_EMPTY_STRING                        #language en-US  ""
+#string STR_DEFAULT                             #language en-US  "Default"
+
+#string STR_TEST_MENU_FORM_SET_TITLE            #language en-US  "Intel Test Menu"
+#string STR_TEST_MENU_FORM_SET_HELP          #language en-US  "Displays Intel Test Menu Settings"
+
+#string STR_SA_ADV_MENU_TITLE                   #language en-US  "SA Advanced options"
+#string STR_PCH_ADV_MENU_TITLE                  #language en-US  "PCH Advanced Menu"
+
+#string STR_ENABLED                             #language en-US  "Enabled"
+#string STR_DISABLED                            #language en-US  "Disabled"
+#string STR_AUTO                                #language en-US  "Auto"
+#string STR_MANUAL                              #language en-US  "Manual"
+
+#string STR_TRUE                                #language en-US  "True"
+#string STR_FALSE                               #language en-US  "False"
+
+#string STR_PCH_SMILOCK_PROMPT                  #language en-US  "Global SMI Lock"
+#string STR_PCH_SMILOCK_HELP                    #language en-US  "Enable/Disable global SMI lock"
+#string STR_PCH_USB_TS_LDO_SHUTDOWN             #language en-US "USB2/TS LDO Dynamic Shutdown"
+#string STR_PCH_USB_TS_LDO_SHUTDOWN_HELP        #language en-US "Enable/Disable USB2/TS LDO Dynamic Shutdown"
+#string STR_PCH_SATA_PROMPT                     #language en-US  "SATA Configuration"
+#string STR_PCH_SATA_HELP                       #language en-US  "SATA test settings"
+#string STR_PCH_SATAGC_ASSEL_PROMPT             #language en-US  "SATA ASSEL Value"
+#string STR_PCH_SATAGC_ASSEL_HELP               #language en-US  "Set SATA ASSEL (ABAR Size = 64k, 128k, 256k, or 512k)"
+#string STR_64K                                 #language en-US  "64K"
+#string STR_128K                                #language en-US  "128K"
+#string STR_256K                                #language en-US  "256K"
+#string STR_512K                                #language en-US  "512K"
+
+#string STR_PCH_RST_PCIE_STORAGE_PROMPT         #language en-US  "RST PCIe Storage Configuration"
+#string STR_PCH_RST_PCIE_STORAGE_HELP           #language en-US  "RST PCIe Storage Test Settings"
+
+#string STR_PCH_SATA_LTR_CONFIG                 #language en-US "PCH SATA LTR Configuration"
+#string STR_PCH_SATA_LTR_PROMPT                 #language en-US "PCH SATA LTR"
+#string STR_PCH_SATA_LTR_HELP                   #language en-US "PCH SATA Latency Reporting Enable/Disable"
+#string STR_PCH_SATA_LTR_OVRD_PROMPT            #language en-US "  LTR Override"
+#string STR_PCH_SATA_LTR_OVRD_HELP              #language en-US  "PCH SATA LTR Override Enable/Disable."
+#string STR_PCH_SATA_SL_VAL_PROMPT              #language en-US "    Snoop Latency Value"
+#string STR_PCH_SATA_SL_VAL_HELP                #language en-US "PCH SATA LTR Snoop Latency value."
+#string STR_PCH_SATA_SL_SCALE_PROMPT            #language en-US "    Snoop Latency Multiplier"
+#string STR_PCH_SATA_SL_SCALE_HELP              #language en-US "PCH SATA LTR Snoop Latency Multiplier."
+#string STR_PCH_SATA_LTR_LOCK_PROMPT            #language en-US "SATA LTR Lock"
+#string STR_PCH_SATA_LTR_LOCK_HELP              #language en-US "Enable/Disable SATA LTR lock."
+#string STR_PCH_PM_REGISTER_LOCK_PROMPT         #language en-US "PCH PM Register Lock"
+#string STR_PCH_PM_REGISTER_LOCK_HELP           #language en-US "Enable/disable PCH Power Management Register Locks"
+#string STR_PCH_SLPS0_CSMEPGQDIS_PROMPT             #language en-US "PCH Power VR CSME Power Gated Qualification Disable"
+#string STR_PCH_SLPS0_CSMEPGQDIS_PROMPT_HELP        #language en-US "Enable/Disable the PCH Power VR CSME Power Gated Qualification Disable during SLP_S0#."
+#string STR_PCH_SLPS0_GBEDISCQDIS_PROMPT            #language en-US "PCH Power VR GbE Disconnected Qualification Disable"
+#string STR_PCH_SLPS0_GBEDISCQDIS_PROMPT_HELP       #language en-US "Enable/Disable the PCH Power VR GbE Disconnected Qualification Disable during SLP_S0#."
+#string STR_PCH_SLPS0_ADSPD3QDIS_PROMPT             #language en-US "PCH Power VR Audio DSP is in D3 Qualification Disable"
+#string STR_PCH_SLPS0_ADSPD3QDIS_PROMPT_HELP        #language en-US "Enable/Disable the PCH Power VR Audio DSP is in D3 Qualification Disable during SLP_S0#."
+#string STR_PCH_SLPS0_XHCID3QDIS_PROMPT             #language en-US "PCH Power VR XHCI is in D3 Qualification Disable "
+#string STR_PCH_SLPS0_XHCID3QDIS_PROMPT_HELP        #language en-US "Enable/Disable the PCH Power VR XHCI is in D3 Qualification Disable during SLP_S0#."
+#string STR_PCH_SLPS0_LPIOD3QDIS_PROMPT             #language en-US "PCH Power VR LPIO is in D3 Qualification Disable"
+#string STR_PCH_SLPS0_LPIOD3QDIS_PROMPT_HELP        #language en-US "Enable/Disable the PCH Power VR LPIO is in D3 Qualification Disable#."
+#string STR_PCH_SLPS0_ICCPLLWBE_PROMPT              #language en-US "PCH Power VR ICC PLL Wake Block Enable "
+#string STR_PCH_SLPS0_ICCPLLWBE_PROMPT_HELP         #language en-US "Enable/Disable the PCH Power VR ICC PLL Wake Block Enable during SLP_S0#."
+#string STR_PCH_SLPS0_PUGBEN_PROMPT                 #language en-US "PCH Power VR Power Ungate Block Enable"
+#string STR_PCH_SLPS0_PUGBEN_PROMPT_HELP            #language en-US "Enable/Disable the PCH Power VR Power Ungate Block Enable during SLP_S0#."
+#string STR_PCH_LATCH_EVENTS_C10_EXIT_PROMPT        #language en-US "Latch Events C10 Exit"
+#string STR_PCH_LATCH_EVENTS_C10_EXIT_PROMPT_HELP   #language en-US "Enable/Disable Latch Events on C10 Exit, Valid only for CNL H and CNL LP B0 and above"
+#string STR_PCH_SLPSX_STR_POL_LOCK_PROMPT           #language en-US "PMC SleepSx Strech Policy Lock"
+#string STR_PCH_SLPSX_STR_POL_LOCK_PROMPT_HELP      #language en-US "Enable/Disable PMC SleepSx Strech Policy Lock"
+#string STR_PLATFORM_POR                        #language en-US "Platform-POR"
+//---------------------------------------------------------------------------
+// Power Optimizer definitions
+//---------------------------------------------------------------------------
+#string STR_CPPM_CONFIGURATION                  #language en-US "Power Optimizer Configuration"
+#string STR_OBFF_CONFIGURATION_PROMPT           #language en-US "OBFF Configuration"
+#string STR_LTR_CONFIGURATION_PROMPT            #language en-US "LTR Configuration"
+#string STR_MISC_CONFIGURATION_PROMPT           #language en-US "MISC Configuration"
+#string STR_OBFF_CONFIGURATION_HELP             #language en-US "OBFF Configuration Options"
+#string STR_LTR_CONFIGURATION_HELP              #language en-US "LTR Configuration Options"
+#string STR_MISC_CONFIGURATION_HELP             #language en-US "Misc Configuration Options"
+
+#string STR_CPU_PCIE_LTR_OVRD                   #language en-US  "CPU PCIe LTR Override"
+#string STR_LTR_SCALE_0                         #language en-US  "1 ns"
+#string STR_LTR_SCALE_1                         #language en-US  "32 ns"
+#string STR_LTR_SCALE_2                         #language en-US  "1024 ns"
+#string STR_LTR_SCALE_3                         #language en-US  "32768 ns"
+#string STR_LTR_SCALE_4                         #language en-US  "1048576 ns"
+#string STR_LTR_SCALE_5                         #language en-US  "33554432 ns"
+#string STR_PCH_MEM_CLOSE_PROMPT                #language en-US  "PCH Mem Closed State"
+#string STR_PCH_MEM_CLOSE_HELP                  #language en-US  "PCH Mem Closed State Enable/Disable"
+#string STR_PCH_INT_OBFF_PROMPT                 #language en-US  "PCH Internal OBFF"
+#string STR_PCH_INT_OBFF_HELP                   #language en-US  "PCH Internal OBFF Enable/Disable"
+#string STR_PCH_EXT_OBFF_PROMPT                 #language en-US  "PCH External OBFF"
+#string STR_PCH_EXT_OBFF_HELP                   #language en-US  "PCH External OBFF Enable/Disable"
+#string STR_PCH_CLIENT_OBFF_PROMPT              #language en-US  "PCH Client OBFF"
+#string STR_PCH_CLIENT_OBFF_HELP                #language en-US  "PCH Client OBFF Enable/Disable"
+#string STR_PCH_CX_OBFF_ENTRY_DELAY_PROMPT      #language en-US  "PCH Cx OBFF Entry Delay"
+#string STR_PCH_CX_OBFF_ENTRY_DELAY_HELP        #language en-US  "PCH Cx OBFF Entry Delay Enable/Disable"
+
+#string STR_PCHSV_FORM                          #language en-US "SV PCH Menu"
+#string STR_PCHSV_SUBTITLE                      #language en-US "SV PCH Setup Options"
+#string STR_PCHSV_PCI_EXPRESS                   #language en-US "PCI Express PCH Configuration"
+#string STR_SV_RESERVED                         #language en-US "Intel Reserved Options"
+
+#string STR_SV_DMI_SRL                          #language en-US "OP-DMI/DMI Secure Register Lock "
+#string STR_SV_DMI_SRL_HELP                     #language en-US "Enable/Disable OP-DMI/DMI Secure Regiters Lock"
+
+#string STR_PCH_DMI_UP_PORT_PRESET_ENABLE       #language en-US "Enable/Disable PCH DMI Up Port Preset"
+#string STR_PCH_DMI_UP_PORT_PRESET_HELP         #language en-US "Enable/Disable PCH DMI Up Port Preset"
+#string STR_PCH_DMI_UPL0TP_PROMPT               #language en-US "DMI Lane 0 UPTP"
+#string STR_PCH_DMI_UPL1TP_PROMPT               #language en-US "DMI Lane 1 UPTP"
+#string STR_PCH_DMI_UPL2TP_PROMPT               #language en-US "DMI Lane 2 UPTP"
+#string STR_PCH_DMI_UPL3TP_PROMPT               #language en-US "DMI Lane 3 UPTP"
+#string STR_PCH_DMI_UPL4TP_PROMPT               #language en-US "DMI Lane 4 UPTP"
+#string STR_PCH_DMI_UPL5TP_PROMPT               #language en-US "DMI Lane 5 UPTP"
+#string STR_PCH_DMI_UPL6TP_PROMPT               #language en-US "DMI Lane 6 UPTP"
+#string STR_PCH_DMI_UPL7TP_PROMPT               #language en-US "DMI Lane 7 UPTP"
+#string STR_PCH_DMI_UPLTP_HELP                  #language en-US "DMI Upstream Port Transmitter Preset value."
+
+#string STR_PCH_DMI_L0TCOE_PROMPT               #language en-US "DMI Lane 0 TCO"
+#string STR_PCH_DMI_L1TCOE_PROMPT               #language en-US "DMI Lane 1 TCO"
+#string STR_PCH_DMI_L2TCOE_PROMPT               #language en-US "DMI Lane 2 TCO"
+#string STR_PCH_DMI_L3TCOE_PROMPT               #language en-US "DMI Lane 3 TCO"
+#string STR_PCH_DMI_L4TCOE_PROMPT               #language en-US "DMI Lane 4 TCO"
+#string STR_PCH_DMI_L5TCOE_PROMPT               #language en-US "DMI Lane 5 TCO"
+#string STR_PCH_DMI_L6TCOE_PROMPT               #language en-US "DMI Lane 6 TCO"
+#string STR_PCH_DMI_L7TCOE_PROMPT               #language en-US "DMI Lane 7 TCO"
+#string STR_PCH_DMI_LTCOE_HELP                  #language en-US "Enable/Disable DMI Lane Transmitter Coefficient Override."
+
+#string STR_PCH_DMI_L0TPRECO_PROMPT             #language en-US "DMI Lane 0 TPRECO"
+#string STR_PCH_DMI_L1TPRECO_PROMPT             #language en-US "DMI Lane 1 TPRECO"
+#string STR_PCH_DMI_L2TPRECO_PROMPT             #language en-US "DMI Lane 2 TPRECO"
+#string STR_PCH_DMI_L3TPRECO_PROMPT             #language en-US "DMI Lane 3 TPRECO"
+#string STR_PCH_DMI_L4TPRECO_PROMPT             #language en-US "DMI Lane 4 TPRECO"
+#string STR_PCH_DMI_L5TPRECO_PROMPT             #language en-US "DMI Lane 5 TPRECO"
+#string STR_PCH_DMI_L6TPRECO_PROMPT             #language en-US "DMI Lane 6 TPRECO"
+#string STR_PCH_DMI_L7TPRECO_PROMPT             #language en-US "DMI Lane 7 TPRECO"
+#string STR_PCH_DMI_LTPRECO_HELP                #language en-US "DMI Lane Transmitter Pre-Cursor Coefficient Override value."
+
+#string STR_PCH_DMI_L0TPOSTCO_PROMPT            #language en-US "DMI Lane 0 TPOSTCO"
+#string STR_PCH_DMI_L1TPOSTCO_PROMPT            #language en-US "DMI Lane 1 TPOSTCO"
+#string STR_PCH_DMI_L2TPOSTCO_PROMPT            #language en-US "DMI Lane 2 TPOSTCO"
+#string STR_PCH_DMI_L3TPOSTCO_PROMPT            #language en-US "DMI Lane 3 TPOSTCO"
+#string STR_PCH_DMI_L4TPOSTCO_PROMPT            #language en-US "DMI Lane 4 TPOSTCO"
+#string STR_PCH_DMI_L5TPOSTCO_PROMPT            #language en-US "DMI Lane 5 TPOSTCO"
+#string STR_PCH_DMI_L6TPOSTCO_PROMPT            #language en-US "DMI Lane 6 TPOSTCO"
+#string STR_PCH_DMI_L7TPOSTCO_PROMPT            #language en-US "DMI Lane 7 TPOSTCO"
+#string STR_PCH_DMI_LTPOSTCO_HELP               #language en-US "DMI Lane Transmitter Post-Cursor Coefficient Override value."
+
+#string STR_PCH_DMI_RTLEPCEB_PROMPT             #language en-US "DMI RTLEPCEB"
+#string STR_PCH_DMI_RTLEPCEB_HELP               #language en-US "DMI Remote Transmit Link Equalization Preset/Coefficient Evaluation Bypass"
+
+#string STR_SV_PCH_THERM_LOCK                                 #language en-US "Lock Thermal Sensor"
+#string STR_SV_PCH_THERM_LOCK_HELP                            #language en-US "If enabled, locks the Catastrophic programming interface."
+#string STR_SV_GLOBAL_SMI_EN                                  #language en-US "Global SMI"
+#string STR_SV_GLOBAL_SMI_EN_HELP                             #language en-US "Enables/Disables Global SMI's. If disabled, user must also disable UHCI Controllers and USB Ports. If disabled, Windows will not boot!"
+#string STR_SV_FLASH_LOCKDOWN                                 #language en-US "Flash Lock-Down"
+#string STR_SV_FLASH_LOCKDOWN_HELP                            #language en-US "Flash Lock-Down"
+#string STR_SV_BIOS_INTERFACE_UNLOCK                          #language en-US "Bios Interface Unlock"
+#string STR_SV_BIOS_INTERFACE_UNLOCK_HELP                     #language en-US "Bios Interface Unlock"
+#string STR_POR                                               #language en-US "POR"
+#string STR_SV_1MS                                            #language en-US "1ms"
+#string STR_SV_100MS                                          #language en-US "100ms"
+#string STR_SV_1S                                             #language en-US "1s"
+#string STR_SV_2S                                             #language en-US "2s"
+#string STR_SV_3S                                             #language en-US "3s"
+#string STR_SV_4S                                             #language en-US "4s"
+#string STR_SV_500MS                                          #language en-US "500ms"
+#string STR_SV_50MS                                           #language en-US "50ms"
+#string STR_SV_60US                                           #language en-US "60us"
+#string STR_SV_ADVANCED_PCH_CONFIGURATION                     #language en-US "SV Advanced PCH Configuration"
+#string STR_SV_DMI_CONFIGURATION                              #language en-US "SV DMI Configuration"
+#string STR_SV_SLP_A_STRETCH                                  #language en-US "SLP_A# Stretch"
+#string STR_SV_SLP_S3_STRETCH                                 #language en-US "SLP_S3 Stretch"
+#string STR_SV_SLP_S4_STRETCH                                 #language en-US "SLP_S4 Stretch"
+#string STR_SV_SLP_SUS_STRETCH                                #language en-US "SLP_SUS Stretch"
+#string STR_PCH_LAN_WAKE_FAST_SUPPORT            #language en-US "PCH LAN: Fast Startup wake support"
+#string STR_PCH_LAN_WAKE_FAST_SUPPORT_HELP       #language en-US "Wake on lan enabled or disabled when Fast Startup is enabled"
+
+//---------------------------------------------------------------------------
+// PCH DFX Configuration Strings
+//---------------------------------------------------------------------------
+#string STR_PCH_DFX_FORM_TITLE                  #language en-US "PCH DFX Configuration"
+#string STR_PCH_DFX_FORM_HELP                   #language en-US "PCH DFX Configuration Options"
+#string STR_PCH_P2SB_REVEAL_PROMPT              #language en-US "Reveal PCH P2SB device"
+#string STR_PCH_P2SB_REVEAL_HELP                #language en-US "Reveal PCH PCIe P2SB device"
+#string STR_DFX_PCIE_ALLPORTS_PROMPT            #language en-US "DFX Force PCIe ports Enable"
+#string STR_DFX_PCIE_ALLPORTS_HELP              #language en-US "Force to enable all PGB PCIe ports otherwise enables ports according slot population."
+#string STR_PCH_UNLOCK_ALL                      #language en-US "Unlock All PCH registers"
+#string STR_PCH_UNLOCK_ALL_HELP                 #language en-US "Unlocks all PCH RW-L and RW-KL registers"
+#string STR_DFX_ESPI_TEST_PROMPT                #language en-US "eSPI IO/Memory range program"
+#string STR_DFX_ESPI_TEST_HELP                  #language en-US "eSPI IO/Memory range programming for eSPI testing purposes"

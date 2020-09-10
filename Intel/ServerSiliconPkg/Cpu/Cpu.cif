@@ -1,0 +1,18 @@
+<component>
+    name = "Cpu"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Cpu\"
+    RefName = "ServerSiliconPkg.Cpu"
+[INF]
+"PowerManagement\PpmInitializePei\PpmInitializePei.inf"
+[files]
+"CpuRcPkg.dec"	
+[parts]
+"ServerSiliconPkg.Cpu.AcpiTable"
+"ServerSiliconPkg.Cpu.Include"
+"ServerSiliconPkg.Cpu.Library"
+"ServerSiliconPkg.Cpu.PowerManagement.HwpLvtSmm"
+"ServerSiliconPkg.Cpu.PowerManagement.PpmInitializeDxe"
+"ServerSiliconPkg.Cpu.SiCpuInit.SiCpuInitPei"
+"ServerSiliconPkg.Cpu.SiCpuInit.SiCpuInitDxe"
+<endComponent>

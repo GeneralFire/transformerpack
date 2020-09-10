@@ -1,0 +1,8 @@
+<component>
+    name = "PeiDxeSmmRstCrLib"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Rst\Library\PeiDxeSmmRstCrLib\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Rst.Library.PeiDxeSmmRstCrLib"
+[INF]
+"PeiDxeSmmRstCrLibVer3.inf"
+<endComponent>

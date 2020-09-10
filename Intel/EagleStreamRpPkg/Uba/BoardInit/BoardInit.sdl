@@ -1,0 +1,23 @@
+TOKEN
+    Name  = "BoardInit_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling BoardInit support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "BoardInitDxe_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable BoardInitDxe support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "BoardInitDxe"
+    File  = "Dxe/BoardInitDxe.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "BoardInitDxe_INF_SUPPORT" "=" "1"
+End
+

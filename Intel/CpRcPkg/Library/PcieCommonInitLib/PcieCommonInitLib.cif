@@ -1,0 +1,11 @@
+<component>
+	name = "PcieCommonInitLib"
+	category = ModulePart
+	LocalRoot = "Intel\CpRcPkg\Library\PcieCommonInitLib\"
+	RefName = "CpRcPkg.Library.PcieCommonInitLib"
+[INF]
+"PcieCommonInitLib.inf"
+[files]
+"PcieCommonHelper.h"	
+"PcieCommonInitLib.sdl"	
+<endComponent>

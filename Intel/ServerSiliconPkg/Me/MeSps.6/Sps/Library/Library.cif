@@ -1,0 +1,19 @@
+<component>
+	name = "Library"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\Sps\Library\"
+	RefName = "ServerSiliconPkg.Me.MeSps6.Sps.Library"
+[INF]
+"DxeSpsPolicyLib\DxeSpsPolicyLib.inf"
+"MeConfigLib\MeConfigLib.inf"
+"MeFiaMuxStrapsLib\MeFiaMuxStrapsLib.inf"
+"MeGetPeiConfigBlock\MeGetPeiConfigBlock.inf"
+"PeiSpsPreMemPolicyLib\PeiSpsPreMemPolicyLib.inf"
+"SpsDxeLib\SpsDxeLibVer3.inf"
+"SpsGetDxeConfigBlock\SpsGetDxeConfigBlock.inf"
+"SpsPeiLib\SpsPeiLib.inf"
+[files]
+"Library.sdl"
+#"SpsPeiLib\SpsPei.h"
+"SpsDxeLib\SpsDxeDependencyCheck.h"
+<endComponent>

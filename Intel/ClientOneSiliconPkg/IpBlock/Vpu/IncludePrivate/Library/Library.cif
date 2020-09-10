@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Vpu\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Vpu.IncludePrivate.Library"
+[files]
+"PeiVpuInitLib.h"	
+"PeiVpuPolicyLib.h"	
+<endComponent>

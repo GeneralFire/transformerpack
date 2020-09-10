@@ -1,0 +1,28 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+## @file
+#  Ast2600InitDataLib.inf
+[Defines]
+  INF_VERSION    = 0x00010005
+  BASE_NAME      = Ast2600InitDataLib
+  FILE_GUID      = EBC3AEAD-CC13-49b0-A678-5BED93956959
+  MODULE_TYPE    = BASE
+  VERSION_STRING = 1.0
+  LIBRARY_CLASS  = Ast2600InitDataLib
+
+[Sources]
+  Ast2600InitDataLib.c  
+	
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+
+[LibraryClasses]
+  IoLib

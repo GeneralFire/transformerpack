@@ -1,0 +1,36 @@
+TOKEN
+    Name  = "TypeArcherCityEVB_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling TypeArcherCityEVB support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+#TOKEN
+#    Name  = "PLATFORM_NAME"
+#    Value  = "TypeArcherCityEVB"
+#    TokenType = Expression
+#    TargetDSC = Yes
+#End
+
+#LibraryMapping
+#    Class  = "NULL"
+#    Instance  = "EagleStreamRpPkg.TypeArcherCityEVBPeiBoardInitLib"
+#    ModuleTypes  = "PEIM"
+#End
+
+INFComponent
+    Name  = "TypeArcherCityEVBPeiBoardInitLib"
+    File  = "Pei/PeiBoardInitLib.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM"
+    Token = "MAX_SOCKET" "<" "8"
+    Token = "TOOL_CHAIN_TAG" "!=" "GCC5"     
+End
+
+INFComponent
+    Name  = "TypeArcherCityEVBPeiBoardInitPostMemLib"
+    File  = "Pei/PeiBoardInitPostMemLib.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM"  
+End

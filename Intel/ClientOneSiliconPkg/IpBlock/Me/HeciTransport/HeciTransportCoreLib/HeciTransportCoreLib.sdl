@@ -1,0 +1,45 @@
+TOKEN
+    Name  = "HeciTransportCoreLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling HeciTransportCoreLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "HeciTransportCoreLib"
+    Instance  = "ClientOneSiliconPkg.HeciTransportCoreLib"
+    Arch = "IA32"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciTransportCoreLib"
+    File  = "HeciTransportCoreLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciTransportCoreLib"
+    Instance  = "ClientOneSiliconPkg.HeciTransportCoreLib"
+    Arch = "X64"
+    Token = "ME_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "HeciTransportCoreLib"
+    Instance  = "ClientOneSiliconPkg.HeciTransportCoreLib"
+    Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"    
+    Token = "ME_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "HeciTransportCoreLib"
+    File  = "HeciTransportCoreLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Token = "ME_ENABLE" "=" "1"
+End

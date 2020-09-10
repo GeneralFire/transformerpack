@@ -1,0 +1,42 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+## @file
+#  AmiUsbDriverInterface
+#
+##
+[Defines]
+ INF_VERSION            = 0x00010005
+ VERSION_STRING         = 0.1
+ BASE_NAME              = AmiUsbInterface
+ MODULE_TYPE            = UEFI_DRIVER
+ FILE_GUID              = AB6CC986-8D03-400C-9FA3-96609C3B7BD3
+ ENTRY_POINT            = UsbInterfaceDriverEntryPoint
+
+[Sources]
+ AmiUsbInterfaceDriver.c
+
+[Packages]
+ MdePkg/MdePkg.dec
+ MdeModulePkg/MdeModulePkg.dec
+ AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+
+[LibraryClasses]
+ UefiBootServicesTableLib
+ UefiDriverEntryPoint
+ PcdLib
+ DebugLib
+ BaseMemoryLib
+ MemoryAllocationLib
+ AmiUsbInterfaceLib
+
+[Protocols]
+ gEfiUsbIoProtocolGuid			       #CONSUMES
+ gEfiDxeIpmiTransportProtocolGuid      #CONSUMES
+
+[Pcd]
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdBulkDataTransferTimeout

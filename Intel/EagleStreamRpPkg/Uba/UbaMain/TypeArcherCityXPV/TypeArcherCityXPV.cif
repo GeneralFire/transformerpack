@@ -1,0 +1,13 @@
+<component>
+    name = "TypeArcherCityXPV"
+    category = MODULEPART
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityXPV\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityXPV"
+[INF]
+"Pei\PeiBoardInitLib.inf"
+"Pei\PeiBoardInitPostMemLib.inf"
+[files]
+"TypeArcherCityXPV.sdl"	
+[parts]
+"EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityXPV.Dxe"
+<endComponent>

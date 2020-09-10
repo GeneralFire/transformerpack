@@ -1,0 +1,872 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SmmPchPeriodicTimerLib_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SmmPchPeriodicTimerLib support in Project"
+    TokenType = Boolean
+End
+
+#TOKEN
+#    Name  = "BaseTraceHubDebugLib_SUPPORT"
+#   Value  = "1"
+#    Help  = "Main switch to enable BaseTraceHubDebugLib support in Project"
+#    TokenType = Boolean
+#    Token = "TRACE_HUB_ENABLE" "=" "1"
+#End
+
+#TOKEN
+#    Name  = "BaseTraceHubDebugLibNull_SUPPORT"
+#    Value  = "1"
+#    Help  = "Main switch to enable BaseTraceHubDebugLibNull support in Project"
+#    TokenType = Boolean
+#    Token = "TRACE_HUB_ENABLE" "=" "0"
+#End
+
+TOKEN
+    Name  = "BaseTraceHubLibNull_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable BaseTraceHubLibNull support in Project"
+    TokenType = Boolean
+    Token = "TRACE_HUB_ENABLE" "=" "0"
+End
+
+TOKEN
+    Name  = "PlatformOpromPolicyLib_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PlatformOpromPolicyLib support in Project"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "PeiPdrAccessLib_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable PeiPdrAccessLib support in Project"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "MrcHooksServicesLib_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable MrcHooksServicesLib support in Project"
+    TokenType = Boolean
+End
+
+#INFComponent
+#    Name  = "PeiPolicyInitLib"
+#    File  = "PeiPolicyInitLib/PeiPolicyInitLibLbg.inf"
+#    Package  = "ServerPlatformPkg"
+#    ModuleTypes  = "PEIM"
+#End
+
+INFComponent
+    Name  = "PeiCommonRcPolicyUpdateLib"
+    File  = "PeiCommonRcPolicyUpdateLib\PeiCommonRcPolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PeiPolicyInit"
+    File  = "PeiPolicyInitLib/PeiPolicyInitLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PeiPolicyUpdateLibEbg"
+    File  = "PeiPolicyUpdateLib/PeiPolicyUpdateLibEbg.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"    
+End
+
+INFComponent
+    Name  = "PeiFusaSafPolicyUpdateLib"
+    File  = "PeiFusaSafPolicyUpdateLib/PeiFusaSafPolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"    
+End
+
+INFComponent
+    Name  = "DxeBuildAcpiTablesLib"
+    File  = "BuildAcpiTablesLib/DxeBuildAcpiTablesLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "CompressDxeLib"
+    File  = "Compress/CompressLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "CpuPolicyUpdateCommonLib"
+    File  = "CpuPolicyUpdateCommonLib/CpuPolicyUpdateCommonLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "CustomizedDisplayLib"
+    File  = "CustomizedDisplayLib/CustomizedDisplayLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "DataCacheLibHob"
+    File  = "DataCacheLibHob/DataCacheLibHob.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "IA32"
+    ModuleTypes = "PEIM"
+End
+
+INFComponent
+    Name  = "DataCacheLibNull"
+    File  = "DataCacheLibNull/DataCacheLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "IA32"
+    ModuleTypes  = "SEC"
+End
+
+INFComponent
+    Name  = "DxePolicyUpdateLib"
+    File  = "DxePolicyUpdateLib\DxePolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "PeiIioSiPolicyUpdateLib"
+    File  = "PeiIioSiPolicyUpdateLib/PeiIioSiPolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PeiUpiPolicyUpdateLib"
+    File  = "PeiUpiPolicyUpdateLib/PeiUpiPolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PeiPolicyDebugLibEbg"
+    File  = "PeiPolicyDebugLib\PeiPolicyDebugLibEbg.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "OemProcessorStartupLib"
+    File  = "OemProcessorStartupLib/OemProcessorStartupLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "SEC"
+End
+
+INFComponent
+    Name  = "OemProcMemInitLib"
+    File  = "OemProcMemInitLib/OemProcMemInitLib.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "BASE"    
+End
+
+INFComponent
+    Name  = "OemIioInitHookLibNull"
+    File  = "OemIioInitHookLibNull\OemIioInitHookLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "BASE"    
+End
+
+LibraryMapping
+    Class  = "OemIioInitHookLib"
+    Instance  = "ServerPlatformPkg.OemIioInitHookLibNull"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "ReportDmarHookLibNull"
+    File  = "ReportDmarHookLibNull\ReportDmarHookLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "BASE"    
+End
+
+LibraryMapping
+    Class  = "ReportDmarHookLib"
+    Instance  = "ServerPlatformPkg.ReportDmarHookLibNull"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "OemCrystalRidgeLib"
+    File  = "OemCrystalRidgeLib/OemCrystalRidgeHooks.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "X64"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PlatformHooksLib"
+    File  = "PlatformHooksLib/PlatformHooksLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PlatformBootTimeOutLibNull"
+    File  = "PlatformBootTimeOutLibNull\PlatformBootTimeOutLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "OemIioInitLib"
+    File  = "OemIioInit/OemIioInitHooks.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "BASE"    
+End
+
+INFComponent
+    Name  = "AmiMrcHooksWrapperLib"
+    File  = "AmiMrcHooksWrapperLib/AmiMrcHooksWrapperLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "LogoLib"
+    File  = "LogoLib/LogoLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "DxeIfwiIdLib"
+    File  = "IfwiIdLib\DxeIfwiIdLib.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_DRIVER"    
+End
+
+INFComponent
+    Name  = "SmmPchPeriodicTimerLib"
+    File  = "SmmPchPeriodicTimerLib/SmmPchPeriodicTimerLib.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER"    
+    Token = "SmmPchPeriodicTimerLib_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "TpmPhysicalPresenceHookLib"
+    File  = "TpmPhysicalPresenceHookLibNull\TpmPhysicalPresenceHookLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_DRIVER"     
+End
+
+INFComponent
+    Name  = "PeiUbaPlatLib"
+    File  = "PeiUbaPlatLib/PeiUbaPlatLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "UbaPlatLib"
+    File  = "UbaPlatLib/UbaPlatLib.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_DRIVER"     
+End
+
+INFComponent
+    Name  = "BaseTraceHubLibNull"
+    File  = "BaseTraceHubLibNull/BaseTraceHubLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+    Token = "BaseTraceHubLibNull_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "PlatformOpromPolicyLib"
+    File  = "PlatformOpromPolicyLibNull/PlatformOpromPolicyLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_DRIVER"     
+    Token = "PlatformOpromPolicyLib_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiPdrAccessLib"
+    File  = "PeiPdrAccessLib/PeiPdrAccessLib.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"     
+    Token = "PeiPdrAccessLib_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "FruInformationLibSmbus"
+    File  = "FruInformationLibSmbus/FruInformationLibSmbus.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "MrcHooksServicesLib"
+    File  = "MrcHooksServicesLib/MrcHooksServicesLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+    Token = "MrcHooksServicesLib_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "PlatformSaltLibNull"
+    File  = "PlatformSaltLibNull/PlatformSaltLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "ReadFfsLib"
+    File  = "ReadFfsLib/ReadFfsLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "BasePasswordEncodeLibSha2"
+    File  = "BasePasswordEncodeLibSha2/BasePasswordEncodeLibSha2.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "MultiPlatSupportLibOptSize"
+    File  = "MultiPlatSupportLib/MultiPlatSupportLibOptSize.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PlatformSaltLibNull"
+    File  = "PlatformSaltLibNull/PlatformSaltLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PlatformSetupVariableSyncLibNull"
+    File  = "PlatformSetupVariableSyncLibNull/PlatformSetupVariableSyncLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PlatformVariableHookLibNull"
+    File  = "PlatformVariableHookLibNull/PlatformVariableHookLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "SecuredSetVariableLib"
+    File  = "BaseSecuredSetVariableLib/BaseSecuredSetVariableLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "FastVideoPrintLibNull"
+    File  = "FastVideoPrintLibNull/FastVideoPrintLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PeiPsmiPolicyUpdateLib"
+    File  = "PeiPsmiPolicyUpdateLib/PeiPsmiPolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PeiRasRcPolicyPpiUpdateLib"
+    File  = "PeiRasRcPolicyPpiUpdateLib/PeiRasRcPolicyPpiUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PeiPpmPolicyUpdateLib"
+    File  = "PeiPpmPolicyUpdateLib/PeiPpmPolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PpmPolicyUpdateCommonLib"
+    File  = "PpmPolicyUpdateCommonLib/PpmPolicyUpdateCommonLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PeiCpuLatePolicyUpdateLib"
+    File  = "PeiCpuLatePolicyUpdateLib/PeiCpuLatePolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PeiSecurityPolicyUpdateLib"
+    File  = "PeiSecurityPolicyUpdateLib/PeiSecurityPolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "PlatformBootManagerHookLib"
+    File  = "PlatformBootManagerHookLib/PlatformBootManagerHookLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "OtaDxeLib"
+    File  = "OtaDxeLib/OtaDxeLib.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"    
+End
+
+INFComponent
+    Name  = "BaseSmbusLibNull"
+    File  = "BaseSmbusLibNull/BaseSmbusLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"
+End
+
+INFComponent
+    Name  = "AcpiPlatformHookLibNull"
+    File  = "AcpiPlatformHookLibNull/AcpiPlatformHookLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "PlatformOobOneTouchLib"
+    File  = "PlatformOobOneTouchLibNull/PlatformOobOneTouchLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"    
+End
+
+INFComponent
+    Name  = "PlatformPostCodeMapLib"
+    File  = "PlatformPostCodeMapLib/PlatformPostCodeMapLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "BASE"
+End
+
+INFComponent
+    Name  = "AcpiPlatformTableLib"
+    File  = "AcpiPlatformTableLib/AcpiPlatformLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "PeiMemoryPolicyUpdateLib"
+    File  = "PeiMemoryPolicyUpdateLib/PeiMemoryPolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "OemProcMemInitHookLibNull"
+    File  = "OemProcMemInitHookLibNull/OemProcMemInitHookLibNull.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "BASE"    
+End
+
+#INFComponent    
+#    Name  = "PlatformBootManagerLib"
+#    File  = "PlatformBootManagerLib\PlatformBootManagerLib.inf"
+#    Package  = "ServerPlatformPkg"
+#    ModuleTypes  = "DXE_DRIVER"     
+#End
+
+#LibraryMapping
+#    Class  = "PlatformBootManagerLib"
+#    Instance  = "ServerPlatformPkg.PlatformBootManagerLib"   
+#End
+
+
+INFComponent
+    Name  = "PeiCpuPolicyUpdateLib"
+    File  = "PeiCpuPolicyUpdateLib\PeiCpuPolicyUpdateLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "PEIM"     
+End
+
+LibraryMapping
+    Class  = "OemIioInitLib"
+    Instance  = "ServerPlatformPkg.OemIioInitLib"
+    Arch = "X64"    
+End
+
+LibraryMapping
+    Class  = "CompressDxeLib"
+    Instance  = "ServerPlatformPkg.CompressDxeLib"
+End
+
+LibraryMapping
+    Class  = "LogoLib"
+    Instance  = "ServerPlatformPkg.LogoLib"
+End
+
+LibraryMapping
+    Class  = "IfwiIdLib"
+    Instance  = "ServerPlatformPkg.DxeIfwiIdLib"
+    Arch = "X64"
+End
+
+#LibraryMapping
+#    Class  = "PeiPolicyInitLib"
+#    Instance  = "ServerPlatformPkg.PeiPolicyInitLib"
+#End
+
+LibraryMapping
+    Class  = "PeiCommonRcPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiCommonRcPolicyUpdateLib"
+End
+
+LibraryMapping
+    Class  = "PeiPolicyInitLib"
+    Instance  = "ServerPlatformPkg.PeiPolicyInit"
+    Arch = "IA32"
+End
+
+#LibraryMapping
+#    Class  = "PeiPolicyUpdateLib"
+#    Instance  = "ServerPlatformPkg.PeiPolicyUpdateLib"
+#End
+
+LibraryMapping
+    Class  = "PeiPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiPolicyUpdateLibEbg"
+    Arch  = "IA32"    
+End
+
+LibraryMapping
+    Class  = "PeiFusaSafPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiFusaSafPolicyUpdateLib"
+End
+
+LibraryMapping
+    Class  = "BuildAcpiTablesLib"
+    Instance  = "ServerPlatformPkg.DxeBuildAcpiTablesLib"
+End
+
+LibraryMapping
+    Class  = "SmmPeriodicTimerLib"
+    Instance  = "ServerPlatformPkg.SmmPchPeriodicTimerLib"
+    Token = "SmmPchPeriodicTimerLib_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "TpmPhysicalPresenceHookLib"
+    Instance  = "ServerPlatformPkg.TpmPhysicalPresenceHookLib"
+    Arch = "X64"    
+End
+
+LibraryMapping
+    Class  = "PeiIioSiPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiIioSiPolicyUpdateLib"
+End
+
+LibraryMapping
+    Class  = "PeiUpiPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiUpiPolicyUpdateLib"
+End
+
+LibraryMapping
+    Class  = "PeiPolicyDebugLib"
+    Instance  = "ServerPlatformPkg.PeiPolicyDebugLibEbg"
+    Arch = "IA32"
+End
+
+LibraryMapping
+    Class  = "PeiPolicyDebugLib"
+    Instance  = "ServerPlatformPkg.PeiPolicyDebugLibEbg"
+    Arch = "IA32"
+End
+
+LibraryMapping
+    Class  = "CpuPolicyUpdateCommonLib"
+    Instance  = "ServerPlatformPkg.CpuPolicyUpdateCommonLib"
+End
+
+LibraryMapping
+    Class  = "CustomizedDisplayLib"
+    Instance  = "ServerPlatformPkg.CustomizedDisplayLib"
+End
+
+LibraryMapping
+    Class  = "DataCacheLib"
+    Instance  = "ServerPlatformPkg.DataCacheLibHob"
+#    Arch = "IA32"
+#    ModuleTypes = "PEIM"
+End
+
+LibraryMapping
+    Class  = "DataCacheLib"
+    Instance  = "ServerPlatformPkg.DataCacheLibNull"
+    Arch = "IA32"
+    ModuleTypes  = "SEC"
+End
+
+LibraryMapping
+    Class  = "DxePolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.DxePolicyUpdateLib"
+    Arch = "X64"   
+End
+
+LibraryMapping
+    Class  = "OemProcessorStartupLib"
+    Instance  = "ServerPlatformPkg.OemProcessorStartupLib"
+End
+
+LibraryMapping
+    Class  = "OemProcMemInitLib"
+    Instance  = "ServerPlatformPkg.OemProcMemInitLib"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "OemCrystalRidgeLib"
+    Instance  = "ServerPlatformPkg.OemCrystalRidgeLib"
+End
+
+LibraryMapping
+    Class  = "PlatformHooksLib"
+    Instance  = "ServerPlatformPkg.PlatformHooksLib"
+End
+
+LibraryMapping
+    Class  = "PlatformBootTimeOutLib"
+    Instance  = "ServerPlatformPkg.PlatformBootTimeOutLibNull"
+End
+
+LibraryMapping
+    Class  = "AmiMrcHooksWrapperLib"
+    Instance  = "ServerPlatformPkg.AmiMrcHooksWrapperLib"
+End
+
+LibraryMapping
+    Class  = "UbaPlatLib"
+    Instance  = "ServerPlatformPkg.PeiUbaPlatLib"
+    Arch  = "IA32"
+End
+
+LibraryMapping
+    Class  = "UbaPlatLib"
+    Instance  = "ServerPlatformPkg.UbaPlatLib"
+    Arch  = "X64"
+End
+
+#LibraryMapping
+#    Class  = "TraceHubDebugLib"
+#    Instance  = "ServerPlatformPkg.BaseTraceHubDebugLib"
+#   Arch  = "common"
+#    Token = "BaseTraceHubDebugLib_SUPPORT" "=" "1"
+#End
+
+#LibraryMapping
+#    Class  = "TraceHubDebugLib"
+#    Instance  = "ServerPlatformPkg.BaseTraceHubDebugLibNull"
+#    Arch  = "common"
+#    Token = "BaseTraceHubDebugLibNull_SUPPORT" "=" "1"
+#End
+
+LibraryMapping
+    Class  = "TraceHubLib"
+    Instance  = "ServerPlatformPkg.BaseTraceHubLibNull"
+    Token = "BaseTraceHubLibNull_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PlatformOpromPolicyLib"
+    Instance  = "ServerPlatformPkg.PlatformOpromPolicyLib"
+    Arch = "X64"
+    Token = "PlatformOpromPolicyLib_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "PeiPdrAccessLib"
+    Instance  = "ServerPlatformPkg.PeiPdrAccessLib"
+    Arch  = "IA32"
+    Token = "PeiPdrAccessLib_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "FruInformationLib"
+    Instance  = "ServerPlatformPkg.FruInformationLibSmbus"
+End
+
+LibraryMapping
+    Class  = "MrcHooksServicesLib"
+    Instance  = "ServerPlatformPkg.MrcHooksServicesLib"
+    Token = "MrcHooksServicesLib_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "ReadFfsLib"
+    Instance  = "ServerPlatformPkg.ReadFfsLib"
+End
+
+LibraryMapping
+    Class  = "PlatformSaltLib"
+    Instance  = "ServerPlatformPkg.PlatformSaltLibNull"
+End
+
+LibraryMapping
+    Class  = "PasswordEncodeLib"
+    Instance  = "ServerPlatformPkg.BasePasswordEncodeLibSha2"
+End
+
+LibraryMapping
+    Class  = "MultiPlatSupportLib"
+    Instance  = "ServerPlatformPkg.MultiPlatSupportLibOptSize"
+End
+
+LibraryMapping
+    Class  = "PlatformSetupVariableSyncLib"
+    Instance  = "ServerPlatformPkg.PlatformSetupVariableSyncLibNull"
+End
+
+LibraryMapping
+    Class  = "PlatformVariableHookLib"
+    Instance  = "ServerPlatformPkg.PlatformVariableHookLibNull"
+End
+
+LibraryMapping
+    Class  = "SecuredSetVariableLib"
+    Instance  = "ServerPlatformPkg.SecuredSetVariableLib"
+End
+
+LibraryMapping
+    Class  = "FastVideoPrintLib"
+    Instance  = "ServerPlatformPkg.FastVideoPrintLibNull"
+End
+
+LibraryMapping
+    Class  = "PeiPsmiPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiPsmiPolicyUpdateLib"
+End
+
+LibraryMapping
+    Class  = "PeiSecurityPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiSecurityPolicyUpdateLib"
+End
+
+LibraryMapping
+    Class  = "RasRcPolicyPpiUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiRasRcPolicyPpiUpdateLib"
+End
+
+LibraryMapping
+    Class  = "PeiPpmPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiPpmPolicyUpdateLib"
+End
+
+LibraryMapping
+    Class  = "PpmPolicyUpdateCommonLib"
+    Instance  = "ServerPlatformPkg.PpmPolicyUpdateCommonLib"
+End
+
+LibraryMapping
+    Class  = "PeiCpuLatePolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiCpuLatePolicyUpdateLib"
+End
+
+LibraryMapping
+    Class  = "PlatformBootManagerHookLib"
+    Instance  = "ServerPlatformPkg.PlatformBootManagerHookLib"
+End
+
+LibraryMapping
+    Class  = "OtaDxeLib"
+    Instance  = "ServerPlatformPkg.OtaDxeLib"
+    Arch = "X64"    
+End
+
+#LibraryMapping
+#    Class  = "SmbusLib"
+#    Instance  = "ServerPlatformPkg.BaseSmbusLibNull"
+#End
+
+LibraryMapping
+    Class  = "AcpiPlatformHookLib"
+    Instance  = "ServerPlatformPkg.AcpiPlatformHookLibNull"
+End
+
+LibraryMapping
+    Class  = "PlatformOobOneTouchLib"
+    Instance  = "ServerPlatformPkg.PlatformOobOneTouchLib"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "PlatformPostCodeMapLib"
+    Instance  = "ServerPlatformPkg.PlatformPostCodeMapLib"
+End
+
+LibraryMapping
+    Class  = "AcpiPlatformTableLib"
+    Instance  = "ServerPlatformPkg.AcpiPlatformTableLib"
+End
+
+LibraryMapping
+    Class  = "PeiMemoryPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiMemoryPolicyUpdateLib"
+End
+
+LibraryMapping
+    Class  = "OemProcMemInitHookLib"
+    Instance  = "ServerPlatformPkg.OemProcMemInitHookLibNull"
+    Arch = "X64"
+End
+
+LibraryMapping
+    Class  = "PeiCpuPolicyUpdateLib"
+    Instance  = "ServerPlatformPkg.PeiCpuPolicyUpdateLib"
+End
+
+INFComponent
+    Name  = "PlatformCmosAccessLib"
+    File  = "PlatformCmosAccessLib\PlatformCmosAccessLib.inf"
+    Package  = "ServerPlatformPkg"
+End
+
+LibraryMapping
+    Class  = "PlatformCmosAccessLib"
+    Instance  = "ServerPlatformPkg.PlatformCmosAccessLib"
+End

@@ -1,0 +1,23 @@
+<component>
+    name = "Library"
+    category = MODULEPART
+    LocalRoot = "Intel\ServerSiliconPkg\Me\Library\"
+    RefName = "ServerSiliconPkg.Me.Library"
+[inf]
+"HeciTraceLib\HeciTraceLib.inf"
+"MeUefiFwHealthStatusLib\MeUefiFwHealthStatusLib.inf"
+"MeStorageLib\PeiMeStorageLib.inf"
+"MeStorageLib\DxeMeStorageLib.inf"
+"PeiDxeMeShowBufferLib\PeiDxeMeShowBufferLib.inf"
+"MeDummyLib\MeDummyLib.inf"
+"MeMeasurementsLib\MeMeasurementsLib.inf"
+"MeSmmLib\MeSmmLib.inf"
+"MeTypeLib\MeTypePeiLib.inf"
+"MeTypeLib\MeTypeDxeLib.inf"
+"MeUmaLib\MeUmaPeiLib.inf"
+"MeUmaLib\MeUmaLib.inf"
+[files]
+"Library.sdl"
+"MeMeasurementsLib\MeMeasurements.h"	
+[parts]
+<endComponent>

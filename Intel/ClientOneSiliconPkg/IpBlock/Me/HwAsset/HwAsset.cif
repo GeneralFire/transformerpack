@@ -1,0 +1,10 @@
+<component>
+    name = "HwAsset"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\HwAsset\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.HwAsset"
+[files]
+"HwAsset.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Me.HwAsset.Dxe"
+<endComponent>

@@ -1,0 +1,313 @@
+TOKEN
+    Name  = "AMI_ISCSI_SUPPORT"
+    Value  = "1"
+    Help  = "Main Switch for Enabling Ami Specific IScsi Features support in the project"
+    TokenType = Boolean
+    TargetH = Yes
+    Master = Yes
+    Token = "NET_PKG_AMI_PORTING_ENABLE" "=" "1"
+End
+
+PATH
+    Name  = "AMI_ISCSI_DIR"
+End
+
+TOKEN
+    Name  = "ENABLE_CHAP_SECRET_ENCRYPTION"
+    Value  = "0"
+    Help  = "Enabling this token will encrypt the CHAP/REVERSE CHAP secrets and Disabling this token will work with out encryption"
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "ISCSI_FORCEFULLY_SET_INITIATOR_NAME"
+    Value  = "0"
+    Help  = "Main switch to enable forcefull initiator name support"
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "REDFISH_ISCSI_SUPPORT"
+    Value  = "0"
+    Help  = "Token to enable/disable REDFISH iSCSI support. 0 - Disable REDFISH iSCSI support. 1 - Enables REDFISH iSCSI support."
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    Token = "RedfishFeatures_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "RSD_ISCSI_SUPPORT"
+    Value  = "0"
+    Help  = "Token to enable/disable RSD iSCSI support. 0 - Disable RSD iSCSI support. 1 - Enables RSD iSCSI support."
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    Token = "DxeIpmiInitialize_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "ChapSecretEncryptionManagementHook"
+    InvokeOrder = ReplaceParent
+End
+
+OUTPUTREGISTER
+    Name  = "AMI_ISCSI_ELINKS"
+    Path  = "Build"
+    File  = "AmiIScsiElink.h"
+    Template  = "AmiIScsiElinks.txt"
+End
+
+ELINK
+    Name  = "DefaultIscsiManageEncryptionHook"
+    Parent  = "ChapSecretEncryptionManagementHook"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/AmiIScsiConfigVfr.vfr"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/AmiIScsi.c"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/AmiIScsiConfig.c"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/AmiIScsi.h"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/AmiIScsiConfig.h"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/AmiIScsiConfigStrings.uni"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/AmiRedfishIScsi.c"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "REDFISH_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/AmiRedfishIScsi.h"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "REDFISH_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/RsdIScsiSupport.c"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/RsdIScsiSupport.h"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/RsdIScsiBmcParser.c"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/RsdIScsiConfig.c"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/RsdIScsiConfig.h"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/RsdIScsiConfig.uni"
+    Parent  = "ADDITIONAL_iSCSI_SOURCE_FILES"
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/RsdIScsiConfig.uni"
+    Parent  = "SetupStringFiles"
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(AMI_ISCSI_DIR)/AmiIScsiConfigStrings.uni"
+    Parent  = "SetupStringFiles"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiRsdMACNamesListVarDataGuid"
+    Parent  = "ADDITIONAL_iSCSI_GUIDS"
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiRedfishIScsiAttemptConfigGuid"
+    Parent  = "ADDITIONAL_iSCSI_GUIDS"
+    Token = "REDFISH_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiRedfishIscsiDataGuid"
+    Parent  = "ADDITIONAL_iSCSI_GUIDS"
+    Token = "REDFISH_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiAcpi20TableGuid"
+    Parent  = "ADDITIONAL_iSCSI_GUIDS"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiIp4ProtocolGuid"
+    Parent  = "ADDITIONAL_iSCSI_PROTOCOLS"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiIp4ServiceBindingProtocolGuid"
+    Parent  = "ADDITIONAL_iSCSI_PROTOCOLS"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiIp6ProtocolGuid"
+    Parent  = "ADDITIONAL_iSCSI_PROTOCOLS"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiIp6ServiceBindingProtocolGuid"
+    Parent  = "ADDITIONAL_iSCSI_PROTOCOLS"
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiRedfishIScsiConfigProtocolGuid"
+    Parent  = "ADDITIONAL_iSCSI_PROTOCOLS"
+    Token = "REDFISH_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "gEfiDxeIpmiTransportProtocolGuid"
+    Parent  = "ADDITIONAL_iSCSI_PROTOCOLS"
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+################################################################################################
+# Enable the below ELINKs for RSD 2.2 support and make sure AmiIpmiPkg and AmiRsdPkg are added.#
+################################################################################################
+
+ELINK
+    Name  = "AmiIpmiPkg/AmiIpmiPkg.dec"
+    Parent  = "ADDITIONAL_iSCSI_PACKAGES"
+    InvokeOrder = ReplaceParent
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    Help = "ELINK to add AmiIpmiPkg to iSCSI for RSD 2.2 support."
+End
+
+ELINK
+    Name  = "AmiRsdPkg/AmiRsdPkg.dec"
+    Parent  = "ADDITIONAL_iSCSI_PACKAGES"
+    InvokeOrder = ReplaceParent
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+    Help = "ELINK to add AmiRsdPkg to iSCSI for RSD 2.2 support."
+End
+
+ELINK
+    Name  = "AmiCompatibilityPkg/AmiCompatibilityPkg.dec"
+    Parent  = "ADDITIONAL_iSCSI_PACKAGES"
+    InvokeOrder = ReplaceParent
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "AmiTsePkg/AmiTsePkg.dec"
+    Parent  = "ADDITIONAL_iSCSI_PACKAGES"
+    InvokeOrder = ReplaceParent
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "AmiNetworkCommonLib"
+    Parent  = "ADDITIONAL_iSCSI_LIB"
+    InvokeOrder = AfterParent
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "AmiDxeLib"
+    Parent  = "ADDITIONAL_iSCSI_LIB"
+    InvokeOrder = AfterParent
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "AmiNetworkPostManagerLib"
+    Parent  = "ADDITIONAL_iSCSI_LIB"
+    InvokeOrder = AfterParent
+    Token = "AMI_ISCSI_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "RsdIpmiExtCommandLib"
+    Parent  = "ADDITIONAL_iSCSI_LIB"
+    InvokeOrder = AfterParent
+    Token = "RSD_ISCSI_SUPPORT" "=" "1"
+End

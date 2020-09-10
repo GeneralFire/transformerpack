@@ -1,0 +1,11 @@
+<component>
+    name = "OpromUpdateDxe"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\UbaMain\TypeArcherCityRP\Dxe\OpromUpdateDxe\"
+    RefName = "EagleStreamRpPkg.Uba.UbaMain.TypeArcherCityRP.Dxe.OpromUpdateDxe"
+[INF]
+"OpromUpdateDxe.inf"
+[files]
+"OpromUpdateDxe.h"	
+"OpromUpdateDxe.sdl"	
+<endComponent>

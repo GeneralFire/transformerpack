@@ -1,0 +1,20 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\EbgPch\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.Fru.EbgPch.LibraryPrivate"
+[INF]
+"BaseIoExpanderLib\BaseIoExpanderLib.inf"
+"BaseIoExpanderPciBdfLib\BaseIoExpanderPciBdfLib.inf"
+"GbeSocLib\GbeSocLib.inf"
+"HdaSocLib\HdaSocLib.inf"
+"HsioSocLib\HsioSocLibEbg.inf"
+"PcieRpSocLib\PcieRpSocLib.inf"
+"PeiDxeSmmPmcSocLib\PeiDxeSmmPmcSocLib.inf"
+"PeiDxeSmmPsfSocLib\PeiDxeSmmPsfSocLib.inf"
+"PeiUsbTypeCMapSupportLib\PeiUsbTypeCMapSupportLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+[parts]
+"ClientOneSiliconPkg.Fru.EbgPch.LibraryPrivate.PeiPchInitLib"
+<endComponent>

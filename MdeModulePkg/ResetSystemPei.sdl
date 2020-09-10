@@ -1,0 +1,29 @@
+TOKEN
+	Name  = "MdeModuleResetSytemPei_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Usb support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+INFComponent
+	Name  = "ResetSystemPei"
+	File  = "Universal\ResetSystemPei\ResetSystemPei.inf"
+	Package  = "MdeModulePkg"
+	ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+    Class  = "ResetSystemLib"
+    Instance  = "ClientOneSiliconPkg.BaseResetSystemLib"
+    Override  = "MdeModulePkg.ResetSystemPei"
+End
+
+FFS_FILE
+    Name  = "ResetSystemPei"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "MdeModulePkg.ResetSystemPei"
+    Apriori_Index  = "7"
+End

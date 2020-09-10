@@ -1,0 +1,35 @@
+TOKEN
+    Name  = "EbgCpu_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling EbgCpu support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Disable = Yes
+End
+
+TOKEN
+    Name  = "Build_EbgCpu"
+    Value  = "0"
+    Help  = "Switch for building EbgCpu Package"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "EbgCpu"
+    TokenType = Expression
+    TargetDSC = Yes
+    Token = "Build_EbgCpu" "=" "1"
+End
+
+LibraryMapping
+    Class  = "CpuPcieInfoFruLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmCpuPcieInfoFruLib"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmCpuPcieInfoFruLib"
+    File  = "CpuPcieRp\Library\PeiDxeSmmCpuPcieInfoFruLib\PeiDxeSmmCpuPcieInfoFruLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End

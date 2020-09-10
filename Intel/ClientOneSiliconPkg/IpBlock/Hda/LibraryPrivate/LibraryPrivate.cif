@@ -1,0 +1,14 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Hda\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Hda.LibraryPrivate"
+[INF]
+"DxeHdaPolicyLib\DxeHdaPolicyLib.inf"
+"PeiHdaInitLib\PeiHdaInitLib.inf"
+"PeiHdaLib\PeiHdaLib.inf"
+"PeiHdaPolicyLib\PeiHdaPolicyLib.inf"
+"PeiCavsInitLib\PeiCavsInitLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

@@ -1,0 +1,8 @@
+<component>
+    name = "Espi"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Espi\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Espi"
+[files]
+"EspiConfig.h"	
+<endComponent>

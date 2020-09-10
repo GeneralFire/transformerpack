@@ -1,0 +1,293 @@
+## @file
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2012 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SocketSetup
+  FILE_GUID                      = 6B6FD380-2C55-42C6-98BF-CBBC5A9AA666
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InstallSocketSetupScreen
+# APTIOV_SERVER_OVERRIDE_RC_START : change done to add SocketSetup to defaults.bin during build  
+  UEFI_HII_RESOURCE_SECTION      = TRUE
+# APTIOV_SERVER_OVERRIDE_RC_END : change done to add SocketSetup to defaults.bin during build  
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  MemBootHealthStrings.uni
+  SocketSetupStrings.uni
+  KtiSetupStrings.uni
+  KtiDfxSetupStrings.uni
+  IioSetupStrings.uni
+  IioDfxSetupStrings.uni
+  MemorySetupStrings.uni
+  MemoryDfxSetupStrings.uni
+  CommonRefCodeStrings.uni
+  CommonRefCodeDfxStrings.uni
+  ProcessorSetupStrings.uni
+  # APTIOV_SERVER_OVERRIDE_RC_START : Comment out inclusion of redundant UNI file
+  #IioSetupStrings.uni
+  # APTIOV_SERVER_OVERRIDE_RC_END : Comment out inclusion of redundant UNI file
+  PowerManagmentSetupStrings.uni
+  HbmSetupStrings.uni
+  # APTIOV_SERVER_OVERRIDE_RC_START : Include x-AMI mapping language UNI file
+  SocketSetupXAmiStringIncludes.uni
+  # APTIOV_SERVER_OVERRIDE_RC_END : Include x-AMI mapping language UNI file
+  ProcessorDfxSetupStrings.uni
+  SocketSetup.c
+  SocketSetupForms.vfr
+  CommonRefCode.hfr
+  CommonRefCodeDfx.hfr
+  KtiSetup.hfr
+  KtiDfxSetup.hfr
+  KtiPerLinkDfxSetup.hfr
+  KtiDfxPerSocketConfig.hfr
+  KtiPerSocketConfig.hfr
+  KtiPerLinkSetup.hfr
+
+  IioSetup.hfr
+  IioPcieSetup.hfr
+  IioPciePortSetup.hfr
+  IioSetupSpr.hfr            // for SPR only
+  IioPcieSetupSpr.hfr        // for SPR only
+  IioPciePortSetupSpr.hfr    // for SPR only
+  IioPcieAICSetup.hfr        // for SKX only
+  IioPcieAICSetup10nm.hfr    // for 10nm only
+  IioIoApicSetup.hfr
+
+  IioHfrUtils.hfr
+  IioDynamicSetupStrings.hfr
+  IioVmdIioFormTpl.hfr
+  IioVmdStackTpl.hfr
+  IioVmdIouPortsTpl.hfr
+  IioVmdPchPortTpl.hfr
+
+  IioDfxSetup.hfr
+  IioDfxSetupSpr.hfr         // for SPR only
+  IioDfxPcieSetup.hfr
+  IioDfxPcieSetupSpr.hfr     // for SPR only
+  IioDfxPciePortSetup.hfr
+  IioDfxPciePortSetupSpr.hfr // for SPR only
+  IioDfxDevHideSocketTpl.hfr
+  IioDfxDevHideStackTpl.hfr
+
+  MemorySetup.hfr
+  MemorySetupRas.hfr
+  MemoryDfxSetup.hfr
+  ProcessorSetup.hfr
+  # APTIOV_SERVER_OVERRIDE_RC_START
+  #SecuritySetupIcx.hfr       // for ICX ICXDE only
+  # APTIOV_SERVER_OVERRIDE_RC_END
+  SecuritySetupSpr.hfr       // for SPR only
+  ProcessorSocketSetup.hfr
+  ProcessorPsmiSetup.hfr
+  PowerManagementSetup.hfr
+  CpuPMSAPMSocketSetup.hfr
+  CpuPMEntryCriteriaSocketSetup.hfr
+  CpuPkgcSaPsCriteriaSocketSetup.hfr
+  MemBootHealthSetup.hfr
+  # APTIOV_SERVER_OVERRIDE_RC_START: Defines dummy control and update value from NVRAM or HOB in order to avoid load defaults issue.
+  SocketSetupDummyControls.hfr
+  # APTIOV_SERVER_OVERRIDE_RC_END: Defines dummy control and update value from NVRAM or HOB in order to avoid load defaults issue.
+  ProcessorDfxSetup.hfr
+  MemorySetup.h
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CpRcPkg/CpRcPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+  ServerSiliconPkg/Iio/IioRcPkg.dec
+  ServerPlatformPkg/PlatformPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  ServerSecurityPkg/ServerSecurityPkg.dec
+
+[Protocols]
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gEfiMpServiceProtocolGuid
+  gEfiIioUdsProtocolGuid
+  # APTIOV_SERVER_OVERRIDE_RC_START : Adding HiiPackageListProtocol, HiiDatabaseProtocol guids
+  gEfiHiiPackageListProtocolGuid          ## CONSUMES
+  gEfiHiiDatabaseProtocolGuid             ## CONSUMES
+  # APTIOV_SERVER_OVERRIDE_RC_END : Adding HiiPackageListProtocol, HiiDatabaseProtocol guids
+  gEfiCpuPpmProtocolGuid
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  BaseLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DebugLib
+  UefiLib
+  PcdLib
+  PrintLib
+  HiiLib
+  UefiHiiServicesLib
+  HobLib
+  MemMapDataLib
+  X2ApicIdDetectLib
+  IioApiLib
+  PcuIpLib
+  IioSysInfoLib
+  SetupLib
+  SystemInfoLib
+  PmcSetStrapMessageLib
+  RngLib
+  CpuEarlyDataLib
+  KtiApiLib
+  # APTIOV_SERVER_OVERRIDE_RC_START
+  PchRtcLib
+  # APTIOV_SERVER_OVERRIDE_RC_END
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiSetupEnterGuid
+  gEfiSetupVariableGuid
+  gEfiIfrTianoGuid
+  gEfiSocketIioVariableGuid
+  gEfiSocketCommonRcVariableGuid
+  gEfiSocketMpLinkVariableGuid
+  gEfiSocketMemoryVariableGuid
+  gSocketPkgListGuid
+  gSignalBeforeEnterSetupGuid
+  gEfiSocketPowermanagementVarGuid
+  gEfiSocketProcessorCoreVarGuid
+  gMktmeInitDataGuid
+  gMemBootHealthGuid
+  gTdxDataHobGuid
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdEnforcePorDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdEnforcePopulationPorDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcMultiThreadedDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcFastBootDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcFastColdBootDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcBdatDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcWritePreambleTclkDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcReadPreambleTclkDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcRxDfeDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcMcOdtDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcMcRonDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcTxRfSlewRateDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcPmemMemHoleDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcCrQosConfigDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcSpdPrintDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdLegacyRmtEnable
+  gEfiCpRcPkgTokenSpaceGuid.PcdRankSwitchFixOption
+  gEfiCpRcPkgTokenSpaceGuid.PcdSsaBuiltInRmtEnable
+  gEfiCpRcPkgTokenSpaceGuid.PcdSsaLoaderEnable
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcCmiInitUseResetDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdDdrtSchedulerDebugDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcTurnaroundOptimizations
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcTurnaroundOptimizationsDdrt
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcSmbusSpeedDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcCtleTrainingEnable
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcImodeTrainingEnable
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcTcoCompTrainingEnable
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcCmdVrefCenteringTrainingEnable
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDramRonDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcPxcDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDdjcDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdDimmIsolationDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcRxDfeDdr5TrainingDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcTxDfeDdr5TrainingDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcLrdimmDbDfeDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDramDutyCycleAdjusterTrainingDefault
+
+  gSiPkgTokenSpaceGuid.PcdHalfxRefreshValue
+  gSiPkgTokenSpaceGuid.PcdTwoxRefreshValue
+  gSiPkgTokenSpaceGuid.PcdFourxRefreshValue
+  gSiPkgTokenSpaceGuid.PcdHalfxRefreshMinValue
+  gSiPkgTokenSpaceGuid.PcdTwoxRefreshMinValue
+  gSiPkgTokenSpaceGuid.PcdFourxRefreshMinValue
+  gSiPkgTokenSpaceGuid.PcdHalfxRefreshMaxValue
+  gSiPkgTokenSpaceGuid.PcdTwoxRefreshMaxValue
+  gSiPkgTokenSpaceGuid.PcdFourxRefreshMaxValue
+  gSiPkgTokenSpaceGuid.PcdTempRefreshOption
+  gEfiCpRcPkgTokenSpaceGuid.PcdMemBootHealthConfigString
+  gEfiCpRcPkgTokenSpaceGuid.PcdMemBootHealthCheck
+  gEfiCpRcPkgTokenSpaceGuid.PcdWarningTxDqDelayLeftEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdWarningTxDqDelayRightEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdWarningTxVrefLeftEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdWarningTxVrefRightEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdWarningRxDqsDelayLeftEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdWarningRxDqsDelayRightEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdWarningRxVrefLeftEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdWarningRxVrefRightEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdCriticalTxDqDelayLeftEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdCriticalTxDqDelayRightEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdCriticalTxVrefLeftEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdCriticalTxVrefRightEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdCriticalRxDqsDelayLeftEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdCriticalRxDqsDelayRightEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdCriticalRxVrefLeftEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdCriticalRxVrefRightEdge
+  gEfiCpRcPkgTokenSpaceGuid.PcdResetOnCriticalError
+  gSiPkgTokenSpaceGuid.PcdPostedCsrAccessAllowedDefault
+  gSiPkgTokenSpaceGuid.PcdPostedCsrAccessSupported
+  gSiPkgTokenSpaceGuid.PcdCpgcRegCacheAccessAllowedDefault
+  gSiPkgTokenSpaceGuid.PcdCpgcRegCacheAccessSupported
+  gEfiCpRcPkgTokenSpaceGuid.PcdDfxSsaRmtRecvEnableDenormalize
+  gEfiCpRcPkgTokenSpaceGuid.PcdDdrtSrefDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdOpportunisticSelfRefreshDefault
+  gSiPkgTokenSpaceGuid.PcdCpgcGlobalSyncCtrlSupported
+  gEfiCpRcPkgTokenSpaceGuid.PcdLegacyAdrDefault
+  gSiPkgTokenSpaceGuid.PcdSenseAmpCalibHwFsmSupported
+  gSiPkgTokenSpaceGuid.PcdDfxSenseAmpCalibHwSwDefault
+  gSiPkgTokenSpaceGuid.PcdBiosDfxKnobEnabled
+  gPlatformTokenSpaceGuid.PcdBindSgxResetWithF9GlobalReset
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcDdrFrequencyDefault
+  gEfiCpRcPkgTokenSpaceGuid.PcdMrcPanicWatermarkDefault
+  gSiPkgTokenSpaceGuid.PcdDfxXoverSwCalibParallelMode
+
+[FeaturePcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdLegacyRmtFeatureSupported
+  gEfiCpRcPkgTokenSpaceGuid.PcdSsaBuiltInRmtFeatureSupported
+  gEfiCpRcPkgTokenSpaceGuid.PcdSsaLoaderMethodFeatureSupported
+  gEfiCpRcPkgTokenSpaceGuid.PcdMemBootHealthFeatureSupported
+  gEfiCpRcPkgTokenSpaceGuid.PcdOpportunisticSelfRefreshSupported
+  gEfiCpRcPkgTokenSpaceGuid.PcdEnableNgnBcomMargining
+  gSiPkgTokenSpaceGuid.PcdPmcStrapSetVdmSupported
+
+[Pcd]
+  gPlatformModuleTokenSpaceGuid.PcdCrystalRidgeEnable
+
+[Depex]
+  gEfiVariableArchProtocolGuid      AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiMpServiceProtocolGuid         AND
+  gEfiIioSystemProtocolGuid         AND
+  gEfiCpuPpmProtocolGuid

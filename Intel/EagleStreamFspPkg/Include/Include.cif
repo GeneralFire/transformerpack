@@ -1,0 +1,19 @@
+<component>
+	name = "Include"
+	category = ModulePart
+	LocalRoot = "Intel\EagleStreamFspPkg\Include\"
+	RefName = "EagleStreamFspPkg.Include"
+[files]
+"Library\FspInfoLib.h"	
+"Library\FspSerialIoUartDebugPropertyLib.h"	
+"Library\PeiPlatformLib.h"	
+"Library\PlatformHobBuildLib.h"	
+"Library\TraceHubDebugLib.h"	
+"Library\TraceHubHookLib.h"
+"Guid\SmramMemoryReserve.h"
+"BootLoaderPlatformData.h"	
+"CommonIncludes.h"	
+"CpuRegs.h"	
+"HobUsageDataHob.h"
+"..\Library\FspDebugLibService\FspDebugLibService.h"
+<endComponent>

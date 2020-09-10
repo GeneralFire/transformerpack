@@ -1,0 +1,122 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2017 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+  form formid = AUTO_ID(CONCATENATE3(PCH_SATA,CONTROLLER_INDEX,_SFMS_OPTIONS_FORM_ID)),
+    title     = STRING_TOKEN(STR_SATA_SFMS_OPTIONS_FORM_TITLE);
+
+    SUBTITLE(STRING_TOKEN(STR_SATA_SFMS_OPTIONS_FORM_TITLE))
+    SEPARATOR
+
+    oneof varid   = PCH_SETUP.SataHddlk[CONTROLLER_INDEX],
+      prompt      = STRING_TOKEN(STR_PCH_HDDLK_PROMPT),
+      help        = STRING_TOKEN(STR_PCH_HDDLK_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = PCH_SETUP.SataLedl[CONTROLLER_INDEX],
+      prompt      = STRING_TOKEN(STR_PCH_LEDL_PROMPT),
+      help        = STRING_TOKEN(STR_PCH_LEDL_HELP),
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    suppressif NOT ideqval PCH_SETUP.SataInterfaceMode[CONTROLLER_INDEX] == SATA_MODE_RAID;
+      oneof varid   = PCH_SETUP.SataLegacyOrom[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_RST_LEGACY_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_RST_LEGACY_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.SataRaidR0[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_RAID0_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_RAID0_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.SataRaidR1[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_RAID1_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_RAID1_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.SataRaidR10[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_RAID10_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_RAID10_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.SataRaidR5[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_RAID5_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_RAID5_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.SataRaidIrrt[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_IRRT_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_IRRT_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.SataRaidOub[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_OUB_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_OUB_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.SataRaidIooe[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_IOOE_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_IOOE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.SataRaidSrt[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_SRT_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_SRT_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = PCH_SETUP.SataRaidOromDelay[CONTROLLER_INDEX],
+        prompt      = STRING_TOKEN(STR_PCH_ODLY_PROMPT),
+        help        = STRING_TOKEN(STR_PCH_ODLY_HELP),
+        option text = STRING_TOKEN(STR_2S_STRING), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_4S_STRING), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_6S_STRING), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_8S_STRING), value = 3, flags = RESET_REQUIRED;
+      endoneof;
+
+    endif;
+  endform; //End of PCH_SATA_SFMS_OPTIONS_FORM_ID

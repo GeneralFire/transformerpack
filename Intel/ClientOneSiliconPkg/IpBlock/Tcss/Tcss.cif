@@ -1,0 +1,8 @@
+<component>
+    name = "Tcss"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Tcss\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Tcss"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Tcss.IncludePrivate"
+<endComponent>

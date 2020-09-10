@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Fia\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Fia.IncludePrivate.Library"
+[files]
+"PchFiaLib.h"
+"PeiFiaPolicyLib.h"	
+<endComponent>

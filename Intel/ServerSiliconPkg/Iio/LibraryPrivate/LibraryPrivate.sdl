@@ -1,0 +1,89 @@
+TOKEN
+	Name  = "IioLibraryPrivate_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling IIO Library Private support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+    Name  = "IioDmiConfLib"
+    File  = "IioDmiConf\IioDmiConfSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "IioDmiConfLib"
+    Instance  = "ServerSiliconPkg.IioDmiConfLib"
+End
+
+INFComponent
+    Name  = "IioMiscWorkAroundsLib"
+    File  = "IioMiscWorkArounds\IioMiscWorkAroundsLibSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "IioMiscWorkAroundsLib"
+    Instance  = "ServerSiliconPkg.IioMiscWorkAroundsLib"
+End
+
+INFComponent
+	Name  = "IioPwrConfLib"
+	File  = "IioPwrConf\IioPwrConfLibSpr.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "IioPwrConfLib"
+	Instance  = "ServerSiliconPkg.IioPwrConfLib"
+End
+
+INFComponent
+    Name  = "IioVmdConf"
+    File  = "IioVmdConf\IioVmdConfSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "IioVmdConf"
+    Instance  = "ServerSiliconPkg.IioVmdConf"
+End
+
+INFComponent
+	Name  = "IioPcieLib"
+	File  = "IioPcieLib\IioPcieLibSpr.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "IioPcieLib"
+	Instance  = "ServerSiliconPkg.IioPcieLib"
+End
+
+INFComponent
+	Name  = "IioSpkConfigureLib"
+	File  = "IioSpkConfigure\IioSpkConfigureLibSpr.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+    Token = "CPUTARGET" "!=" "SKX"   	
+End
+
+INFComponent
+    Name  = "IioSpkConfigureLib"
+    File  = "IioSpkConfigure\IioSpkConfigureLibNull.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "CPUTARGET" "=" "SKX"      
+End
+
+LibraryMapping
+    Class  = "IioSpkConfigureLib"
+    Instance  = "ServerSiliconPkg.IioSpkConfigureLib"
+    Arch = "X64"
+End

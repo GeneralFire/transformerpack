@@ -1,0 +1,11 @@
+<component>
+	name = "CrystalRidgeLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\Library\CrystalRidgeLib\"
+	RefName = "ServerRasPkg.CrystalRidgeLib"
+[INF]
+"CrystalRidgeLib.inf"
+[files]
+"CrystalRidgeLibInternal.h"	
+"CrystalRidgeLib.sdl"	
+<endComponent>

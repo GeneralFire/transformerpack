@@ -1,0 +1,10 @@
+<component>
+    name = "Library"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\EbgPch\Library\"
+    RefName = "ClientOneSiliconPkg.Fru.EbgPch.Library"
+[INF]
+"SataSocLib\SataSocLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

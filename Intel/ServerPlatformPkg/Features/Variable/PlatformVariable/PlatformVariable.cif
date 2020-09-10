@@ -1,0 +1,9 @@
+<component>
+    name = "PlatformVariable"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Variable\PlatformVariable\"
+    RefName = "ServerPlatformPkg.Features.Variable.PlatformVariable"
+[parts]
+"ServerPlatformPkg.Features.Variable.PlatformVariable.Pei"
+"ServerPlatformPkg.Features.Variable.PlatformVariable.Smm"
+<endComponent>

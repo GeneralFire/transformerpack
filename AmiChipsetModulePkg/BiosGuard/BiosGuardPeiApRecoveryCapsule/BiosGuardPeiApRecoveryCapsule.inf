@@ -1,0 +1,72 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2019, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#** 5555 Oakbrook Parkway, Suite 200, Norcross,GA 30093              **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+[Defines]
+    INF_VERSION                = 0x00010005
+    BASE_NAME                  = BiosGuardPeiApRecoveryCapsule
+    FILE_GUID                  = C776AEA2-AA27-446e-975B-E0BEA9078BD9
+    MODULE_TYPE                = PEIM
+    VERSION_STRING             = 1.0
+    PI_SPECIFICATION_VERSION   = 0x0001000A
+    ENTRY_POINT                = BiosGuardPeiApRecoveryCapsuleEntry
+
+[Sources]
+    BiosGuardPeiApRecoveryCapsule.c
+    BiosGuardPeiApRecoveryCapsule.h
+
+[Packages]
+    MdePkg/MdePkg.dec
+    MdeModulePkg/MdeModulePkg.dec
+    AmiModulePkg/AmiModulePkg.dec
+    AmiCompatibilityPkg/AmiCompatibilityPkg.dec
+    AmiChipsetModulePkg/AmiChipsetModulePkg.dec
+    AmiCryptoPkg/AmiCryptoPkg.dec
+    ServerPlatformPkg/PlatformPkg.dec
+    ServerSiliconPkg/SiliconPkg.dec
+    CpRcPkg/CpRcPkg.dec
+  
+[LibraryClasses]
+    PeimEntryPoint
+    PeiServicesLib
+    DebugLib
+    BaseMemoryLib
+    AmiBiosGuardMiscLib
+    
+[Pcd]
+    
+[Ppis]
+    gEfiPeiReadOnlyVariable2PpiGuid
+    gEfiPeiBootInRecoveryModePpiGuid
+    gFlashUpdBootModePpiGuid
+    gEfiPeiMemoryDiscoveredPpiGuid 
+
+[Guids]
+    gEfiSetupVariableGuid
+
+[Depex]
+    gEfiPeiReadOnlyVariable2PpiGuid
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2019, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#** 5555 Oakbrook Parkway, Suite 200, Norcross,GA 30093              **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

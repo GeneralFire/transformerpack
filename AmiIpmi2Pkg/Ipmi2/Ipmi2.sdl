@@ -1,0 +1,496 @@
+TOKEN
+    Name  = "IPMI2_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable IPMI2 support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+    Token = "IPMI_SUPPORT" "=" "0"
+End
+
+PATH
+    Name = "IPMI2_DIR"
+    Help = "Path to Ipmi2 module in project."
+End
+
+TOKEN
+    Name  = "USE_PLATFORM_EVENT_MESSAGE"
+    Value  = "0"
+    Help  = "If turned on, replaces ADD_SEL_ENTRY commands with PLATFORM_EVENT commands."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "DEFAULT_BMC_SUPPORT"
+    Value  = "1"
+    Help  = "Default value of BmcSupport in project 1-Enabled, 0- Disabled"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "DEFAULT_WAITFORBMC_POLICY"
+    Value  = "0"
+    Help  = "Default policy to wait for BMC during First AC Power Cycle"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_SSIF_SLAVE_ADDRESS"
+    Value  = "0x10"
+    Help  = "7 bit Slave Address for SSIF"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_KCS_BASE_ADDRESS"
+    Value  = "0xCA2"
+    Help  = "BMC Base Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_SMM_KCS_BASE_ADDRESS"
+    Value  = "$(IPMI_KCS_BASE_ADDRESS)"
+    Help  = "BMC SMM Base Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_KCS_DATA_PORT"
+    Value  = "$(IPMI_KCS_BASE_ADDRESS)+0"
+    Help  = "KCS BMC Data port Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+     Name  = "IPMI_SMM_KCS_DATA_PORT"
+     Value  = "$(IPMI_SMM_KCS_BASE_ADDRESS)+0"
+     Help  = "SMM KCS BMC Data port Address"
+     TokenType = Integer
+     TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_KCS_COMMAND_PORT"
+    Value  = "$(IPMI_KCS_BASE_ADDRESS)+1"
+    Help  = "KCS BMC command port Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+     Name  = "IPMI_SMM_KCS_COMMAND_PORT"
+     Value  = "$(IPMI_SMM_KCS_BASE_ADDRESS)+1"
+     Help  = "SMM KCS BMC Command port Address"
+     TokenType = Integer
+     TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_BT_BASE_ADDRESS"
+    Value  = "0xE4"
+    Help  = "BMC Base Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_BT_CTRL_PORT"
+    Value  = "$(IPMI_BT_BASE_ADDRESS)+0"
+    Help  = "BT BMC control port Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_BT_BUFFER_PORT"
+    Value  = "$(IPMI_BT_BASE_ADDRESS)+1"
+    Help  = "BT BMC buffer port Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_BT_INTERRUPT_MASK_PORT"
+    Value  = "$(IPMI_BT_BASE_ADDRESS)+2"
+    Help  = "BT BMC interrupt mask port Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_BT_COMMAND_PORT_READ_RETRY_COUNTER"
+    Value  = "0x0004E400"
+    Help  = "Delay for time out for dealing with BT interface.\Total time out = [IPMI_BT_COMMAND_PORT_READ_RETRY_COUNTER] times [IPMI_BT_DELAY_PER_RETRY] micro.second.\For example 0004E400h * 15 is for 5 seconds delay app"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_BT_DELAY_PER_RETRY"
+    Value  = "15"
+    Help  = "IPMI_BT_DELAY_PER_RETRY is given as argument for MicroSecondDelay function .MicroSecondDelay(1) = 1us delay."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_BT_BUFFER_SIZE"
+    Value  = "64"
+    Help  = "BT BMC interrupt mask port Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+
+TOKEN
+    Name  = "IPBT"
+    Value  = "$(IPMI_BT_CTRL_PORT)"
+    Help  = "Aligned base address for BT Control register."
+    TokenType = Integer
+    TargetASL = Yes
+End
+
+TOKEN
+    Name  = "IBUF"
+    Value  = "$(IPMI_BT_BUFFER_PORT)"
+    Help  = "Aligned base address for BT buffer."
+    TokenType = Integer
+    TargetASL = Yes
+End
+
+TOKEN
+    Name  = "BTIM"
+    Value  = "$(IPMI_BT_INTERRUPT_MASK_PORT)"
+    Help  = "Aligned base address for BT interrupt mask register."
+    TokenType = Integer
+    TargetASL = Yes
+End
+
+TOKEN
+    Name  = "IDTP"
+    Value  = "$(IPMI_KCS_DATA_PORT)"
+    Help  = "Aligned base address for IPMI KCS Data Port."
+    TokenType = Integer
+    TargetASL = Yes
+End
+
+TOKEN
+    Name  = "ICDP"
+    Value  = "$(IPMI_KCS_COMMAND_PORT)"
+    Help  = "Aligned base address for IPMI KCS Command Port."
+    TokenType = Integer
+    TargetASL = Yes
+End
+
+TOKEN
+    Name  = "SADR"
+    Value  = "$(IPMI_SSIF_SLAVE_ADDRESS)"
+    Help  = "Slave address for IPMI SSIF Interface."
+    TokenType = Integer
+    TargetASL = Yes
+End
+
+TOKEN
+    Name  = "BMC_ADDRESS_DECODE_MASK"
+    Value  = "0x0C"
+    Help  = "Aligned base address for IPMI KCS Command Port."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "BMC_INIT_DELAY"
+    Value  = "1"
+    Help  = "Main Switch to Enable wait for BMC support"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_KCS_DELAY_PER_RETRY"
+    Value  = "100"
+    Help  = "IPMI_KCS_DELAY_PER_RETRY is given as argument for MicroSecondDelay function in KcsBmc.c file.MicroSecondDelay(1) = 1us delay. By default, delay is given as 5ms."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "MAX_BMC_CMD_FAIL_COUNT"
+    Value  = 10
+    Help  = "If Bmc Command fails more than this MAX_BMC_CMD_FAIL_COUNT then EFI_NOT_READY will be return in IpmiSendCommand function."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "OEM_SEL_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable Oem Sel Status codes"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name = BMC_TIMEZONE_SUPPORT
+    Value = "0"
+    Help = "Main switch to enable Bmc time zone support. By default support is disabled."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name = BMC_WARM_RESET_SUPPORT
+    Value = "1"
+    Help = "Main switch to enable Bmc warm reset support. By default support is enabled."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+ELINK
+    Name  = "OEM_STATUS_CODE_LIST"
+    Help  = "This is a list of status codes added by OEM"
+    InvokeOrder = ReplaceParent
+    Token = "OEM_SEL_SUPPORT" "=" "1"
+End
+
+#ELINK
+#   Name  = "{ PEI_MEMORY_INIT,EFI_PROGRESS_CODE, 0x0F, 0XC2, 0x01, 0xFF },"
+#   Help  = "Example of defining OEM sel status codes"
+#   Parent  = "OEM_STATUS_CODE_LIST"
+#   InvokeOrder = ReplaceParent
+#End
+
+TOKEN
+    Name  = "SPMI_SCOPE"
+    Value  = "\_SB.IIO0.LPC0"
+    Help  = "PLATFORM PORTING!!! Update IIO0 and LPC0 device names as defined in SB/NB.SDL"
+    TokenType = Expression
+    TargetMak = Yes
+End
+
+TOKEN
+    Name  = "SRVV"
+    Value  = "0x0200"
+    Help  = "IPMI Specification ASL update Variable"
+    TokenType = Integer
+    TargetASL = Yes
+    TargetH = Yes
+End
+
+PCIDEVICE
+    Title  = "Spmi Asl Scope Container"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x0"
+    Help  = "Links the ACPI scope in asl file for SPMI table."
+    Dev_type  = "Container"
+    Dev  = 00h
+    ASLfile  = "'Build/AmiSpmiAslScope.asl;Before Pci Tree'"
+    Virtual = Yes
+End
+
+TOKEN
+    Name  = "BMC_USB_INTERFACE_VENDOR_ID"
+    Value  = "0x46B"
+    Help  = "Vendor ID for AMI BMC USB Interface"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "BMC_USB_INTERFACE_PRODUCT_ID"
+    Value  = "0x0FF20"
+    Help  = "Product ID for AMI BMC USB Interface"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = FRU_SMBIOS_BINARY_TYPE_CODE_SUPPORT
+    Value  = "0"
+    Help  = "Main switch to enable Binary type code support for FRU. By default support is disabled."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_BMC_SLAVE_ADDRESS"
+    Value  = "0x20"
+    Help  = "BMC Base Slave Address"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_KCS_COMMAND_PORT_READ_RETRY_COUNTER"
+    Value  = "50000"
+    Help  = "The IPMI_KCS_COMMAND_PORT is read IPMI_KCS_COMMAND_PORT_READ_RETRY_COUNTER many times with delay calculated with IPMI_KCS_DELAY_PER_RETRY(Default is 5ms per retry) token for particular bit to set."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_SSIF_COMMAND_REQUEST_RETRY_COUNTER"
+    Value  = "0x5"
+    Help  = "The IPMI SSIF request retries counter."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_SMM_KCS_COMMAND_PORT_READ_RETRY_COUNTER"
+    Value  = "10000"
+    Help  = "In SMM, the IPMI_KCS_COMMAND_PORT is read these many times with delay calculated with IPMI_KCS_DELAY_PER_RETRY(Default is 5ms per retry) token for particular bit to set."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_SELF_TEST_COMMAND_RETRY_COUNT"
+    Value  = "0x05"
+    Help  = "Bmc Self test command will be send to BMC, RETRY_COUNT number of times to get SELF test results."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "COLLECT_BMC_USER_DETAILS_FOR_EVERY_BMC_USER_SETTING_CALLBACK"
+    Value  = "0"
+    Help  = "Enable this token to collect BMC User Id & User Name Details for every time BMC User Settings link is pressed by user in Server Management Setup"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_BOOT_OVERRIDE"
+    Value  = "0"
+    Help  = "Enable token to override IPMI boot while Setup boot order changed by Local user"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name = "COMMAND_SPECIFIC_COUNTER_UPDATE_SUPPORT"
+    Value = "0"
+    Help = "Enable this token to update counter value based on COMMAND_SPECIFIC_RETRY_COUNT_TABLE"
+    TokenType = Boolean
+    TargetH = Yes
+    TargetMAK = Yes
+End  
+
+ELINK
+    Name  = "COMMAND_SPECIFIC_RETRY_COUNT_TABLE"
+    Help  = "List of Retry or Delay counter values specific to a command"
+    InvokeOrder = ReplaceParent
+    TOKEN = "COMMAND_SPECIFIC_COUNTER_UPDATE_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "IPMI_SSIF_WAIT_RESPONSE_DATA_DELAY"
+    Value  = "250000"
+    Help  = "Time-out waiting for a response, interval 60ms~250ms"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IPMI_SSIF_TIME_BETWEEN_REQUEST_RETRIES_DELAY"
+    Value  = "250000"
+    Help  = "Time between request retries, interval 60ms ~ 250ms"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+ELINK
+    Name  = "SSIF_ALERT_PIN_CHECK_HOOK"
+    Help  = "This ELINK help to check SMBUS alert pin status"
+    InvokeOrder = ReplaceParent
+End
+
+TOKEN
+    Name  = "IPMI_DEFAULT_ACCESS_TYPE"
+    Value = "1"
+    Help  = "Interface access type for BMC communication. 0-MMIO, 1-IO"
+    TokenType = Boolean
+    TargetH = Yes
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "DEFAULT_SYSTEM_INTERFACE"
+    Value  = "AmiSysInterfaceKcs"
+    Help  = "Default system interface for HOST BMC communication. Possible Interface 'SysInterfaceKcs' 'SysInterfaceBt' 'SysInterfaceSsif' 'SysInterfaceIpmb' 'SysInterfaceUsb' 'SysInterfaceOem1' 'SysInterfaceOem2'"
+    TokenType = Expression
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "EFI_IPMI_PROTOCOL_REVISION"
+    Value  = "0x0100"
+    Help  = "Protocol Revision identifier in BCD format 01.00"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "AMI_IPMI_DEFAULT_SENSOR_NUMBER"
+    Value  = "0x00"
+    Help  = "Sensor number for BIOS generated SEL events.Default is 0."
+    TokenType = Integer
+    TargetH = Yes
+    Range  = "00-FF"
+End
+
+OUTPUTREGISTER
+    Name  = "AmiOemStatusCodeTable"
+    Path  = "Build"
+    File  = "AmiOemStatusCodeTable.h"
+    Template  = "AmiOemStatusCodeTable.txt"
+    Help  = "Creates OemStatusCodeTable.h based on template at build time."
+    Token = "OEM_SEL_SUPPORT" "=" "1"
+End
+
+OUTPUTREGISTER
+    Name  = "AmiIpmiInitHooks"
+    Path  = "Build"
+    File  = "AmiIpmiInitHooks.h"
+    Template  = "AmiIpmiInitHooks.txt"
+    Help  = "Creates IpmiInitHooks.h based on template at build time."
+End
+
+OUTPUTREGISTER
+    Name  = "AmiSpmiAslScope"
+    Path  = "Build"
+    File  = "AmiSpmiAslScope.asl"
+    Template  = "AmiSpmiAslScope.txt"
+    Help  = "Creates SpmiAslScope.asl based on template at build time."
+End
+
+OUTPUTREGISTER
+    Name  = "AmiCommandSpecificRetryCountTable"
+    Path  = "Build"
+    File  = "AmiCommandSpecificRetryCountTable.h"
+    Template  = "AmiCommandSpecificRetryCountTable.txt"
+    Help  = "Creates AmiCommandSpecificRetryCountTable.h based on template at build time."
+End
+
+TOKEN
+    Name  = "SERVER_IPMI2_DEBUG_MESSAGE_SUPPORT"
+    Value  = "0"
+    Help  = "Enables/Disables debug messages from Ipmi2 Module."
+    TokenType = Integer
+    TargetH = Yes
+    Range  = "0-1"
+    Token = "DEBUG_CODE" "=" "1"
+End

@@ -1,0 +1,20 @@
+<component>
+    name = "Include"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Cpu\Include\"
+    RefName = "ClientOneSiliconPkg.Cpu.Include"
+[files]
+"CpuAccess.h"	
+"CpuDataStruct.h"		
+"CpuPolicyCommon.h"	
+"CpuPowerMgmt.h"	
+"CpuRegs.h"	
+"Txt.h"	
+"Txt.inc"	
+"TxtInfoHob.h"	
+[parts]
+"ClientOneSiliconPkg.Cpu.Include.ConfigBlock"
+"ClientOneSiliconPkg.Cpu.Include.Library"
+"ClientOneSiliconPkg.Cpu.Include.Protocol"
+"ClientOneSiliconPkg.Cpu.Include.Register"
+<endComponent>

@@ -1,0 +1,16 @@
+TOKEN
+	Name  = "SiCpuInitPei_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling SiCpuInitPei support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "SiCpuInitPei"
+	File  = "SiCpuInitPei.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+	Token = "SiCpuInitPei_SUPPORT" "=" "1"
+End 
+

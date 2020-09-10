@@ -1,0 +1,18 @@
+TOKEN
+    Name  = "PLATFORM_MEPKG_SUPPORT" 
+    Value  = "1"
+    Help  = "Switch for Enabling Platform MePkg support in the project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+
+INFComponent
+    Name  = "MeSmbiosUpdateConfig"
+    File  = "Client\MeSmbiosUpdateConfigDxe\MeSmbiosUpdateConfigDxe.inf"
+    Package  = "ServerPlatformPkg"
+    Arch  = "X64"
+    ModuleTypes  = "DXE_DRIVER"   
+    Token = "ME_ENABLE" "=" "1"
+    Token = "ME_WS_ENABLE" "=" "1"
+End

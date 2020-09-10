@@ -1,0 +1,8 @@
+<component>
+    name = "Ish"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Ish\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Ish"
+[files]
+"IshConfig.h"	
+<endComponent>

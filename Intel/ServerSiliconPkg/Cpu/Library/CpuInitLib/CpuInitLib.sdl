@@ -1,0 +1,53 @@
+TOKEN
+	Name  = "CpuInitLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling CpuInitLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "CpuInitPeiLib"
+	File  = "CpuInitPeiLib10nm.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+	Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+
+INFComponent
+	Name  = "CpuInitPeiLib"
+	File  = "CpuInitPeiLibSpr.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+	Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "CpuInitDxeLib"
+	File  = "CpuInitDxeLib10nm.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+	Name  = "CpuInitDxeLib"
+	File  = "CpuInitDxeLibSpr.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+	Class  = "CpuInitLib"
+	Instance  = "ServerSiliconPkg.CpuInitPeiLib"
+	Arch = "IA32"
+End
+
+LibraryMapping
+	Class  = "CpuInitLib"
+	Instance  = "ServerSiliconPkg.CpuInitDxeLib"
+	Arch = "X64"
+End
+

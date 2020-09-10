@@ -1,0 +1,10 @@
+<component>
+    name = "IncludePrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Vtd\IncludePrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Vtd.IncludePrivate"
+[files]
+"VtdDataHob.h"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Vtd.IncludePrivate.Library"
+<endComponent>

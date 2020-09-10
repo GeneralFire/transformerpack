@@ -1,0 +1,8 @@
+<component>
+    name = "Register"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\McSmb\IncludePrivate\Register\"
+    RefName = "ClientOneSiliconPkg.IpBlock.McSmb.IncludePrivate.Register"
+[files]
+"McSmbRegs.h"	
+<endComponent>

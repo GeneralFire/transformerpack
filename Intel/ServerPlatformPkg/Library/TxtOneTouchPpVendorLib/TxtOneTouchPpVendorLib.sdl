@@ -1,0 +1,37 @@
+TOKEN
+    Name  = "TxtOneTouchPpVendorLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling TxtOneTouchPpVendorLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "DxeTcgTxtOneTouchPpVendorLib"
+    File  = "DxeTcgTxtOneTouchPpVendorLib.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_RUNTIME_DRIVER DXE_DRIVER"     
+End
+
+INFComponent
+    Name  = "SmmTcgTxtOneTouchPpVendorLib"
+    File  = "SmmTcgTxtOneTouchPpVendorLib.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch  = "X64"
+End
+
+LibraryMapping
+    Class  = "TcgPpVendorLib"
+    Instance  = "ServerPlatformPkg.DxeTcgTxtOneTouchPpVendorLib"
+    Arch  = "X64"
+End
+
+LibraryMapping
+    Class  = "TcgPpVendorLib"
+    Instance  = "ServerPlatformPkg.SmmTcgTxtOneTouchPpVendorLib"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+    Arch  = "X64"
+End
+

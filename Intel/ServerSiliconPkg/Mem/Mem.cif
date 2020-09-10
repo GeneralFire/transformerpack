@@ -1,0 +1,11 @@
+<component>
+	name = "Mem"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Mem\"
+	RefName = "ServerSiliconPkg.Mem"
+[files]
+"Mem.sdl"	
+[parts]
+"ServerSiliconPkg.Mem.Include"
+"ServerSiliconPkg.Mem.Library"
+<endComponent>

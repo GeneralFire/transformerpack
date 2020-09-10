@@ -1,0 +1,11 @@
+<component>
+	name = "MemThermManageLib10nm"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Library\MemThermManageLib\"
+	RefName = "ServerSiliconPkg.Library.MemThermManageLib10nm"
+[INF]
+"Wave1\HwTargetLib\HwThermManageTargetLibWave1.inf"
+"Wave3\HwTargetLib\HwThermManageTargetLibWave3.inf"
+[files]
+"MemThermManageLib10nm.sdl"	
+<endComponent>

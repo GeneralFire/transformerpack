@@ -1,0 +1,8 @@
+<component>
+    name = "Thc"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Thc\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Thc"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Thc.IncludePrivate"
+<endComponent>

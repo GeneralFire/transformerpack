@@ -1,0 +1,87 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2016-2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+
+  Module Name:
+    ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/IioRootBridgeSpr.asi
+**/
+
+#define maxiiostack 14
+
+#define  IOU_OSCM_METHOD_PORTS(socket, stack, port)                         \
+    \_SB.PC##socket##stack.BRP##port.OSHP ()
+
+
+#define  IOU_OSCM_METHOD_STACKS(socket, stack)                              \
+    if (LEqual(Arg0, maxiiostack * socket + stack)) {                       \
+        IOU_OSCM_METHOD_PORTS(socket, stack, A)                             \
+        IOU_OSCM_METHOD_PORTS(socket, stack, B)                             \
+        IOU_OSCM_METHOD_PORTS(socket, stack, C)                             \
+        IOU_OSCM_METHOD_PORTS(socket, stack, D)                             \
+        IOU_OSCM_METHOD_PORTS(socket, stack, E)                             \
+        IOU_OSCM_METHOD_PORTS(socket, stack, F)                             \
+        IOU_OSCM_METHOD_PORTS(socket, stack, G)                             \
+        IOU_OSCM_METHOD_PORTS(socket, stack, H)                             \
+    }
+
+#define  IOU_OSCM_METHOD_SOCKET(socket)                                     \
+    IOU_OSCM_METHOD_STACKS(socket, 1)                                       \
+    IOU_OSCM_METHOD_STACKS(socket, 2)                                       \
+    IOU_OSCM_METHOD_STACKS(socket, 3)                                       \
+    IOU_OSCM_METHOD_STACKS(socket, 4)                                       \
+    IOU_OSCM_METHOD_STACKS(socket, 5)
+
+    Method(OSCM, 1) {
+      IOU_OSCM_METHOD_SOCKET(0)
+
+#if MAX_SOCKET > 1
+      IOU_OSCM_METHOD_SOCKET(1)
+#endif
+
+#if MAX_SOCKET > 2
+      IOU_OSCM_METHOD_SOCKET(2)
+#endif
+
+#if MAX_SOCKET > 3
+      IOU_OSCM_METHOD_SOCKET(3)
+#endif
+
+#if MAX_SOCKET > 4
+      IOU_OSCM_METHOD_SOCKET(4)
+#endif
+
+#if MAX_SOCKET > 5
+      IOU_OSCM_METHOD_SOCKET(5)
+#endif
+
+#if MAX_SOCKET > 6
+      IOU_OSCM_METHOD_SOCKET(6)
+#endif
+
+#if MAX_SOCKET > 7
+      IOU_OSCM_METHOD_SOCKET(7)
+#endif
+    } // end of OSCM
+

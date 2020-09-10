@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Scs\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Scs.IncludePrivate.Library"
+[files]
+"PeiScsLib.h"	
+"PeiScsPolicyLib.h"	
+<endComponent>

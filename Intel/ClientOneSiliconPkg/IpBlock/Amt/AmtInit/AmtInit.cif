@@ -1,0 +1,8 @@
+<component>
+    name = "AmtInit"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Amt\AmtInit\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Amt.AmtInit"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Amt.AmtInit.Dxe"
+<endComponent>

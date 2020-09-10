@@ -1,0 +1,23 @@
+<component>
+    name = "Spr"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Mem\Library\MemDdrioIpLib\Spr\"
+    RefName = "ServerSiliconPkg.Mem.Library.MemDdrioIpLib.Spr"
+[INF]
+"HwMemDdrioIpTargetLib.inf"
+[files]
+"Include\Registers\Spr\Soc\MC_DDRIOBC.h"
+"Include\MemCmdControl.h"	
+"Include\MemDdrioPrivate.h"	
+"Include\MemDdrioRegs.h"	
+"Include\MemDdrioSpecific.h"	
+"Include\MemIoControl.h"	
+"Include\MemPxc.h"	
+"Include\MemXoverCalib.h"	
+"Include\MemXoverCalibOffsets.h"			
+"Include\Registers\Spr\DdrioIpRegisters.h"	
+"Include\Registers\Spr\Soc\MCIO_DDRIO.h"	
+"Include\Registers\Spr\Soc\MCIO_DDRIOEXT.h"	
+"Include\Registers\Spr\Soc\MC_DDRIOMC.h"	
+"Spr.sdl"	
+<endComponent>

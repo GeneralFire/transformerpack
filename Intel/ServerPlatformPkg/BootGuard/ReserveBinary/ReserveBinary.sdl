@@ -1,0 +1,98 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: ReserveBinary.sdl
+#
+# Description: SDL file for ReserveBinary
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+        Name  = "RESERVE_BINARY_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable RESERVE_BINARY_SUPPORT in Project"
+        TokenType = Boolean
+        TargetMAK = Yes
+        TargetH = Yes
+        Master = Yes
+End
+
+FFS_FILE
+        Name = "ReserveBpmTable"
+        FD_AREA = "FV_BB"
+        FILE_Stmt = "ServerPlatformPkg/BootGuard/ReserveBinary/BpmTableFdfFileStatement.txt"
+        Rule_Override  = "UncompressedNoChecksum"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"      
+End
+
+FFS_FILE
+        Name = "ReserveKmTable"
+        FD_AREA = "FV_BB"
+        FILE_Stmt = "ServerPlatformPkg/BootGuard/ReserveBinary/KmTableFdfFileStatement.txt"
+        Rule_Override  = "UncompressedNoChecksum"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"        
+End
+
+INFComponent
+        Name  = "ReserveBootGuardFvMainHashKey"
+        File  = "ReserveBootGuardFvMainHashKey.inf"
+        Package  = "AmiChipsetModulePkg"
+        ModuleTypes  = "USER_DEFINED"
+        Token = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_SUPPORT" "=" "1"        
+End
+
+FFS_FILE
+        Name  = "ReserveBootGuardFvMainHashKey"
+        FD_AREA  = "FV_BB"
+        INFComponent  = "AmiChipsetModulePkg.ReserveBootGuardFvMainHashKey"
+        Rule_Override  = "UncompressedBinaryNoChecksum"
+        Token = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_SUPPORT" "=" "1"
+End
+INFComponent
+        Name  = "ReserveBootGuardFvArea"
+        File  = "ReserveBootGuardFvArea.inf"
+        Package  = "ServerPlatformPkg"
+        ModuleTypes  = "USER_DEFINED"
+        Token = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_SUPPORT" "=" "1"
+        Token = "FV_BB_VERIFY_FV_AREA" "=" "1"
+End
+FFS_FILE
+        Name  = "ReserveBootGuardFvArea"
+        FD_AREA  = "FV_BB"
+        INFComponent  = "ServerPlatformPkg.ReserveBootGuardFvArea"
+        Rule_Override  = "UncompressedBinaryNoChecksum"
+        Token = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_SUPPORT" "=" "1"
+        Token = "FV_BB_VERIFY_FV_AREA" "=" "1"
+End
+
+PATH
+     Name  = "ReserveBinary_DIR"
+     Help  = "Path to default Platform Bios Guard Signing Key.\User may change this path to point to another location of FW Key."
+End
+
+TOKEN
+        Name = "RESERVE_BPM_BIN_SIZE"
+        Value = "0x500 + 0"
+        Help = "Size of the ReserveBpmTable.bin"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes 
+        Lock = Yes        
+End
+
+TOKEN
+        Name = "RESERVE_KM_BIN_SIZE"
+        Value = "0x800 + 0"
+        Help = "Size of the ReserveKmTable.bin"
+        TokenType = Integer
+        TargetMAK = Yes
+        TargetH = Yes 
+        Lock = Yes        
+End

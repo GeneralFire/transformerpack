@@ -1,0 +1,185 @@
+TOKEN
+	Name  = "Library_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Library support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "LastBootErrorPeiLib"
+	File  = "LastBootErrorPeiLib/LastBootErrorPeiLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+	Class  = "LastBootErrorPeiLib"
+	Instance  = "ServerSiliconPkg.LastBootErrorPeiLib"
+	Arch = "IA32"
+End
+
+INFComponent
+    Name  = "RasRegisterClearLib"
+    File  = "RasRegisterClearLib\RasRegisterClearLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "RasRegisterClearLib"
+    Instance  = "ServerSiliconPkg.RasRegisterClearLib"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "RasRuntimeStatusLib"
+    File  = "RasRuntimeStatusLib\RasRuntimeStatusLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "RasRuntimeStatusLib"
+    Instance  = "ServerSiliconPkg.RasRuntimeStatusLib"
+End
+
+INFComponent
+	Name  = "DxeRasRcDataLib"
+	File  = "PeiDxeRasRcDataLib\DxeRasRcDataLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+	Class  = "RasRcDataLib"
+	Instance  = "ServerSiliconPkg.DxeRasRcDataLib"
+    Arch  = "X64"
+End
+
+INFComponent
+	Name  = "PeiRasRcDataLib"
+	File  = "PeiDxeRasRcDataLib\PeiRasRcDataLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+	Class  = "RasRcDataLib"
+	Instance  = "ServerSiliconPkg.PeiRasRcDataLib"
+    Arch  = "IA32"
+End
+
+INFComponent
+	Name  = "PeiRasGlobalDataLib"
+	File  = "PeiRasGlobalDataLib\PeiRasGlobalDataLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+	Class  = "PeiRasGlobalDataLib"
+	Instance  = "ServerSiliconPkg.PeiRasGlobalDataLib"
+        Arch  = "IA32"
+End
+
+INFComponent
+	Name  = "DxeRasGlobalDataLib"
+	File  = "DxeRasGlobalDataLib\DxeRasGlobalDataLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "DXE_RUNTIME_DRIVER"
+End
+
+
+LibraryMapping
+	Class  = "DxeRasGlobalDataLib"
+	Instance  = "ServerSiliconPkg.DxeRasGlobalDataLib"
+        Arch  = "X64"
+End
+
+INFComponent
+	Name  = "PeiRasRcPolicyPpiLib"
+	File  = "PeiRasRcPolicyPpiLib\PeiRasRcPolicyPpiLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+End
+
+LibraryMapping
+	Class  = "RasRcPolicyPpiLib"
+	Instance  = "ServerSiliconPkg.PeiRasRcPolicyPpiLib"
+End
+
+INFComponent
+	Name  = "CpuCsrAccessLib"
+	File  = "CpuCsrAccessLib\CpuCsrAccessLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "CpuCsrAccessLib"
+	Instance  = "ServerSiliconPkg.CpuCsrAccessLib"
+End
+
+INFComponent
+	Name  = "BaseRasRcMirrorLib"
+	File  = "BaseRasRcMirrorLib\BaseRasRcMirrorLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "RasRcMirrorLib"
+	Instance  = "ServerSiliconPkg.BaseRasRcMirrorLib"
+End
+
+INFComponent
+    Name  = "RankSpareAddressTranslationLib"
+    File  = "RankSpareAddressTranslationLib\RankSpareAddressTranslationLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "RankSpareAddressTranslationLib"
+    Instance  = "ServerSiliconPkg.RankSpareAddressTranslationLib"
+End
+
+
+INFComponent
+	Name  = "RankSpareAddressTranslationLib"
+	File  = "RankSpareAddressTranslationNullLib\RankSpareAddressTranslationNullLib.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+	Class  = "RankSpareAddressTranslationLib"
+	Instance  = "ServerSiliconPkg.RankSpareAddressTranslationLib"
+End
+
+INFComponent
+    Name  = "SmmS3MemDataLib"
+    File  = "S3MemData\S3MemDataLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "S3MemDataLib"
+    Instance  = "ServerSiliconPkg.SmmS3MemDataLib"
+    Arch = "X64"
+End
+
+INFComponent
+    Name  = "SmmRasGlobalDataLib"
+    File  = "SmmRasGlobalDataLib\SmmRasGlobalDataLib.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+    Class  = "RasGlobalDataLib"
+    Instance  = "ServerSiliconPkg.SmmRasGlobalDataLib"
+    Arch = "X64"
+End

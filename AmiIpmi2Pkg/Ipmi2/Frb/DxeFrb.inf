@@ -1,0 +1,63 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+
+
+## @file  DxeFrb.inf
+#
+#  INF description file for DxeFrb driver.
+##
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = DxeFrb
+  FILE_GUID         = 9D0CEA63-745B-417d-BBA4-E5193061C907
+  MODULE_TYPE       = DXE_DRIVER
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = InitializeDxeFrb
+
+[Sources]
+  DxeFrb.c
+  DxeFrb.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiIpmi2Pkg/AmiIpmi2Pkg.dec
+  AmiTsePkg/AmiTsePkg.dec
+  AmiModulePkg/AmiModulePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  PcdLib
+  UefiLib
+  DebugLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+
+[Protocols]
+  gEfiDxeIpmiTransportProtocolGuid  #CONSUMES
+  gAmiLegacyBootProtocolGuid        #CONSUMES
+  gEfiSmFrbProtocolGuid             #PRODUCES
+  gOpromStartEndProtocolGuid        #CONSUMES
+
+[Guids]
+  gEfiHobListGuid
+  gEfiServerMgmtSetupVariableGuid
+  gAmiTseEventBeforeBootGuid
+  gAmiTseSetupEnterGuid
+  gAmiTsePasswordPromptEnterGuid
+  gAmiTsePasswordPromptExitGuid
+  gAmiTseBeforeTimeOutGuid
+  gAmiTseAfterTimeOutGuid
+  gAmiTseAfterFirstBootOptionGuid
+
+[Pcd]
+  gAmiIpmi2PkgTokenSpaceGuid.AmiPcdOsWdtDisabledOnSetupEntry
+
+[Depex]
+  gEfiDxeIpmiTransportProtocolGuid

@@ -1,0 +1,437 @@
+TOKEN
+    Name  = "IntelLtsxFit_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable IntelLtsxFit support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "FIT_MICROCODE_BASE"
+    Value  = "$(FV_BB_BASE)"
+    Help  = "Base address for FV containing CPU microcode."
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "MICROCODE_SPLIT_BB_UPDATE" "=" "1"
+End
+
+TOKEN
+    Name  = "FIT_MICROCODE_BASE"
+    Value  = "$(FV_MAIN_BASE)"
+    Help  = "Base address for FV containing CPU microcode."
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "MICROCODE_SPLIT_BB_UPDATE" "=" "0"
+End
+
+TOKEN
+    Name  = "FIT_MICROCODE_ALIGNMENT"
+    Value  = "16"
+    Help  = "Microcode patch alignment within FV_BB.  THIS SHOULD NOT NEED PORTED."
+    TargetMAK = Yes
+    Token = "MICROCODE_SPLIT_BB_UPDATE" "=" "1"
+End
+
+TOKEN
+    Name  = "FIT_MICROCODE_ALIGNMENT"
+    Value  = "$(MICROCODE_BLOCK_SIZE)"
+    Help  = "Microcode patch alignment within FV_MAIN.  THIS SHOULD NOT NEED PORTED."
+    TargetMAK = Yes
+    Token = "MICROCODE_SPLIT_BB_UPDATE" "=" "0"
+End
+
+TOKEN
+    Name  = "FIT_UTILITY_MSFT"
+    Value  = "$(IntelLtsxFit_DIR)$(PATH_SLASH)FitUtility.exe"
+    TokenType = File
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "FIT_UTILITY_LINUX"
+    Value  = "$(IntelLtsxFit_DIR)$(PATH_SLASH)FitUtility"
+    TokenType = File
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "FIT_NUM_MICROCODE_PATCHES"
+    Value  = "20"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Help  = "Changing this value requires updating the MicroCode table in IntelLtsxFit.cbin"
+End
+
+TOKEN
+    Name  = "BIOSACM_SIZE"
+    Value  = "0x40000"
+    Help  = "Size of the BIOSACM area"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "From: 0 To: FLASH_SIZE - NVRAM_SIZE - FV_MAIN_SIZE"
+End
+
+TOKEN
+    Name  = "BIOSACM_SIZE"
+    Value  = "0x0"
+    Help  = "Size of the BIOSACM area"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "From: 0 To: FLASH_SIZE - NVRAM_SIZE - FV_MAIN_SIZE"
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "0"
+End
+
+TOKEN
+    Name  = "BIOSACM_BASE"
+    Value  = "$(FV_BB_BASE) - $(BIOSACM_SIZE)"
+    Help  = "Offset of BIOSACM Area from the start of the rom image"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "From: 0 To: FLASH_SIZE - NVRAM_SIZE"
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "FV_ACM_BASE"
+    Value  = "$(BIOSACM_BASE)"
+    Help  = "Base Address of the Startup ACM"
+    TokenType = Integer
+    TargetH = Yes
+    TargetMAK = Yes
+    Range  = "From: 4G - FLASH_SIZE To: 4G"
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+End
+
+TOKEN
+    Name  = "CHIPSET_VERSION"
+    Value  = "1"
+    Help  = "0 - Debug Chipset SKU, 1 - Production Chipset SKU"
+    TokenType = Boolean
+    TargetFDF = Yes
+End
+
+TOKEN
+    Name  = "NPW_BIT"
+    Value  = "1"
+    Help  = "0 - ACM without NPW bit set in TPM, 1 - ACM with NPW bit set in TPM."
+    TokenType = Boolean
+    TargetFDF = Yes
+    Token = "CHIPSET_VERSION" "=" "1"
+End
+
+TOKEN
+    Name  = "BIOSACM_FILE"
+    Value  = "AmiCrbPkg$(PATH_SLASH)EGS_SPS_BIOSACM_v0_5_4_20200728_EBG_TR_debug_signed.bin"
+    Help  = "EAGLE STREAM BIOS Authenticated Code Module - Preproduction/Debug Version."
+    TokenType = File
+    TargetMAK = Yes
+#    Token = "CHIPSET_VERSION" "=" "0"
+#    Token = "DEBUG_MODE" "=" "1"
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+End
+
+#TOKEN
+#    Name  = "BIOSACM_FILE"
+#    Value  = "AmiCrbPkg$(PATH_SLASH)PURLEY_BIOSACX_v0_9_5_20161115_LBG_NT_debug_signed.bin"
+#    Help  = "PURLEY BIOS Authenticated Code Module - Preproduction/Release Version."
+#    TokenType = File
+#    TargetMAK = Yes
+#    Token = "CHIPSET_VERSION" "=" "0"
+#    Token = "DEBUG_MODE" "=" "0"
+#    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+#End
+
+#TOKEN
+#    Name  = "BIOSACM_FILE"
+#    Value  = "AmiCrbPkg$(PATH_SLASH)PURLEY_BIOSACX_v1_6_1_20170720_LBG_NPW_signed.bin"
+#    Help  = "PURLEY BIOS Authenticated Code Module - Non-production Worth ACM Binary."
+#    TokenType = File
+#    TargetMAK = Yes
+#    Token = "NPW_BIT" "=" "1"
+#    Token = "CHIPSET_VERSION" "=" "1"
+#    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+#End
+
+#TOKEN
+#    Name  = "BIOSACM_FILE"
+#    Value  = "AmiCrbPkg$(PATH_SLASH)Intel_Xeon_S_PW_BIOS_ACM_1_3_2.bin"
+#    Help  = "PURLEY BIOS Authenticated Code Module - Production Worth ACM Binary."
+#    TokenType = File
+#    TargetMAK = Yes
+#    Token = "NPW_BIT" "=" "0"
+#    Token = "CHIPSET_VERSION" "=" "1"
+#    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+#End
+
+TOKEN
+    Name  = "FIT_HOOK_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Help = "Main switch to enable FitHook support in Project"
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+End
+
+FD_AREA
+    Name  = "FV_ACM"
+    TYPE  = "RAW"
+    FD_INFO  = "AMIROM"
+    Offset  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(BIOSACM_SIZE)"
+    Size  = " $(BIOSACM_SIZE)"
+    Layout_Attribute  = "0x300"
+    Attributes  = "0xffff"
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+    Token = "AmiTrustedFv_Support" "=" "1"
+End
+
+FD_AREA
+    Name  = "FV_ACM"
+    TYPE  = "RAW"
+    FD_INFO  = "AMIROM"
+    Offset  = "$(FLASH_SIZE) - $(FV_BB_SIZE) - $(BIOSACM_SIZE)"
+    Size  = " $(BIOSACM_SIZE)"
+    Layout_Attribute  = "0x100"
+    Attributes  = "0xffff"
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+    Token = "AmiTrustedFv_Support" "=" "0"
+End
+
+FFS_FILE
+    Name = "FitStatement"
+    FD_AREA = "FV_BB"
+    FILE_Stmt = "ServerPlatformPkg\Fit\FitTableFdFileStatement.txt"
+    Rule_Override  = "UncompressedNoChecksum"
+End
+
+TOKEN
+    Name  = "SINIT_SELECTION"
+    Value  = "$(DEBUG_MODE)"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetFDF = Yes
+End
+
+FFS_FILE
+    Name = "SinitStatement"
+    FD_AREA = "FV_MAIN"
+    FILE_Stmt = "AmiCrbPkg/Sinit_Acm_FdFileStatement.txt"
+    TOKEN = "ACM_INCLUSION_IN_BIOS" "=" "1"
+End
+
+TOKEN
+	Name  = "FIT_SIGNED_POLICY_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "FIT_TYPE_7_PRESENT"
+    Value  = "0"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Help  = "TYPE 7 present in the FIT Table or not. CnBT feature doesn't require Type 7,8,9."
+End
+
+TOKEN
+    Name  = "LTSX_TXT_CMOS_ADDRESS"
+    Value  = "0x2A"
+    Help  = "CMOS location of TPM enable/disable value."
+    TokenType = Integer
+    TargetH = Yes
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "LTSX_TXT_CMOS_BIT_POSITION"
+    Value  = "5"
+    Help  = "CMOS register TPM enable bit position."
+    TokenType = Integer
+    TargetH = Yes
+    TargetMAK = Yes
+End
+
+TOKEN 
+    Name = "FitTokens" 
+    Value = "-Rom=$(BIOS_TAG).ROM -Acm=$(BIOSACM_FILE) -MicrocodeFV=$(FIT_MICROCODE_BASE) -Alignment=16 -AcmBase=$(FV_ACM_BASE) -Type7Present=$(FIT_TYPE_7_PRESENT)"
+    Help = "Support the decimal value"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "1"
+End
+
+TOKEN 
+    Name = "FitTokens"
+    Value = "-Rom=$(BIOS_TAG).ROM -MicrocodeFV=$(FIT_MICROCODE_BASE) -Alignment=16 -Type7Present=$(FIT_TYPE_7_PRESENT)"
+    Help = "Support the decimal value"
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "ACM_INCLUSION_IN_BIOS" "=" "0" 
+End
+
+# Todo : Need to revisit these tokens
+#TOKEN
+#	Name  = "FIT_ADVANCED_MICROCODE_SUPPORT"
+#	Value  = "1"
+#	Help  = "Enable support for adding a single microcode patch to the FIT."
+#	TokenType = Boolean
+#	TargetMAK = Yes
+#	Token = "MICROCODE_SPLIT_BB_UPDATE" "=" "1"
+#End
+
+#TOKEN
+#	Name  = "FIT_ADVANCED_MICROCODE_SUPPORT"
+#	Value  = "0"
+#	Help  = "Enable support for adding a single microcode patch to the FIT."
+#	TokenType = Boolean
+#	TargetMAK = Yes
+#	Token = "MICROCODE_SPLIT_BB_UPDATE" "=" "0"
+#End
+
+TOKEN
+    Name  = "LTSX_CMOS_INDEX_REG_ADDRESS"
+    Value  = "0x70"
+    Help  = "CMOS index register address for LTSX."
+    TokenType = Integer
+    TargetH = Yes
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "LTSX_CMOS_ACCESS_WIDTH"
+    Value  = "1"
+    Help  = "CMOS register access width (in bytes)."
+    TokenType = Integer
+    TargetH = Yes
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "LTSX_CMOS_DATA_REG_ADDRESS"
+    Value  = "0x71"
+    Help  = "CMOS data register address for LTSX."
+    TokenType = Integer
+    TargetH = Yes
+    TargetMAK = Yes
+End
+
+#TOKEN
+#	Name  = "FIT_LCP_TOOL"
+#	Value  = "$(IntelLcpTools_DIR)\WinLCPTool.exe"
+#	TokenType = File
+#	TargetH = Yes
+#	TargetMAK = Yes
+#End
+
+#TOKEN
+#	Name  = "FIT_LCP_INPUT"
+#	Value  = "$(BUILD_DIR)\SignedPolicy.txt"
+#	TokenType = File
+#	TargetH = Yes
+#	TargetMAK = Yes
+#End
+
+#TOKEN
+#	Name  = "FIT_SIGNED_POLICY_PRIVATE_KEY"
+#	Value  = "$(IntelLtsxFit_DIR)\PrivateKey.bin"
+#	TokenType = File
+#	TargetMAK = Yes
+#	TargetH = Yes
+#End
+
+#TOKEN
+#	Name  = "FIT_SIGNED_POLICY_PUBLIC_KEY"
+#	Value  = "$(IntelLtsxFit_DIR)\PublicKey.bin"
+#	TokenType = File
+#	TargetMAK = Yes
+#	TargetH = Yes
+#End
+
+#TOKEN
+#	Name  = "FIT_INPUT_HASH_FILE"
+#	Value  = "$(IntelLtsxFit_DIR)\LtsxHash.txt"
+#	TokenType = File
+#	TargetMAK = Yes
+#	TargetH = Yes
+#End
+
+#TOKEN
+#	Name  = "FIT_NEW_HASH_FILE"
+#	Value  = "$(BUILD_DIR)\LtsxNewHash.txt"
+#	TokenType = File
+#	TargetMAK = Yes
+#	TargetH = Yes
+#End
+
+#TOKEN
+#	Name  = "FIT_FAILSAFE_HASH_FILE"
+#	Value  = "$(IntelLtsxFit_DIR)\LtsxFailsafeHash.txt"
+#	TokenType = File
+#	TargetMAK = Yes
+#	TargetH = Yes
+#End
+
+#TOKEN
+#	Name  = "FIT_POLICY_FILE"
+#	Value  = "$(BUILD_DIR)\signedpolicyData0.dat"
+#	TokenType = File
+#	TargetMAK = Yes
+#	TargetH = Yes
+#End
+
+#TOKEN
+#	Name  = "FIT_RSA_KEY_SIZE"
+#	Value  = "1024"
+#	Help  = "RSA key size in bits.  This is limited by the ACM requirements.  Romley supports 1024, 2048, and 3072."
+#	TokenType = Integer
+#	TargetMAK = Yes
+#	TargetH = Yes
+#End
+## Todo : Need to revisit these tokens
+
+
+PATH
+    Name  = "IntelLtsxFit_DIR"
+End
+
+MODULE
+    File  = "IntelLtsxFit.mak"
+End
+
+INFComponent
+    Name  = "IntelLtsxFit"
+    File  = "IntelLtsxFit.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "USER_DEFINED"
+    Skip_Packaging = Yes
+End
+
+ELINK
+    Name   = "AppendFvDataToAFU_UpdateBlockTypeId,"
+    Parent = "SMIFlashEndHandlerList"
+    InvokeOrder = AfterParent
+    Token = "FIT_HOOK_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class = "NULL"
+    Instance = "AmiChipsetModulePkg.FitHook"
+    Override = "AmiModulePkg.SMIFlash"
+    Token = "FIT_HOOK_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "FitHook"
+    File = "FitHook/FitHook.inf"
+    Package = "AmiChipsetModulePkg"
+    Token = "FIT_HOOK_SUPPORT" "=" "1"
+End

@@ -1,0 +1,14 @@
+<component>
+    name = "ConfigBlock"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\Include\ConfigBlock\"
+    RefName = "ClientOneSiliconPkg.Pch.Include.ConfigBlock"
+[files]
+"FlashProtectionConfig.h"	
+"HsioConfig.h"	
+"HsioPcieConfig.h"	
+"HsioSataConfig.h"	
+"LockDownConfig.h"	
+"LpcConfig.h"	
+"PchGeneralConfig.h"		
+<endComponent>

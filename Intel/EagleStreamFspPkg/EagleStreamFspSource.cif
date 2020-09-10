@@ -1,0 +1,28 @@
+<component>
+    name = "EagleStreamFspSource"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamFspPkg\"
+    RefName = "EagleStreamFspSource"
+[files]
+"EagleStreamFspSource.sdl"
+"EagleStreamFspPkgUpd.dsc"
+"BuildFspBin.mak"
+"FspFdfRules.txt"
+"FspmUpdFdfFileStatements.txt"
+"FspsUpdFdfFileStatements.txt"
+"FsptUpdFdfFileStatements.txt"
+[parts]
+"EagleStreamFspPkg.FspDebugInit"
+"EagleStreamFspPkg.FspDefaultPolicyPpi"
+"EagleStreamFspPkg.FspDescription"
+"EagleStreamFspPkg.FspEndOfPei2Peim"
+"EagleStreamFspPkg.FspGlobalDataInit"
+"EagleStreamFspPkg.FspHeader"
+"EagleStreamFspPkg.FspInit"
+"EagleStreamFspPkg.FspPcdInit"
+"EagleStreamFspPkg.FspVariable"
+"EagleStreamFspPkg.Include"
+"EagleStreamFspPkg.Library"
+"EagleStreamFspPkg.FspUpd"
+"EagleStreamFspPkg.Universal"
+<endComponent>

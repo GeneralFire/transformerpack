@@ -1,0 +1,10 @@
+<component>
+	name = "Protocol"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\SouthCluster\Private\Protocol\"
+	RefName = "ServerSiliconPkg.Include.SouthCluster.Private.Protocol"
+[files]
+"PchNvs.h"	
+"PchNvsArea.h"	
+"PcieIoTrap.h"	
+<endComponent>

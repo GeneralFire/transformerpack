@@ -1,0 +1,9 @@
+<component>
+    name = "Guid"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Me\MeSps.6\Include\Guid\"
+    RefName = "ServerSiliconPkg.Me.MeSps6.Include.Guid"
+[files]
+"SpsAcpiTableLocatorGuid.h"	
+"SpsInfoHobGuid.h"	
+<endComponent>

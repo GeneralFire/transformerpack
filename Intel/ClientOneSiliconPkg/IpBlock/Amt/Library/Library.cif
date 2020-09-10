@@ -1,0 +1,12 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Amt\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Amt.Library"
+[INF]
+"DxeAmtHeciLib\DxeAmtHeciLib.inf"
+"DxeAmtPolicyLib\DxeAmtPolicyLib.inf"
+"PeiAmtPolicyLib\PeiAmtPolicyLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

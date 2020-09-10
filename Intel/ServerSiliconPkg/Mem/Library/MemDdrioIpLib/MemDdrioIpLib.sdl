@@ -1,0 +1,45 @@
+TOKEN
+    Name  = "MemDdrioIpLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling MemDdrioIpLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "MemDdrioIpLib"
+    File  = "MemDdrioIpLib10nm.inf"
+    Package  = "MemDdrioIpLib"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "MemDdrioIpLib"
+    Instance  = "MemDdrioIpLib.MemDdrioIpLib"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "MemDdrioIpLibSprDdr"
+    File  = "MemDdrioIpLibSprDdr4.inf"
+    Package  = "MemDdrioIpLib"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "0"
+    Token = "DDR5_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "MemDdrioIpLibSprDdr"
+    File  = "MemDdrioIpLibSprDdr5.inf"
+    Package  = "MemDdrioIpLib"
+    ModuleTypes  = "BASE"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "DDR5_ENABLE" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "MemDdrioIpLib"
+    Instance  = "MemDdrioIpLib.MemDdrioIpLibSprDdr"
+End
+

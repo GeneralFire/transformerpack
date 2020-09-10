@@ -1,0 +1,189 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2019 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include <Library/SecurityPolicyDefinitions.h>
+
+form formid = VFR_FORMID_PROCESSOR_DFX,
+  title = STRING_TOKEN (STR_PROCESSOR_DFX_CONFIG_FORM_TITLE);
+  subtitle text = STRING_TOKEN (STR_PROCESSOR_DFX_CONFIG_FORM_TITLE);
+  subtitle text = STRING_TOKEN (STR_HORIZONTAL_LINE);
+
+
+
+    //
+    // Core failover support
+    //
+    suppressif NOT ((ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType        == CPU_ICXSP OR
+                     ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType        == CPU_SPRSP) AND
+                     (ideqval SOCKET_PROCESSORCORE_CONFIGURATION.CheckCpuBist  == 1));
+      //
+      // Simulate core failing BIST
+      //
+      numeric varid     = SOCKET_PROCESSORCORE_CONFIGURATION.DfxBistFailureEmulation,
+          prompt      = STRING_TOKEN(STR_DFX_BIST_FAIL_EMULATION_PROMPT),
+          help        = STRING_TOKEN(STR_DFX_BIST_FAIL_EMULATION_HELP),
+          flags   = RESET_REQUIRED | DISPLAY_UINT_HEX,
+          minimum = 0,
+          maximum = 0xffffffffffffffff,
+          step    = 1,
+          default = 0,
+      endnumeric;
+    endif;
+
+  subtitle text = STRING_TOKEN (STR_HORIZONTAL_LINE);
+
+  //
+  // SGX Dfx - Start
+  //
+  suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.IsSgxCapable == SECURITY_POLICY_UNSUPPORTED;
+    subtitle text = STRING_TOKEN (SGX_DFX_SUBTITLE);
+    subtitle text = STRING_TOKEN (STR_HORIZONTAL_LINE);
+
+    oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.DfxSgxDebugPrint,
+      prompt      = STRING_TOKEN (STR_SGX_DEBUG_PRINT_PROMPT),
+      help        = STRING_TOKEN (STR_SGX_DEBUG_PRINT_HELP),
+      option text = STRING_TOKEN (STR_ENABLED), value = SECURITY_POLICY_DFX_ENABLE, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_AUTO),    value = SECURITY_POLICY_DFX_AUTO,   flags = RESET_REQUIRED | DEFAULT;
+    endoneof;
+
+    oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.DfxSgxRegistrationServerSelect,
+      prompt      = STRING_TOKEN (STR_SGX_REG_SERVER_SEL_PROMPT),
+      help        = STRING_TOKEN (STR_SGX_REG_SERVER_SEL_HELP),
+      option text = STRING_TOKEN (STR_PRX), value = SECURITY_POLICY_DFX_PRX_SERVER, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_SBX), value = SECURITY_POLICY_DFX_SBX_SERVER, flags = RESET_REQUIRED | DEFAULT;
+    endoneof;
+
+    oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.DfxMcheckMsr72,
+      prompt      = STRING_TOKEN (STR_SGX_MCHECK_MSR_72_PROMPT),
+      help        = STRING_TOKEN (STR_SGX_MCHECK_MSR_72_HELP),
+      option text = STRING_TOKEN (STR_ENABLED), value = SECURITY_POLICY_DFX_ENABLE, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_AUTO),    value = SECURITY_POLICY_DFX_AUTO,   flags = RESET_REQUIRED | DEFAULT;
+    endoneof;
+
+    oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.DfxMockSgxIsNotCapable,
+      prompt      = STRING_TOKEN (STR_SGX_ISNOTCAPABLE_PROMPT),
+      help        = STRING_TOKEN (STR_SGX_SGX_ISNOTCAPABLE_HELP),
+      option text = STRING_TOKEN (STR_ENABLED), value = SECURITY_POLICY_DFX_ENABLE, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_AUTO),    value = SECURITY_POLICY_DFX_AUTO,   flags = RESET_REQUIRED | DEFAULT;
+    endoneof;
+
+    oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.DfxSgxAddPackageSupport,
+      prompt      = STRING_TOKEN (STR_SGX_ADDPACKAGESUPPORT_PROMPT),
+      help        = STRING_TOKEN (STR_SGX_ADDPACKAGESUPPORT_HELP),
+      option text = STRING_TOKEN (STR_ENABLED),  value = SECURITY_POLICY_DFX_ENABLE,  flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_DISABLED), value = SECURITY_POLICY_DFX_DISABLE, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_AUTO),     value = SECURITY_POLICY_DFX_AUTO,    flags = RESET_REQUIRED | DEFAULT;
+    endoneof;
+    subtitle text = STRING_TOKEN (STR_HORIZONTAL_LINE);
+  endif;    //Suppressif SGX unsupported
+  //
+  // SGX Dfx - End
+  //
+
+  //
+  // TDX Dfx - Start
+  //
+  suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.TdxCapability == SECURITY_POLICY_UNSUPPORTED;
+    oneof varid   = SOCKET_PROCESSORCORE_CONFIGURATION.DfxAllowTdxWithoutSgx,
+      prompt      = STRING_TOKEN(STR_TDX_DFX_ALLOW_PROMPT),
+      help        = STRING_TOKEN(STR_TDX_DFX_ALLOW_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value = SECURITY_POLICY_DFX_ENABLE, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_AUTO),    value = SECURITY_POLICY_DFX_AUTO,   flags = RESET_REQUIRED | DEFAULT;
+    endoneof;
+  endif;  //Suppressif TDX not enabled
+  //
+  // TDX Dfx - End
+  //
+
+  //
+  // FuSa (SAF) Dfx Start
+  //
+  suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP;
+    subtitle text = STRING_TOKEN (STR_FUSASAF_DFX_SUBTITLE);
+    subtitle text = STRING_TOKEN (STR_HORIZONTAL_LINE);
+  endif; // suppressif
+  //
+  // FuSa (SAF) Dfx End
+  //
+
+  //
+  // MK-TME Dfx - Start
+  //
+  suppressif ideqval SOCKET_PROCESSORCORE_CONFIGURATION.EnableTme == SECURITY_POLICY_DISABLE;
+    subtitle text = STRING_TOKEN (TME_MKTME_TDX_DFX_SUBTITLE);
+    subtitle text = STRING_TOKEN (STR_HORIZONTAL_LINE);
+
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP;
+      oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.DfxEnableTmePOC,
+      prompt      = STRING_TOKEN(STR_TME_POC_PROMPT),
+      help        = STRING_TOKEN(STR_TME_POC_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = SECURITY_POLICY_DFX_DISABLE, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLED),  value = SECURITY_POLICY_DFX_ENABLE,  flags = RESET_REQUIRED;
+      endoneof;
+    endif; // Suppress if not supported CPU
+
+    suppressif NOT (ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SPRSP OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXD  OR
+                    ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP);
+      grayoutif ideqval SOCKET_MEMORY_CONFIGURATION.dfxPerMemMode == PER_MEM_MODE;
+        numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.DfxTmeExclusionBase,
+          prompt      = STRING_TOKEN (STR_TME_BASE_PROMPT),
+          help        = STRING_TOKEN (STR_TME_BASE_PROMPT_HELP),
+          flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+          minimum     = 0x0,
+          maximum     = 0xFFFFFFFFFFFFFFFF,
+          step        = 0x1000,
+          default     = 0x0, defaultstore = MyStandardDefault,
+          default     = 0x0, defaultstore = MyManufactureDefault,
+        endnumeric;
+
+        numeric varid = SOCKET_PROCESSORCORE_CONFIGURATION.DfxTmeExclusionLength,
+          prompt      = STRING_TOKEN (STR_TME_LEN_PROMPT),
+          help        = STRING_TOKEN (STR_TME_LEN_PROMPT_HELP),
+          flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+          minimum     = 0x0,
+          maximum     = 0xFFFFFFFFFFFFFFFF,
+          step        = 0x1,
+          default     = 0x0, defaultstore = MyStandardDefault,
+          default     = 0x0, defaultstore = MyManufactureDefault,
+        endnumeric;
+      endif; // grayoutif PER_MEM_MODE
+
+      oneof varid = SOCKET_PROCESSORCORE_CONFIGURATION.DfxTmeKeyRestore,
+        prompt      = STRING_TOKEN (STR_TME_KEY_RESTORE_PROMPT),
+        help        = STRING_TOKEN (STR_TME_KEY_RESTORE_HELP),
+        option text = STRING_TOKEN (STR_DISABLED), value = SECURITY_POLICY_DFX_DISABLE, flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),  value = SECURITY_POLICY_DFX_ENABLE,  flags = RESET_REQUIRED;
+      endoneof;
+    endif; // Supress if not supported CPU
+    subtitle text = STRING_TOKEN (STR_HORIZONTAL_LINE);
+  endif; // Suppressif if TME isn't enabled
+  //
+  // MK-TME Dfx - End
+  //
+
+endform;

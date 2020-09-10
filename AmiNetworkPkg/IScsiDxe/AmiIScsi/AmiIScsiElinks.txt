@@ -1,0 +1,19 @@
+//***********************************************************************
+//*                                                                     *
+//*   Copyright (c) 1985-2019, American Megatrends International LLC.   *
+//*                                                                     *
+//*      All rights reserved. Subject to AMI licensing agreement.       *
+//*                                                                     *
+//***********************************************************************
+
+/** @file AmiIScsiElink.txt
+    This contains the functions to config the AMI ISCSI Elinks.
+**/
+
+/**
+    Function Definitions
+**/
+
+#define CHAP_SECRET_ENCRYPTION_MGMT_HOOK_LIST @Elink(ChapSecretEncryptionManagementHook, "@Child,", "", "")
+#define ISCSI_BLOCKED_NETWORK_DEVICE_LIST @Elink(SkipIScsiDxeNetworkList,"@Child","","%n")
+

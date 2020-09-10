@@ -1,0 +1,100 @@
+<!--
+INTEL CONFIDENTIAL
+Copyright 2020 Intel Corporation.
+This software and the related documents are Intel copyrighted materials, and
+your use of them is governed by the express license under which they were
+provided to you (License).Unless the License provides otherwise, you may not
+use, modify, copy, publish, distribute, disclose or transmit this software or
+the related documents without Intel's prior written permission.
+
+This software and the related documents are provided as is, with no express or
+implied warranties, other than those that are expressly stated in the License.
+-->
+
+<container>
+  <configuration version="0.5">
+      <!-- dependent containers list -->
+      <file name="PFMBinary" calculate="/required_containers/pfm.value" ui_params="{'visible': 'false'}"/>
+      <number name="pc_type" value="0x1"/>
+      <asymmetric_key name="root_key" value="" />
+      <asymmetric_key name="csk_key" value="" />
+      <number name="permission" value="0x3"/>
+      <number name="key_id" value="0x2"/>
+  </configuration>
+  <layout>
+      <block0>
+         <number name="magic" value="0xB6EAFD19" size="4"/>
+         <number name="length" calculate="/layout/padded_content.size" size="4"/>
+         <number name="type" calculate="/configuration/pc_type.value" size="4"/>   <!--PFM type -->
+         <number name="reserved" value="0" size="4"/>   
+        <function_hash name="metadata_hash" legacy="true" order="little">
+            <sha value="256" />
+            <input>
+                <data path="/layout/padded_content" />
+            </input>
+        </function_hash>
+        <function_hash name="metadata_hash" legacy="true" order="little">
+            <sha value="384" />
+            <input>
+                <data path="/layout/padded_content" />
+            </input>
+        </function_hash>
+        <number name="reserved" value="0" size="32"/>   <!--padding -->
+      </block0>
+      <block1 padding="896">
+        <number name="magic" value="0xF27F28D7" size="4"/>
+        <number name="reserved" value="0" size="12"/>
+        <root_entry>
+            <number name="magic" value="0xA757A046" size="4"/>
+            <root_hash>
+                <number name="curve_magic" value="0xC7B88C74" size="4"/>
+                <number name="permissions" value="0xFFFFFFFF" size="4"/>
+                <number name="key_id" value="0xFFFFFFFF" size="4"/>
+                <byte_array name="public_key_x" order="little" size="48" calculate="/configuration/root_key.qx"/>
+                <byte_array name="public_key_y" order="little" size="48" calculate="/configuration/root_key.qy"/>
+                <number name="reserved" value="0" size="20"/>
+            </root_hash>
+        </root_entry>
+        <csk_entry>
+            <number name="magic" value="0x14711C2F" size="4"/>
+            <csk_hash>
+                <number name="curve_magic" value="0xC7B88C74" size="4"/>
+                <number name="permissions" calculate="/configuration/permission.value" size="4"/>
+                <number name="key_id" calculate="/configuration/key_id.value" size="4"/>
+                <byte_array name="public_key_x" order="little"  size="48" calculate="/configuration/csk_key.qx"/>
+                <byte_array name="public_key_y" order="little"  size="48"  calculate="/configuration/csk_key.qy"/>
+                <number name="reserved" value="0" size="20"/>
+            </csk_hash>
+            <number name="sign_magic" value="0xDE64437D" size="4"/>
+            <function_sign name="signature" legacy="true" order="little">
+              <reverse calculate="0" />
+              <key value="/configuration/root_key" />
+              <sha value="256" />
+              <padding_scheme value="v1_5" salt_len="32"/>
+              <ecc_padding value="0x30" />
+              <input>
+                 <data path="parent/parent/root_entry/root_hash" />
+                 <data path="parent/csk_hash" />
+              </input>
+            </function_sign>
+        </csk_entry>
+        <block0_entry>
+            <number name="magic" value="0x15364367" size="4"/>
+            <number name="sign_magic" value="0xDE64437D" size="4"/>
+            <function_sign name="signature" legacy="true" order="little">
+              <reverse calculate="0" />
+              <key value="/configuration/csk_key" />
+              <sha value="256" />
+              <ecc_padding value="0x30" />
+              <padding_scheme value="v1_5" salt_len="32"/>
+              <input>
+                 <data path="/layout/block0" />
+              </input>
+            </function_sign>
+        </block0_entry>
+      </block1>
+      <padded_content padding="0x80">
+        <byte_array name="pfm" calculate="/configuration/PFMBinary.data" />
+      </padded_content>	
+  </layout>
+</container>

@@ -1,0 +1,19 @@
+TOKEN
+    Name  = "PeiDxeSmmMeUtilsLib_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PeiDxeSmmMeUtilsLib support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "MeUtilsLib"
+    Instance  = "ClientOneSiliconPkg.MeUtilsLib"
+End
+
+INFComponent
+    Name  = "MeUtilsLib"
+    File  = "MeUtilsLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End

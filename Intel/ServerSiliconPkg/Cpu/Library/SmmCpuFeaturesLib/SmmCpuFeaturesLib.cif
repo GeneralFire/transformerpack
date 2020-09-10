@@ -1,0 +1,13 @@
+<component>
+	name = "SmmCpuFeaturesLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Cpu\Library\SmmCpuFeaturesLib\"
+	RefName = "ServerSiliconPkg.Cpu.Library.SmmCpuFeaturesLib"
+[INF]
+"SmmCpuFeaturesLib.inf"
+[files]
+"CpuHotPlugData.h"	
+"SmmCpuFeaturesLib.h"	
+"SmramSaveStateMap.h"	
+"SmmCpuFeaturesLib.sdl"	
+<endComponent>

@@ -1,0 +1,33 @@
+TOKEN
+    Name  = "Library_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Library support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "SerialIoUartDebugPropertyPcdLib"
+    Instance  = "ClientOneSiliconPkg.SerialIoUartDebugPropertyPcdLib"
+End
+
+INFComponent
+    Name  = "SerialIoUartDebugPropertyPcdLib"
+    File  = "SerialIoUartDebugPropertyPcdLib/SerialIoUartDebugPropertyPcdLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+
+LibraryMapping
+    Class  = "SerialIoUartLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmSerialIoUartLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End
+
+INFComponent
+    Name  = "PeiDxeSmmSerialIoUartLib"
+    File  = "PeiDxeSmmSerialIoUartLib/PeiDxeSmmSerialIoUartLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"
+End

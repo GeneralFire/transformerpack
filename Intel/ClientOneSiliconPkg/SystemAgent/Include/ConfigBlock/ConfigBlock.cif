@@ -1,0 +1,12 @@
+<component>
+    name = "ConfigBlock"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\SystemAgent\Include\ConfigBlock\"
+    RefName = "ClientOneSiliconPkg.SystemAgent.Include.ConfigBlock"
+[files]
+"MemoryDxeConfig.h"		
+"PcieDxeConfig.h"	
+"PramPreMemConfig.h"	
+"SaMiscPeiConfig.h"	
+"SaMiscPeiPreMemConfig.h"		
+<endComponent>

@@ -1,0 +1,59 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2019, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+/** @file AmiIpmiInitHooks.h
+    Ipmi initialization hooks.
+
+**/
+
+#ifndef __IPMI_INIT_HOOKS_H__
+#define __IPMI_INIT_HOOKS_H__
+
+//---------------------------------------------------------------------------
+
+#define AMI_SSIF_ALERT_PIN_CHECK_HOOK_LIST @elink(SSIF_ALERT_PIN_CHECK_HOOK, "@Child", "", "")
+
+#define BMC_INIT_DELAY_HOOK_LIST @elink(BMC_INIT_DELAY_HOOK, "@Child", "", "")
+
+#define INIT_HOST_BMC_INTERFACE_HOOK_LIST @elink(INIT_HOST_BMC_INTERFACE_HOOK, "@Child", "", "")
+
+#define IPMI_OEM_SPMI_UPDATE_HOOK_LIST @elink(IPMI_OEM_SPMI_UPDATE_HOOK, "@Child", "", "")
+#define IPMI_OEM_SMBIOS_TYPES_UPDATE_HOOK_LIST @elink(IPMI_OEM_SMBIOS_TYPES_UPDATE_HOOK, "@Child", "", "")
+#define IPMI_OEM_SYSTEM_INFO_UPDATE_HOOK_LIST @elink(IPMI_OEM_SYSTEM_INFO_UPDATE_HOOK, "@Child", "", "")
+
+#define BMC_USB_HOOK_LIST @elink(AMI_BMC_USB_INTERFACE_HOOK, "@Child", "", "")
+
+#define IPMI_SEND_COMMAND_LIST @elink(AMI_IPMI_SEND_COMMAND, "@Child", "", "")
+
+#define INIT_INTERFACE_DATA_HOOK_LIST @elink(AMI_INIT_INTERFACE_DATA_HOOK, "@Child", "", "")
+#define OEM_INIT_KCS_INTERFACE_DATA_HOOK_LIST @elink(AMI_OEM_INIT_KCS_INTERFACE_DATA_HOOK, "@Child", "", "")
+#define OEM_INIT_BT_INTERFACE_DATA_HOOK_LIST @elink(AMI_OEM_INIT_BT_INTERFACE_DATA_HOOK, "@Child", "", "")
+
+//---------------------------------------------------------------------------
+
+#endif  // #ifndef __IPMI_INIT_HOOKS_H__
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2019, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093     **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

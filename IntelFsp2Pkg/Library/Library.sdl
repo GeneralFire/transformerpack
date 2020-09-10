@@ -1,0 +1,99 @@
+TOKEN
+	Name  = "IntelFsp2Pkg_Library_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for IntelFsp2Pkg Library support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "BaseCacheAsRamLibNull"
+	File  = "BaseCacheAsRamLibNull/BaseCacheAsRamLibNull.inf"
+	Package  = "IntelFsp2Pkg"
+End
+
+INFComponent
+	Name  = "BaseCacheLib"
+	File  = "BaseCacheLib/BaseCacheLib.inf"
+	Package  = "IntelFsp2Pkg"
+End
+
+LibraryMapping
+	Class  = "CacheLib"
+	Instance  = "IntelFsp2Pkg.BaseCacheLib"
+	ModuleTypes  = "PEIM"
+End
+
+INFComponent
+    Name  = "BaseDebugDeviceLibNull"
+    File  = "BaseDebugDeviceLibNull/BaseDebugDeviceLibNull.inf"
+    Package  = "IntelFsp2Pkg"
+End
+
+LibraryMapping
+    Class  = "DebugDeviceLib"
+    Instance  = "IntelFsp2Pkg.BaseDebugDeviceLibNull"
+    ModuleTypes  = "PEIM"
+End
+
+INFComponent
+	Name  = "BaseFspCommonLib"
+	File  = "BaseFspCommonLib/BaseFspCommonLib.inf"
+	Package  = "IntelFsp2Pkg"
+End
+
+LibraryMapping
+	Class  = "FspCommonLib"
+	Instance  = "IntelFsp2Pkg.BaseFspCommonLib"
+End
+
+#INFComponent
+#    Name  = "BaseFspDebugLibSerialPort"
+#    File  = "BaseFspDebugLibSerialPort/BaseFspDebugLibSerialPort.inf"
+#    Package  = "IntelFsp2Pkg"
+#End
+
+#LibraryMapping
+#    Class  = "DebugLib"
+#    Instance  = "IntelFsp2Pkg.BaseFspDebugLibSerialPort"
+#End
+
+INFComponent
+	Name  = "BaseFspPlatformLib"
+	File  = "BaseFspPlatformLib/BaseFspPlatformLib.inf"
+	Package  = "IntelFsp2Pkg"
+End
+
+LibraryMapping
+	Class  = "FspPlatformLib"
+	Instance  = "IntelFsp2Pkg.BaseFspPlatformLib"
+	Arch  = "IA32"
+	ModuleTypes  = "PEI_CORE PEIM SEC"        
+End
+
+INFComponent
+	Name  = "BaseFspSwitchStackLib"
+	File  = "BaseFspSwitchStackLib/BaseFspSwitchStackLib.inf"
+	Package  = "IntelFsp2Pkg"
+End
+
+LibraryMapping
+	Class  = "FspSwitchStackLib"
+	Instance  = "IntelFsp2Pkg.BaseFspSwitchStackLib"
+#	Arch  = "IA32"
+#	ModuleTypes  = "PEI_CORE PEIM SEC"
+End
+
+INFComponent
+    Name  = "SecFspSecPlatformLibNull"
+    File  = "SecFspSecPlatformLibNull/SecFspSecPlatformLibNull.inf"
+    Package  = "IntelFsp2Pkg"
+End
+
+LibraryMapping
+    Class  = "FspSecPlatformLib"
+    Instance  = "IntelFsp2Pkg.SecFspSecPlatformLibNull"
+#   Arch  = "IA32"
+#   ModuleTypes  = "PEI_CORE PEIM SEC"
+End
+

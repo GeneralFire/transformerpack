@@ -1,0 +1,11 @@
+<component>
+	name = "PprVlsErrorLogListener"
+	category = ModulePart
+	LocalRoot = "Intel\ServerRasPkg\PprVlsErrorLogListener\"
+	RefName = "ServerRasPkg.PprVlsErrorLogListener"
+[INF]
+"PprVlsErrorLogListener.inf"
+[files]
+"PprVlsErrorLogListener.h"	
+"PprVlsErrorLogListener.sdl"	
+<endComponent>

@@ -1,0 +1,15 @@
+<component>
+    name = "EbgCpu"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Fru\SprCpu\"
+    RefName = "ClientOneSiliconPkg.Fru.SprCpu"
+[INF]
+"CpuPcieRp\Library\PeiDxeSmmCpuPcieInfoFruLib\PeiDxeSmmCpuPcieInfoFruLib.inf"
+[files]
+"EbgCpu.sdl"	
+[parts]
+"ClientOneSiliconPkg.Fru.SprCpu.Graphics"
+"ClientOneSiliconPkg.Fru.SprCpu.Include"
+"ClientOneSiliconPkg.Fru.SprCpu.IncludePrivate"
+"ClientOneSiliconPkg.Fru.SprCpu.TraceHub"
+<endComponent>

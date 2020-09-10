@@ -1,0 +1,20 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Me\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Me.Library"
+[INF]
+"BaseMeFwStsLib\BaseMeFwStsLib.inf"
+"DxeAsfHeciLib\DxeAsfHeciLib.inf"
+"DxeAsfLib\DxeAsfLib.inf"
+"DxeMeLib\DxeMeLib.inf"
+"DxeMePolicyLib\DxeMePolicyLib.inf"
+"PeiDxeMeChipsetLib\PeiDxeMeChipsetLibVer3.inf"
+"PeiMeLib\PeiMeLibVer3.inf"
+"PeiMePolicyLib\PeiMePolicyLibVer3.inf"
+[files]
+"Library.sdl"	
+"PeiMePolicyLib\PeiMePolicy.h"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Me.Library.PeiDxeSmmMeUtilsLib"
+<endComponent>

@@ -1,0 +1,27 @@
+<component>
+    name = "Ppi"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\Ppi\"
+    RefName = "ClientOneSiliconPkg.Include.Ppi"
+[files]
+"FspmArchConfigPpi.h"	
+"HeciPpi.h"
+"HeciTransportPpi.h"
+"HeciControlPpi.h"
+"HeciAccessPpi.h"	
+"MbpSensitivePpi.h"	
+"NvmOwnershipAcquiredPpi.h"
+"PeiSiDefaultPolicy.h"
+"PeiPreMemSiDefaultPolicy.h"	
+"PlatformSpecificResetHandler.h"	
+"PlatformSpecificResetNotification.h"	
+"ReadOnlyVariablePreMemoryDescriptorPpi.h"	
+"SiPolicy.h"	
+"SmmControl.h"	
+"Spi.h"	
+"TempRamExitPpi.h"	
+"TpmInitialized.h"	
+"VariableStoragePpi.h"	
+"VariableStorageSelectorPpi.h"	
+"Wdt.h"	
+<endComponent>

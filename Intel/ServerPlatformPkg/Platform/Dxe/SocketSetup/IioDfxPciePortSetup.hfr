@@ -1,0 +1,407 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2020 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#if (INDEX % NUMBER_PORTS_PER_SOCKET == 0) || defined(SNR_HOST) || defined(SKX_HOST) || defined(CLX_HOST) || defined(CPX_HOST)
+  //
+  // Gen3 knobs for gen3 controller, so for DMI port in ICX and for DMI and PCIe ports in SNR/SKX/CLX/CPX
+  //
+  oneof varid = SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX],
+    prompt          = STRING_TOKEN(STR_DFX_PCIE_GEN3_OVERRIDE_PROMPT),
+    help            = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_HELP),
+#if (EBG_SC_FLAG == 1) && defined (CLX_HOST)
+// EBG A0 CLX VV WA: Force manual override
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_UNIPHY),      value = DFX_TXEQ_OVERRIDE_MODE_PHY,         flags = RESET_REQUIRED;
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL),      value = DFX_TXEQ_OVERRIDE_MODE_MANUAL,      flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+#else
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_UNIPHY),      value = DFX_TXEQ_OVERRIDE_MODE_PHY,         flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL),      value = DFX_TXEQ_OVERRIDE_MODE_MANUAL,      flags = RESET_REQUIRED;
+#endif
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_TEST_CARD),   value = DFX_TXEQ_OVERRIDE_MODE_TEST_CARD,   flags = RESET_REQUIRED;
+  endoneof;
+
+  grayoutif NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL AND
+            NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH2;
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh2_Precursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH2_PRECURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH2_PRECURSOR_MIN,
+      maximum     = TXEQ_PH2_PRECURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH2_G3_PRECURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH2_G3_PRECURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh2_Cursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH2_CURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH2_CURSOR_MIN,
+      maximum     = TXEQ_PH2_CURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH2_G3_CURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH2_G3_CURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh2_Postcursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH2_POSTCURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH2_POSTCURSOR_MIN,
+      maximum     = TXEQ_PH2_POSTCURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH2_G3_POSTCURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH2_G3_POSTCURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+  endif; // grayoutif NOT MANUAL || MANUAL_PH2
+
+  grayoutif NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL AND
+            NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH3;
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh3_Precursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH3_PRECURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH3_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH3_PRECURSOR_MIN,
+      maximum     = TXEQ_PH3_PRECURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH3_PRECURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH3_PRECURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh3_Cursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH3_CURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH3_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH3_CURSOR_MIN,
+      maximum     = TXEQ_PH3_CURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH3_CURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH3_CURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh3_Postcursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH3_POSTCURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH3_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH3_POSTCURSOR_MIN,
+      maximum     = TXEQ_PH3_POSTCURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH3_POSTCURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH3_POSTCURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+  endif; // grayoutif NOT MANUAL || MANUAL_PH3
+
+  grayoutif NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_TEST_CARD;
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxGen3TestCard[INDEX],
+        prompt          = STRING_TOKEN(STR_DFX_TXEQ_NTB_TESTCARD_PROMPT),
+        help            = STRING_TOKEN(STR_DFX_TXEQ_NTB_TESTCARD_HELP),
+        option text     = STRING_TOKEN(STR_DFX_TXEQ_TEST_CARD_LAGUNA),      value = DFX_TXEQ_TEST_CARD_LAGUNA,   flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text     = STRING_TOKEN(STR_DFX_TXEQ_TEST_CARD_NTB),         value = DFX_TXEQ_TEST_CARD_NTB,      flags = RESET_REQUIRED;
+    endoneof;
+  endif; // greyoutif NOT TEST_CARD;
+
+#else // (INDEX % NUMBER_PORTS_PER_SOCKET == 0) || defined(SNR_HOST) || defined(SKX_HOST) || defined(CLX_HOST) || defined(CPX_HOST)
+  //
+  // Gen3 knobs for gen4 controller
+  //
+  oneof varid = SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX],
+    prompt          = STRING_TOKEN(STR_DFX_PCIE_GEN3_OVERRIDE_PROMPT),
+    help            = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_HELP),
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MGPHY),       value = DFX_TXEQ_OVERRIDE_MODE_PHY,         flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL),      value = DFX_TXEQ_OVERRIDE_MODE_MANUAL,      flags = RESET_REQUIRED;
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH2),  value = DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH2,  flags = RESET_REQUIRED;
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH3),  value = DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH3,  flags = RESET_REQUIRED;
+    option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_TEST_CARD),   value = DFX_TXEQ_OVERRIDE_MODE_TEST_CARD,   flags = RESET_REQUIRED;
+  endoneof;
+
+  grayoutif NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL AND
+            NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH2;
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh2_Precursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH2_PRECURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH2_PRECURSOR_MIN,
+      maximum     = TXEQ_PH2_PRECURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH2_G4_PRECURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH2_G4_PRECURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh2_Cursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH2_CURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH2_CURSOR_MIN,
+      maximum     = TXEQ_PH2_CURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH2_G4_CURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH2_G4_CURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh2_Postcursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH2_POSTCURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH2_POSTCURSOR_MIN,
+      maximum     = TXEQ_PH2_POSTCURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH2_G4_POSTCURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH2_G4_POSTCURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+  endif; // grayoutif NOT MANUAL || MANUAL_PH2
+
+  grayoutif NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL AND
+            NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH3;
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh3_Precursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH3_PRECURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH3_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH3_PRECURSOR_MIN,
+      maximum     = TXEQ_PH3_PRECURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH3_PRECURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH3_PRECURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen3ManualPh3_Postcursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH3_POSTCURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH3_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH3_POSTCURSOR_MIN,
+      maximum     = TXEQ_PH3_POSTCURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH3_POSTCURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH3_POSTCURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+  endif; // grayoutif NOT MANUAL || MANUAL_PH3
+
+  grayoutif NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen3OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_TEST_CARD;
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxGen3TestCard[INDEX],
+      prompt          = STRING_TOKEN(STR_DFX_TXEQ_NTB_TESTCARD_PROMPT),
+      help            = STRING_TOKEN(STR_DFX_TXEQ_NTB_TESTCARD_HELP),
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_TEST_CARD_LAGUNA),      value = DFX_TXEQ_TEST_CARD_LAGUNA,   flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_TEST_CARD_NTB),         value = DFX_TXEQ_TEST_CARD_NTB,      flags = RESET_REQUIRED;
+    endoneof;
+  endif; // greyoutif NOT TEST_CARD;
+
+  subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+  //
+  // Add Gen4 options here
+  //
+  oneof varid = SOCKET_IIO_CONFIGURATION.DfxGen4OverrideMode[INDEX],
+      prompt          = STRING_TOKEN(STR_DFX_PCIE_GEN4_OVERRIDE_PROMPT),
+      help            = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_HELP),
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MGPHY),       value = DFX_TXEQ_OVERRIDE_MODE_PHY,         flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    suppressif NOT ideqval SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_ICXSP;
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MGPHYSHORTCH),value = DFX_TXEQ_OVERRIDE_MODE_MGPHYSHORTCH,flags = RESET_REQUIRED;
+    endif;
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL),      value = DFX_TXEQ_OVERRIDE_MODE_MANUAL,      flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH2),  value = DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH2,  flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH3),  value = DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH3,  flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_OVERRIDE_MODE_TEST_CARD),   value = DFX_TXEQ_OVERRIDE_MODE_TEST_CARD,   flags = RESET_REQUIRED;
+  endoneof;
+
+  grayoutif NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen4OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL AND
+            NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen4OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH2;
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen4ManualPh2_Precursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH2_PRECURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH2_PRECURSOR_MIN,
+      maximum     = TXEQ_PH2_PRECURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH2_G4_PRECURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH2_G4_PRECURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen4ManualPh2_Cursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH2_CURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH2_CURSOR_MIN,
+      maximum     = TXEQ_PH2_CURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH2_G4_CURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH2_G4_CURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen4ManualPh2_Postcursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH2_POSTCURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH2_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH2_POSTCURSOR_MIN,
+      maximum     = TXEQ_PH2_POSTCURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH2_G4_POSTCURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH2_G4_POSTCURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+  endif;  // grayoutif NOT MANUAL || MANUAL_PH2
+
+  grayoutif NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen4OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL AND
+            NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen4OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_MANUAL_PH3;
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen4ManualPh3_Precursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH3_PRECURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH3_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH3_PRECURSOR_MIN,
+      maximum     = TXEQ_PH3_PRECURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH3_PRECURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH3_PRECURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+
+    numeric varid = SOCKET_IIO_CONFIGURATION.DfxGen4ManualPh3_Postcursor[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_TXEQ_PH3_POSTCURSOR),
+      help        = STRING_TOKEN(STR_DFX_TXEQ_MANUAL_PH3_FORM_HELP),
+      flags       = RESET_REQUIRED,
+      minimum     = TXEQ_PH3_POSTCURSOR_MIN,
+      maximum     = TXEQ_PH3_POSTCURSOR_MAX,
+      step        = 1,
+      default     = TXEQ_PH3_POSTCURSOR_DEFAULT, defaultstore = MyStandardDefault,     // This is standard default value.
+      default     = TXEQ_PH3_POSTCURSOR_DEFAULT, defaultstore = MyManufactureDefault,  // This is manufacture default value.
+    endnumeric;
+  endif;  // grayoutif NOT MANUAL || MANUAL_PH3
+
+  grayoutif NOT ideqval SOCKET_IIO_CONFIGURATION.DfxGen4OverrideMode[INDEX] == DFX_TXEQ_OVERRIDE_MODE_TEST_CARD;
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxGen4TestCard[INDEX],
+      prompt          = STRING_TOKEN(STR_DFX_TXEQ_NTB_TESTCARD_PROMPT),
+      help            = STRING_TOKEN(STR_DFX_TXEQ_NTB_TESTCARD_HELP),
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_TEST_CARD_LAGUNA),      value = DFX_TXEQ_TEST_CARD_LAGUNA,   flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_DFX_TXEQ_TEST_CARD_NTB),         value = DFX_TXEQ_TEST_CARD_NTB,      flags = RESET_REQUIRED;
+    endoneof;
+  endif; // greyoutif NOT TEST_CARD;
+
+#endif // (INDEX % NUMBER_PORTS_PER_SOCKET == 0) || defined(SNR_HOST) || defined(SKX_HOST) || defined(CLX_HOST) || defined(CPX_HOST)
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    subtitle text = STRING_TOKEN(STR_PRESET_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxDnTxPreset[INDEX],
+      prompt          = STRING_TOKEN(STR_DN_TX_PRESET),
+      help            = STRING_TOKEN(STR_DN_TX_PRESET_HELP),
+      option text     = STRING_TOKEN(STR_AUTO),                  value = DFX_TX_PRESET_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P0),          value = 0x0000, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P1),          value = 0x0001, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P2),          value = 0x0002, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P3),          value = 0x0003, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P4),          value = 0x0004, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P5),          value = 0x0005, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P6),          value = 0x0006, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P7),          value = 0x0007, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P8),          value = 0x0008, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P9),          value = 0x0009, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxRxPreset[INDEX],
+      prompt          = STRING_TOKEN(STR_DN_RX_PRESET_HINT),
+      help            = STRING_TOKEN(STR_DN_RX_PRESET_HELP),
+      option text     = STRING_TOKEN(STR_AUTO),                  value = DFX_RX_PRESET_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_RX_PRESET_P0),          value = 0x0000, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_RX_PRESET_P1),          value = 0x0001, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_RX_PRESET_P2),          value = 0x0002, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_RX_PRESET_P3),          value = 0x0003, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_RX_PRESET_P4),          value = 0x0004, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_RX_PRESET_P5),          value = 0x0005, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_RX_PRESET_P6),          value = 0x0006, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxUpTxPreset[INDEX],
+      prompt          = STRING_TOKEN(STR_UP_TX_PRESET),
+      help            = STRING_TOKEN(STR_UP_TX_PRESET_HELP),
+      option text     = STRING_TOKEN(STR_AUTO),                  value = DFX_TX_PRESET_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P0),          value = 0x0000, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P1),          value = 0x0001, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P2),          value = 0x0002, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P3),          value = 0x0003, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P4),          value = 0x0004, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P5),          value = 0x0005, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P6),          value = 0x0006, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P7),          value = 0x0007, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P8),          value = 0x0008, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P9),          value = 0x0009, flags = RESET_REQUIRED;
+    endoneof;
+
+#if defined (ICX_HOST) || defined (ICXDE_HOST)
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxDnTxPresetGen4[INDEX],
+      prompt          = STRING_TOKEN(STR_DN_TX_PRESET_GEN4),
+      help            = STRING_TOKEN(STR_DN_TX_PRESET_GEN4_HELP),
+      option text     = STRING_TOKEN(STR_AUTO),                  value = DFX_TX_PRESET_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P0),          value = 0x0000, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P1),          value = 0x0001, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P2),          value = 0x0002, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P3),          value = 0x0003, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P4),          value = 0x0004, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P5),          value = 0x0005, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P6),          value = 0x0006, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P7),          value = 0x0007, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P8),          value = 0x0008, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P9),          value = 0x0009, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxUpTxPresetGen4[INDEX],
+      prompt          = STRING_TOKEN(STR_UP_TX_PRESET_GEN4),
+      help            = STRING_TOKEN(STR_UP_TX_PRESET_GEN4_HELP),
+      option text     = STRING_TOKEN(STR_AUTO),                  value = DFX_TX_PRESET_AUTO, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P0),          value = 0x0000, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P1),          value = 0x0001, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P2),          value = 0x0002, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P3),          value = 0x0003, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P4),          value = 0x0004, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P5),          value = 0x0005, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P6),          value = 0x0006, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P7),          value = 0x0007, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P8),          value = 0x0008, flags = RESET_REQUIRED;
+      option text     = STRING_TOKEN(STR_TX_PRESET_P9),          value = 0x0009, flags = RESET_REQUIRED;
+    endoneof;
+
+#endif // ICX_HOST || ICXDE_HOST
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    subtitle text = STRING_TOKEN(STR_DFX_MISCCONFIGURATIONS_TITLE);
+    subtitle text = STRING_TOKEN(STR_HORIZONTAL_LINE);
+
+    oneof varid = SOCKET_IIO_CONFIGURATION.DfxLinkRetrainEn[INDEX],
+      prompt      = STRING_TOKEN(STR_DFX_IIO_LINK_RETRAIN_PROMPT),
+      help        = STRING_TOKEN(STR_DFX_IIO_LINK_RETRAIN_HELP),
+      option text = STRING_TOKEN(STR_DISABLE), value = 0, flags = RESET_REQUIRED  | MANUFACTURING | DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLE),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+  //
+  // 1404570044: ORCL\6000072799\SKX\IioSetup.hfr file shoud have consistency on STR_DISABLE/ENABLE values
+  //
+  suppressif NOT ideqvallist SOCKET_COMMONRC_CONFIGURATION.CpuType == CPU_SKX CPU_CLX CPU_CPX CPU_SNR;
+    oneof varid = SOCKET_IIO_CONFIGURATION.InboundConfiguration[INDEX],
+      prompt  = STRING_TOKEN(STR_DFX_INBOUNDCONFIGURATION_PROMPT),
+      help    = STRING_TOKEN(STR_DFX_INBOUNDCONFIGURATION_HELP),
+      option text = STRING_TOKEN(STR_NO),   value = 0, flags = RESET_REQUIRED  | MANUFACTURING | DEFAULT;
+      option text = STRING_TOKEN(STR_YES),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+  endif;
+

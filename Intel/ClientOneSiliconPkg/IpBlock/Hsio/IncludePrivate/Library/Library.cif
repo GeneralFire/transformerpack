@@ -1,0 +1,9 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Hsio\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Hsio.IncludePrivate.Library"
+[files]
+"ChipsetInitLib.h"	
+"PeiHsioLib.h"	
+<endComponent>

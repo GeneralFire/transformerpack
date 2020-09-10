@@ -1,0 +1,14 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Library\"
+    RefName = "ClientOneSiliconPkg.Library"
+[INF]
+"BaseSiConfigBlockLib\BaseSiConfigBlockLib.inf"
+"DxeAslUpdateLib\DxeAslUpdateLib.inf"
+"TraceHubDebugLibNull\TraceHubDebugLibNull.inf"
+"TraceHubHookLibNull\TraceHubHookLibNull.inf"
+"TraceHubDebugLibSvenTx\BaseTraceHubDebugLibSvenTx.inf"
+[files]
+"Library.sdl"	
+<endComponent>

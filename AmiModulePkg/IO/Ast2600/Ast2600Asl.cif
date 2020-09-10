@@ -1,0 +1,13 @@
+<component>
+    name = "Ast2600Asl"
+    category = ModulePart
+    LocalRoot = "AmiModulePkg\IO\Ast2600\"
+    RefName = "Ast2600Asl"
+[files]
+"Uart3.asl"	
+"Uart4.asl"	
+"Ast2600Evt.asl"	
+"Ast2600Dev.asl"	
+"Uart1.asl"	
+"Uart2.asl"	
+<endComponent>

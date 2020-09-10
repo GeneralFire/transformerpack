@@ -1,0 +1,8 @@
+<component>
+	name = "PeiDxeSmmGpioLib"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\SouthCluster\Library\PeiDxeSmmGpioLib\"
+	RefName = "ServerSiliconPkg.Include.SouthCluster.Library.PeiDxeSmmGpioLib"
+[files]
+"GpioLibrary.h"	
+<endComponent>

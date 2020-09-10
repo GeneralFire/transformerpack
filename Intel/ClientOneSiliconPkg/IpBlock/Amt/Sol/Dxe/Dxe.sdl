@@ -1,0 +1,16 @@
+TOKEN
+    Name  = "Dxe_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling Dxe support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "SerialOverLan"
+    File  = "SerialOverLan.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "UEFI_DRIVER"
+    Token = "AMT_ENABLE" "=" "1"
+End
+

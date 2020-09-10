@@ -1,0 +1,8 @@
+<component>
+    name = "Dci"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Dci\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Dci"
+[files]
+"DciConfig.h"	
+<endComponent>

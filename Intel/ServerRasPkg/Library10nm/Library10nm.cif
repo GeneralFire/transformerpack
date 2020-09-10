@@ -1,0 +1,17 @@
+<component>
+    name = "Library10nm"
+    category = MODULEPART
+    LocalRoot = "Intel\ServerRasPkg\Library10nm\"
+    RefName = "ServerRasPkg.Library10nm"
+[INF]
+"CrashLogCpuLib\CrashLogCpuLibSpr.inf"
+"CrashLogPchLib\CrashLogPchLibEbg.inf"
+"CpuSbiAccessLib\CpuSbiAccessLibSpr.inf"
+"RasWorkaroundLib\RasWorkaroundLib.inf"
+"SmmRasSiliconLib10nm\SmmRasSiliconLibSpr.inf"
+"ErrorInjectionLib\ErrorInjectionLib.inf"
+"IioRasInitSiLib\IioRasInitSiLibSpr.inf"
+"SmbRecLib\SmbRecLibSpr.inf"
+[files]
+"Library10nm.sdl"
+<endComponent>

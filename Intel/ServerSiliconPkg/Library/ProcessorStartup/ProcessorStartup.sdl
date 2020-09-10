@@ -1,0 +1,96 @@
+TOKEN
+	Name  = "ProcessorStartup_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling ProcessorStartup support in the project"
+	TokenType = Boolean
+	Master = Yes	
+End
+
+LibraryMapping
+	Class  = "PlatformSecLib"
+	Instance  = "ServerSiliconPkg.ProcessorStartup"
+End
+
+INFComponent
+	Name  = "ProcessorStartup"
+	File  = "ProcessorStartupCdf.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "SEC"
+        Token = "CPU_SPR_SUPPORT" "=" "0"	
+	Token = "BTG_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "ProcessorStartupFsp"
+    File  = "ProcessorStartupCdfSprFsp.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "SEC"
+    Token = "BTG_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "ProcessorStartupFsp"
+    File  = "ProcessorStartupCdfSprBTGFsp.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "SEC"
+    Token = "BTG_ENABLE" "=" "1"
+End
+
+LibraryMapping
+    Class  = "FspSecPlatformLib"
+    Instance  = "ServerSiliconPkg.ProcessorStartupFsp"
+End
+
+INFComponent
+    Name  = "ProcessorStartup"
+    File  = "ProcessorStartupCdfBTG.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "SEC"
+    Token = "CPU_SPR_SUPPORT" "=" "0"   
+    Token = "BTG_ENABLE" "=" "1"
+End
+
+INFComponent
+    Name  = "ProcessorStartup"
+    File  = "ProcessorStartupCdfSpr.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "SEC"
+    Token = "CPU_SPR_SUPPORT" "=" "1"   
+    Token = "BTG_ENABLE" "=" "0"
+End
+
+INFComponent
+    Name  = "ProcessorStartup"
+    File  = "ProcessorStartupCdfSprBTG.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "SEC"
+    Token = "CPU_SPR_SUPPORT" "=" "1"   
+    Token = "BTG_ENABLE" "=" "1"
+End
+
+PATH
+	Name  = "EAGLESTREAM_PROCESSOR_STARTUP_PATH"
+End
+
+
+
+#PcdMapping
+#    Name  = "PcdTemporaryRamBase"
+#    GuidSpace  = "gIntelFsp2PkgTokenSpaceGuid"
+#   PcdType  = "PcdsFixedAtBuild"
+#   Value  = "$(CAR_BASE_ADDRESS)"
+#    Offset  = 00h
+#    Length  = 00h
+#    TargetDSC = Yes
+#End
+
+#PcdMapping
+#    Name  = "PcdTemporaryRamSize"
+#    GuidSpace  = "gIntelFsp2PkgTokenSpaceGuid"
+#    PcdType  = "PcdsFixedAtBuild"
+#    Value  = "$(CAR_TOTAL_SIZE)"
+#    Offset  = 00h
+#    Length  = 00h
+#    TargetDSC = Yes
+#End
+

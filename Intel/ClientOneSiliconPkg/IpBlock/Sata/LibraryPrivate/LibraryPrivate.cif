@@ -1,0 +1,11 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Sata\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Sata.LibraryPrivate"
+[INF]
+"PeiSataLib\PeiSataLib.inf"
+"PeiSataPolicyLib\PeiSataPolicyLib.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

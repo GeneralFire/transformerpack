@@ -1,0 +1,11 @@
+<component>
+    name = "Ieh"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Ieh\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Ieh"
+[files]
+"Include\Register\IehRegs.h"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Ieh.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Ieh.LibraryPrivate"
+<endComponent>

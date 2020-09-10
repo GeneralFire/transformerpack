@@ -1,0 +1,11 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\SerialIo\Uart\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.SerialIo.Uart.Library"
+[INF]
+"SerialIoUartDebugPropertyPcdLib\SerialIoUartDebugPropertyPcdLib.inf"
+"PeiDxeSmmSerialIoUartLib\PeiDxeSmmSerialIoUartLib.inf"
+[files]
+"Library.sdl"	
+<endComponent>

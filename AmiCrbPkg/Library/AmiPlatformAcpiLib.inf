@@ -1,0 +1,37 @@
+#***********************************************************************
+#*                                                                     *
+#*   Copyright (c) 1985-2020, American Megatrends International LLC.   *
+#*                                                                     *
+#*      All rights reserved. Subject to AMI licensing agreement.       *
+#*                                                                     *
+#***********************************************************************
+#
+# @file AmiPlatformAcpiLib.inf
+#
+# INF description file for AmiPlatformAcpiLib driver.
+#
+
+[Defines]
+  INF_VERSION             = 0x00010015
+  VERSION_STRING          = 1.0
+  BASE_NAME               = AmiPlatformAcpiLib
+  MODULE_TYPE             = DXE_DRIVER
+  LIBRARY_CLASS           = AmiPlatformAcpiLib|DXE_DRIVER DXE_RUNTIME_DRIVER
+  FILE_GUID               = C4A8CBBA-8AC6-40EB-9E72-2BB003CD2050
+
+[Sources]
+  AmiPlatformAcpiLib.c
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  UefiLib
+  UefiBootServicesTableLib
+
+[Protocols]
+  gEfiAcpiTableProtocolGuid  #Consumes
+  gEfiAcpiSdtProtocolGuid    #Consumes
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmiCrbPkg/AmiCrbPkg.dec

@@ -1,0 +1,12 @@
+<component>
+    name = "Vtd"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Vtd\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Vtd"
+[INF]
+[files]
+"Vtd.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Vtd.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Vtd.LibraryPrivate"
+<endComponent>

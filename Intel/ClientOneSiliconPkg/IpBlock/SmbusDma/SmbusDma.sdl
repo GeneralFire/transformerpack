@@ -1,0 +1,21 @@
+TOKEN
+    Name  = "SmbusDma_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling SmbusDma support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "PeiSmbusDmaInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiSmbusInitLib"
+    Arch = "IA32"
+End
+
+INFComponent
+    Name  = "PeiSmbusInitLib"
+    File  = "LibraryPrivate/SmbusDmaInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+

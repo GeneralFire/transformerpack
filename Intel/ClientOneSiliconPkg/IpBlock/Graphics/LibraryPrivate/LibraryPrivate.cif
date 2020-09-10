@@ -1,0 +1,13 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Graphics\LibraryPrivate\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Graphics.LibraryPrivate"
+[INF]
+"PeiGraphicsDisableInitLib\PeiGraphicsDisableInitLib.inf"
+"PeiGraphicsPolicyLibGen12\PeiGraphicsPolicyLib.inf"
+"PeiDisplayLibNull\PeiDisplayLibNull.inf"
+"PeiDisplayInitLibNull\PeiDisplayInitLibNull.inf"
+[files]
+"LibraryPrivate.sdl"	
+<endComponent>

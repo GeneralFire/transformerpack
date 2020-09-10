@@ -1,0 +1,22 @@
+TOKEN
+	Name  = "BiosGuardServices_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable BiosGuard support in Project"
+	TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+	Name  = "BiosGuardServices"
+	File  = "BiosGuardServices.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "X64"
+    ModuleTypes  = "DXE_SMM_DRIVER" 	
+	Token = "BiosGuardServices_SUPPORT" "=" "1"
+End
+
+#LibraryMapping
+#    Class  = "USRATraceLib"
+#    Instance  = "ServerSiliconPkg.USRATraceLib"
+#    Override  = "ServerPlatformPkg.BiosGuardServices"
+#End

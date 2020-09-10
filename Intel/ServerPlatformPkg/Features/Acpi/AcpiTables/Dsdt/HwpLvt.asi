@@ -1,0 +1,213 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 2001 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include "MaxSocket.h"
+
+#define CPU_THREAD_NOTIFY(socket, thread)   \
+        Notify(\_SB.SCK##socket.C##thread, 0x83)
+
+#define CPU_SOCKET_NOTIFY(socket)           \
+        CPU_THREAD_NOTIFY(socket, 000)       \
+        CPU_THREAD_NOTIFY(socket, 001)       \
+        CPU_THREAD_NOTIFY(socket, 002)       \
+        CPU_THREAD_NOTIFY(socket, 003)       \
+        CPU_THREAD_NOTIFY(socket, 004)       \
+        CPU_THREAD_NOTIFY(socket, 005)       \
+        CPU_THREAD_NOTIFY(socket, 006)       \
+        CPU_THREAD_NOTIFY(socket, 007)       \
+        CPU_THREAD_NOTIFY(socket, 008)       \
+        CPU_THREAD_NOTIFY(socket, 009)       \
+        CPU_THREAD_NOTIFY(socket, 00A)       \
+        CPU_THREAD_NOTIFY(socket, 00B)       \
+        CPU_THREAD_NOTIFY(socket, 00C)       \
+        CPU_THREAD_NOTIFY(socket, 00D)       \
+        CPU_THREAD_NOTIFY(socket, 00E)       \
+        CPU_THREAD_NOTIFY(socket, 00F)       \
+        CPU_THREAD_NOTIFY(socket, 010)       \
+        CPU_THREAD_NOTIFY(socket, 011)       \
+        CPU_THREAD_NOTIFY(socket, 012)       \
+        CPU_THREAD_NOTIFY(socket, 013)       \
+        CPU_THREAD_NOTIFY(socket, 014)       \
+        CPU_THREAD_NOTIFY(socket, 015)       \
+        CPU_THREAD_NOTIFY(socket, 016)       \
+        CPU_THREAD_NOTIFY(socket, 017)       \
+        CPU_THREAD_NOTIFY(socket, 018)       \
+        CPU_THREAD_NOTIFY(socket, 019)       \
+        CPU_THREAD_NOTIFY(socket, 01A)       \
+        CPU_THREAD_NOTIFY(socket, 01B)       \
+        CPU_THREAD_NOTIFY(socket, 01C)       \
+        CPU_THREAD_NOTIFY(socket, 01D)       \
+        CPU_THREAD_NOTIFY(socket, 01E)       \
+        CPU_THREAD_NOTIFY(socket, 01F)       \
+        CPU_THREAD_NOTIFY(socket, 020)       \
+        CPU_THREAD_NOTIFY(socket, 021)       \
+        CPU_THREAD_NOTIFY(socket, 022)       \
+        CPU_THREAD_NOTIFY(socket, 023)       \
+        CPU_THREAD_NOTIFY(socket, 024)       \
+        CPU_THREAD_NOTIFY(socket, 025)       \
+        CPU_THREAD_NOTIFY(socket, 026)       \
+        CPU_THREAD_NOTIFY(socket, 027)       \
+        CPU_THREAD_NOTIFY(socket, 028)       \
+        CPU_THREAD_NOTIFY(socket, 029)       \
+        CPU_THREAD_NOTIFY(socket, 02A)       \
+        CPU_THREAD_NOTIFY(socket, 02B)       \
+        CPU_THREAD_NOTIFY(socket, 02C)       \
+        CPU_THREAD_NOTIFY(socket, 02D)       \
+        CPU_THREAD_NOTIFY(socket, 02E)       \
+        CPU_THREAD_NOTIFY(socket, 02F)       \
+        CPU_THREAD_NOTIFY(socket, 030)       \
+        CPU_THREAD_NOTIFY(socket, 031)       \
+        CPU_THREAD_NOTIFY(socket, 032)       \
+        CPU_THREAD_NOTIFY(socket, 033)       \
+        CPU_THREAD_NOTIFY(socket, 034)       \
+        CPU_THREAD_NOTIFY(socket, 035)       \
+        CPU_THREAD_NOTIFY(socket, 036)       \
+        CPU_THREAD_NOTIFY(socket, 037)       \
+        CPU_THREAD_NOTIFY(socket, 038)       \
+        CPU_THREAD_NOTIFY(socket, 039)       \
+        CPU_THREAD_NOTIFY(socket, 03A)       \
+        CPU_THREAD_NOTIFY(socket, 03B)       \
+        CPU_THREAD_NOTIFY(socket, 03C)       \
+        CPU_THREAD_NOTIFY(socket, 03D)       \
+        CPU_THREAD_NOTIFY(socket, 03E)       \
+        CPU_THREAD_NOTIFY(socket, 03F)       \
+        CPU_THREAD_NOTIFY(socket, 040)       \
+        CPU_THREAD_NOTIFY(socket, 041)       \
+        CPU_THREAD_NOTIFY(socket, 042)       \
+        CPU_THREAD_NOTIFY(socket, 043)       \
+        CPU_THREAD_NOTIFY(socket, 044)       \
+        CPU_THREAD_NOTIFY(socket, 045)       \
+        CPU_THREAD_NOTIFY(socket, 046)       \
+        CPU_THREAD_NOTIFY(socket, 047)       \
+        CPU_THREAD_NOTIFY(socket, 048)       \
+        CPU_THREAD_NOTIFY(socket, 049)       \
+        CPU_THREAD_NOTIFY(socket, 04A)       \
+        CPU_THREAD_NOTIFY(socket, 04B)       \
+        CPU_THREAD_NOTIFY(socket, 04C)       \
+        CPU_THREAD_NOTIFY(socket, 04D)       \
+        CPU_THREAD_NOTIFY(socket, 04E)       \
+        CPU_THREAD_NOTIFY(socket, 04F)       \
+        CPU_THREAD_NOTIFY(socket, 050)       \
+        CPU_THREAD_NOTIFY(socket, 051)       \
+        CPU_THREAD_NOTIFY(socket, 052)       \
+        CPU_THREAD_NOTIFY(socket, 053)       \
+        CPU_THREAD_NOTIFY(socket, 054)       \
+        CPU_THREAD_NOTIFY(socket, 055)       \
+        CPU_THREAD_NOTIFY(socket, 056)       \
+        CPU_THREAD_NOTIFY(socket, 057)       \
+        CPU_THREAD_NOTIFY(socket, 058)       \
+        CPU_THREAD_NOTIFY(socket, 059)       \
+        CPU_THREAD_NOTIFY(socket, 05A)       \
+        CPU_THREAD_NOTIFY(socket, 05B)       \
+        CPU_THREAD_NOTIFY(socket, 05C)       \
+        CPU_THREAD_NOTIFY(socket, 05D)       \
+        CPU_THREAD_NOTIFY(socket, 05E)       \
+        CPU_THREAD_NOTIFY(socket, 05F)       \
+        CPU_THREAD_NOTIFY(socket, 060)       \
+        CPU_THREAD_NOTIFY(socket, 061)       \
+        CPU_THREAD_NOTIFY(socket, 062)       \
+        CPU_THREAD_NOTIFY(socket, 063)       \
+        CPU_THREAD_NOTIFY(socket, 064)       \
+        CPU_THREAD_NOTIFY(socket, 065)       \
+        CPU_THREAD_NOTIFY(socket, 066)       \
+        CPU_THREAD_NOTIFY(socket, 067)       \
+        CPU_THREAD_NOTIFY(socket, 068)       \
+        CPU_THREAD_NOTIFY(socket, 069)       \
+        CPU_THREAD_NOTIFY(socket, 06A)       \
+        CPU_THREAD_NOTIFY(socket, 06B)       \
+        CPU_THREAD_NOTIFY(socket, 06C)       \
+        CPU_THREAD_NOTIFY(socket, 06D)       \
+        CPU_THREAD_NOTIFY(socket, 06E)       \
+        CPU_THREAD_NOTIFY(socket, 06F)       \
+        CPU_THREAD_NOTIFY(socket, 070)       \
+        CPU_THREAD_NOTIFY(socket, 071)       \
+        CPU_THREAD_NOTIFY(socket, 072)       \
+        CPU_THREAD_NOTIFY(socket, 073)       \
+        CPU_THREAD_NOTIFY(socket, 074)       \
+        CPU_THREAD_NOTIFY(socket, 075)       \
+        CPU_THREAD_NOTIFY(socket, 076)       \
+        CPU_THREAD_NOTIFY(socket, 077)       \
+        CPU_THREAD_NOTIFY(socket, 078)       \
+        CPU_THREAD_NOTIFY(socket, 079)       \
+        CPU_THREAD_NOTIFY(socket, 07A)       \
+        CPU_THREAD_NOTIFY(socket, 07B)       \
+        CPU_THREAD_NOTIFY(socket, 07C)       \
+        CPU_THREAD_NOTIFY(socket, 07D)       \
+        CPU_THREAD_NOTIFY(socket, 07E)       \
+        CPU_THREAD_NOTIFY(socket, 07F)
+
+Scope(\_GPE) {
+  Method(HLVT) {
+    If(And(HWPI, 1)) {
+      If (And(PRBM, 1)) {
+        CPU_SOCKET_NOTIFY(0)
+      }
+
+#if MAX_SOCKET > 1
+      If (And(PRBM, 2)) {
+        CPU_SOCKET_NOTIFY(1)
+      }
+#endif
+
+#if MAX_SOCKET > 2
+      If (And(PRBM, 4)) {
+        CPU_SOCKET_NOTIFY(2)
+      }
+#endif
+
+#if MAX_SOCKET > 3
+      If (And(PRBM, 8)) {
+        CPU_SOCKET_NOTIFY(3)
+      }
+#endif
+
+#if MAX_SOCKET > 4
+      If (And(PRBM, 16)) {
+        CPU_SOCKET_NOTIFY(4)
+      }
+#endif
+
+#if MAX_SOCKET > 5
+      If (And(PRBM, 32)) {
+        CPU_SOCKET_NOTIFY(5)
+      }
+#endif
+
+#if MAX_SOCKET > 6
+      If (And(PRBM, 64)) {
+        CPU_SOCKET_NOTIFY(6)
+      }
+#endif
+
+#if MAX_SOCKET > 7
+      If (And(PRBM, 128)) {
+        CPU_SOCKET_NOTIFY(7)
+      }
+#endif
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<component>
+    name = "Dci"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Dci\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Dci"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Dci.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Dci.LibraryPrivate"
+<endComponent>

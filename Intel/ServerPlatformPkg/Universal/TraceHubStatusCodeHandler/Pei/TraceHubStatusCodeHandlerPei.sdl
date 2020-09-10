@@ -1,0 +1,27 @@
+TOKEN
+	Name  = "TraceHubStatusCodeHandlerPei_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling TraceHubStatusCodeHandlerPei support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "TraceHubStatusCodeHandlerPei"
+	File  = "TraceHubStatusCodeHandlerPei.inf"
+	Package  = "ServerPlatformPkg"
+	ModuleTypes  = "PEIM"
+	Arch  = "IA32"
+	Token = "TRACE_HUB_DEBUG_ENABLE" "=" "1"
+End
+
+PcdMapping
+    Name  = "PcdTraceHubDebugLibChannel"
+    GuidSpace  = "gTraceHubTokenSpaceGuid"
+    PcdType  = "PcdsFixedAtBuild"
+    Value  = "0xD"
+    Override  = "ServerPlatformPkg.TraceHubStatusCodeHandlerPei"
+    Offset  = 00h
+    Length  = 00h
+    TargetDSC = Yes
+End

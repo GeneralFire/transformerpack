@@ -1,0 +1,32 @@
+TOKEN
+    Name  = "ServerPlatformPkg_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling ServerPlatformPkg support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+PATH
+    Name  = "ServerPlatformPkg_DIR"
+End
+
+MODULE
+    Help  = "Includes PlatformPkg.mak to Project"
+    File  = "PlatformPkg.mak"
+End
+
+PCIDEVICE
+    Title  = "Platform ASL Files"
+    Parent  = "PciHost (Virtual)"
+    Attribute  = "0x0"
+    Dev_type  = "Container"
+    Dev  = 00h
+    SleepNum  = 01h
+    ASLfile  = "'ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/CommonPlatform10nmSpr.asi;Before Pci Tree','ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/AMI_RC_DEFINES.asl;Before Pci Tree','ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/AMI_BBN.asl;After Pci Tree','ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/AMI_PRW.asl;After Pci Tree','ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/DSDT.asl;After Pci Tree','ClientOneSiliconPkg/Fru/EbgPch/AcpiTables/Dsdt/Pch.asl;After Pci Tree','ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/PlatformNvs.asl;After Pci Tree','ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/Platform.asl;After Pci Tree','ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/PlatformGpe10nmSpr.asi;After Pci Tree','ServerPlatformPkg/Features/Acpi/AcpiTables/Dsdt/AMI_DINO.asl;After Pci Tree','EagleStreamRpPkg/Tool/BoardInfo/IioGpe.asi;After Pci Tree'"
+    DeviceType = OnBoard
+    PCIBusSize = 32bit
+    ROMMain = No
+    Virtual = Yes
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+    Token = "BUILD_FSP_BINARY" "=" "0"    
+End

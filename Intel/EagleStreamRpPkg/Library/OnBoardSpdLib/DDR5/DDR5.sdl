@@ -1,0 +1,25 @@
+TOKEN
+    Name  = "OnBoardSpd_DDR5_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling DDR5 support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+TOKEN
+    Name  = "OnBoardSpdLib_INF_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable OnBoardSpdLib support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+    Name  = "OnBoardSpdLib"
+    File  = "OnBoardSpdLib.inf"
+    Package  = "EagleStreamRpPkg"
+    Arch = "IA32"
+    ModuleTypes  = "USER_DEFINED"     
+    Token = "ON_BOARD_SPD" "=" "1"
+    Token = "DDR5_ENABLE" "=" "1"    
+End
+

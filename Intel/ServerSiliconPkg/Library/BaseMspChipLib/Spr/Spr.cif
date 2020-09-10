@@ -1,0 +1,32 @@
+<component>
+    name = "Spr"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Library\BaseMspChipLib\Spr\"
+    RefName = "ServerSiliconPkg.Library.BaseMspChipLib.Spr"
+[INF]
+"BaseMspChipLib.inf"
+[files]
+"Ddrio\Include\MMRCDDRCC0_CH0A_DDRCC0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRCC0_CH0_DDRCC0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRCC0_CHALL_DDRCC0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRCC1_CH0A_DDRCC1_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRCC1_CH0_DDRCC1_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRCC1_CHALL_DDRCC1_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRCLK_CH0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRCLK_CHALL_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRCOMP_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRD0_N0_CH0A_0_DDRD0_N0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRD0_N0_CH0_DDRD0_N0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRD0_N0_CHALL_DDRD0_N0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRD1_N0_CH0A_0_DDRD1_N0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRD1_N0_CH0_DDRD1_N0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRD1_N0_CHALL_DDRD1_N0_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRINTF_MEM_DDR.h"	
+"Ddrio\Include\MMRCDDRSAI_DDRSAI_MEM_DDR.h"	
+"Ddrio\Include\MMRCPROJECT_DATA_GENERATED_DDR.h"	
+"Ddrio\Include\MMRCPROJECT_DEFINITIONS_GENERATED_DDR.h"	
+"Ddrio\Include\MMRCMC_DEC_MEM_CSR_DDR.h"
+"Ddrio\Include\MMRCMCMISC_MEM_MCMISC_CSR_DDR.h"
+"MspChipFunctions.h"	
+"Spr.sdl"	
+<endComponent>

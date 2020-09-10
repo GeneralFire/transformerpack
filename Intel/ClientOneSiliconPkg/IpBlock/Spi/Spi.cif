@@ -1,0 +1,16 @@
+<component>
+    name = "Spi"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Spi\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Spi"
+[INF]
+"RuntimeDxe\SpiRuntime.inf"
+"Smm\SpiSmm.inf"
+[files]
+"Spi.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Spi.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Spi.Library"
+"ClientOneSiliconPkg.IpBlock.Spi.LibraryPrivate"
+"ClientOneSiliconPkg.IpBlock.Spi.Dxe"
+<endComponent>

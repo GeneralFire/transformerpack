@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "ErrorReportLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling ErrorReportLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "ErrorReportLib"
+	File  = "ErrorReportLib.inf"
+	Package  = "ServerRasPkg"
+	ModuleTypes  = "DXE_SMM_DRIVER"
+End
+
+LibraryMapping
+	Class  = "ErrorReportLib"
+	Instance  = "ServerRasPkg.ErrorReportLib"
+End
+

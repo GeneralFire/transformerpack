@@ -1,0 +1,8 @@
+<component>
+    name = "Rst"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Include\ConfigBlock\Rst\"
+    RefName = "ClientOneSiliconPkg.Include.ConfigBlock.Rst"
+[files]
+"RstConfig.h"	
+<endComponent>

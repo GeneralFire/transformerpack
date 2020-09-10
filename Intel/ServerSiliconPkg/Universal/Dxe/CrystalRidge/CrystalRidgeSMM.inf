@@ -1,0 +1,180 @@
+## @file
+# CrystalRidge Protocol
+#
+# @copyright
+# INTEL CONFIDENTIAL
+# Copyright 2009 - 2020 Intel Corporation. <BR>
+#
+# The source code contained or described herein and all documents related to the
+# source code ("Material") are owned by Intel Corporation or its suppliers or
+# licensors. Title to the Material remains with Intel Corporation or its suppliers
+# and licensors. The Material may contain trade secrets and proprietary    and
+# confidential information of Intel Corporation and its suppliers and licensors,
+# and is protected by worldwide copyright and trade secret laws and treaty
+# provisions. No part of the Material may be used, copied, reproduced, modified,
+# published, uploaded, posted, transmitted, distributed, or disclosed in any way
+# without Intel's prior express written permission.
+#
+# No license under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or delivery
+# of the Materials, either expressly, by implication, inducement, estoppel or
+# otherwise. Any license under such intellectual property rights must be
+# express and approved by Intel in writing.
+#
+# Unless otherwise agreed by Intel in writing, you may not remove or alter
+# this notice or any other notice embedded in Materials by Intel or
+# Intel's suppliers or licensors in any way.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CrystalRidgeSMM
+  FILE_GUID                      = 056BCA18-2F19-41ee-84EA-83746CB5069A
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = CrystalRidgeStart
+
+[Sources]
+  CrystalRidge.c
+  CrystalRidge.h
+  CrystalRidgeProtocol.c
+  CrystalRidgeSmmStubs.c
+  Dsm.c
+  Dsm.h
+  Fis.c
+  Fis.h
+  RdRand.c
+  RdRand.h
+  Pcat.c
+  Pcat.h
+  PlatformCfgData.c
+  AsmRdRand.nasm
+  XlateFunctions/XlateFunctions.c
+  XlateFunctions/XlateFunctions.h
+  XlateFunctions/LineMultiplierTables.c
+  Ars/ArsFlows.c
+  Ars/ArsFlows.h
+  Ars/ArsFlowsDebug.c
+  Ars/ArsFlowsDebug.h
+  Ars/ArsFlowsPrivate.h
+  Ars/ArsFlowsPrivate.c
+  Ars/ArsErrorInject.c
+  Ars/ArsErrorInject.h
+  RasHelper.c
+  RasHelper.h
+  Ars/ArsPatrolScrubber.c
+  Ars/ArsPatrolScrubber.h
+  FlushCacheLineOpt.asm | MSFT
+  FlushCacheLineOpt.nasm | MSFT
+  FlushCacheLineOpt.asm | INTEL
+  FlushCacheLineOpt.nasm | INTEL
+  FlushCacheLineOpt.c | GCC
+  FlushCacheLineOpt.h
+  Ars/ShortArs.c
+  Ars/ShortArs.h
+  AcpiNotify.c
+  AcpiNotify.h
+  Nfit.h
+  NvdimmSmbusAccess.c
+  NvdimmSmbusAccess.h
+  NvdimmAcpiSmmInterface.c
+  NvdimmAcpiSmmInterface.h
+  RfaiSmm.c
+  FwActivate.c
+  OemPci.c
+
+[Packages]
+  ServerSiliconPkg/SiliconPkg.dec
+  ServerSiliconPkg/Cpu/CpuRcPkg.dec
+  CpRcPkg/CpRcPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses]
+  SynchronizationLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DxeServicesTableLib
+  DxeServicesLib
+  UefiRuntimeServicesTableLib
+  DebugPrintErrorLevelLib
+  DebugLib
+  HobLib
+  MemMapDataLib
+  IoLib
+  BaseLib
+  TimerLib
+  PreSiliconEnvDetectLib
+  LocalApicLib
+  PcdLib
+  PchRtcLib
+  OemCrystalRidgeLib
+  MemFmcIpLib
+  KtiApiLib
+  Mesh2MemIpLib
+  SmmServicesTableLib
+  SmmCrystalRidgeFlushNearMemoryLib
+  PmcLib
+  MemTypeLib
+  CpuConfigLib
+  SetupLib
+  ProcSmbIpLib
+  PmemMiscLib
+  IoAccessLib
+  NvdimmCommonLib
+  CpuAndRevisionLib
+  CpuLib
+  PciSegmentLib
+
+[Protocols]
+  gEfiCrystalRidgeSmmGuid
+  gEfiSmmBase2ProtocolGuid
+  gEfiMpServiceProtocolGuid
+  gEfiCpuCsrAccessGuid
+  gEfiSmmSwDispatch2ProtocolGuid
+  gEfiSmmSxDispatch2ProtocolGuid
+  gEfiNvdimmSmbusSmmInterfaceProtocolGuid
+  gAcpiPcatProtocolGuid
+  gEfiSmmEndOfDxeProtocolGuid
+  gEdkiiSmmLegacyBootProtocolGuid
+  gEdkiiSmmExitBootServicesProtocolGuid
+  gEfiSmmCpuProtocolGuid
+  gEfiMmMpProtocolGuid
+  gEfiAcpiTableProtocolGuid
+  gEfiNfitTableUpdateProtocolGuid
+  gEadrProtocolGuid
+  gCrFwActivateProtocolGuid
+
+[Guids]
+  gEfiVolatileMemModeVariableGuid
+  gEfiRasHostGuid
+  gPrevBootErrSrcHobGuid
+  gEfiSocketProcessorCoreVarGuid
+  gEfiEndOfDxeEventGroupGuid
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId
+
+[FixedPcd]
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
+  gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuCoreCount
+
+[Depex]
+  gEfiCrystalRidgeGuid AND
+  gEfiNvdimmSmbusSmmInterfaceProtocolGuid AND
+  gEfiSmmBase2ProtocolGuid AND
+  gEfiMpServiceProtocolGuid AND
+  gEfiCpuCsrAccessGuid AND
+  gEfiSmmSxDispatch2ProtocolGuid AND
+  gEfiSmmSwDispatch2ProtocolGuid AND
+  gEfiSmmCpuProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiMmMpProtocolGuid
+
+[BuildOptions]
+  MSFT:*_*_*_CC_FLAGS = /DSMM
+  GCC:*_*_*_CC_FLAGS = -DSMM
+  INTEL:*_*_*_CC_FLAGS = -DSMM

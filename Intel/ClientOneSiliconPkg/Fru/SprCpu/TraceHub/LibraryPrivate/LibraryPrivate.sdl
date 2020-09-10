@@ -1,0 +1,20 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "BaseTraceHubInfoFruLib"
+    Instance  = "ClientOneSiliconPkg.BaseTraceHubInfoFruLib"
+End
+
+INFComponent
+    Name  = "BaseTraceHubInfoFruLib"
+    File  = "BaseTraceHubInfoFruLib/BaseTraceHubInfoFruLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "BASE"
+End
+

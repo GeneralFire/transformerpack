@@ -1,0 +1,10 @@
+<component>
+	name = "Smm"
+	category = ModulePart
+	LocalRoot = "Intel\ServerPlatformPkg\Features\Variable\PlatformVariable\Smm\"
+	RefName = "ServerPlatformPkg.Features.Variable.PlatformVariable.Smm
+[INF]
+"PlatformSecureVariableSmm.inf"
+[files]
+"Smm.sdl"	
+<endComponent>

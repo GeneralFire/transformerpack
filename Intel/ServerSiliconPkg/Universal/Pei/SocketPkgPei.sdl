@@ -1,0 +1,106 @@
+TOKEN
+	Name  = "SocketPkgPei_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling SocketPkgPei support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "UncoreInitPeim_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable UncoreInitPeim support in Project"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "CrystalRidgePeim_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CrystalRidgePeim support in Project"
+	TokenType = Boolean
+End
+
+TOKEN
+    Name  = "SiliconInitData_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable CrystalRidgePeim support in Project"
+    TokenType = Boolean
+End
+
+INFComponent
+	Name  = "UncoreInitPeim"
+	File  = "UncoreInit/UncoreInit.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+	Token = "UncoreInitPeim_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.BaseUsraLib"
+    Override  = "ServerSiliconPkg.UncoreInitPeim"
+End
+
+LibraryMapping
+    Class  = "TimerLib"
+    Instance  = "ServerSiliconPkg.BaseTimerLibInvariantTsc"
+    Override  = "ServerSiliconPkg.UncoreInitPeim"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterLogLib"
+    Instance  = "ServerSiliconPkg.UsraRegisterLogLibUncore"
+    Override  = "ServerSiliconPkg.UncoreInitPeim"
+End
+
+LibraryMapping
+    Class  = "UsraRegisterFilterLib"
+    Instance  = "CpRcPkg.UsraRegisterFilterLibNull"
+    Override  = "ServerSiliconPkg.UncoreInitPeim"
+End
+
+LibraryMapping
+    Class  = "NULL"
+    Instance  = "CryptoPkg.BaseIntrinsicLib"
+    Override  = "ServerSiliconPkg.UncoreInitPeim"
+End
+
+INFComponent
+	Name  = "CrystalRidgePeim"
+	File  = "CrystalRidge/CrystalRidgePeim.inf"
+	Package  = "ServerSiliconPkg"
+	ModuleTypes  = "PEIM"
+	Token = "CrystalRidgePeim_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "SiliconDataInitPeim"
+    File  = "SiliconDataInit/SiliconDataInitPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "SiliconInitData_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "CsrPseudoOffsetInitPeim"
+    File  = "CsrPseudoOffsetInit/CsrPseudoOffsetInitPei.inf"
+    Package  = "ServerSiliconPkg"
+    ModuleTypes  = "PEIM"
+End
+
+FFS_FILE
+    Name  = "SiliconDataInitPeim"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "SiliconDataInitPeim"
+    Apriori_Index  = "1"
+    Token = "SiliconInitData_SUPPORT" "=" "1"
+End
+
+FFS_FILE
+    Name  = "CsrPseudoOffsetInitPeim"
+    FD_AREA  = "FV_BB"
+    INFComponent  = "CsrPseudoOffsetInitPeim"
+    Apriori_Index  = "1"
+End
+
+

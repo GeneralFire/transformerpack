@@ -1,0 +1,21 @@
+TOKEN
+	Name  = "SecPchLib_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling SecPchLib support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+INFComponent
+	Name  = "SecPchLib"
+	File  = "SecPchLib.inf"
+	Package  = "ServerSiliconPkg"
+    Token = "PLATFORM_SI_PACKAGE" "=" "0"  	
+End
+
+LibraryMapping
+	Class  = "SecPchLib"
+	Instance  = "ServerSiliconPkg.SecPchLib"
+	Token = "PLATFORM_SI_PACKAGE" "=" "0"
+End
+

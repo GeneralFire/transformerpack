@@ -1,0 +1,13 @@
+<component>
+    name = "Library"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Graphics\IncludePrivate\Library\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Graphics.IncludePrivate.Library"
+[files]
+"DxeGraphicsInitLib.h"	
+"DxeGraphicsPolicyLib.h"	
+"DxeIgdOpRegionInitLib.h"	
+"PeiDisplayInitLib.h"	
+"PeiGraphicsInitLib.h"	
+"PeiGraphicsPolicyLib.h"	
+<endComponent>

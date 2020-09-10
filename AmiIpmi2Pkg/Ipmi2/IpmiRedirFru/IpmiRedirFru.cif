@@ -1,0 +1,10 @@
+<component>
+    name = "IpmiRedirFru"
+    category = ModulePart
+    LocalRoot = "AmiIpmi2Pkg\Ipmi2\IpmiRedirFru\"
+    RefName = "AmiIpmi2Pkg.Ipmi2.IpmiRedirFru"
+[INF]
+"IpmiRedirFru.inf"
+[files]
+"IpmiRedirFru.sdl"
+<endComponent>

@@ -1,0 +1,13 @@
+<component>
+    name = "MeSps.6"
+    category = ModulePart
+    LocalRoot = "Intel\ServerPlatformPkg\Features\Me\MeSps.6\"
+    RefName = "ServerPlatformPkg.Features.Me.MeSps6"
+[files]
+"MeSps6.sdl"	
+[parts]
+"ServerPlatformPkg.Features.Me.MeSps6.Library"
+"ServerPlatformPkg.Features.Me.MeSps6.Sps"
+"ServerPlatformPkg.Features.Me.MeSps6.Ws"
+"ServerPlatformPkg.Features.Me.MeSps6.Include"
+<endComponent>

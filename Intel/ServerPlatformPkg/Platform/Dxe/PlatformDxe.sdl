@@ -1,0 +1,188 @@
+TOKEN
+	Name  = "PlatformDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Switch for Enabling Dxe support in the project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PlatformEarlyDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PlatformEarlyDxe support in Project"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "PlatformType_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PlatformType support in Project"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "S3NvramSave_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable S3NvramSave support in Project"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "UuidDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable UuidDxe support in Project"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "OpaPlatCfg_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable OpaPlatCfg support in Project"
+	TokenType = Boolean
+End
+
+INFComponent
+	Name  = "PlatformEarlyDxe"
+	File  = "PlatformEarlyDxe/PlatformEarlyDxe.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER" 	
+	Token = "PlatformEarlyDxe_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "PlatformType"
+	File  = "PlatformType/PlatformType.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER" 	
+	Token = "PlatformType_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "S3NvramSave"
+	File  = "S3NvramSave/S3NvramSave.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER" 	
+	Token = "S3NvramSave_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "CompressDxeLib"
+    Instance  = "ServerPlatformPkg.CompressDxeLib"
+    Override  = "ServerPlatformPkg.S3NvramSave"
+End
+
+INFComponent
+	Name  = "UuidDxe"
+	File  = "UuidDxe/UuidDxe.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "X64"
+   ModuleTypes  = "DXE_DRIVER" 	
+	Token = "UuidDxe_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "UncoreMiscDxe"
+    File  = "UncoreMiscDxe/UncoreMiscDxe.inf"
+    Package  = "ServerPlatformPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"     
+End
+
+#INFComponent
+#	Name  = "PlatformPowerButton"
+#	File  = "PlatformPowerButton/PlatformPowerButton.inf"
+#	Package  = "ServerPlatformPkg"
+#	ModuleTypes  = "DXE_SMM_DRIVER"
+#End
+
+INFComponent
+	Name  = "OpaPlatCfg"
+	File  = "OpaPlatCfg/OpaPlatCfg.inf"
+	Package  = "ServerPlatformPkg"
+	ModuleTypes  = "DXE_DRIVER"
+	Token = "OpaPlatCfg_SUPPORT" "=" "1"
+End
+
+INFComponent
+	Name  = "SyscfgSyncDxe"
+	File  = "SyscfgSyncDxe\SyscfgSyncDxe.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER" 	
+End
+
+#INFComponent
+#	Name  = "SmbiosMisc"
+#	File  = "SmbiosMiscDxe\SmbiosMiscDxe.inf"
+#	Package  = "ServerPlatformPkg"
+#	ModuleTypes  = "DXE_DRIVER"
+#End
+
+INFComponent
+	Name  = "ReserveMem"
+	File  = "ReserveMemory\ReserveMem.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER" 	
+End
+
+#INFComponent
+#	Name  = "FrameworkHiiAlias"
+#	File  = "FrameworkHiiAlias\FrameworkHiiAlias.inf"
+#	Package  = "ServerPlatformPkg"
+#	ModuleTypes  = "DXE_DRIVER"
+#End
+
+#INFComponent
+#	Name  = "ForceEfiBootDxe"
+#	File  = "ForceEfiBoot\ForceEfiBootDxe.inf"
+#	Package  = "ServerPlatformPkg"
+#	ModuleTypes  = "DXE_DRIVER"
+#End
+
+#INFComponent
+#	Name  = "ForceEfiBootApp"
+#	File  = "ForceEfiBoot\ForceEfiBootApp.inf"
+#	Package  = "ServerPlatformPkg"
+#	ModuleTypes  = "UEFI_APPLICATION"
+#End
+
+INFComponent
+	Name  = "EmulationDfxSetup"
+	File  = "EmulationDfxSetup\EmulationDfxSetup.inf"
+	Package  = "ServerPlatformPkg"
+    	ModuleTypes  = "DXE_DRIVER" 	
+	Arch = "X64"
+End
+
+INFComponent
+	Name  = "BreakpointCallbackDxe"
+	File  = "BreakpointCallbackDxe\BreakpointCallbackDxe.inf"
+	Package  = "ServerPlatformPkg"
+	Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER" 	
+End
+
+#LibraryMapping
+#	Class  = "CompressDxeLib"
+#	Instance  = "CpPlatPkg.CompressDxeLib"
+#	Override  = "ServerPlatformPkg.S3NvramSave"
+#	Token = "S3NvramSave_SUPPORT" "=" "1"
+#End
+
+INFComponent
+	Name  = "PolicyInitDxe"
+	File  = "PolicyInitDxe\PolicyInitDxe.inf"
+	Package  = "ServerPlatformPkg"
+	ModuleTypes  = "DXE_DRIVER"
+End
+
+INFComponent
+    Name  = "PlatformFirmwareVersionInfo"
+    File  = "PlatformFirmwareVersionInfoDxe\PlatformFirmwareVersionInfoDxe.inf"
+    Package  = "ServerPlatformPkg"
+    ModuleTypes  = "DXE_DRIVER"
+End

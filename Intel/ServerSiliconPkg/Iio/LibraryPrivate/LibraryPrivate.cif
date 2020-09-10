@@ -1,0 +1,18 @@
+<component>
+    name = "LibraryPrivate"
+    category = ModulePart
+    LocalRoot = "Intel\ServerSiliconPkg\Iio\LibraryPrivate\"
+    RefName = "ServerSiliconPkg.Iio.LibraryPrivate"
+[INF]
+"IioDmiConf\IioDmiConfSpr.inf"
+"IioPcieLib\IioPcieLibSpr.inf"
+"IioPwrConf\IioPwrConfLibSpr.inf"
+"IioVmdConf\IioVmdConfSpr.inf"
+"IioSpkConfigure\IioSpkConfigureLibSpr.inf"
+"IioSpkConfigure\IioSpkConfigureLibNull.inf"
+[files]
+"LibraryPrivate.sdl"
+"IioPcieLib\Common\IioEvDebug.h"
+[parts]
+"ServerSiliconPkg.Iio.LibraryPrivate.IioMiscWorkArounds"
+<endComponent>

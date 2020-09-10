@@ -1,0 +1,9 @@
+<component>
+    name = "CrowPassHii"
+    category = ModulePart
+    LocalRoot = "AmiCrbPkg\CrowPass\CrowPassHii\"
+    RefName = "CrowPassHii"
+[files]
+"CrowPassHiiFdfFileStatement.txt"	
+"IntelOptanePMemHii.efi"	
+<endComponent>

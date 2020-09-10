@@ -1,0 +1,52 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "UsbHostControllerInitLib"
+    Instance  = "ClientOneSiliconPkg.PeiUsbHostControllerInitLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiUsbHostControllerInitLib"
+    File  = "PeiUsbHostControllerInitLib/PeiUsbHostControllerInitLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+LibraryMapping
+    Class  = "PeiUsbPolicyLib"
+    Instance  = "ClientOneSiliconPkg.PeiUsbPolicyLib"
+    Arch = "IA32"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiUsbPolicyLib"
+    File  = "PeiUsbPolicyLib/PeiUsbPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+LibraryMapping
+    Class  = "Usb2PhyLib"
+    Instance  = "ClientOneSiliconPkg.PeiUsb2PhyLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"     
+End
+
+INFComponent
+    Name  = "PeiUsb2PhyLib"
+    File  = "PeiUsb2PhyLib/PeiUsb2PhyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+

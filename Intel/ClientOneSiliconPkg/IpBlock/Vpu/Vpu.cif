@@ -1,0 +1,12 @@
+<component>
+    name = "Vpu"
+    category = MODULEPART
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Vpu\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Vpu"
+[files]
+"Vpu.sdl"	
+[parts]
+"ClientOneSiliconPkg.IpBlock.Vpu.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Vpu.Library"
+"ClientOneSiliconPkg.IpBlock.Vpu.LibraryPrivate"
+<endComponent>

@@ -1,0 +1,10 @@
+<component>
+    name = "MdeModulePkg.ResetSystemRuntimeDxe"
+    category = eModule
+    LocalRoot = "MdeModulePkg\"
+    RefName = "MdeModulePkg.ResetSystemRuntimeDxe"
+[files]
+"ResetSystemRuntimeDxe.sdl" 
+[INF]
+"Universal\ResetSystemRuntimeDxe\ResetSystemRuntimeDxe.inf"
+<endComponent>

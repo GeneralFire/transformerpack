@@ -1,0 +1,11 @@
+<component>
+    name = "Pei"
+    category = ModulePart
+    LocalRoot = "Intel\EagleStreamRpPkg\Uba\BoardInit\Pei\"
+    RefName = "EagleStreamRpPkg.Uba.BoardInit.Pei"
+[INF]
+"BoardInitPei.inf"
+"BoardInitPostMemPei.inf"
+[files]	
+"Pei.sdl"	
+<endComponent>

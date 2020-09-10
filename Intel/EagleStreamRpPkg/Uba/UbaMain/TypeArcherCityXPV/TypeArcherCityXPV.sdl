@@ -1,0 +1,37 @@
+TOKEN
+    Name  = "TypeArcherCityXPV_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling TypeArcherCityXPV support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+
+#TOKEN
+#    Name  = "PLATFORM_NAME"
+#    Value  = "TypeArcherCityXPV"
+#    TokenType = Expression
+#    TargetDSC = Yes
+#End
+
+#LibraryMapping
+#    Class  = "NULL"
+#   Instance  = "EagleStreamRpPkg.TypeArcherCityXPVPeiBoardInitLib"
+#    ModuleTypes  = "PEIM"
+#End
+
+INFComponent
+    Name  = "TypeArcherCityXPVPeiBoardInitLib"
+    File  = "Pei/PeiBoardInitLib.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM"
+    Token = "MAX_SOCKET" "<" "8"
+    Token = "TOOL_CHAIN_TAG" "!=" "GCC5"    
+End
+
+INFComponent
+    Name  = "TypeArcherCityXPVPeiBoardInitPostMemLib"
+    File  = "Pei\PeiBoardInitPostMemLib.inf"
+    Package  = "EagleStreamRpPkg"
+    ModuleTypes  = "PEIM" 
+End

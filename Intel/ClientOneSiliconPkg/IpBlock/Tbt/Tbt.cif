@@ -1,0 +1,10 @@
+<component>
+    name = "Tbt"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\IpBlock\Tbt\"
+    RefName = "ClientOneSiliconPkg.IpBlock.Tbt"
+[parts]
+"ClientOneSiliconPkg.IpBlock.Tbt.IncludePrivate"
+"ClientOneSiliconPkg.IpBlock.Tbt.Library"
+"ClientOneSiliconPkg.IpBlock.Tbt.AcpiTables"
+<endComponent>

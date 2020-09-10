@@ -1,0 +1,113 @@
+TOKEN
+	Name  = "RtErrorLog_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+    TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable RtErrorLog support in Project"
+End
+
+ELINK
+	Name  = "MemErrorHandlers"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PciErrorHandlers"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "ProcessorErrorHandlers"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "UpiErrorHandlers"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "IehErrorHandlers"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "IioXpErrorHandlers"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "LeakyBucketErrorHandlers"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "SpareCoreErrorHandlers"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "IioInternalErrorHandlers"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "ADDITIONAL_RTERRORLOG_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+OUTPUTREGISTER
+	Name = "RTERRORLOG_ELINKS_AUTOGEN_H"
+	Path = "Build"
+	File = "RtErrorLogElinks.h"
+	Template = "RtErrorLogElinks.txt"
+End
+
+INFComponent
+	Name  = "RtErrorLogBoardLib"
+	File  = "RtErrorLogBoard.inf"
+	Package  = "ServerRasPkg"
+	PreProcess = Yes
+	ModuleTypes  = "DXE_DRIVER"
+End
+
+LibraryMapping
+	Class  = "RtErrorLogBoardLib"
+	Instance  = "ServerRasPkg.RtErrorLogBoardLib"
+	ModuleTypes  = "DXE_DRIVER DXE_SMM_DRIVER"
+	Arch  = "common"
+End
+
+INFComponent
+    Name  = "RtErrorLogBmcNullLib"
+    File  = "Board\Bmc\RtErrorLogBmcNullLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "RuntimeErrorLogBmc_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "RtErrorLogBmcLib"
+    Instance  = "ServerRasPkg.RtErrorLogBmcNullLib"
+    Arch  = "common"
+    ModuleTypes  = "DXE_DRIVER DXE_SMM_DRIVER"
+    Token = "RuntimeErrorLogBmc_SUPPORT" "=" "0"
+End
+
+INFComponent
+    Name  = "RtErrorLogGpnvNullLib"
+    File  = "Board\Gpnv\RtErrorLogGpnvNullLib.inf"
+    Package  = "ServerRasPkg"
+    ModuleTypes  = "DXE_DRIVER"
+    Token = "RtErrorLogGpnv_SUPPORT" "=" "0"
+End
+
+LibraryMapping
+    Class  = "RtErrorLogGpnvLib"
+    Instance  = "ServerRasPkg.RtErrorLogGpnvNullLib"
+    Arch  = "common"
+    ModuleTypes  = "DXE_DRIVER DXE_SMM_DRIVER"
+    Token = "RtErrorLogGpnv_SUPPORT" "=" "0"
+End

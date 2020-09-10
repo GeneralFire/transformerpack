@@ -1,0 +1,53 @@
+TOKEN
+    Name  = "ServerSecurityPkg_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling ServerSecurityPkg support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+INFComponent
+    Name  = "AppAdapterSgx3v0"
+    File  = "Ppi\AppAdapterSgx3v0\AppAdapterSgx3v0.inf"
+    Package  = "ServerSecurityPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name  = "TdxPostMem"
+    File  = "Tdx\TdxPostMem\TdxPostMem.inf"
+    Package  = "ServerSecurityPkg"
+    Arch  = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "UsraLib"
+    Instance  = "CpRcPkg.BaseUsraLib"
+    Override  = "ServerSecurityPkg.TdxPostMem"
+    Token = "CPU_SPR_SUPPORT" "=" "1"
+End
+
+LibraryMapping
+    Class  = "BaseLib"
+    Instance  = "ServerSiliconPkg.BaseLib"
+    Override  = "ServerSecurityPkg.TdxPostMem"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "UsraRegisterLogLib"
+    Instance  = "ServerSiliconPkg.UsraRegisterLogLibUBios"
+    Override  = "ServerSecurityPkg.TdxPostMem"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End
+
+LibraryMapping
+    Class  = "UsraRegisterFilterLib"
+    Instance  = "CpRcPkg.UsraRegisterFilterLibNull"
+    Override  = "ServerSecurityPkg.TdxPostMem"
+    Token = "CPU_SPR_SUPPORT" "=" "1"    
+End

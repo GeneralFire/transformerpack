@@ -1,0 +1,34 @@
+/*
+Copyright (c) 1985-2019, American Megatrends International LLC. All rights reserved.
+Subject  to AMI licensing agreement.
+*/
+## @file AmiChipsetInitDoneLib.inf
+#   AmiChipsetInitDoneLib Library
+##
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmiChipsetInitDoneLib
+  FILE_GUID                      = 0BFB3AE6-0AAA-4373-B636-0856AE64ED69
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmiChipsetInitDoneLib
+  
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+#  
+#
+
+[Sources]
+  AmiChipsetInitDoneLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ServerSiliconPkg/SiliconPkg.dec
+ 
+[Depex]
+# APTIOV_SERVER_OVERRIDE_RC_START: Use gAmiEndOfSiInitPpiGuid AMI specified guid instead of gEndOfSiInitPpiGuid
+  gAmiEndOfSiInitPpiGuid
+# APTIOV_SERVER_OVERRIDE_RC_END: Use gAmiEndOfSiInitPpiGuid AMI specified guid instead of gEndOfSiInitPpiGuid  

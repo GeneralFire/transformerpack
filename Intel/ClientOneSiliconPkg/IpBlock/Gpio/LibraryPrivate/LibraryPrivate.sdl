@@ -1,0 +1,84 @@
+TOKEN
+    Name  = "LibraryPrivate_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling LibraryPrivate support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+
+LibraryMapping
+    Class  = "GpioNameBufferLib"
+    Instance  = "ClientOneSiliconPkg.DxeGpioNameBufferLib"
+    Arch = "X64"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"         
+End
+
+INFComponent
+    Name  = "DxeGpioNameBufferLib"
+    File  = "DxeGpioNameBufferLib/DxeGpioNameBufferLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "X64"
+    ModuleTypes  = "DXE_DRIVER"  
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"         
+End
+
+LibraryMapping
+    Class  = "DxeGpioPolicyLib"
+    Instance  = "ClientOneSiliconPkg.DxeGpioPolicyLib"
+    Arch = "X64"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"        
+End
+
+INFComponent
+    Name  = "DxeGpioPolicyLib"
+    File  = "DxeGpioPolicyLib/DxeGpioPolicyLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "X64"
+    ModuleTypes  = "BASE"   
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"         
+End
+
+LibraryMapping
+    Class  = "GpioHelpersLib"
+    Instance  = "ClientOneSiliconPkg.PeiGpioHelpersLib"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+INFComponent
+    Name  = "PeiGpioHelpersLib"
+    File  = "PeiGpioHelpersLib/PeiGpioHelpersLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+LibraryMapping
+    Class  = "GpioNameBufferLib"
+    Instance  = "ClientOneSiliconPkg.PeiGpioNameBufferLib"
+    Arch = "IA32" 
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"         
+End
+
+INFComponent
+    Name  = "PeiGpioNameBufferLib"
+    File  = "PeiGpioNameBufferLib/PeiGpioNameBufferLib.inf"
+    Package  = "ClientOneSiliconPkg"
+    Arch = "IA32"
+    ModuleTypes  = "PEIM"    
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"      
+End
+
+LibraryMapping
+    Class  = "GpioPrivateLib"
+    Instance  = "ClientOneSiliconPkg.PeiDxeSmmGpioPrivateLibVer3"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"   
+End
+
+
+INFComponent
+    Name  = "PeiDxeSmmGpioPrivateLibVer3"
+    File  = "PeiDxeSmmGpioPrivateLib/PeiDxeSmmGpioPrivateLibVer3.inf"
+    Package  = "ClientOneSiliconPkg"
+    ModuleTypes  = "PEIM"
+    Token = "PLATFORM_SI_PACKAGE" "=" "1"       
+End

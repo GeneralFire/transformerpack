@@ -1,0 +1,24 @@
+TOKEN
+    Name  = "PchRlink_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling PchRlink support in the project"
+    TokenType = Boolean
+    Master = Yes
+    Disable = Yes
+End
+
+TOKEN
+    Name  = "Build_PchRlink"
+    Value  = "0"
+    Help  = "Switch for building PchRlink Package"
+    TokenType = Boolean
+End
+
+TOKEN
+    Name  = "PLATFORM_NAME"
+    Value  = "PchRlink"
+    TokenType = Expression
+    TargetDSC = Yes
+    Token = "Build_PchRlink" "=" "1"
+End
+

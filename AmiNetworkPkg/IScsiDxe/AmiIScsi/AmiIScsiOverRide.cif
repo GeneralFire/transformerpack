@@ -1,0 +1,13 @@
+<component>
+    name = "Ami IScsi OverRide"
+    category = ModulePart
+    LocalRoot = "AmiNetworkPkg\IScsiDxe\AmiIScsi\"
+    RefName = "AmiNetworkPkg.AmiIScsiOverRide"
+[files]
+"AmiIScsi.c"	
+"AmiIScsi.h"	
+"AmiIScsiConfigStrings.uni"	
+"AmiIScsiConfig.h"	
+"AmiIScsiConfigVfr.vfr"	
+"AmiIScsiConfig.c"	
+<endComponent>

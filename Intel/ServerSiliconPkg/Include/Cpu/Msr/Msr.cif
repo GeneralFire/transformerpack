@@ -1,0 +1,15 @@
+<component>
+	name = "Msr"
+	category = ModulePart
+	LocalRoot = "Intel\ServerSiliconPkg\Include\Cpu\Msr\"
+	RefName = "ServerSiliconPkg.Include.Cpu.Msr"
+[files]
+"ArchMsr.h"	
+"CommonMsr.h"	
+"IcxMsr.h"	
+"McaMsr.h"	
+"MiscMsr.h"	
+"SkxMsr.h"	
+"SnrMsr.h"
+"SprMsr.h"
+<endComponent>

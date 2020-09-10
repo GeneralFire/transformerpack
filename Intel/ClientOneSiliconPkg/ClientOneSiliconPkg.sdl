@@ -1,0 +1,8 @@
+TOKEN
+    Name  = "ClientOneSiliconPkg_SUPPORT"
+    Value  = "1"
+    Help  = "Switch for Enabling ClientOneSiliconPkg support in the project"
+    TokenType = Boolean
+    Master = Yes
+End
+

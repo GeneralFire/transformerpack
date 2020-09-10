@@ -1,0 +1,8 @@
+<component>
+    name = "ClientOneAcpiTables"
+    category = ModulePart
+    LocalRoot = "Intel\ClientOneSiliconPkg\Pch\AcpiTables\"
+    RefName = "ClientOneSiliconPkg.Pch.ClientOneAcpiTables"
+[parts]
+"ClientOneSiliconPkg.Pch.AcpiTables.ClientOneDsdt"
+<endComponent>

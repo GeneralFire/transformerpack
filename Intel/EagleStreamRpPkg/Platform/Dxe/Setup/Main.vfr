@@ -1,0 +1,278 @@
+/** @file
+
+  @copyright
+  INTEL CONFIDENTIAL
+  Copyright 1999 - 2019 Intel Corporation. <BR>
+
+  The source code contained or described herein and all documents related to the
+  source code ("Material") are owned by Intel Corporation or its suppliers or
+  licensors. Title to the Material remains with Intel Corporation or its suppliers
+  and licensors. The Material may contain trade secrets and proprietary    and
+  confidential information of Intel Corporation and its suppliers and licensors,
+  and is protected by worldwide copyright and trade secret laws and treaty
+  provisions. No part of the Material may be used, copied, reproduced, modified,
+  published, uploaded, posted, transmitted, distributed, or disclosed in any way
+  without Intel's prior express written permission.
+
+  No license under any patent, copyright, trade secret or other intellectual
+  property right is granted to or conferred upon you by disclosure or delivery
+  of the Materials, either expressly, by implication, inducement, estoppel or
+  otherwise. Any license under such intellectual property rights must be
+  express and approved by Intel in writing.
+
+  Unless otherwise agreed by Intel in writing, you may not remove or alter
+  this notice or any other notice embedded in Materials by Intel or
+  Intel's suppliers or licensors in any way.
+**/
+
+#include "Configuration.h"
+#include "PlatformStrDefs.h"
+#include <Guid/SetupVariable.h>
+#include "Common.hfr"
+
+#define MAIN_PAGE_KEY_SAVE            0x9001
+#define MAIN_PAGE_KEY_RESTORE         0x9002
+
+formset
+  guid     = SYSTEM_CONFIGURATION_GUID,
+  title    = STRING_TOKEN(STR_MAIN_TITLE),
+  help     = STRING_TOKEN(STR_MAIN_HELP),
+  class    = VFR_MAIN_CLASS,
+  subclass = 0,
+
+  VFR_VARSTORE_SETUP
+
+  #define SYSTEM_CONFIGURATION  Setup
+  form formid = 1,
+
+    title    = STRING_TOKEN(STR_MAIN_TITLE);
+
+    suppressif TRUE;
+    checkbox varid    = SYSTEM_CONFIGURATION.Access,
+             prompt   = STRING_TOKEN(STR_NULL_MAINACCESS_STRING),
+             help     = STRING_TOKEN(STR_NULL_STRING),
+             flags    = 0,
+    endcheckbox;
+    endif;
+
+    //
+    // Bios Revision Display
+    //
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_BIOS_REVISION_PROMPT),
+        text   = STRING_TOKEN(STR_BIOS_REVISION_VALUE),
+        flags  = 0, key = 0;
+
+    //
+    // RC Revision Display
+    //
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_RC_REVISION_PROMPT),
+        text   = STRING_TOKEN(STR_RC_REVISION_VALUE),
+        flags  = 0, key = 0;
+
+    //
+    // Firmware Revision Display
+    //
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_FIRMWARE_VERSION_PROMPT),
+        text  = STRING_TOKEN(STR_FIRMWARE_VERSION_VALUE),
+        flags = 0, key = 0;
+
+
+    //
+    // Acm Revision Display
+    //
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_ACM_VERSION_PROMPT),
+        text  = STRING_TOKEN(STR_ACM_VERSION_VALUE),
+        flags = 0, key = 0;
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    //
+    // Serial Port Setup
+    //
+    oneof varid     = SYSTEM_CONFIGURATION.SerialBaudRate,
+         prompt      = STRING_TOKEN(STR_SERIAL_BAUD_RATE_PROMPT),
+         help        = STRING_TOKEN(STR_SERIAL_BAUD_RATE_HELP),
+         option text = STRING_TOKEN(STR_SERIAL_BAUD_RATE_VALUE_921600), value = 921600, flags = RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_SERIAL_BAUD_RATE_VALUE_115200), value = 115200, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+         option text = STRING_TOKEN(STR_SERIAL_BAUD_RATE_VALUE_19200), value = 19200, flags = RESET_REQUIRED;
+         option text = STRING_TOKEN(STR_SERIAL_BAUD_RATE_VALUE_9600), value = 9600, flags = RESET_REQUIRED;
+    endoneof;
+
+    //
+    // Save and restore setup data from file
+    //
+    text
+      help    = STRING_TOKEN(STR_SAVE_HELP),
+      text    = STRING_TOKEN(STR_SAVE_PROMPT),
+      flags   = INTERACTIVE,
+      key     = MAIN_PAGE_KEY_SAVE;
+
+    text
+      help    = STRING_TOKEN(STR_RESTORE_HELP),
+      text    = STRING_TOKEN(STR_RESTORE_PROMPT),
+      flags   = INTERACTIVE,
+      key     = MAIN_PAGE_KEY_RESTORE;
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+
+    //
+    // Platform Type Display
+    //
+    text
+        help  = STRING_TOKEN(STR_NULL_STRING),
+        text  = STRING_TOKEN(STR_PLATFORM_REVISION_PROMPT),
+        text  = STRING_TOKEN(STR_PLATFORM_REVISION_VALUE),
+        flags = 0, key = 0;
+
+    //
+    // PCH SKU Revision Display
+    //
+      text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_PCH_REVISION_PROMPT),
+        text   = STRING_TOKEN(STR_PCH_REVISION_VALUE),
+        flags  = 0, key = 0;
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    //
+    // Additional System Information Display
+    //
+
+        goto MAIN_PAGE_SYS_INFO,
+        prompt  = STRING_TOKEN(STR_ADDITIONAL_SYSTEM_INFO_PROMPT),
+        help    = STRING_TOKEN(STR_ADDITIONAL_SYSTEM_INFO_HELP);
+
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_TOTAL_MEMORY_SIZE_PROMPT),
+        text   = STRING_TOKEN(STR_TOTAL_MEMORY_SIZE_VALUE),
+        flags  = 0, key = 0;
+
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_SYSTEM_MEMORY_SPEED_STRING),
+        text   = STRING_TOKEN(STR_SYSTEM_MEMORY_SPEED_VALUE),
+        flags  = 0, key = 0;
+
+    text
+        help   = STRING_TOKEN(STR_NULL_STRING),
+        text   = STRING_TOKEN(STR_MEMORY_MODE_PROMPT),
+        text   = STRING_TOKEN(STR_MEMORY_MODE_VALUE),
+        flags  = 0, key = 0;
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    //
+    // Date and Time section
+    //
+    date    year varid  = Date.Year,    // Note that it is a member of NULL, so the RTC will be the system resource to retrieve and save from
+            prompt      = STRING_TOKEN(STR_DATE_PROMPT),
+            help        = STRING_TOKEN(STR_DATE_YEAR_HELP),
+            minimum     = 2006,
+            maximum     = 2100,
+            step        = 1,
+            default     = 2006,
+
+            month varid = Date.Month,    // Note that it is a member of NULL, so the RTC will be the system resource to retrieve and save from
+            prompt      = STRING_TOKEN(STR_DATE_PROMPT),
+            help        = STRING_TOKEN(STR_DATE_MONTH_HELP),
+            minimum     = 1,
+            maximum     = 12,
+            step        = 1,
+            default     = 1,
+
+            day varid   = Date.Day,          // Note that it is a member of NULL, so the RTC will be the system resource to retrieve and save from
+            prompt      = STRING_TOKEN(STR_DATE_PROMPT),
+            help        = STRING_TOKEN(STR_DATE_DAY_HELP),
+            minimum     = 1,
+            maximum     = 31,
+            step        = 0x1,
+            default     = 1,
+
+// If the day is 31 AND months is any of the following 2, 4, 6, 9, 11
+    inconsistentif prompt = STRING_TOKEN(STR_ERROR_POPUP),
+      ideqval Date.Day == 31
+      AND
+      ideqvallist Date.Month == 2 4 6 9 11
+    endif
+
+// If the day is 30 AND month is 2
+    inconsistentif prompt = STRING_TOKEN(STR_ERROR_POPUP),
+      ideqval Date.Day == 30
+      AND
+      ideqval Date.Month == 2
+    endif
+
+// If the day is 29 AND month is 2 AND it year is NOT a leapyear
+    inconsistentif prompt = STRING_TOKEN(STR_ERROR_POPUP),
+      ideqval Date.Day == 29
+      AND
+      ideqval Date.Month == 2
+      AND
+      NOT
+      ideqvallist Date.Year == 2004 2008 2012 2016 2020 2024 2028 2032 2036 2040 2044 2048 2052 2056 2060 2064 2068 2072 2076 2080 2084 2088 2092 2096
+    endif
+
+    enddate;
+
+    time    hour varid  = Time.Hours,         // Note that it is a member of NULL, so the RTC will be the system resource to retrieve and save from
+            prompt      = STRING_TOKEN(STR_TIME_PROMPT),
+            help        = STRING_TOKEN(STR_TIME_HOUR_HELP),
+            minimum     = 0,
+            maximum     = 23,
+            step        = 1,
+            default     = 0,
+
+            minute varid  = Time.Minutes,       // Note that it is a member of NULL, so the RTC will be the system resource to retrieve and save from
+            prompt        = STRING_TOKEN(STR_TIME_PROMPT),
+            help          = STRING_TOKEN(STR_TIME_MINUTE_HELP),
+            minimum       = 0,
+            maximum       = 59,
+            step          = 1,
+            default       = 0,
+
+            second varid  = Time.Seconds,       // Note that it is a member of NULL, so the RTC will be the system resource to retrieve and save from
+            prompt        = STRING_TOKEN(STR_TIME_PROMPT),
+            help          = STRING_TOKEN(STR_TIME_SECOND_HELP),
+            minimum       = 0,
+            maximum       = 59,
+            step          = 1,
+            default       = 0,
+
+    endtime;
+             subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    suppressif  ideqval SYSTEM_CONFIGURATION.Access == SYSTEM_PASSWORD_ADMIN;
+            text
+                help   = STRING_TOKEN(STR_USER_HELP),
+                text   = STRING_TOKEN(STR_ACCESS_LEVEL),
+                text   = STRING_TOKEN(STR_ACCESS_USER),
+                flags  = 0,
+                key    = 0;
+    endif;
+
+    suppressif  ideqval SYSTEM_CONFIGURATION.Access == SYSTEM_PASSWORD_USER;
+            text
+                help   = STRING_TOKEN(STR_ADMIN_HELP),
+                text   = STRING_TOKEN(STR_ACCESS_LEVEL),
+                text   = STRING_TOKEN(STR_ACCESS_ADMIN),
+                flags  = 0,
+                key    = 0;
+    endif;
+
+  endform;
+
+#include "SystemInfo.hfr"
+endformset;
+
+
